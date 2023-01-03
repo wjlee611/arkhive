@@ -10,6 +10,7 @@ import 'package:Arkhive/screens/settings_screen.dart';
 import 'package:Arkhive/screens/stage_screen.dart';
 import 'package:flutter/material.dart';
 import "../global_vars.dart" as globals;
+import 'dart:math' as math;
 
 class NavDrawer extends StatefulWidget {
   const NavDrawer({super.key});
@@ -45,19 +46,79 @@ class _NavDrawerState extends State<NavDrawer> {
       child: Column(
         children: [
           SizedBox(
-            height: 150,
+            height: 200,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 30),
+              children: [
+                Transform.translate(
+                  offset: const Offset(
+                    0,
+                    44,
+                  ),
+                  child: Transform.rotate(
+                    angle: 45 * math.pi / 180,
+                    child: Container(
+                      width: 65,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow.shade700,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.yellow.shade700,
+                            blurRadius: 5,
+                          )
+                        ],
+                      ),
+                      child: Center(
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          color: Colors.blueGrey.shade700,
+                          child: Center(
+                            child: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.yellow.shade700,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.yellow.shade900,
+                                    blurRadius: 5,
+                                  )
+                                ],
+                              ),
+                              child: Center(
+                                  child: Container(
+                                width: 40,
+                                height: 40,
+                                color: Colors.blueGrey.shade700,
+                              )),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 70),
                   child: Text(
-                    "메뉴",
+                    "Menu",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                       fontWeight: FontWeight.w700,
-                      fontSize: 30,
+                      fontSize: 20,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 30,
+                        ),
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 30,
+                        ),
+                      ],
                     ),
                   ),
                 ),
