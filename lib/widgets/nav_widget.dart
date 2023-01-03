@@ -88,11 +88,12 @@ class _NavDrawerState extends State<NavDrawer> {
                                 ],
                               ),
                               child: Center(
-                                  child: Container(
-                                width: 40,
-                                height: 40,
-                                color: Colors.blueGrey.shade700,
-                              )),
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  color: Colors.blueGrey.shade700,
+                                ),
+                              ),
                             ),
                           ),
                         ),
