@@ -1,3 +1,5 @@
+import 'package:Arkhive/models/font_family.dart';
+import 'package:Arkhive/models/screens_model.dart';
 import 'package:Arkhive/screens/enemy_screen.dart';
 import 'package:Arkhive/screens/gimmick_screen.dart';
 import 'package:Arkhive/screens/info_screen.dart';
@@ -53,7 +55,8 @@ class _NavDrawerState extends State<NavDrawer> {
                     "메뉴",
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
                       fontSize: 30,
                     ),
                   ),
@@ -75,14 +78,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '메인 화면',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'main') {
+                    if (globals.screen != ScreenModel.main) {
                       Navigator.pushReplacement(
                           context, _createRoute(const MainScreen()));
-                      globals.screen = 'main';
+                      globals.screen = ScreenModel.main;
                     }
                   },
                 ),
@@ -95,14 +99,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '창고 아이템',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'item') {
+                    if (globals.screen != ScreenModel.item) {
                       Navigator.pushReplacement(
                           context, _createRoute(const ItemScreen()));
-                      globals.screen = 'item';
+                      globals.screen = ScreenModel.item;
                     }
                   },
                 ),
@@ -115,14 +120,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '스테이지 기믹',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'gimmick') {
+                    if (globals.screen != ScreenModel.gimmick) {
                       Navigator.pushReplacement(
                           context, _createRoute(const GimmickScreen()));
-                      globals.screen = 'gimmick';
+                      globals.screen = ScreenModel.gimmick;
                     }
                   },
                 ),
@@ -135,14 +141,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '스테이지 정보',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'stage') {
+                    if (globals.screen != ScreenModel.stage) {
                       Navigator.pushReplacement(
                           context, _createRoute(const StageScreen()));
-                      globals.screen = 'stage';
+                      globals.screen = ScreenModel.stage;
                     }
                   },
                 ),
@@ -155,14 +162,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '오퍼레이터',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'operator') {
+                    if (globals.screen != ScreenModel.operators) {
                       Navigator.pushReplacement(
                           context, _createRoute(const OperatorScreen()));
-                      globals.screen = 'operator';
+                      globals.screen = ScreenModel.operators;
                     }
                   },
                 ),
@@ -175,14 +183,15 @@ class _NavDrawerState extends State<NavDrawer> {
                     '적',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != 'enemy') {
+                    if (globals.screen != ScreenModel.stage) {
                       Navigator.pushReplacement(
                           context, _createRoute(const EnemyScreen()));
-                      globals.screen = 'enemy';
+                      globals.screen = ScreenModel.stage;
                     }
                   },
                 ),
@@ -207,6 +216,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     '설정',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
@@ -224,6 +234,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     '정보 / 후원',
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
                   onTap: () {
@@ -245,6 +256,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     "Arkhive 1.0.0",
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
                       fontSize: 10,
                     ),
                   ),

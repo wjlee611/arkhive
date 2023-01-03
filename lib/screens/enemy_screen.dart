@@ -1,3 +1,4 @@
+import 'package:Arkhive/models/font_family.dart';
 import 'package:Arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,13 @@ class _EnemyScreenState extends State<EnemyScreen> {
       key: scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('적'),
+        title: const Text(
+          '적',
+          style: TextStyle(
+            fontFamily: FontFamily.nanumGothic,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
         backgroundColor: Colors.blueGrey.shade700,
         leading: IconButton(
           icon: const Icon(Icons.sort),
