@@ -19,20 +19,43 @@ class _MainScreenState extends State<MainScreen> {
 
   // Loading data
   Future<void> readOperatorJson() async {
-    List<OperatorModel> operators = [];
     final String res =
         await rootBundle.loadString('assets/json/data_operator.json');
     final data = await json.decode(res)['data'];
+
     for (var jsonData in data) {
-      operators.add(OperatorModel.fromJson(jsonData));
+      OperatorModel operator_ = OperatorModel.fromJson(jsonData);
+      if (operator_.class_ == OperatorModel.vanguard) {
+        globals.classedOperators[0].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.sniper) {
+        globals.classedOperators[1].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.guard) {
+        globals.classedOperators[2].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.caster) {
+        globals.classedOperators[3].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.defender) {
+        globals.classedOperators[4].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.medic) {
+        globals.classedOperators[5].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.specialist) {
+        globals.classedOperators[6].add(operator_);
+      }
+      if (operator_.class_ == OperatorModel.supporter) {
+        globals.classedOperators[7].add(operator_);
+      }
     }
-    globals.operators = operators;
   }
 
   @override
   void initState() {
     super.initState();
-    if (globals.operators.isEmpty) {
+    if (globals.classedOperators[0].isEmpty) {
       readOperatorJson();
     }
     print('data fetched!');

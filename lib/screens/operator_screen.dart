@@ -12,52 +12,8 @@ class OperatorScreen extends StatefulWidget {
   State<OperatorScreen> createState() => _OperatorScreenState();
 }
 
-late List<List<OperatorModel>> classedOperators;
-
 class _OperatorScreenState extends State<OperatorScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-
-    classedOperators = [
-      [], // vanguards
-      [], // snipers
-      [], // guards
-      [], // casters
-      [], // defenders
-      [], // medics
-      [], // specialists
-      [], // supporters
-    ];
-    for (var operator_ in globals.operators) {
-      if (operator_.class_ == OperatorModel.vanguard) {
-        classedOperators[0].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.sniper) {
-        classedOperators[1].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.guard) {
-        classedOperators[2].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.caster) {
-        classedOperators[3].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.defender) {
-        classedOperators[4].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.medic) {
-        classedOperators[5].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.specialist) {
-        classedOperators[6].add(operator_);
-      }
-      if (operator_.class_ == OperatorModel.supporter) {
-        classedOperators[7].add(operator_);
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +104,7 @@ class ClassListView extends StatelessWidget {
                   ),
                 ),
                 Image.asset(
-                  'assets/images/operators/${classedOperators[classIdx][index].imageName}.png',
+                  'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
                   width: 50,
                   height: 50,
                 ),
@@ -156,7 +112,7 @@ class ClassListView extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  classedOperators[classIdx][index].name,
+                  globals.classedOperators[classIdx][index].name,
                   style: const TextStyle(
                     fontSize: 14,
                     fontFamily: FontFamily.nanumGothic,
@@ -168,7 +124,7 @@ class ClassListView extends StatelessWidget {
           ],
         );
       },
-      itemCount: classedOperators[classIdx].length,
+      itemCount: globals.classedOperators[classIdx].length,
     );
   }
 }
