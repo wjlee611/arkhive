@@ -1,6 +1,6 @@
-import 'package:Arkhive/models/font_family.dart';
-import 'package:Arkhive/models/operator_model.dart';
-import 'package:Arkhive/widgets/nav_widget.dart';
+import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import '../global_vars.dart' as globals;
@@ -84,7 +84,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
           return StickyHeader(
             header: Container(
               height: 50.0,
-              color: Colors.blueGrey[700],
+              color: Colors.blueGrey.shade700,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               alignment: Alignment.centerLeft,
               child: Text(
@@ -103,12 +103,15 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                         : index == 6
                                             ? OperatorModel.specialist
                                             : OperatorModel.supporter,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: FontFamily.nanumGothic,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
-            content: ClassListView(
-              classIdx: index,
-            ),
+            content: ClassListView(classIdx: index),
           );
         },
         itemCount: 8,
@@ -132,9 +135,37 @@ class ClassListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
+        String name = classedOperators[classIdx][index].name;
         return Row(
           children: [
-            Text(classedOperators[classIdx][index].name),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 5,
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey.shade600,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/$name.png',
+                  width: 50,
+                  height: 50,
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ],
         );
       },

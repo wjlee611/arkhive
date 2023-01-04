@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:Arkhive/models/font_family.dart';
-import 'package:Arkhive/models/operator_model.dart';
-import 'package:Arkhive/widgets/nav_widget.dart';
+import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../global_vars.dart' as globals;

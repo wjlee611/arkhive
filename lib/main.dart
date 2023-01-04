@@ -1,5 +1,4 @@
-import 'package:Arkhive/screens/main_screen.dart';
-import 'package:Arkhive/widgets/nav_widget.dart';
+import 'package:arkhive/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

@@ -1,5 +1,5 @@
-import 'package:Arkhive/models/font_family.dart';
-import 'package:Arkhive/widgets/nav_widget.dart';
+import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
 class GimmickScreen extends StatefulWidget {

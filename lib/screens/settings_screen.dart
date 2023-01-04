@@ -1,4 +1,4 @@
-import 'package:Arkhive/models/font_family.dart';
+import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
