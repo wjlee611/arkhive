@@ -1,5 +1,5 @@
 class OperatorModel {
-  final String name, rare, class_, position, trait, imageName;
+  final String name, rare, class_, position, imageName;
   final List<_TalentModel> talent;
   final List<_SkillModel> skill;
   final List<_ModuleModel> module;
@@ -13,12 +13,17 @@ class OperatorModel {
   static String specialist = '스페셜리스트';
   static String supporter = '서포터';
 
+  static String tactician =
+      "공격 범위 내 전술 포인트를 1회 선택해 지원군 소환 가능, 지원군이 저지하는 적을 공격할 때 본인 공격력이 150%까지 상승";
+  static String charger = "적 처치시 배치 코스트 +1, 퇴각 시 초기 배치 코스트 반환";
+  static String pioneer = "적 2명 저지 가능";
+  static String standardBearer = "스킬을 사용하는 동안 저지 수가 0이 된다";
+
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         rare = json['rare'],
         class_ = json['class'],
         position = json['position'],
-        trait = json['trait'],
         imageName = json["image_name"],
         talent = [
           for (var talJson in json['talent']) _TalentModel.fromJson(talJson)

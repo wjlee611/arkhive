@@ -5,7 +5,6 @@
       "rare": "2",
       "class": "뱅가드",
       "position": "척후병",
-      "trait": "적 2명 저지 가능",
       "image_name": "yato",
       "talent": [
         {
@@ -21,7 +20,6 @@
       "rare": "3",
       "class": "뱅가드",
       "position": "척후병",
-      "trait": "적 2명 저지 가능",
       "image_name": "fang",
       "talent": [
         {
@@ -45,7 +43,6 @@
       "rare": "3",
       "class": "뱅가드",
       "position": "척후병",
-      "trait": "적 2명 저지 가능",
       "image_name": "vanilla",
       "talent": [
         {
@@ -69,7 +66,6 @@
       "rare": "3",
       "class": "뱅가드",
       "position": "돌격수",
-      "trait": "적 처치시 배치 코스트 +1, 퇴각 시 초기 배치 코스트 반환",
       "image_name": "plume",
       "talent": [
         {
@@ -93,7 +89,6 @@
       "rare": "4",
       "class": "뱅가드",
       "position": "척후병",
-      "trait": "적 2명 저지 가능",
       "image_name": "scavenger",
       "talent": [
         {
@@ -124,7 +119,6 @@
       "rare": "4",
       "class": "뱅가드",
       "position": "척후병",
-      "trait": "적 2명 저지 가능",
       "image_name": "courier",
       "talent": [
         {
@@ -155,7 +149,6 @@
       "rare": "4",
       "class": "뱅가드",
       "position": "돌격수",
-      "trait": "적 처치시 배치 코스트 +1, 퇴각 시 초기 배치 코스트 반환",
       "image_name": "vigna",
       "talent": [
         {
@@ -214,7 +207,6 @@
       "rare": "4",
       "class": "뱅가드",
       "position": "기수",
-      "trait": "스킬을 사용하는 동안 저지 수가 0이 된다",
       "image_name": "myrtle",
       "talent": [
         {
@@ -245,7 +237,6 @@
       "rare": "4",
       "class": "뱅가드",
       "position": "전술가",
-      "trait": "공격 범위 내 전술 포인트를 1회 선택해 지원군 소환 가능, 지원군이 저지하는 적을 공격할 때 본인 공격력이 150%까지 상승",
       "image_name": "beanstalk",
       "talent": [
         {
@@ -272,11 +263,334 @@
       "module": []
     },
     {
+      "name": "텍사스",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "척후병",
+      "image_name": "texas",
+      "talent": [
+        {
+          "talent_name": "전술 배송",
+          "talent_info": "편성시 초기 보유 코스트 +2"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "돌격지령γ",
+          "sp": "20/35",
+          "duration": "0",
+          "type": "자동 회복/자동 발동",
+          "info": "배치 코스트 12 즉시 획득"
+        },
+        {
+          "skill_name": "검의 비",
+          "sp": "30/40",
+          "duration": "0",
+          "type": "자동 회복/수동 발동",
+          "info": "배치 코스트 12 즉시 획득, 주변 모든 적에게 공격력 170%만큼의 마법 대미지를 2회 입히고, 명중된 목표를 3초간 기절시킨다"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "지마",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "척후병",
+      "image_name": "zima",
+      "talent": [
+        {
+          "talent_name": "돌격 대장",
+          "talent_info": "편성 시 아군 [뱅가드] 오퍼레이터 전원의 배치 코스트 -1"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "돌격지령γ",
+          "sp": "20/35",
+          "duration": "0",
+          "type": "자동 회복/자동 발동",
+          "info": "배치 코스트 12 즉시 획득"
+        },
+        {
+          "skill_name": "우르수스의 포효",
+          "sp": "20/35",
+          "duration": "10",
+          "type": "자동 회복/수동 발동",
+          "info": "스킬 지속 시간 동안 점진적으로 배치 코스트 12 획득, 모든 [뱅가드] 오퍼레이터의 공격력 및 방어력 +60%, 적 처치 시 배치 코스트 1 추가 획득"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "그라니",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "돌격수",
+      "image_name": "grani",
+      "talent": [
+        {
+          "talent_name": "기마 경찰",
+          "talent_info": "배치되어 있을 때 아군 [뱅가드] 오퍼레이터들은 물리 회피율 +20%"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "방어 강화γ",
+          "sp": "15/30",
+          "duration": "40",
+          "type": "자동 회복/수동 발동",
+          "info": "방어력 +100%"
+        },
+        {
+          "skill_name": "임전무퇴!",
+          "sp": "50/70",
+          "duration": "30",
+          "type": "자동 회복/수동 발동",
+          "info": "공격 거리 감소, 공격력 및 방어력 +80%, 저지 가능 수 +1, 저지하는 모든 적을 동시 공격"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "레인저스 세트",
+          "module_code": "CHG-X",
+          "effect": [
+            {
+              "stat": "최대 HP +150, 방어력 +45",
+              "talent": {
+                "talent_name": "특성 개선",
+                "talent_info": "적을 처치한 후 2의 배치 코스트를 지급받고 철수 시에는 해당 배치 시의 코스트를 반환한다"
+              }
+            },
+            {
+              "stat": "최대 HP +175, 방어력 +60",
+              "talent": {
+                "talent_name": "기마 경찰",
+                "talent_info": "배치되어 있을 때 아군 [뱅가드] 오퍼레이터들은 물리 회피율 +25%"
+              }
+            },
+            {
+              "stat": "최대 HP +200, 방어력 +67",
+              "talent": {
+                "talent_name": "기마 경찰",
+                "talent_info": "배치되어 있을 때 아군 [뱅가드] 오퍼레이터들은 물리 회피율 +30%"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "리드",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "돌격수",
+      "image_name": "reed",
+      "talent": [
+        {
+          "talent_name": "매마른 피",
+          "talent_info": "마법 저항 +20"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "신속공격γ",
+          "sp": "15/35",
+          "duration": "35",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +45%, 공격 속도 +45"
+        },
+        {
+          "skill_name": "생령의 불꽃",
+          "sp": "20/35",
+          "duration": "30",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +80%, 공격 시마다 공격력 35%의 마법 대미지를 부가하고, 적 처치 후 배치 코스트 +1 회복"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "엣지 클리너 세트",
+          "module_code": "CHG-Y",
+          "effect": [
+            {
+              "stat": "최대 HP +130, 공격력 +40",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "HP가 40% 이하인 적을 공격할 때 공격력이 115%까지 상승한다"
+              }
+            },
+            {
+              "stat": "최대 HP +155, 공격력 +55",
+              "talent": {
+                "talent_name": "매마른 피",
+                "talent_info": "마법 저항 +20, 마법 대미지를 받은 후 3초 간 공격 속도 +15(중첩 불가)"
+              }
+            },
+            {
+              "stat": "최대 HP +180, 공격력 +65",
+              "talent": {
+                "talent_name": "매마른 피",
+                "talent_info": "마법 저항 +20, 마법 대미지를 받은 후 3초 간 공격 속도 +25(중첩 불가)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "엘리시움",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "기수",
+      "image_name": "elysium",
+      "talent": [
+        {
+          "talent_name": "저격 지원",
+          "talent_info": "전장에 있을 때 모든 [스나이퍼] 오퍼레이터의 배치 코스트 -2, 그리고 스킬이 발동 중일 때 모든 [스나이퍼] 오퍼레이터의 공격 속도 +20"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "지원지령γ",
+          "sp": "15/26",
+          "duration": "8",
+          "type": "자동 회복/수동 발동",
+          "info": "공격을 중지하고 지속 시간 동안 총 18 배치 코스트 회복"
+        },
+        {
+          "skill_name": "경청",
+          "sp": "16/30",
+          "duration": "15",
+          "type": "자동 회복/수동 발동",
+          "info": "공격을 정지하고 총 20의 배치 코스트를 점진적으로 회복하며, 지속 시간 동안 최대 4명의 적을 지정한다. 지정된 유닛은 이동속도가 -60%, 방어력 -35%, 은신 무효화"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "키아베",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "척후병",
+      "image_name": "chiave",
+      "talent": [
+        {
+          "talent_name": "기술 장인",
+          "talent_info": "전장에 있을 때, 모든 1성 오퍼레이터의 재배치 시간 -75%, 전장의 1성 오퍼레이터 1명 당 공격력 및 방어력 +11%"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "돌격지령γ",
+          "sp": "20/35",
+          "duration": "0",
+          "type": "자동 회복/자동 발동",
+          "info": "배치 코스트 12 즉시 획득"
+        },
+        {
+          "skill_name": "화염 박리",
+          "sp": "35/45",
+          "duration": "0",
+          "type": "자동 회복/수동 발동",
+          "info": "배치 코스트 13 즉시 획득, 주위의 모든 적에게 공격력의 350% 만큼의 마법 대미지를 주고, 8초동안 마법 저항력 -20%"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "와일드메인",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "돌격수",
+      "image_name": "wildmane",
+      "talent": [
+        {
+          "talent_name": "일제 전진",
+          "talent_info": "배치 후, 모든 미배치 [가드] 오퍼레이터의 배치 코스트 -1(최대 -5)"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "랜스 찌르기",
+          "sp": "0/0",
+          "duration": "30",
+          "type": "-/패시브",
+          "info": "배치 후 공격 속도 +135"
+        },
+        {
+          "skill_name": "랜스 차징",
+          "sp": "30/40",
+          "duration": "20",
+          "type": "자동 회복/수동 발동",
+          "info": "공격범위 확대, 공격력 +80%, 공격 대상을 어느정도 밀어낸다"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "예비 장창 세트",
+          "module_code": "CHG-X",
+          "effect": [
+            {
+              "stat": "공격력 +40, 공격 속도 +3",
+              "talent": {
+                "talent_name": "특성 개선",
+                "talent_info": "적을 처치한 후 2의 배치 코스트를 지급받고 철수 시에는 해당 배치 시의 코스트를 반환한다"
+              }
+            },
+            {
+              "stat": "공격력 +50, 공격 속도 +4",
+              "talent": {
+                "talent_name": "일제 전진",
+                "talent_info": "자신의 재배치 시간 -10초, 모든 미배치 [가드] 오퍼레이터의 배치 코스트 -1(최대 -5)"
+              }
+            },
+            {
+              "stat": "공격력 +60, 공격 속도 +5",
+              "talent": {
+                "talent_name": "일제 전진",
+                "talent_info": "자신의 재배치 시간 -15초, 모든 미배치 [가드] 오퍼레이터의 배치 코스트 -1(최대 -5)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "블랙나이트",
+      "rare": "5",
+      "class": "뱅가드",
+      "position": "전술가",
+      "image_name": "blacknight",
+      "talent": [
+        {
+          "talent_name": "야행",
+          "talent_info": "전술 포인트로 슬럼버풋을 소환해서 작전에 협력하도록 할 수 있다. 철수한 뒤 15초 후 자동 보충된다"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "반성",
+          "sp": "17/25",
+          "duration": "10",
+          "type": "자동 회복/수동 발동",
+          "info": "배치 코스트 11 즉시 획득, 슬럼버풋이 휴면에 들어가고, 그 사이 초당 14%의 HP 회복. 슬럼버풋이 피해를 입으면 깨어나 공격력 +55%, 공격속도 +55%, 10초 지속"
+        },
+        {
+          "skill_name": "안면",
+          "sp": "10/16",
+          "duration": "0",
+          "type": "자동 회복/수동 발동",
+          "info": "즉시 전술포인트 주변의 모든 지상의 적을 6초간 [수면]에 빠트려 배치 코스트를 4 획득한다. 6초 동안 슬럼버풋의 공격이 광역 마법 공격으로 변하며 [수면]상태인 대상을 공격할 경우 공격력을 210%까지 향상. 2회 충전 가능"
+        }
+      ],
+      "module": []
+    },
+    {
       "name": "블레이즈",
       "rare": "6",
       "class": "가드",
       "position": "공격수",
-      "trait": "저지 중인 모든 적 동시 공격",
       "image_name": "blaze",
       "talent": [
         {
@@ -318,7 +632,6 @@
       "rare": "5",
       "class": "가드",
       "position": "아츠 파이터",
-      "trait": "일반 공격으로 적에게 마법 대미지",
       "image_name": "amiya_promotion",
       "talent": [
         {
