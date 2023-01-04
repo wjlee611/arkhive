@@ -3,8 +3,8 @@
     {
       "name": "아미야(프로모션)",
       "rare": "5",
-      "position": "가드",
-      "detail_pos": "아츠 파이터",
+      "class": "가드",
+      "position": "아츠 파이터",
       "trait": "일반 공격으로 적에게 마법 대미지",
       "talent": [
         {
@@ -33,8 +33,8 @@
     {
       "name": "블레이즈",
       "rare": "6",
-      "position": "가드",
-      "detail_pos": "공격수",
+      "class": "가드",
+      "position": "공격수",
       "trait": "저지 중인 모든 적 동시 공격",
       "talent": [
         {

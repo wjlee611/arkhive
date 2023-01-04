@@ -1,14 +1,23 @@
 class OperatorModel {
-  final String name, rare, position, detailPos, trait;
+  final String name, rare, class_, position, trait;
   final List<_TalentModel> talent;
   final List<_SkillModel> skill;
   final List<_ModuleModel> module;
 
+  static String vanguard = '뱅가드';
+  static String sniper = '스나이퍼';
+  static String guard = '가드';
+  static String caster = '캐스터';
+  static String defender = '디펜더';
+  static String medic = '메딕';
+  static String specialist = '스페셜리스트';
+  static String supporter = '서포터';
+
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         rare = json['rare'],
+        class_ = json['class'],
         position = json['position'],
-        detailPos = json['detail_pos'],
         trait = json['trait'],
         talent = [
           for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
