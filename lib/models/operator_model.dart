@@ -1,5 +1,5 @@
 class OperatorModel {
-  final String name, rare, class_, position, trait;
+  final String name, rare, class_, position, trait, imageName;
   final List<_TalentModel> talent;
   final List<_SkillModel> skill;
   final List<_ModuleModel> module;
@@ -19,6 +19,7 @@ class OperatorModel {
         class_ = json['class'],
         position = json['position'],
         trait = json['trait'],
+        imageName = json["image_name"],
         talent = [
           for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
         ],

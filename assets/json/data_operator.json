@@ -6,6 +6,7 @@
       "class": "가드",
       "position": "아츠 파이터",
       "trait": "일반 공격으로 적에게 마법 대미지",
+      "image_name": "amiya_promotion",
       "talent": [
         {
           "talent_name": "푸른 분노",
@@ -36,6 +37,7 @@
       "class": "가드",
       "position": "공격수",
       "trait": "저지 중인 모든 적 동시 공격",
+      "image_name": "blaze",
       "talent": [
         {
           "talent_name": "긴급 재세동기",
