@@ -250,10 +250,10 @@ class _NavDrawerState extends State<NavDrawer> {
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.stage) {
+                    if (globals.screen != ScreenModel.enemy) {
                       Navigator.pushReplacement(
                           context, _createRoute(const EnemyScreen()));
-                      globals.screen = ScreenModel.stage;
+                      globals.screen = ScreenModel.enemy;
                     }
                   },
                 ),
