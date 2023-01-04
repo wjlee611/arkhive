@@ -135,7 +135,6 @@ class ClassListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
-        String name = classedOperators[classIdx][index].name;
         return Row(
           children: [
             Row(
@@ -149,7 +148,7 @@ class ClassListView extends StatelessWidget {
                   ),
                 ),
                 Image.asset(
-                  'assets/images/$name.png',
+                  'assets/images/operators/${classedOperators[classIdx][index].imageName}.png',
                   width: 50,
                   height: 50,
                 ),
@@ -157,7 +156,7 @@ class ClassListView extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  name,
+                  classedOperators[classIdx][index].name,
                   style: const TextStyle(
                     fontSize: 14,
                     fontFamily: FontFamily.nanumGothic,
