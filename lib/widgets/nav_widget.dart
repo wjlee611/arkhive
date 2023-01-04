@@ -132,14 +132,18 @@ class _NavDrawerState extends State<NavDrawer> {
               padding: EdgeInsets.zero,
               children: [
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.home_outlined,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.main
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '메인 화면',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.main
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
@@ -153,14 +157,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.hive_outlined,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.item
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '창고 아이템',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.item
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
@@ -174,14 +182,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.api_outlined,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.gimmick
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '스테이지 기믹',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.gimmick
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
@@ -195,14 +207,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.account_tree_outlined,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.stage
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '스테이지 정보',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.stage
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
@@ -216,14 +232,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.perm_contact_cal_sharp,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.operators
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '오퍼레이터',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.operators
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
@@ -237,14 +257,18 @@ class _NavDrawerState extends State<NavDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.whatshot_outlined,
-                    color: Colors.white,
+                    color: globals.screen == ScreenModel.enemy
+                        ? Colors.yellow.shade700
+                        : Colors.white,
                   ),
-                  title: const Text(
+                  title: Text(
                     '적',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: globals.screen == ScreenModel.enemy
+                          ? Colors.yellow.shade700
+                          : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                     ),
                   ),
