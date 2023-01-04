@@ -91,37 +91,42 @@ class ClassListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
-        return Row(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 50,
-                  width: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.shade600,
-                  ),
+        return Container(
+          decoration: BoxDecoration(
+            color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 50,
+                width: 5,
+                decoration: BoxDecoration(
+                  color: globals.classedOperators[classIdx][index].rare == "6"
+                      ? Colors.white
+                      : globals.classedOperators[classIdx][index].rare == "5"
+                          ? Colors.yellow.shade700
+                          : Colors.grey.shade800,
                 ),
-                Image.asset(
-                  'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
-                  width: 50,
-                  height: 50,
+              ),
+              Image.asset(
+                'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
+                width: 50,
+                height: 50,
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              Text(
+                globals.classedOperators[classIdx][index].name,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontFamily: FontFamily.nanumGothic,
+                  fontWeight: FontWeight.w700,
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  globals.classedOperators[classIdx][index].name,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         );
       },
       itemCount: globals.classedOperators[classIdx].length,

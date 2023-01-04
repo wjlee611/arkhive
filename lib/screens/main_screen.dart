@@ -57,8 +57,8 @@ class _MainScreenState extends State<MainScreen> {
     super.initState();
     if (globals.classedOperators[0].isEmpty) {
       readOperatorJson();
+      print('operators data fetched!');
     }
-    print('data fetched!');
   }
 
   @override
