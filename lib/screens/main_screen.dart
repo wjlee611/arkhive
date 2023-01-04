@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:Arkhive/models/font_family.dart';
+import 'package:Arkhive/models/operator_model.dart';
 import 'package:Arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../global_vars.dart' as globals;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -11,6 +16,24 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // Loading data
+  Future<void> readOperatorJson() async {
+    List<OperatorModel> operators = [];
+    final String res =
+        await rootBundle.loadString('assets/json/data_operator.json');
+    final data = await json.decode(res)['data'];
+    for (var jsonData in data) {
+      operators.add(OperatorModel.fromJson(jsonData));
+    }
+    globals.operators = operators;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    readOperatorJson();
+  }
 
   @override
   Widget build(BuildContext context) {
