@@ -35,6 +35,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
         ),
       ),
       body: ListView.builder(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return StickyHeader(
@@ -115,6 +116,7 @@ class ClassListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
