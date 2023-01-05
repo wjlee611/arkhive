@@ -41,58 +41,95 @@ class _OperatorScreenState extends State<OperatorScreen> {
           return StickyHeader(
             header: Container(
               height: 50.0,
-              color: Colors.blueGrey.shade700,
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               alignment: Alignment.centerLeft,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    index == 0
-                        ? "assets/images/class_vanguard.png"
-                        : index == 1
-                            ? "assets/images/class_sniper.png"
-                            : index == 2
-                                ? "assets/images/class_guard.png"
-                                : index == 3
-                                    ? "assets/images/class_caster.png"
-                                    : index == 4
-                                        ? "assets/images/class_defender.png"
-                                        : index == 5
-                                            ? "assets/images/class_medic.png"
-                                            : index == 6
-                                                ? "assets/images/class_specialist.png"
-                                                : "assets/images/class_supporter.png",
-                    width: 30,
-                    height: 30,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    index == 0
-                        ? OperatorModel.vanguard
-                        : index == 1
-                            ? OperatorModel.sniper
-                            : index == 2
-                                ? OperatorModel.guard
-                                : index == 3
-                                    ? OperatorModel.caster
-                                    : index == 4
-                                        ? OperatorModel.defender
-                                        : index == 5
-                                            ? OperatorModel.medic
-                                            : index == 6
-                                                ? OperatorModel.specialist
-                                                : OperatorModel.supporter,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
+              decoration: BoxDecoration(
+                color: Colors.blueGrey.shade700,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 2,
+                    spreadRadius: 2,
+                    offset: const Offset(
+                      0,
+                      1,
                     ),
                   ),
                 ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      index == 0
+                          ? "assets/images/class_vanguard.png"
+                          : index == 1
+                              ? "assets/images/class_sniper.png"
+                              : index == 2
+                                  ? "assets/images/class_guard.png"
+                                  : index == 3
+                                      ? "assets/images/class_caster.png"
+                                      : index == 4
+                                          ? "assets/images/class_defender.png"
+                                          : index == 5
+                                              ? "assets/images/class_medic.png"
+                                              : index == 6
+                                                  ? "assets/images/class_specialist.png"
+                                                  : "assets/images/class_supporter.png",
+                      width: 30,
+                      height: 30,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            index == 0
+                                ? OperatorModel.vanguard
+                                : index == 1
+                                    ? OperatorModel.sniper
+                                    : index == 2
+                                        ? OperatorModel.guard
+                                        : index == 3
+                                            ? OperatorModel.caster
+                                            : index == 4
+                                                ? OperatorModel.defender
+                                                : index == 5
+                                                    ? OperatorModel.medic
+                                                    : index == 6
+                                                        ? OperatorModel
+                                                            .specialist
+                                                        : OperatorModel
+                                                            .supporter,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: FontFamily.nanumGothic,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Text(
+                            "${globals.classedOperators[index].length}",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: FontFamily.nanumGothic,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             content: ClassListView(classIdx: index),
