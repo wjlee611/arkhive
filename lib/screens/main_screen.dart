@@ -176,6 +176,9 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     const Padding(
                       padding: EdgeInsets.all(10),
+                      // TODO: 즐겨찾기 저장 시: 카테고리,사진이름,이름
+                      // 즐겨찾기 불러올 시: split후, [1], [2]로 아이콘 추가
+                      // 즐겨찾기 클릭 시: [0]에서 [2]이름 탐색 후 [0]에 맟는 화면 띄워주기
                       child: Text(
                         "즐겨찾기에 동록된 항목이 없습니다.",
                         style: TextStyle(

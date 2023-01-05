@@ -819,6 +819,543 @@
       ],
       "module": []
     },
+
+    {
+      "name": "저스티스 나이트",
+      "rare": "1",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "justice_knight",
+      "talent": [
+        {
+          "talent_name": "정의로운 응원 VI",
+          "talent_info": "배치 후 20초동안 공격 범위 내의 모든 아군 원거리 유닛은 쉽게 공격받지 않으며, 적 비행 유닛은 25%의 취약 효과를 얻는다"
+        }
+      ],
+      "skill": [],
+      "module": []
+    },
+    {
+      "name": "레인저",
+      "rare": "2",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "rangers",
+      "talent": [
+        {
+          "talent_name": "대공 마스터",
+          "talent_info": "비행 목표 공격 시 공격력 +50%"
+        }
+      ],
+      "skill": [],
+      "module": []
+    },
+    {
+      "name": "크루스",
+      "rare": "3",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "kroos",
+      "talent": [
+        {
+          "talent_name": "급소조준·초급",
+          "talent_info": "공격 시 20% 확률로 공격력이 150%로 상승한다"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "2연사·자동",
+          "sp": "0/4",
+          "duration": "0",
+          "type": "공격 회복/자동 발동",
+          "info": "다음 공격시 연속 사격 2회 진행, 매 회 사격을 통해 공격력 140%의 물리 대미지를 입힌다"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "아드나키엘",
+      "rare": "3",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "adnachiel",
+      "talent": [
+        {
+          "talent_name": "결점 타파",
+          "talent_info": "공격 속도 +8, 원거리 공격을 하는 적을 우선적으로 공격"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "공격 강화α",
+          "sp": "0/40",
+          "duration": "20",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +50%"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "캐터펄트",
+      "rare": "3",
+      "class": "스나이퍼",
+      "position": "포격사수",
+      "image_name": "catapult",
+      "talent": [
+        {
+          "talent_name": "경량화",
+          "talent_info": "자신의 배치 코스트 -1"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "폭발범위확대α",
+          "sp": "0/45",
+          "duration": "20",
+          "type": "자동 회복/수동 발동",
+          "info": "폭발 범위가 200% 늘어난다"
+        }
+      ],
+      "module": []
+    },
+    {
+      "name": "메이",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "may",
+      "talent": [
+        {
+          "talent_name": "빅토리아의 탐정",
+          "talent_info": "공격력 +7%, 공격 속도 +7"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "마비탄",
+          "sp": "0/3",
+          "duration": "0",
+          "type": "공격 회복/자동 발동",
+          "info": "다음 공격의 공격력이 200%까지 상승하고, 목표를 2.5초간 정지시킨다"
+        },
+        {
+          "skill_name": "속박 전격",
+          "sp": "0/20",
+          "duration": "30",
+          "type": "자동 회복/수동 발동",
+          "info": "공격 딜레이 매우 약간 증가(50%), 공격력 +120%, 목표를 1초간 정지시키고 30% 확률로 1.2초간 기절시킨다"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "초보 탐정 패키지",
+          "module_code": "MAR-X",
+          "effect": [
+            {
+              "stat": "공격력 +18, 공격 속도 +1",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "공중 유닛 공격 시 110%만큼 공격력 향상"
+              }
+            },
+            {
+              "stat": "공격력 +23, 공격 속도 +2",
+              "talent": {
+                "talent_name": "빅토리아의 탐정",
+                "talent_info": "공격력 +10%, 공격 속도 +7"
+              }
+            },
+            {
+              "stat": "공격력 +27, 공격 속도 +3",
+              "talent": {
+                "talent_name": "빅토리아의 탐정",
+                "talent_info": "공격력 +12%, 공격 속도 +7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "메테오",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "meteor",
+      "talent": [
+        {
+          "talent_name": "대공사격 전문",
+          "talent_info": "공중 유닛 공격 시 공격력 +35%"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "쇄갑격",
+          "sp": "0/4",
+          "duration": "0",
+          "type": "공격 회복/자동 발동",
+          "info": "다음 공격은 180%의 공격력으로 공격하며, 5초 동안 목표의 방어력을 35% 감소시킨다"
+        },
+        {
+          "skill_name": "쇄갑격·확산",
+          "sp": "0/15",
+          "duration": "0",
+          "type": "공격 회복/수동 발동",
+          "info": "사용 즉시 200%의 공격력으로 범위 내 최대 5명의 적에게 공격하며, 5초 동안 목표의 방어력을 40% 감소시킨다"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "사냥용 칼",
+          "module_code": "MAR-X",
+          "effect": [
+            {
+              "stat": "최대 HP +100, 공격력 +22",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "공중 유닛 공격 시 110%만큼 공격력 향상"
+              }
+            },
+            {
+              "stat": "최대 HP +150, 공격력 +27",
+              "talent": {
+                "talent_name": "대공사격 전문",
+                "talent_info": "공중 유닛 공격 시 공격력 +40%"
+              }
+            },
+            {
+              "stat": "최대 HP +180, 공격력 +30",
+              "talent": {
+                "talent_name": "대공사격 전문",
+                "talent_info": "공중 유닛 공격 시 공격력 +50%"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "시라유키",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "포격사수",
+      "image_name": "shirayuki",
+      "talent": [
+        {
+          "talent_name": "대형 수리검",
+          "talent_info": "공격 속도가 약간 감소하지만, 공격력이 20% 추가로 증가한다"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "눈보라",
+          "sp": "10/15",
+          "duration": "25",
+          "type": "자동 회복/수동 발동",
+          "info": "공격 범위 +2칸"
+        },
+        {
+          "skill_name": "풍차",
+          "sp": "0/25",
+          "duration": "0",
+          "type": "자동 회복/수동 발동",
+          "info": "거대한 회전 수리검을 던져, 단시간 내 명중된 목표의 이동 속도를 35%감소시키고, 매 초마다 공격력의 80%만큼의 마법 대미지를 입힌다"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "수리검",
+          "module_code": "ART-Y",
+          "effect": [
+            {
+              "stat": "최대 HP +80, 공격 속도 +3",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "공격 시 적의 방어력을 100 무시"
+              }
+            },
+            {
+              "stat": "최대 HP +120, 공격 속도 +4",
+              "talent": {
+                "talent_name": "풍욱",
+                "talent_info": "적 처치 후 10초 동안 SP 회복 속도 +0.2/초"
+              }
+            },
+            {
+              "stat": "최대 HP +150, 공격 속도 +5",
+              "talent": {
+                "talent_name": "풍욱",
+                "talent_info": "적 처치 후 10초 동안 SP 회복 속도 +0.3/초"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "제시카",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "jessica",
+      "talent": [
+        {
+          "talent_name": "쾌속장전",
+          "talent_info": "공격 속도 +12"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "강타β",
+          "sp": "0/3",
+          "duration": "0",
+          "type": "공격 회복/자동 발동",
+          "info": "다음 공격의 공격력이 230%까지 상승"
+        },
+        {
+          "skill_name": "연막 전개",
+          "sp": "20/40",
+          "duration": "25",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +80%, 물리 및 마법 회피율 +75%"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "제시카의 주문서",
+          "module_code": "MAR-Y",
+          "effect": [
+            {
+              "stat": "공격력 +20, 방어력 +20",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "범위 내 지상 적 존재 시 공격속도 +8"
+              }
+            },
+            {
+              "stat": "공격력 +20, 방어력 +20",
+              "talent": {
+                "talent_name": "쾌속장전",
+                "talent_info": "공격 속도 +14, 공격력 +3%"
+              }
+            },
+            {
+              "stat": "공격력 +20, 방어력 +20",
+              "talent": {
+                "talent_name": "쾌속장전",
+                "talent_info": "공격 속도 +16, 공격력 +6%"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "버메일",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "명사수",
+      "image_name": "vermeil",
+      "talent": [
+        {
+          "talent_name": "사냥꾼의 경험",
+          "talent_info": "자신의 SP 자연 회복 속도 +0.3/초"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "공격 강화β",
+          "sp": "10/35",
+          "duration": "25",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +80%"
+        },
+        {
+          "skill_name": "더블 샷",
+          "sp": "10/20",
+          "duration": "20",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +45%, 매 회 공격 시 1명을 추가 공격"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "\"떨어지지 않아\"",
+          "module_code": "MAR-X",
+          "effect": [
+            {
+              "stat": "최대 HP +90, 공격력 +23",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "공중 유닛 공격 시 110%만큼 공격력 향상"
+              }
+            },
+            {
+              "stat": "최대 HP +140, 공격력 +28",
+              "talent": {
+                "talent_name": "사냥꾼의 경험",
+                "talent_info": "자신의 SP 자연 회복 속도 +0.35/초"
+              }
+            },
+            {
+              "stat": "최대 HP +170, 공격력 +31",
+              "talent": {
+                "talent_name": "사냥꾼의 경험",
+                "talent_info": "자신의 SP 자연 회복 속도 +0.4/초"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "엠브리엘",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "저격수",
+      "image_name": "ambriel",
+      "talent": [
+        {
+          "talent_name": "정확한 타격",
+          "talent_info": "원래 공격 범위 밖 적을 공격 시 25% 확률로 적을 2초간 기절시킨다"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "저지탄",
+          "sp": "10/25",
+          "duration": "36",
+          "type": "자동 회복/수동 발동",
+          "info": "공격 범위가 1칸 늘어나며 적 공격 시 1.2초 동안 멈추게 한다"
+        },
+        {
+          "skill_name": "레이더 위치 추적",
+          "sp": "10/25",
+          "duration": "40",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +100%, 공격 범위가 스테이지 전체로 확장되지만, 공격 딜레이가 매우 약간 증가(+0.9초)하고, 원래 공격 범위 바깥에 있는 적 유닛을 공격할 때 공격 준비 동작이 커진다"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "휴대용 레이더 보조기기",
+          "module_code": "DEA-X",
+          "effect": [
+            {
+              "stat": "최대 HP +65, 공격력 +55",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "멀리 있는 적을 공격할 수록 피해가 높아진다(최대 15% 상승)"
+              }
+            },
+            {
+              "stat": "최대 HP +80, 공격력 +68",
+              "talent": {
+                "talent_name": "정확한 타격",
+                "talent_info": "원래 공격 범위 밖 적을 공격 시 33% 확률로 적을 2.5초간 기절시킨다"
+              }
+            },
+            {
+              "stat": "최대 HP +95, 공격력 +81",
+              "talent": {
+                "talent_name": "정확한 타격",
+                "talent_info": "원래 공격 범위 밖 적을 공격 시 33% 확률로 적을 3초간 기절시킨다"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "애시드드롭",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "헤비슈터",
+      "image_name": "aciddrop",
+      "talent": [
+        {
+          "talent_name": "슬라이딩 테크닉",
+          "talent_info": "매 공격시 최소 공격력의 25% 만큼의 대미지를 입힌다(적들이 바로 앞 2칸에 있을 때는 40%로 증가)"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "환상적인 점사",
+          "sp": "20/35",
+          "duration": "20",
+          "type": "자동 회복/수동 발동",
+          "info": "공격 속도 +70"
+        },
+        {
+          "skill_name": "극복의 시간",
+          "sp": "35/50",
+          "duration": "25",
+          "type": "자동 회복/수동 발동",
+          "info": "공격력 +40%, 공격이 2연발로 변경"
+        }
+      ],
+      "module": [
+        {
+          "module_name": "\"자유, 양파링과 나\"",
+          "module_code": "ARC-X",
+          "effect": [
+            {
+              "stat": "방어력 +30, 재배치 시간 -25, 공격 속도 +3",
+              "talent": {
+                "talent_name": "특성 추가",
+                "talent_info": "재배치 시간 감소"
+              }
+            },
+            {
+              "stat": "방어력 +40, 재배치 시간 -25, 공격 속도 +4",
+              "talent": {
+                "talent_name": "슬라이딩 테크닉",
+                "talent_info": "매 공격시 최소 공격력의 30% 만큼의 대미지를 입힌다(적들이 바로 앞 2칸에 있을 때는 45%로 증가)"
+              }
+            },
+            {
+              "stat": "방어력 +50, 재배치 시간 -25, 공격 속도 +5",
+              "talent": {
+                "talent_name": "슬라이딩 테크닉",
+                "talent_info": "매 공격시 최소 공격력의 35% 만큼의 대미지를 입힌다(적들이 바로 앞 2칸에 있을 때는 50%로 증가)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "파인콘",
+      "rare": "4",
+      "class": "스나이퍼",
+      "position": "산탄사수",
+      "image_name": "pinecone",
+      "talent": [
+        {
+          "talent_name": "휴대용 전원",
+          "talent_info": "배치 후 60초 동안 SP 자연 회복 속도 +0.45/초"
+        }
+      ],
+      "skill": [
+        {
+          "skill_name": "RMA스파이크",
+          "sp": "0/9",
+          "duration": "0",
+          "type": "자동 회복/수동 발동",
+          "info": "즉시 200%의 공격력으로 1회 공격을 가하며 적의 방어력을 250 무시. 3회 충전 가능"
+        },
+        {
+          "skill_name": "전기 에너지 과부하",
+          "sp": "0/30",
+          "duration": "20",
+          "type": "자동 회복/자동 발동",
+          "info": "공격력 +60%, 공격범위 단축, 스킬을 사용할 때마다 추가로 공격력 +20%(최대 +60%)"
+        }
+      ],
+      "module": []
+    },
+
     {
       "name": "블레이즈",
       "rare": "6",
