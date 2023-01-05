@@ -27,6 +27,8 @@ class OperatorModel {
   static String spreadshooter =
       "공격 범위 내 모든 적 공격. 자신의 전방 첫 줄의 적에게 공격력이 150%까지 상승한다";
   static String besieger = "공격 범위 안의 가장 무거운 적을 우선적으로 공격";
+  static String flinger =
+      "지상에 위치한 작은 범위 내 적에게 2회 물리 대미지를 준다. (2번째 공격은 여진으로써, 대미지가 공격력의 절반으로 감소)";
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
