@@ -145,6 +145,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.main
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
@@ -170,6 +173,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.item
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
@@ -195,6 +201,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.gimmick
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
@@ -220,6 +229,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.stage
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
@@ -245,6 +257,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.operators
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
@@ -270,6 +285,9 @@ class _NavDrawerState extends State<NavDrawer> {
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: globals.screen == ScreenModel.enemy
+                          ? FontWeight.w700
+                          : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
