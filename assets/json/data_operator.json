@@ -824,7 +824,7 @@
       "name": "저스티스 나이트",
       "rare": "1",
       "class": "스나이퍼",
-      "position": "명사수",
+      "position": "명사수*",
       "image_name": "justice_knight",
       "talent": [
         {
@@ -2345,7 +2345,7 @@
       "module": []
     },
     {
-      "name": "Ash ([진]한정)",
+      "name": "Ash [한정]",
       "rare": "6",
       "class": "스나이퍼",
       "position": "명사수",

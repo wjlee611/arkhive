@@ -1,5 +1,6 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -157,41 +158,59 @@ class ClassListView extends StatelessWidget {
       shrinkWrap: true,
       physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
-        return Container(
-          decoration: BoxDecoration(
-            color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+        return GestureDetector(
+          onTap: () => OpenDetailScreen.onOperatorTab(
+            list: globals.classedOperators[classIdx],
+            name: globals.classedOperators[classIdx][index].name,
+            context: context,
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 50,
-                width: 5,
-                decoration: BoxDecoration(
-                  color: globals.classedOperators[classIdx][index].rare == "6"
-                      ? Colors.white
-                      : globals.classedOperators[classIdx][index].rare == "5"
-                          ? Colors.yellow.shade700
-                          : Colors.grey.shade800,
+          child: Container(
+            decoration: BoxDecoration(
+              color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 50,
+                  width: 5,
+                  decoration: BoxDecoration(
+                    color: globals.classedOperators[classIdx][index].rare == "6"
+                        ? Colors.white
+                        : globals.classedOperators[classIdx][index].rare == "5"
+                            ? Colors.yellow.shade700
+                            : Colors.grey.shade800,
+                  ),
                 ),
-              ),
-              Image.asset(
-                'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
-                width: 50,
-                height: 50,
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Text(
-                globals.classedOperators[classIdx][index].name,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
+                Hero(
+                  tag: globals.classedOperators[classIdx][index].imageName,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey.withOpacity(0.1),
+                    ),
+                    child: Image.asset(
+                      'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  globals.classedOperators[classIdx][index].name,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
