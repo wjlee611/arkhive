@@ -165,19 +165,20 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                           padding: const EdgeInsets.all(10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.accessibility_new_rounded,
-                                color: Colors.yellow,
+                                color: Colors.yellow.shade700,
+                                size: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text(
+                              const Text(
                                 "특성",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontFamily: FontFamily.nanumGothic,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -224,19 +225,20 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                           padding: const EdgeInsets.all(10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.auto_awesome_rounded,
-                                color: Colors.yellow,
+                                color: Colors.yellow.shade700,
+                                size: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Text(
+                              const Text(
                                 "재능",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontFamily: FontFamily.nanumGothic,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -247,7 +249,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               for (var talent in widget.operator_.talent)
                                 Column(
@@ -353,14 +355,17 @@ class ImageWithStars extends StatelessWidget {
                     angle: 15 * math.pi / 180,
                     child: Icon(
                       Icons.star,
-                      color: Colors.yellow.shade100,
+                      color: Colors.yellow.shade700,
                       size: 26,
                       shadows: const [
-                        Shadow(blurRadius: 10),
+                        Shadow(blurRadius: 15),
                       ],
                     ),
                   ),
                 ),
+              const SizedBox(
+                width: 3,
+              ),
             ],
           ),
         ),

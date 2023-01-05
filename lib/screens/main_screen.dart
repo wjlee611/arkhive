@@ -154,15 +154,15 @@ class _MainScreenState extends State<MainScreen> {
                       padding: const EdgeInsets.all(10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.star,
-                            color: Colors.yellow,
+                            color: Colors.yellow.shade700,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "즐겨찾기",
                             style: TextStyle(
                               color: Colors.white,
@@ -212,15 +212,15 @@ class _MainScreenState extends State<MainScreen> {
                       padding: const EdgeInsets.all(10),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.lightbulb,
-                            color: Colors.yellow,
+                            color: Colors.yellow.shade700,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          const Text(
                             "설명서",
                             style: TextStyle(
                               color: Colors.white,
@@ -312,7 +312,7 @@ class _MainScreenState extends State<MainScreen> {
                               ),
                               Icon(
                                 Icons.star_border_outlined,
-                                color: Colors.yellow.shade800,
+                                color: Colors.yellow.shade700,
                                 size: 18,
                               ),
                               const Text(
