@@ -215,6 +215,10 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                       : const SizedBox(),
 
                   // Modules
+
+                  const SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
             ),
@@ -470,7 +474,7 @@ class _SkillCardState extends State<SkillCard> {
                                   left: 5,
                                 ),
                                 child: Text(
-                                  "즉시 발동",
+                                  "즉시 시전",
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
@@ -504,7 +508,7 @@ class _SkillCardState extends State<SkillCard> {
                                   : Padding(
                                       padding: const EdgeInsets.only(left: 5),
                                       child: Text(
-                                        dur,
+                                        dur == '0' ? "즉시 발동" : dur,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700,
