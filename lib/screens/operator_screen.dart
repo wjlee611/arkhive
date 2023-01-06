@@ -37,7 +37,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
       ),
       body: ListView.builder(
         padding: EdgeInsets.zero,
-        shrinkWrap: true,
+        physics: const AlwaysScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return StickyHeader(
             header: Container(
@@ -153,68 +153,70 @@ class ClassListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      physics: const ClampingScrollPhysics(),
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () => OpenDetailScreen.onOperatorTab(
-            list: globals.classedOperators[classIdx],
-            name: globals.classedOperators[classIdx][index].name,
-            context: context,
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+    return SizedBox(
+      height: globals.classedOperators[classIdx].length * 50,
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        physics: const ClampingScrollPhysics(),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => OpenDetailScreen.onOperatorTab(
+              list: globals.classedOperators[classIdx],
+              name: globals.classedOperators[classIdx][index].name,
+              context: context,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 50,
-                  width: 5,
-                  decoration: BoxDecoration(
-                    color: globals.classedOperators[classIdx][index].rare == "6"
-                        ? Colors.white
-                        : globals.classedOperators[classIdx][index].rare == "5"
-                            ? Colors.yellow.shade700
-                            : Colors.grey.shade800,
-                  ),
-                ),
-                Hero(
-                  tag: globals.classedOperators[classIdx][index].imageName,
-                  child: Container(
-                    width: 50,
+            child: Container(
+              decoration: BoxDecoration(
+                color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
                     height: 50,
-                    clipBehavior: Clip.hardEdge,
+                    width: 5,
                     decoration: BoxDecoration(
-                      color: Colors.blueGrey.withOpacity(0.1),
+                      color: globals.classedOperators[classIdx][index].rare ==
+                              "6"
+                          ? Colors.white
+                          : globals.classedOperators[classIdx][index].rare ==
+                                  "5"
+                              ? Colors.yellow.shade700
+                              : Colors.grey.shade800,
                     ),
-                    child: Image.asset(
-                      'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
+                  ),
+                  Hero(
+                    tag: globals.classedOperators[classIdx][index].imageName,
+                    child: Container(
                       width: 50,
                       height: 50,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(),
+                      child: Image.asset(
+                        'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
+                        width: 50,
+                        height: 50,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  globals.classedOperators[classIdx][index].name,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
+                  const SizedBox(
+                    width: 20,
                   ),
-                ),
-              ],
+                  Text(
+                    globals.classedOperators[classIdx][index].name,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-      itemCount: globals.classedOperators[classIdx].length,
+          );
+        },
+        itemCount: globals.classedOperators[classIdx].length,
+      ),
     );
   }
 }

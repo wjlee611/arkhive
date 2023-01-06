@@ -80,6 +80,11 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               ),
               decoration: const BoxDecoration(
                 color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 5,
+                  ),
+                ],
                 borderRadius: BorderRadiusDirectional.vertical(
                   top: Radius.circular(
                     50,
@@ -90,7 +95,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               child: ListView(
                 children: [
                   const SizedBox(
-                    height: 50,
+                    height: 45,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +104,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                         SizedBox(
                           width: 18,
                           child: Transform.rotate(
-                            angle: 15 * math.pi / 180,
+                            angle: 17 * math.pi / 180,
                             child: Icon(
                               Icons.star,
                               color: Colors.yellow.shade700,
@@ -283,7 +288,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               ),
             ),
           ),
-          ImageWithStars(widget: widget),
+          OperatorImage(widget: widget),
         ],
       ),
     );
@@ -446,7 +451,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                 .split('-')
                                 .last ==
                             "X"
-                        ? Colors.orange.shade900
+                        ? Colors.purple
                         : Colors.blue.shade800,
                     borderRadius: const BorderRadiusDirectional.horizontal(
                       end: Radius.circular(5),
@@ -570,7 +575,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                             .split('-')
                                             .last ==
                                         "X"
-                                    ? Colors.orange.shade900
+                                    ? Colors.purple
                                     : Colors.blue.shade800,
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -613,7 +618,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                             .split('-')
                                             .last ==
                                         "X"
-                                    ? Colors.orange.shade900
+                                    ? Colors.purple
                                     : Colors.blue.shade800,
                                 borderRadius: BorderRadius.circular(5),
                               ),
@@ -652,7 +657,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                                   .split('-')
                                                   .last ==
                                               "X"
-                                          ? Colors.orange.shade900
+                                          ? Colors.purple
                                           : Colors.blue.shade800,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
@@ -1122,8 +1127,8 @@ class TalentCard extends StatelessWidget {
   }
 }
 
-class ImageWithStars extends StatelessWidget {
-  const ImageWithStars({
+class OperatorImage extends StatelessWidget {
+  const OperatorImage({
     Key? key,
     required this.widget,
   }) : super(key: key);
@@ -1138,7 +1143,7 @@ class ImageWithStars extends StatelessWidget {
         Hero(
           tag: widget.operator_.imageName,
           child: Transform.scale(
-            scale: 0.7,
+            scale: 0.60,
             child: Transform.rotate(
               angle: 45 * math.pi / 180,
               child: Container(
@@ -1147,6 +1152,12 @@ class ImageWithStars extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(
                   color: Colors.blueGrey.shade100,
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 5,
+                      spreadRadius: 4,
+                    ),
+                  ],
                   border: Border.all(
                     width: 3,
                     color: Colors.blueGrey.shade600,
