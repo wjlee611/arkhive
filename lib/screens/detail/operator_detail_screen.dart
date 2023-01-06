@@ -62,7 +62,9 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
         backgroundColor: Colors.blueGrey.shade700,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
+            },
             icon:
                 Icon(Icons.star_border_outlined, color: Colors.yellow.shade700),
           ),
@@ -88,13 +90,101 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               child: ListView(
                 children: [
                   const SizedBox(
-                    height: 80,
+                    height: 50,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      for (var i = 0; i < int.parse(widget.operator_.rare); i++)
+                        SizedBox(
+                          width: 18,
+                          child: Transform.rotate(
+                            angle: 15 * math.pi / 180,
+                            child: Icon(
+                              Icons.star,
+                              color: Colors.yellow.shade700,
+                              size: 26,
+                              shadows: const [
+                                Shadow(
+                                  blurRadius: 5,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              offset: Offset(0, 3),
+                              blurRadius: 2,
+                              spreadRadius: 1,
+                              color: Colors.black12,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          widget.operator_.name,
+                          style: TextStyle(
+                            color: Colors.blueGrey.shade700,
+                            fontSize: 20,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        widget.operator_.class_ == OperatorModel.vanguard
+                            ? "assets/images/class_vanguard.png"
+                            : widget.operator_.class_ == OperatorModel.sniper
+                                ? "assets/images/class_sniper.png"
+                                : widget.operator_.class_ == OperatorModel.guard
+                                    ? "assets/images/class_guard.png"
+                                    : widget.operator_.class_ ==
+                                            OperatorModel.caster
+                                        ? "assets/images/class_caster.png"
+                                        : widget.operator_.class_ ==
+                                                OperatorModel.defender
+                                            ? "assets/images/class_defender.png"
+                                            : widget.operator_.class_ ==
+                                                    OperatorModel.medic
+                                                ? "assets/images/class_medic.png"
+                                                : widget.operator_.class_ ==
+                                                        OperatorModel.specialist
+                                                    ? "assets/images/class_specialist.png"
+                                                    : "assets/images/class_supporter.png",
+                        width: 40,
+                        height: 40,
+                        color: Colors.blueGrey.shade700,
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
                       Text(
-                        widget.operator_.name,
+                        widget.operator_.position.replaceFirst('*', ''),
                         style: TextStyle(
                           color: Colors.blueGrey.shade700,
                           fontSize: 20,
@@ -103,54 +193,6 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          widget.operator_.class_ == OperatorModel.vanguard
-                              ? "assets/images/class_vanguard.png"
-                              : widget.operator_.class_ == OperatorModel.sniper
-                                  ? "assets/images/class_sniper.png"
-                                  : widget.operator_.class_ ==
-                                          OperatorModel.guard
-                                      ? "assets/images/class_guard.png"
-                                      : widget.operator_.class_ ==
-                                              OperatorModel.caster
-                                          ? "assets/images/class_caster.png"
-                                          : widget.operator_.class_ ==
-                                                  OperatorModel.defender
-                                              ? "assets/images/class_defender.png"
-                                              : widget.operator_.class_ ==
-                                                      OperatorModel.medic
-                                                  ? "assets/images/class_medic.png"
-                                                  : widget.operator_.class_ ==
-                                                          OperatorModel
-                                                              .specialist
-                                                      ? "assets/images/class_specialist.png"
-                                                      : "assets/images/class_supporter.png",
-                          width: 40,
-                          height: 40,
-                          color: Colors.blueGrey.shade700,
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          widget.operator_.position,
-                          style: TextStyle(
-                            color: Colors.blueGrey.shade700,
-                            fontSize: 20,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -400,7 +442,12 @@ class _ModuleCardState extends State<ModuleCard> {
                 Container(
                   padding: const EdgeInsets.fromLTRB(15, 2, 10, 2),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade800,
+                    color: widget.widget.operator_.module[_selectedModule].code
+                                .split('-')
+                                .last ==
+                            "X"
+                        ? Colors.orange.shade900
+                        : Colors.blue.shade800,
                     borderRadius: const BorderRadiusDirectional.horizontal(
                       end: Radius.circular(5),
                     ),
@@ -518,7 +565,13 @@ class _ModuleCardState extends State<ModuleCard> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 2),
                               decoration: BoxDecoration(
-                                color: Colors.blue.shade800,
+                                color: widget.widget.operator_
+                                            .module[_selectedModule].code
+                                            .split('-')
+                                            .last ==
+                                        "X"
+                                    ? Colors.orange.shade900
+                                    : Colors.blue.shade800,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: const Text(
@@ -555,7 +608,13 @@ class _ModuleCardState extends State<ModuleCard> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 5, vertical: 2),
                               decoration: BoxDecoration(
-                                color: Colors.blue.shade800,
+                                color: widget.widget.operator_
+                                            .module[_selectedModule].code
+                                            .split('-')
+                                            .last ==
+                                        "X"
+                                    ? Colors.orange.shade900
+                                    : Colors.blue.shade800,
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: Text(
@@ -588,7 +647,13 @@ class _ModuleCardState extends State<ModuleCard> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 5, vertical: 2),
                                     decoration: BoxDecoration(
-                                      color: Colors.blue.shade800,
+                                      color: widget.widget.operator_
+                                                  .module[_selectedModule].code
+                                                  .split('-')
+                                                  .last ==
+                                              "X"
+                                          ? Colors.orange.shade900
+                                          : Colors.blue.shade800,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Text(
@@ -1067,7 +1132,8 @@ class ImageWithStars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Hero(
           tag: widget.operator_.imageName,
@@ -1100,37 +1166,6 @@ class ImageWithStars extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
-        Transform.translate(
-          offset: const Offset(
-            0,
-            -10,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (var i = 0; i < int.parse(widget.operator_.rare); i++)
-                SizedBox(
-                  width: 18,
-                  child: Transform.rotate(
-                    angle: 15 * math.pi / 180,
-                    child: Icon(
-                      Icons.star,
-                      color: Colors.yellow.shade700,
-                      size: 26,
-                      shadows: const [
-                        Shadow(
-                          blurRadius: 5,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              const SizedBox(
-                width: 5,
-              ),
-            ],
           ),
         ),
       ],
