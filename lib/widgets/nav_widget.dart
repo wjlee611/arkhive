@@ -245,7 +245,7 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
                 ListTile(
                   leading: Icon(
-                    Icons.perm_contact_cal_sharp,
+                    Icons.badge_outlined,
                     color: globals.screen == ScreenModel.operators
                         ? Colors.yellow.shade700
                         : Colors.white,
