@@ -16,7 +16,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isLoaded = false;
 
   // Loading data
   Future<void> readOperatorJson() async {
@@ -59,9 +58,6 @@ class _MainScreenState extends State<MainScreen> {
     if (globals.classedOperators[0].isEmpty) {
       readOperatorJson();
     }
-    setState(() {
-      isLoaded = true;
-    });
   }
 
   @override
@@ -118,10 +114,10 @@ class _MainScreenState extends State<MainScreen> {
                     Expanded(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text(
-                            isLoaded ? "어서오세요, 박사님." : "데이터를 불러오는 중...",
-                            style: const TextStyle(
+                            "어서오세요, 박사님.",
+                            style: TextStyle(
                               fontSize: 14,
                               fontFamily: FontFamily.nanumGothic,
                             ),
