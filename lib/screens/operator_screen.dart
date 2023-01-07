@@ -26,6 +26,7 @@ List<bool> _isOpen = [
 
 class _OperatorScreenState extends State<OperatorScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final ScrollController _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
         ),
       ),
       body: CustomScrollView(
+        controller: _controller,
         slivers: [
           for (int index = 0; index < globals.classedOperators.length; index++)
             SliverStickyHeader(
@@ -112,6 +114,27 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                 setState(() {
                                   _isOpen[index] = !_isOpen[index];
                                 });
+
+                                double offset = 0;
+                                const height = 50;
+
+                                for (int i = 0; i < 8; i++) {
+                                  if (_isOpen[i]) {
+                                    offset = offset +
+                                        globals.classedOperators[i].length *
+                                            height;
+                                  }
+                                  offset = offset + height;
+                                  if (i == index) break;
+                                }
+
+                                if (!_isOpen[index]) {
+                                  _controller.animateTo(
+                                    offset,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.ease,
+                                  );
+                                }
                               },
                               child: Icon(
                                 _isOpen[index]
