@@ -46,6 +46,18 @@ class OperatorModel {
       "평소에는 공격하지 않고 저지 가능 수가 0이며, 스킬 미발동 상태에서 40초간 공격력이 최대 +200%까지 점진적으로 상승, 스킬 종료 후 공격력 리셋"; // 해방자
   static String reaper =
       "아군의 치료를 받을 수 없으며, 공격 시 광역 대미지를 입히고, 적 1명 적중할 때마다 자신의 HP가 50만큼 회복, 최대 효과 수는 저지 가능 수와 동일"; // 리퍼
+  // caster positions
+  static String coreCaster = "일반 공격으로 적에게 마법 대미지"; // 코어 캐스터
+  static String splashCaster = "일반 공격으로 적에게 광역 마법 대미지"; // 스플래시 캐스터
+  static String mechAccordCaster =
+      "공중 유닛을 조작하여 적에게 마법 대미지. 공중 유닛은 연속으로 동일한 적을 공격할 시 대미지가 증가한다(최고 오퍼레이터의 110% 공격력에 해당하는 대미지)"; // 메카 캐스터
+  static String mysticCaster =
+      "일반 공격으로 적에게 마법 대미지, 공격 목표를 못 찾으면 공격 에너지를 저장한 후 일제히 발사(최대 3개)"; // 미스틱 캐스터
+  static String chainCaster =
+      "공격 시 마법 대미지 부여, 공격이 4명의 적에게 튕기며, 튕길 때마다 대미지가 15%씩 감소, 동시에 일시적인 [정지] 효과 부여"; // 체인 캐스터
+  static String phalanxCaster =
+      "평소엔 공격을 하지 않고 방어력과 마법 저항이 대폭 상승(평상시 방어력 +200%, 마법저항력 +20), 스킬 발동 시 공격 범위 내의 모든 적에게 광역 마법 대미지"; // 진법 캐스터
+  static String blastCaster = "공격이 초원거리 범위 마법 대미지를 준다"; // 블래스트 캐스터
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],

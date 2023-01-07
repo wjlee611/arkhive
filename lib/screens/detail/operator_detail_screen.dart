@@ -43,6 +43,14 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     if (position == "해방자") return OperatorModel.liberator;
     if (position == "리퍼") return OperatorModel.reaper;
 
+    if (position == "코어 캐스터") return OperatorModel.coreCaster;
+    if (position == "스플래시 캐스터") return OperatorModel.splashCaster;
+    if (position == "메카 캐스터") return OperatorModel.mechAccordCaster;
+    if (position == "미스틱 캐스터") return OperatorModel.mysticCaster;
+    if (position == "체인 캐스터") return OperatorModel.chainCaster;
+    if (position == "진법 캐스터") return OperatorModel.phalanxCaster;
+    if (position == "블래스트 캐스터") return OperatorModel.blastCaster;
+
     return "not found";
   }
 
