@@ -58,6 +58,14 @@ class OperatorModel {
   static String phalanxCaster =
       "평소엔 공격을 하지 않고 방어력과 마법 저항이 대폭 상승(평상시 방어력 +200%, 마법저항력 +20), 스킬 발동 시 공격 범위 내의 모든 적에게 광역 마법 대미지"; // 진법 캐스터
   static String blastCaster = "공격이 초원거리 범위 마법 대미지를 준다"; // 블래스트 캐스터
+  // defender positions
+  static String protector = "적 3명 저지 가능"; // 프로텍터
+  static String artsProtector = "스킬 발동 시 일반공격이 마법 피해를 준다"; // 아츠 프로텍터
+  static String guardian = "스킬로 아군 유닛 HP 회복"; // 가디언
+  static String sentinelIronGuard = "적 3명 저지 가능, 원거리 공격을 한다"; // 파수꾼
+  static String juggernaut = "아군의 치료를 받지 못한다"; // 저거너트
+  static String fortress = "적을 저지하지 않을 때, 원거리 광역 물리 공격 시전"; // 포트리스
+  static String duelist = "적을 저지할 때만 SP 회복 가능"; // 결전자
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],

@@ -51,6 +51,14 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     if (position == "진법 캐스터") return OperatorModel.phalanxCaster;
     if (position == "블래스트 캐스터") return OperatorModel.blastCaster;
 
+    if (position == "프로텍터") return OperatorModel.protector;
+    if (position == "아츠 프로텍터") return OperatorModel.artsProtector;
+    if (position == "가디언") return OperatorModel.guardian;
+    if (position == "파수꾼") return OperatorModel.sentinelIronGuard;
+    if (position == "저거너트") return OperatorModel.juggernaut;
+    if (position == "포트리스") return OperatorModel.fortress;
+    if (position == "결전자") return OperatorModel.duelist;
+
     return "not found";
   }
 
