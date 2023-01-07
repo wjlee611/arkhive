@@ -59,6 +59,13 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     if (position == "포트리스") return OperatorModel.fortress;
     if (position == "결전자") return OperatorModel.duelist;
 
+    if (position == "메딕") return OperatorModel.singleMedic;
+    if (position == "메딕*") return OperatorModel.singleMedic_1star;
+    if (position == "멀티 타겟 메딕") return OperatorModel.multiTargetMedic;
+    if (position == "테라피스트") return OperatorModel.therapist;
+    if (position == "방랑 메딕") return OperatorModel.wanderingMedic;
+    if (position == "주술 메딕") return OperatorModel.incantationMedic;
+
     return "not found";
   }
 

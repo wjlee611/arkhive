@@ -66,6 +66,17 @@ class OperatorModel {
   static String juggernaut = "아군의 치료를 받지 못한다"; // 저거너트
   static String fortress = "적을 저지하지 않을 때, 원거리 광역 물리 공격 시전"; // 포트리스
   static String duelist = "적을 저지할 때만 SP 회복 가능"; // 결전자
+  // medic positions
+  static String singleMedic = "아군 HP 회복"; // 메딕
+  static String singleMedic_1star =
+      "아군 HP를 회복할 수 있고, 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다"; // 메딕
+  static String multiTargetMedic = "아군 유닛 3명의 HP를 동시 회복"; // 멀티 타겟 메딕
+  static String therapist =
+      "치료 범위가 넓지만 치료 대상이 멀리 있을 시 치료 효과가 80%로 변한다"; // 테라피스트
+  static String wanderingMedic =
+      "아군 유닛의 HP 회복, 동시에 공격력의 50%에 해당하는 원소 피해 회복(부상이 없는 아군 유닛의 원소 피해도 회복 가능)"; // 방랑 메딕
+  static String incantationMedic =
+      "공격이 마법 대미지를 입히고, 적 공격 시 공격범위 내의 아군 1명에게 피해량의 50%만큼 HP를 치료"; // 주술 메딕
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
