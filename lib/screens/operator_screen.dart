@@ -116,6 +116,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                 });
 
                                 double offset = 0;
+                                double postOffset = 0;
                                 const height = 50;
 
                                 for (int i = 0; i < 8; i++) {
@@ -125,10 +126,13 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                             height;
                                   }
                                   offset = offset + height;
+                                  if (i != index) postOffset = offset;
                                   if (i == index) break;
                                 }
 
                                 if (!_isOpen[index]) {
+                                  _controller.jumpTo(postOffset);
+
                                   _controller.animateTo(
                                     offset,
                                     duration: const Duration(milliseconds: 300),
