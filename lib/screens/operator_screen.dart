@@ -13,6 +13,17 @@ class OperatorScreen extends StatefulWidget {
   State<OperatorScreen> createState() => _OperatorScreenState();
 }
 
+List<bool> _isOpen = [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+];
+
 class _OperatorScreenState extends State<OperatorScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -92,23 +103,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              index == 0
-                                  ? OperatorModel.vanguard
-                                  : index == 1
-                                      ? OperatorModel.sniper
-                                      : index == 2
-                                          ? OperatorModel.guard
-                                          : index == 3
-                                              ? OperatorModel.caster
-                                              : index == 4
-                                                  ? OperatorModel.defender
-                                                  : index == 5
-                                                      ? OperatorModel.medic
-                                                      : index == 6
-                                                          ? OperatorModel
-                                                              .specialist
-                                                          : OperatorModel
-                                                              .supporter,
+                              '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  [ ${globals.classedOperators[index].length} ]',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -116,13 +111,17 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Text(
-                              "${globals.classedOperators[index].length}",
-                              style: const TextStyle(
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _isOpen[index] = !_isOpen[index];
+                                });
+                              },
+                              child: Icon(
+                                _isOpen[index]
+                                    ? Icons.keyboard_arrow_down_rounded
+                                    : Icons.keyboard_arrow_up_rounded,
                                 color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: FontFamily.nanumGothic,
-                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ],
@@ -210,7 +209,8 @@ class ClassListView extends StatelessWidget {
             ),
           );
         },
-        childCount: globals.classedOperators[classIdx].length,
+        childCount:
+            _isOpen[classIdx] ? globals.classedOperators[classIdx].length : 0,
       ),
     );
   }
