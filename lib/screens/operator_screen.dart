@@ -58,13 +58,9 @@ class _OperatorScreenState extends State<OperatorScreen> {
                   color: Colors.blueGrey.shade700,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withOpacity(0.3),
                       blurRadius: 2,
                       spreadRadius: 2,
-                      offset: const Offset(
-                        0,
-                        1,
-                      ),
                     ),
                   ],
                 ),
@@ -103,7 +99,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  [ ${globals.classedOperators[index].length} ]',
+                              '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  |  ${globals.classedOperators[index].length}',
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

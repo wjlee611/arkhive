@@ -45,67 +45,53 @@ class _NavDrawerState extends State<NavDrawer> {
       backgroundColor: Colors.blueGrey.shade700,
       child: Column(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blueGrey.shade700,
-              boxShadow: const [
-                BoxShadow(
-                  offset: Offset(-5, 0),
-                  blurRadius: 5,
-                ),
-              ],
-            ),
+          SizedBox(
             height: 200,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Transform.translate(
-                      offset: const Offset(
-                        0,
-                        44,
-                      ),
-                      child: Transform.rotate(
-                        angle: 45 * math.pi / 180,
-                        child: Container(
-                          width: 65,
-                          height: 65,
-                          decoration: BoxDecoration(
+                Transform.translate(
+                  offset: const Offset(
+                    0,
+                    44,
+                  ),
+                  child: Transform.rotate(
+                    angle: 45 * math.pi / 180,
+                    child: Container(
+                      width: 65,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.yellow.shade700,
+                        boxShadow: [
+                          BoxShadow(
                             color: Colors.yellow.shade700,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.yellow.shade700,
-                                blurRadius: 5,
-                              )
-                            ],
-                          ),
+                            blurRadius: 5,
+                          )
+                        ],
+                      ),
+                      child: Center(
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          color: Colors.blueGrey.shade700,
                           child: Center(
                             child: Container(
-                              width: 60,
-                              height: 60,
-                              color: Colors.blueGrey.shade700,
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Colors.yellow.shade700,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.yellow.shade900,
+                                    blurRadius: 5,
+                                  )
+                                ],
+                              ),
                               child: Center(
                                 child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.yellow.shade700,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.yellow.shade900,
-                                        blurRadius: 5,
-                                      )
-                                    ],
-                                  ),
-                                  child: Center(
-                                    child: Container(
-                                      width: 40,
-                                      height: 40,
-                                      color: Colors.blueGrey.shade700,
-                                    ),
-                                  ),
+                                  width: 40,
+                                  height: 40,
+                                  color: Colors.blueGrey.shade700,
                                 ),
                               ),
                             ),
@@ -113,29 +99,29 @@ class _NavDrawerState extends State<NavDrawer> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 70),
-                      child: Text(
-                        "Menu",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 30,
-                            ),
-                            Shadow(
-                              color: Colors.black,
-                              blurRadius: 30,
-                            ),
-                          ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(bottom: 70),
+                  child: Text(
+                    "Menu",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 30,
                         ),
-                      ),
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 30,
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
@@ -363,19 +349,10 @@ class _NavDrawerState extends State<NavDrawer> {
               ],
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blueGrey.shade700,
-              boxShadow: const [
-                BoxShadow(
-                  offset: Offset(-5, 0),
-                  blurRadius: 5,
-                ),
-              ],
-            ),
+          SizedBox(
             height: 20,
             child: Padding(
-              padding: const EdgeInsets.only(right: 10),
+              padding: const EdgeInsets.only(right: 7),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: const [
