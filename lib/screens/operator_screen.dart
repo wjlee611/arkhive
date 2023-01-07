@@ -51,109 +51,105 @@ class _OperatorScreenState extends State<OperatorScreen> {
         controller: _controller,
         slivers: [
           for (int index = 0; index < globals.classedOperators.length; index++)
-            SliverStickyHeader(
-              header: Container(
-                height: 50.0,
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey.shade700,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        index == 0
-                            ? "assets/images/class_vanguard.png"
-                            : index == 1
-                                ? "assets/images/class_sniper.png"
-                                : index == 2
-                                    ? "assets/images/class_guard.png"
-                                    : index == 3
-                                        ? "assets/images/class_caster.png"
-                                        : index == 4
-                                            ? "assets/images/class_defender.png"
-                                            : index == 5
-                                                ? "assets/images/class_medic.png"
-                                                : index == 6
-                                                    ? "assets/images/class_specialist.png"
-                                                    : "assets/images/class_supporter.png",
-                        width: 30,
-                        height: 30,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  |  ${globals.classedOperators[index].length}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontFamily: FontFamily.nanumGothic,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _isOpen[index] = !_isOpen[index];
-                                });
-
-                                double offset = 0;
-                                double postOffset = 0;
-                                const height = 50;
-
-                                for (int i = 0; i < 8; i++) {
-                                  if (_isOpen[i]) {
-                                    offset = offset +
-                                        globals.classedOperators[i].length *
-                                            height;
-                                  }
-                                  offset = offset + height;
-                                  if (i != index) postOffset = offset;
-                                  if (i == index) break;
-                                }
-
-                                if (!_isOpen[index]) {
-                                  _controller.jumpTo(postOffset);
-
-                                  _controller.animateTo(
-                                    offset,
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.ease,
-                                  );
-                                }
-                              },
-                              child: Icon(
-                                _isOpen[index]
-                                    ? Icons.keyboard_arrow_down_rounded
-                                    : Icons.keyboard_arrow_up_rounded,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
+            SliverStickyHeader.builder(
+              builder: (context, state) {
+                return Container(
+                  height: 50.0,
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey.shade700,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 2,
+                        spreadRadius: 2,
                       ),
                     ],
                   ),
-                ),
-              ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          index == 0
+                              ? "assets/images/class_vanguard.png"
+                              : index == 1
+                                  ? "assets/images/class_sniper.png"
+                                  : index == 2
+                                      ? "assets/images/class_guard.png"
+                                      : index == 3
+                                          ? "assets/images/class_caster.png"
+                                          : index == 4
+                                              ? "assets/images/class_defender.png"
+                                              : index == 5
+                                                  ? "assets/images/class_medic.png"
+                                                  : index == 6
+                                                      ? "assets/images/class_specialist.png"
+                                                      : "assets/images/class_supporter.png",
+                          width: 30,
+                          height: 30,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  |  ${globals.classedOperators[index].length}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _isOpen[index] = !_isOpen[index];
+
+                                    double offset = 0;
+                                    const height = 50;
+
+                                    for (int i = 0; i < 8; i++) {
+                                      if (_isOpen[i]) {
+                                        offset = offset +
+                                            globals.classedOperators[i].length *
+                                                height;
+                                      }
+                                      offset = offset + height;
+                                      if (i == index) {
+                                        break;
+                                      }
+                                    }
+
+                                    if (!_isOpen[index] && state.isPinned) {
+                                      _controller.jumpTo(offset - 50);
+                                    }
+                                  });
+                                },
+                                child: Icon(
+                                  _isOpen[index]
+                                      ? Icons.keyboard_arrow_down_rounded
+                                      : Icons.keyboard_arrow_up_rounded,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
               sliver: ClassListView(classIdx: index),
             ),
         ],
