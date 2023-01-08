@@ -78,18 +78,18 @@ class _OperatorScreenState extends State<OperatorScreen> {
                           index == 0
                               ? "assets/images/class_vanguard.png"
                               : index == 1
-                                  ? "assets/images/class_sniper.png"
+                                  ? "assets/images/class_guard.png"
                                   : index == 2
-                                      ? "assets/images/class_guard.png"
+                                      ? "assets/images/class_defender.png"
                                       : index == 3
-                                          ? "assets/images/class_caster.png"
+                                          ? "assets/images/class_sniper.png"
                                           : index == 4
-                                              ? "assets/images/class_defender.png"
+                                              ? "assets/images/class_caster.png"
                                               : index == 5
                                                   ? "assets/images/class_medic.png"
                                                   : index == 6
-                                                      ? "assets/images/class_specialist.png"
-                                                      : "assets/images/class_supporter.png",
+                                                      ? "assets/images/class_supporter.png"
+                                                      : "assets/images/class_specialist.png",
                           width: 30,
                           height: 30,
                         ),
@@ -102,7 +102,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '${index == 0 ? OperatorModel.vanguard : index == 1 ? OperatorModel.sniper : index == 2 ? OperatorModel.guard : index == 3 ? OperatorModel.caster : index == 4 ? OperatorModel.defender : index == 5 ? OperatorModel.medic : index == 6 ? OperatorModel.specialist : OperatorModel.supporter}  |  ${globals.classedOperators[index].length}',
+                                '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  |  ${globals.classedOperators[index].length}',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -152,6 +152,40 @@ class _OperatorScreenState extends State<OperatorScreen> {
               },
               sliver: ClassListView(classIdx: index),
             ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey.shade700,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 2,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Total ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              childCount: 1,
+            ),
+          ),
         ],
       ),
       drawer: const NavDrawer(),
@@ -215,12 +249,115 @@ class ClassListView extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  Text(
-                    globals.classedOperators[classIdx][index].name,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            globals.classedOperators[classIdx][index].name
+                                .replaceAll(" (한정)", "")
+                                .replaceAll(" [한정]", ""),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontFamily: FontFamily.nanumGothic,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        globals.classedOperators[classIdx][index].name
+                                    .contains("(한정)") ||
+                                globals.classedOperators[classIdx][index].name
+                                    .contains("[한정]")
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 0, 20, 0),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 7,
+                                    vertical: 3,
+                                  ),
+                                  decoration: globals
+                                          .classedOperators[classIdx][index]
+                                          .name
+                                          .contains("(한정)")
+                                      ? BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.centerRight,
+                                            end: Alignment.centerLeft,
+                                            stops: const [
+                                              0,
+                                              0.05,
+                                              0.3,
+                                              0.5,
+                                              0.7,
+                                              0.95,
+                                              1,
+                                            ],
+                                            colors: [
+                                              Colors.white.withOpacity(0),
+                                              Colors.blueAccent
+                                                  .withOpacity(0.5),
+                                              Colors.yellow.withOpacity(0.5),
+                                              Colors.white.withOpacity(0),
+                                              Colors.teal.withOpacity(0.5),
+                                              Colors.blueAccent
+                                                  .withOpacity(0.5),
+                                              Colors.white.withOpacity(0),
+                                            ],
+                                          ),
+                                        )
+                                      : BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          gradient: LinearGradient(
+                                            begin: Alignment.centerRight,
+                                            end: Alignment.centerLeft,
+                                            stops: const [
+                                              0,
+                                              0.05,
+                                              0.3,
+                                              0.5,
+                                              0.7,
+                                              0.95,
+                                              1,
+                                            ],
+                                            colors: [
+                                              Colors.white.withOpacity(0),
+                                              Colors.yellow.withOpacity(0.5),
+                                              Colors.redAccent.withOpacity(0.5),
+                                              Colors.white.withOpacity(0),
+                                              Colors.orange.withOpacity(0.5),
+                                              Colors.redAccent.withOpacity(0.5),
+                                              Colors.white.withOpacity(0),
+                                            ],
+                                          ),
+                                        ),
+                                  child: Text(
+                                    "한정",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontFamily: FontFamily.nanumGothic,
+                                      fontWeight: FontWeight.w700,
+                                      shadows: [
+                                        const Shadow(
+                                          blurRadius: 10,
+                                        ),
+                                        Shadow(
+                                          blurRadius: 7,
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Container(),
+                      ],
                     ),
                   ),
                 ],

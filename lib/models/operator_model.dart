@@ -4,6 +4,66 @@ class OperatorModel {
   final List<_SkillModel> skill;
   final List<_ModuleModel> module;
 
+  OperatorModel.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        rare = json['rare'],
+        class_ = json['class'],
+        position = json['position'],
+        imageName = json["image_name"],
+        talent = [
+          for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
+        ],
+        skill = [
+          for (var skillJson in json['skill']) _SkillModel.fronJson(skillJson)
+        ],
+        module = [
+          for (var moduleJson in json['module'])
+            _ModuleModel.fromJson(moduleJson)
+        ];
+}
+
+class _TalentModel {
+  final String name, info;
+
+  _TalentModel.fromJson(Map<String, dynamic> json)
+      : name = json['talent_name'],
+        info = json['talent_info'];
+}
+
+class _SkillModel {
+  final String name, sp, duration, type, info;
+
+  _SkillModel.fronJson(Map<String, dynamic> json)
+      : name = json['skill_name'],
+        sp = json['sp'],
+        duration = json['duration'],
+        type = json['type'],
+        info = json['info'];
+}
+
+class _ModuleModel {
+  final String name, code;
+  final List<_ModuleEffectModel> effect;
+
+  _ModuleModel.fromJson(Map<String, dynamic> json)
+      : name = json['module_name'],
+        code = json['module_code'],
+        effect = [
+          for (var effJson in json['effect'])
+            _ModuleEffectModel.fromJson(effJson)
+        ];
+}
+
+class _ModuleEffectModel {
+  final String stat;
+  final _TalentModel talent;
+
+  _ModuleEffectModel.fromJson(Map<String, dynamic> json)
+      : stat = json['stat'],
+        talent = _TalentModel.fromJson(json['talent']);
+}
+
+class OperatorPositions {
   static String vanguard = '뱅가드';
   static String sniper = '스나이퍼';
   static String guard = '가드';
@@ -77,62 +137,18 @@ class OperatorModel {
       "아군 유닛의 HP 회복, 동시에 공격력의 50%에 해당하는 원소 피해 회복(부상이 없는 아군 유닛의 원소 피해도 회복 가능)"; // 방랑 메딕
   static String incantationMedic =
       "공격이 마법 대미지를 입히고, 적 공격 시 공격범위 내의 아군 1명에게 피해량의 50%만큼 HP를 치료"; // 주술 메딕
-
-  OperatorModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        rare = json['rare'],
-        class_ = json['class'],
-        position = json['position'],
-        imageName = json["image_name"],
-        talent = [
-          for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
-        ],
-        skill = [
-          for (var skillJson in json['skill']) _SkillModel.fronJson(skillJson)
-        ],
-        module = [
-          for (var moduleJson in json['module'])
-            _ModuleModel.fromJson(moduleJson)
-        ];
-}
-
-class _TalentModel {
-  final String name, info;
-
-  _TalentModel.fromJson(Map<String, dynamic> json)
-      : name = json['talent_name'],
-        info = json['talent_info'];
-}
-
-class _SkillModel {
-  final String name, sp, duration, type, info;
-
-  _SkillModel.fronJson(Map<String, dynamic> json)
-      : name = json['skill_name'],
-        sp = json['sp'],
-        duration = json['duration'],
-        type = json['type'],
-        info = json['info'];
-}
-
-class _ModuleModel {
-  final String name, code;
-  final List<_ModuleEffectModel> effect;
-
-  _ModuleModel.fromJson(Map<String, dynamic> json)
-      : name = json['module_name'],
-        code = json['module_code'],
-        effect = [
-          for (var effJson in json['effect'])
-            _ModuleEffectModel.fromJson(effJson)
-        ];
-}
-
-class _ModuleEffectModel {
-  final String stat;
-  final _TalentModel talent;
-
-  _ModuleEffectModel.fromJson(Map<String, dynamic> json)
-      : stat = json['stat'],
-        talent = _TalentModel.fromJson(json['talent']);
+  // specialist positions
+  static String executor = "재배치 시간 대폭 감소"; // 처형자
+  static String executor_1star =
+      "공격을 진행하지 않고, 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다"; // 처형자
+  static String hookmaster = "스킬을 통해 적의 위치를 강제 이동. 원거리 유닛 칸에도 배치 가능"; // 후크마스터
+  static String pushStroker = "저지 중인 모든 적 동시 공격. 원거리 유닛 칸에도 배치 가능"; // 추격자
+  static String ambusher =
+      "공격 범위 내 모든 적 동시 공격. 50%의 물리 및 마법 회피율 보유, 쉽게 적의 목표가 되지 않음"; // 매복자
+  static String merchant =
+      "재배치 시간 감소, 퇴각 시 배치 코스트를 반환하지 않으며, 3초마다 배치 코스트 3 소모(부족 시 자동 퇴각)"; // 상인
+  static String trapmaster = "전투를 지원하는 함정 사용 가능, 단 적이 있는 칸에는 함정 설치 불가"; // 함정술사
+  static String dollkeeper =
+      "치명상을 입어도 퇴각하지 않고 [대역]을 교체 투입하며(저지 가능 수 0), 20초 후 다시 본체로 교체"; // 인형사
+  static String geek = "자신의 HP가 지속적으로 감소"; // 기인
 }

@@ -25,28 +25,28 @@ class _MainScreenState extends State<MainScreen> {
 
     for (var jsonData in data) {
       OperatorModel operator_ = OperatorModel.fromJson(jsonData);
-      if (operator_.class_ == OperatorModel.vanguard) {
+      if (operator_.class_ == OperatorPositions.vanguard) {
         globals.classedOperators[0].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.sniper) {
+      if (operator_.class_ == OperatorPositions.guard) {
         globals.classedOperators[1].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.guard) {
+      if (operator_.class_ == OperatorPositions.defender) {
         globals.classedOperators[2].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.caster) {
+      if (operator_.class_ == OperatorPositions.sniper) {
         globals.classedOperators[3].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.defender) {
+      if (operator_.class_ == OperatorPositions.caster) {
         globals.classedOperators[4].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.medic) {
+      if (operator_.class_ == OperatorPositions.medic) {
         globals.classedOperators[5].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.specialist) {
+      if (operator_.class_ == OperatorPositions.supporter) {
         globals.classedOperators[6].add(operator_);
       }
-      if (operator_.class_ == OperatorModel.supporter) {
+      if (operator_.class_ == OperatorPositions.specialist) {
         globals.classedOperators[7].add(operator_);
       }
     }

@@ -17,54 +17,64 @@ class OperatorDetailScreen extends StatefulWidget {
 
 class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
   String _getPostionInfo(String position) {
-    if (position == "전술가") return OperatorModel.tactician;
-    if (position == "돌격수") return OperatorModel.charger;
-    if (position == "척후병") return OperatorModel.pioneer;
-    if (position == "기수") return OperatorModel.standardBearer;
+    if (position == "전술가") return OperatorPositions.tactician;
+    if (position == "돌격수") return OperatorPositions.charger;
+    if (position == "척후병") return OperatorPositions.pioneer;
+    if (position == "기수") return OperatorPositions.standardBearer;
 
-    if (position == "명사수") return OperatorModel.marksman;
-    if (position == "명사수*") return OperatorModel.marksman_1star;
-    if (position == "포격사수") return OperatorModel.artilleryman;
-    if (position == "저격수") return OperatorModel.deadeye;
-    if (position == "헤비슈터") return OperatorModel.heavyshooter;
-    if (position == "산탄사수") return OperatorModel.spreadshooter;
-    if (position == "공성사수") return OperatorModel.besieger;
-    if (position == "투척수") return OperatorModel.flinger;
+    if (position == "명사수") return OperatorPositions.marksman;
+    if (position == "명사수*") return OperatorPositions.marksman_1star;
+    if (position == "포격사수") return OperatorPositions.artilleryman;
+    if (position == "저격수") return OperatorPositions.deadeye;
+    if (position == "헤비슈터") return OperatorPositions.heavyshooter;
+    if (position == "산탄사수") return OperatorPositions.spreadshooter;
+    if (position == "공성사수") return OperatorPositions.besieger;
+    if (position == "투척수") return OperatorPositions.flinger;
 
-    if (position == "드레드노트") return OperatorModel.dreadnought;
-    if (position == "드레드노트*") return OperatorModel.dreadnought_1star;
-    if (position == "로드") return OperatorModel.lord;
-    if (position == "공격수") return OperatorModel.centurion;
-    if (position == "교관") return OperatorModel.instructor;
-    if (position == "파이터") return OperatorModel.fighter;
-    if (position == "아츠 파이터") return OperatorModel.artsFighter;
-    if (position == "무사") return OperatorModel.musha;
-    if (position == "소드마스터") return OperatorModel.swordmaster;
-    if (position == "해방자") return OperatorModel.liberator;
-    if (position == "리퍼") return OperatorModel.reaper;
+    if (position == "드레드노트") return OperatorPositions.dreadnought;
+    if (position == "드레드노트*") return OperatorPositions.dreadnought_1star;
+    if (position == "로드") return OperatorPositions.lord;
+    if (position == "공격수") return OperatorPositions.centurion;
+    if (position == "교관") return OperatorPositions.instructor;
+    if (position == "파이터") return OperatorPositions.fighter;
+    if (position == "아츠 파이터") return OperatorPositions.artsFighter;
+    if (position == "무사") return OperatorPositions.musha;
+    if (position == "소드마스터") return OperatorPositions.swordmaster;
+    if (position == "해방자") return OperatorPositions.liberator;
+    if (position == "리퍼") return OperatorPositions.reaper;
 
-    if (position == "코어 캐스터") return OperatorModel.coreCaster;
-    if (position == "스플래시 캐스터") return OperatorModel.splashCaster;
-    if (position == "메카 캐스터") return OperatorModel.mechAccordCaster;
-    if (position == "미스틱 캐스터") return OperatorModel.mysticCaster;
-    if (position == "체인 캐스터") return OperatorModel.chainCaster;
-    if (position == "진법 캐스터") return OperatorModel.phalanxCaster;
-    if (position == "블래스트 캐스터") return OperatorModel.blastCaster;
+    if (position == "코어 캐스터") return OperatorPositions.coreCaster;
+    if (position == "스플래시 캐스터") return OperatorPositions.splashCaster;
+    if (position == "메카 캐스터") return OperatorPositions.mechAccordCaster;
+    if (position == "미스틱 캐스터") return OperatorPositions.mysticCaster;
+    if (position == "체인 캐스터") return OperatorPositions.chainCaster;
+    if (position == "진법 캐스터") return OperatorPositions.phalanxCaster;
+    if (position == "블래스트 캐스터") return OperatorPositions.blastCaster;
 
-    if (position == "프로텍터") return OperatorModel.protector;
-    if (position == "아츠 프로텍터") return OperatorModel.artsProtector;
-    if (position == "가디언") return OperatorModel.guardian;
-    if (position == "파수꾼") return OperatorModel.sentinelIronGuard;
-    if (position == "저거너트") return OperatorModel.juggernaut;
-    if (position == "포트리스") return OperatorModel.fortress;
-    if (position == "결전자") return OperatorModel.duelist;
+    if (position == "프로텍터") return OperatorPositions.protector;
+    if (position == "아츠 프로텍터") return OperatorPositions.artsProtector;
+    if (position == "가디언") return OperatorPositions.guardian;
+    if (position == "파수꾼") return OperatorPositions.sentinelIronGuard;
+    if (position == "저거너트") return OperatorPositions.juggernaut;
+    if (position == "포트리스") return OperatorPositions.fortress;
+    if (position == "결전자") return OperatorPositions.duelist;
 
-    if (position == "메딕") return OperatorModel.singleMedic;
-    if (position == "메딕*") return OperatorModel.singleMedic_1star;
-    if (position == "멀티 타겟 메딕") return OperatorModel.multiTargetMedic;
-    if (position == "테라피스트") return OperatorModel.therapist;
-    if (position == "방랑 메딕") return OperatorModel.wanderingMedic;
-    if (position == "주술 메딕") return OperatorModel.incantationMedic;
+    if (position == "메딕") return OperatorPositions.singleMedic;
+    if (position == "메딕*") return OperatorPositions.singleMedic_1star;
+    if (position == "멀티 타겟 메딕") return OperatorPositions.multiTargetMedic;
+    if (position == "테라피스트") return OperatorPositions.therapist;
+    if (position == "방랑 메딕") return OperatorPositions.wanderingMedic;
+    if (position == "주술 메딕") return OperatorPositions.incantationMedic;
+
+    if (position == "처형자") return OperatorPositions.executor;
+    if (position == "처형자*") return OperatorPositions.executor_1star;
+    if (position == "후크마스터") return OperatorPositions.hookmaster;
+    if (position == "추격자") return OperatorPositions.pushStroker;
+    if (position == "매복자") return OperatorPositions.ambusher;
+    if (position == "상인") return OperatorPositions.merchant;
+    if (position == "함정술사") return OperatorPositions.trapmaster;
+    if (position == "인형사") return OperatorPositions.dollkeeper;
+    if (position == "기인") return OperatorPositions.geek;
 
     return "not found";
   }
@@ -148,35 +158,43 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                              offset: Offset(0, 3),
-                              blurRadius: 2,
-                              spreadRadius: 1,
-                              color: Colors.black12,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: const [
+                                BoxShadow(
+                                  offset: Offset(0, 3),
+                                  blurRadius: 2,
+                                  spreadRadius: 1,
+                                  color: Colors.black12,
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Text(
-                          widget.operator_.name,
-                          style: TextStyle(
-                            color: Colors.blueGrey.shade700,
-                            fontSize: 20,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
+                            child: Text(
+                              widget.operator_.name
+                                  .replaceAll(" (한정)", "")
+                                  .replaceAll(" [한정]", ""),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.blueGrey.shade700,
+                                fontSize: 20,
+                                fontFamily: FontFamily.nanumGothic,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -185,23 +203,26 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        widget.operator_.class_ == OperatorModel.vanguard
+                        widget.operator_.class_ == OperatorPositions.vanguard
                             ? "assets/images/class_vanguard.png"
-                            : widget.operator_.class_ == OperatorModel.sniper
+                            : widget.operator_.class_ ==
+                                    OperatorPositions.sniper
                                 ? "assets/images/class_sniper.png"
-                                : widget.operator_.class_ == OperatorModel.guard
+                                : widget.operator_.class_ ==
+                                        OperatorPositions.guard
                                     ? "assets/images/class_guard.png"
                                     : widget.operator_.class_ ==
-                                            OperatorModel.caster
+                                            OperatorPositions.caster
                                         ? "assets/images/class_caster.png"
                                         : widget.operator_.class_ ==
-                                                OperatorModel.defender
+                                                OperatorPositions.defender
                                             ? "assets/images/class_defender.png"
                                             : widget.operator_.class_ ==
-                                                    OperatorModel.medic
+                                                    OperatorPositions.medic
                                                 ? "assets/images/class_medic.png"
                                                 : widget.operator_.class_ ==
-                                                        OperatorModel.specialist
+                                                        OperatorPositions
+                                                            .specialist
                                                     ? "assets/images/class_specialist.png"
                                                     : "assets/images/class_supporter.png",
                         width: 40,
