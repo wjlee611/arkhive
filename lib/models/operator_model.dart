@@ -151,4 +151,13 @@ class OperatorPositions {
   static String dollkeeper =
       "치명상을 입어도 퇴각하지 않고 [대역]을 교체 투입하며(저지 가능 수 0), 20초 후 다시 본체로 교체"; // 인형사
   static String geek = "자신의 HP가 지속적으로 감소"; // 기인
+  // supporter positions
+  static String decelBinder = "적에게 마법 대미지를 입히고 잠시 [정지] 효과를 준다"; // 감속자
+  static String summoner = "적에게 마법 대미지, 소환물 사용 가능"; // 소환사
+  static String artificer = "적 2명 저지 가능, [지원 장치]를 사용해 작전 지원"; // 기능공
+  static String hexer = "일반 공격으로 적에게 마법 대미지"; // 약화자
+  static String bard =
+      "공격을 진행하지 않고 공격 범위 내 모든 아군의 HP를 매초마다 자신의 공격력 10%만큼 회복, 자신은 [격려]의 영향을 받지 않는다"; // 음유시인
+  static String abjurer =
+      "공격 시 마법 대미지를 입히고, 스킬 발동 후 아군 치료로 변경(치유량은 공격력의 75%애 해당)"; // 비호자
 }

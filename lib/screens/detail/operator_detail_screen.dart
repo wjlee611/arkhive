@@ -76,6 +76,13 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     if (position == "인형사") return OperatorPositions.dollkeeper;
     if (position == "기인") return OperatorPositions.geek;
 
+    if (position == "감속자") return OperatorPositions.decelBinder;
+    if (position == "소환사") return OperatorPositions.summoner;
+    if (position == "기능공") return OperatorPositions.artificer;
+    if (position == "약화자") return OperatorPositions.hexer;
+    if (position == "음유시인") return OperatorPositions.bard;
+    if (position == "비호자") return OperatorPositions.abjurer;
+
     return "not found";
   }
 
@@ -167,29 +174,106 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 20),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(
-                                  offset: Offset(0, 3),
-                                  blurRadius: 2,
-                                  spreadRadius: 1,
-                                  color: Colors.black12,
-                                ),
-                              ],
-                            ),
+                            decoration: widget.operator_.name.contains("(한정)")
+                                ? BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        offset: Offset(0, 3),
+                                        blurRadius: 2,
+                                        spreadRadius: 1,
+                                        color: Colors.black12,
+                                      ),
+                                    ],
+                                    gradient: LinearGradient(
+                                      begin: Alignment.centerRight,
+                                      end: Alignment.centerLeft,
+                                      stops: const [
+                                        0.05,
+                                        0.3,
+                                        0.5,
+                                        0.7,
+                                        0.95,
+                                      ],
+                                      colors: [
+                                        Colors.blueAccent.withOpacity(0.5),
+                                        Colors.yellow.withOpacity(0.5),
+                                        Colors.white.withOpacity(0),
+                                        Colors.teal.withOpacity(0.5),
+                                        Colors.blueAccent.withOpacity(0.5),
+                                      ],
+                                    ),
+                                  )
+                                : widget.operator_.name.contains("[한정]")
+                                    ? BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            offset: Offset(0, 3),
+                                            blurRadius: 2,
+                                            spreadRadius: 1,
+                                            color: Colors.black12,
+                                          ),
+                                        ],
+                                        gradient: LinearGradient(
+                                          begin: Alignment.centerRight,
+                                          end: Alignment.centerLeft,
+                                          stops: const [
+                                            0.05,
+                                            0.3,
+                                            0.5,
+                                            0.7,
+                                            0.95,
+                                          ],
+                                          colors: [
+                                            Colors.yellow.withOpacity(0.5),
+                                            Colors.redAccent.withOpacity(0.5),
+                                            Colors.white.withOpacity(0),
+                                            Colors.orange.withOpacity(0.5),
+                                            Colors.redAccent.withOpacity(0.5),
+                                          ],
+                                        ),
+                                      )
+                                    : BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            offset: Offset(0, 3),
+                                            blurRadius: 2,
+                                            spreadRadius: 1,
+                                            color: Colors.black12,
+                                          ),
+                                        ],
+                                      ),
                             child: Text(
                               widget.operator_.name
                                   .replaceAll(" (한정)", "")
                                   .replaceAll(" [한정]", ""),
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.blueGrey.shade700,
-                                fontSize: 20,
-                                fontFamily: FontFamily.nanumGothic,
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: widget.operator_.name.contains("(한정)") ||
+                                      widget.operator_.name.contains("[한정]")
+                                  ? TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontFamily: FontFamily.nanumGothic,
+                                      fontWeight: FontWeight.w700,
+                                      shadows: [
+                                        const Shadow(
+                                          blurRadius: 15,
+                                        ),
+                                        Shadow(
+                                          blurRadius: 10,
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ],
+                                    )
+                                  : TextStyle(
+                                      color: Colors.blueGrey.shade700,
+                                      fontSize: 20,
+                                      fontFamily: FontFamily.nanumGothic,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                             ),
                           ),
                         ),

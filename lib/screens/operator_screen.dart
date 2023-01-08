@@ -289,16 +289,13 @@ class ClassListView extends StatelessWidget {
                                             begin: Alignment.centerRight,
                                             end: Alignment.centerLeft,
                                             stops: const [
-                                              0,
-                                              0.05,
+                                              0.1,
                                               0.3,
                                               0.5,
                                               0.7,
-                                              0.95,
-                                              1,
+                                              0.9,
                                             ],
                                             colors: [
-                                              Colors.white.withOpacity(0),
                                               Colors.blueAccent
                                                   .withOpacity(0.5),
                                               Colors.yellow.withOpacity(0.5),
@@ -306,7 +303,6 @@ class ClassListView extends StatelessWidget {
                                               Colors.teal.withOpacity(0.5),
                                               Colors.blueAccent
                                                   .withOpacity(0.5),
-                                              Colors.white.withOpacity(0),
                                             ],
                                           ),
                                         )
@@ -317,27 +313,27 @@ class ClassListView extends StatelessWidget {
                                             begin: Alignment.centerRight,
                                             end: Alignment.centerLeft,
                                             stops: const [
-                                              0,
-                                              0.05,
+                                              0.1,
                                               0.3,
                                               0.5,
                                               0.7,
-                                              0.95,
-                                              1,
+                                              0.9,
                                             ],
                                             colors: [
-                                              Colors.white.withOpacity(0),
                                               Colors.yellow.withOpacity(0.5),
                                               Colors.redAccent.withOpacity(0.5),
                                               Colors.white.withOpacity(0),
                                               Colors.orange.withOpacity(0.5),
                                               Colors.redAccent.withOpacity(0.5),
-                                              Colors.white.withOpacity(0),
                                             ],
                                           ),
                                         ),
                                   child: Text(
-                                    "한정",
+                                    globals.classedOperators[classIdx][index]
+                                            .name
+                                            .contains("(한정)")
+                                        ? "한정"
+                                        : "콜라보 한정",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 14,
