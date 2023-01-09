@@ -44,7 +44,8 @@ class _EnemyScreenState extends State<EnemyScreen> {
           return Card(
             margin: const EdgeInsets.all(5),
             elevation: 1,
-            child: Text(globals.enemies[index].code),
+            child: Image.asset(
+                'assets/images/enemies/${globals.enemies[index].code}.png'),
           );
         },
         itemCount: globals.enemies.length,
