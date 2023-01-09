@@ -102,7 +102,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  |  ${globals.classedOperators[index].length}',
+                                '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  /  ${globals.classedOperators[index].length}',
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -171,7 +171,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Total ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results',
+                        '///    ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results    ///',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,

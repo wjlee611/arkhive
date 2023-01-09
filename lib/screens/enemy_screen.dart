@@ -56,10 +56,7 @@ class _EnemyScreenState extends State<EnemyScreen> {
                 Image.asset(
                     'assets/images/enemies/${globals.enemies[index].code}.png'),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 5,
-                    vertical: 1,
-                  ),
+                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 1),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: globals.enemies[index].enemyType == EnemyType.elite
