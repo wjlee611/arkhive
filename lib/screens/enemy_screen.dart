@@ -43,12 +43,12 @@ class _EnemyScreenState extends State<EnemyScreen> {
         ),
         itemBuilder: (context, index) {
           return Card(
+            clipBehavior: Clip.hardEdge,
             color: globals.enemies[index].enemyType == EnemyType.elite
                 ? Colors.deepOrange
                 : globals.enemies[index].enemyType == EnemyType.boss
                     ? Colors.purple
-                    : Colors.white,
-            margin: const EdgeInsets.all(5),
+                    : Colors.blueGrey.shade600,
             elevation: 5,
             child: Stack(
               alignment: AlignmentDirectional.bottomEnd,
@@ -56,7 +56,6 @@ class _EnemyScreenState extends State<EnemyScreen> {
                 Image.asset(
                     'assets/images/enemies/${globals.enemies[index].code}.png'),
                 Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 4, 4),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 5,
                     vertical: 1,
@@ -64,10 +63,21 @@ class _EnemyScreenState extends State<EnemyScreen> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     color: globals.enemies[index].enemyType == EnemyType.elite
-                        ? Colors.deepOrange.withOpacity(0.8)
+                        ? Colors.deepOrange
                         : globals.enemies[index].enemyType == EnemyType.boss
-                            ? Colors.purple.withOpacity(0.8)
-                            : Colors.black.withOpacity(0.5),
+                            ? Colors.purple
+                            : Colors.blueGrey.shade600,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        color: globals.enemies[index].enemyType ==
+                                EnemyType.elite
+                            ? Colors.deepOrange
+                            : globals.enemies[index].enemyType == EnemyType.boss
+                                ? Colors.purple
+                                : Colors.blueGrey.shade600,
+                      ),
+                    ],
                   ),
                   child: Text(
                     globals.enemies[index].code.replaceAll('_', '*'),
