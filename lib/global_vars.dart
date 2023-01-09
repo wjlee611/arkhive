@@ -1,5 +1,6 @@
 library global;
 
+import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/screens_model.dart';
 
@@ -14,3 +15,4 @@ List<List<OperatorModel>> classedOperators = [
   [], // 6: specialists
   [], // 7: supporters
 ];
+List<EnemyModel> enemies = [];

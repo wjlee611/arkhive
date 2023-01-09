@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
@@ -52,11 +53,24 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Future<void> readEnemyJson() async {
+    final String res =
+        await rootBundle.loadString('assets/json/data_enemy.json');
+    final data = await json.decode(res)['data'];
+
+    for (var jsonData in data) {
+      globals.enemies.add(EnemyModel.fromJson(jsonData));
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     if (globals.classedOperators[0].isEmpty) {
       readOperatorJson();
+    }
+    if (globals.enemies.isEmpty) {
+      readEnemyJson();
     }
   }
 

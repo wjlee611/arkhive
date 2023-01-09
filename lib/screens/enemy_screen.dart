@@ -1,6 +1,7 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
+import '../global_vars.dart' as globals;
 
 class EnemyScreen extends StatefulWidget {
   const EnemyScreen({super.key});
@@ -31,7 +32,23 @@ class _EnemyScreenState extends State<EnemyScreen> {
           onPressed: () => scaffoldKey.currentState!.openDrawer(),
         ),
       ),
-      body: const Text('적'),
+      body: GridView.builder(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 50),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 100,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          childAspectRatio: 1,
+        ),
+        itemBuilder: (context, index) {
+          return Card(
+            margin: const EdgeInsets.all(5),
+            elevation: 1,
+            child: Text(globals.enemies[index].code),
+          );
+        },
+        itemCount: globals.enemies.length,
+      ),
       drawer: const NavDrawer(),
     );
   }
