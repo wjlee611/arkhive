@@ -1,4 +1,5 @@
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,10 @@ class _ItemScreenState extends State<ItemScreen> {
           onPressed: () => scaffoldKey.currentState!.openDrawer(),
         ),
       ),
-      body: const Text('창고 아이템'),
+      body: WillPopScope(
+        onWillPop: () => WillPopFunction.onWillPop(context: context),
+        child: const Text('창고 아이템'),
+      ),
       drawer: const NavDrawer(),
     );
   }

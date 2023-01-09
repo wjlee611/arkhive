@@ -1,6 +1,7 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
@@ -47,146 +48,152 @@ class _OperatorScreenState extends State<OperatorScreen> {
           onPressed: () => scaffoldKey.currentState!.openDrawer(),
         ),
       ),
-      body: CustomScrollView(
-        controller: _controller,
-        slivers: [
-          for (int index = 0; index < globals.classedOperators.length; index++)
-            SliverStickyHeader.builder(
-              builder: (context, state) {
-                return Container(
-                  height: 50.0,
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.shade700,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 2,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
+      body: WillPopScope(
+        onWillPop: () => WillPopFunction.onWillPop(context: context),
+        child: CustomScrollView(
+          controller: _controller,
+          slivers: [
+            for (int index = 0;
+                index < globals.classedOperators.length;
+                index++)
+              SliverStickyHeader.builder(
+                builder: (context, state) {
+                  return Container(
+                    height: 50.0,
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey.shade700,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 2,
+                          spreadRadius: 2,
+                        ),
+                      ],
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            index == 0
+                                ? "assets/images/class_vanguard.png"
+                                : index == 1
+                                    ? "assets/images/class_guard.png"
+                                    : index == 2
+                                        ? "assets/images/class_defender.png"
+                                        : index == 3
+                                            ? "assets/images/class_sniper.png"
+                                            : index == 4
+                                                ? "assets/images/class_caster.png"
+                                                : index == 5
+                                                    ? "assets/images/class_medic.png"
+                                                    : index == 6
+                                                        ? "assets/images/class_supporter.png"
+                                                        : "assets/images/class_specialist.png",
+                            width: 30,
+                            height: 30,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  /  ${globals.classedOperators[index].length}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _isOpen[index] = !_isOpen[index];
+
+                                      double offset = 0;
+                                      const height = 50;
+
+                                      for (int i = 0; i < 8; i++) {
+                                        if (_isOpen[i]) {
+                                          offset = offset +
+                                              globals.classedOperators[i]
+                                                      .length *
+                                                  height;
+                                        }
+                                        offset = offset + height;
+                                        if (i == index) {
+                                          break;
+                                        }
+                                      }
+
+                                      if (!_isOpen[index] && state.isPinned) {
+                                        _controller.jumpTo(offset - 50);
+                                      }
+                                    });
+                                  },
+                                  child: Icon(
+                                    _isOpen[index]
+                                        ? Icons.keyboard_arrow_down_rounded
+                                        : Icons.keyboard_arrow_up_rounded,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                sliver: ClassListView(classIdx: index),
+              ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blueGrey.shade700,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 2,
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                    height: 50,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          index == 0
-                              ? "assets/images/class_vanguard.png"
-                              : index == 1
-                                  ? "assets/images/class_guard.png"
-                                  : index == 2
-                                      ? "assets/images/class_defender.png"
-                                      : index == 3
-                                          ? "assets/images/class_sniper.png"
-                                          : index == 4
-                                              ? "assets/images/class_caster.png"
-                                              : index == 5
-                                                  ? "assets/images/class_medic.png"
-                                                  : index == 6
-                                                      ? "assets/images/class_supporter.png"
-                                                      : "assets/images/class_specialist.png",
-                          width: 30,
-                          height: 30,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  /  ${globals.classedOperators[index].length}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontFamily: FontFamily.nanumGothic,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _isOpen[index] = !_isOpen[index];
-
-                                    double offset = 0;
-                                    const height = 50;
-
-                                    for (int i = 0; i < 8; i++) {
-                                      if (_isOpen[i]) {
-                                        offset = offset +
-                                            globals.classedOperators[i].length *
-                                                height;
-                                      }
-                                      offset = offset + height;
-                                      if (i == index) {
-                                        break;
-                                      }
-                                    }
-
-                                    if (!_isOpen[index] && state.isPinned) {
-                                      _controller.jumpTo(offset - 50);
-                                    }
-                                  });
-                                },
-                                child: Icon(
-                                  _isOpen[index]
-                                      ? Icons.keyboard_arrow_down_rounded
-                                      : Icons.keyboard_arrow_up_rounded,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                        Text(
+                          '///    ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results    ///',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
                     ),
-                  ),
-                );
-              },
-              sliver: ClassListView(classIdx: index),
+                  );
+                },
+                childCount: 1,
+              ),
             ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.blueGrey.shade700,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 2,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '///    ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results    ///',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              childCount: 1,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       drawer: const NavDrawer(),
     );

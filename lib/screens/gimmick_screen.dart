@@ -1,4 +1,5 @@
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,10 @@ class _GimmickScreenState extends State<GimmickScreen> {
           onPressed: () => scaffoldKey.currentState!.openDrawer(),
         ),
       ),
-      body: const Text('스테이지 기믹'),
+      body: WillPopScope(
+        onWillPop: () => WillPopFunction.onWillPop(context: context),
+        child: const Text('스테이지 기믹'),
+      ),
       drawer: const NavDrawer(),
     );
   }
