@@ -1,5 +1,6 @@
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,52 +46,63 @@ class _EnemyScreenState extends State<EnemyScreen> {
             childAspectRatio: 1,
           ),
           itemBuilder: (context, index) {
-            return Card(
-              clipBehavior: Clip.hardEdge,
-              color: globals.enemies[index].enemyType == EnemyType.elite
-                  ? Colors.deepOrange
-                  : globals.enemies[index].enemyType == EnemyType.boss
-                      ? Colors.purple
-                      : Colors.blueGrey.shade600,
-              elevation: 5,
-              child: Stack(
-                alignment: AlignmentDirectional.bottomEnd,
-                children: [
-                  Image.asset(
-                      'assets/images/enemies/${globals.enemies[index].code}.png'),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 1),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      color: globals.enemies[index].enemyType == EnemyType.elite
-                          ? Colors.deepOrange
-                          : globals.enemies[index].enemyType == EnemyType.boss
-                              ? Colors.purple
-                              : Colors.blueGrey.shade600,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 5,
-                          color: globals.enemies[index].enemyType ==
-                                  EnemyType.elite
-                              ? Colors.deepOrange
-                              : globals.enemies[index].enemyType ==
-                                      EnemyType.boss
-                                  ? Colors.purple
-                                  : Colors.blueGrey.shade600,
-                        ),
-                      ],
+            return GestureDetector(
+              onTap: () => OpenDetailScreen.onEnemyTab(
+                list: globals.enemies,
+                code: globals.enemies[index].code,
+                context: context,
+              ),
+              child: Card(
+                clipBehavior: Clip.hardEdge,
+                color: globals.enemies[index].enemyType == EnemyType.elite
+                    ? Colors.deepOrange
+                    : globals.enemies[index].enemyType == EnemyType.boss
+                        ? Colors.purple
+                        : Colors.blueGrey.shade600,
+                elevation: 5,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  children: [
+                    Hero(
+                      tag: globals.enemies[index].code,
+                      child: Image.asset(
+                          'assets/images/enemies/${globals.enemies[index].code}.png'),
                     ),
-                    child: Text(
-                      globals.enemies[index].code.replaceAll('_', '*'),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 1),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        color: globals.enemies[index].enemyType ==
+                                EnemyType.elite
+                            ? Colors.deepOrange
+                            : globals.enemies[index].enemyType == EnemyType.boss
+                                ? Colors.purple
+                                : Colors.blueGrey.shade600,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5,
+                            color: globals.enemies[index].enemyType ==
+                                    EnemyType.elite
+                                ? Colors.deepOrange
+                                : globals.enemies[index].enemyType ==
+                                        EnemyType.boss
+                                    ? Colors.purple
+                                    : Colors.blueGrey.shade600,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        globals.enemies[index].code.replaceAll('_', '*'),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

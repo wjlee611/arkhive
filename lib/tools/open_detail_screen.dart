@@ -1,4 +1,6 @@
+import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/detail/operator_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +33,20 @@ class OpenDetailScreen {
       if (operator_.name == name) {
         Navigator.push(
             context, _createRoute(OperatorDetailScreen(operator_: operator_)));
+        return;
+      }
+    }
+  }
+
+  static void onEnemyTab({
+    required List<EnemyModel> list,
+    required String code,
+    required dynamic context,
+  }) {
+    for (var enemy in list) {
+      if (enemy.code == code) {
+        Navigator.push(context, _createRoute(EnemyDetailScreen(enemy: enemy)));
+        return;
       }
     }
   }

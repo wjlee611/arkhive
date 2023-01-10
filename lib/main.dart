@@ -61,8 +61,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    readOperatorJson();
-    readEnemyJson();
+    if (globals.classedOperators[0].isEmpty) {
+      readOperatorJson();
+    }
+    if (globals.enemies.isEmpty) {
+      readEnemyJson();
+    }
 
     return const MaterialApp(
       title: 'Arkhive',
