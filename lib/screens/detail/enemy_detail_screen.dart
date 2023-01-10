@@ -70,45 +70,14 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: widget.enemy.enemyType == EnemyType.elite
-                              ? Colors.deepOrange
-                              : widget.enemy.enemyType == EnemyType.boss
-                                  ? Colors.purple
-                                  : Colors.blueGrey.shade600,
-                        ),
-                        child: Text(
-                          widget.enemy.enemyType,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        widget.enemy.attackType,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    widget.enemy.attackType,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
@@ -150,6 +119,70 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     height: 20,
                   ),
                   const TitleText(title: "개체 특이사항"),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 2,
+                              spreadRadius: 0.1,
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          "위험 분류등급",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                            color: widget.enemy.silenceImm
+                                ? Colors.yellow.shade800
+                                : Colors.black,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 2,
+                          horizontal: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: widget.enemy.enemyType == EnemyType.elite
+                              ? Colors.deepOrange
+                              : widget.enemy.enemyType == EnemyType.boss
+                                  ? Colors.purple
+                                  : Colors.blueGrey.shade600,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 2,
+                              spreadRadius: 0.1,
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          widget.enemy.enemyType,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
                     height: 5,
                   ),
@@ -216,6 +249,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                       color: Colors.black,
                       fontSize: 14,
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   const SizedBox(
@@ -324,13 +358,22 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '// $title',
-      style: TextStyle(
-        color: Colors.blueGrey.shade700,
-        fontSize: 12,
-        fontFamily: FontFamily.nanumGothic,
-        fontWeight: FontWeight.w700,
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 1,
+        horizontal: 3,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.blueGrey.shade600,
+      ),
+      child: Text(
+        '// $title',
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontFamily: FontFamily.nanumGothic,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
@@ -354,7 +397,7 @@ class StatContainer extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(3),
         boxShadow: [
           BoxShadow(
             blurRadius: 3,
@@ -371,11 +414,10 @@ class StatContainer extends StatelessWidget {
                 child: Container(
                   height: 20,
                   alignment: Alignment.center,
-                  color: Colors.blueGrey.shade600,
                   child: Text(
                     title,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: Colors.blueGrey.shade600,
                       fontSize: 10,
                       fontFamily: FontFamily.nanumGothic,
                       fontWeight: FontWeight.w700,
@@ -386,15 +428,22 @@ class StatContainer extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: Center(
-              child: Text(
-                stat.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                    (Match m) => "${m[1]},"),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(4, 0, 4, 4),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(3),
+              ),
+              child: Center(
+                child: Text(
+                  stat.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                      (Match m) => "${m[1]},"),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ),
