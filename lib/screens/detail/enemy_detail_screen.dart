@@ -54,13 +54,16 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    widget.enemy.name,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      widget.enemy.name,
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade800,
+                        fontSize: 18,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -70,13 +73,16 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    widget.enemy.attackType,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      widget.enemy.attackType,
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade800,
+                        fontSize: 16,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -122,66 +128,71 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 7,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 2,
-                              spreadRadius: 0.1,
-                              color: Colors.black.withOpacity(0.3),
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          "위험 분류등급",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            color: widget.enemy.silenceImm
-                                ? Colors.yellow.shade800
-                                : Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 22,
+                          width: 90,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2,
+                            horizontal: 5,
                           ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: widget.enemy.enemyType == EnemyType.elite
-                              ? Colors.deepOrange
-                              : widget.enemy.enemyType == EnemyType.boss
-                                  ? Colors.purple
-                                  : Colors.blueGrey.shade600,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 2,
-                              spreadRadius: 0.1,
-                              color: Colors.black.withOpacity(0.3),
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          widget.enemy.enemyType,
-                          style: const TextStyle(
+                          decoration: BoxDecoration(
                             color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                spreadRadius: 0.1,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: Text(
+                              "위험 분류등급",
+                              style: TextStyle(
+                                color: Colors.blueGrey.shade800,
+                                fontSize: 10,
+                                fontFamily: FontFamily.nanumGothic,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          height: 22,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 2,
+                            horizontal: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: widget.enemy.enemyType == EnemyType.elite
+                                ? Colors.deepOrange
+                                : widget.enemy.enemyType == EnemyType.boss
+                                    ? Colors.purple
+                                    : Colors.blueGrey.shade600,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 2,
+                                spreadRadius: 0.1,
+                                color: Colors.black.withOpacity(0.3),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            widget.enemy.enemyType,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontFamily: FontFamily.nanumGothic,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
@@ -191,14 +202,14 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     children: [
                       Icon(
                         widget.enemy.silenceImm
-                            ? Icons.check_box_outlined
-                            : Icons.check_box_outline_blank,
+                            ? Icons.check_box_sharp
+                            : Icons.check_box_outline_blank_sharp,
                         color: widget.enemy.silenceImm
                             ? Colors.yellow.shade800
-                            : Colors.black,
+                            : Colors.black54,
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 2,
                       ),
                       Text(
                         "침묵 저항",
@@ -208,7 +219,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                           fontWeight: FontWeight.w700,
                           color: widget.enemy.silenceImm
                               ? Colors.yellow.shade800
-                              : Colors.black,
+                              : Colors.black54,
                         ),
                       ),
                     ],
@@ -218,14 +229,14 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     children: [
                       Icon(
                         widget.enemy.stunImm
-                            ? Icons.check_box_outlined
-                            : Icons.check_box_outline_blank,
+                            ? Icons.check_box_sharp
+                            : Icons.check_box_outline_blank_sharp,
                         color: widget.enemy.stunImm
                             ? Colors.yellow.shade800
-                            : Colors.black,
+                            : Colors.black54,
                       ),
                       const SizedBox(
-                        width: 5,
+                        width: 2,
                       ),
                       Text(
                         "기절 저항",
@@ -235,7 +246,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                           fontWeight: FontWeight.w700,
                           color: widget.enemy.stunImm
                               ? Colors.yellow.shade800
-                              : Colors.black,
+                              : Colors.black54,
                         ),
                       ),
                     ],
@@ -243,13 +254,16 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    widget.enemy.abilities,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      widget.enemy.abilities,
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade800,
+                        fontSize: 14,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -438,9 +452,9 @@ class StatContainer extends StatelessWidget {
                 child: Text(
                   stat.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
                       (Match m) => "${m[1]},"),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
+                  style: TextStyle(
+                    color: Colors.blueGrey.shade800,
+                    fontSize: 13,
                     fontFamily: FontFamily.nanumGothic,
                     fontWeight: FontWeight.w700,
                   ),
