@@ -1,16 +1,11 @@
 class EnemyModel {
-  final String name, code, health, attack, defense, resist;
-  final String hp, atk, def, res, weight;
+  final String name, code, hp, atk, def, res, weight;
   final String abilities, enemyType, attackType;
   final bool stunImm, silenceImm;
 
   EnemyModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         code = json['code'],
-        health = json['health'],
-        attack = json['attack'],
-        defense = json['defense'],
-        resist = json['resist'],
         hp = json['hp'],
         atk = json['atk'],
         def = json['def'],
