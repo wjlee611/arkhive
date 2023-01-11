@@ -71,17 +71,62 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   ),
                   const TitleText(title: "개체 전투 능력"),
                   const SizedBox(
-                    height: 5,
+                    height: 7,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      widget.enemy.attackType,
-                      style: TextStyle(
-                        color: Colors.blueGrey.shade800,
-                        fontSize: 16,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 2,
+                            spreadRadius: 0.1,
+                            color: Colors.black.withOpacity(0.3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 22,
+                            width: 70,
+                            child: Center(
+                              child: Text(
+                                "전술 타입",
+                                style: TextStyle(
+                                  color: Colors.blueGrey.shade800,
+                                  fontSize: 10,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 22,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
+                            color:
+                                widget.enemy.attackType == EnemyAtkType.noAttack
+                                    ? Colors.blueGrey.shade600
+                                    : widget.enemy.attackType.contains('아츠')
+                                        ? Colors.redAccent
+                                        : Colors.blueAccent,
+                            child: Center(
+                              child: Text(
+                                widget.enemy.attackType,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -130,139 +175,101 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 22,
-                          width: 90,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 2,
-                            horizontal: 5,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 2,
+                            spreadRadius: 0.1,
+                            color: Colors.black.withOpacity(0.3),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                spreadRadius: 0.1,
-                                color: Colors.black.withOpacity(0.3),
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              "위험 분류등급",
-                              style: TextStyle(
-                                color: Colors.blueGrey.shade800,
-                                fontSize: 10,
-                                fontFamily: FontFamily.nanumGothic,
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 22,
+                            width: 90,
+                            child: Center(
+                              child: Text(
+                                "위험 분류등급",
+                                style: TextStyle(
+                                  color: Colors.blueGrey.shade800,
+                                  fontSize: 10,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: 22,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 2,
-                            horizontal: 5,
-                          ),
-                          decoration: BoxDecoration(
+                          Container(
+                            height: 22,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
                             color: widget.enemy.enemyType == EnemyType.elite
                                 ? Colors.deepOrange
                                 : widget.enemy.enemyType == EnemyType.boss
                                     ? Colors.purple
                                     : Colors.blueGrey.shade600,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 2,
-                                spreadRadius: 0.1,
-                                color: Colors.black.withOpacity(0.3),
+                            child: Center(
+                              child: Text(
+                                widget.enemy.enemyType,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
-                            ],
-                          ),
-                          child: Text(
-                            widget.enemy.enemyType,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: FontFamily.nanumGothic,
-                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        widget.enemy.silenceImm
-                            ? Icons.check_box_sharp
-                            : Icons.check_box_outline_blank_sharp,
-                        color: widget.enemy.silenceImm
-                            ? Colors.yellow.shade800
-                            : Colors.black54,
-                      ),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      Text(
-                        "침묵 저항",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: widget.enemy.silenceImm
-                              ? Colors.yellow.shade800
-                              : Colors.black54,
-                        ),
-                      ),
-                    ],
+                  CheckboxWidget(
+                    title: "침묵 저항",
+                    isImm: widget.enemy.silenceImm,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        widget.enemy.stunImm
-                            ? Icons.check_box_sharp
-                            : Icons.check_box_outline_blank_sharp,
-                        color: widget.enemy.stunImm
-                            ? Colors.yellow.shade800
-                            : Colors.black54,
-                      ),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      Text(
-                        "기절 저항",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: widget.enemy.stunImm
-                              ? Colors.yellow.shade800
-                              : Colors.black54,
-                        ),
-                      ),
-                    ],
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  CheckboxWidget(
+                    title: "기절 저항",
+                    isImm: widget.enemy.stunImm,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: Text(
-                      widget.enemy.abilities,
-                      style: TextStyle(
-                        color: Colors.blueGrey.shade800,
-                        fontSize: 14,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          left: BorderSide(
+                            color: Colors.blueGrey.shade600,
+                            width: 4,
+                          ),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(
+                          widget.enemy.abilities != ""
+                              ? widget.enemy.abilities
+                              : "특이사항이 없습니다",
+                          style: TextStyle(
+                            color: Colors.blueGrey.shade800,
+                            fontSize: 14,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -362,6 +369,60 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
   }
 }
 
+class CheckboxWidget extends StatelessWidget {
+  const CheckboxWidget({
+    Key? key,
+    required this.title,
+    required this.isImm,
+  }) : super(key: key);
+
+  final String title;
+  final bool isImm;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Container(
+        width: 90,
+        decoration: BoxDecoration(
+          color: isImm ? Colors.yellow.shade800 : Colors.black38,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 2,
+              spreadRadius: 0.1,
+              color: Colors.black.withOpacity(0.3),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(width: 4),
+            Icon(
+              isImm ? Icons.check : Icons.disabled_by_default_outlined,
+              color: Colors.white,
+            ),
+            Flexible(
+              child: Center(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class TitleText extends StatelessWidget {
   const TitleText({
     Key? key,
@@ -411,12 +472,11 @@ class StatContainer extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(3),
         boxShadow: [
           BoxShadow(
-            blurRadius: 3,
+            blurRadius: 2,
             spreadRadius: 0.1,
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.3),
           ),
         ],
       ),
