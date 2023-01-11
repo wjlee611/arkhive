@@ -94,7 +94,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                             width: 70,
                             child: Center(
                               child: Text(
-                                "전술 타입",
+                                "공격 방식",
                                 style: TextStyle(
                                   color: Colors.blueGrey.shade800,
                                   fontSize: 10,
@@ -246,33 +246,33 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          left: BorderSide(
-                            color: Colors.blueGrey.shade600,
-                            width: 4,
+                  widget.enemy.abilities != ""
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border(
+                                left: BorderSide(
+                                  color: Colors.blueGrey.shade600,
+                                  width: 4,
+                                ),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Text(
+                                widget.enemy.abilities,
+                                style: TextStyle(
+                                  color: Colors.blueGrey.shade800,
+                                  fontSize: 14,
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          widget.enemy.abilities != ""
-                              ? widget.enemy.abilities
-                              : "특이사항이 없습니다",
-                          style: TextStyle(
-                            color: Colors.blueGrey.shade800,
-                            fontSize: 14,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        )
+                      : Container(),
                   const SizedBox(
                     height: 50,
                   ),
@@ -400,7 +400,7 @@ class CheckboxWidget extends StatelessWidget {
           children: [
             const SizedBox(width: 4),
             Icon(
-              isImm ? Icons.check : Icons.disabled_by_default_outlined,
+              isImm ? Icons.check : Icons.close,
               color: Colors.white,
             ),
             Flexible(

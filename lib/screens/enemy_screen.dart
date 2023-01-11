@@ -17,6 +17,18 @@ class _EnemyScreenState extends State<EnemyScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    if (globals.classedOperators[0].isEmpty) {
+      globals.GlobVarInitializer.readOperatorJson();
+    }
+    if (globals.enemies.isEmpty) {
+      globals.GlobVarInitializer.readEnemyJson();
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
