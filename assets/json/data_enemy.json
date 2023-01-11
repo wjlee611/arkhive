@@ -2621,7 +2621,7 @@
     {
       "code": "T9",
       "name": "티아카우 디스트로이어",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리",
       "atk": "650",
       "hp": "7500",
@@ -2635,7 +2635,7 @@
     {
       "code": "T10",
       "name": "티아카우 디스트로이킹",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리",
       "atk": "750",
       "hp": "9500",
@@ -2649,7 +2649,7 @@
     {
       "code": "T11",
       "name": "티아카우 워리어",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "700",
       "hp": "12000",
@@ -2663,7 +2663,7 @@
     {
       "code": "T12",
       "name": "티아카우 챔피언",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "1000",
       "hp": "16000",
@@ -2761,7 +2761,7 @@
     {
       "code": "K7",
       "name": "'플라스틱의 기사' 세브치크",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리",
       "atk": "600",
       "hp": "3800",
@@ -2775,7 +2775,7 @@
     {
       "code": "K8",
       "name": "방패 프리랜서 기사",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "700",
       "hp": "8000",
@@ -2789,7 +2789,7 @@
     {
       "code": "K9",
       "name": "방패 정예 기사",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "700",
       "hp": "12000",
@@ -2803,7 +2803,7 @@
     {
       "code": "K10",
       "name": "블러드보일 견습 기사단원",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "500",
       "hp": "9000",
@@ -2817,7 +2817,7 @@
     {
       "code": "K11",
       "name": "블러드보일 정예 기사단원",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "650",
       "hp": "13000",
@@ -2831,7 +2831,7 @@
     {
       "code": "K12",
       "name": "'녹슨 구리의 기사' 올머 잉그라",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "근거리",
       "atk": "700",
       "hp": "15000",
@@ -2845,7 +2845,7 @@
     {
       "code": "K13",
       "name": "블레이드헬멧 견습 기사단원",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리 아츠",
       "atk": "550",
       "hp": "10000",
@@ -2859,7 +2859,7 @@
     {
       "code": "K14",
       "name": "블레이드헬멧 정예 기사단원",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리 아츠",
       "atk": "650",
       "hp": "13000",
@@ -2873,7 +2873,7 @@
     {
       "code": "K15",
       "name": "'좌완의 기사' 타이터스 토폴라",
-      "enemyType": "정예",
+      "enemyType": "엘리트",
       "attackType": "원거리 아츠",
       "atk": "750",
       "hp": "20000",
