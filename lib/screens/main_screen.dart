@@ -2,6 +2,8 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../global_vars.dart' as globals;
 
 class MainScreen extends StatefulWidget {
@@ -49,55 +51,61 @@ class _MainScreenState extends State<MainScreen> {
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.blueGrey.shade100,
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Row(
-                    children: [
-                      Container(
-                        color: Colors.blueGrey.shade600,
-                        padding: const EdgeInsets.all(5),
-                        child: Image.asset(
-                          'assets/images/prts.png',
-                          width: 50,
-                          height: 50,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: Row(
+                      children: [
+                        const UrlWidget(
+                            platform: 'naver',
+                            title: "공식 카페",
+                            url: "https://cafe.naver.com/arknightskor",
+                            color: Colors.green),
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              "어서오세요, 박사님.",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: FontFamily.nanumGothic,
-                              ),
-                            ),
-                          ],
+                        const UrlWidget(
+                          platform: 'twitter',
+                          title: "공식 트위터",
+                          url: "https://twitter.com/ArknightsKorea",
+                          color: Colors.blue,
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        UrlWidget(
+                          platform: 'facebook',
+                          title: "공식 페이스북",
+                          url: "https://www.facebook.com/ArknightsKorea",
+                          color: Colors.blue.shade700,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const UrlWidget(
+                          platform: 'youtube',
+                          title: "공식 유튜브",
+                          url:
+                              "https://www.youtube.com/channel/UCnnbUv4urnbWgb_lgGUfeBw",
+                          color: Colors.red,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const UrlWidget(
+                          platform: 'ak',
+                          title: "공식 사이트",
+                          url: "https://www.arknights.kr/",
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 40,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -122,6 +130,7 @@ class _MainScreenState extends State<MainScreen> {
                             Icon(
                               Icons.star,
                               color: Colors.yellow.shade700,
+                              size: 20,
                             ),
                             const SizedBox(
                               width: 5,
@@ -130,7 +139,7 @@ class _MainScreenState extends State<MainScreen> {
                               "즐겨찾기",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: FontFamily.nanumGothic,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -155,7 +164,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -177,8 +186,10 @@ class _MainScreenState extends State<MainScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.lightbulb,
+                            Image.asset(
+                              'assets/images/prts.png',
+                              width: 20,
+                              height: 20,
                               color: Colors.yellow.shade700,
                             ),
                             const SizedBox(
@@ -188,7 +199,7 @@ class _MainScreenState extends State<MainScreen> {
                               "설명서",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontFamily: FontFamily.nanumGothic,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -332,6 +343,76 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       drawer: const NavDrawer(),
+    );
+  }
+}
+
+class UrlWidget extends StatelessWidget {
+  const UrlWidget({
+    Key? key,
+    this.platform = 'browser',
+    required this.url,
+    required this.title,
+    required this.color,
+  }) : super(key: key);
+
+  final String platform;
+  final String url;
+  final String title;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        late final url_ = Uri.parse(url);
+
+        // youtube launch
+        String yt = url.split('//').last;
+        if (platform == 'youtube' && await canLaunch('youtube://$yt')) {
+          await launch('youtube://$yt', forceSafariVC: false);
+          return;
+        }
+
+        if (await canLaunchUrl(url_)) {
+          launchUrl(url_, mode: LaunchMode.externalApplication);
+        }
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 5,
+          vertical: 3,
+        ),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(2),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              platform == "naver"
+                  ? Icons.local_cafe_rounded
+                  : platform == 'twitter'
+                      ? FontAwesomeIcons.twitter
+                      : platform == "facebook"
+                          ? Icons.facebook
+                          : platform == "youtube"
+                              ? Icons.play_arrow
+                              : Icons.grain_outlined,
+              color: Colors.white,
+            ),
+            Text(
+              " $title",
+              style: const TextStyle(
+                fontSize: 14,
+                fontFamily: FontFamily.nanumGothic,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

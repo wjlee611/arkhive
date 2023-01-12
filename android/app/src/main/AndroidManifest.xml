@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.arkhive">
-   <application
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+    <application
         android:label="Arkhive"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
