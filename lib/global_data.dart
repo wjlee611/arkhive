@@ -14,15 +14,15 @@ class GlobalData {
   }
   // global variables
   late String screen;
-  late List<List<OperatorModel>> _classedOperators;
-  late List<EnemyModel> _enemies;
+  late final List<List<OperatorModel>> _classedOperators;
+  late final List<EnemyModel> _enemies;
 
   // getter
   List<List<OperatorModel>> get classedOperators => _classedOperators;
   List<EnemyModel> get enemies => _enemies;
 
   // initializer
-  Future<void> _globalDataInitializer() async {
+  void _globalDataInitializer() async {
     screen = ScreenModel.main;
     List<List<OperatorModel>> classedOperators_ = [
       [],
@@ -67,7 +67,6 @@ class GlobalData {
       }
     }
     _classedOperators = classedOperators_;
-
     // enemies
     res = await rootBundle.loadString('assets/json/data_enemy.json');
     data = await json.decode(res)['data'];
