@@ -1,7 +1,15 @@
 import 'package:arkhive/screens/main_screen.dart';
 import 'package:flutter/material.dart';
+import './global_vars.dart' as globals;
 
 void main() {
+  // initialize data
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (globals.classedOperators[0].isEmpty) {
+    globals.globalDataInitializer();
+  }
+
   runApp(const MyApp());
 }
 
