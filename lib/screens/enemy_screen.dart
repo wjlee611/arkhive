@@ -4,7 +4,7 @@ import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
-import '../global_vars.dart' as globals;
+import '../global_data.dart';
 
 class EnemyScreen extends StatefulWidget {
   const EnemyScreen({super.key});
@@ -14,6 +14,7 @@ class EnemyScreen extends StatefulWidget {
 }
 
 class _EnemyScreenState extends State<EnemyScreen> {
+  GlobalData globalData = GlobalData();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -52,16 +53,17 @@ class _EnemyScreenState extends State<EnemyScreen> {
                   (context, index) {
                     return GestureDetector(
                       onTap: () => OpenDetailScreen.onEnemyTab(
-                        list: globals.enemies,
-                        code: globals.enemies[index].code,
+                        list: globalData.enemies,
+                        code: globalData.enemies[index].code,
                         context: context,
                       ),
                       child: Card(
                         clipBehavior: Clip.hardEdge,
-                        color: globals.enemies[index].enemyType ==
+                        color: globalData.enemies[index].enemyType ==
                                 EnemyType.elite
                             ? Colors.deepOrange
-                            : globals.enemies[index].enemyType == EnemyType.boss
+                            : globalData.enemies[index].enemyType ==
+                                    EnemyType.boss
                                 ? Colors.purple
                                 : Colors.blueGrey.shade600,
                         elevation: 5,
@@ -69,28 +71,29 @@ class _EnemyScreenState extends State<EnemyScreen> {
                           alignment: AlignmentDirectional.bottomEnd,
                           children: [
                             Hero(
-                              tag: globals.enemies[index].code,
+                              tag: globalData.enemies[index].code,
                               child: Image.asset(
-                                  'assets/images/enemies/${globals.enemies[index].code}.png'),
+                                  'assets/images/enemies/${globalData.enemies[index].code}.png'),
                             ),
                             Container(
                               padding: const EdgeInsets.fromLTRB(5, 0, 5, 1),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(3),
-                                color: globals.enemies[index].enemyType ==
+                                color: globalData.enemies[index].enemyType ==
                                         EnemyType.elite
                                     ? Colors.deepOrange
-                                    : globals.enemies[index].enemyType ==
+                                    : globalData.enemies[index].enemyType ==
                                             EnemyType.boss
                                         ? Colors.purple
                                         : Colors.blueGrey.shade600,
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 5,
-                                    color: globals.enemies[index].enemyType ==
+                                    color: globalData
+                                                .enemies[index].enemyType ==
                                             EnemyType.elite
                                         ? Colors.deepOrange
-                                        : globals.enemies[index].enemyType ==
+                                        : globalData.enemies[index].enemyType ==
                                                 EnemyType.boss
                                             ? Colors.purple
                                             : Colors.blueGrey.shade600,
@@ -98,7 +101,7 @@ class _EnemyScreenState extends State<EnemyScreen> {
                                 ],
                               ),
                               child: Text(
-                                globals.enemies[index].code
+                                globalData.enemies[index].code
                                     .replaceAll('_', '*'),
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -113,7 +116,7 @@ class _EnemyScreenState extends State<EnemyScreen> {
                       ),
                     );
                   },
-                  childCount: globals.enemies.length,
+                  childCount: globalData.enemies.length,
                 ),
               ),
             ),
@@ -136,7 +139,7 @@ class _EnemyScreenState extends State<EnemyScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '///    ${globals.enemies.length} results    ///',
+                          '///    ${globalData.enemies.length} results    ///',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 12,

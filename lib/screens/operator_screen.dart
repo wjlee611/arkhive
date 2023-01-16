@@ -5,7 +5,7 @@ import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import '../global_vars.dart' as globals;
+import '../global_data.dart';
 
 class OperatorScreen extends StatefulWidget {
   const OperatorScreen({super.key});
@@ -26,6 +26,7 @@ List<bool> _isOpen = [
 ];
 
 class _OperatorScreenState extends State<OperatorScreen> {
+  GlobalData globalData = GlobalData();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final ScrollController _controller = ScrollController();
 
@@ -54,7 +55,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
           controller: _controller,
           slivers: [
             for (int index = 0;
-                index < globals.classedOperators.length;
+                index < globalData.classedOperators.length;
                 index++)
               SliverStickyHeader.builder(
                 builder: (context, state) {
@@ -107,7 +108,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  /  ${globals.classedOperators[index].length}',
+                                  '${index == 0 ? OperatorPositions.vanguard : index == 1 ? OperatorPositions.guard : index == 2 ? OperatorPositions.defender : index == 3 ? OperatorPositions.sniper : index == 4 ? OperatorPositions.caster : index == 5 ? OperatorPositions.medic : index == 6 ? OperatorPositions.supporter : OperatorPositions.specialist}  /  ${globalData.classedOperators[index].length}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
@@ -126,7 +127,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                                       for (int i = 0; i < 8; i++) {
                                         if (_isOpen[i]) {
                                           offset = offset +
-                                              globals.classedOperators[i]
+                                              globalData.classedOperators[i]
                                                       .length *
                                                   height;
                                         }
@@ -177,7 +178,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '///    ${globals.classedOperators[0].length + globals.classedOperators[1].length + globals.classedOperators[2].length + globals.classedOperators[3].length + globals.classedOperators[4].length + globals.classedOperators[5].length + globals.classedOperators[6].length + globals.classedOperators[7].length} results    ///',
+                          '///    ${globalData.classedOperators[0].length + globalData.classedOperators[1].length + globalData.classedOperators[2].length + globalData.classedOperators[3].length + globalData.classedOperators[4].length + globalData.classedOperators[5].length + globalData.classedOperators[6].length + globalData.classedOperators[7].length} results    ///',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -201,9 +202,10 @@ class _OperatorScreenState extends State<OperatorScreen> {
 }
 
 class ClassListView extends StatelessWidget {
+  GlobalData globalData = GlobalData();
   final int classIdx;
 
-  const ClassListView({
+  ClassListView({
     Key? key,
     required this.classIdx,
   }) : super(key: key);
@@ -215,8 +217,8 @@ class ClassListView extends StatelessWidget {
         (context, index) {
           return GestureDetector(
             onTap: () => OpenDetailScreen.onOperatorTab(
-              list: globals.classedOperators[classIdx],
-              name: globals.classedOperators[classIdx][index].name,
+              list: globalData.classedOperators[classIdx],
+              name: globalData.classedOperators[classIdx][index].name,
               context: context,
             ),
             child: Container(
@@ -230,24 +232,25 @@ class ClassListView extends StatelessWidget {
                     height: 50,
                     width: 5,
                     decoration: BoxDecoration(
-                      color: globals.classedOperators[classIdx][index].rare ==
+                      color: globalData
+                                  .classedOperators[classIdx][index].rare ==
                               "6"
                           ? Colors.white
-                          : globals.classedOperators[classIdx][index].rare ==
+                          : globalData.classedOperators[classIdx][index].rare ==
                                   "5"
                               ? Colors.yellow.shade700
                               : Colors.grey.shade800,
                     ),
                   ),
                   Hero(
-                    tag: globals.classedOperators[classIdx][index].imageName,
+                    tag: globalData.classedOperators[classIdx][index].imageName,
                     child: Container(
                       width: 50,
                       height: 50,
                       clipBehavior: Clip.hardEdge,
                       decoration: const BoxDecoration(),
                       child: Image.asset(
-                        'assets/images/operators/${globals.classedOperators[classIdx][index].imageName}.png',
+                        'assets/images/operators/${globalData.classedOperators[classIdx][index].imageName}.png',
                         width: 50,
                         height: 50,
                       ),
@@ -261,7 +264,7 @@ class ClassListView extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            globals.classedOperators[classIdx][index].name
+                            globalData.classedOperators[classIdx][index].name
                                 .replaceAll(" (한정)", "")
                                 .replaceAll(" [한정]", ""),
                             maxLines: 1,
@@ -273,9 +276,10 @@ class ClassListView extends StatelessWidget {
                             ),
                           ),
                         ),
-                        globals.classedOperators[classIdx][index].name
+                        globalData.classedOperators[classIdx][index].name
                                     .contains("(한정)") ||
-                                globals.classedOperators[classIdx][index].name
+                                globalData
+                                    .classedOperators[classIdx][index].name
                                     .contains("[한정]")
                             ? Padding(
                                 padding:
@@ -285,7 +289,7 @@ class ClassListView extends StatelessWidget {
                                     horizontal: 7,
                                     vertical: 3,
                                   ),
-                                  decoration: globals
+                                  decoration: globalData
                                           .classedOperators[classIdx][index]
                                           .name
                                           .contains("(한정)")
@@ -336,7 +340,7 @@ class ClassListView extends StatelessWidget {
                                           ),
                                         ),
                                   child: Text(
-                                    globals.classedOperators[classIdx][index]
+                                    globalData.classedOperators[classIdx][index]
                                             .name
                                             .contains("(한정)")
                                         ? "한정"
@@ -368,8 +372,9 @@ class ClassListView extends StatelessWidget {
             ),
           );
         },
-        childCount:
-            _isOpen[classIdx] ? globals.classedOperators[classIdx].length : 0,
+        childCount: _isOpen[classIdx]
+            ? globalData.classedOperators[classIdx].length
+            : 0,
       ),
     );
   }

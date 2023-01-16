@@ -9,7 +9,7 @@ import 'package:arkhive/screens/operator_screen.dart';
 import 'package:arkhive/screens/settings_screen.dart';
 import 'package:arkhive/screens/stage_screen.dart';
 import 'package:flutter/material.dart';
-import "../global_vars.dart" as globals;
+import '../global_data.dart';
 import 'dart:math' as math;
 
 class NavDrawer extends StatefulWidget {
@@ -20,6 +20,8 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
+  GlobalData globalData = GlobalData();
+
   Route _createRoute(Widget widget) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => widget,
@@ -134,168 +136,168 @@ class _NavDrawerState extends State<NavDrawer> {
                 ListTile(
                   leading: Icon(
                     Icons.home_outlined,
-                    color: globals.screen == ScreenModel.main
+                    color: globalData.screen == ScreenModel.main
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '메인 화면',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.main
+                      color: globalData.screen == ScreenModel.main
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.main
+                      fontWeight: globalData.screen == ScreenModel.main
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.main) {
+                    if (globalData.screen != ScreenModel.main) {
                       Navigator.pushReplacement(
                           context, _createRoute(const MainScreen()));
-                      globals.screen = ScreenModel.main;
+                      globalData.screen = ScreenModel.main;
                     }
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.hive_outlined,
-                    color: globals.screen == ScreenModel.item
+                    color: globalData.screen == ScreenModel.item
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '창고 아이템',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.item
+                      color: globalData.screen == ScreenModel.item
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.item
+                      fontWeight: globalData.screen == ScreenModel.item
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.item) {
+                    if (globalData.screen != ScreenModel.item) {
                       Navigator.pushReplacement(
                           context, _createRoute(const ItemScreen()));
-                      globals.screen = ScreenModel.item;
+                      globalData.screen = ScreenModel.item;
                     }
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.api_outlined,
-                    color: globals.screen == ScreenModel.gimmick
+                    color: globalData.screen == ScreenModel.gimmick
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '스테이지 기믹',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.gimmick
+                      color: globalData.screen == ScreenModel.gimmick
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.gimmick
+                      fontWeight: globalData.screen == ScreenModel.gimmick
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.gimmick) {
+                    if (globalData.screen != ScreenModel.gimmick) {
                       Navigator.pushReplacement(
                           context, _createRoute(const GimmickScreen()));
-                      globals.screen = ScreenModel.gimmick;
+                      globalData.screen = ScreenModel.gimmick;
                     }
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.account_tree_outlined,
-                    color: globals.screen == ScreenModel.stage
+                    color: globalData.screen == ScreenModel.stage
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '스테이지 정보',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.stage
+                      color: globalData.screen == ScreenModel.stage
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.stage
+                      fontWeight: globalData.screen == ScreenModel.stage
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.stage) {
+                    if (globalData.screen != ScreenModel.stage) {
                       Navigator.pushReplacement(
                           context, _createRoute(const StageScreen()));
-                      globals.screen = ScreenModel.stage;
+                      globalData.screen = ScreenModel.stage;
                     }
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.badge_outlined,
-                    color: globals.screen == ScreenModel.operators
+                    color: globalData.screen == ScreenModel.operators
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '오퍼레이터',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.operators
+                      color: globalData.screen == ScreenModel.operators
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.operators
+                      fontWeight: globalData.screen == ScreenModel.operators
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.operators) {
+                    if (globalData.screen != ScreenModel.operators) {
                       Navigator.pushReplacement(
                           context, _createRoute(const OperatorScreen()));
-                      globals.screen = ScreenModel.operators;
+                      globalData.screen = ScreenModel.operators;
                     }
                   },
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.whatshot_outlined,
-                    color: globals.screen == ScreenModel.enemy
+                    color: globalData.screen == ScreenModel.enemy
                         ? Colors.yellow.shade700
                         : Colors.white,
                   ),
                   title: Text(
                     '적',
                     style: TextStyle(
-                      color: globals.screen == ScreenModel.enemy
+                      color: globalData.screen == ScreenModel.enemy
                           ? Colors.yellow.shade700
                           : Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globals.screen == ScreenModel.enemy
+                      fontWeight: globalData.screen == ScreenModel.enemy
                           ? FontWeight.w700
                           : FontWeight.w400,
                     ),
                   ),
                   onTap: () {
                     Scaffold.of(context).closeDrawer();
-                    if (globals.screen != ScreenModel.enemy) {
+                    if (globalData.screen != ScreenModel.enemy) {
                       Navigator.pushReplacement(
                           context, _createRoute(const EnemyScreen()));
-                      globals.screen = ScreenModel.enemy;
+                      globalData.screen = ScreenModel.enemy;
                     }
                   },
                 ),
