@@ -1,6 +1,7 @@
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class EnemyDetailScreen extends StatefulWidget {
   final EnemyModel enemy;
@@ -321,24 +322,31 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     const SizedBox(
                       width: 30,
                     ),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.1),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 4,
-                        ),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            blurStyle: BlurStyle.outer,
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: [
+                        Transform.rotate(
+                          angle: 45 * math.pi / 180,
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.1),
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 4,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 5,
+                                  blurStyle: BlurStyle.outer,
+                                ),
+                              ],
+                            ),
+                            child: Container(),
                           ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
+                        ),
+                        Text(
                           widget.enemy.code.replaceAll('_', ''),
                           style: TextStyle(
                             color: Colors.white,
@@ -356,7 +364,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                             ],
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ],
                 ),
