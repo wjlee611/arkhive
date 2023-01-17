@@ -1,3 +1,4 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
@@ -63,53 +64,75 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   ),
                   widget.enemy.level.length > 1
                       ? Center(
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 2,
-                                  spreadRadius: 0.1,
-                                  color: Colors.black.withOpacity(0.3),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                for (int i = 0;
-                                    i < widget.enemy.level.length;
-                                    i++)
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _selectedLevel = i;
-                                      });
-                                    },
-                                    child: Container(
-                                      padding: const EdgeInsets.all(5),
-                                      color: _selectedLevel == i
-                                          ? Colors.blueGrey.shade600
-                                          : Colors.white,
-                                      child: Text(
-                                        "레벨 $i",
-                                        style: TextStyle(
-                                          color: _selectedLevel == i
-                                              ? Colors.white
-                                              : Colors.blueGrey.shade600,
-                                          fontSize: 14,
-                                          fontFamily: FontFamily.nanumGothic,
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.arrow_left_rounded,
+                                color: Colors.yellow.shade700,
+                                size: 30,
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: AnimatedToggleSwitch.size(
+                                  current: _selectedLevel,
+                                  values: [
+                                    for (int i = 0;
+                                        i < widget.enemy.level.length;
+                                        i++)
+                                      i
+                                  ],
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 2,
+                                      spreadRadius: 0.1,
+                                      color: Colors.black.withOpacity(0.3),
+                                    ),
+                                  ],
+                                  borderWidth: 0,
+                                  iconOpacity: 0.5,
+                                  indicatorSize: const Size.fromWidth(50),
+                                  iconBuilder: (value, size) => Center(
+                                    child: Text(
+                                      '레벨 $value',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize:
+                                            math.min(size.width, size.height),
+                                        fontFamily: FontFamily.nanumGothic,
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
                                   ),
-                              ],
-                            ),
+                                  iconSize: const Size(10, 10),
+                                  selectedIconSize: const Size(13, 13),
+                                  borderColor: Colors.transparent,
+                                  indicatorColor: Colors.yellow.shade700,
+                                  innerColor: Colors.black.withOpacity(0.3),
+                                  borderRadius: BorderRadius.zero,
+                                  height: 30,
+                                  animationCurve: Curves.easeOutExpo,
+                                  onChanged: (i) => {
+                                    setState(
+                                      () => {
+                                        _selectedLevel = i,
+                                      },
+                                    ),
+                                  },
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_right_rounded,
+                                color: Colors.yellow.shade700,
+                                size: 30,
+                              ),
+                            ],
                           ),
                         )
                       : Container(),
+                  SizedBox(
+                    height: widget.enemy.level.length > 1 ? 10 : 0,
+                  ),
                   const TitleText(title: "개체 이름"),
                   const SizedBox(
                     height: 5,
