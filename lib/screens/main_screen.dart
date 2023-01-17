@@ -356,7 +356,9 @@ class UrlWidget extends StatelessWidget {
 
         // youtube launch
         String yt = url.split('//').last;
+        // ignore: deprecated_member_use
         if (platform == 'youtube' && await canLaunch('youtube://$yt')) {
+          // ignore: deprecated_member_use
           await launch('youtube://$yt', forceSafariVC: false);
           return;
         }

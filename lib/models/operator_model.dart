@@ -1,7 +1,10 @@
 class OperatorModel {
   final String name, rare, class_, position, imageName;
+  // ignore: library_private_types_in_public_api
   final List<_TalentModel> talent;
+  // ignore: library_private_types_in_public_api
   final List<_SkillModel> skill;
+  // ignore: library_private_types_in_public_api
   final List<_ModuleModel> module;
 
   OperatorModel.fromJson(Map<String, dynamic> json)

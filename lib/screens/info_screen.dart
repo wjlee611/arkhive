@@ -6,7 +6,7 @@ class InfoScreen extends StatelessWidget {
   const InfoScreen({super.key});
 
   void tabDonate() {
-    print('donate');
+    // TODO: donate function
   }
 
   @override
