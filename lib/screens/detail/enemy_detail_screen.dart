@@ -5,10 +5,12 @@ import 'dart:math' as math;
 
 class EnemyDetailScreen extends StatefulWidget {
   final EnemyModel enemy;
+  final int initLevel;
 
   const EnemyDetailScreen({
     super.key,
     required this.enemy,
+    this.initLevel = 0,
   });
 
   @override
@@ -16,6 +18,14 @@ class EnemyDetailScreen extends StatefulWidget {
 }
 
 class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
+  late int _selectedLevel;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedLevel = widget.initLevel;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +61,55 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   const SizedBox(
                     height: 130,
                   ),
+                  widget.enemy.level.length > 1
+                      ? Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 2,
+                                  spreadRadius: 0.1,
+                                  color: Colors.black.withOpacity(0.3),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                for (int i = 0;
+                                    i < widget.enemy.level.length;
+                                    i++)
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _selectedLevel = i;
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(5),
+                                      color: _selectedLevel == i
+                                          ? Colors.blueGrey.shade600
+                                          : Colors.white,
+                                      child: Text(
+                                        "레벨 $i",
+                                        style: TextStyle(
+                                          color: _selectedLevel == i
+                                              ? Colors.white
+                                              : Colors.blueGrey.shade600,
+                                          fontSize: 14,
+                                          fontFamily: FontFamily.nanumGothic,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container(),
                   const TitleText(title: "개체 이름"),
                   const SizedBox(
                     height: 5,
@@ -141,28 +200,28 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                       children: [
                         StatContainer(
                           title: "체력",
-                          stat: widget.enemy.hp,
+                          stat: widget.enemy.level[_selectedLevel].hp,
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         StatContainer(
                           title: "공격력",
-                          stat: widget.enemy.atk,
+                          stat: widget.enemy.level[_selectedLevel].atk,
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         StatContainer(
                           title: "방어력",
-                          stat: widget.enemy.def,
+                          stat: widget.enemy.level[_selectedLevel].def,
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         StatContainer(
                           title: "마법 저항",
-                          stat: widget.enemy.res,
+                          stat: widget.enemy.level[_selectedLevel].res,
                         ),
                       ],
                     ),

@@ -42,10 +42,16 @@ class OpenDetailScreen {
     required List<EnemyModel> list,
     required String code,
     required dynamic context,
+    int level = 0,
   }) {
     for (var enemy in list) {
       if (enemy.code == code) {
-        Navigator.push(context, _createRoute(EnemyDetailScreen(enemy: enemy)));
+        Navigator.push(
+            context,
+            _createRoute(EnemyDetailScreen(
+              enemy: enemy,
+              initLevel: level,
+            )));
         return;
       }
     }
