@@ -214,6 +214,61 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     ),
                   ),
                   const SizedBox(
+                    height: 9,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 2,
+                            spreadRadius: 0.1,
+                            color: Colors.black.withOpacity(0.3),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 22,
+                            width: 70,
+                            child: Center(
+                              child: Text(
+                                "무게 레벨",
+                                style: TextStyle(
+                                  color: Colors.blueGrey.shade800,
+                                  fontSize: 10,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 22,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
+                            color: Colors.yellow.shade700,
+                            child: Center(
+                              child: Text(
+                                widget.enemy.level[_selectedLevel].weight,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
                     height: 5,
                   ),
                   SingleChildScrollView(
@@ -317,19 +372,19 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                   ),
                   CheckboxWidget(
                     title: "침묵 저항",
-                    isImm: widget.enemy.silenceImm,
+                    isImm: widget.enemy.level[_selectedLevel].silenceImm,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   CheckboxWidget(
                     title: "기절 저항",
-                    isImm: widget.enemy.stunImm,
+                    isImm: widget.enemy.level[_selectedLevel].stunImm,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  widget.enemy.abilities != ""
+                  widget.enemy.level[_selectedLevel].abilities != ""
                       ? Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4),
                           child: Container(
@@ -344,7 +399,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: Text(
-                                widget.enemy.abilities,
+                                widget.enemy.level[_selectedLevel].abilities,
                                 style: TextStyle(
                                   color: Colors.blueGrey.shade800,
                                   fontSize: 14,
