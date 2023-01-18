@@ -93,25 +93,32 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                                   iconOpacity: 0.5,
                                   indicatorSize: const Size.fromWidth(50),
                                   iconBuilder: (value, size) => Center(
-                                    child: Text(
-                                      '레벨 $value',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            math.min(size.width, size.height),
-                                        fontFamily: FontFamily.nanumGothic,
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                    child: Stack(
+                                      children: [
+                                        for (int i = 0; i < value + 1; i++)
+                                          Transform.translate(
+                                            offset:
+                                                Offset(i * 5 - value * 2.5, 0),
+                                            child: Icon(
+                                              Icons
+                                                  .keyboard_arrow_right_rounded,
+                                              color: Colors.white,
+                                              size: math.min(
+                                                  size.width, size.height),
+                                            ),
+                                          )
+                                      ],
                                     ),
                                   ),
-                                  iconSize: const Size(10, 10),
-                                  selectedIconSize: const Size(13, 13),
+                                  iconSize: const Size(20, 20),
+                                  selectedIconSize: const Size(30, 30),
                                   borderColor: Colors.transparent,
                                   indicatorColor: Colors.yellow.shade700,
                                   innerColor: Colors.black.withOpacity(0.3),
                                   borderRadius: BorderRadius.zero,
                                   height: 30,
                                   animationCurve: Curves.easeOutExpo,
+                                  iconAnimationCurve: Curves.easeOutExpo,
                                   onChanged: (i) => {
                                     setState(
                                       () => {
