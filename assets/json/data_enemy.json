@@ -4217,7 +4217,7 @@
           "def": "150",
           "res": "20",
           "weight": "0",
-          "abilities": "사망 시 배치할 수 있는 유닛을 획득한다. 섬멸 수에 집계되지 않음",
+          "abilities": "사망 시 [배치할 수 있는 유닛]을 획득한다. 섬멸 수에 집계되지 않음",
           "stunImm": "false",
           "silenceImm": "true"
         }
@@ -4236,7 +4236,7 @@
           "def": "300",
           "res": "40",
           "weight": "1",
-          "abilities": "사망 시 배치할 수 있는 유닛을 대량으로 획득한다. 섬멸 수에 집계되지 않음",
+          "abilities": "사망 시 [배치할 수 있는 유닛]을 대량으로 획득한다. 섬멸 수에 집계되지 않음",
           "stunImm": "false",
           "silenceImm": "true"
         }
@@ -4493,7 +4493,7 @@
       "code": "U13",
       "name": "제국 정예 선봉",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -4512,7 +4512,7 @@
       "code": "U14",
       "name": "제국 백전 정예 선봉",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -5595,7 +5595,7 @@
       "code": "PG5",
       "name": "대기갑 보병",
       "enemyType": "일반",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -5614,7 +5614,7 @@
       "code": "PG6",
       "name": "대기갑 보병 리더",
       "enemyType": "일반",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -6080,7 +6080,7 @@
       "code": "LK2",
       "name": "힘노이 용사",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -6641,7 +6641,7 @@
       "code": "DU13",
       "name": "더블린 비행병",
       "enemyType": "일반",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -6660,7 +6660,7 @@
       "code": "DU14",
       "name": "더블린 비행부대 리더",
       "enemyType": "일반",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -6679,7 +6679,7 @@
       "code": "GGY1",
       "name": "무덤지기 석상",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "아츠 피조물",
       "level": [
         {
@@ -6698,7 +6698,7 @@
       "code": "GGY2",
       "name": "성난 무덤지기 석상",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "아츠 피조물",
       "level": [
         {
@@ -8401,7 +8401,7 @@
       "code": "SK9",
       "name": "패스파인더 진지 파괴자",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -8420,7 +8420,7 @@
       "code": "SK10",
       "name": "패스파인더 진지 리퍼",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -8515,7 +8515,7 @@
       "code": "SK15",
       "name": "패스파인더 전달자",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리 아츠",
+      "attackType": "근/원거리 아츠",
       "category": "",
       "level": [
         {
@@ -8534,7 +8534,7 @@
       "code": "SK16",
       "name": "만국 전달자, 오렌",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리 아츠",
+      "attackType": "근/원거리 아츠",
       "category": "",
       "level": [
         {
@@ -9218,7 +9218,7 @@
       "code": "SM30",
       "name": "심해의 열초자",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "바다 괴물",
       "level": [
         {
@@ -9237,7 +9237,7 @@
       "code": "SM31",
       "name": "부영양의 열초자",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "바다 괴물",
       "level": [
         {
@@ -9256,7 +9256,7 @@
       "code": "SM32",
       "name": "퇴행의 열초자",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "바다 괴물",
       "level": [
         {
@@ -9465,7 +9465,7 @@
       "code": "LE11",
       "name": "잔당 색소포니스트",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -9484,7 +9484,7 @@
       "code": "LE12",
       "name": "잔당 정식 색소포니스트",
       "enemyType": "엘리트",
-      "attackType": "근거리/원거리",
+      "attackType": "근/원거리",
       "category": "",
       "level": [
         {
@@ -9601,6 +9601,603 @@
           "abilities": "저지 불가, 동시에 2개의 목표를 공격하며, 자신의 위치에 [허상](HP 5000, 공격 받기 쉬움. [리포밍 플럭스] 위에 위치시 초당 500의 트루 대미지를 받음)을 소환한다",
           "stunImm": "false",
           "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "DLD",
+      "name": "덕로드",
+      "enemyType": "엘리트",
+      "attackType": "공격하지 않음",
+      "category": "",
+      "level": [
+        {
+          "atk": "100",
+          "hp": "18000",
+          "def": "200",
+          "res": "30",
+          "weight": "3",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. 저지 당하지 않으며, 공격 받은 후 이동속도가 10배 상승한다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "100",
+          "hp": "35000",
+          "def": "300",
+          "res": "30",
+          "weight": "3",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. 저지 당하지 않으며, 공격 받은 후 이동속도가 10배 상승한다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "100",
+          "hp": "45000",
+          "def": "400",
+          "res": "30",
+          "weight": "3",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. 저지 당하지 않으며, 공격 받은 후 이동속도가 10배 상승한다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "GPN",
+      "name": "고프닉",
+      "enemyType": "엘리트",
+      "attackType": "근거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "2000",
+          "hp": "30000",
+          "def": "200",
+          "res": "50",
+          "weight": "4",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. [기절] 당하지 않는다",
+          "stunImm": "true",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "3000",
+          "hp": "70000",
+          "def": "450",
+          "res": "50",
+          "weight": "4",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. [기절] 당하지 않는다",
+          "stunImm": "true",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "4000",
+          "hp": "90000",
+          "def": "550",
+          "res": "50",
+          "weight": "4",
+          "abilities": "방어 포인트에 진입해도 스테이지 HP가 차감되지 않는다. [기절] 당하지 않는다",
+          "stunImm": "true",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "CS1",
+      "name": "놀라서 웃는 관객",
+      "enemyType": "엘리트",
+      "attackType": "근거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "750",
+          "hp": "8000",
+          "def": "600",
+          "res": "30",
+          "weight": "2",
+          "abilities": "공격 시 공격력 20%의 [신경 손상] 추가 부여",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "CS2",
+      "name": "스칼릿 싱어",
+      "enemyType": "엘리트",
+      "attackType": "원거리 아츠",
+      "category": "",
+      "level": [
+        {
+          "atk": "500",
+          "hp": "12000",
+          "def": "300",
+          "res": "60",
+          "weight": "3",
+          "abilities": "공격 시 공격력 20%의 [신경 손상]을 부여하며, 20회 대미지를 받으면 즉시 전장 내 모든 적의 공격 속도가 10초 동안 2배 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "CS3",
+      "name": "극장 조립체",
+      "enemyType": "엘리트",
+      "attackType": "원거리",
+      "category": "아츠 피조물",
+      "level": [
+        {
+          "atk": "1200",
+          "hp": "24000",
+          "def": "300",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 가능 수가 4 이상인 아군만 저지 가능, 주변의 비교적 가까운 범위 내 모든 아군에게 스플래시 대미지를 준다",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "CS4",
+      "name": "'깜짝 선물'",
+      "enemyType": "일반",
+      "attackType": "공격하지 않음",
+      "category": "",
+      "level": [
+        {
+          "atk": "400",
+          "hp": "4000",
+          "def": "0",
+          "res": "0",
+          "weight": "0",
+          "abilities": "공격하지 않으며, 사망 시 주변 아군에게 마법 대미지를 주고 추가로 공격력 100%의 [신경 손상]을 부여",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "PTS",
+      "name": "불길한 환영",
+      "enemyType": "엘리트",
+      "attackType": "근거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "750",
+          "hp": "10000",
+          "def": "400",
+          "res": "20",
+          "weight": "2",
+          "abilities": "저지 당하고 있지 않을 때 40% 확률로 물리 공격과 마법 공격을 회피, 스킬을 사용해 주변에 물리 대미지를 주며, 공격과 스킬이 목표의 망어력을 40% 무시하고 추가로 공격력 20%의 [신경 손상]을 부여",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "MU1",
+      "name": "개조된 가스차",
+      "enemyType": "엘리트",
+      "attackType": "근/원거리",
+      "category": "기계",
+      "level": [
+        {
+          "atk": "500",
+          "hp": "12000",
+          "def": "400",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 당하고 있지 않을 때 전장의 모든 아군 유닛이 초당 HP 75를 잃는다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MU2",
+      "name": "고에너지 가스차",
+      "enemyType": "엘리트",
+      "attackType": "근/원거리",
+      "category": "기계",
+      "level": [
+        {
+          "atk": "550",
+          "hp": "15000",
+          "def": "500",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 당하고 있지 않을 때 전장의 모든 아군 유닛이 초당 HP 100를 잃는다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MU3",
+      "name": "저가 중고 드론",
+      "enemyType": "일반",
+      "attackType": "공격하지 않음",
+      "category": "드론",
+      "level": [
+        {
+          "atk": "0",
+          "hp": "5000",
+          "def": "100",
+          "res": "20",
+          "weight": "0",
+          "abilities": "사망 시 [배치 가능 유닛] 획득. 섬멸 수에 집계되지 않음",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MU4",
+      "name": "개조된 중고 드론",
+      "enemyType": "일반",
+      "attackType": "공격하지 않음",
+      "category": "드론",
+      "level": [
+        {
+          "atk": "0",
+          "hp": "10000",
+          "def": "200",
+          "res": "30",
+          "weight": "0",
+          "abilities": "사망 시 [배치 가능 유닛] 획득. 섬멸 수에 집계되지 않음",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MU5",
+      "name": "이동식 전원",
+      "enemyType": "일반",
+      "attackType": "공격하지 않음",
+      "category": "기계",
+      "level": [
+        {
+          "atk": "0",
+          "hp": "7500",
+          "def": "250",
+          "res": "30",
+          "weight": "0",
+          "abilities": "저지 불가, 사망 후 주위의 모든 아군 유닛의 SP를 5 회복한다. 섬멸 수에 집계되지 않음",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "UM1",
+      "name": "폼페이",
+      "enemyType": "보스",
+      "attackType": "원거리 아츠",
+      "category": "감염생물",
+      "level": [
+        {
+          "atk": "230",
+          "hp": "40000",
+          "def": "220",
+          "res": "70",
+          "weight": "4",
+          "abilities": "목표를 동시에 4명까지 공격 가능 / 공격이 목표에 명중 시 [화상] 효과가 부가되고, 10초간 0.33초당 HP 20 감소 / 저지 당하면 자폭하여 10초마다 1000 대미지를 줌 / HP가 절반 이하일 시 공격 속도 40 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "350",
+          "hp": "50000",
+          "def": "270",
+          "res": "70",
+          "weight": "4",
+          "abilities": "목표를 동시에 4명까지 공격 가능 / 공격이 목표에 명중 시 [화상] 효과가 부가되고, 10초간 0.33초당 HP 25 감소 / 저지 당하면 자폭하여 10초마다 1800 대미지를 줌 / HP가 절반 이하일 시 공격력 20%, 공격 속도 50 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "SS",
+      "name": "스컬슈레더",
+      "enemyType": "보스",
+      "attackType": "근/원거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "1000",
+          "hp": "10500",
+          "def": "150",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 당하고 있지 않을 때는 유탄을 발사하여, 공격이 목표에 명중 시 주위 유닛의 방어력이 짧은 시간 동안 50% 감소 / HP가 절반 이하로 내려갈 시 공격력 50% 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "1300",
+          "hp": "30000",
+          "def": "240",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 당하고 있지 않을 때는 유탄을 발사하여, 공격이 목표에 명중 시 주위 유닛의 방어력이 짧은 시간 동안 50% 감소 / HP가 절반 이하로 내려갈 시 공격력 50% 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "1950",
+          "hp": "80000",
+          "def": "400",
+          "res": "30",
+          "weight": "5",
+          "abilities": "저지 당하고 있지 않을 때는 유탄을 발사하여, 공격이 목표에 명중 시 주위 유닛의 방어력이 짧은 시간 동안 50% 감소 / HP가 절반 이하로 내려갈 시 공격력 50% 상승",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "CS",
+      "name": "크라운슬레이어",
+      "enemyType": "보스",
+      "attackType": "근거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "400",
+          "hp": "6000",
+          "def": "120",
+          "res": "50",
+          "weight": "1",
+          "abilities": "저지 당할 때 목표의 몸 뒤로 고속 이동",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "550",
+          "hp": "10000",
+          "def": "150",
+          "res": "50",
+          "weight": "1",
+          "abilities": "저지 당할 때 목표의 몸 뒤로 고속 이동",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "700",
+          "hp": "20000",
+          "def": "250",
+          "res": "50",
+          "weight": "1",
+          "abilities": "저지 당할 때 목표의 몸 뒤로 고속 이동",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "TA",
+      "name": "탈룰라",
+      "enemyType": "보스",
+      "attackType": "근/원거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "1500",
+          "hp": "50000",
+          "def": "700",
+          "res": "50",
+          "weight": "6",
+          "abilities": "공격력 40%의 원거리 공격과 [백광]이 마법 대미지를 주고, 저지 시 근접전 트루 대미지를 준다. 마지막으로 배치 된 아군 유닛 한 명에게 [타들어가는 숨결](매초 50의 트루 대미지를 입히고 대미지는 30초 후 초당 230까지 점차 증가, 단 [저항] 가능)을 가한다. HP 절반까지 감소 시, 방어력 700, 마법 저항 40, 스킬 시전 속도가 대폭 상승한다",
+          "stunImm": "true",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "1800",
+          "hp": "60000",
+          "def": "700",
+          "res": "50",
+          "weight": "6",
+          "abilities": "공격력 40%의 원거리 공격과 [백광]이 마법 대미지를 주고, 저지 시 근접전 트루 대미지를 준다. 마지막으로 배치 된 아군 유닛 한 명에게 [타들어가는 숨결](매초 50의 트루 대미지를 입히고 대미지는 30초 후 초당 230까지 점차 증가, 단 [저항] 가능)을 가한다. 등장 즉시 방어력 700, 마법 저항 40, 스킬 시전 속도가 대폭 상승한다",
+          "stunImm": "true",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "W",
+      "name": "W",
+      "enemyType": "보스",
+      "attackType": "원거리",
+      "category": "살카즈",
+      "level": [
+        {
+          "atk": "470",
+          "hp": "10000",
+          "def": "100",
+          "res": "50",
+          "weight": "5",
+          "abilities": "폭발물을 사용하여 아군 유닛에 공격력 180%의 물리 대미지 / HP가 절반 이하일 때 폭발물의 사용 수량이 3개로 증가",
+          "stunImm": "false",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "FN",
+      "name": "프로스트노바",
+      "enemyType": "보스",
+      "attackType": "원거리 아츠",
+      "category": "",
+      "level": [
+        {
+          "atk": "420",
+          "hp": "25000",
+          "def": "250",
+          "res": "50",
+          "weight": "5",
+          "abilities": "빙결 아츠로 주변의 아군 유닛에 공격력 150%의 마법 대미지를 주고, 명중 당한 목표의 공격 속도를 8초간 50 감소시킨다 / 아츠로 2개의 지면을 얼려, 얼어붙은 칸에는 영구적으로 유닛 배치를 할 수 없게 됨 / 사망 후 부활 시 공격력 50% 증가",
+          "stunImm": "true",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "620",
+          "hp": "35000",
+          "def": "350",
+          "res": "50",
+          "weight": "5",
+          "abilities": "빙결 아츠로 주변의 아군 유닛에 공격력 150%의 마법 대미지를 주고, 명중 당한 목표의 공격 속도를 8초간 50 감소시킨다 / 아츠로 2개의 지면을 얼려, 얼어붙은 칸에는 영구적으로 유닛 배치를 할 수 없게 됨 / 사망 후 부활 시 공격력 50% 증가",
+          "stunImm": "true",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MP",
+      "name": "메피스토",
+      "enemyType": "보스",
+      "attackType": "치료",
+      "category": "",
+      "level": [
+        {
+          "atk": "500",
+          "hp": "28000",
+          "def": "200",
+          "res": "60",
+          "weight": "3",
+          "abilities": "모든 적 유닛의 HP 자연 최복 속도가 2배 상승 / 일반 공격 시 적 유닛을 동시에 3명까지 치료",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "1000",
+          "hp": "60000",
+          "def": "300",
+          "res": "60",
+          "weight": "3",
+          "abilities": "모든 적 유닛의 HP 자연 최복 속도가 2배 상승 / 일반 공격 시 적 유닛을 동시에 3명까지 치료",
+          "stunImm": "false",
+          "silenceImm": "false"
+        }
+      ]
+    },
+    {
+      "code": "FA",
+      "name": "파우스트",
+      "enemyType": "보스",
+      "attackType": "원거리",
+      "category": "",
+      "level": [
+        {
+          "atk": "1000",
+          "hp": "37000",
+          "def": "350",
+          "res": "35",
+          "weight": "5",
+          "abilities": "저지 당하지 않으며, 등장 시 150초 동안 무적 상태 / 4회 공격 후 다음 공격에 공격력을 2배로 올려주는 특수 크로스보우를 사용 / 시간마다 전장 내에 숨겨진 발리스타를 소환",
+          "stunImm": "true",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "1200",
+          "hp": "50000",
+          "def": "350",
+          "res": "35",
+          "weight": "5",
+          "abilities": "저지 당하지 않으며, 등장 시 120초 동안 무적 상태 / 4회 공격 후 다음 공격에 공격력을 2.5배로 올려주는 특수 크로스보우를 사용 / 시간마다 전장 내에 숨겨진 발리스타를 소환",
+          "stunImm": "true",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "MK",
+      "name": "래트킹",
+      "enemyType": "보스",
+      "attackType": "원거리 아츠",
+      "category": "",
+      "level": [
+        {
+          "atk": "470",
+          "hp": "22000",
+          "def": "350",
+          "res": "30",
+          "weight": "5",
+          "abilities": "방패(HP 4667)가 존재할 때 방어력 3000 상승. 전장에 있는 최대 HP가 가장 높은 유닛에 [모래의 노래]를 시전하여 대량의 물리 대미지를 주고, 전장에 있는 최대 HP가 가장 낮은 유닛에 [모래지옥]을 시전하여 공격력을 대폭 낮추고 지속적으로 마법 대미지를 준다. HP가 절반 이하로 내려갈 시 공격력 50% 상승",
+          "stunImm": "true",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "590",
+          "hp": "36000",
+          "def": "350",
+          "res": "30",
+          "weight": "5",
+          "abilities": "방패(HP 7334)가 존재할 때 방어력 3000 상승. 전장에 있는 최대 HP가 가장 높은 유닛에 [모래의 노래]를 시전하여 대량의 물리 대미지를 주고, 전장에 있는 최대 HP가 가장 낮은 유닛에 [모래지옥]을 시전하여 공격력을 대폭 낮추고 지속적으로 마법 대미지를 준다. HP가 절반 이하로 내려갈 시 공격력 70% 상승",
+          "stunImm": "true",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "FNF",
+      "name": "프로스트노바-겨울의 상처",
+      "enemyType": "보스",
+      "attackType": "원거리 아츠",
+      "category": "",
+      "level": [
+        {
+          "atk": "440",
+          "hp": "30000",
+          "def": "380",
+          "res": "50",
+          "weight": "6",
+          "abilities": "일반 공격과 얼음 고리가 마법 대미지를 주고, 5초의 [냉기] 디버프 효과를 준다. 얼음 고리 아츠는 [빙결]된 대상에겐 2배로 대미지를 준다. 아츠로 2개의 지면을 얼려, 얼어붙은 칸에는 영구적으로 유닛 배치를 할 수 없게 됨. 제2 형태 돌입 시 20초간 무적이 되고, 공격력과 스킬의 위력이 50% 증가, 맵의 모든 [오리지늄 얼음 결정]을 활성화 시키고, 아츠로 3개의 지면을 얼린다",
+          "stunImm": "true",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "530",
+          "hp": "45000",
+          "def": "440",
+          "res": "50",
+          "weight": "6",
+          "abilities": "일반 공격과 얼음 고리가 마법 대미지를 주고, 5초의 [냉기] 디버프 효과를 준다. 얼음 고리 아츠는 [빙결]된 대상에겐 2배로 대미지를 준다. 아츠로 3개의 지면을 얼려, 얼어붙은 칸에는 영구적으로 유닛 배치를 할 수 없게 됨. 제2 형태 돌입 시 25초간 무적이 되고, 공격력과 스킬의 위력이 50% 증가, 맵의 모든 [오리지늄 얼음 결정]을 활성화 시키고, 아츠로 4개의 지면을 얼린다",
+          "stunImm": "true",
+          "silenceImm": "true"
+        }
+      ]
+    },
+    {
+      "code": "PT",
+      "name": "패트리어트",
+      "enemyType": "보스",
+      "attackType": "근거리",
+      "category": "살카즈",
+      "level": [
+        {
+          "atk": "1600",
+          "hp": "45000",
+          "def": "500",
+          "res": "45",
+          "weight": "7",
+          "abilities": "적군의 공격력을 20%, 방어력을 200 증가시킨다. [행군 모드] 시 자신이 아군의 공격을 쉽게 받으며, 공격력 50%, 방어력 200%, 마법 저항이 100% 증가, 4연속 공격을 가한다. 쓰러진 후 60초간 무적이 되어 HP를 회복한 후 [섬멸 모드]에 들어간다. [섬멸 모드] 시 15초간 무적, 원거리 공격이 가능하며, [기절]당하지 않는다. 또한 계속해서 주위 유닛에게 공격력 5%의 트루 대미지를 주며, 가장 먼 곳의 고지대에 위치한 유닛에게는 창을 던져 공격력 135%의 물리 대미지를 준다",
+          "stunImm": "false",
+          "silenceImm": "true"
+        },
+        {
+          "atk": "2000",
+          "hp": "60000",
+          "def": "500",
+          "res": "45",
+          "weight": "7",
+          "abilities": "적군의 공격력을 20%, 방어력을 200 증가시킨다. [행군 모드] 시 자신이 아군의 공격을 쉽게 받으며, 공격력 50%, 방어력 200%, 마법 저항이 100% 증가, 4연속 공격을 가한다. 쓰러진 후 60초간 무적이 되어 HP를 회복한 후 [섬멸 모드]에 들어간다. [섬멸 모드] 시 15초간 무적, 원거리 공격이 가능하며, [기절]당하지 않는다. 또한 계속해서 주위 유닛에게 공격력 5%의 트루 대미지를 주며, 가장 먼 곳의 고지대에 위치한 유닛에게는 창을 던져 공격력 135%의 물리 대미지를 준다",
+          "stunImm": "false",
+          "silenceImm": "true"
         }
       ]
     }

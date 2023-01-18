@@ -91,4 +91,16 @@ class EnemyCategory {
  * NL17
  * NL20
  * LE17
+ * DLD
+ * GPN
+ * UM1
+ * SS
+ * CS
+ * TA
+ * FN
+ * MP
+ * FA
+ * MK
+ * FNF
+ * PT
  */

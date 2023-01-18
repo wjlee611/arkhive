@@ -583,7 +583,7 @@ class CheckboxWidget extends StatelessWidget {
       child: Container(
         width: 90,
         decoration: BoxDecoration(
-          color: isImm ? Colors.yellow.shade800 : Colors.black38,
+          color: isImm ? Colors.yellow.shade700 : Colors.black38,
           boxShadow: [
             BoxShadow(
               blurRadius: 2,
