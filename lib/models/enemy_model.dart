@@ -43,3 +43,42 @@ class EnemyAtkType {
   static String ranged = '원거리';
   static String rangedArts = '원거리 아츠';
 }
+
+// levels enemy list
+/**
+ * B1
+ * B2
+ * O1
+ * O2
+ * 01
+ * A1
+ * A2
+ * A3
+ * A4
+ * 02
+ * 03
+ * 04
+ * 05
+ * 08
+ * 09
+ * 10
+ * B8
+ * C0
+ * D1
+ * D2
+ * D4
+ * S1
+ * S3
+ * S5
+ * SC
+ * 14
+ * 15
+ * Y1
+ * FTT
+ * DH15
+ * NL11
+ * NL14
+ * NL17
+ * NL20
+ * LE17
+ */

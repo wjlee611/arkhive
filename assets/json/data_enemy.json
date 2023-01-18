@@ -753,6 +753,16 @@
           "abilities": "[은신] 효과 획득",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "400",
+          "hp": "3400",
+          "def": "130",
+          "res": "20",
+          "weight": "1",
+          "abilities": "[은신] 효과 획득",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -789,6 +799,16 @@
           "abilities": "비행 유닛",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "0",
+          "hp": "1870",
+          "def": "50",
+          "res": "0",
+          "weight": "0",
+          "abilities": "비행 유닛",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -803,6 +823,16 @@
           "hp": "1550",
           "def": "50",
           "res": "0",
+          "weight": "0",
+          "abilities": "비행 유닛",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "330",
+          "hp": "2500",
+          "def": "125",
+          "res": "35",
           "weight": "0",
           "abilities": "비행 유닛",
           "stunImm": "false",
@@ -838,6 +868,16 @@
           "atk": "0",
           "hp": "4000",
           "def": "150",
+          "res": "20",
+          "weight": "0",
+          "abilities": "비행 유닛 / 주변(2.5타일) 적군에게 방어력 300 버프 제공",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "0",
+          "hp": "8000",
+          "def": "200",
           "res": "20",
           "weight": "0",
           "abilities": "비행 유닛 / 주변(2.5타일) 적군에게 방어력 300 버프 제공",
@@ -951,6 +991,16 @@
           "abilities": "",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "900",
+          "hp": "10000",
+          "def": "350",
+          "res": "50",
+          "weight": "2",
+          "abilities": "",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -982,6 +1032,16 @@
           "atk": "450",
           "hp": "6000",
           "def": "200",
+          "res": "50",
+          "weight": "2",
+          "abilities": "",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "660",
+          "hp": "6700",
+          "def": "300",
           "res": "50",
           "weight": "2",
           "abilities": "",
@@ -1023,6 +1083,16 @@
           "abilities": "아츠로 공격 대상을 [속박]하며 [마비]효과",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "700",
+          "hp": "12000",
+          "def": "300",
+          "res": "50",
+          "weight": "2",
+          "abilities": "아츠로 공격 대상을 [속박]하며 [마비]효과",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -1059,6 +1129,16 @@
           "abilities": "목표를 동시에 2명까지 공격 가능",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "950",
+          "hp": "23000",
+          "def": "250",
+          "res": "35",
+          "weight": "5",
+          "abilities": "목표를 동시에 2명까지 공격 가능",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -1077,6 +1157,16 @@
           "abilities": "HP가 절반 이하일 시 공격력과 공격 속도 대폭 상승",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "650",
+          "hp": "15000",
+          "def": "250",
+          "res": "50",
+          "weight": "2",
+          "abilities": "HP가 절반 이하일 시 공격력과 공격 속도 대폭 상승",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -1090,6 +1180,16 @@
           "atk": "480",
           "hp": "18000",
           "def": "230",
+          "res": "50",
+          "weight": "2",
+          "abilities": "HP가 절반 이하일 시 공격력과 공격 속도 대폭 상승",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "850",
+          "hp": "30000",
+          "def": "250",
           "res": "50",
           "weight": "2",
           "abilities": "HP가 절반 이하일 시 공격력과 공격 속도 대폭 상승",
@@ -2368,6 +2468,16 @@
           "atk": "360",
           "hp": "3400",
           "def": "100",
+          "res": "0",
+          "weight": "1",
+          "abilities": "[빙결]된 목표 공격 시 공격력 1.5배 상승",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "380",
+          "hp": "5000",
+          "def": "135",
           "res": "0",
           "weight": "1",
           "abilities": "[빙결]된 목표 공격 시 공격력 1.5배 상승",
@@ -5613,6 +5723,16 @@
           "abilities": "물리 및 공격력 60%의 [신경 손상]을 유발할 수 있는 [침식의 액포]를 시전한다. 액포는 주위 4칸 범위 내 [신경 손상] 누적 수량이 가장 적은 유닛을 목표로 저정한다(5회 공격, 시전 중 무적). 일반 공격은 공격력 40%의 [신경 손상]을 부여한다",
           "stunImm": "false",
           "silenceImm": "true"
+        },
+        {
+          "atk": "700",
+          "hp": "28000",
+          "def": "600",
+          "res": "20",
+          "weight": "4",
+          "abilities": "물리 및 공격력 60%의 [신경 손상]을 유발할 수 있는 [침식의 액포]를 시전한다. 액포는 주위 4칸 범위 내 [신경 손상] 누적 수량이 가장 적은 유닛을 목표로 저정한다(5회 공격, 시전 중 무적). 일반 공격은 공격력 40%의 [신경 손상]을 부여한다",
+          "stunImm": "false",
+          "silenceImm": "true"
         }
       ]
     },
@@ -5931,6 +6051,16 @@
         {
           "atk": "300",
           "hp": "8000",
+          "def": "300",
+          "res": "0",
+          "weight": "3",
+          "abilities": "사망 시 주위에 공격력 200%의 물리 대미지와 공격력 170%의 [침식 피해]를 입힌다",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "400",
+          "hp": "10000",
           "def": "300",
           "res": "0",
           "weight": "3",
@@ -6585,6 +6715,16 @@
           "abilities": "공격할 때마다 공격력 35%의 [침식 피해]를 주며, 2차례 공격 후 다음 공격의 대미지가 50% 증가한다",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "700",
+          "hp": "15000",
+          "def": "300",
+          "res": "40",
+          "weight": "2",
+          "abilities": "공격할 때마다 공격력 35%의 [침식 피해]를 주며, 2차례 공격 후 다음 공격의 대미지가 50% 증가한다",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -6634,6 +6774,16 @@
           "atk": "800",
           "hp": "9000",
           "def": "200",
+          "res": "40",
+          "weight": "2",
+          "abilities": "공격할 때마다 공격력 35%의 [침식 피해]를 주며, 2차례 공격 후 다음 공격의 대미지가 50% 증가한다",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "1000",
+          "hp": "15000",
+          "def": "300",
           "res": "40",
           "weight": "2",
           "abilities": "공격할 때마다 공격력 35%의 [침식 피해]를 주며, 2차례 공격 후 다음 공격의 대미지가 50% 증가한다",
@@ -6693,6 +6843,16 @@
           "abilities": "7초간 차지 후 목표 주변의 모든 유닛에 [희미한 빛]을 시전하여 공격력 300%의 마법 대미지를 입힌다. 차지하는 동안 [은신]상태 무효화(쿨타임 20초)",
           "stunImm": "false",
           "silenceImm": "false"
+        },
+        {
+          "atk": "500",
+          "hp": "16000",
+          "def": "450",
+          "res": "60",
+          "weight": "4",
+          "abilities": "7초간 차지 후 목표 주변의 모든 유닛에 [희미한 빛]을 시전하여 공격력 300%의 마법 대미지를 입힌다. 차지하는 동안 [은신]상태 무효화(쿨타임 20초)",
+          "stunImm": "false",
+          "silenceImm": "false"
         }
       ]
     },
@@ -6747,6 +6907,16 @@
           "abilities": "후방 한 칸의 시야가 가려진 모든 유닛에 [공포 응집]을 시전하고 공격력 85%의 물리 대미지를 1회 준다(쿨타임 15초)",
           "stunImm": "false",
           "silenceImm": "true"
+        },
+        {
+          "atk": "1800",
+          "hp": "26000",
+          "def": "800",
+          "res": "20",
+          "weight": "5",
+          "abilities": "후방 한 칸의 시야가 가려진 모든 유닛에 [공포 응집]을 시전하고 공격력 85%의 물리 대미지를 1회 준다(쿨타임 15초)",
+          "stunImm": "false",
+          "silenceImm": "true"
         }
       ]
     },
@@ -6759,6 +6929,16 @@
         {
           "atk": "800",
           "hp": "8000",
+          "def": "300",
+          "res": "80",
+          "weight": "0",
+          "abilities": "방어 포인트에 들어가도 스테이지 HP가 감소하지 않으나, 피의 기사와 충돌하면 즉시 사라지고 피의 기사는 HP 10%를 회복한다",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "1000",
+          "hp": "8500",
           "def": "300",
           "res": "80",
           "weight": "0",
@@ -8920,6 +9100,16 @@
           "atk": "700",
           "hp": "20000",
           "def": "450",
+          "res": "35",
+          "weight": "3",
+          "abilities": "저지 불가, 동시에 2개의 목표를 공격하며, 자신의 위치에 [허상](HP 5000, 공격 받기 쉬움. [리포밍 플럭스] 위에 위치시 초당 500의 트루 대미지를 받음)을 소환한다",
+          "stunImm": "false",
+          "silenceImm": "false"
+        },
+        {
+          "atk": "900",
+          "hp": "30000",
+          "def": "600",
           "res": "35",
           "weight": "3",
           "abilities": "저지 불가, 동시에 2개의 목표를 공격하며, 자신의 위치에 [허상](HP 5000, 공격 받기 쉬움. [리포밍 플럭스] 위에 위치시 초당 500의 트루 대미지를 받음)을 소환한다",
