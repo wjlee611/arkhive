@@ -156,6 +156,51 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                       ),
                     ),
                   ),
+                  widget.enemy.category != ""
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 1,
+                                  spreadRadius: 0.1,
+                                  color: Colors.black.withOpacity(0.2),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  height: 20,
+                                  width: 5,
+                                  color: Colors.yellow.shade700,
+                                ),
+                                Container(
+                                  height: 20,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      widget.enemy.category,
+                                      style: TextStyle(
+                                        color: Colors.blueGrey.shade800,
+                                        fontSize: 12,
+                                        fontFamily: FontFamily.nanumGothic,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container(),
                   const SizedBox(
                     height: 20,
                   ),
@@ -221,7 +266,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 9,
+                    height: 6,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -276,7 +321,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 2,
                   ),
                   SingleChildScrollView(
                     padding: const EdgeInsets.all(5),

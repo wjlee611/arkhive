@@ -5,6 +5,7 @@
       "name": "원석충",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "130",
@@ -33,6 +34,7 @@
       "name": "원석충 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "185",
@@ -61,6 +63,7 @@
       "name": "원석충 β",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "240",
@@ -79,6 +82,7 @@
       "name": "산성 원석충",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "180",
@@ -97,6 +101,7 @@
       "name": "산성 원석충 α",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "290",
@@ -115,6 +120,7 @@
       "name": "고에너지 원석충",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "260",
@@ -133,6 +139,7 @@
       "name": "고에너지 원석충 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "350",
@@ -151,6 +158,7 @@
       "name": "사냥개",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "190",
@@ -179,6 +187,7 @@
       "name": "사냥개 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "260",
@@ -207,6 +216,7 @@
       "name": "흉폭한 사냥개 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "370",
@@ -225,6 +235,7 @@
       "name": "병사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "200",
@@ -253,6 +264,7 @@
       "name": "석궁병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "240",
@@ -281,6 +293,7 @@
       "name": "석궁병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "310",
@@ -309,6 +322,7 @@
       "name": "캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "200",
@@ -337,6 +351,7 @@
       "name": "캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -375,6 +390,7 @@
       "name": "하이캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "240",
@@ -393,6 +409,7 @@
       "name": "하이캐스터 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -411,6 +428,7 @@
       "name": "공수부대병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "220",
@@ -439,6 +457,7 @@
       "name": "공수부대병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -467,6 +486,7 @@
       "name": "포병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -485,6 +505,7 @@
       "name": "포병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "550",
@@ -503,6 +524,7 @@
       "name": "쌍검사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -531,6 +553,7 @@
       "name": "쌍검사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -559,6 +582,7 @@
       "name": "경기갑병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -577,6 +601,7 @@
       "name": "경기갑병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -595,6 +620,7 @@
       "name": "중기갑병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -623,6 +649,7 @@
       "name": "중기갑병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -651,6 +678,7 @@
       "name": "중기갑병 캡틴",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -679,6 +707,7 @@
       "name": "빅 밥",
       "enemyType": "보스",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1900",
@@ -697,6 +726,7 @@
       "name": "빅 아담",
       "enemyType": "보스",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "2700",
@@ -715,6 +745,7 @@
       "name": "메탈 크랩",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "300",
@@ -743,6 +774,7 @@
       "name": "럴커",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -768,9 +800,10 @@
     },
     {
       "code": "13",
-      "name": "럴커",
+      "name": "유령",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "100",
@@ -789,6 +822,7 @@
       "name": "요마",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -817,6 +851,7 @@
       "name": "요마 MKII",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "220",
@@ -845,6 +880,7 @@
       "name": "랩터",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "660",
@@ -863,6 +899,7 @@
       "name": "디펜더-4",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -891,6 +928,7 @@
       "name": "은신 석궁병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "260",
@@ -909,6 +947,7 @@
       "name": "은신 석궁병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "310",
@@ -927,6 +966,7 @@
       "name": "은신 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -945,6 +985,7 @@
       "name": "은신 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -963,6 +1004,7 @@
       "name": "기술 정찰병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "270",
@@ -981,6 +1023,7 @@
       "name": "살카즈 대검사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "600",
@@ -1009,6 +1052,7 @@
       "name": "살카즈 대검사 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "750",
@@ -1027,6 +1071,7 @@
       "name": "살카즈 스나이퍼",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "450",
@@ -1055,6 +1100,7 @@
       "name": "살카즈 스나이퍼 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "570",
@@ -1073,6 +1119,7 @@
       "name": "살카즈 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "500",
@@ -1101,6 +1148,7 @@
       "name": "살카즈 캐스터 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "700",
@@ -1119,6 +1167,7 @@
       "name": "살카즈 백부장",
       "enemyType": "보스",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "700",
@@ -1147,6 +1196,7 @@
       "name": "리벤져",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -1175,6 +1225,7 @@
       "name": "어벤져",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "480",
@@ -1203,6 +1254,7 @@
       "name": "유령 리더",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "100",
@@ -1221,6 +1273,7 @@
       "name": "폭도",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -1239,6 +1292,7 @@
       "name": "폭도 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -1257,6 +1311,7 @@
       "name": "화염병 투척병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "180",
@@ -1275,6 +1330,7 @@
       "name": "화염병 투척병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -1293,6 +1349,7 @@
       "name": "기동방패병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "240",
@@ -1311,6 +1368,7 @@
       "name": "기동방패병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -1329,6 +1387,7 @@
       "name": "부랑자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -1347,6 +1406,7 @@
       "name": "방랑자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -1365,6 +1425,7 @@
       "name": "아츠 가드",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -1383,6 +1444,7 @@
       "name": "아츠 가드 리더",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -1401,6 +1463,7 @@
       "name": "카타르 무사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -1419,6 +1482,7 @@
       "name": "카타르 무사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "550",
@@ -1437,6 +1501,7 @@
       "name": "벌목기",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "750",
@@ -1455,6 +1520,7 @@
       "name": "벌목꾼",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "850",
@@ -1473,6 +1539,7 @@
       "name": "도축자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "850",
@@ -1491,6 +1558,7 @@
       "name": "도축전문가",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "950",
@@ -1509,6 +1577,7 @@
       "name": "무장병력",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1050",
@@ -1527,6 +1596,7 @@
       "name": "고급 무장병력",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1500",
@@ -1545,6 +1615,7 @@
       "name": "방패 하이캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -1563,6 +1634,7 @@
       "name": "특수작전병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -1581,6 +1653,7 @@
       "name": "특수전 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -1599,6 +1672,7 @@
       "name": "특수전 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -1617,6 +1691,7 @@
       "name": "진형파괴병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "410",
@@ -1635,6 +1710,7 @@
       "name": "진형파괴병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -1653,6 +1729,7 @@
       "name": "폭탄새",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "800",
@@ -1671,6 +1748,7 @@
       "name": "폭탄새-G",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "1500",
@@ -1689,6 +1767,7 @@
       "name": "아츠 마스터 A1",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "드론",
       "level": [
         {
           "atk": "220",
@@ -1707,6 +1786,7 @@
       "name": "아츠 마스터 A2",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "드론",
       "level": [
         {
           "atk": "600",
@@ -1725,6 +1805,7 @@
       "name": "프로스트",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "100",
@@ -1743,6 +1824,7 @@
       "name": "숙주 병사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "250",
@@ -1761,6 +1843,7 @@
       "name": "숙주 병사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "300",
@@ -1779,6 +1862,7 @@
       "name": "숙주 부랑자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "500",
@@ -1797,6 +1881,7 @@
       "name": "숙주 방랑자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "650",
@@ -1815,6 +1900,7 @@
       "name": "분쇄돌격병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -1833,6 +1919,7 @@
       "name": "분쇄돌격병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1500",
@@ -1851,6 +1938,7 @@
       "name": "보병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -1869,6 +1957,7 @@
       "name": "보병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "330",
@@ -1887,6 +1976,7 @@
       "name": "스나이퍼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "150",
@@ -1905,6 +1995,7 @@
       "name": "스나이퍼 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "200",
@@ -1923,6 +2014,7 @@
       "name": "록브레이커",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "750",
@@ -1941,6 +2033,7 @@
       "name": "록브레이커 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "900",
@@ -1959,6 +2052,7 @@
       "name": "특공대원",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -1977,6 +2071,7 @@
       "name": "특공대원 리더",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -1995,6 +2090,7 @@
       "name": "편제 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -2013,6 +2109,7 @@
       "name": "편제 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -2031,6 +2128,7 @@
       "name": "기동위병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "200",
@@ -2049,6 +2147,7 @@
       "name": "기동위병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -2067,6 +2166,7 @@
       "name": "일개미",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "100",
@@ -2085,6 +2185,7 @@
       "name": "일개미 리더",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "100",
@@ -2101,6 +2202,7 @@
     {
       "code": "P09",
       "name": "중기갑 디펜더 N타입",
+      "category": "",
       "enemyType": "엘리트",
       "attackType": "근거리",
       "level": [
@@ -2119,6 +2221,7 @@
     {
       "code": "P10",
       "name": "중기갑 디펜더 S타입",
+      "category": "",
       "enemyType": "엘리트",
       "attackType": "근거리",
       "level": [
@@ -2139,6 +2242,7 @@
       "name": "시실리안",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -2157,6 +2261,7 @@
       "name": "정예 시실리안",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -2175,6 +2280,7 @@
       "name": "너클러",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "290",
@@ -2193,6 +2299,7 @@
       "name": "너클러 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -2211,6 +2318,7 @@
       "name": "아발리스트",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "180",
@@ -2229,6 +2337,7 @@
       "name": "아발리스트 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "230",
@@ -2247,6 +2356,7 @@
       "name": "폭력배",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -2265,6 +2375,7 @@
       "name": "폭력배 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -2283,6 +2394,7 @@
       "name": "무뢰한",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -2301,6 +2413,7 @@
       "name": "정예 무뢰한",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -2319,6 +2432,7 @@
       "name": "회색꼬리",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -2337,6 +2451,7 @@
       "name": "정예 회색꼬리",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -2355,6 +2470,7 @@
       "name": "숙주 중기갑병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "600",
@@ -2373,6 +2489,7 @@
       "name": "숙주 중기갑병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "800",
@@ -2391,6 +2508,7 @@
       "name": "폭주한 숙주 병사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "1000",
@@ -2409,6 +2527,7 @@
       "name": "폭주한 숙주 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "1750",
@@ -2427,6 +2546,7 @@
       "name": "폭주한 숙주 투척병",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "750",
@@ -2445,6 +2565,7 @@
       "name": "폭주한 숙주 투척병 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "숙주",
       "level": [
         {
           "atk": "1050",
@@ -2463,6 +2584,7 @@
       "name": "눈의 악마 소대",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -2491,6 +2613,7 @@
       "name": "프로스트팽",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "350",
@@ -2509,6 +2632,7 @@
       "name": "프로스트샤프",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "430",
@@ -2527,6 +2651,7 @@
       "name": "눈의 악마 스나이퍼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "290",
@@ -2545,6 +2670,7 @@
       "name": "눈의 악마 스나이퍼 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -2563,6 +2689,7 @@
       "name": "핑폭 원석충",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "300",
@@ -2581,6 +2708,7 @@
       "name": "핑폭 원석충 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "370",
@@ -2599,6 +2727,7 @@
       "name": "눈의 악마 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -2617,6 +2746,7 @@
       "name": "눈의 악마 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -2635,6 +2765,7 @@
       "name": "눈의 악마 쇄빙자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "830",
@@ -2653,6 +2784,7 @@
       "name": "눈의 악마 쇄빙자 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1100",
@@ -2671,6 +2803,7 @@
       "name": "언리얼",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "드론",
       "level": [
         {
           "atk": "500",
@@ -2689,6 +2822,7 @@
       "name": "살카즈 도병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "300",
@@ -2707,6 +2841,7 @@
       "name": "살카즈 소드캐스터",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "370",
@@ -2725,6 +2860,7 @@
       "name": "살카즈 랜서",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "450",
@@ -2743,6 +2879,7 @@
       "name": "살카즈 랜서 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "500",
@@ -2761,6 +2898,7 @@
       "name": "살카즈 보초",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "살카즈",
       "level": [
         {
           "atk": "0",
@@ -2779,6 +2917,7 @@
       "name": "살카즈 보초 리더",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "살카즈",
       "level": [
         {
           "atk": "0",
@@ -2797,6 +2936,7 @@
       "name": "살카즈 저주술사",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "700",
@@ -2815,6 +2955,7 @@
       "name": "살카즈 저주술사 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "850",
@@ -2833,6 +2974,7 @@
       "name": "살카즈 마검사",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "400",
@@ -2851,6 +2993,7 @@
       "name": "살카즈 마검사 리더",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "500",
@@ -2869,6 +3012,7 @@
       "name": "폭파돌격병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1700",
@@ -2887,6 +3031,7 @@
       "name": "폭파돌격병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "2200",
@@ -2905,6 +3050,7 @@
       "name": "유격대 사냥개",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "350",
@@ -2923,6 +3069,7 @@
       "name": "유격대 사냥개 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "420",
@@ -2941,6 +3088,7 @@
       "name": "유격대 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -2959,6 +3107,7 @@
       "name": "유격대 전사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "330",
@@ -2977,6 +3126,7 @@
       "name": "유격대 저격수",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "340",
@@ -2995,6 +3145,7 @@
       "name": "유격대 저격수 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "390",
@@ -3013,6 +3164,7 @@
       "name": "유격대 전령병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -3031,6 +3183,7 @@
       "name": "유격대 전령병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -3049,6 +3202,7 @@
       "name": "유격대 방패병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -3067,6 +3221,7 @@
       "name": "유격대 방패병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -3085,6 +3240,7 @@
       "name": "유격대 박격포병",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -3103,6 +3259,7 @@
       "name": "유격대 박격포병 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "590",
@@ -3121,6 +3278,7 @@
       "name": "유격대 돌격 전사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -3139,6 +3297,7 @@
       "name": "유격대 돌격 전사 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "430",
@@ -3157,6 +3316,7 @@
       "name": "유격대 살카즈 전사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "480",
@@ -3175,6 +3335,7 @@
       "name": "유격대 살카즈 전사 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "580",
@@ -3193,6 +3354,7 @@
       "name": "용병군 살카즈 전사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "480",
@@ -3211,6 +3373,7 @@
       "name": "유격대 살카즈 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "350",
@@ -3229,6 +3392,7 @@
       "name": "유격대 살카즈 캐스터 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "450",
@@ -3247,6 +3411,7 @@
       "name": "용병군 살카즈 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "350",
@@ -3265,6 +3430,7 @@
       "name": "라이타니엔 폭도",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "130",
@@ -3283,6 +3449,7 @@
       "name": "라이타니엔 폭도 리더",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "180",
@@ -3301,6 +3468,7 @@
       "name": "윈터위습 사냥개",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -3319,6 +3487,7 @@
       "name": "윈터위습 사냥개 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -3337,6 +3506,7 @@
       "name": "라이타니엔 위스퍼",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -3355,6 +3525,7 @@
       "name": "라이타니엔 콰이어",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -3373,6 +3544,7 @@
       "name": "윈터위습 블러드위치",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -3391,6 +3563,7 @@
       "name": "마스터 윈터위습 블러드위치",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "650",
@@ -3409,6 +3582,7 @@
       "name": "머드락 소대 투척병",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "400",
@@ -3427,6 +3601,7 @@
       "name": "머드락 소대 투척병 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "500",
@@ -3445,6 +3620,7 @@
       "name": "머드락 소대 행동팀원",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "900",
@@ -3463,6 +3639,7 @@
       "name": "머드락 소대 행동팀장",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "1000",
@@ -3481,6 +3658,7 @@
       "name": "머드락의 거대 석상",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "3000",
@@ -3499,6 +3677,7 @@
       "name": "마법 거대 석상",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "3600",
@@ -3517,6 +3696,7 @@
       "name": "티아카우 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "290",
@@ -3535,6 +3715,7 @@
       "name": "티아카우 근위병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -3553,6 +3734,7 @@
       "name": "티아카우 투창병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "240",
@@ -3571,6 +3753,7 @@
       "name": "티아카우 투창병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "340",
@@ -3589,6 +3772,7 @@
       "name": "티아카우 워몽거",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -3607,6 +3791,7 @@
       "name": "티아카우 리퍼",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -3625,6 +3810,7 @@
       "name": "티아카우 주술사",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -3643,6 +3829,7 @@
       "name": "티아카우 대주술사",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -3661,6 +3848,7 @@
       "name": "티아카우 디스트로이어",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "650",
@@ -3679,6 +3867,7 @@
       "name": "티아카우 디스트로이킹",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "750",
@@ -3697,6 +3886,7 @@
       "name": "티아카우 워리어",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -3715,6 +3905,7 @@
       "name": "티아카우 챔피언",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -3733,6 +3924,7 @@
       "name": "이름없는 프리랜서 기사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -3751,6 +3943,7 @@
       "name": "이름없는 정예 기사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -3769,6 +3962,7 @@
       "name": "훈련용 글룸핀서",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "380",
@@ -3787,6 +3981,7 @@
       "name": "훈련용 흉폭한 글룸핀서",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "450",
@@ -3805,6 +4000,7 @@
       "name": "로어 견습 기사단원",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -3823,6 +4019,7 @@
       "name": "로어 정예 기사단원",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "420",
@@ -3841,6 +4038,7 @@
       "name": "'플라스틱의 기사' 세브치크",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -3859,6 +4057,7 @@
       "name": "방패 프리랜서 기사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -3877,6 +4076,7 @@
       "name": "방패 정예 기사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -3895,6 +4095,7 @@
       "name": "블러드보일 견습 기사단원",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -3913,6 +4114,7 @@
       "name": "블러드보일 정예 기사단원",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "650",
@@ -3931,6 +4133,7 @@
       "name": "'녹슨 구리의 기사' 올머 잉그라",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -3949,6 +4152,7 @@
       "name": "블레이드헬멧 견습 기사단원",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "550",
@@ -3967,6 +4171,7 @@
       "name": "블레이드헬멧 정예 기사단원",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "650",
@@ -3985,6 +4190,7 @@
       "name": "'좌완의 기사' 타이터스 토폴라",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "750",
@@ -4003,6 +4209,7 @@
       "name": "협찬 드론",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -4021,6 +4228,7 @@
       "name": "호화 협찬 드론",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -4039,6 +4247,7 @@
       "name": "투지 상승용 드론",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -4057,6 +4266,7 @@
       "name": "감염자 감시관",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "330",
@@ -4075,6 +4285,7 @@
       "name": "감염자 감시관 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -4093,6 +4304,7 @@
       "name": "우르수스 맹글러",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -4111,6 +4323,7 @@
       "name": "우르수스 맹글러 어미",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -4129,6 +4342,7 @@
       "name": "우르수스 석궁 돌격병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -4147,6 +4361,7 @@
       "name": "우르수스 석궁 돌격병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "430",
@@ -4165,6 +4380,7 @@
       "name": "우르수스 무장 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "340",
@@ -4183,6 +4399,7 @@
       "name": "우르수스 무장 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "420",
@@ -4201,6 +4418,7 @@
       "name": "우르수스 돌격자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "550",
@@ -4219,6 +4437,7 @@
       "name": "우르수스 돌격자 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -4237,6 +4456,7 @@
       "name": "제국 아틸러리 타게티어",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "1000",
@@ -4255,6 +4475,7 @@
       "name": "제국 아틸러리 코어 타게티어",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "1200",
@@ -4273,6 +4494,7 @@
       "name": "제국 정예 선봉",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "900",
@@ -4291,6 +4513,7 @@
       "name": "제국 백전 정예 선봉",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "1200",
@@ -4309,6 +4532,7 @@
       "name": "살카즈 숙주 백부장",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "숙주",
       "level": [
         {
           "atk": "600",
@@ -4327,6 +4551,7 @@
       "name": "살카즈 숙주 방위 백부장",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "숙주",
       "level": [
         {
           "atk": "700",
@@ -4345,6 +4570,7 @@
       "name": "'황제의 칼날'",
       "enemyType": "보스",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -4363,6 +4589,7 @@
       "name": "우르수스 평민",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -4381,6 +4608,7 @@
       "name": "투사 탈룰라",
       "enemyType": "보스",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -4399,6 +4627,7 @@
       "name": "평범한 죄수",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -4417,6 +4646,7 @@
       "name": "노련한 죄수",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -4435,6 +4665,7 @@
       "name": "아발리스트 죄수",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "220",
@@ -4453,6 +4684,7 @@
       "name": "아발리스트 죄수 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -4471,6 +4703,7 @@
       "name": "복서 죄수",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -4489,6 +4722,7 @@
       "name": "복서 죄수 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -4507,6 +4741,7 @@
       "name": "건장한 죄수",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -4525,6 +4760,7 @@
       "name": "거한 죄수",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -4543,6 +4779,7 @@
       "name": "캐스터 죄수",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -4561,6 +4798,7 @@
       "name": "워험한 캐스터 죄수",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "340",
@@ -4579,6 +4817,7 @@
       "name": "중범죄수",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -4597,6 +4836,7 @@
       "name": "전설의 중범죄수",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -4615,6 +4855,7 @@
       "name": "'샤오차오'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "330",
@@ -4633,6 +4874,7 @@
       "name": "조급한 '샤오차오'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "380",
@@ -4651,6 +4893,7 @@
       "name": "'아야오'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "290",
@@ -4669,6 +4912,7 @@
       "name": "진지한 '아야오'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "370",
@@ -4687,6 +4931,7 @@
       "name": "'비시엔'",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "300",
@@ -4705,6 +4950,7 @@
       "name": "우회하는 '비시엔'",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "400",
@@ -4723,6 +4969,7 @@
       "name": "'터우시엔'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "700",
@@ -4741,6 +4988,7 @@
       "name": "부동의 '터우시엔'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "800",
@@ -4759,6 +5007,7 @@
       "name": "'더이'",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "120",
@@ -4777,6 +5026,7 @@
       "name": "황홀한 '더이'",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "150",
@@ -4795,6 +5045,7 @@
       "name": "'저무'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "800",
@@ -4813,6 +5064,7 @@
       "name": "쉬지 않는 '저무'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "1000",
@@ -4831,6 +5083,7 @@
       "name": "'뚜'",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "500",
@@ -4849,6 +5102,7 @@
       "name": "복잡한 '뚜'",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "700",
@@ -4867,6 +5121,7 @@
       "name": "'셩누'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "1100",
@@ -4885,6 +5140,7 @@
       "name": "거침없는 '셩누'",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "1500",
@@ -4903,6 +5159,7 @@
       "name": "오리지뉴턴트 꼭두각시",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "210",
@@ -4921,6 +5178,7 @@
       "name": "변이된 샌드비스트",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "320",
@@ -4939,6 +5197,7 @@
       "name": "변이된 샌드비스트 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "380",
@@ -4957,6 +5216,7 @@
       "name": "변이된 바위 거미",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "360",
@@ -4975,6 +5235,7 @@
       "name": "변이된 바위 거미 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "410",
@@ -4993,6 +5254,7 @@
       "name": "변이된 거대 바위 거미",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "600",
@@ -5011,6 +5273,7 @@
       "name": "변이된 거대 바위 거미 α",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "800",
@@ -5029,6 +5292,7 @@
       "name": "오리지뉴턴트",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "감염생물",
       "level": [
         {
           "atk": "1000",
@@ -5047,6 +5311,7 @@
       "name": "오리지뉴턴트 α",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "감염생물",
       "level": [
         {
           "atk": "1500",
@@ -5065,6 +5330,7 @@
       "name": "'레드마크' 제거자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "1500",
@@ -5083,6 +5349,7 @@
       "name": "'레드마크' 정예 제거자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "2000",
@@ -5101,6 +5368,7 @@
       "name": "'레드마크' 침투자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -5119,6 +5387,7 @@
       "name": "'레드마크' 정예 침투자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -5137,6 +5406,7 @@
       "name": "오리지뉴턴트 생물",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "150",
@@ -5155,6 +5425,7 @@
       "name": "오리지뉴턴트 악성 종양",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "200",
@@ -5173,6 +5444,7 @@
       "name": "홀로그램 환영",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -5191,6 +5463,7 @@
       "name": "홀로그램 환영 MK2",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -5209,6 +5482,7 @@
       "name": "전술 사냥개",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "310",
@@ -5227,6 +5501,7 @@
       "name": "전술 사냥개 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "380",
@@ -5245,6 +5520,7 @@
       "name": "전술 석궁병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -5263,6 +5539,7 @@
       "name": "전술 석궁병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "390",
@@ -5281,6 +5558,7 @@
       "name": "전술 기갑병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -5299,6 +5577,7 @@
       "name": "전술 기갑병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -5317,6 +5596,7 @@
       "name": "대기갑 보병",
       "enemyType": "일반",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -5335,6 +5615,7 @@
       "name": "대기갑 보병 리더",
       "enemyType": "일반",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "750",
@@ -5353,6 +5634,7 @@
       "name": "전쟁 유령",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1100",
@@ -5371,6 +5653,7 @@
       "name": "전설의 전쟁 유령",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1400",
@@ -5389,6 +5672,7 @@
       "name": "'파편'",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "250",
@@ -5407,6 +5691,7 @@
       "name": "'파편' U타입",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "350",
@@ -5425,6 +5710,7 @@
       "name": "'모루'",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -5443,6 +5729,7 @@
       "name": "'모루' B타입",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "드론",
       "level": [
         {
           "atk": "0",
@@ -5461,6 +5748,7 @@
       "name": "해안의 폭주자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "280",
@@ -5479,6 +5767,7 @@
       "name": "부영양의 폭주자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "340",
@@ -5497,6 +5786,7 @@
       "name": "저해의 활주자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "280",
@@ -5515,6 +5805,7 @@
       "name": "부영양의 활주자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "360",
@@ -5533,6 +5824,7 @@
       "name": "바다의 분사자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "280",
@@ -5551,6 +5843,7 @@
       "name": "부영양의 분사자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "320",
@@ -5569,6 +5862,7 @@
       "name": "부해의 항해자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "220",
@@ -5587,6 +5881,7 @@
       "name": "부영양의 항해자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "250",
@@ -5605,6 +5900,7 @@
       "name": "발해의 수확자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "400",
@@ -5623,6 +5919,7 @@
       "name": "부영양의 수확자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "500",
@@ -5641,6 +5938,7 @@
       "name": "낭해의 저항자",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "300",
@@ -5659,6 +5957,7 @@
       "name": "부영양의 저항자",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "400",
@@ -5677,6 +5976,7 @@
       "name": "태초 바다의 랜서",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "550",
@@ -5695,6 +5995,7 @@
       "name": "부영양의 랜서",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "700",
@@ -5713,6 +6014,7 @@
       "name": "첫 발언자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "600",
@@ -5741,6 +6043,7 @@
       "name": "자동 점검 기계",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -5759,6 +6062,7 @@
       "name": "힘노이 영웅",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -5777,6 +6081,7 @@
       "name": "힘노이 용사",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "1200",
@@ -5795,6 +6100,7 @@
       "name": "잠수부",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "240",
@@ -5813,6 +6119,7 @@
       "name": "잠수대장",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -5831,6 +6138,7 @@
       "name": "무법자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -5849,6 +6157,7 @@
       "name": "무법자 두목",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -5867,6 +6176,7 @@
       "name": "선원",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -5885,6 +6195,7 @@
       "name": "갑판장",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -5903,6 +6214,7 @@
       "name": "웨이브 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "200",
@@ -5921,6 +6233,7 @@
       "name": "웨이브 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "260",
@@ -5939,6 +6252,7 @@
       "name": "웨이브 캐스터 쾌속정",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "기계",
       "level": [
         {
           "atk": "300",
@@ -5957,6 +6271,7 @@
       "name": "웨이브 리더 쾌속정",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "기계",
       "level": [
         {
           "atk": "380",
@@ -5975,6 +6290,7 @@
       "name": "선원 모터보트",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "기계",
       "level": [
         {
           "atk": "1000",
@@ -5993,6 +6309,7 @@
       "name": "갑판장 모터보트",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "기계",
       "level": [
         {
           "atk": "1400",
@@ -6011,6 +6328,7 @@
       "name": "무인 폭발선",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "기계",
       "level": [
         {
           "atk": "300",
@@ -6029,6 +6347,7 @@
       "name": "무인 폭발정",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "기계",
       "level": [
         {
           "atk": "400",
@@ -6047,6 +6366,7 @@
       "name": "판초의 폭발선",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "기계",
       "level": [
         {
           "atk": "300",
@@ -6075,6 +6395,7 @@
       "name": "그랑프리 수송정",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "100",
@@ -6093,6 +6414,7 @@
       "name": "더블린 정찰견",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -6111,6 +6433,7 @@
       "name": "더블린 정찰견 Pro",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -6129,6 +6452,7 @@
       "name": "더블린 정찰병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -6147,6 +6471,7 @@
       "name": "더블린 정찰병 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -6165,6 +6490,7 @@
       "name": "더블린 스나이퍼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -6183,6 +6509,7 @@
       "name": "더블린 스나이퍼 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -6201,6 +6528,7 @@
       "name": "더블린 그림자 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -6219,6 +6547,7 @@
       "name": "더블린 그림자 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "460",
@@ -6237,6 +6566,7 @@
       "name": "더블린 팔랑크스 보병",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -6255,6 +6585,7 @@
       "name": "더블린 팔랑크스 지휘관",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -6273,6 +6604,7 @@
       "name": "더블린 중장갑 근위병",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -6291,6 +6623,7 @@
       "name": "더블린 중장갑 근위병 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "900",
@@ -6309,6 +6642,7 @@
       "name": "더블린 비행병",
       "enemyType": "일반",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -6327,6 +6661,7 @@
       "name": "더블린 비행부대 리더",
       "enemyType": "일반",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "550",
@@ -6345,6 +6680,7 @@
       "name": "무덤지기 석상",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "550",
@@ -6363,6 +6699,7 @@
       "name": "성난 무덤지기 석상",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "750",
@@ -6381,6 +6718,7 @@
       "name": "더블린 소각자",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -6399,6 +6737,7 @@
       "name": "더블린 소각자 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -6417,6 +6756,7 @@
       "name": "더블린 헤타이로이 위병대",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "900",
@@ -6435,6 +6775,7 @@
       "name": "더블린 헤타이로이 위병대 정예",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1100",
@@ -6453,6 +6794,7 @@
       "name": "더블린 헤타이로이 그림자 칼날",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -6471,6 +6813,7 @@
       "name": "더블린 헤타이로이 그림자 칼날 정예",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "580",
@@ -6489,6 +6832,7 @@
       "name": "더블린 강신 캐스터",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -6507,6 +6851,7 @@
       "name": "더블린 강신 캐스터 리더",
       "enemyType": "엘리트",
       "attackType": "공격하지 않음",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -6525,6 +6870,7 @@
       "name": "암조 글룸핀서",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "350",
@@ -6543,6 +6889,7 @@
       "name": "암조 글룸핀서 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "400",
@@ -6561,6 +6908,7 @@
       "name": "아머레스 유니온 석궁병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -6579,6 +6927,7 @@
       "name": "아머레스 유니온 석궁병 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -6597,6 +6946,7 @@
       "name": "아머레스 유니온 암살자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -6615,6 +6965,7 @@
       "name": "아머레스 유니온 암살자 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -6633,6 +6984,7 @@
       "name": "나이트 영지 방랑자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -6651,6 +7003,7 @@
       "name": "나이트 영지 칩거자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -6669,6 +7022,7 @@
       "name": "아머레스 유니온 제3소대",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -6687,6 +7041,7 @@
       "name": "아머레스 유니온 제3소대 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -6705,6 +7060,7 @@
       "name": "라주라이트 모니크",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -6733,6 +7089,7 @@
       "name": "아머레스 유니온 숙청소대",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -6751,6 +7108,7 @@
       "name": "아머레스 유니온 숙청소대 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -6769,6 +7127,7 @@
       "name": "라주라이트 로이",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -6797,6 +7156,7 @@
       "name": "노바 기사단 견습 기사단원",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -6815,6 +7175,7 @@
       "name": "노바 기사단 정예 기사단원",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -6833,6 +7194,7 @@
       "name": "양초의 기사 비비아나",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -6861,6 +7223,7 @@
       "name": "나이츠모라 모방자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1200",
@@ -6879,6 +7242,7 @@
       "name": "나이츠모라 추종자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1500",
@@ -6897,6 +7261,7 @@
       "name": "'최후의 케식' 톨라",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1200",
@@ -6925,6 +7290,7 @@
       "name": "피 서린 칼날",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -6953,6 +7319,7 @@
       "name": "클로비스트",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "290",
@@ -6971,6 +7338,7 @@
       "name": "흉포한 클로비스트",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "340",
@@ -6989,6 +7357,7 @@
       "name": "단단한 얼음",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "300",
@@ -7007,6 +7376,7 @@
       "name": "솔리드아이스 AS.T",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "350",
@@ -7025,6 +7395,7 @@
       "name": "빙원 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -7043,6 +7414,7 @@
       "name": "빙원 전사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -7061,6 +7433,7 @@
       "name": "빙원 사냥꾼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -7079,6 +7452,7 @@
       "name": "빙원 사냥꾼 리더",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -7097,6 +7471,7 @@
       "name": "빙원 가드",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -7115,6 +7490,7 @@
       "name": "빙원 가디언",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -7133,6 +7509,7 @@
       "name": "빙원 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "250",
@@ -7151,6 +7528,7 @@
       "name": "빙원 캐스터 리더",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -7169,6 +7547,7 @@
       "name": "빙원 광전사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -7187,6 +7566,7 @@
       "name": "빙원 광전사 리더",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -7205,6 +7585,7 @@
       "name": "설산귀",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -7223,6 +7604,7 @@
       "name": "설산귀 리더",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -7241,6 +7623,7 @@
       "name": "모룽",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "310",
@@ -7259,6 +7642,7 @@
       "name": "밍졘",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "390",
@@ -7277,6 +7661,7 @@
       "name": "목제 인장",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7295,6 +7680,7 @@
       "name": "홍목 인장",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7313,6 +7699,7 @@
       "name": "수신",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "320",
@@ -7331,6 +7718,7 @@
       "name": "야치",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "410",
@@ -7349,6 +7737,7 @@
       "name": "소설 두루마리",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7367,6 +7756,7 @@
       "name": "시화 두루마리",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7385,6 +7775,7 @@
       "name": "센구안",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "700",
@@ -7403,6 +7794,7 @@
       "name": "옌싱",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "900",
@@ -7421,6 +7813,7 @@
       "name": "청동 거울",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7439,6 +7832,7 @@
       "name": "황동 거울",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7457,6 +7851,7 @@
       "name": "모랑",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "400",
@@ -7475,6 +7870,7 @@
       "name": "신타오",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "500",
@@ -7493,6 +7889,7 @@
       "name": "목제 문진",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7511,6 +7908,7 @@
       "name": "홍목 문진",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7529,6 +7927,7 @@
       "name": "펑취안",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "280",
@@ -7547,6 +7946,7 @@
       "name": "치훙",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "360",
@@ -7565,6 +7965,7 @@
       "name": "청자 다기",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7583,6 +7984,7 @@
       "name": "채색 다기",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7601,6 +8003,7 @@
       "name": "칭화",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "400",
@@ -7619,6 +8022,7 @@
       "name": "츠샤",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "570",
@@ -7637,6 +8041,7 @@
       "name": "청자 꽃병",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7655,6 +8060,7 @@
       "name": "채색 꽃병",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7673,6 +8079,7 @@
       "name": "첸사",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "1100",
@@ -7691,6 +8098,7 @@
       "name": "신싱",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "요괴",
       "level": [
         {
           "atk": "1350",
@@ -7709,6 +8117,7 @@
       "name": "구리 창끝",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7727,6 +8136,7 @@
       "name": "철제 창끝",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7745,6 +8155,7 @@
       "name": "칭밍",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "550",
@@ -7763,6 +8174,7 @@
       "name": "탕황",
       "enemyType": "엘리트",
       "attackType": "근거리 아츠",
+      "category": "요괴",
       "level": [
         {
           "atk": "700",
@@ -7781,6 +8193,7 @@
       "name": "구리 등잔",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7799,6 +8212,7 @@
       "name": "철제 등잔",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7817,6 +8231,7 @@
       "name": "도깨비불",
       "enemyType": "일반",
       "attackType": "공격하지 않음",
+      "category": "요괴",
       "level": [
         {
           "atk": "0",
@@ -7835,6 +8250,7 @@
       "name": "패스파인더 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -7853,6 +8269,7 @@
       "name": "패스파인더 정예 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "400",
@@ -7871,6 +8288,7 @@
       "name": "패스파인더 스나이퍼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "300",
@@ -7889,6 +8307,7 @@
       "name": "패스파인더 정예 스나이퍼",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "350",
@@ -7907,6 +8326,7 @@
       "name": "패스파인더 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "320",
@@ -7925,6 +8345,7 @@
       "name": "패스파인더 정예 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "385",
@@ -7943,6 +8364,7 @@
       "name": "패스파인더 돌격병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -7961,6 +8383,7 @@
       "name": "패스파인더 기습병",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "450",
@@ -7979,6 +8402,7 @@
       "name": "패스파인더 진지 파괴자",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -7997,6 +8421,7 @@
       "name": "패스파인더 진지 리퍼",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -8015,6 +8440,7 @@
       "name": "패스파인더 디저트 상인",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "기계",
       "level": [
         {
           "atk": "500",
@@ -8033,6 +8459,7 @@
       "name": "패스파인더 유명 디저트 상인",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "기계",
       "level": [
         {
           "atk": "600",
@@ -8051,6 +8478,7 @@
       "name": "캔디 카트",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "기계",
       "level": [
         {
           "atk": "300",
@@ -8069,6 +8497,7 @@
       "name": "정교한 캔디 카트",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "기계",
       "level": [
         {
           "atk": "300",
@@ -8087,6 +8516,7 @@
       "name": "패스파인더 전달자",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -8105,6 +8535,7 @@
       "name": "만국 전달자, 오렌",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "700",
@@ -8123,6 +8554,7 @@
       "name": "생귀나르의 손길",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "280",
@@ -8141,6 +8573,7 @@
       "name": "자비의 손길",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -8159,6 +8592,7 @@
       "name": "생귀나르의 축복",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "680",
@@ -8177,6 +8611,7 @@
       "name": "관대의 축복",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -8195,6 +8630,7 @@
       "name": "살카즈 후예 전사",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "340",
@@ -8213,6 +8649,7 @@
       "name": "살카즈 후예 전사 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "400",
@@ -8231,6 +8668,7 @@
       "name": "살카즈 후예 기술자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "300",
@@ -8249,6 +8687,7 @@
       "name": "살카즈 후예 기술자 리더",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "380",
@@ -8267,6 +8706,7 @@
       "name": "살카즈 후예 보급차",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "기계",
       "level": [
         {
           "atk": "340",
@@ -8285,6 +8725,7 @@
       "name": "살카즈 후예 개조 보급차",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "기계",
       "level": [
         {
           "atk": "420",
@@ -8303,6 +8744,7 @@
       "name": "살카즈 후예 체인 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "420",
@@ -8321,6 +8763,7 @@
       "name": "살카즈 후예 체인 캐스터 리더",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "550",
@@ -8339,6 +8782,7 @@
       "name": "살카즈 후예 원한자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "1000",
@@ -8357,6 +8801,7 @@
       "name": "살카즈 후예 분노자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "살카즈",
       "level": [
         {
           "atk": "1200",
@@ -8375,6 +8820,7 @@
       "name": "살카즈 공사용 드론",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "500",
@@ -8393,6 +8839,7 @@
       "name": "살카즈 첨단 공사용 드론",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "드론",
       "level": [
         {
           "atk": "650",
@@ -8411,6 +8858,7 @@
       "name": "피에 목마른 후예",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "90",
@@ -8429,6 +8877,7 @@
       "name": "배가 부른 후예",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "120",
@@ -8447,6 +8896,7 @@
       "name": "살카즈 왕정군 전사",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "240",
@@ -8465,6 +8915,7 @@
       "name": "살카즈 왕정군 정예 전사",
       "enemyType": "일반",
       "attackType": "근거리 아츠",
+      "category": "살카즈",
       "level": [
         {
           "atk": "380",
@@ -8483,6 +8934,7 @@
       "name": "심해의 정초자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "450",
@@ -8501,6 +8953,7 @@
       "name": "부영양의 정초자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "600",
@@ -8519,6 +8972,7 @@
       "name": "퇴행의 정초자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "450",
@@ -8537,6 +8991,7 @@
       "name": "심해의 포식자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "450",
@@ -8555,6 +9010,7 @@
       "name": "부영양의 포식자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "550",
@@ -8573,6 +9029,7 @@
       "name": "퇴행의 포식자",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "450",
@@ -8591,6 +9048,7 @@
       "name": "심해의 인도자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "800",
@@ -8609,6 +9067,7 @@
       "name": "부영양의 인도자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "900",
@@ -8627,6 +9086,7 @@
       "name": "퇴행의 인도자",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "800",
@@ -8645,6 +9105,7 @@
       "name": "심해의 분출자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "650",
@@ -8663,6 +9124,7 @@
       "name": "부영양의 분출자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "800",
@@ -8681,6 +9143,7 @@
       "name": "퇴행의 분출자",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "650",
@@ -8699,6 +9162,7 @@
       "name": "심해의 소용자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "140",
@@ -8717,6 +9181,7 @@
       "name": "부영양의 소용자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "160",
@@ -8735,6 +9200,7 @@
       "name": "퇴행의 소용자",
       "enemyType": "엘리트",
       "attackType": "원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "140",
@@ -8753,6 +9219,7 @@
       "name": "심해의 열초자",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "300",
@@ -8771,6 +9238,7 @@
       "name": "부영양의 열초자",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "400",
@@ -8789,6 +9257,7 @@
       "name": "퇴행의 열초자",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "바다 괴물",
       "level": [
         {
           "atk": "300",
@@ -8807,6 +9276,7 @@
       "name": "'길거리 한량'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "380",
@@ -8825,6 +9295,7 @@
       "name": "'길거리 취객'",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "",
       "level": [
         {
           "atk": "520",
@@ -8843,6 +9314,7 @@
       "name": "'길거리 공연가'",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "330",
@@ -8861,6 +9333,7 @@
       "name": "'길거리 음악가'",
       "enemyType": "일반",
       "attackType": "원거리",
+      "category": "",
       "level": [
         {
           "atk": "360",
@@ -8879,6 +9352,7 @@
       "name": "양산형 거대 석상",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "650",
@@ -8897,6 +9371,7 @@
       "name": "개량된 양산형 거대 석상",
       "enemyType": "엘리트",
       "attackType": "근거리",
+      "category": "아츠 피조물",
       "level": [
         {
           "atk": "800",
@@ -8915,6 +9390,7 @@
       "name": "고탑 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "600",
@@ -8933,6 +9409,7 @@
       "name": "베테랑 고탑 캐스터",
       "enemyType": "일반",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "780",
@@ -8951,6 +9428,7 @@
       "name": "잔당 바이올리니스트",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "500",
@@ -8969,6 +9447,7 @@
       "name": "잔당 수석 바이올리니스트",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "650",
@@ -8987,6 +9466,7 @@
       "name": "잔당 색소포니스트",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "800",
@@ -9005,6 +9485,7 @@
       "name": "잔당 정식 색소포니스트",
       "enemyType": "엘리트",
       "attackType": "근거리/원거리",
+      "category": "",
       "level": [
         {
           "atk": "1000",
@@ -9023,6 +9504,7 @@
       "name": "잔당 진지 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -9041,6 +9523,7 @@
       "name": "잔당 베테랑 진지 캐스터",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "0",
@@ -9059,6 +9542,7 @@
       "name": "검은 원석충",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "280",
@@ -9077,6 +9561,7 @@
       "name": "검은 원석충 α",
       "enemyType": "일반",
       "attackType": "근거리",
+      "category": "감염생물",
       "level": [
         {
           "atk": "370",
@@ -9095,6 +9580,7 @@
       "name": "미스 게르트루트",
       "enemyType": "엘리트",
       "attackType": "원거리 아츠",
+      "category": "",
       "level": [
         {
           "atk": "700",

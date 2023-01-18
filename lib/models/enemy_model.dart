@@ -1,8 +1,7 @@
 class EnemyModel {
-  final String name, code;
+  final String name, code, enemyType, attackType, category;
   // ignore: library_private_types_in_public_api
   final List<_EnemyStatModel> level;
-  final String enemyType, attackType;
 
   EnemyModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
@@ -12,7 +11,8 @@ class EnemyModel {
             _EnemyStatModel.fromJson(levelJson)
         ],
         enemyType = json['enemyType'],
-        attackType = json['attackType'];
+        attackType = json['attackType'],
+        category = json['category'];
 }
 
 class _EnemyStatModel {
@@ -42,6 +42,16 @@ class EnemyAtkType {
   static String meleeArts = '근거리 아츠';
   static String ranged = '원거리';
   static String rangedArts = '원거리 아츠';
+}
+
+class EnemyCategory {
+  static String infectedCreature = "감염생물";
+  static String drone = "드론";
+  static String sarkaz = "살카즈";
+  static String possessed = "숙주";
+  static String artsCreation = "아츠 피조물";
+  static String apparition = "요괴";
+  static String seaMonster = "바다 괴물";
 }
 
 // levels enemy list
