@@ -16,7 +16,8 @@ class UpdateScreen extends StatefulWidget {
 
 class _UpdateScreenState extends State<UpdateScreen> {
   List<OperatorModel> operators = [];
-  Uint8List? imageBytes;
+  Uint8List? imageBytes1;
+  Uint8List? imageBytes2;
 
   void firebaseUpdater() async {
     try {
@@ -32,13 +33,23 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
       // GET IMAGES
       Reference storageRef = FirebaseStorage.instance.ref("data");
-      Reference storageChild = storageRef.child("operator/12f.png");
-      // Get data
-      Uint8List? imageData =
-          await storageChild.getData(1024 * 500); // get under 500kb image
-      // Save data
-      String base64Image = base64.encode(imageData!);
-      await prefs.setString('operator/12f', base64Image);
+      int cnt = 0;
+      for (var opJsonData
+          in jsonDecode(jsonEncode(databaseEvent.snapshot.value))['data']) {
+        String opname = opJsonData['image_name'];
+        // 이미지는 데이터가 없는 경우만 다운받음 (최적화)
+        if (prefs.getString('operator/$opname') == null) {
+          Reference storageChild = storageRef.child("operator/$opname.png");
+          // Get data
+          Uint8List? imageData =
+              await storageChild.getData(1024 * 100); // get under 100kb image
+          // Save data
+          String base64Image = base64.encode(imageData!);
+          await prefs.setString('operator/$opname', base64Image);
+          cnt = cnt + 1;
+        }
+      }
+      print(cnt);
     } catch (e) {
       print(e);
     }
@@ -60,7 +71,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
       // GET operator image data
       String? operatorImageStringData = prefs.getString('operator/12f');
       if (operatorImageStringData != null) {
-        imageBytes = base64Decode(operatorImageStringData);
+        imageBytes1 = base64Decode(operatorImageStringData);
+      }
+      operatorImageStringData = prefs.getString('operator/suzuran');
+      if (operatorImageStringData != null) {
+        imageBytes2 = base64Decode(operatorImageStringData);
       }
     } catch (e) {
       print(e);
@@ -121,7 +136,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
               child: Column(
                 children: [
                   Text("${operators.length} operator loaded"),
-                  imageBytes != null ? Image.memory(imageBytes!) : Container()
+                  imageBytes1 != null
+                      ? Image.memory(imageBytes1!)
+                      : Container(),
+                  imageBytes2 != null ? Image.memory(imageBytes2!) : Container()
                 ],
               ),
             ),
