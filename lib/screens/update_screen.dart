@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,17 +16,29 @@ class UpdateScreen extends StatefulWidget {
 
 class _UpdateScreenState extends State<UpdateScreen> {
   List<OperatorModel> operators = [];
+  Uint8List? imageBytes;
 
   void firebaseUpdater() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      DatabaseReference ref = FirebaseDatabase.instance.ref("data");
-      // Access a child of the current reference
-      DatabaseReference child = ref.child("operator");
+      // GET JSON
+      DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
+      DatabaseReference databaseChild = databaseRef.child("operator");
       // Get data
-      DatabaseEvent event = await child.once();
+      DatabaseEvent databaseEvent = await databaseChild.once();
       // Save data
-      await prefs.setString('operator_data', jsonEncode(event.snapshot.value));
+      await prefs.setString(
+          'operator_data', jsonEncode(databaseEvent.snapshot.value));
+
+      // GET IMAGES
+      Reference storageRef = FirebaseStorage.instance.ref("data");
+      Reference storageChild = storageRef.child("operator/12f.png");
+      // Get data
+      Uint8List? imageData =
+          await storageChild.getData(1024 * 500); // get under 500kb image
+      // Save data
+      String base64Image = base64.encode(imageData!);
+      await prefs.setString('operator/12f', base64Image);
     } catch (e) {
       print(e);
     }
@@ -34,12 +48,19 @@ class _UpdateScreenState extends State<UpdateScreen> {
     try {
       final prefs = await SharedPreferences.getInstance();
 
+      // GET operator json data
       final String? operatorStringData = prefs.getString('operator_data');
       if (operatorStringData != null) {
         var data = await json.decode(operatorStringData)['data'];
         for (var jsonData in data) {
           operators.add(OperatorModel.fromJson(jsonData));
         }
+      }
+
+      // GET operator image data
+      String? operatorImageStringData = prefs.getString('operator/12f');
+      if (operatorImageStringData != null) {
+        imageBytes = base64Decode(operatorImageStringData);
       }
     } catch (e) {
       print(e);
@@ -99,7 +120,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  for (var op in operators) Text(op.name),
+                  Text("${operators.length} operator loaded"),
+                  imageBytes != null ? Image.memory(imageBytes!) : Container()
                 ],
               ),
             ),

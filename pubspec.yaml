@@ -32,18 +32,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_sticky_header: "^0.6.5"
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  flutter_sticky_header: ^0.6.5
   font_awesome_flutter: ^10.3.0
   animated_toggle_switch: ^0.6.1
   wrapped_korean_text: ^0.0.3
   shared_preferences: ^2.0.16
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   url_launcher: ^6.1.7
   firebase_core: ^2.4.1
   firebase_database: ^10.0.9
+  firebase_storage: ^11.0.10
 
 dev_dependencies:
   flutter_test:
