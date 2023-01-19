@@ -103,4 +103,15 @@ class EnemyCategory {
  * MK
  * FNF
  * PT
+ * MR
+ * BU
+ * DK1
+ * DK2
+ * SMP
+ * BSN
+ * JAK
+ * DSK
+ * BB
+ * EMG
+ * SVK
  */

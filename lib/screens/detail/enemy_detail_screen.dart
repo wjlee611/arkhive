@@ -248,7 +248,9 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                                     ? Colors.blueGrey.shade600
                                     : widget.enemy.attackType.contains('아츠')
                                         ? Colors.redAccent
-                                        : Colors.blueAccent,
+                                        : widget.enemy.attackType.contains('치료')
+                                            ? Colors.green
+                                            : Colors.blueAccent,
                             child: Center(
                               child: Text(
                                 widget.enemy.attackType,
