@@ -14,14 +14,17 @@ class OperatorModel {
         position = json['position'],
         imageName = json["image_name"],
         talent = [
-          for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
+          if (json['talent'] != null)
+            for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
         ],
         skill = [
-          for (var skillJson in json['skill']) _SkillModel.fronJson(skillJson)
+          if (json['skill'] != null)
+            for (var skillJson in json['skill']) _SkillModel.fronJson(skillJson)
         ],
         module = [
-          for (var moduleJson in json['module'])
-            _ModuleModel.fromJson(moduleJson)
+          if (json['module'] != null)
+            for (var moduleJson in json['module'])
+              _ModuleModel.fromJson(moduleJson)
         ];
 }
 

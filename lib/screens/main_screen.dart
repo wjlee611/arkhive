@@ -1,4 +1,5 @@
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/update_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,75 @@ class _MainScreenState extends State<MainScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            const UpdateScreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var begin = const Offset(0.0, 1.0);
+                          var end = Offset.zero;
+                          var curve = Curves.easeInOut;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.shade100,
+                          blurRadius: 5,
+                        ),
+                      ],
+                    ),
+                    clipBehavior: Clip.hardEdge,
+                    child: Row(
+                      children: [
+                        Container(
+                          color: Colors.blueGrey.shade600,
+                          padding: const EdgeInsets.all(5),
+                          child: Image.asset(
+                            'assets/images/prts.png',
+                            width: 50,
+                            height: 50,
+                          ),
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: WrappedKoreanText(
+                                "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다.",
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
@@ -174,11 +244,10 @@ class _MainScreenState extends State<MainScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'assets/images/prts.png',
-                              width: 20,
-                              height: 20,
+                            Icon(
+                              Icons.lightbulb,
                               color: Colors.yellow.shade700,
+                              size: 20,
                             ),
                             const SizedBox(
                               width: 5,
