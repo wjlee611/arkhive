@@ -3,6 +3,8 @@ import 'package:arkhive/models/operator_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:wrapped_korean_text/wrapped_korean_text.dart';
+
 class OperatorDetailScreen extends StatefulWidget {
   final OperatorModel operator_;
 
@@ -375,7 +377,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(
+                          child: WrappedKoreanText(
                             _getPostionInfo(widget.operator_.position),
                             style: const TextStyle(
                               fontSize: 14,
@@ -708,7 +710,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child: const Text(
-                                "Stat",
+                                "스탯 증가",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -727,7 +729,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                 .effect[_selectedStage]
                                 .stat
                                 .split(', '))
-                              Text(
+                              WrappedKoreanText(
                                 stat,
                                 style: const TextStyle(
                                   fontSize: 14,
@@ -764,7 +766,7 @@ class _ModuleCardState extends State<ModuleCard> {
                             const SizedBox(
                               height: 3,
                             ),
-                            Text(
+                            WrappedKoreanText(
                               widget.widget.operator_.module[_selectedModule]
                                   .effect[0].talent.info,
                               style: const TextStyle(
@@ -810,7 +812,7 @@ class _ModuleCardState extends State<ModuleCard> {
                               height: _selectedStage != 0 ? 3 : 0,
                             ),
                             _selectedStage != 0
-                                ? Text(
+                                ? WrappedKoreanText(
                                     widget
                                         .widget
                                         .operator_
@@ -1132,7 +1134,7 @@ class _SkillCardState extends State<SkillCard> {
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: Text(
+                  child: WrappedKoreanText(
                     widget.widget.operator_.skill[_selectedSkill].info,
                     style: const TextStyle(
                       fontSize: 14,
@@ -1234,7 +1236,7 @@ class TalentCard extends StatelessWidget {
                       const SizedBox(
                         height: 3,
                       ),
-                      Text(
+                      WrappedKoreanText(
                         talent.info,
                         style: const TextStyle(
                           fontSize: 14,

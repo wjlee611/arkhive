@@ -4,6 +4,7 @@ import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -199,16 +200,16 @@ class _MainScreenState extends State<MainScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            WrappedKoreanText(
                               "안녕하세요 박사님.",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               "Arkhive 소개를 도와드릴 로도스 아일랜드 인공지능 비서 PRTS입니다.",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
@@ -216,44 +217,9 @@ class _MainScreenState extends State<MainScreen> {
                             const SizedBox(
                               height: 12,
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               "Arkhive는 로도스 아일랜드를 비롯한 테라에 존재하는 생명체, 물건, 현상 등 거의 모든 정보를 제공하여 박사님의 업무를 도와드립니다.",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontFamily: FontFamily.nanumGothic,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: const [
-                                Text(
-                                  '최상단에 ',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: FontFamily.nanumGothic,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.sort,
-                                  size: 18,
-                                ),
-                                Text(
-                                  '이 보이시나요?',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: FontFamily.nanumGothic,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Text(
-                              '메뉴 바를 열어 데이터베이스에 저장된 모든 자료를 열람하실 수 있습니다.',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
@@ -264,9 +230,44 @@ class _MainScreenState extends State<MainScreen> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                const Text(
+                                WrappedKoreanText(
+                                  '최상단에 ',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: FontFamily.nanumGothic,
+                                  ),
+                                ),
+                                const Icon(
+                                  Icons.sort,
+                                  size: 18,
+                                ),
+                                WrappedKoreanText(
+                                  '이 보이시나요?',
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: FontFamily.nanumGothic,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            WrappedKoreanText(
+                              '메뉴 바를 열어 데이터베이스에 저장된 모든 자료를 열람하실 수 있습니다.',
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: FontFamily.nanumGothic,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                WrappedKoreanText(
                                   '각 자료마다 상단에 ',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     fontFamily: FontFamily.nanumGothic,
@@ -277,9 +278,9 @@ class _MainScreenState extends State<MainScreen> {
                                   color: Colors.yellow.shade700,
                                   size: 18,
                                 ),
-                                const Text(
+                                WrappedKoreanText(
                                   '이 존재합니다.',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     fontFamily: FontFamily.nanumGothic,
@@ -287,16 +288,16 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                               ],
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               "누르시면 앞으로 메인 화면 - 즐겨찾기 에서 빠르게 접근하실 수 있습니다.",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               "한번 더 누르시면 즐겨찾기에서 제거됩니다.",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
@@ -304,16 +305,16 @@ class _MainScreenState extends State<MainScreen> {
                             const SizedBox(
                               height: 12,
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               '이상 설명을 마치도록 하겠습니다.',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
                             ),
-                            const Text(
+                            WrappedKoreanText(
                               '좋은 하루 되세요, 박사님.',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
