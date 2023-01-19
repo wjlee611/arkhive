@@ -29,15 +29,18 @@ class OpenDetailScreen {
     required List<OperatorModel> list,
     required String name,
     required dynamic context,
-    required Uint8List? opImage,
-  }) {
+    required Future<Uint8List?> opImage,
+  }) async {
+    Uint8List? opImage_;
+    await opImage.then((value) => opImage_ = value);
+
     for (var operator_ in list) {
       if (operator_.name == name) {
         Navigator.push(
             context,
             _createRoute(OperatorDetailScreen(
               operator_: operator_,
-              opImage: opImage,
+              opImage: opImage_,
             )));
         return;
       }

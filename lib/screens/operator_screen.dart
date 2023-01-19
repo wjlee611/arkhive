@@ -222,23 +222,23 @@ class _ClassListViewState extends State<ClassListView> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+          return GestureDetector(
+            onTap: () => OpenDetailScreen.onOperatorTab(
+              list: globalData.classedOperators[widget.classIdx],
+              name: globalData.classedOperators[widget.classIdx][index].name,
+              opImage: getImageFromSP(
+                  "operator/${globalData.classedOperators[widget.classIdx][index].imageName}"),
+              context: context,
             ),
-            child: FutureBuilder(
-                future: getImageFromSP(
-                    "operator/${globalData.classedOperators[widget.classIdx][index].imageName}"),
-                builder: (context, snapshot) {
-                  return GestureDetector(
-                    onTap: () => OpenDetailScreen.onOperatorTab(
-                      list: globalData.classedOperators[widget.classIdx],
-                      name: globalData
-                          .classedOperators[widget.classIdx][index].name,
-                      opImage: snapshot.hasData ? snapshot.data : null,
-                      context: context,
-                    ),
-                    child: Row(
+            child: Container(
+              decoration: BoxDecoration(
+                color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+              ),
+              child: FutureBuilder(
+                  future: getImageFromSP(
+                      "operator/${globalData.classedOperators[widget.classIdx][index].imageName}"),
+                  builder: (context, snapshot) {
+                    return Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
@@ -411,9 +411,9 @@ class _ClassListViewState extends State<ClassListView> {
                           ),
                         ),
                       ],
-                    ),
-                  );
-                }),
+                    );
+                  }),
+            ),
           );
         },
         childCount: _isOpen[widget.classIdx]
