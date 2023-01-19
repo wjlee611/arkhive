@@ -2,6 +2,7 @@ import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/detail/operator_detail_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OpenDetailScreen {
@@ -28,11 +29,16 @@ class OpenDetailScreen {
     required List<OperatorModel> list,
     required String name,
     required dynamic context,
+    required Uint8List? opImage,
   }) {
     for (var operator_ in list) {
       if (operator_.name == name) {
         Navigator.push(
-            context, _createRoute(OperatorDetailScreen(operator_: operator_)));
+            context,
+            _createRoute(OperatorDetailScreen(
+              operator_: operator_,
+              opImage: opImage,
+            )));
         return;
       }
     }

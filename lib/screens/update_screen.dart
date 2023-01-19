@@ -16,6 +16,8 @@ class UpdateScreen extends StatefulWidget {
 
 class _UpdateScreenState extends State<UpdateScreen> {
   List<OperatorModel> operators = [];
+  int cnt = 0;
+  int remainDownloadAssets = 0;
   Uint8List? imageBytes1;
   Uint8List? imageBytes2;
 
@@ -31,11 +33,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
       await prefs.setString(
           'operator_data', jsonEncode(databaseEvent.snapshot.value));
 
+      var jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
+      remainDownloadAssets = jsonDatas['data'].length;
+
       // GET IMAGES
       Reference storageRef = FirebaseStorage.instance.ref("data");
-      int cnt = 0;
-      for (var opJsonData
-          in jsonDecode(jsonEncode(databaseEvent.snapshot.value))['data']) {
+      for (var opJsonData in jsonDatas['data']) {
         String opname = opJsonData['image_name'];
         // 이미지는 데이터가 없는 경우만 다운받음 (최적화)
         if (prefs.getString('operator/$opname') == null) {
@@ -46,7 +49,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
           // Save data
           String base64Image = base64.encode(imageData!);
           await prefs.setString('operator/$opname', base64Image);
-          cnt = cnt + 1;
+          setState(() {
+            cnt = cnt + 1;
+          });
+        } else {
+          remainDownloadAssets = remainDownloadAssets - 1;
         }
       }
       print(cnt);
@@ -135,7 +142,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("${operators.length} operator loaded"),
+                  Text("데이터 다운로드: $cnt/$remainDownloadAssets"),
                   imageBytes1 != null
                       ? Image.memory(imageBytes1!)
                       : Container(),

@@ -1,5 +1,6 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,10 +8,12 @@ import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class OperatorDetailScreen extends StatefulWidget {
   final OperatorModel operator_;
+  final Uint8List? opImage;
 
   const OperatorDetailScreen({
     super.key,
     required this.operator_,
+    required this.opImage,
   });
 
   @override
@@ -418,7 +421,10 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               ),
             ),
           ),
-          OperatorImage(widget: widget),
+          OperatorImage(
+            widget: widget,
+            opImage: widget.opImage,
+          ),
         ],
       ),
     );
@@ -1261,9 +1267,11 @@ class OperatorImage extends StatelessWidget {
   const OperatorImage({
     Key? key,
     required this.widget,
+    required this.opImage,
   }) : super(key: key);
 
   final OperatorDetailScreen widget;
+  final Uint8List? opImage;
 
   @override
   Widget build(BuildContext context) {
@@ -1298,11 +1306,13 @@ class OperatorImage extends StatelessWidget {
                   scale: 1.4,
                   child: Transform.rotate(
                     angle: -45 * math.pi / 180,
-                    child: Image.asset(
-                      'assets/images/operators/${widget.operator_.imageName}.png',
-                      width: 100,
-                      height: 100,
-                    ),
+                    child: opImage != null
+                        ? Image.memory(opImage!)
+                        : Image.asset(
+                            'assets/images/prts.png',
+                            width: 100,
+                            height: 100,
+                          ),
                   ),
                 ),
               ),

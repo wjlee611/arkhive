@@ -1,5 +1,6 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/tools/load_image_from_sharedpreference.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
@@ -221,168 +222,198 @@ class _ClassListViewState extends State<ClassListView> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          return GestureDetector(
-            onTap: () => OpenDetailScreen.onOperatorTab(
-              list: globalData.classedOperators[widget.classIdx],
-              name: globalData.classedOperators[widget.classIdx][index].name,
-              context: context,
+          return Container(
+            decoration: BoxDecoration(
+              color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 5,
-                    decoration: BoxDecoration(
-                      color: globalData.classedOperators[widget.classIdx][index]
-                                  .rare ==
-                              "6"
-                          ? Colors.white
-                          : globalData.classedOperators[widget.classIdx][index]
-                                      .rare ==
-                                  "5"
-                              ? Colors.yellow.shade700
-                              : Colors.grey.shade800,
+            child: FutureBuilder(
+                future: getImageFromSP(
+                    "operator/${globalData.classedOperators[widget.classIdx][index].imageName}"),
+                builder: (context, snapshot) {
+                  return GestureDetector(
+                    onTap: () => OpenDetailScreen.onOperatorTab(
+                      list: globalData.classedOperators[widget.classIdx],
+                      name: globalData
+                          .classedOperators[widget.classIdx][index].name,
+                      opImage: snapshot.hasData ? snapshot.data : null,
+                      context: context,
                     ),
-                  ),
-                  Hero(
-                    tag: globalData
-                        .classedOperators[widget.classIdx][index].imageName,
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: const BoxDecoration(),
-                      child: Image.asset(
-                        'assets/images/operators/${globalData.classedOperators[widget.classIdx][index].imageName}.png',
-                        width: 50,
-                        height: 50,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Flexible(
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: Text(
-                            globalData
-                                .classedOperators[widget.classIdx][index].name
-                                .replaceAll(" (한정)", "")
-                                .replaceAll(" [한정]", ""),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontFamily: FontFamily.nanumGothic,
-                              fontWeight: FontWeight.w700,
-                            ),
+                        Container(
+                          height: 50,
+                          width: 5,
+                          decoration: BoxDecoration(
+                            color: globalData
+                                        .classedOperators[widget.classIdx]
+                                            [index]
+                                        .rare ==
+                                    "6"
+                                ? Colors.white
+                                : globalData
+                                            .classedOperators[widget.classIdx]
+                                                [index]
+                                            .rare ==
+                                        "5"
+                                    ? Colors.yellow.shade700
+                                    : Colors.grey.shade800,
                           ),
                         ),
-                        globalData.classedOperators[widget.classIdx][index].name
-                                    .contains("(한정)") ||
-                                globalData
-                                    .classedOperators[widget.classIdx][index]
-                                    .name
-                                    .contains("[한정]")
-                            ? Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 0, 20, 0),
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 7,
-                                    vertical: 3,
+                        Hero(
+                          tag: globalData
+                              .classedOperators[widget.classIdx][index]
+                              .imageName,
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(),
+                            child: snapshot.hasData
+                                ? Image.memory(
+                                    snapshot.data!,
+                                    width: 50,
+                                    height: 50,
+                                  )
+                                : Image.asset(
+                                    "assets/images/prts.png",
+                                    width: 50,
+                                    height: 50,
                                   ),
-                                  decoration: globalData
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Flexible(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  globalData
+                                      .classedOperators[widget.classIdx][index]
+                                      .name
+                                      .replaceAll(" (한정)", "")
+                                      .replaceAll(" [한정]", ""),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                              globalData
                                           .classedOperators[widget.classIdx]
                                               [index]
                                           .name
-                                          .contains("(한정)")
-                                      ? BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.centerRight,
-                                            end: Alignment.centerLeft,
-                                            stops: const [
-                                              0.1,
-                                              0.3,
-                                              0.5,
-                                              0.7,
-                                              0.9,
-                                            ],
-                                            colors: [
-                                              Colors.blueAccent
-                                                  .withOpacity(0.5),
-                                              Colors.yellow.withOpacity(0.5),
-                                              Colors.white.withOpacity(0),
-                                              Colors.teal.withOpacity(0.5),
-                                              Colors.blueAccent
-                                                  .withOpacity(0.5),
+                                          .contains("(한정)") ||
+                                      globalData
+                                          .classedOperators[widget.classIdx]
+                                              [index]
+                                          .name
+                                          .contains("[한정]")
+                                  ? Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          10, 0, 20, 0),
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 7,
+                                          vertical: 3,
+                                        ),
+                                        decoration: globalData
+                                                .classedOperators[
+                                                    widget.classIdx][index]
+                                                .name
+                                                .contains("(한정)")
+                                            ? BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                gradient: LinearGradient(
+                                                  begin: Alignment.centerRight,
+                                                  end: Alignment.centerLeft,
+                                                  stops: const [
+                                                    0.1,
+                                                    0.3,
+                                                    0.5,
+                                                    0.7,
+                                                    0.9,
+                                                  ],
+                                                  colors: [
+                                                    Colors.blueAccent
+                                                        .withOpacity(0.5),
+                                                    Colors.yellow
+                                                        .withOpacity(0.5),
+                                                    Colors.white.withOpacity(0),
+                                                    Colors.teal
+                                                        .withOpacity(0.5),
+                                                    Colors.blueAccent
+                                                        .withOpacity(0.5),
+                                                  ],
+                                                ),
+                                              )
+                                            : BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5),
+                                                gradient: LinearGradient(
+                                                  begin: Alignment.centerRight,
+                                                  end: Alignment.centerLeft,
+                                                  stops: const [
+                                                    0.1,
+                                                    0.3,
+                                                    0.5,
+                                                    0.7,
+                                                    0.9,
+                                                  ],
+                                                  colors: [
+                                                    Colors.yellow
+                                                        .withOpacity(0.5),
+                                                    Colors.redAccent
+                                                        .withOpacity(0.5),
+                                                    Colors.white.withOpacity(0),
+                                                    Colors.orange
+                                                        .withOpacity(0.5),
+                                                    Colors.redAccent
+                                                        .withOpacity(0.5),
+                                                  ],
+                                                ),
+                                              ),
+                                        child: Text(
+                                          globalData
+                                                  .classedOperators[
+                                                      widget.classIdx][index]
+                                                  .name
+                                                  .contains("(한정)")
+                                              ? "한정"
+                                              : "콜라보 한정",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                            fontFamily: FontFamily.nanumGothic,
+                                            fontWeight: FontWeight.w700,
+                                            shadows: [
+                                              const Shadow(
+                                                blurRadius: 10,
+                                              ),
+                                              Shadow(
+                                                blurRadius: 7,
+                                                color: Colors.black
+                                                    .withOpacity(0.5),
+                                              ),
                                             ],
                                           ),
-                                        )
-                                      : BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.centerRight,
-                                            end: Alignment.centerLeft,
-                                            stops: const [
-                                              0.1,
-                                              0.3,
-                                              0.5,
-                                              0.7,
-                                              0.9,
-                                            ],
-                                            colors: [
-                                              Colors.yellow.withOpacity(0.5),
-                                              Colors.redAccent.withOpacity(0.5),
-                                              Colors.white.withOpacity(0),
-                                              Colors.orange.withOpacity(0.5),
-                                              Colors.redAccent.withOpacity(0.5),
-                                            ],
-                                          ),
                                         ),
-                                  child: Text(
-                                    globalData
-                                            .classedOperators[widget.classIdx]
-                                                [index]
-                                            .name
-                                            .contains("(한정)")
-                                        ? "한정"
-                                        : "콜라보 한정",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontFamily: FontFamily.nanumGothic,
-                                      fontWeight: FontWeight.w700,
-                                      shadows: [
-                                        const Shadow(
-                                          blurRadius: 10,
-                                        ),
-                                        Shadow(
-                                          blurRadius: 7,
-                                          color: Colors.black.withOpacity(0.5),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  );
+                }),
           );
         },
         childCount: _isOpen[widget.classIdx]
