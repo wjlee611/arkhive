@@ -1,9 +1,13 @@
+import 'dart:convert';
+import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/update_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
@@ -16,19 +20,24 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalData globalData = GlobalData();
 
-  // @override
-  // void initState() async {
-  //   super.initState();
-  //   final prefs = await SharedPreferences.getInstance();
-  //   DatabaseReference databaseRef =
-  //       FirebaseDatabase.instance.ref("update_checker");
-  //   // Get data
-  //   DatabaseEvent databaseEvent = await databaseRef.once();
-  //   // Save data
-  //   await prefs.setString(
-  //       'update_checker', jsonEncode(databaseEvent.snapshot.value));
-  // }
+  void _updateChecker() async {
+    final prefs = await SharedPreferences.getInstance();
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.ref("update_checker");
+    // Get data
+    DatabaseEvent databaseEvent = await databaseRef.once();
+    setState(() {
+      globalData.newVer = jsonEncode(databaseEvent.snapshot.value);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _updateChecker();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,13 +116,16 @@ class _MainScreenState extends State<MainScreen> {
                             height: 50,
                           ),
                         ),
-                        const Expanded(
+                        Expanded(
                           child: Center(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다.",
-                                style: TextStyle(
+                                globalData.oldVer != globalData.newVer
+                                    ? "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다."
+                                    : "데이터 초기화 완료.\n어서오세요, 박사님.",
+                                style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: FontFamily.nanumGothic,
                                 ),

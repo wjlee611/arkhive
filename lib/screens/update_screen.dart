@@ -94,7 +94,20 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
     // APPLY
     try {
-      await GlobalData().globalDataInitializer();
+      GlobalData globalData = GlobalData();
+      await globalData.globalDataInitializer();
+
+      // VERSION UPDATE
+      final prefs = await SharedPreferences.getInstance();
+      DatabaseReference databaseRef =
+          FirebaseDatabase.instance.ref("update_checker");
+      // Get data
+      DatabaseEvent databaseEvent = await databaseRef.once();
+      // Save data
+      String? stringData = jsonEncode(databaseEvent.snapshot.value);
+      await prefs.setString('update_checker', stringData);
+      globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
+
       setState(() {
         updateStatus = 'Update Completed!';
       });

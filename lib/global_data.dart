@@ -14,6 +14,7 @@ class GlobalData {
   }
   // global variables
   late String screen;
+  String? oldVer, newVer;
   late List<List<OperatorModel>> _classedOperators;
   late List<EnemyModel> _enemies;
 
@@ -23,7 +24,10 @@ class GlobalData {
 
   // initializer
   Future<void> globalDataInitializer() async {
+    final prefs = await SharedPreferences.getInstance();
+
     screen = ScreenModel.main;
+    oldVer = prefs.getString('update_checker');
     List<List<OperatorModel>> classedOperators_ = [
       [],
       [],
@@ -36,7 +40,6 @@ class GlobalData {
     ];
     List<EnemyModel> enemies_ = [];
     // operators
-    final prefs = await SharedPreferences.getInstance();
     String? stringData = prefs.getString('operator_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
