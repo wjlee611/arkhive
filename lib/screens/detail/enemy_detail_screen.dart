@@ -1,18 +1,20 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class EnemyDetailScreen extends StatefulWidget {
   final EnemyModel enemy;
+  final Uint8List? enemyImage;
   final int initLevel;
 
   const EnemyDetailScreen({
     super.key,
     required this.enemy,
+    required this.enemyImage,
     this.initLevel = 0,
   });
 
@@ -505,11 +507,17 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                       ),
                       child: Hero(
                         tag: widget.enemy.code,
-                        child: Image.asset(
-                          'assets/images/enemies/${widget.enemy.code}.png',
-                          width: 100,
-                          height: 100,
-                        ),
+                        child: widget.enemyImage != null
+                            ? Image.memory(
+                                widget.enemyImage!,
+                                width: 100,
+                                height: 100,
+                              )
+                            : Image.asset(
+                                'assets/images/prts.png',
+                                width: 100,
+                                height: 100,
+                              ),
                       ),
                     ),
                     const SizedBox(

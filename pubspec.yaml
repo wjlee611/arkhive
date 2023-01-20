@@ -41,6 +41,7 @@ dependencies:
   shared_preferences: ^2.0.16
   cupertino_icons: ^1.0.2
   url_launcher: ^6.1.7
+  square_percent_indicater: ^0.1.0
   firebase_core: ^2.4.1
   firebase_database: ^10.0.9
   firebase_storage: ^11.0.10
@@ -70,8 +71,8 @@ flutter:
   assets:
     - assets/
     - assets/images/
-    - assets/images/operators/
-    - assets/images/enemies/
+    - assets/images/operator/
+    - assets/images/enemy/
     - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see

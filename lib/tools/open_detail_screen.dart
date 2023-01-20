@@ -51,8 +51,12 @@ class OpenDetailScreen {
     required List<EnemyModel> list,
     required String code,
     required dynamic context,
+    required Future<Uint8List?> enemyImage,
     int level = 0,
-  }) {
+  }) async {
+    Uint8List? enemyImage_;
+    await enemyImage.then((value) => enemyImage_ = value);
+
     for (var enemy in list) {
       if (enemy.code == code) {
         Navigator.push(
@@ -60,6 +64,7 @@ class OpenDetailScreen {
             _createRoute(EnemyDetailScreen(
               enemy: enemy,
               initLevel: level,
+              enemyImage: enemyImage_,
             )));
         return;
       }

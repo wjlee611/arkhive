@@ -17,6 +17,19 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  // @override
+  // void initState() async {
+  //   super.initState();
+  //   final prefs = await SharedPreferences.getInstance();
+  //   DatabaseReference databaseRef =
+  //       FirebaseDatabase.instance.ref("update_checker");
+  //   // Get data
+  //   DatabaseEvent databaseEvent = await databaseRef.once();
+  //   // Save data
+  //   await prefs.setString(
+  //       'update_checker', jsonEncode(databaseEvent.snapshot.value));
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,14 +107,13 @@ class _MainScreenState extends State<MainScreen> {
                             height: 50,
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Center(
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: WrappedKoreanText(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
                                 "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다.",
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 12,
                                   fontFamily: FontFamily.nanumGothic,
                                 ),

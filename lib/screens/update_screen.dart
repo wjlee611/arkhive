@@ -7,6 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:square_percent_indicater/square_percent_indicater.dart';
+import 'dart:math' as math;
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -17,30 +19,32 @@ class UpdateScreen extends StatefulWidget {
 
 class _UpdateScreenState extends State<UpdateScreen> {
   List<OperatorModel> operators = [];
-  String updateStatus = '대기';
+  String updateStatus = 'Pending';
   int cnt = 0;
   int remainDownloadAssets = 0;
   Uint8List? imageBytes1;
   Uint8List? imageBytes2;
 
-  void firebaseUpdater() async {
-    setState(() {
-      updateStatus = '오퍼레이터 업데이트 중...';
-    });
+  Future<void> _dataUpdater({
+    required String category,
+    required String jsonImageKey,
+  }) async {
     // DOWNLOAD
     try {
+      setState(() {
+        updateStatus = 'Update $category...';
+        remainDownloadAssets = 0;
+        cnt = 0;
+      });
       final prefs = await SharedPreferences.getInstance();
-      /**
-       * OPERATOR
-       */
       // JSON DATA
       DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
-      DatabaseReference databaseChild = databaseRef.child("operator");
+      DatabaseReference databaseChild = databaseRef.child(category);
       // Get data
       DatabaseEvent databaseEvent = await databaseChild.once();
       // Save data
       await prefs.setString(
-          'operator_data', jsonEncode(databaseEvent.snapshot.value));
+          '${category}_data', jsonEncode(databaseEvent.snapshot.value));
 
       var jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
       remainDownloadAssets = jsonDatas['data'].length;
@@ -49,78 +53,26 @@ class _UpdateScreenState extends State<UpdateScreen> {
       Reference storageRef = FirebaseStorage.instance.ref("data");
       Uint8List? imageData;
       for (var jsonData in jsonDatas['data']) {
-        var opname = jsonData['image_name'];
+        var opname = jsonData[jsonImageKey];
         // 이미지는 데이터가 없는 경우만
-        if (prefs.getString('operator/$opname') == null) {
+        if (prefs.getString('$category/$opname') == null) {
           // Get data
           try {
             // From local
             imageData =
-                (await rootBundle.load('assets/images/operators/$opname.png'))
+                (await rootBundle.load('assets/images/$category/$opname.png'))
                     .buffer
                     .asUint8List();
           } catch (_) {
             // From firebase
-            var storageChild = storageRef.child("operator/$opname.png");
+            var storageChild = storageRef.child("$category/$opname.png");
             imageData =
                 await storageChild.getData(1024 * 100); // get under 500kb image
           }
           // Save Data
           if (imageData != null) {
             var base64Image = base64.encode(imageData);
-            await prefs.setString('operator/$opname', base64Image);
-          }
-          setState(() {
-            cnt = cnt + 1;
-          });
-        } else {
-          remainDownloadAssets = remainDownloadAssets - 1;
-        }
-      }
-
-      setState(() {
-        remainDownloadAssets = 0;
-        updateStatus = '적 업데이트 중...';
-      });
-      /**
-       * ENEMY
-       */
-      // JSON DATA
-      //  databaseRef = FirebaseDatabase.instance.ref("data");
-      databaseChild = databaseRef.child("enemy");
-      // Get data
-      databaseEvent = await databaseChild.once();
-      // Save data
-      await prefs.setString(
-          'operator_enemy', jsonEncode(databaseEvent.snapshot.value));
-
-      jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
-      remainDownloadAssets = jsonDatas['data'].length;
-
-      // IMAGE DATA
-      // storageRef = FirebaseStorage.instance.ref("data");
-      imageData = null;
-      for (var jsonData in jsonDatas['data']) {
-        var enemyname = jsonData['image_name'];
-        // 이미지는 데이터가 없는 경우만
-        if (prefs.getString('enemy/$enemyname') == null) {
-          // Get data
-          try {
-            // From local
-            imageData =
-                (await rootBundle.load('assets/images/enemies/$enemyname.png'))
-                    .buffer
-                    .asUint8List();
-          } catch (_) {
-            // From firebase
-            var storageChild = storageRef.child("enemy/$enemyname.png");
-            imageData =
-                await storageChild.getData(1024 * 100); // get under 500kb image
-          }
-          // Save Data
-          if (imageData != null) {
-            var base64Image = base64.encode(imageData);
-            await prefs.setString('enemy/$enemyname', base64Image);
+            await prefs.setString('$category/$opname', base64Image);
           }
           setState(() {
             cnt = cnt + 1;
@@ -132,46 +84,24 @@ class _UpdateScreenState extends State<UpdateScreen> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void firebaseUpdater() async {
+    // OPERATOR
+    await _dataUpdater(category: "operator", jsonImageKey: "image_name");
+    // ENEMY
+    await _dataUpdater(category: "enemy", jsonImageKey: "code");
 
     // APPLY
     try {
-      GlobalData().globalDataInitializer();
+      await GlobalData().globalDataInitializer();
+      setState(() {
+        updateStatus = 'Update Completed!';
+      });
     } catch (e) {
       print(e);
     }
-    setState(() {
-      updateStatus = '업데이트 완료!';
-    });
   }
-
-  // void getData() async {
-  //   try {
-  //     final prefs = await SharedPreferences.getInstance();
-
-  //     // GET operator json data
-  //     final String? operatorStringData = prefs.getString('operator_data');
-  //     if (operatorStringData != null) {
-  //       var data = await json.decode(operatorStringData)['data'];
-  //       for (var jsonData in data) {
-  //         operators.add(OperatorModel.fromJson(jsonData));
-  //       }
-  //     }
-
-  //     // GET operator image data
-  //     String? operatorImageStringData = prefs.getString('operator/12f');
-  //     if (operatorImageStringData != null) {
-  //       imageBytes1 = base64Decode(operatorImageStringData);
-  //     }
-  //     operatorImageStringData = prefs.getString('operator/suzuran');
-  //     if (operatorImageStringData != null) {
-  //       imageBytes2 = base64Decode(operatorImageStringData);
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   } finally {
-  //     setState(() {});
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -187,54 +117,188 @@ class _UpdateScreenState extends State<UpdateScreen> {
         ),
         backgroundColor: Colors.blueGrey.shade700,
       ),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              TextButton(
-                onPressed: firebaseUpdater,
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text(
-                  '데이터 불러오기/저장',
-                  style: TextStyle(
-                    color: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.blueGrey.shade100,
+                    blurRadius: 5,
                   ),
-                ),
+                ],
               ),
-              // const SizedBox(
-              //   width: 10,
-              // ),
-              // TextButton(
-              //   onPressed: getData,
-              //   style: TextButton.styleFrom(
-              //     backgroundColor: Colors.blue,
-              //   ),
-              //   child: const Text(
-              //     '데이터 가져오기',
-              //     style: TextStyle(
-              //       color: Colors.white,
-              //     ),
-              //   ),
-              // )
-            ],
-          ),
-          Flexible(
-            child: SingleChildScrollView(
-              child: Column(
+              clipBehavior: Clip.hardEdge,
+              child: Row(
                 children: [
-                  Text('상태: $updateStatus'),
-                  Text("데이터 다운로드: $cnt/$remainDownloadAssets"),
-                  imageBytes1 != null
-                      ? Image.memory(imageBytes1!)
-                      : Container(),
-                  imageBytes2 != null ? Image.memory(imageBytes2!) : Container()
+                  Container(
+                    color: Colors.blueGrey.shade600,
+                    padding: const EdgeInsets.all(5),
+                    child: Image.asset(
+                      'assets/images/prts.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          updateStatus == "Pending"
+                              ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
+                              : updateStatus == "Update Completed!"
+                                  ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
+                                  : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontFamily: FontFamily.nanumGothic,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
-        ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 2,
+                          spreadRadius: 0.1,
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 22,
+                          width: 40,
+                          child: Center(
+                            child: Text(
+                              "상태",
+                              style: TextStyle(
+                                color: Colors.blueGrey.shade800,
+                                fontSize: 10,
+                                fontFamily: FontFamily.nanumGothic,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 22,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 5,
+                          ),
+                          color: Colors.yellow.shade700,
+                          child: Center(
+                            child: Text(
+                              updateStatus,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: FontFamily.nanumGothic,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Transform.rotate(
+                        angle: 45 * math.pi / 180,
+                        child: SquarePercentIndicator(
+                          width: 100,
+                          height: 100,
+                          borderRadius: 0,
+                          startAngle: StartAngle.topLeft,
+                          shadowWidth: 2,
+                          progressWidth: 5,
+                          progressColor: Colors.yellow.shade700,
+                          shadowColor: Colors.grey,
+                          progress: remainDownloadAssets == 0
+                              ? 0
+                              : cnt / remainDownloadAssets,
+                        ),
+                      ),
+                      remainDownloadAssets == 0
+                          ? Container()
+                          : Column(
+                              children: [
+                                Text(
+                                  "${((cnt / remainDownloadAssets) * 100).toStringAsFixed(1)}%",
+                                  style: TextStyle(
+                                    color: Colors.yellow.shade700,
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Text(
+                                  "$cnt/$remainDownloadAssets",
+                                  style: TextStyle(
+                                    color: Colors.yellow.shade700,
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed:
+                            updateStatus == 'Pending' ? firebaseUpdater : null,
+                        style: TextButton.styleFrom(
+                          backgroundColor: updateStatus == 'Pending'
+                              ? Colors.yellow.shade700
+                              : Colors.grey,
+                        ),
+                        child: const Text(
+                          '데이터 업데이트',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
