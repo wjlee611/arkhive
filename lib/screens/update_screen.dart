@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -24,8 +25,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   void firebaseUpdater() async {
     setState(() {
-      updateStatus = '다운로드 중...';
+      updateStatus = '업데이트 중...';
     });
+    // DOWNLOAD
     try {
       final prefs = await SharedPreferences.getInstance();
       // GET JSON
@@ -54,16 +56,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 (await rootBundle.load('assets/images/operators/$opname.png'))
                     .buffer
                     .asUint8List();
-          } catch (e) {
+          } catch (_) {
             // From firebase
             Reference storageChild = storageRef.child("operator/$opname.png");
-            // Get data
             imageData =
-                await storageChild.getData(1024 * 100); // get under 100kb image
-
+                await storageChild.getData(1024 * 500); // get under 500kb image
           }
+          // Save Data
           if (imageData != null) {
-            // Save Data
             String base64Image = base64.encode(imageData);
             await prefs.setString('operator/$opname', base64Image);
           }
@@ -74,6 +74,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
           remainDownloadAssets = remainDownloadAssets - 1;
         }
       }
+    } catch (e) {
+      print(e);
+    }
+
+    // APPLY
+    try {
+      GlobalData().globalDataInitializer();
     } catch (e) {
       print(e);
     }
