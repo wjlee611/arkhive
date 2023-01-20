@@ -735,7 +735,7 @@ class _ModuleCardState extends State<ModuleCard> {
                                 .effect[_selectedStage]
                                 .stat
                                 .split(', '))
-                              WrappedKoreanText(
+                              Text(
                                 stat,
                                 style: const TextStyle(
                                   fontSize: 14,
@@ -772,7 +772,7 @@ class _ModuleCardState extends State<ModuleCard> {
                             const SizedBox(
                               height: 3,
                             ),
-                            WrappedKoreanText(
+                            Text(
                               widget.widget.operator_.module[_selectedModule]
                                   .effect[0].talent.info,
                               style: const TextStyle(
@@ -818,7 +818,7 @@ class _ModuleCardState extends State<ModuleCard> {
                               height: _selectedStage != 0 ? 3 : 0,
                             ),
                             _selectedStage != 0
-                                ? WrappedKoreanText(
+                                ? Text(
                                     widget
                                         .widget
                                         .operator_
@@ -1140,7 +1140,7 @@ class _SkillCardState extends State<SkillCard> {
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: WrappedKoreanText(
+                  child: Text(
                     widget.widget.operator_.skill[_selectedSkill].info,
                     style: const TextStyle(
                       fontSize: 14,

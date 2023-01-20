@@ -4,7 +4,6 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class EnemyDetailScreen extends StatefulWidget {
   final EnemyModel enemy;
@@ -456,7 +455,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.only(left: 5),
-                              child: WrappedKoreanText(
+                              child: Text(
                                 widget.enemy.level[_selectedLevel].abilities,
                                 style: TextStyle(
                                   color: Colors.blueGrey.shade800,
