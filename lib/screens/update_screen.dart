@@ -43,33 +43,33 @@ class _UpdateScreenState extends State<UpdateScreen> {
       await prefs.setString(
           '${category}_data', jsonEncode(databaseEvent.snapshot.value));
 
-      var jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
+      var jsonDatas =
+          await jsonDecode(jsonEncode(databaseEvent.snapshot.value));
       remainDownloadAssets = jsonDatas['data'].length;
 
       // IMAGE DATA
       Reference storageRef = FirebaseStorage.instance.ref("data");
       Uint8List? imageData;
       for (var jsonData in jsonDatas['data']) {
-        var opname = jsonData[jsonImageKey];
+        var key = jsonData[jsonImageKey];
         // 이미지는 데이터가 없는 경우만
-        if (prefs.getString('$category/$opname') == null) {
+        if (prefs.getString('$category/$key') == null) {
           // Get data
           try {
             // From local
             imageData =
-                (await rootBundle.load('assets/images/$category/$opname.png'))
+                (await rootBundle.load('assets/images/$category/$key.png'))
                     .buffer
                     .asUint8List();
           } catch (_) {
             // From firebase
-            var storageChild = storageRef.child("$category/$opname.png");
+            var storageChild = storageRef.child("$category/$key.png");
             imageData =
-                await storageChild.getData(1024 * 100); // get under 500kb image
+                await storageChild.getData(1024 * 200); // get under 200kb image
           }
           // Save Data
           if (imageData != null) {
-            var base64Image = base64.encode(imageData);
-            await prefs.setString('$category/$opname', base64Image);
+            await prefs.setString('$category/$key', base64.encode(imageData));
           }
           setState(() {
             cnt = cnt + 1;
@@ -79,7 +79,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
         }
       }
     } catch (e) {
-      print(e);
+      print('error at _dataUpdater: $e');
     }
   }
 
@@ -108,7 +108,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
         updateStatus = 'Update Completed!';
       });
     } catch (e) {
-      print(e);
+      print('error at firebaseUpdater: $e');
     }
   }
 
@@ -134,7 +134,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
               height: 20,
             ),
             SizedBox(
-              height: 100,
+              height: 80,
               child: Column(
                 children: [
                   Container(
@@ -230,7 +230,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                               updateStatus,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontFamily: FontFamily.nanumGothic,
                                 fontWeight: FontWeight.w700,
                               ),

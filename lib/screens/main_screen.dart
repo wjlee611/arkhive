@@ -7,7 +7,6 @@ import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
@@ -23,7 +22,6 @@ class _MainScreenState extends State<MainScreen> {
   GlobalData globalData = GlobalData();
 
   void _updateChecker() async {
-    final prefs = await SharedPreferences.getInstance();
     DatabaseReference databaseRef =
         FirebaseDatabase.instance.ref("update_checker");
     // Get data
