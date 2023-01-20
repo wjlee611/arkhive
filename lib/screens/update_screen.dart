@@ -25,12 +25,15 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
   void firebaseUpdater() async {
     setState(() {
-      updateStatus = '업데이트 중...';
+      updateStatus = '오퍼레이터 업데이트 중...';
     });
     // DOWNLOAD
     try {
       final prefs = await SharedPreferences.getInstance();
-      // GET JSON
+      /**
+       * OPERATOR
+       */
+      // JSON DATA
       DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
       DatabaseReference databaseChild = databaseRef.child("operator");
       // Get data
@@ -42,14 +45,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
       var jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
       remainDownloadAssets = jsonDatas['data'].length;
 
-      // GET IMAGES
+      // IMAGE DATA
       Reference storageRef = FirebaseStorage.instance.ref("data");
-      for (var opJsonData in jsonDatas['data']) {
-        String opname = opJsonData['image_name'];
+      Uint8List? imageData;
+      for (var jsonData in jsonDatas['data']) {
+        var opname = jsonData['image_name'];
         // 이미지는 데이터가 없는 경우만
         if (prefs.getString('operator/$opname') == null) {
           // Get data
-          Uint8List? imageData;
           try {
             // From local
             imageData =
@@ -58,14 +61,66 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     .asUint8List();
           } catch (_) {
             // From firebase
-            Reference storageChild = storageRef.child("operator/$opname.png");
+            var storageChild = storageRef.child("operator/$opname.png");
             imageData =
-                await storageChild.getData(1024 * 500); // get under 500kb image
+                await storageChild.getData(1024 * 100); // get under 500kb image
           }
           // Save Data
           if (imageData != null) {
-            String base64Image = base64.encode(imageData);
+            var base64Image = base64.encode(imageData);
             await prefs.setString('operator/$opname', base64Image);
+          }
+          setState(() {
+            cnt = cnt + 1;
+          });
+        } else {
+          remainDownloadAssets = remainDownloadAssets - 1;
+        }
+      }
+
+      setState(() {
+        remainDownloadAssets = 0;
+        updateStatus = '적 업데이트 중...';
+      });
+      /**
+       * ENEMY
+       */
+      // JSON DATA
+      //  databaseRef = FirebaseDatabase.instance.ref("data");
+      databaseChild = databaseRef.child("enemy");
+      // Get data
+      databaseEvent = await databaseChild.once();
+      // Save data
+      await prefs.setString(
+          'operator_enemy', jsonEncode(databaseEvent.snapshot.value));
+
+      jsonDatas = jsonDecode(jsonEncode(databaseEvent.snapshot.value));
+      remainDownloadAssets = jsonDatas['data'].length;
+
+      // IMAGE DATA
+      // storageRef = FirebaseStorage.instance.ref("data");
+      imageData = null;
+      for (var jsonData in jsonDatas['data']) {
+        var enemyname = jsonData['image_name'];
+        // 이미지는 데이터가 없는 경우만
+        if (prefs.getString('enemy/$enemyname') == null) {
+          // Get data
+          try {
+            // From local
+            imageData =
+                (await rootBundle.load('assets/images/enemies/$enemyname.png'))
+                    .buffer
+                    .asUint8List();
+          } catch (_) {
+            // From firebase
+            var storageChild = storageRef.child("enemy/$enemyname.png");
+            imageData =
+                await storageChild.getData(1024 * 100); // get under 500kb image
+          }
+          // Save Data
+          if (imageData != null) {
+            var base64Image = base64.encode(imageData);
+            await prefs.setString('enemy/$enemyname', base64Image);
           }
           setState(() {
             cnt = cnt + 1;
@@ -89,34 +144,34 @@ class _UpdateScreenState extends State<UpdateScreen> {
     });
   }
 
-  void getData() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
+  // void getData() async {
+  //   try {
+  //     final prefs = await SharedPreferences.getInstance();
 
-      // GET operator json data
-      final String? operatorStringData = prefs.getString('operator_data');
-      if (operatorStringData != null) {
-        var data = await json.decode(operatorStringData)['data'];
-        for (var jsonData in data) {
-          operators.add(OperatorModel.fromJson(jsonData));
-        }
-      }
+  //     // GET operator json data
+  //     final String? operatorStringData = prefs.getString('operator_data');
+  //     if (operatorStringData != null) {
+  //       var data = await json.decode(operatorStringData)['data'];
+  //       for (var jsonData in data) {
+  //         operators.add(OperatorModel.fromJson(jsonData));
+  //       }
+  //     }
 
-      // GET operator image data
-      String? operatorImageStringData = prefs.getString('operator/12f');
-      if (operatorImageStringData != null) {
-        imageBytes1 = base64Decode(operatorImageStringData);
-      }
-      operatorImageStringData = prefs.getString('operator/suzuran');
-      if (operatorImageStringData != null) {
-        imageBytes2 = base64Decode(operatorImageStringData);
-      }
-    } catch (e) {
-      print(e);
-    } finally {
-      setState(() {});
-    }
-  }
+  //     // GET operator image data
+  //     String? operatorImageStringData = prefs.getString('operator/12f');
+  //     if (operatorImageStringData != null) {
+  //       imageBytes1 = base64Decode(operatorImageStringData);
+  //     }
+  //     operatorImageStringData = prefs.getString('operator/suzuran');
+  //     if (operatorImageStringData != null) {
+  //       imageBytes2 = base64Decode(operatorImageStringData);
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   } finally {
+  //     setState(() {});
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -148,21 +203,21 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              TextButton(
-                onPressed: getData,
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
-                child: const Text(
-                  '데이터 가져오기',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              )
+              // const SizedBox(
+              //   width: 10,
+              // ),
+              // TextButton(
+              //   onPressed: getData,
+              //   style: TextButton.styleFrom(
+              //     backgroundColor: Colors.blue,
+              //   ),
+              //   child: const Text(
+              //     '데이터 가져오기',
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // )
             ],
           ),
           Flexible(
