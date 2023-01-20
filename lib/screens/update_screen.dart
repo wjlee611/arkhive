@@ -3,8 +3,8 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateScreen extends StatefulWidget {
@@ -16,12 +16,16 @@ class UpdateScreen extends StatefulWidget {
 
 class _UpdateScreenState extends State<UpdateScreen> {
   List<OperatorModel> operators = [];
+  String updateStatus = '대기';
   int cnt = 0;
   int remainDownloadAssets = 0;
   Uint8List? imageBytes1;
   Uint8List? imageBytes2;
 
   void firebaseUpdater() async {
+    setState(() {
+      updateStatus = '다운로드 중...';
+    });
     try {
       final prefs = await SharedPreferences.getInstance();
       // GET JSON
@@ -40,15 +44,29 @@ class _UpdateScreenState extends State<UpdateScreen> {
       Reference storageRef = FirebaseStorage.instance.ref("data");
       for (var opJsonData in jsonDatas['data']) {
         String opname = opJsonData['image_name'];
-        // 이미지는 데이터가 없는 경우만 다운받음 (최적화)
+        // 이미지는 데이터가 없는 경우만
         if (prefs.getString('operator/$opname') == null) {
-          Reference storageChild = storageRef.child("operator/$opname.png");
           // Get data
-          Uint8List? imageData =
-              await storageChild.getData(1024 * 100); // get under 100kb image
-          // Save data
-          String base64Image = base64.encode(imageData!);
-          await prefs.setString('operator/$opname', base64Image);
+          Uint8List? imageData;
+          try {
+            // From local
+            imageData =
+                (await rootBundle.load('assets/images/operators/$opname.png'))
+                    .buffer
+                    .asUint8List();
+          } catch (e) {
+            // From firebase
+            Reference storageChild = storageRef.child("operator/$opname.png");
+            // Get data
+            imageData =
+                await storageChild.getData(1024 * 100); // get under 100kb image
+
+          }
+          if (imageData != null) {
+            // Save Data
+            String base64Image = base64.encode(imageData);
+            await prefs.setString('operator/$opname', base64Image);
+          }
           setState(() {
             cnt = cnt + 1;
           });
@@ -56,10 +74,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
           remainDownloadAssets = remainDownloadAssets - 1;
         }
       }
-      print(cnt);
     } catch (e) {
       print(e);
     }
+    setState(() {
+      updateStatus = '업데이트 완료!';
+    });
   }
 
   void getData() async {
@@ -142,6 +162,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  Text('상태: $updateStatus'),
                   Text("데이터 다운로드: $cnt/$remainDownloadAssets"),
                   imageBytes1 != null
                       ? Image.memory(imageBytes1!)
