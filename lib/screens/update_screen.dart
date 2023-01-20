@@ -137,45 +137,53 @@ class _UpdateScreenState extends State<UpdateScreen> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.blueGrey.shade100,
-                    blurRadius: 5,
-                  ),
-                ],
-              ),
-              clipBehavior: Clip.hardEdge,
-              child: Row(
+            SizedBox(
+              height: 100,
+              child: Column(
                 children: [
                   Container(
-                    color: Colors.blueGrey.shade600,
-                    padding: const EdgeInsets.all(5),
-                    child: Image.asset(
-                      'assets/images/prts.png',
-                      width: 50,
-                      height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.shade100,
+                          blurRadius: 5,
+                        ),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          updateStatus == "Pending"
-                              ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
-                              : updateStatus == "Update Completed!"
-                                  ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
-                                  : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontFamily: FontFamily.nanumGothic,
+                    clipBehavior: Clip.hardEdge,
+                    child: Row(
+                      children: [
+                        Container(
+                          color: Colors.blueGrey.shade600,
+                          padding: const EdgeInsets.all(5),
+                          child: Image.asset(
+                            'assets/images/prts.png',
+                            width: 50,
+                            height: 50,
                           ),
                         ),
-                      ),
+                        Expanded(
+                          child: Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                updateStatus == "Pending"
+                                    ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
+                                    : updateStatus == "Update Completed!"
+                                        ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
+                                        : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

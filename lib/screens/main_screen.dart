@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
                           );
                         },
                       ),
-                    );
+                    ).then((_) => setState(() {}));
                   },
                   child: Container(
                     decoration: BoxDecoration(
