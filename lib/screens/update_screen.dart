@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/models/operator_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +17,10 @@ class UpdateScreen extends StatefulWidget {
 }
 
 class _UpdateScreenState extends State<UpdateScreen> {
-  List<OperatorModel> operators = [];
+  GlobalData globalData = GlobalData();
   String updateStatus = 'Pending';
   int cnt = 0;
   int remainDownloadAssets = 0;
-  Uint8List? imageBytes1;
-  Uint8List? imageBytes2;
 
   Future<void> _dataUpdater({
     required String category,
@@ -94,7 +91,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
     // APPLY
     try {
-      GlobalData globalData = GlobalData();
       await globalData.globalDataInitializer();
 
       // VERSION UPDATE
@@ -170,11 +166,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                updateStatus == "Pending"
-                                    ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
-                                    : updateStatus == "Update Completed!"
-                                        ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
-                                        : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
+                                globalData.newVer == null
+                                    ? "오프라인 상태에선 업데이트 할 수 없습니다.\n종료하신 후 네트워크에 연결하신 후 다시 시도해주세요."
+                                    : updateStatus == "Pending"
+                                        ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
+                                        : updateStatus == "Update Completed!"
+                                            ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
+                                            : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: FontFamily.nanumGothic,
@@ -296,10 +294,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
-                        onPressed:
-                            updateStatus == 'Pending' ? firebaseUpdater : null,
+                        onPressed: updateStatus == 'Pending' &&
+                                globalData.newVer != null
+                            ? firebaseUpdater
+                            : null,
                         style: TextButton.styleFrom(
-                          backgroundColor: updateStatus == 'Pending'
+                          backgroundColor: updateStatus == 'Pending' &&
+                                  globalData.newVer != null
                               ? Colors.yellow.shade700
                               : Colors.grey,
                         ),

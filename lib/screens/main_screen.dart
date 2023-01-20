@@ -28,9 +28,11 @@ class _MainScreenState extends State<MainScreen> {
         FirebaseDatabase.instance.ref("update_checker");
     // Get data
     DatabaseEvent databaseEvent = await databaseRef.once();
-    setState(() {
-      globalData.newVer = jsonEncode(databaseEvent.snapshot.value);
-    });
+    try {
+      setState(() {
+        globalData.newVer = jsonEncode(databaseEvent.snapshot.value);
+      });
+    } catch (_) {}
   }
 
   @override
@@ -122,9 +124,12 @@ class _MainScreenState extends State<MainScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                globalData.oldVer != globalData.newVer
-                                    ? "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다."
-                                    : "데이터 초기화 완료.\n어서오세요, 박사님.",
+                                globalData.newVer == null
+                                    ? "[오프라인] 데이터 초기화 완료.\n어서오세요, 박사님."
+                                    : globalData.oldVer != globalData.newVer
+                                        ? "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다."
+                                        : "데이터 초기화 완료.\n어서오세요, 박사님.",
+                                textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 12,
                                   fontFamily: FontFamily.nanumGothic,
