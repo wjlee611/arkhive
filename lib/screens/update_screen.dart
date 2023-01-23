@@ -22,9 +22,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
   int cnt = 0;
   int remainDownloadAssets = 0;
 
-  Future<void> _dataUpdater({
+  _dataUpdater({
     required String category,
     required String jsonImageKey,
+    required SharedPreferences prefs,
   }) async {
     // DOWNLOAD
     try {
@@ -33,7 +34,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
         remainDownloadAssets = 0;
         cnt = 0;
       });
-      final prefs = await SharedPreferences.getInstance();
       // JSON DATA
       DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
       DatabaseReference databaseChild = databaseRef.child(category);
@@ -84,17 +84,25 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   void firebaseUpdater() async {
+    final prefs = await SharedPreferences.getInstance();
     // OPERATOR
-    await _dataUpdater(category: "operator", jsonImageKey: "image_name");
+    await _dataUpdater(
+      category: "operator",
+      jsonImageKey: "image_name",
+      prefs: prefs,
+    );
     // ENEMY
-    await _dataUpdater(category: "enemy", jsonImageKey: "code");
+    await _dataUpdater(
+      category: "enemy",
+      jsonImageKey: "code",
+      prefs: prefs,
+    );
 
-    // APPLY
     try {
+      // APPLY
       await globalData.globalDataInitializer();
 
       // VERSION UPDATE
-      final prefs = await SharedPreferences.getInstance();
       DatabaseReference databaseRef =
           FirebaseDatabase.instance.ref("update_checker");
       // Get data

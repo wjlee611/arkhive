@@ -94,24 +94,5 @@ class EnemyCategory {
  * DLD
  * GPN
  * UM1
- * SS
- * CS
- * TA
- * FN
- * MP
- * FA
- * MK
- * FNF
- * PT
- * MR
- * BU
- * DK1
- * DK2
- * SMP
- * BSN
- * JAK
- * DSK
- * BB
- * EMG
- * SVK
+ * all bosses
  */
