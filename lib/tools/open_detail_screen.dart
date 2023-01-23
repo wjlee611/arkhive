@@ -1,6 +1,8 @@
 import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/detail/enemy_detail_screen.dart';
+import 'package:arkhive/screens/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/detail/operator_detail_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -65,6 +67,28 @@ class OpenDetailScreen {
               enemy: enemy,
               initLevel: level,
               enemyImage: enemyImage_,
+            )));
+        return;
+      }
+    }
+  }
+
+  static void onItemTab({
+    required List<ItemModel> list,
+    required String code,
+    required dynamic context,
+    required Future<Uint8List?> itemImage,
+  }) async {
+    Uint8List? itemImage_;
+    await itemImage.then((value) => itemImage_ = value);
+
+    for (var item in list) {
+      if (item.code == code) {
+        Navigator.push(
+            context,
+            _createRoute(ItemDetailScreen(
+              item: item,
+              itemImage: itemImage_,
             )));
         return;
       }

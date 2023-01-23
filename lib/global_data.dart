@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/screens_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,10 +18,12 @@ class GlobalData {
   String? oldVer, newVer;
   late List<List<OperatorModel>> _classedOperators;
   late List<EnemyModel> _enemies;
+  late List<ItemModel> _items;
 
   // getter
   List<List<OperatorModel>> get classedOperators => _classedOperators;
   List<EnemyModel> get enemies => _enemies;
+  List<ItemModel> get items => _items;
 
   // initializer
   Future<void> globalDataInitializer() async {
@@ -39,6 +42,7 @@ class GlobalData {
       [],
     ];
     List<EnemyModel> enemies_ = [];
+    List<ItemModel> items_ = [];
     // operators
     String? stringData = prefs.getString('operator_data');
     if (stringData != null) {
@@ -83,5 +87,16 @@ class GlobalData {
       }
     }
     _enemies = enemies_;
+
+    stringData = null;
+    // items
+    stringData = prefs.getString('item_data');
+    if (stringData != null) {
+      var data = await json.decode(stringData)['data'];
+      for (var jsonData in data) {
+        items_.add(ItemModel.fromJson(jsonData));
+      }
+    }
+    _items = items_;
   }
 }

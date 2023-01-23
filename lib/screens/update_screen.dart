@@ -97,20 +97,31 @@ class _UpdateScreenState extends State<UpdateScreen> {
       jsonImageKey: "code",
       prefs: prefs,
     );
+    // ITEMS
+    await _dataUpdater(
+      category: "item",
+      jsonImageKey: "code",
+      prefs: prefs,
+    );
 
     try {
       // APPLY
       await globalData.globalDataInitializer();
 
-      // VERSION UPDATE
-      DatabaseReference databaseRef =
-          FirebaseDatabase.instance.ref("update_checker");
-      // Get data
-      DatabaseEvent databaseEvent = await databaseRef.once();
-      // Save data
-      String? stringData = jsonEncode(databaseEvent.snapshot.value);
-      await prefs.setString('update_checker', stringData);
-      globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
+      if (globalData.newVer == null) {
+        // VERSION UPDATE
+        DatabaseReference databaseRef =
+            FirebaseDatabase.instance.ref("update_checker");
+        // Get data
+        DatabaseEvent databaseEvent = await databaseRef.once();
+        // Save data
+        String? stringData = jsonEncode(databaseEvent.snapshot.value);
+        await prefs.setString('update_checker', stringData);
+        globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
+      } else {
+        await prefs.setString('update_checker', globalData.newVer!);
+        globalData.oldVer = globalData.newVer!;
+      }
 
       setState(() {
         updateStatus = 'Update Completed!';
