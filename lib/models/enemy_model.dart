@@ -30,6 +30,12 @@ class _EnemyStatModel {
         silenceImm = json['silenceImm'] == 'true' ? true : false;
 }
 
+class EnemyInfoTitle {
+  static String atkType = '공격 방식';
+  static String weightLevel = '무게 레벨';
+  static String enemyType = '위험 분류등급';
+}
+
 class EnemyType {
   static String normal = '일반';
   static String elite = '엘리트';

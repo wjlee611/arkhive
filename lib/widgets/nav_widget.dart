@@ -1,13 +1,13 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/screens_model.dart';
-import 'package:arkhive/screens/enemy_screen.dart';
-import 'package:arkhive/screens/gimmick_screen.dart';
-import 'package:arkhive/screens/info_screen.dart';
-import 'package:arkhive/screens/item_screen.dart';
-import 'package:arkhive/screens/main_screen.dart';
-import 'package:arkhive/screens/operator_screen.dart';
-import 'package:arkhive/screens/settings_screen.dart';
-import 'package:arkhive/screens/stage_screen.dart';
+import 'package:arkhive/screens/enemy/enemy_screen.dart';
+import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
+import 'package:arkhive/screens/information/info_screen.dart';
+import 'package:arkhive/screens/item/item_screen.dart';
+import 'package:arkhive/screens/home/home_screen.dart';
+import 'package:arkhive/screens/operator/operator_screen.dart';
+import 'package:arkhive/screens/settings/settings_screen.dart';
+import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:flutter/material.dart';
 import '../global_data.dart';
 import 'dart:math' as math;
@@ -156,7 +156,7 @@ class _NavDrawerState extends State<NavDrawer> {
                     Scaffold.of(context).closeDrawer();
                     if (globalData.screen != ScreenModel.main) {
                       Navigator.pushReplacement(
-                          context, _createRoute(const MainScreen()));
+                          context, _createRoute(const HomeScreen()));
                       globalData.screen = ScreenModel.main;
                     }
                   },

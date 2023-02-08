@@ -1,6 +1,6 @@
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/item_model.dart';
-import 'package:arkhive/screens/detail/enemy_detail_screen.dart';
+import 'package:arkhive/tools/diagonal_clipper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

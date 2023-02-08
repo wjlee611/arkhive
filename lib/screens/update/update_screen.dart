@@ -40,8 +40,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       // Get data
       DatabaseEvent databaseEvent = await databaseChild.once();
       // Save data
-      // await prefs.setString(
-      //     '${category}_data', jsonEncode(databaseEvent.snapshot.value));
       await storage.write(
           key: '${category}_data',
           value: jsonEncode(databaseEvent.snapshot.value));
@@ -56,7 +54,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
       for (var jsonData in jsonDatas['data']) {
         var key = jsonData[jsonImageKey];
         // 이미지는 데이터가 없는 경우만
-        // if (prefs.getString('$category/$key') == null) {
         if (await storage.read(key: '$category/$key') == null) {
           // Get data
           try {
@@ -73,7 +70,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
           }
           // Save Data
           if (imageData != null) {
-            // await prefs.setString('$category/$key', base64.encode(imageData));
             await storage.write(
                 key: '$category/$key', value: base64.encode(imageData));
             print('save image @$category/$key');
@@ -123,11 +119,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
         DatabaseEvent databaseEvent = await databaseRef.once();
         // Save data
         String? stringData = jsonEncode(databaseEvent.snapshot.value);
-        // await prefs.setString('update_checker', stringData);
         await storage.write(key: 'update_checker', value: stringData);
         globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
       } else {
-        // await prefs.setString('update_checker', globalData.newVer!);
         await storage.write(key: 'update_checker', value: globalData.newVer!);
         globalData.oldVer = globalData.newVer!;
       }

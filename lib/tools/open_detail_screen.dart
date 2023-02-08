@@ -1,9 +1,10 @@
+import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/screens/detail/enemy_detail_screen.dart';
-import 'package:arkhive/screens/detail/item_detail_screen.dart';
-import 'package:arkhive/screens/detail/operator_detail_screen.dart';
+import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
+import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
+import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -50,12 +51,12 @@ class OpenDetailScreen {
   }
 
   static void onEnemyTab({
-    required List<EnemyModel> list,
     required String code,
     required dynamic context,
     required Future<Uint8List?> enemyImage,
     int level = 0,
   }) async {
+    List<EnemyModel> list = GlobalData().enemies;
     Uint8List? enemyImage_;
     await enemyImage.then((value) => enemyImage_ = value);
 

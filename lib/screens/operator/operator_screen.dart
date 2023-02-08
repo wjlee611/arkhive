@@ -6,7 +6,7 @@ import 'package:arkhive/tools/willpop_function.dart';
 import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import '../global_data.dart';
+import '../../global_data.dart';
 
 class OperatorScreen extends StatefulWidget {
   const OperatorScreen({super.key});

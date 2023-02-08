@@ -27,11 +27,9 @@ class GlobalData {
 
   // initializer
   Future<void> globalDataInitializer() async {
-    // final prefs = await SharedPreferences.getInstance();
     const storage = FlutterSecureStorage();
 
     screen = ScreenModel.main;
-    // oldVer = prefs.getString('update_checker');
     oldVer = await storage.read(key: 'update_checker');
     List<List<OperatorModel>> classedOperators_ = [
       [],
@@ -46,7 +44,6 @@ class GlobalData {
     List<EnemyModel> enemies_ = [];
     List<ItemModel> items_ = [];
     // operators
-    // String? stringData = prefs.getString('operator_data');
     String? stringData = await storage.read(key: 'operator_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
@@ -82,7 +79,6 @@ class GlobalData {
 
     stringData = null;
     // enemies
-    // stringData = prefs.getString('enemy_data');
     stringData = await storage.read(key: 'enemy_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
@@ -94,7 +90,6 @@ class GlobalData {
 
     stringData = null;
     // items
-    // stringData = prefs.getString('item_data');
     stringData = await storage.read(key: 'item_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
