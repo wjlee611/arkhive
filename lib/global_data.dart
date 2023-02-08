@@ -3,7 +3,7 @@ import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/screens_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class GlobalData {
   static final GlobalData _instance = GlobalData._internal();
@@ -27,10 +27,12 @@ class GlobalData {
 
   // initializer
   Future<void> globalDataInitializer() async {
-    final prefs = await SharedPreferences.getInstance();
+    // final prefs = await SharedPreferences.getInstance();
+    const storage = FlutterSecureStorage();
 
     screen = ScreenModel.main;
-    oldVer = prefs.getString('update_checker');
+    // oldVer = prefs.getString('update_checker');
+    oldVer = await storage.read(key: 'update_checker');
     List<List<OperatorModel>> classedOperators_ = [
       [],
       [],
@@ -44,7 +46,8 @@ class GlobalData {
     List<EnemyModel> enemies_ = [];
     List<ItemModel> items_ = [];
     // operators
-    String? stringData = prefs.getString('operator_data');
+    // String? stringData = prefs.getString('operator_data');
+    String? stringData = await storage.read(key: 'operator_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
       for (var jsonData in data) {
@@ -79,7 +82,8 @@ class GlobalData {
 
     stringData = null;
     // enemies
-    stringData = prefs.getString('enemy_data');
+    // stringData = prefs.getString('enemy_data');
+    stringData = await storage.read(key: 'enemy_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
       for (var jsonData in data) {
@@ -90,7 +94,8 @@ class GlobalData {
 
     stringData = null;
     // items
-    stringData = prefs.getString('item_data');
+    // stringData = prefs.getString('item_data');
+    stringData = await storage.read(key: 'item_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
       for (var jsonData in data) {

@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:square_percent_indicater/square_percent_indicater.dart';
 import 'dart:math' as math;
 
@@ -22,10 +22,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
   int cnt = 0;
   int remainDownloadAssets = 0;
 
-  _dataUpdater({
+  Future<void> _dataUpdater({
     required String category,
     required String jsonImageKey,
-    required SharedPreferences prefs,
+    required FlutterSecureStorage storage,
   }) async {
     // DOWNLOAD
     try {
@@ -40,8 +40,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
       // Get data
       DatabaseEvent databaseEvent = await databaseChild.once();
       // Save data
-      await prefs.setString(
-          '${category}_data', jsonEncode(databaseEvent.snapshot.value));
+      // await prefs.setString(
+      //     '${category}_data', jsonEncode(databaseEvent.snapshot.value));
+      await storage.write(
+          key: '${category}_data',
+          value: jsonEncode(databaseEvent.snapshot.value));
 
       var jsonDatas =
           await jsonDecode(jsonEncode(databaseEvent.snapshot.value));
@@ -53,7 +56,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
       for (var jsonData in jsonDatas['data']) {
         var key = jsonData[jsonImageKey];
         // 이미지는 데이터가 없는 경우만
-        if (prefs.getString('$category/$key') == null) {
+        // if (prefs.getString('$category/$key') == null) {
+        if (await storage.read(key: '$category/$key') == null) {
           // Get data
           try {
             // From local
@@ -69,7 +73,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
           }
           // Save Data
           if (imageData != null) {
-            await prefs.setString('$category/$key', base64.encode(imageData));
+            // await prefs.setString('$category/$key', base64.encode(imageData));
+            await storage.write(
+                key: '$category/$key', value: base64.encode(imageData));
+            print('save image @$category/$key');
           }
           setState(() {
             cnt = cnt + 1;
@@ -84,24 +91,24 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   void firebaseUpdater() async {
-    final prefs = await SharedPreferences.getInstance();
+    const storage = FlutterSecureStorage();
     // OPERATOR
     await _dataUpdater(
       category: "operator",
       jsonImageKey: "image_name",
-      prefs: prefs,
+      storage: storage,
     );
     // ENEMY
     await _dataUpdater(
       category: "enemy",
       jsonImageKey: "code",
-      prefs: prefs,
+      storage: storage,
     );
     // ITEMS
     await _dataUpdater(
       category: "item",
       jsonImageKey: "code",
-      prefs: prefs,
+      storage: storage,
     );
 
     try {
@@ -116,10 +123,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
         DatabaseEvent databaseEvent = await databaseRef.once();
         // Save data
         String? stringData = jsonEncode(databaseEvent.snapshot.value);
-        await prefs.setString('update_checker', stringData);
+        // await prefs.setString('update_checker', stringData);
+        await storage.write(key: 'update_checker', value: stringData);
         globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
       } else {
-        await prefs.setString('update_checker', globalData.newVer!);
+        // await prefs.setString('update_checker', globalData.newVer!);
+        await storage.write(key: 'update_checker', value: globalData.newVer!);
         globalData.oldVer = globalData.newVer!;
       }
 
