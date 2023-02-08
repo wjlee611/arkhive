@@ -7,6 +7,11 @@ PODS:
   - Firebase/Storage (10.3.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.3.0)
+  - firebase_app_check (0.1.1-8):
+    - Firebase/CoreOnly (~> 10.3.0)
+    - firebase_core
+    - FirebaseAppCheck (~> 10.3.0-beta)
+    - Flutter
   - firebase_core (2.4.1):
     - Firebase/CoreOnly (= 10.3.0)
     - Flutter
@@ -18,6 +23,10 @@ PODS:
     - Firebase/Storage (= 10.3.0)
     - firebase_core
     - Flutter
+  - FirebaseAppCheck (10.3.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - PromisesObjC (~> 2.1)
   - FirebaseAppCheckInterop (10.4.0)
   - FirebaseAuthInterop (10.4.0)
   - FirebaseCore (10.3.0):
@@ -53,6 +62,7 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - firebase_app_check (from `.symlinks/plugins/firebase_app_check/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
@@ -63,6 +73,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Firebase
+    - FirebaseAppCheck
     - FirebaseAppCheckInterop
     - FirebaseAuthInterop
     - FirebaseCore
@@ -76,6 +87,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  firebase_app_check:
+    :path: ".symlinks/plugins/firebase_app_check/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_database:
@@ -91,9 +104,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Firebase: f92fc551ead69c94168d36c2b26188263860acd9
+  firebase_app_check: 44e4b4a2e69608f9093ed729f1d101bccdb8badd
   firebase_core: bf59c32d2e53814f558efa20840c1902fa2fe461
   firebase_database: 64eb24851aa709a26fb33fccd1b422658e307c76
   firebase_storage: 8b85bf19de50a1886f9387924fbddf066a718965
+  FirebaseAppCheck: edbc4d99f30a2762603d618330f28046a47c031d
   FirebaseAppCheckInterop: ef074633831a90cf6c10e8f2c1e1f8b7842a446a
   FirebaseAuthInterop: fef284922da3c350f846ff85cc0dfd5186448e49
   FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a
