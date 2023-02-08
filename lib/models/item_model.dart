@@ -12,7 +12,8 @@ class ItemModel {
         info = json['info'],
         obtain = [for (var obtain_ in json['obtain']) obtain_.toString()],
         drop = [
-          for (var dropJson in json['drop']) _DropRateModel.fromJson(dropJson)
+          if (json['drop'] != null)
+            for (var dropJson in json['drop']) _DropRateModel.fromJson(dropJson)
         ];
 }
 

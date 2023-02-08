@@ -71,15 +71,18 @@ class _ItemScreenState extends State<ItemScreen> {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Transform.scale(
-                              scale: 1.5,
+                              scale: 1.8,
                               child: Stack(
                                 alignment: AlignmentDirectional.center,
                                 children: [
                                   Image.asset(
                                       'assets/images/item${globalData.items[index].tier}.png'),
-                                  Hero(
-                                    tag: globalData.items[index].code,
-                                    child: Image.memory(snapshot.data!),
+                                  Transform.scale(
+                                    scale: 0.8,
+                                    child: Hero(
+                                      tag: globalData.items[index].code,
+                                      child: Image.memory(snapshot.data!),
+                                    ),
                                   ),
                                 ],
                               ),
