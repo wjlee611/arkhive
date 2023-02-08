@@ -15,11 +15,11 @@ void main() async {
     androidProvider: AndroidProvider.debug,
   );
 
-  runApp(const MyApp());
+  runApp(const Arkhive());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Arkhive extends StatelessWidget {
+  const Arkhive({super.key});
 
   // This widget is the root of your application.
   @override
