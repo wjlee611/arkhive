@@ -4,9 +4,7 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesWidget extends StatelessWidget {
-  const FavoritesWidget({
-    Key? key,
-  }) : super(key: key);
+  const FavoritesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

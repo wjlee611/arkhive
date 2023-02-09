@@ -8,9 +8,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class PRTSWidget extends StatefulWidget {
-  const PRTSWidget({
-    Key? key,
-  }) : super(key: key);
+  const PRTSWidget({super.key});
 
   @override
   State<PRTSWidget> createState() => _PRTSWidgetState();

@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class ManualWidget extends StatelessWidget {
-  const ManualWidget({
-    Key? key,
-  }) : super(key: key);
+  const ManualWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +124,10 @@ class ManualWidget extends StatelessWidget {
 
 class ManualText extends StatelessWidget {
   const ManualText({
-    Key? key,
+    super.key,
     required this.text,
     this.isBold = false,
-  }) : super(key: key);
+  });
 
   final String text;
   final bool isBold;

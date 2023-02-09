@@ -228,7 +228,7 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                         ),
                       ),
                     ),
-                  Gaps.v52,
+                  Gaps.v60,
                 ],
               ),
             ),

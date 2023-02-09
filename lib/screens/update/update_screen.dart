@@ -1,13 +1,15 @@
 import 'dart:convert';
+import 'package:arkhive/constants/gaps.dart';
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/update/widgets/update_indicator_widget.dart';
+import 'package:arkhive/screens/update/widgets/updater_prts_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:square_percent_indicater/square_percent_indicater.dart';
-import 'dart:math' as math;
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -72,7 +74,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
           if (imageData != null) {
             await storage.write(
                 key: '$category/$key', value: base64.encode(imageData));
-            print('save image @$category/$key');
           }
           setState(() {
             cnt = cnt + 1;
@@ -149,64 +150,20 @@ class _UpdateScreenState extends State<UpdateScreen> {
         backgroundColor: Colors.blueGrey.shade700,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
-            ),
+            Gaps.v20,
             SizedBox(
-              height: 80,
-              child: Column(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blueGrey.shade100,
-                          blurRadius: 5,
-                        ),
-                      ],
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: Row(
-                      children: [
-                        Container(
-                          color: Colors.blueGrey.shade600,
-                          padding: const EdgeInsets.all(5),
-                          child: Image.asset(
-                            'assets/images/prts.png',
-                            width: 50,
-                            height: 50,
-                          ),
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                globalData.newVer == null
-                                    ? "오프라인 상태에선 업데이트 할 수 없습니다.\n종료하신 후 네트워크에 연결하신 후 다시 시도해주세요."
-                                    : updateStatus == "Pending"
-                                        ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
-                                        : updateStatus == "Update Completed!"
-                                            ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
-                                            : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontFamily: FontFamily.nanumGothic,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              height: Sizes.size80,
+              child: UpdaterPRTS(
+                text: globalData.newVer == null
+                    ? "오프라인 상태에선 업데이트 할 수 없습니다.\n종료하신 후 네트워크에 연결하신 후 다시 시도해주세요."
+                    : updateStatus == "Pending"
+                        ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
+                        : updateStatus == "Update Completed!"
+                            ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
+                            : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
               ),
             ),
             Expanded(
@@ -218,8 +175,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 2,
-                          spreadRadius: 0.1,
+                          blurRadius: Sizes.size2,
+                          spreadRadius: Sizes.size1 / 10,
                           color: Colors.black.withOpacity(0.3),
                         ),
                       ],
@@ -228,31 +185,30 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          height: 22,
-                          width: 40,
+                          height: Sizes.size20,
+                          width: Sizes.size40,
                           child: Center(
                             child: Text(
                               "상태",
                               style: TextStyle(
                                 color: Colors.blueGrey.shade800,
-                                fontSize: 10,
+                                fontSize: Sizes.size10,
                                 fontFamily: FontFamily.nanumGothic,
                               ),
                             ),
                           ),
                         ),
                         Container(
-                          height: 22,
+                          height: Sizes.size20,
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 5,
-                          ),
+                              horizontal: Sizes.size5),
                           color: Colors.yellow.shade700,
                           child: Center(
                             child: Text(
                               updateStatus,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: Sizes.size12,
                                 fontFamily: FontFamily.nanumGothic,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -262,56 +218,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 35,
+                  Gaps.v36,
+                  UpdateIndicator(
+                    current: cnt,
+                    remain: remainDownloadAssets,
                   ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Transform.rotate(
-                        angle: 45 * math.pi / 180,
-                        child: SquarePercentIndicator(
-                          width: 100,
-                          height: 100,
-                          borderRadius: 0,
-                          startAngle: StartAngle.topLeft,
-                          shadowWidth: 2,
-                          progressWidth: 5,
-                          progressColor: Colors.yellow.shade700,
-                          shadowColor: Colors.grey,
-                          progress: remainDownloadAssets == 0
-                              ? 0
-                              : cnt / remainDownloadAssets,
-                        ),
-                      ),
-                      remainDownloadAssets == 0
-                          ? Container()
-                          : Column(
-                              children: [
-                                Text(
-                                  "${((cnt / remainDownloadAssets) * 100).toStringAsFixed(1)}%",
-                                  style: TextStyle(
-                                    color: Colors.yellow.shade700,
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                Text(
-                                  "$cnt/$remainDownloadAssets",
-                                  style: TextStyle(
-                                    color: Colors.yellow.shade700,
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  Gaps.v28,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -332,7 +244,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                             color: Colors.white,
                             fontFamily: FontFamily.nanumGothic,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14,
+                            fontSize: Sizes.size14,
                           ),
                         ),
                       ),

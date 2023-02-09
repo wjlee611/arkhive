@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,12 +6,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class UrlWidget extends StatelessWidget {
   const UrlWidget({
-    Key? key,
+    super.key,
     this.platform = 'browser',
     required this.url,
     required this.title,
     required this.color,
-  }) : super(key: key);
+  });
 
   final String platform;
   final String url;
@@ -38,12 +39,12 @@ class UrlWidget extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: 5,
-          vertical: 3,
+          horizontal: Sizes.size5,
+          vertical: Sizes.size3,
         ),
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(2),
+          borderRadius: BorderRadius.circular(Sizes.size2),
         ),
         child: Row(
           children: [
@@ -62,7 +63,7 @@ class UrlWidget extends StatelessWidget {
             Text(
               " $title",
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: Sizes.size14,
                 fontFamily: FontFamily.nanumGothic,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,

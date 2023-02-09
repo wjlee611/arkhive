@@ -79,7 +79,7 @@ class _EnemyScreenState extends State<EnemyScreen> {
                       '///    ${globalData.enemies.length} results    ///',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 12,
+                        fontSize: Sizes.size12,
                         fontFamily: FontFamily.nanumGothic,
                         fontWeight: FontWeight.w700,
                       ),

@@ -1,11 +1,22 @@
+import 'package:arkhive/constants/gaps.dart';
+import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/information/widgets/info_container_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class InfoScreen extends StatelessWidget {
+class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
 
-  void tabDonate() {
+  @override
+  State<InfoScreen> createState() => _InfoScreenState();
+}
+
+class _InfoScreenState extends State<InfoScreen> {
+  final GlobalData _globalData = GlobalData();
+
+  void _tabDonate() {
     // TODO: donate function
   }
 
@@ -25,51 +36,49 @@ class InfoScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(Sizes.size32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 20,
-              ),
+              Gaps.v20,
               Column(
                 children: [
                   Transform.rotate(
                     angle: 45 * math.pi / 180,
                     child: Container(
-                      width: 65,
-                      height: 65,
+                      width: Sizes.size64,
+                      height: Sizes.size64,
                       decoration: BoxDecoration(
                         color: Colors.yellow.shade700,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.yellow.shade700,
-                            blurRadius: 5,
+                            blurRadius: Sizes.size5,
                           )
                         ],
                       ),
                       child: Center(
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: Sizes.size60,
+                          height: Sizes.size60,
                           color: Colors.white,
                           child: Center(
                             child: Container(
-                              width: 50,
-                              height: 50,
+                              width: Sizes.size48,
+                              height: Sizes.size48,
                               decoration: BoxDecoration(
                                 color: Colors.yellow.shade700,
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.yellow.shade900,
-                                    blurRadius: 5,
+                                    blurRadius: Sizes.size5,
                                   )
                                 ],
                               ),
                               child: Center(
                                 child: Container(
-                                  width: 40,
-                                  height: 40,
+                                  width: Sizes.size40,
+                                  height: Sizes.size40,
                                   color: Colors.white,
                                 ),
                               ),
@@ -81,72 +90,66 @@ class InfoScreen extends StatelessWidget {
                   ),
                   Center(
                     child: Transform.translate(
-                      offset: const Offset(0, -55),
+                      offset: const Offset(0, -Sizes.size52 - Sizes.size2),
                       child: Icon(
                         Icons.hive_outlined,
                         color: Colors.yellow.shade800,
-                        size: 45,
+                        size: Sizes.size44,
                       ),
                     ),
                   ),
                   Transform.translate(
                     offset: const Offset(
                       0,
-                      -30,
+                      -Sizes.size28,
                     ),
                     child: Text(
                       'Arkhive',
                       style: TextStyle(
                           color: Colors.yellow.shade700,
                           fontFamily: FontFamily.nanumGothic,
-                          fontSize: 36,
+                          fontSize: Sizes.size36,
                           fontWeight: FontWeight.w700,
                           shadows: const [
                             Shadow(
                               color: Colors.black38,
-                              blurRadius: 5,
+                              blurRadius: Sizes.size5,
                             ),
                           ]),
                     ),
                   ),
                   const InfoContainer(
                     tag: "버전",
-                    info: "1.0.0",
+                    info: GlobalData.appVersion,
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const InfoContainer(
+                  Gaps.v20,
+                  InfoContainer(
                     tag: "게임 버전",
-                    info: "13.0.01(89)_22.12.27",
+                    info: _globalData.oldVer.replaceAll('"', ''),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Gaps.v20,
                   const InfoContainer(
                     tag: "개발자",
                     info: "Dev.Woong",
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  Gaps.v20,
                   GestureDetector(
-                    onTap: tabDonate,
+                    onTap: _tabDonate,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 50,
+                            vertical: Sizes.size10,
+                            horizontal: Sizes.size52,
                           ),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(Sizes.size10),
                             color: Colors.white,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.blueGrey.shade100,
-                                blurRadius: 5,
+                                blurRadius: Sizes.size5,
                               ),
                             ],
                           ),
@@ -161,71 +164,6 @@ class InfoScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class InfoContainer extends StatelessWidget {
-  final String tag, info;
-
-  const InfoContainer({
-    super.key,
-    required this.tag,
-    required this.info,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueGrey.shade100,
-            blurRadius: 5,
-          ),
-        ],
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: Row(
-        children: [
-          Container(
-            width: 120,
-            color: Colors.blueGrey.shade600,
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 20,
-            ),
-            child: Center(
-              child: Text(
-                tag,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  info,
-                  style: TextStyle(
-                    color: Colors.blueGrey.shade700,
-                    fontSize: 14,
-                    fontFamily: FontFamily.nanumGothic,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

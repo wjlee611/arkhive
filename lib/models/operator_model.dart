@@ -1,11 +1,8 @@
 class OperatorModel {
   final String name, rare, class_, position, imageName;
-  // ignore: library_private_types_in_public_api
-  final List<_TalentModel> talent;
-  // ignore: library_private_types_in_public_api
-  final List<_SkillModel> skill;
-  // ignore: library_private_types_in_public_api
-  final List<_ModuleModel> module;
+  final List<TalentModel> talent;
+  final List<SkillModel> skill;
+  final List<ModuleModel> module;
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
@@ -15,31 +12,31 @@ class OperatorModel {
         imageName = json["image_name"],
         talent = [
           if (json['talent'] != null)
-            for (var talJson in json['talent']) _TalentModel.fromJson(talJson)
+            for (var talJson in json['talent']) TalentModel.fromJson(talJson)
         ],
         skill = [
           if (json['skill'] != null)
-            for (var skillJson in json['skill']) _SkillModel.fronJson(skillJson)
+            for (var skillJson in json['skill']) SkillModel.fronJson(skillJson)
         ],
         module = [
           if (json['module'] != null)
             for (var moduleJson in json['module'])
-              _ModuleModel.fromJson(moduleJson)
+              ModuleModel.fromJson(moduleJson)
         ];
 }
 
-class _TalentModel {
+class TalentModel {
   final String name, info;
 
-  _TalentModel.fromJson(Map<String, dynamic> json)
+  TalentModel.fromJson(Map<String, dynamic> json)
       : name = json['talent_name'],
         info = json['talent_info'];
 }
 
-class _SkillModel {
+class SkillModel {
   final String name, sp, duration, type, info;
 
-  _SkillModel.fronJson(Map<String, dynamic> json)
+  SkillModel.fronJson(Map<String, dynamic> json)
       : name = json['skill_name'],
         sp = json['sp'],
         duration = json['duration'],
@@ -47,11 +44,11 @@ class _SkillModel {
         info = json['info'];
 }
 
-class _ModuleModel {
+class ModuleModel {
   final String name, code;
   final List<_ModuleEffectModel> effect;
 
-  _ModuleModel.fromJson(Map<String, dynamic> json)
+  ModuleModel.fromJson(Map<String, dynamic> json)
       : name = json['module_name'],
         code = json['module_code'],
         effect = [
@@ -62,11 +59,11 @@ class _ModuleModel {
 
 class _ModuleEffectModel {
   final String stat;
-  final _TalentModel talent;
+  final TalentModel talent;
 
   _ModuleEffectModel.fromJson(Map<String, dynamic> json)
       : stat = json['stat'],
-        talent = _TalentModel.fromJson(json['talent']);
+        talent = TalentModel.fromJson(json['talent']);
 }
 
 class OperatorPositions {

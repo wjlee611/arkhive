@@ -14,8 +14,10 @@ class GlobalData {
     globalDataInitializer();
   }
   // global variables
+  static const String appVersion = "1.0.0";
   late String screen;
-  String? oldVer, newVer;
+  late String oldVer;
+  String? newVer;
   late List<List<OperatorModel>> _classedOperators;
   late List<EnemyModel> _enemies;
   late List<ItemModel> _items;
@@ -30,7 +32,7 @@ class GlobalData {
     const storage = FlutterSecureStorage();
 
     screen = ScreenModel.main;
-    oldVer = await storage.read(key: 'update_checker');
+    oldVer = await storage.read(key: 'update_checker') ?? "업데이트 필요!";
     List<List<OperatorModel>> classedOperators_ = [
       [],
       [],

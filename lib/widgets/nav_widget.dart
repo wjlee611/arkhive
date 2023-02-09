@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/screens_model.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
@@ -8,6 +9,8 @@ import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
+import 'package:arkhive/widgets/nav_new_screen_listtile_widget.dart';
+import 'package:arkhive/widgets/nav_stack_screen_listtile_widget.dart';
 import 'package:flutter/material.dart';
 import '../global_data.dart';
 import 'dart:math' as math;
@@ -20,79 +23,56 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
-  GlobalData globalData = GlobalData();
-
-  Route _createRoute(Widget widget) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => widget,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(1.0, 0.0);
-        var end = Offset.zero;
-        var curve = Curves.easeInOut;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
+  final GlobalData _globalData = GlobalData();
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.blueGrey.shade700,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 200,
-            child: Column(
+      child: SafeArea(
+        child: Column(
+          children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Transform.translate(
-                  offset: const Offset(
-                    0,
-                    44,
-                  ),
+                  offset: const Offset(0, Sizes.size44),
                   child: Transform.rotate(
                     angle: 45 * math.pi / 180,
                     child: Container(
-                      width: 65,
-                      height: 65,
+                      width: Sizes.size64,
+                      height: Sizes.size64,
                       decoration: BoxDecoration(
                         color: Colors.yellow.shade700,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.yellow.shade700,
-                            blurRadius: 5,
+                            blurRadius: Sizes.size5,
                           )
                         ],
                       ),
                       child: Center(
                         child: Container(
-                          width: 60,
-                          height: 60,
+                          width: Sizes.size60,
+                          height: Sizes.size60,
                           color: Colors.blueGrey.shade700,
                           child: Center(
                             child: Container(
-                              width: 50,
-                              height: 50,
+                              width: Sizes.size48,
+                              height: Sizes.size48,
                               decoration: BoxDecoration(
                                 color: Colors.yellow.shade700,
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.yellow.shade900,
-                                    blurRadius: 5,
+                                    blurRadius: Sizes.size5,
                                   )
                                 ],
                               ),
                               child: Center(
                                 child: Container(
-                                  width: 40,
-                                  height: 40,
+                                  width: Sizes.size40,
+                                  height: Sizes.size40,
                                   color: Colors.blueGrey.shade700,
                                 ),
                               ),
@@ -104,22 +84,22 @@ class _NavDrawerState extends State<NavDrawer> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 70),
+                  padding: EdgeInsets.only(bottom: Sizes.size64),
                   child: Text(
                     "Menu",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: FontFamily.nanumGothic,
                       fontWeight: FontWeight.w700,
-                      fontSize: 20,
+                      fontSize: Sizes.size20,
                       shadows: [
                         Shadow(
                           color: Colors.black,
-                          blurRadius: 30,
+                          blurRadius: Sizes.size28,
                         ),
                         Shadow(
                           color: Colors.black,
-                          blurRadius: 30,
+                          blurRadius: Sizes.size28,
                         ),
                       ],
                     ),
@@ -127,250 +107,96 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
               ],
             ),
-          ),
-          Flexible(
-            flex: 1,
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                ListTile(
-                  leading: Icon(
-                    Icons.home_outlined,
-                    color: globalData.screen == ScreenModel.main
-                        ? Colors.yellow.shade700
-                        : Colors.white,
+            Flexible(
+              flex: 1,
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  NewScreenListTile(
+                    id: ScreenModel.main,
+                    isSelected: _globalData.screen == ScreenModel.main,
+                    icon: Icons.home_outlined,
+                    title: '메인 화면',
+                    newScreen: const HomeScreen(),
                   ),
-                  title: Text(
-                    '메인 화면',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.main
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.main
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
+                  NewScreenListTile(
+                    id: ScreenModel.item,
+                    isSelected: _globalData.screen == ScreenModel.item,
+                    icon: Icons.hive_outlined,
+                    title: '창고 아이템',
+                    newScreen: const ItemScreen(),
                   ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.main) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const HomeScreen()));
-                      globalData.screen = ScreenModel.main;
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.hive_outlined,
-                    color: globalData.screen == ScreenModel.item
-                        ? Colors.yellow.shade700
-                        : Colors.white,
+                  NewScreenListTile(
+                    id: ScreenModel.gimmick,
+                    isSelected: _globalData.screen == ScreenModel.gimmick,
+                    icon: Icons.api_outlined,
+                    title: '스테이지 기믹',
+                    newScreen: const GimmickScreen(),
                   ),
-                  title: Text(
-                    '창고 아이템',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.item
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.item
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
+                  NewScreenListTile(
+                    id: ScreenModel.stage,
+                    isSelected: _globalData.screen == ScreenModel.stage,
+                    icon: Icons.account_tree_outlined,
+                    title: '스테이지 정보',
+                    newScreen: const StageScreen(),
                   ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.item) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const ItemScreen()));
-                      globalData.screen = ScreenModel.item;
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.api_outlined,
-                    color: globalData.screen == ScreenModel.gimmick
-                        ? Colors.yellow.shade700
-                        : Colors.white,
+                  NewScreenListTile(
+                    id: ScreenModel.operators,
+                    isSelected: _globalData.screen == ScreenModel.operators,
+                    icon: Icons.badge_outlined,
+                    title: '오퍼레이터',
+                    newScreen: const OperatorScreen(),
                   ),
-                  title: Text(
-                    '스테이지 기믹',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.gimmick
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.gimmick
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
+                  NewScreenListTile(
+                    id: ScreenModel.enemy,
+                    isSelected: _globalData.screen == ScreenModel.enemy,
+                    icon: Icons.whatshot_outlined,
+                    title: '적',
+                    newScreen: const EnemyScreen(),
                   ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.gimmick) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const GimmickScreen()));
-                      globalData.screen = ScreenModel.gimmick;
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.account_tree_outlined,
-                    color: globalData.screen == ScreenModel.stage
-                        ? Colors.yellow.shade700
-                        : Colors.white,
-                  ),
-                  title: Text(
-                    '스테이지 정보',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.stage
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.stage
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
-                  ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.stage) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const StageScreen()));
-                      globalData.screen = ScreenModel.stage;
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.badge_outlined,
-                    color: globalData.screen == ScreenModel.operators
-                        ? Colors.yellow.shade700
-                        : Colors.white,
-                  ),
-                  title: Text(
-                    '오퍼레이터',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.operators
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.operators
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
-                  ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.operators) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const OperatorScreen()));
-                      globalData.screen = ScreenModel.operators;
-                    }
-                  },
-                ),
-                ListTile(
-                  leading: Icon(
-                    Icons.whatshot_outlined,
-                    color: globalData.screen == ScreenModel.enemy
-                        ? Colors.yellow.shade700
-                        : Colors.white,
-                  ),
-                  title: Text(
-                    '적',
-                    style: TextStyle(
-                      color: globalData.screen == ScreenModel.enemy
-                          ? Colors.yellow.shade700
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: globalData.screen == ScreenModel.enemy
-                          ? FontWeight.w700
-                          : FontWeight.w400,
-                    ),
-                  ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    if (globalData.screen != ScreenModel.enemy) {
-                      Navigator.pushReplacement(
-                          context, _createRoute(const EnemyScreen()));
-                      globalData.screen = ScreenModel.enemy;
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 30,
-                  child: Center(
-                    child: FractionallySizedBox(
-                      widthFactor: 0.7,
-                      child: Container(
-                        height: 1,
-                        color: Colors.white,
+                  SizedBox(
+                    height: 30,
+                    child: Center(
+                      child: FractionallySizedBox(
+                        widthFactor: 0.7,
+                        child: Container(
+                          height: 1,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.settings,
-                    color: Colors.white,
+                  const StackScreenListTile(
+                    icon: Icons.settings,
+                    title: '설정',
+                    newScreen: SettingsScreen(),
                   ),
-                  title: const Text(
-                    '설정',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                    ),
+                  const StackScreenListTile(
+                    icon: Icons.info_outline_rounded,
+                    title: '정보 / 후원',
+                    newScreen: InfoScreen(),
                   ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    Navigator.push(
-                        context, _createRoute(const SettingsScreen()));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.info_outline_rounded,
-                    color: Colors.white,
-                  ),
-                  title: const Text(
-                    '정보 / 후원',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                    ),
-                  ),
-                  onTap: () {
-                    Scaffold.of(context).closeDrawer();
-                    Navigator.push(context, _createRoute(const InfoScreen()));
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 7),
+            SizedBox(
+              height: Sizes.size20,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    "Arkhive 1.0.0",
+                    "Arkhive ${GlobalData.appVersion}",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: FontFamily.nanumGothic,
-                      fontSize: 10,
+                      fontSize: Sizes.size10,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

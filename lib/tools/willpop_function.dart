@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,12 @@ class WillPopFunction {
       _currentBackPressTime = now;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          elevation: 0,
           content: const Text(
             '종료할까요?',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: Sizes.size14,
               fontFamily: FontFamily.nanumGothic,
               fontWeight: FontWeight.w700,
             ),
