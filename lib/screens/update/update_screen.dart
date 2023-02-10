@@ -65,10 +65,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     .buffer
                     .asUint8List();
           } catch (_) {
-            // From firebase
-            var storageChild = storageRef.child("$category/$key.png");
-            imageData =
-                await storageChild.getData(1024 * 200); // get under 200kb image
+            try {
+              // From firebase
+              var storageChild = storageRef.child("$category/$key.png");
+              imageData = await storageChild
+                  .getData(1024 * 200); // get under 200kb image
+            } catch (_) {
+              continue;
+            }
           }
           // Save Data
           if (imageData != null) {
