@@ -1,7 +1,7 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/tools/load_image_from_sharedpreference.dart';
+import 'package:arkhive/tools/load_image_from_securestorage.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -40,8 +40,13 @@ class EnemyButton extends StatelessWidget {
                 Hero(
                   tag: enemy.code,
                   child: snapshot.hasData
-                      ? Image.memory(snapshot.data!)
-                      : Image.asset('assets/images/prts.png'),
+                      ? Image.memory(
+                          snapshot.data!,
+                          gaplessPlayback: true,
+                        )
+                      : Image.asset(
+                          'assets/images/prts.png',
+                        ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(

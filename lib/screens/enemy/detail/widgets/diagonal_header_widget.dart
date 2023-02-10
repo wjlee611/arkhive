@@ -54,6 +54,7 @@ class DiagonalHeader extends StatelessWidget {
                           image!,
                           width: Sizes.size96,
                           height: Sizes.size96,
+                          gaplessPlayback: true,
                         )
                       : Image.asset(
                           'assets/images/prts.png',

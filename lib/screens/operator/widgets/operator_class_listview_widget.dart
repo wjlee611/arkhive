@@ -4,7 +4,7 @@ import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/widgets/limited_banner_widget.dart';
-import 'package:arkhive/tools/load_image_from_sharedpreference.dart';
+import 'package:arkhive/tools/load_image_from_securestorage.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -79,6 +79,7 @@ class _OperatorClassListViewState extends State<OperatorClassListView> {
                                   snapshot.data!,
                                   width: Sizes.size52,
                                   height: Sizes.size52,
+                                  gaplessPlayback: true,
                                 )
                               : Image.asset(
                                   "assets/images/prts.png",

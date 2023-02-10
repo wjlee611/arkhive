@@ -47,7 +47,12 @@ class OperatorImage extends StatelessWidget {
                   child: Transform.rotate(
                     angle: -45 * math.pi / 180,
                     child: opImage != null
-                        ? Image.memory(opImage!)
+                        ? Image.memory(
+                            opImage!,
+                            width: Sizes.size96,
+                            height: Sizes.size96,
+                            gaplessPlayback: true,
+                          )
                         : Image.asset(
                             'assets/images/prts.png',
                             width: Sizes.size96,

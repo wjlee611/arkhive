@@ -117,6 +117,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                               widget.itemImage!,
                               width: 100,
                               height: 100,
+                              gaplessPlayback: true,
                             )
                           : Image.asset(
                               'assets/images/prts.png',
