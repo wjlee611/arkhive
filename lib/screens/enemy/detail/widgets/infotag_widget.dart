@@ -36,7 +36,7 @@ class InfoTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.size4),
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.size5),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

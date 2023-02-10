@@ -108,11 +108,13 @@ class _OperatorClassStickyHeaderState extends State<OperatorClassStickyHeader> {
                   ),
                   GestureDetector(
                     onTap: _onOpenTap,
-                    child: Icon(
-                      isOpen
-                          ? Icons.keyboard_arrow_down_rounded
-                          : Icons.keyboard_arrow_up_rounded,
-                      color: Colors.white,
+                    child: AnimatedRotation(
+                      turns: isOpen ? 0 : -0.5,
+                      duration: const Duration(milliseconds: 200),
+                      child: const Icon(
+                        Icons.keyboard_arrow_up_rounded,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

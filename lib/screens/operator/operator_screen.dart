@@ -88,6 +88,9 @@ class _OperatorScreenState extends State<OperatorScreen> {
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: CustomScrollView(
           controller: _controller,
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           slivers: [
             for (int index = 0;
                 index < globalData.classedOperators.length;

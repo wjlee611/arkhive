@@ -43,6 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: SingleChildScrollView(
+          // physics: const BouncingScrollPhysics(
+          //   parent: AlwaysScrollableScrollPhysics(),
+          // ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
             child: Column(
@@ -51,6 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Gaps.v20,
                 const PRTSWidget(),
                 SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: Sizes.size20),

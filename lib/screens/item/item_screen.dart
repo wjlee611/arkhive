@@ -39,6 +39,9 @@ class _ItemScreenState extends State<ItemScreen> {
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           slivers: [
             SliverPadding(
               padding: const EdgeInsets.all(Sizes.size20),

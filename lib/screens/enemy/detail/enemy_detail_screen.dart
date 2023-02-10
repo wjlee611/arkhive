@@ -73,6 +73,9 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

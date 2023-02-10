@@ -28,7 +28,7 @@ class _NavDrawerState extends State<NavDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.blueGrey.shade700,
+      backgroundColor: Colors.blueGrey.shade700.withOpacity(0.8),
       child: SafeArea(
         child: Column(
           children: [
@@ -55,7 +55,7 @@ class _NavDrawerState extends State<NavDrawer> {
                         child: Container(
                           width: Sizes.size60,
                           height: Sizes.size60,
-                          color: Colors.blueGrey.shade700,
+                          color: Colors.blueGrey.shade700.withOpacity(0.8),
                           child: Center(
                             child: Container(
                               width: Sizes.size48,
@@ -73,7 +73,8 @@ class _NavDrawerState extends State<NavDrawer> {
                                 child: Container(
                                   width: Sizes.size40,
                                   height: Sizes.size40,
-                                  color: Colors.blueGrey.shade700,
+                                  color:
+                                      Colors.blueGrey.shade700.withOpacity(0.8),
                                 ),
                               ),
                             ),
@@ -110,6 +111,9 @@ class _NavDrawerState extends State<NavDrawer> {
             Flexible(
               flex: 1,
               child: ListView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
                 padding: EdgeInsets.zero,
                 children: [
                   NewScreenListTile(
