@@ -95,9 +95,6 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               ),
               clipBehavior: Clip.hardEdge,
               child: ListView(
-                physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics(),
-                ),
                 children: [
                   Gaps.v44,
                   Row(

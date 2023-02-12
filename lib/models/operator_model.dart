@@ -46,6 +46,7 @@ class SkillModel {
 
 class ModuleModel {
   final String name, code;
+  // ignore: library_private_types_in_public_api
   final List<_ModuleEffectModel> effect;
 
   ModuleModel.fromJson(Map<String, dynamic> json)

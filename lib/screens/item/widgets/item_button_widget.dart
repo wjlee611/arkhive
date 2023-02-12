@@ -37,34 +37,27 @@ class ItemButton extends StatelessWidget {
                   width: Sizes.size52,
                   height: Sizes.size52,
                 ),
-                if (snapshot.hasData)
-                  Transform.translate(
-                    offset: const Offset(0, Sizes.size1),
-                    child: Transform.scale(
-                      scale: 0.85,
-                      child: Hero(
-                        tag: item.code,
-                        child: Image.memory(
-                          snapshot.data!,
-                          width: Sizes.size52,
-                          height: Sizes.size52,
-                          gaplessPlayback: true,
-                        ),
-                      ),
-                    ),
-                  )
-                else
-                  Transform.scale(
-                    scale: 0.7,
+                Transform.translate(
+                  offset: const Offset(0, Sizes.size1),
+                  child: Transform.scale(
+                    scale: 0.85,
                     child: Hero(
                       tag: item.code,
-                      child: Image.asset(
-                        'assets/images/prts.png',
-                        width: Sizes.size52,
-                        height: Sizes.size52,
-                      ),
+                      child: snapshot.hasData
+                          ? Image.memory(
+                              snapshot.data!,
+                              width: Sizes.size52,
+                              height: Sizes.size52,
+                              gaplessPlayback: true,
+                            )
+                          : Image.asset(
+                              'assets/images/prts.png',
+                              width: Sizes.size52,
+                              height: Sizes.size52,
+                            ),
                     ),
                   ),
+                ),
               ],
             ),
           );

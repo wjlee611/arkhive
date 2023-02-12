@@ -39,9 +39,6 @@ class _EnemyScreenState extends State<EnemyScreen> {
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: CustomScrollView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
           slivers: [
             SliverPadding(
               padding: const EdgeInsets.all(Sizes.size20),
