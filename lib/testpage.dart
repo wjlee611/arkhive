@@ -36,12 +36,10 @@ class _TestPageScreenState extends State<TestPageScreen> {
       data = await rootBundle
           .loadString('assets/json/skill/${skill.skillId}.json');
       jsonData = json.decode(data);
-
-      setState(() {
-        skadiSkills.add(SkillModel.fromJson(jsonData['data']));
-        _onTapElite(0);
-      });
+      skadiSkills.add(SkillModel.fromJson(jsonData['data']));
     }
+    _onTapElite(0);
+    setState(() {});
   }
 
   @override
@@ -62,10 +60,10 @@ class _TestPageScreenState extends State<TestPageScreen> {
       _elite = i;
       maxHpDiff = (skadi!.phases[_elite].attributesKeyFrames.last.data.maxHp -
               skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp) /
-          skadi!.phases[_elite].maxLevel;
+          (skadi!.phases[_elite].maxLevel - 1);
       atkFavDiff = (skadi!.favorKeyFrames.last.data.atk -
               skadi!.favorKeyFrames.first.data.atk) /
-          skadi!.favorKeyFrames.last.level;
+          (skadi!.favorKeyFrames.last.level * 4);
     });
   }
 
@@ -101,7 +99,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: skadi != null
+        child: (skadi != null && skadiSkills.isNotEmpty)
             ? Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -134,7 +132,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
                           )
                       ],
                     ),
-                    Text('Level ${_level.floor()}'),
+                    Text('Level ${_level.toInt()}'),
                     Slider(
                       min: 1,
                       max: skadi!.phases[_elite].maxLevel.toDouble(),
@@ -146,12 +144,12 @@ class _TestPageScreenState extends State<TestPageScreen> {
                       },
                     ),
                     Text(
-                        'hp ${(skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp + maxHpDiff * _level.floor()).floor()}'),
+                        'hp ${(skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp + maxHpDiff * (_level.toInt() - 1)).round()}'),
                     const SizedBox(height: 10),
-                    Text('Favor ${_favor.floor()}'),
+                    Text('Favor ${_favor.toInt()}'),
                     Slider(
                       min: 0,
-                      max: skadi!.favorKeyFrames.last.level.toDouble(),
+                      max: skadi!.favorKeyFrames.last.level.toDouble() * 4,
                       value: _favor,
                       onChanged: (value) {
                         setState(() {
@@ -160,7 +158,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
                       },
                     ),
                     Text(
-                        'atk +${(skadi!.favorKeyFrames.first.data.atk + atkFavDiff * _favor.floor()).floor()}'),
+                        'atk +${(skadi!.favorKeyFrames.first.data.atk + atkFavDiff * _favor.toInt()).round()}'),
                     const SizedBox(height: 10),
                     for (var talent in skadi!.talents)
                       _talentSelectorWidget(
@@ -183,11 +181,11 @@ class _TestPageScreenState extends State<TestPageScreen> {
                     Text(skadiSkills
                         .last.levels[_skillLevel.floor() - 1].description),
                     Text(
-                        "SP ${skadiSkills.last.levels[_skillLevel.floor() - 1].spData.initSp} > ${skadiSkills.last.levels[_skillLevel.floor() - 1].spData.spCost}"),
+                        "SP ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.initSp} > ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.spCost}"),
                     Text(
-                        'Duration ${skadiSkills.last.levels[_skillLevel.floor() - 1].duration.toStringAsFixed(0)}s'),
+                        'Duration ${skadiSkills.last.levels[_skillLevel.toInt() - 1].duration.toStringAsFixed(0)}s'),
                     for (var board in skadiSkills
-                        .last.levels[_skillLevel.floor() - 1].blackboard)
+                        .last.levels[_skillLevel.toInt() - 1].blackboard)
                       Text("${board.key} val: ${board.value}")
                   ],
                 ),
