@@ -15,6 +15,13 @@ class TestPageScreen extends StatefulWidget {
 class _TestPageScreenState extends State<TestPageScreen> {
   OperatorModel? skadi;
   List<SkillModel> skadiSkills = [];
+  int _potential = 0;
+  int _elite = 0;
+  double _level = 1;
+  double _favor = 0;
+  double maxHpDiff = 0;
+  double atkFavDiff = 0;
+  double _skillLevel = 1;
 
   Future<void> loadJsonData() async {
     String data =
@@ -32,6 +39,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
 
       setState(() {
         skadiSkills.add(SkillModel.fromJson(jsonData['data']));
+        _onTapElite(0);
       });
     }
   }
@@ -42,16 +50,147 @@ class _TestPageScreenState extends State<TestPageScreen> {
     loadJsonData();
   }
 
+  void _onTapPotential(int i) {
+    setState(() {
+      _potential = i - 1;
+    });
+  }
+
+  void _onTapElite(int i) {
+    setState(() {
+      _level = 1;
+      _elite = i;
+      maxHpDiff = (skadi!.phases[_elite].attributesKeyFrames.last.data.maxHp -
+              skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp) /
+          skadi!.phases[_elite].maxLevel;
+      atkFavDiff = (skadi!.favorKeyFrames.last.data.atk -
+              skadi!.favorKeyFrames.first.data.atk) /
+          skadi!.favorKeyFrames.last.level;
+    });
+  }
+
+  Widget _talentSelectorWidget({
+    required List<OperatorTalentsCandidatesModel> candidates,
+    required int elite,
+    required int potential,
+  }) {
+    String title = "", description = "";
+
+    for (var candidate in candidates) {
+      if (candidate.unlockCondition.phase == elite) {
+        if (candidate.requiredPotentialRank <= potential) {
+          title = candidate.name;
+          description = candidate.description;
+        }
+      }
+    }
+
+    if (title == "") return Container();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title),
+        Text(description),
+        const SizedBox(height: 10),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: skadi != null
-            ? Column(
-                children: [
-                  Text(skadi!.name),
-                  for (var skill in skadiSkills) Text(skill.levels[0].name),
-                ],
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(skadi!.name),
+                    const SizedBox(height: 10),
+                    Text('Pot ${_potential + 1}'),
+                    Row(
+                      children: [
+                        for (int i = 1;
+                            i < skadi!.potentialRanks.length + 2;
+                            i++)
+                          GestureDetector(
+                            onTap: () => _onTapPotential(i),
+                            child: Text('[pot $i] '),
+                          )
+                      ],
+                    ),
+                    for (int i = 0; i < _potential; i++)
+                      Text(skadi!.potentialRanks[i].description),
+                    const SizedBox(height: 10),
+                    Text('Elite $_elite'),
+                    Row(
+                      children: [
+                        for (int i = 0; i < skadi!.phases.length; i++)
+                          GestureDetector(
+                            onTap: () => _onTapElite(i),
+                            child: Text('[elite ${i + 0}] '),
+                          )
+                      ],
+                    ),
+                    Text('Level ${_level.floor()}'),
+                    Slider(
+                      min: 1,
+                      max: skadi!.phases[_elite].maxLevel.toDouble(),
+                      value: _level,
+                      onChanged: (value) {
+                        setState(() {
+                          _level = value;
+                        });
+                      },
+                    ),
+                    Text(
+                        'hp ${(skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp + maxHpDiff * _level.floor()).floor()}'),
+                    const SizedBox(height: 10),
+                    Text('Favor ${_favor.floor()}'),
+                    Slider(
+                      min: 0,
+                      max: skadi!.favorKeyFrames.last.level.toDouble(),
+                      value: _favor,
+                      onChanged: (value) {
+                        setState(() {
+                          _favor = value;
+                        });
+                      },
+                    ),
+                    Text(
+                        'atk +${(skadi!.favorKeyFrames.first.data.atk + atkFavDiff * _favor.floor()).floor()}'),
+                    const SizedBox(height: 10),
+                    for (var talent in skadi!.talents)
+                      _talentSelectorWidget(
+                        candidates: talent.candidates,
+                        elite: _elite,
+                        potential: _potential,
+                      ),
+                    for (var skill in skadiSkills) Text(skill.levels[0].name),
+                    Text('Skill Level ${_skillLevel.floor()}'),
+                    Slider(
+                      min: 1,
+                      max: skadiSkills.last.levels.length.toDouble(),
+                      value: _skillLevel,
+                      onChanged: (value) {
+                        setState(() {
+                          _skillLevel = value;
+                        });
+                      },
+                    ),
+                    Text(skadiSkills
+                        .last.levels[_skillLevel.floor() - 1].description),
+                    Text(
+                        "SP ${skadiSkills.last.levels[_skillLevel.floor() - 1].spData.initSp} > ${skadiSkills.last.levels[_skillLevel.floor() - 1].spData.spCost}"),
+                    Text(
+                        'Duration ${skadiSkills.last.levels[_skillLevel.floor() - 1].duration.toStringAsFixed(0)}s'),
+                    for (var board in skadiSkills
+                        .last.levels[_skillLevel.floor() - 1].blackboard)
+                      Text("${board.key} val: ${board.value}")
+                  ],
+                ),
               )
             : const Text('no data'),
       ),
