@@ -156,46 +156,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Gaps.v7,
-                          Container(
-                            padding: const EdgeInsets.all(Sizes.size10),
-                            decoration: BoxDecoration(
-                              color: Colors.blueGrey.shade100,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.blueGrey.shade700,
-                                  width: Sizes.size1,
-                                ),
-                                left: BorderSide(
-                                  color: Colors.blueGrey.shade700,
-                                  width: Sizes.size3,
-                                ),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "스테이지",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size14,
-                                  ),
-                                ),
-                                Text(
-                                  "이성/1개",
-                                  style: TextStyle(
-                                    color: Colors.blueGrey.shade700,
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           for (int i = 0; i < widget.item.drop.length; i++)
                             EfficiencyStageRow(
                               index: i,
