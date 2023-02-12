@@ -1,3 +1,5 @@
+import 'package:arkhive/models/common_models.dart';
+
 class OperatorModel {
   final String name, description, position, profession, subProfessionId;
   final String? nationId, groupId, teamId;
@@ -148,7 +150,7 @@ class OperatorTalentsCandidatesModel {
   final OperatorUnlockCondModel unlockCondition;
   final int requiredPotentialRank;
   final String name, description;
-  final List<OperatorBlackboardModel> blackboard;
+  final List<BlackboardModel> blackboard;
 
   OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
       : unlockCondition =
@@ -158,8 +160,7 @@ class OperatorTalentsCandidatesModel {
         description = json['description'],
         blackboard = [
           if (json['blackboard'] != null)
-            for (var data in json['blackboard'])
-              OperatorBlackboardModel.fromJson(data)
+            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
         ];
 }
 
@@ -211,13 +212,4 @@ class OperatorUnlockCondModel {
   OperatorUnlockCondModel.fromJson(Map<String, dynamic> json)
       : phase = json['phase'],
         level = json['level'];
-}
-
-class OperatorBlackboardModel {
-  final String key;
-  final double value;
-
-  OperatorBlackboardModel.fromJson(Map<String, dynamic> json)
-      : key = json['key'],
-        value = json['value'];
 }
