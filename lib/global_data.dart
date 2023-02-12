@@ -49,33 +49,33 @@ class GlobalData {
     String? stringData = await storage.read(key: 'operator_data');
     if (stringData != null) {
       var data = await json.decode(stringData)['data'];
-      for (var jsonData in data) {
-        OperatorModel operator_ = OperatorModel.fromJson(jsonData);
-        if (operator_.class_ == OperatorPositions.vanguard) {
-          classedOperators_[0].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.guard) {
-          classedOperators_[1].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.defender) {
-          classedOperators_[2].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.sniper) {
-          classedOperators_[3].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.caster) {
-          classedOperators_[4].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.medic) {
-          classedOperators_[5].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.supporter) {
-          classedOperators_[6].add(operator_);
-        }
-        if (operator_.class_ == OperatorPositions.specialist) {
-          classedOperators_[7].add(operator_);
-        }
-      }
+      // for (var jsonData in data) {
+      //   OperatorModel operator_ = OperatorModel.fromJson(jsonData);
+      //   if (operator_.class_ == OperatorPositions.vanguard) {
+      //     classedOperators_[0].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.guard) {
+      //     classedOperators_[1].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.defender) {
+      //     classedOperators_[2].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.sniper) {
+      //     classedOperators_[3].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.caster) {
+      //     classedOperators_[4].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.medic) {
+      //     classedOperators_[5].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.supporter) {
+      //     classedOperators_[6].add(operator_);
+      //   }
+      //   if (operator_.class_ == OperatorPositions.specialist) {
+      //     classedOperators_[7].add(operator_);
+      //   }
+      // }
     }
     _classedOperators = classedOperators_;
 

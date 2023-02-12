@@ -1,5 +1,5 @@
 import 'package:arkhive/firebase_options.dart';
-import 'package:arkhive/screens/home/home_screen.dart';
+import 'package:arkhive/testpage.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class Arkhive extends StatelessWidget {
         primaryColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const TestPageScreen(),
     );
   }
 }
