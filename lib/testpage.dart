@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/skill_model.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,13 @@ class TestPageScreen extends StatefulWidget {
 class _TestPageScreenState extends State<TestPageScreen> {
   OperatorModel? skadi;
   List<SkillModel> skadiSkills = [];
+  ModuleModel? skadiModule2;
+  List<ModuleMissionModel> moduleMissions = [];
+  ModuleDataModel? skadiModule2Data;
+
   int _potential = 0;
   int _elite = 0;
+  int _modulePhase = 0;
   double _level = 1;
   double _favor = 0;
   double maxHpDiff = 0;
@@ -27,10 +34,7 @@ class _TestPageScreenState extends State<TestPageScreen> {
     String data =
         await rootBundle.loadString('assets/json/operator/char_263_skadi.json');
     Map<String, dynamic> jsonData = json.decode(data);
-
-    setState(() {
-      skadi = OperatorModel.fromJson(jsonData['data']);
-    });
+    skadi = OperatorModel.fromJson(jsonData['data']);
 
     for (var skill in skadi!.skills) {
       data = await rootBundle
@@ -39,6 +43,20 @@ class _TestPageScreenState extends State<TestPageScreen> {
       skadiSkills.add(SkillModel.fromJson(jsonData['data']));
     }
     _onTapElite(0);
+
+    data = await rootBundle.loadString('assets/json/module_table.json');
+    jsonData = json.decode(data);
+    skadiModule2 =
+        ModuleModel.fromJson(jsonData['equipDict']['uniequip_002_skadi']);
+    for (var mission in skadiModule2!.missionList) {
+      moduleMissions
+          .add(ModuleMissionModel.fromJson(jsonData['missionList'][mission]));
+    }
+
+    data = await rootBundle.loadString('assets/json/module_data_table.json');
+    jsonData = json.decode(data);
+    skadiModule2Data = ModuleDataModel.fromJson(jsonData['uniequip_002_skadi']);
+
     setState(() {});
   }
 
@@ -67,127 +85,232 @@ class _TestPageScreenState extends State<TestPageScreen> {
     });
   }
 
-  Widget _talentSelectorWidget({
-    required List<OperatorTalentsCandidatesModel> candidates,
-    required int elite,
-    required int potential,
-  }) {
-    String title = "", description = "";
+  void _onTapModulePhase(int i) {
+    setState(() {
+      _modulePhase = i;
+    });
+  }
+
+  T? _reqPotentalRankSelector<T extends PotentialRank>(
+      {required List<T> candidates,
+      required int currPot,
+      int currElite = 2,
+      int currLevel = 60}) {
+    T? result;
 
     for (var candidate in candidates) {
-      if (candidate.unlockCondition.phase == elite) {
-        if (candidate.requiredPotentialRank <= potential) {
-          title = candidate.name;
-          description = candidate.description;
+      if (candidate.unlockCondition.phase <= currElite &&
+          candidate.unlockCondition.level <= currLevel) {
+        if (candidate.requiredPotentialRank <= currPot) {
+          result = candidate;
         }
       }
     }
 
-    if (title == "") return Container();
+    return result;
+  }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title),
-        Text(description),
-        const SizedBox(height: 10),
-      ],
-    );
+  String _skillLevelSelector(int level) {
+    if (level > 7) {
+      return "Level 7 Mastery ${level - 7}";
+    }
+    return "Level $level";
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: (skadi != null && skadiSkills.isNotEmpty)
-            ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(skadi!.name),
-                    const SizedBox(height: 10),
-                    Text('Pot ${_potential + 1}'),
-                    Row(
-                      children: [
-                        for (int i = 1;
-                            i < skadi!.potentialRanks.length + 2;
-                            i++)
-                          GestureDetector(
-                            onTap: () => _onTapPotential(i),
-                            child: Text('[pot $i] '),
-                          )
-                      ],
-                    ),
-                    for (int i = 0; i < _potential; i++)
-                      Text(skadi!.potentialRanks[i].description),
-                    const SizedBox(height: 10),
-                    Text('Elite $_elite'),
-                    Row(
-                      children: [
-                        for (int i = 0; i < skadi!.phases.length; i++)
-                          GestureDetector(
-                            onTap: () => _onTapElite(i),
-                            child: Text('[elite ${i + 0}] '),
-                          )
-                      ],
-                    ),
-                    Text('Level ${_level.toInt()}'),
-                    Slider(
-                      min: 1,
-                      max: skadi!.phases[_elite].maxLevel.toDouble(),
-                      value: _level,
-                      onChanged: (value) {
-                        setState(() {
-                          _level = value;
-                        });
-                      },
-                    ),
-                    Text(
-                        'hp ${(skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp + maxHpDiff * (_level.toInt() - 1)).round()}'),
-                    const SizedBox(height: 10),
-                    Text('Favor ${_favor.toInt()}'),
-                    Slider(
-                      min: 0,
-                      max: skadi!.favorKeyFrames.last.level.toDouble() * 4,
-                      value: _favor,
-                      onChanged: (value) {
-                        setState(() {
-                          _favor = value;
-                        });
-                      },
-                    ),
-                    Text(
-                        'atk +${(skadi!.favorKeyFrames.first.data.atk + atkFavDiff * _favor.toInt()).round()}'),
-                    const SizedBox(height: 10),
-                    for (var talent in skadi!.talents)
-                      _talentSelectorWidget(
-                        candidates: talent.candidates,
-                        elite: _elite,
-                        potential: _potential,
+        child: (skadi != null &&
+                skadiModule2 != null &&
+                skadiModule2Data != null &&
+                skadiSkills.isNotEmpty)
+            ? SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(skadi!.name),
+                      Text("${skadi!.rarity + 1} star"),
+                      Text(skadi!.profession),
+                      Text(skadi!.subProfessionId),
+                      Text(skadi!.position),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (var tag in skadi!.tagList) Text(tag),
+                        ],
                       ),
-                    for (var skill in skadiSkills) Text(skill.levels[0].name),
-                    Text('Skill Level ${_skillLevel.floor()}'),
-                    Slider(
-                      min: 1,
-                      max: skadiSkills.last.levels.length.toDouble(),
-                      value: _skillLevel,
-                      onChanged: (value) {
-                        setState(() {
-                          _skillLevel = value;
-                        });
-                      },
-                    ),
-                    Text(skadiSkills
-                        .last.levels[_skillLevel.floor() - 1].description),
-                    Text(
-                        "SP ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.initSp} > ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.spCost}"),
-                    Text(
-                        'Duration ${skadiSkills.last.levels[_skillLevel.toInt() - 1].duration.toStringAsFixed(0)}s'),
-                    for (var board in skadiSkills
-                        .last.levels[_skillLevel.toInt() - 1].blackboard)
-                      Text("${board.key} val: ${board.value}")
-                  ],
+                      const SizedBox(height: 10),
+                      Text('Pot ${_potential + 1}'),
+                      Row(
+                        children: [
+                          for (int i = 1;
+                              i < skadi!.potentialRanks.length + 2;
+                              i++)
+                            GestureDetector(
+                              onTap: () => _onTapPotential(i),
+                              child: Text('[pot $i] '),
+                            )
+                        ],
+                      ),
+                      for (int i = 0; i < _potential; i++)
+                        Text(skadi!.potentialRanks[i].description),
+                      const SizedBox(height: 10),
+                      Text('Elite $_elite'),
+                      Row(
+                        children: [
+                          for (int i = 0; i < skadi!.phases.length; i++)
+                            GestureDetector(
+                              onTap: () => _onTapElite(i),
+                              child: Text('[elite ${i + 0}] '),
+                            )
+                        ],
+                      ),
+                      Text('Level ${_level.toInt()}'),
+                      Slider(
+                        min: 1,
+                        max: skadi!.phases[_elite].maxLevel.toDouble(),
+                        value: _level,
+                        onChanged: (value) {
+                          setState(() {
+                            _level = value;
+                          });
+                        },
+                      ),
+                      Text(
+                          'hp ${(skadi!.phases[_elite].attributesKeyFrames.first.data.maxHp + maxHpDiff * (_level.toInt() - 1)).round()}'),
+                      const SizedBox(height: 10),
+                      Text('Favor ${_favor.toInt()}'),
+                      Slider(
+                        min: 0,
+                        max: skadi!.favorKeyFrames.last.level.toDouble() * 4,
+                        value: _favor,
+                        onChanged: (value) {
+                          setState(() {
+                            _favor = value;
+                          });
+                        },
+                      ),
+                      Text(
+                          'atk +${(skadi!.favorKeyFrames.first.data.atk + atkFavDiff * _favor.toInt()).round()}'),
+                      const SizedBox(height: 10),
+                      for (var talent in skadi!.talents)
+                        if (_reqPotentalRankSelector<
+                                OperatorTalentsCandidatesModel>(
+                              candidates: talent.candidates,
+                              currPot: _potential,
+                              currElite: _elite,
+                              currLevel: _level.toInt(),
+                            ) !=
+                            null)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_reqPotentalRankSelector<
+                                      OperatorTalentsCandidatesModel>(
+                                candidates: talent.candidates,
+                                currPot: _potential,
+                                currElite: _elite,
+                                currLevel: _level.toInt(),
+                              )!
+                                  .name),
+                              Text(_reqPotentalRankSelector<
+                                      OperatorTalentsCandidatesModel>(
+                                candidates: talent.candidates,
+                                currPot: _potential,
+                                currElite: _elite,
+                                currLevel: _level.toInt(),
+                              )!
+                                  .description),
+                              const SizedBox(height: 10),
+                            ],
+                          ),
+                      for (var skill in skadiSkills) Text(skill.levels[0].name),
+                      Text('Skill ${_skillLevelSelector(_skillLevel.floor())}'),
+                      Slider(
+                        min: 1,
+                        max: skadiSkills.last.levels.length.toDouble(),
+                        value: _skillLevel,
+                        onChanged: (value) {
+                          setState(() {
+                            _skillLevel = value;
+                          });
+                        },
+                      ),
+                      Text(skadiSkills
+                          .last.levels[_skillLevel.floor() - 1].description),
+                      Text(
+                          "SP ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.initSp} > ${skadiSkills.last.levels[_skillLevel.toInt() - 1].spData.spCost}"),
+                      Text(
+                          'Duration ${skadiSkills.last.levels[_skillLevel.toInt() - 1].duration.toStringAsFixed(0)}s'),
+                      for (var board in skadiSkills
+                          .last.levels[_skillLevel.toInt() - 1].blackboard)
+                        Text("${board.key} val: ${board.value}"),
+                      const SizedBox(height: 10),
+                      const Text('module 2'),
+                      Text(skadiModule2!.uniEquipName),
+                      Text(skadiModule2!.typeIcon),
+                      for (var mission in moduleMissions) Text(mission.desc),
+                      for (var item in skadiModule2!.itemCost["1"]!)
+                        Text('${item.id} - ${item.count}'),
+                      const SizedBox(height: 10),
+                      Text('Phase ${_modulePhase + 1}'),
+                      Row(
+                        children: [
+                          for (int i = 0;
+                              i < skadiModule2Data!.phases.length;
+                              i++)
+                            GestureDetector(
+                              onTap: () => _onTapModulePhase(i),
+                              child: Text('[phase ${i + 1}] '),
+                            )
+                        ],
+                      ),
+                      for (var part
+                          in skadiModule2Data!.phases[_modulePhase].parts)
+                        if (part.target == "TALENT")
+                          if (_reqPotentalRankSelector<
+                                  ModuleTalentDataBundleModel>(
+                                candidates: part.addOrOverrideTalentDataBundle,
+                                currPot: _potential,
+                              ) !=
+                              null)
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(_reqPotentalRankSelector<
+                                        ModuleTalentDataBundleModel>(
+                                  candidates:
+                                      part.addOrOverrideTalentDataBundle,
+                                  currPot: _potential,
+                                )!
+                                    .name),
+                                Text(_reqPotentalRankSelector<
+                                        ModuleTalentDataBundleModel>(
+                                  candidates:
+                                      part.addOrOverrideTalentDataBundle,
+                                  currPot: _potential,
+                                )!
+                                    .upgradeDescription),
+                                const SizedBox(height: 10),
+                              ],
+                            )
+                          else
+                            for (var candidate in part.overrideTraitDataBundle)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(candidate.additionalDescription),
+                                  const SizedBox(height: 10),
+                                ],
+                              ),
+                      for (var attr in skadiModule2Data!
+                          .phases[_modulePhase].attributeBlackboard)
+                        Text('${attr.key} +${attr.value.toInt()}'),
+                    ],
+                  ),
                 ),
               )
             : const Text('no data'),
