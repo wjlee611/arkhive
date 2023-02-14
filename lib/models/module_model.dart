@@ -86,8 +86,10 @@ class ModuleDataPartsModel {
 
 class ModuleTalentDataBundleModel implements PotentialRank {
   final String upgradeDescription, name;
+  final int talentIndex;
   @override
-  final int talentIndex, requiredPotentialRank;
+  final int requiredPotentialRank;
+  @override
   final OperatorUnlockCondModel unlockCondition;
   final List<BlackboardModel> blackboard;
 
@@ -106,6 +108,7 @@ class ModuleTalentDataBundleModel implements PotentialRank {
 
 class ModuleTraitDataBundleModel implements PotentialRank {
   final String additionalDescription;
+  @override
   final OperatorUnlockCondModel unlockCondition;
   @override
   final int requiredPotentialRank;
