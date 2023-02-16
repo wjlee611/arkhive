@@ -39,7 +39,7 @@ class OperatorImage extends StatelessWidget {
                   border: Border.all(
                     width: Sizes.size3,
                     color: Colors.blueGrey.shade600,
-                    strokeAlign: StrokeAlign.outside,
+                    strokeAlign: BorderSide.strokeAlignOutside,
                   ),
                 ),
                 child: Transform.scale(
