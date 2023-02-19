@@ -1,5 +1,5 @@
 {
-  "operator": [
+  "data": [
     "char_285_medic2",
     "char_286_cast3",
     "char_376_therex",
@@ -242,6 +242,14 @@
     "char_350_surtr",
     "char_188_helage",
     "char_485_pallas",
-    "char_1014_nearl2"
+    "char_1014_nearl2",
+    "char_230_savage",
+    "char_282_catap",
+    "char_283_midn",
+    "char_137_brownb",
+    "char_347_jaksel",
+    "char_164_nightm",
+    "char_220_grani",
+    "char_263_skadi"
   ]
 }
