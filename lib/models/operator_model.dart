@@ -1,9 +1,16 @@
 import 'package:arkhive/models/common_models.dart';
 
+/// USING AT
+///
+/// operator
+/// token
+/// trap
+
 class OperatorModel {
   final String name, description, position, profession, subProfessionId;
   final String? nationId, groupId, teamId;
   final int maxPotentialLevel, rarity;
+  final bool isNotObtainable;
   final List<String> tagList;
   final List<OperatorLevelPhaseModel> phases;
   final List<OperatorSkillsModel> skills;
@@ -23,6 +30,7 @@ class OperatorModel {
         subProfessionId = json['subProfessionId'],
         maxPotentialLevel = json['maxPotentialLevel'],
         rarity = json['rarity'],
+        isNotObtainable = json['isNotObtainable'],
         tagList = [
           if (json['tagList'] != null)
             for (var data in json['tagList']) data

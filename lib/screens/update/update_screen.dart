@@ -139,6 +139,37 @@ class _UpdateScreenState extends State<UpdateScreen> {
     }
   }
 
+  void newUpdater() async {
+    setState(() {
+      updateStatus = 'Update...';
+    });
+
+    const storage = FlutterSecureStorage();
+
+    final String operatorList =
+        await rootBundle.loadString('assets/json/list_operator.json');
+    await storage.write(key: 'list_operator', value: operatorList);
+
+    List<String> operatorListData =
+        await json.decode(operatorList)['data']?.cast<String>();
+    setState(() {
+      remainDownloadAssets = operatorListData.length;
+      cnt = 0;
+    });
+    for (var operator_ in operatorListData) {
+      final String opString =
+          await rootBundle.loadString('assets/json/operator/$operator_.json');
+      await storage.write(key: 'operator/$operator_', value: opString);
+      setState(() {
+        cnt += 1;
+      });
+    }
+
+    setState(() {
+      updateStatus = 'Update Completed!';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -234,7 +265,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       TextButton(
                         onPressed: updateStatus == 'Pending' &&
                                 globalData.newVer != null
-                            ? firebaseUpdater
+                            // ? firebaseUpdater
+                            ? newUpdater
                             : null,
                         style: TextButton.styleFrom(
                           backgroundColor: updateStatus == 'Pending' &&

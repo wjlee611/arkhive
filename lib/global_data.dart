@@ -17,7 +17,7 @@ class GlobalData {
   static const String appVersion = "1.0.0";
   late String screen;
   late String oldVer;
-  String? newVer;
+  String? newVer = "0";
   late List<List<OperatorModel>> _classedOperators;
   late List<EnemyModel> _enemies;
   late List<ItemModel> _items;
