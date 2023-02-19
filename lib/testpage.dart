@@ -91,11 +91,12 @@ class _TestPageScreenState extends State<TestPageScreen> {
     });
   }
 
-  T? _reqPotentalRankSelector<T extends PotentialRank>(
-      {required List<T> candidates,
-      required int currPot,
-      int currElite = 2,
-      int currLevel = 60}) {
+  T? _reqPotentalRankSelector<T extends PotentialRank>({
+    required List<T> candidates,
+    required int currPot,
+    int currElite = 2,
+    int currLevel = 60,
+  }) {
     T? result;
 
     for (var candidate in candidates) {
@@ -420,15 +421,17 @@ class FormattedTextWidget extends StatelessWidget {
             if (value.contains('0%')) {
               String variable =
                   value.substring(value.indexOf('{') + 1, value.indexOf(':'));
-              String format =
-                  value.substring(value.indexOf(':') + 1, value.indexOf('}'));
+              // String format =
+              //     value.substring(value.indexOf(':') + 1, value.indexOf('}'));
               if (tag == "<@ba.vup>") {
                 varValue = '+';
               } else {
                 varValue = '-';
               }
+              // varValue +=
+              //     '${((variables[variable] * 100).toStringAsFixed(1) + format.replaceAll('0%', '%')).replaceAll('.0', '')}';
               varValue +=
-                  '${(variables[variable] * 100).toStringAsFixed(1)}${format.replaceAll('0', '')}';
+                  '${((variables[variable] * 100).toStringAsFixed(1) + '%').replaceAll('.0', '')}';
             } else {
               String variable =
                   value.substring(value.indexOf('{') + 1, value.indexOf('}'));
@@ -437,7 +440,7 @@ class FormattedTextWidget extends StatelessWidget {
               } else {
                 varValue = '-';
               }
-              varValue += '${variables[variable]}';
+              varValue += variables[variable].toString().replaceAll('.0', '');
             }
             textSpans.add(
               TextSpan(
