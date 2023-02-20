@@ -4,7 +4,6 @@ import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
-import '../../legacy/detail/operator_detail_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -37,18 +36,18 @@ class OpenDetailScreen {
     Uint8List? operatorImage;
     await opImage.then((value) => operatorImage = value);
 
-    for (var operator_ in classedList) {
-      if (operator_.name == name) {
-        Navigator.push(
-          context,
-          _createRoute(OperatorDetailScreen(
-            operator_: operator_,
-            opImage: operatorImage,
-          )),
-        );
-        return;
-      }
-    }
+    // for (var operator_ in classedList) {
+    //   if (operator_.name == name) {
+    //     Navigator.push(
+    //       context,
+    //       _createRoute(OperatorDetailScreen(
+    //         operator_: operator_,
+    //         opImage: operatorImage,
+    //       )),
+    //     );
+    //     return;
+    //   }
+    // }
   }
 
   static void onEnemyTab({
