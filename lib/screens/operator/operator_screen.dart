@@ -34,26 +34,27 @@ class OperatorScreen extends StatefulWidget {
 
 class _OperatorScreenState extends State<OperatorScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  late Future<List<OperatorModel>> _futureOperatorSorter;
+  final _searchController = TextEditingController();
+  late Future<List<OperatorModel>> _futureOperators;
   SortOptions _sortOption = SortOptions.starUp;
   Professions _selectedProfession = Professions.all;
   bool _isSorting = false;
-  int _resultLength = 0;
+  bool _onSearch = false;
+  String _searchKeyword = "";
 
   @override
   void initState() {
     super.initState();
-    _futureOperatorSorter = futureOperatorSorter();
+    _futureOperators = futureOperators();
   }
 
-  Future<List<OperatorModel>> futureOperatorSorter() async {
+  Future<List<OperatorModel>> futureOperators() async {
     setState(() {
       _isSorting = true;
     });
 
     const storage = FlutterSecureStorage();
     List<OperatorModel> result = [];
-    _resultLength = 0;
 
     String? operatorListString = await storage.read(key: 'list_operator');
     if (operatorListString != null) {
@@ -62,86 +63,9 @@ class _OperatorScreenState extends State<OperatorScreen> {
         String? operatorString = await storage.read(key: 'operator/$operator_');
         if (operatorString != null) {
           var operatorData = await json.decode(operatorString)['data'];
-          OperatorModel op = OperatorModel.fromJson(operatorData);
-          if (_selectedProfession == Professions.all) {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.vanguard &&
-              op.profession == "PIONEER") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.guard &&
-              op.profession == "WARRIOR") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.defender &&
-              op.profession == "TANK") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.sniper &&
-              op.profession == "SNIPER") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.caster &&
-              op.profession == "CASTER") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.medic &&
-              op.profession == "MEDIC") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.supporter &&
-              op.profession == "SUPPORT") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.specialist &&
-              op.profession == "SPECIAL") {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
-          if (_selectedProfession == Professions.perparation &&
-              op.isNotObtainable == true) {
-            result.add(op);
-            _resultLength += 1;
-            continue;
-          }
+          result.add(OperatorModel.fromJson(operatorData));
         }
       }
-    }
-
-    if (_sortOption == SortOptions.starUp) {
-      result.sort(
-        (a, b) => a.rarity.compareTo(b.rarity),
-      );
-    } else if (_sortOption == SortOptions.starDown) {
-      result.sort(
-        (a, b) => b.rarity.compareTo(a.rarity),
-      );
-    } else if (_sortOption == SortOptions.nameUp) {
-      result.sort(
-        (a, b) => a.name.compareTo(b.name),
-      );
-    } else if (_sortOption == SortOptions.nameDown) {
-      result.sort(
-        (a, b) => b.name.compareTo(a.name),
-      );
     }
 
     setState(() {
@@ -160,16 +84,129 @@ class _OperatorScreenState extends State<OperatorScreen> {
     ).then((_) => setState(() {}));
   }
 
-  void _onSortSelected(SortOptions selected) async {
+  List<OperatorModel> _runFilter(List<OperatorModel> list) {
+    List<OperatorModel> result = [];
+
+    if (_searchKeyword.isEmpty) {
+      // filter
+      for (var op in list) {
+        if (_selectedProfession == Professions.all) {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.vanguard &&
+            op.profession == "PIONEER") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.guard &&
+            op.profession == "WARRIOR") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.defender &&
+            op.profession == "TANK") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.sniper &&
+            op.profession == "SNIPER") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.caster &&
+            op.profession == "CASTER") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.medic &&
+            op.profession == "MEDIC") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.supporter &&
+            op.profession == "SUPPORT") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.specialist &&
+            op.profession == "SPECIAL") {
+          result.add(op);
+          continue;
+        }
+        if (_selectedProfession == Professions.perparation &&
+            op.isNotObtainable == true) {
+          result.add(op);
+          continue;
+        }
+      }
+    } else {
+      // search
+      result = list
+          .where((op) =>
+              op.name.toLowerCase().contains(_searchKeyword.toLowerCase()))
+          .toList();
+    }
+
+    // sort
+    if (_sortOption == SortOptions.starUp) {
+      result.sort(
+        (a, b) => a.rarity.compareTo(b.rarity),
+      );
+    } else if (_sortOption == SortOptions.starDown) {
+      result.sort(
+        (a, b) => b.rarity.compareTo(a.rarity),
+      );
+    } else if (_sortOption == SortOptions.nameUp) {
+      result.sort(
+        (a, b) => a.name.compareTo(b.name),
+      );
+    } else if (_sortOption == SortOptions.nameDown) {
+      result.sort(
+        (a, b) => b.name.compareTo(a.name),
+      );
+    }
+
+    return result;
+  }
+
+  void _onSortSelected(SortOptions selected) {
     if (_sortOption == selected) return;
-    _sortOption = selected;
-    _futureOperatorSorter = futureOperatorSorter();
+
+    setState(() {
+      _sortOption = selected;
+    });
   }
 
   void _onProfessionTap(Professions profession) {
     if (_selectedProfession == profession) return;
-    _selectedProfession = profession;
-    _futureOperatorSorter = futureOperatorSorter();
+
+    setState(() {
+      _selectedProfession = profession;
+    });
+  }
+
+  void _onSearchTap() {
+    setState(() {
+      _onSearch = !_onSearch;
+    });
+  }
+
+  void _onSearchChange(String? value) {
+    setState(() {
+      _searchKeyword = value ?? '';
+    });
+  }
+
+  void _onDeleteTap() {
+    setState(() {
+      _searchController.text = '';
+      _searchKeyword = '';
+    });
+  }
+
+  void _onTapOutside(PointerDownEvent _) {
+    FocusScope.of(context).unfocus();
   }
 
   @override
@@ -177,14 +214,33 @@ class _OperatorScreenState extends State<OperatorScreen> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          '오퍼레이터',
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        centerTitle: _searchKeyword.isEmpty ? true : false,
+        title: _onSearch
+            ? TextField(
+                controller: _searchController,
+                onChanged: _onSearchChange,
+                onTapOutside: _onTapOutside,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Search',
+                  labelStyle: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: FontFamily.nanumGothic,
+                  ),
+                  suffixIconColor: Colors.white,
+                  suffixIcon: GestureDetector(
+                    onTap: _onDeleteTap,
+                    child: const Icon(Icons.cancel_rounded),
+                  ),
+                ),
+              )
+            : Text(
+                _searchKeyword.isEmpty ? '오퍼레이터' : '검색결과: $_searchKeyword',
+                style: const TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
         backgroundColor: Colors.blueGrey.shade700,
         actions: [
           IconButton(
@@ -273,20 +329,25 @@ class _OperatorScreenState extends State<OperatorScreen> {
                   ),
                   if (_isSorting)
                     SizedBox(
-                      width: Sizes.size20,
+                      width: Sizes.size48,
                       height: Sizes.size20,
-                      child: CircularProgressIndicator(
-                        color: Colors.yellow.shade800,
+                      child: Center(
+                        child: SizedBox(
+                          width: Sizes.size20,
+                          height: Sizes.size20,
+                          child: CircularProgressIndicator(
+                            color: Colors.yellow.shade800,
+                          ),
+                        ),
                       ),
                     )
                   else
-                    Text(
-                      "$_resultLength",
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                    IconButton(
+                      onPressed: _onSearchTap,
+                      icon: Icon(
+                        Icons.search_rounded,
+                        color:
+                            _onSearch ? Colors.yellow.shade800 : Colors.white,
                       ),
                     ),
                   Expanded(
@@ -294,12 +355,12 @@ class _OperatorScreenState extends State<OperatorScreen> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         _sortOption == SortOptions.starUp
-                            ? '// 레어도 오름차순'
+                            ? '//  레어도 오름차순'
                             : _sortOption == SortOptions.starDown
-                                ? '// 레어도 내림차순'
+                                ? '//  레어도 내림차순'
                                 : _sortOption == SortOptions.nameUp
-                                    ? '// 이름 오름차순'
-                                    : "// 이름 내림차순",
+                                    ? '//  이름 오름차순'
+                                    : "//  이름 내림차순",
                         style: const TextStyle(
                           fontSize: Sizes.size16,
                           fontFamily: FontFamily.nanumGothic,
@@ -316,16 +377,17 @@ class _OperatorScreenState extends State<OperatorScreen> {
             ),
             SliverFillRemaining(
               child: FutureBuilder(
-                future: _futureOperatorSorter,
+                future: _futureOperators,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    var filteredList = _runFilter(snapshot.data!);
                     return CustomScrollView(
                       slivers: [
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (context, index) => Text(
-                                '${index + 1}. ${snapshot.data![index].rarity + 1}star ${snapshot.data![index].name}'),
-                            childCount: snapshot.data!.length,
+                                '${index + 1}. ${filteredList[index].rarity + 1}star ${filteredList[index].name}'),
+                            childCount: filteredList.length,
                           ),
                         ),
                       ],
@@ -447,7 +509,10 @@ class SortButton extends StatelessWidget {
       initialValue: initialValue,
       onSelected: onSelected,
       offset: const Offset(0, 0),
-      icon: const Icon(Icons.filter_alt_rounded),
+      icon: Icon(
+        Icons.filter_alt_rounded,
+        color: Colors.yellow.shade800,
+      ),
       shape: RoundedRectangleBorder(
         side: BorderSide(
           width: Sizes.size5,
@@ -460,7 +525,7 @@ class SortButton extends StatelessWidget {
         const PopupMenuItem(
           value: SortOptions.starUp,
           child: Text(
-            '레이도 오름차순',
+            '레어도 오름차순',
             style: TextStyle(
               fontSize: Sizes.size14,
               fontWeight: FontWeight.w400,
@@ -470,7 +535,7 @@ class SortButton extends StatelessWidget {
         const PopupMenuItem(
           value: SortOptions.starDown,
           child: Text(
-            '레이도 내림차순',
+            '레어도 내림차순',
             style: TextStyle(
               fontSize: Sizes.size14,
               fontWeight: FontWeight.w400,
