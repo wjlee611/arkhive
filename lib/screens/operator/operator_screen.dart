@@ -58,12 +58,12 @@ class _OperatorScreenState extends State<OperatorScreen> {
     List<OperatorModel> result = [];
 
     String? operatorListString = await storage.read(key: 'list_operator');
-    if (operatorListString != null) {
+    if (operatorListString != null && operatorListString != 'null') {
       var operatorListData = await json.decode(operatorListString)['data'];
       for (var operator_ in operatorListData) {
         String? operatorString = await storage.read(key: 'operator/$operator_');
-        if (operatorString != null) {
-          var operatorData = await json.decode(operatorString)['data'];
+        if (operatorString != null && operatorString != 'null') {
+          var operatorData = await json.decode(operatorString);
           result.add(OperatorModel.fromJson(operatorData));
         }
       }
@@ -82,7 +82,11 @@ class _OperatorScreenState extends State<OperatorScreen> {
       MaterialPageRoute(
         builder: (context) => const UpdateScreen(),
       ),
-    ).then((_) => setState(() {}));
+    ).then(
+      (_) => setState(() {
+        _futureOperators = futureOperators();
+      }),
+    );
   }
 
   List<OperatorModel> _runFilter(List<OperatorModel> list) {

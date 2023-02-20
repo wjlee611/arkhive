@@ -158,13 +158,17 @@ class _UpdateScreenState extends State<UpdateScreen> {
     setState(() {
       updateStatus = 'Update data...';
     });
-    for (var operator_ in operatorListData) {
-      final String opString =
-          await rootBundle.loadString('assets/json/operator/$operator_.json');
-      await storage.write(key: 'operator/$operator_', value: opString);
-      setState(() {
-        cnt += 1;
-      });
+    final String opsString =
+        await rootBundle.loadString('assets/json/charactet_table.json');
+    var opsJson = await json.decode(opsString);
+    if (opsJson != null) {
+      for (var operator_ in operatorListData) {
+        await storage.write(
+            key: 'operator/$operator_', value: json.encode(opsJson[operator_]));
+        setState(() {
+          cnt += 1;
+        });
+      }
     }
 
     setState(() {
