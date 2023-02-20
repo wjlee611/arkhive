@@ -221,8 +221,9 @@ class _OperatorScreenState extends State<OperatorScreen> {
                 onChanged: _onSearchChange,
                 onTapOutside: _onTapOutside,
                 style: const TextStyle(color: Colors.white),
+                cursorColor: Colors.yellow.shade800,
                 decoration: InputDecoration(
-                  labelText: 'Search',
+                  labelText: '검색',
                   labelStyle: const TextStyle(
                     color: Colors.white,
                     fontFamily: FontFamily.nanumGothic,
@@ -253,65 +254,85 @@ class _OperatorScreenState extends State<OperatorScreen> {
         //   onPressed: () => scaffoldKey.currentState!.openDrawer(),
         // ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.blueGrey.shade700,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
-            child: Row(
-              children: [
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.all),
-                  profession: Professions.all,
-                  isSelected: _selectedProfession == Professions.all,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.vanguard),
-                  profession: Professions.vanguard,
-                  isSelected: _selectedProfession == Professions.vanguard,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.guard),
-                  profession: Professions.guard,
-                  isSelected: _selectedProfession == Professions.guard,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.defender),
-                  profession: Professions.defender,
-                  isSelected: _selectedProfession == Professions.defender,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.sniper),
-                  profession: Professions.sniper,
-                  isSelected: _selectedProfession == Professions.sniper,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.caster),
-                  profession: Professions.caster,
-                  isSelected: _selectedProfession == Professions.caster,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.medic),
-                  profession: Professions.medic,
-                  isSelected: _selectedProfession == Professions.medic,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.supporter),
-                  profession: Professions.supporter,
-                  isSelected: _selectedProfession == Professions.supporter,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.specialist),
-                  profession: Professions.specialist,
-                  isSelected: _selectedProfession == Professions.specialist,
-                ),
-                ProfessionButton(
-                  onTap: () => _onProfessionTap(Professions.perparation),
-                  profession: Professions.perparation,
-                  isSelected: _selectedProfession == Professions.perparation,
-                ),
-              ],
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: Sizes.size3,
+            ),
+          ],
+        ),
+        child: BottomAppBar(
+          color: Colors.blueGrey.shade700,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
+              child: Row(
+                children: [
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.all),
+                    profession: Professions.all,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.all,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.vanguard),
+                    profession: Professions.vanguard,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.vanguard,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.guard),
+                    profession: Professions.guard,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.guard,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.defender),
+                    profession: Professions.defender,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.defender,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.sniper),
+                    profession: Professions.sniper,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.sniper,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.caster),
+                    profession: Professions.caster,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.caster,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.medic),
+                    profession: Professions.medic,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.medic,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.supporter),
+                    profession: Professions.supporter,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.supporter,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.specialist),
+                    profession: Professions.specialist,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.specialist,
+                  ),
+                  ProfessionButton(
+                    onTap: () => _onProfessionTap(Professions.perparation),
+                    profession: Professions.perparation,
+                    isSelected: _searchKeyword.isEmpty &&
+                        _selectedProfession == Professions.perparation,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -353,17 +374,29 @@ class _OperatorScreenState extends State<OperatorScreen> {
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text(
-                        _sortOption == SortOptions.starUp
-                            ? '//  레어도 오름차순'
-                            : _sortOption == SortOptions.starDown
-                                ? '//  레어도 내림차순'
-                                : _sortOption == SortOptions.nameUp
-                                    ? '//  이름 오름차순'
-                                    : "//  이름 내림차순",
-                        style: const TextStyle(
-                          fontSize: Sizes.size16,
-                          fontFamily: FontFamily.nanumGothic,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Sizes.size2,
+                          horizontal: Sizes.size5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(Sizes.size5),
+                        ),
+                        child: Text(
+                          _sortOption == SortOptions.starUp
+                              ? '레어도 오름차순'
+                              : _sortOption == SortOptions.starDown
+                                  ? '레어도 내림차순'
+                                  : _sortOption == SortOptions.nameUp
+                                      ? '이름 오름차순'
+                                      : '이름 내림차순',
+                          style: TextStyle(
+                            fontFamily: FontFamily.nanumGothic,
+                            fontSize: Sizes.size14,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blueGrey.shade700,
+                          ),
                         ),
                       ),
                     ),
@@ -371,6 +404,8 @@ class _OperatorScreenState extends State<OperatorScreen> {
                   Gaps.h10,
                 ],
               ),
+              elevation: Sizes.size3,
+              forceElevated: true,
               backgroundColor: Colors.blueGrey.shade700,
               centerTitle: false,
               pinned: true,
@@ -428,12 +463,16 @@ class ProfessionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      child: profession == Professions.all
-          ? SizedBox(
-              width: Sizes.size48,
-              height: Sizes.size48,
-              child: Center(
+      child: SizedBox(
+        width: Sizes.size48,
+        height: Sizes.size48,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            if (profession == Professions.all)
+              Center(
                 child: Text(
                   "전체",
                   style: TextStyle(
@@ -443,52 +482,89 @@ class ProfessionButton extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+              )
+            else if (profession == Professions.perparation)
+              Center(
+                child: Text(
+                  "예비",
+                  style: TextStyle(
+                    color: isSelected ? Colors.yellow.shade800 : Colors.white,
+                    fontFamily: FontFamily.nanumGothic,
+                    fontSize: Sizes.size16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              )
+            else
+              Center(
+                child: Transform.translate(
+                  offset: Offset(
+                    profession == Professions.sniper ? -Sizes.size3 : 0,
+                    0,
+                  ),
+                  child: Image.asset(
+                    profession == Professions.vanguard
+                        ? 'assets/images/class_vanguard.png'
+                        : profession == Professions.guard
+                            ? 'assets/images/class_guard.png'
+                            : profession == Professions.defender
+                                ? 'assets/images/class_defender.png'
+                                : profession == Professions.sniper
+                                    ? 'assets/images/class_sniper.png'
+                                    : profession == Professions.caster
+                                        ? 'assets/images/class_caster.png'
+                                        : profession == Professions.medic
+                                            ? 'assets/images/class_medic.png'
+                                            : profession ==
+                                                    Professions.supporter
+                                                ? 'assets/images/class_supporter.png'
+                                                : 'assets/images/class_specialist.png',
+                    width: Sizes.size32,
+                    height: Sizes.size32,
+                    color: isSelected ? Colors.yellow.shade800 : Colors.white,
+                  ),
+                ),
               ),
-            )
-          : profession == Professions.perparation
-              ? SizedBox(
-                  width: Sizes.size48,
-                  height: Sizes.size48,
-                  child: Center(
-                    child: Text(
-                      "예비",
-                      style: TextStyle(
-                        color:
-                            isSelected ? Colors.yellow.shade800 : Colors.white,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.w700,
+            if (isSelected)
+              Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  Container(
+                    width: Sizes.size48,
+                    height: Sizes.size32,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: const [
+                          0,
+                          0.4,
+                        ],
+                        colors: [
+                          Colors.yellow.shade800,
+                          Colors.transparent,
+                        ],
                       ),
                     ),
                   ),
-                )
-              : SizedBox(
-                  width: Sizes.size48,
-                  height: Sizes.size48,
-                  child: Center(
-                    child: Image.asset(
-                      profession == Professions.vanguard
-                          ? 'assets/images/class_vanguard.png'
-                          : profession == Professions.guard
-                              ? 'assets/images/class_guard.png'
-                              : profession == Professions.defender
-                                  ? 'assets/images/class_defender.png'
-                                  : profession == Professions.sniper
-                                      ? 'assets/images/class_sniper.png'
-                                      : profession == Professions.caster
-                                          ? 'assets/images/class_caster.png'
-                                          : profession == Professions.medic
-                                              ? 'assets/images/class_medic.png'
-                                              : profession ==
-                                                      Professions.supporter
-                                                  ? 'assets/images/class_supporter.png'
-                                                  : 'assets/images/class_specialist.png',
-                      width: Sizes.size32,
-                      height: Sizes.size32,
-                      color: isSelected ? Colors.yellow.shade800 : Colors.white,
+                  Transform.translate(
+                    offset: const Offset(0, -Sizes.size12),
+                    child: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.yellow.shade800,
+                      size: Sizes.size32,
                     ),
                   ),
-                ),
+                  Container(
+                    width: Sizes.size48,
+                    height: Sizes.size3,
+                    color: Colors.yellow.shade800,
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
