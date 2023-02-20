@@ -152,14 +152,31 @@ class _UpdateScreenState extends State<UpdateScreen> {
 
     List<String> operatorListData =
         await json.decode(operatorList)['data']?.cast<String>();
+    remainDownloadAssets = operatorListData.length * 2;
+    cnt = 0;
+
     setState(() {
-      remainDownloadAssets = operatorListData.length;
-      cnt = 0;
+      updateStatus = 'Update data...';
     });
     for (var operator_ in operatorListData) {
       final String opString =
           await rootBundle.loadString('assets/json/operator/$operator_.json');
       await storage.write(key: 'operator/$operator_', value: opString);
+      setState(() {
+        cnt += 1;
+      });
+    }
+
+    setState(() {
+      updateStatus = 'Update image...';
+    });
+    for (var operator_ in operatorListData) {
+      final String opImageString = base64.encode(
+          (await rootBundle.load('assets/images/operator/$operator_.png'))
+              .buffer
+              .asUint8List());
+      await storage.write(
+          key: 'image/operator/$operator_', value: opImageString);
       setState(() {
         cnt += 1;
       });

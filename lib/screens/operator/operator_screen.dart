@@ -4,6 +4,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/update/update_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 // import 'package:arkhive/widgets/nav_widget.dart';
@@ -420,8 +421,10 @@ class _OperatorScreenState extends State<OperatorScreen> {
                       slivers: [
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            (context, index) => Text(
-                                '${index + 1}. ${filteredList[index].rarity + 1}star ${filteredList[index].name}'),
+                            (context, index) => OperatorListItem(
+                              operator_: filteredList[index],
+                              index: index,
+                            ),
                             childCount: filteredList.length,
                           ),
                         ),
