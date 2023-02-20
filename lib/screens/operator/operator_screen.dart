@@ -38,7 +38,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
   late Future<List<OperatorModel>> _futureOperators;
   SortOptions _sortOption = SortOptions.starUp;
   Professions _selectedProfession = Professions.all;
-  bool _isSorting = false;
+  bool _isLoading = false;
   bool _onSearch = false;
   String _searchKeyword = "";
 
@@ -50,7 +50,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
 
   Future<List<OperatorModel>> futureOperators() async {
     setState(() {
-      _isSorting = true;
+      _isLoading = true;
     });
 
     const storage = FlutterSecureStorage();
@@ -69,7 +69,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
     }
 
     setState(() {
-      _isSorting = false;
+      _isLoading = false;
     });
 
     return result;
@@ -348,7 +348,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
                     initialValue: _sortOption,
                     onSelected: _onSortSelected,
                   ),
-                  if (_isSorting)
+                  if (_isLoading)
                     SizedBox(
                       width: Sizes.size48,
                       height: Sizes.size20,
@@ -471,6 +471,45 @@ class ProfessionButton extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
+            if (isSelected)
+              IgnorePointer(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Container(
+                      width: Sizes.size48,
+                      height: Sizes.size48,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          stops: const [
+                            0,
+                            0.2,
+                          ],
+                          colors: [
+                            Colors.yellow.shade800,
+                            Colors.blueGrey.shade700,
+                          ],
+                        ),
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: const Offset(0, -Sizes.size12),
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.yellow.shade800,
+                        size: Sizes.size32,
+                      ),
+                    ),
+                    Container(
+                      width: Sizes.size48,
+                      height: Sizes.size3,
+                      color: Colors.yellow.shade800,
+                    ),
+                  ],
+                ),
+              ),
             if (profession == Professions.all)
               Center(
                 child: Text(
@@ -524,43 +563,6 @@ class ProfessionButton extends StatelessWidget {
                     color: isSelected ? Colors.yellow.shade800 : Colors.white,
                   ),
                 ),
-              ),
-            if (isSelected)
-              Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  Container(
-                    width: Sizes.size48,
-                    height: Sizes.size32,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        stops: const [
-                          0,
-                          0.4,
-                        ],
-                        colors: [
-                          Colors.yellow.shade800,
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                  ),
-                  Transform.translate(
-                    offset: const Offset(0, -Sizes.size12),
-                    child: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.yellow.shade800,
-                      size: Sizes.size32,
-                    ),
-                  ),
-                  Container(
-                    width: Sizes.size48,
-                    height: Sizes.size3,
-                    color: Colors.yellow.shade800,
-                  ),
-                ],
               ),
           ],
         ),
