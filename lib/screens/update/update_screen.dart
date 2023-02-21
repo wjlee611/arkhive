@@ -3,12 +3,11 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/models/updater_models.dart';
 import 'package:arkhive/screens/update/widgets/update_indicator_widget.dart';
 import 'package:arkhive/screens/update/widgets/updater_prts_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UpdateScreen extends StatefulWidget {
@@ -21,174 +20,267 @@ class UpdateScreen extends StatefulWidget {
 class _UpdateScreenState extends State<UpdateScreen> {
   GlobalData globalData = GlobalData();
   String updateStatus = 'Pending';
-  int cnt = 0;
+  int downloadedAssets = 0;
   int remainDownloadAssets = 0;
 
-  Future<void> _dataUpdater({
-    required String category,
-    required String jsonImageKey,
-    required FlutterSecureStorage storage,
-  }) async {
-    // DOWNLOAD
-    try {
-      setState(() {
-        updateStatus = 'Update $category...';
-        remainDownloadAssets = 0;
-        cnt = 0;
-      });
-      // JSON DATA
-      DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
-      DatabaseReference databaseChild = databaseRef.child(category);
-      // Get data
-      DatabaseEvent databaseEvent = await databaseChild.once();
-      // Save data
-      await storage.write(
-          key: '${category}_data',
-          value: jsonEncode(databaseEvent.snapshot.value));
+  // Future<void> _dataUpdater({
+  //   required String category,
+  //   required String jsonImageKey,
+  //   required FlutterSecureStorage storage,
+  // }) async {
+  //   // DOWNLOAD
+  //   try {
+  //     setState(() {
+  //       updateStatus = 'Update $category...';
+  //       remainDownloadAssets = 0;
+  //       downloadedAssets = 0;
+  //     });
+  //     // JSON DATA
+  //     DatabaseReference databaseRef = FirebaseDatabase.instance.ref("data");
+  //     DatabaseReference databaseChild = databaseRef.child(category);
+  //     // Get data
+  //     DatabaseEvent databaseEvent = await databaseChild.once();
+  //     // Save data
+  //     await storage.write(
+  //         key: '${category}_data',
+  //         value: jsonEncode(databaseEvent.snapshot.value));
 
-      var jsonDatas =
-          await jsonDecode(jsonEncode(databaseEvent.snapshot.value));
-      remainDownloadAssets = jsonDatas['data'].length;
+  //     var jsonDatas =
+  //         await jsonDecode(jsonEncode(databaseEvent.snapshot.value));
+  //     remainDownloadAssets = jsonDatas['data'].length;
 
-      // IMAGE DATA
-      Reference storageRef = FirebaseStorage.instance.ref("data");
-      Uint8List? imageData;
-      for (var jsonData in jsonDatas['data']) {
-        var key = jsonData[jsonImageKey];
-        // 이미지는 데이터가 없는 경우만
-        if (await storage.read(key: '$category/$key') == null) {
-          // Get data
-          try {
-            // From local
-            imageData =
-                (await rootBundle.load('assets/images/$category/$key.png'))
-                    .buffer
-                    .asUint8List();
-          } catch (_) {
-            try {
-              // From firebase
-              var storageChild = storageRef.child("$category/$key.png");
-              imageData = await storageChild
-                  .getData(1024 * 200); // get under 200kb image
-            } catch (_) {
-              continue;
+  //     // IMAGE DATA
+  //     Reference storageRef = FirebaseStorage.instance.ref("data");
+  //     Uint8List? imageData;
+  //     for (var jsonData in jsonDatas['data']) {
+  //       var key = jsonData[jsonImageKey];
+  //       // 이미지는 데이터가 없는 경우만
+  //       if (await storage.read(key: '$category/$key') == null) {
+  //         // Get data
+  //         try {
+  //           // From local
+  //           imageData =
+  //               (await rootBundle.load('assets/images/$category/$key.png'))
+  //                   .buffer
+  //                   .asUint8List();
+  //         } catch (_) {
+  //           try {
+  //             // From firebase
+  //             var storageChild = storageRef.child("$category/$key.png");
+  //             imageData = await storageChild
+  //                 .getData(1024 * 200); // get under 200kb image
+  //           } catch (_) {
+  //             continue;
+  //           }
+  //         }
+  //         // Save Data
+  //         if (imageData != null) {
+  //           await storage.write(
+  //               key: '$category/$key', value: base64.encode(imageData));
+  //         }
+  //         setState(() {
+  //           downloadedAssets = downloadedAssets + 1;
+  //         });
+  //       } else {
+  //         remainDownloadAssets = remainDownloadAssets - 1;
+  //       }
+  //     }
+  //   } catch (e) {
+  //     print('error at _dataUpdater: $e');
+  //   }
+  // }
+
+  // void firebaseUpdater() async {
+  //   const storage = FlutterSecureStorage();
+  //   // OPERATOR
+  //   await _dataUpdater(
+  //     category: "operator",
+  //     jsonImageKey: "image_name",
+  //     storage: storage,
+  //   );
+  //   // ENEMY
+  //   await _dataUpdater(
+  //     category: "enemy",
+  //     jsonImageKey: "code",
+  //     storage: storage,
+  //   );
+  //   // ITEMS
+  //   await _dataUpdater(
+  //     category: "item",
+  //     jsonImageKey: "code",
+  //     storage: storage,
+  //   );
+
+  //   try {
+  //     // APPLY
+  //     await globalData.globalDataInitializer();
+
+  //     if (globalData.newVer == null) {
+  //       // VERSION UPDATE
+  //       DatabaseReference databaseRef =
+  //           FirebaseDatabase.instance.ref("update_checker");
+  //       // Get data
+  //       DatabaseEvent databaseEvent = await databaseRef.once();
+  //       // Save data
+  //       String? stringData = jsonEncode(databaseEvent.snapshot.value);
+  //       await storage.write(key: 'update_checker', value: stringData);
+  //       globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
+  //     } else {
+  //       await storage.write(key: 'update_checker', value: globalData.newVer!);
+  //       globalData.oldVer = globalData.newVer!;
+  //     }
+
+  //     setState(() {
+  //       updateStatus = 'Update Completed!';
+  //     });
+  //   } catch (e) {
+  //     print('error at firebaseUpdater: $e');
+  //   }
+  // }
+
+  void _onUpdateTap() async {
+    const storage = FlutterSecureStorage();
+    remainDownloadAssets = 0;
+    downloadedAssets = 0;
+
+    setState(() {
+      updateStatus = 'Check dependency...';
+    });
+    // Add update required file depend on version
+    DatabaseReference databaseRef =
+        FirebaseDatabase.instance.ref("data_dependency");
+    DatabaseEvent databaseEvent = await databaseRef.once();
+    Map<String, dynamic> jsonData =
+        await json.decode(json.encode(databaseEvent.snapshot.value));
+    UpdateVersionsModel ver = UpdateVersionsModel.fromJson(jsonData);
+    UpdateDependencyModel updateRemain = UpdateDependencyModel();
+    for (var version in ver.versions.keys) {
+      if (ver.versions[version] != null) {
+        UpdateDependencyModel dep = ver.versions[version]!;
+        for (var category in dep.categories.keys) {
+          if (dep.categories[category] != null) {
+            for (var data in dep.categories[category]!) {
+              // Add only missing data
+              if (await storage.read(key: '$category/$data') == null) {
+                updateRemain.add(key: category, value: data);
+              }
             }
           }
-          // Save Data
-          if (imageData != null) {
-            await storage.write(
-                key: '$category/$key', value: base64.encode(imageData));
-          }
-          setState(() {
-            cnt = cnt + 1;
-          });
-        } else {
-          remainDownloadAssets = remainDownloadAssets - 1;
         }
       }
-    } catch (e) {
-      print('error at _dataUpdater: $e');
     }
-  }
-
-  void firebaseUpdater() async {
-    const storage = FlutterSecureStorage();
-    // OPERATOR
-    await _dataUpdater(
-      category: "operator",
-      jsonImageKey: "image_name",
-      storage: storage,
-    );
-    // ENEMY
-    await _dataUpdater(
-      category: "enemy",
-      jsonImageKey: "code",
-      storage: storage,
-    );
-    // ITEMS
-    await _dataUpdater(
-      category: "item",
-      jsonImageKey: "code",
-      storage: storage,
-    );
-
-    try {
-      // APPLY
-      await globalData.globalDataInitializer();
-
-      if (globalData.newVer == null) {
-        // VERSION UPDATE
-        DatabaseReference databaseRef =
-            FirebaseDatabase.instance.ref("update_checker");
-        // Get data
-        DatabaseEvent databaseEvent = await databaseRef.once();
-        // Save data
-        String? stringData = jsonEncode(databaseEvent.snapshot.value);
-        await storage.write(key: 'update_checker', value: stringData);
-        globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
-      } else {
-        await storage.write(key: 'update_checker', value: globalData.newVer!);
-        globalData.oldVer = globalData.newVer!;
+    // Deduplication
+    for (var category in updateRemain.categories.keys) {
+      if (updateRemain.categories[category] != null) {
+        updateRemain.categories[category] =
+            updateRemain.categories[category]!.toSet().toList();
+        remainDownloadAssets += updateRemain.categories[category]!.length;
       }
-
-      setState(() {
-        updateStatus = 'Update Completed!';
-      });
-    } catch (e) {
-      print('error at firebaseUpdater: $e');
     }
-  }
 
-  void newUpdater() async {
     setState(() {
       updateStatus = 'Update...';
     });
-
-    const storage = FlutterSecureStorage();
-
-    final String operatorList =
-        await rootBundle.loadString('assets/json/list_operator.json');
-    await storage.write(key: 'list_operator', value: operatorList);
-
-    List<String> operatorListData =
-        await json.decode(operatorList)['data']?.cast<String>();
-    remainDownloadAssets = operatorListData.length * 2;
-    cnt = 0;
-
-    setState(() {
-      updateStatus = 'Update data...';
-    });
-    final String opsString =
-        await rootBundle.loadString('assets/json/charactet_table.json');
-    var opsJson = await json.decode(opsString);
-    if (opsJson != null) {
-      for (var operator_ in operatorListData) {
-        await storage.write(
-            key: 'operator/$operator_', value: json.encode(opsJson[operator_]));
-        setState(() {
-          cnt += 1;
-        });
+    for (var category in updateRemain.categories.keys) {
+      if (updateRemain.categories[category] != null) {
+        _updater(
+          category: category,
+          dependencies: updateRemain.categories[category]!,
+        );
       }
     }
 
+    // for (var key in dependencies.keys) {
+    //   updateRemain.category[key] = [];
+    //   for (var depData in dependencies[key]) {
+    //     var localData = await storage.read(key: '$key/$depData');
+    //     if (localData == null) {
+    //       updateRemain[key]!.add(depData);
+    //     }
+    //   }
+    // }
+
+    // await storage.write(
+    //     key: '${category}_data',
+    //     value: jsonEncode(databaseEvent.snapshot.value));
+
+    // 나중에 완료로 변경
     setState(() {
-      updateStatus = 'Update image...';
+      updateStatus = 'Pending';
     });
-    for (var operator_ in operatorListData) {
-      final String opImageString = base64.encode(
-          (await rootBundle.load('assets/images/operator/$operator_.png'))
-              .buffer
-              .asUint8List());
-      await storage.write(
-          key: 'image/operator/$operator_', value: opImageString);
-      setState(() {
-        cnt += 1;
-      });
+  }
+
+  void _updater({
+    required String category,
+    required List<String> dependencies,
+  }) async {
+    const storage = FlutterSecureStorage();
+    String clientPath = '';
+    String serverPath = '';
+    String savePath = '';
+
+    switch (category) {
+      case 'operator':
+      case 'token':
+      case 'trap':
+        {
+          clientPath = 'assets/json/character_table.json';
+          serverPath = 'character_table';
+          savePath = category;
+          break;
+        }
+      case 'operator_patch':
+        {
+          clientPath = 'assets/json/char_patch_table.json';
+          serverPath = 'operator_patch/patchChars';
+          savePath = 'operator';
+          break;
+        }
     }
 
-    setState(() {
-      updateStatus = 'Update Completed!';
-    });
+    // final String operatorList =
+    //     await rootBundle.loadString('assets/json/list_operator.json');
+    // await storage.write(key: 'list_operator', value: operatorList);
+
+    // List<String> operatorListData =
+    //     await json.decode(operatorList)['data']?.cast<String>();
+    // remainDownloadAssets = operatorListData.length * 2;
+    // downloadedAssets = 0;
+
+    // setState(() {
+    //   updateStatus = 'Update data...';
+    // });
+    // final String opsString =
+    //     await rootBundle.loadString('assets/json/charactet_table.json');
+    // var opsJson = await json.decode(opsString);
+    // if (opsJson != null) {
+    //   for (var operator_ in operatorListData) {
+    //     await storage.write(
+    //         key: 'operator/$operator_', value: json.encode(opsJson[operator_]));
+    //     setState(() {
+    //       downloadedAssets += 1;
+    //     });
+    //   }
+    // }
+
+    // setState(() {
+    //   updateStatus = 'Update image...';
+    // });
+    // for (var operator_ in operatorListData) {
+    //   final String opImageString = base64.encode(
+    //       (await rootBundle.load('assets/images/operator/$operator_.png'))
+    //           .buffer
+    //           .asUint8List());
+    //   await storage.write(
+    //       key: 'image/operator/$operator_', value: opImageString);
+    //   setState(() {
+    //     downloadedAssets += 1;
+    //   });
+    // }
+
+    // setState(() {
+    //   updateStatus = 'Update Completed!';
+    // });
   }
 
   @override
@@ -276,7 +368,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   ),
                   Gaps.v36,
                   UpdateIndicator(
-                    current: cnt,
+                    current: downloadedAssets,
                     remain: remainDownloadAssets,
                   ),
                   Gaps.v28,
@@ -286,8 +378,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       TextButton(
                         onPressed: updateStatus == 'Pending' &&
                                 globalData.newVer != null
-                            // ? firebaseUpdater
-                            ? newUpdater
+                            ? _onUpdateTap
                             : null,
                         style: TextButton.styleFrom(
                           backgroundColor: updateStatus == 'Pending' &&
