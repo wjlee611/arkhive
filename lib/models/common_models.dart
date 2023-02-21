@@ -1,8 +1,8 @@
 import 'package:arkhive/models/operator_model.dart';
 
 class BlackboardModel {
-  final String key;
-  final double value;
+  final String? key;
+  final double? value;
 
   BlackboardModel.fromJson(Map<String, dynamic> json)
       : key = json['key'],
@@ -10,8 +10,8 @@ class BlackboardModel {
 }
 
 class EvolveCostModel {
-  final String id, type;
-  final int count;
+  final String? id, type;
+  final int? count;
 
   EvolveCostModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -21,6 +21,6 @@ class EvolveCostModel {
 
 // ABSTRACT CLASS
 abstract class PotentialRank {
-  int get requiredPotentialRank;
+  int? get requiredPotentialRank;
   OperatorUnlockCondModel get unlockCondition;
 }

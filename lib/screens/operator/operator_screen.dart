@@ -149,26 +149,26 @@ class _OperatorScreenState extends State<OperatorScreen> {
       // search
       result = list
           .where((op) =>
-              op.name.toLowerCase().contains(_searchKeyword.toLowerCase()))
+              op.name!.toLowerCase().contains(_searchKeyword.toLowerCase()))
           .toList();
     }
 
     // sort
     if (_sortOption == SortOptions.starUp) {
       result.sort(
-        (a, b) => a.rarity.compareTo(b.rarity),
+        (a, b) => a.rarity!.compareTo(b.rarity!),
       );
     } else if (_sortOption == SortOptions.starDown) {
       result.sort(
-        (a, b) => b.rarity.compareTo(a.rarity),
+        (a, b) => b.rarity!.compareTo(a.rarity!),
       );
     } else if (_sortOption == SortOptions.nameUp) {
       result.sort(
-        (a, b) => a.name.compareTo(b.name),
+        (a, b) => a.name!.compareTo(b.name!),
       );
     } else if (_sortOption == SortOptions.nameDown) {
       result.sort(
-        (a, b) => b.name.compareTo(a.name),
+        (a, b) => b.name!.compareTo(a.name!),
       );
     }
 

@@ -7,10 +7,16 @@ import 'package:arkhive/models/common_models.dart';
 /// trap
 
 class OperatorModel {
-  final String name, description, position, profession, subProfessionId;
-  final String? nationId, groupId, teamId;
-  final int maxPotentialLevel, rarity;
-  final bool isNotObtainable;
+  final String? name,
+      description,
+      position,
+      profession,
+      subProfessionId,
+      nationId,
+      groupId,
+      teamId;
+  final int? maxPotentialLevel, rarity;
+  final bool? isNotObtainable;
   final List<String> tagList;
   final List<OperatorLevelPhaseModel> phases;
   final List<OperatorSkillsModel> skills;
@@ -68,8 +74,8 @@ class OperatorModel {
 
 // OPERATOR STAT MODEL
 class OperatorLevelPhaseModel {
-  final String characterPrefabKey, rangeId;
-  final int maxLevel;
+  final String? characterPrefabKey, rangeId;
+  final int? maxLevel;
   final List<OperatorLevelPhaseAttrKeyFrameModel> attributesKeyFrames;
   final List<EvolveCostModel> evolveCost;
 
@@ -89,17 +95,17 @@ class OperatorLevelPhaseModel {
 }
 
 class OperatorLevelPhaseAttrKeyFrameModel {
-  final int level;
+  final int? level;
   final OperatorStatsDataModel data;
 
   OperatorLevelPhaseAttrKeyFrameModel.fromJson(Map<String, dynamic> json)
       : level = json['level'],
-        data = OperatorStatsDataModel.fromJson(json['data']);
+        data = OperatorStatsDataModel.fromJson(json['data'] ?? {});
 }
 
 // OPERATOR SKILLS MODEL
 class OperatorSkillsModel {
-  final String skillId;
+  final String? skillId;
   final List<OperatorSkillslevelUpCostCondModel> levelUpCostCond;
   final OperatorUnlockCondModel unlockCond;
 
@@ -110,16 +116,16 @@ class OperatorSkillsModel {
             for (var data in json['levelUpCostCond'])
               OperatorSkillslevelUpCostCondModel.fromJson(data)
         ],
-        unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond']);
+        unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {});
 }
 
 class OperatorSkillslevelUpCostCondModel {
   final OperatorUnlockCondModel unlockCond;
-  final int lvlUpTime;
+  final int? lvlUpTime;
   final List<EvolveCostModel> levelUpCost;
 
   OperatorSkillslevelUpCostCondModel.fromJson(Map<String, dynamic> json)
-      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond']),
+      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
         lvlUpTime = json['lvlUpTime'],
         levelUpCost = [
           if (json['levelUpCost'] != null)
@@ -132,7 +138,7 @@ class OperatorAllSkillLvlupModel {
   final List<EvolveCostModel> lvlUpCost;
 
   OperatorAllSkillLvlupModel.fromJson(Map<String, dynamic> json)
-      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond']),
+      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
         lvlUpCost = [
           if (json['lvlUpCost'] != null)
             for (var data in json['lvlUpCost']) EvolveCostModel.fromJson(data)
@@ -155,13 +161,13 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
   @override
   final OperatorUnlockCondModel unlockCondition;
   @override
-  final int requiredPotentialRank;
-  final String name, description;
+  final int? requiredPotentialRank;
+  final String? name, description;
   final List<BlackboardModel> blackboard;
 
   OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
       : unlockCondition =
-            OperatorUnlockCondModel.fromJson(json['unlockCondition']),
+            OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
         requiredPotentialRank = json['requiredPotentialRank'],
         name = json['name'],
         description = json['description'],
@@ -173,8 +179,8 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
 
 // OPERATOR POTENTIAL RANKS MODEL
 class OperatorPotentialRanksModel {
-  final int type;
-  final String description;
+  final int? type;
+  final String? description;
 
   OperatorPotentialRanksModel.fromJson(Map<String, dynamic> json)
       : type = json['type'],
@@ -183,7 +189,7 @@ class OperatorPotentialRanksModel {
 
 // OPERATOR ETC MODEL
 class OperatorStatsDataModel {
-  final double maxHp,
+  final double? maxHp,
       atk,
       def,
       magicResistance,
@@ -193,18 +199,18 @@ class OperatorStatsDataModel {
       attackSpeed;
 
   OperatorStatsDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = json['maxHp'].toDouble(),
-        atk = json['atk'].toDouble(),
-        def = json['def'].toDouble(),
+      : maxHp = json['maxHp']?.toDouble(),
+        atk = json['atk']?.toDouble(),
+        def = json['def']?.toDouble(),
         magicResistance = json['magicResistance'],
-        cost = json['cost'].toDouble(),
-        blockCnt = json['blockCnt'].toDouble(),
-        respawnTime = json['respawnTime'].toDouble(),
+        cost = json['cost']?.toDouble(),
+        blockCnt = json['blockCnt']?.toDouble(),
+        respawnTime = json['respawnTime']?.toDouble(),
         attackSpeed = json['attackSpeed'];
 }
 
 class OperatorUnlockCondModel {
-  final int phase, level;
+  final int? phase, level;
 
   OperatorUnlockCondModel.fromJson(Map<String, dynamic> json)
       : phase = json['phase'],

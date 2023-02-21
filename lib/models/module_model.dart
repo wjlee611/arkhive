@@ -2,7 +2,7 @@ import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/operator_model.dart';
 
 class ModuleModel {
-  final String uniEquipId, uniEquipName, uniEquipIcon, typeIcon, charId;
+  final String? uniEquipId, uniEquipName, uniEquipIcon, typeIcon, charId;
   final List<String> missionList;
   final Map<String, List<EvolveCostModel>> itemCost;
 
@@ -27,8 +27,7 @@ class ModuleModel {
 }
 
 class ModuleMissionModel {
-  final String desc;
-  final String? jumpStageId;
+  final String? desc, jumpStageId;
 
   ModuleMissionModel.fromJson(Map<String, dynamic> json)
       : desc = json['desc'],
@@ -47,7 +46,7 @@ class ModuleDataModel {
 }
 
 class ModuleDataPhaseModel {
-  final int equipLevel;
+  final int? equipLevel;
   final List<ModuleDataPartsModel> parts;
   final List<BlackboardModel> attributeBlackboard;
 
@@ -65,7 +64,7 @@ class ModuleDataPhaseModel {
 }
 
 class ModuleDataPartsModel {
-  final String target;
+  final String? target;
   final List<ModuleTalentDataBundleModel> addOrOverrideTalentDataBundle;
   final List<ModuleTraitDataBundleModel> overrideTraitDataBundle;
 
@@ -85,10 +84,10 @@ class ModuleDataPartsModel {
 }
 
 class ModuleTalentDataBundleModel implements PotentialRank {
-  final String upgradeDescription, name;
-  final int talentIndex;
+  final String? upgradeDescription, name;
+  final int? talentIndex;
   @override
-  final int requiredPotentialRank;
+  final int? requiredPotentialRank;
   @override
   final OperatorUnlockCondModel unlockCondition;
   final List<BlackboardModel> blackboard;
@@ -97,7 +96,7 @@ class ModuleTalentDataBundleModel implements PotentialRank {
       : upgradeDescription = json['upgradeDescription'],
         talentIndex = json['talentIndex'],
         unlockCondition =
-            OperatorUnlockCondModel.fromJson(json['unlockCondition']),
+            OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
         requiredPotentialRank = json['requiredPotentialRank'],
         name = json['name'],
         blackboard = [
@@ -107,17 +106,17 @@ class ModuleTalentDataBundleModel implements PotentialRank {
 }
 
 class ModuleTraitDataBundleModel implements PotentialRank {
-  final String additionalDescription;
+  final String? additionalDescription;
   @override
   final OperatorUnlockCondModel unlockCondition;
   @override
-  final int requiredPotentialRank;
+  final int? requiredPotentialRank;
   final List<BlackboardModel> blackboard;
 
   ModuleTraitDataBundleModel.fromJson(Map<String, dynamic> json)
       : additionalDescription = json['additionalDescription'],
         unlockCondition =
-            OperatorUnlockCondModel.fromJson(json['unlockCondition']),
+            OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
         requiredPotentialRank = json['requiredPotentialRank'],
         blackboard = [
           if (json['blackboard'] != null)

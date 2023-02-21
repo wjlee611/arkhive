@@ -38,11 +38,11 @@ class OperatorListItem extends StatelessWidget {
                 height: Sizes.size52,
                 width: Sizes.size5,
                 decoration: BoxDecoration(
-                  color: _rarityColorSelector(operator_.rarity),
+                  color: _rarityColorSelector(operator_.rarity!),
                 ),
               ),
               Hero(
-                tag: operator_.phases.first.characterPrefabKey,
+                tag: operator_.phases.first.characterPrefabKey!,
                 child: Container(
                   width: Sizes.size52,
                   height: Sizes.size52,
@@ -68,7 +68,7 @@ class OperatorListItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        operator_.name,
+                        operator_.name!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

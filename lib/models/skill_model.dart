@@ -1,7 +1,7 @@
 import 'package:arkhive/models/common_models.dart';
 
 class SkillModel {
-  final String skillId;
+  final String? skillId;
   final List<SkillLevelsModel> levels;
 
   SkillModel.fromJson(Map<String, dynamic> json)
@@ -13,17 +13,17 @@ class SkillModel {
 }
 
 class SkillLevelsModel {
-  final String name, description;
-  final int skillType, durationType;
+  final String? name, description;
+  final int? skillType, durationType;
   final SkillSPModel spData;
-  final double duration;
+  final double? duration;
   final List<BlackboardModel> blackboard;
   SkillLevelsModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         description = json['description'],
         skillType = json['skillType'],
         durationType = json['durationType'],
-        spData = SkillSPModel.fromJson(json['spData']),
+        spData = SkillSPModel.fromJson(json['spData'] ?? {}),
         duration = json['duration'],
         blackboard = [
           if (json['blackboard'] != null)
@@ -32,8 +32,8 @@ class SkillLevelsModel {
 }
 
 class SkillSPModel {
-  final int spType, maxChargeTime, spCost, initSp;
-  final double increment;
+  final int? spType, maxChargeTime, spCost, initSp;
+  final double? increment;
 
   SkillSPModel.fromJson(Map<String, dynamic> json)
       : spType = json['spType'],
