@@ -41,26 +41,23 @@ class OperatorListItem extends StatelessWidget {
                   color: _rarityColorSelector(operator_.rarity!),
                 ),
               ),
-              Hero(
-                tag: operator_.phases.first.characterPrefabKey!,
-                child: Container(
-                  width: Sizes.size52,
-                  height: Sizes.size52,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(),
-                  child: snapshot.hasData
-                      ? Image.memory(
-                          snapshot.data!,
-                          width: Sizes.size52,
-                          height: Sizes.size52,
-                          gaplessPlayback: true,
-                        )
-                      : Image.asset(
-                          "assets/images/prts.png",
-                          width: Sizes.size52,
-                          height: Sizes.size52,
-                        ),
-                ),
+              Container(
+                width: Sizes.size52,
+                height: Sizes.size52,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(),
+                child: snapshot.hasData
+                    ? Image.memory(
+                        snapshot.data!,
+                        width: Sizes.size52,
+                        height: Sizes.size52,
+                        gaplessPlayback: true,
+                      )
+                    : Image.asset(
+                        "assets/images/prts.png",
+                        width: Sizes.size52,
+                        height: Sizes.size52,
+                      ),
               ),
               Gaps.h20,
               Flexible(
