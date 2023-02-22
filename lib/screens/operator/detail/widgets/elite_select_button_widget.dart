@@ -52,7 +52,7 @@ class _EliteSelectButtonState extends State<EliteSelectButton> {
           ),
       ],
       child: Transform.translate(
-        offset: const Offset(0, -Sizes.size4),
+        offset: Offset(0, _elite == 2 ? -Sizes.size3 : -Sizes.size8),
         child: SizedBox(
           width: Sizes.size60,
           height: Sizes.size60,

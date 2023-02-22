@@ -9,16 +9,12 @@ class OperatorLevelSlider extends StatefulWidget {
     required this.maxValue,
     required this.currValue,
     required this.onChange,
-    required this.onChangeStart,
-    required this.onChangeEnd,
   });
 
   final int minValue;
   final int maxValue;
   final int currValue;
   final void Function(int) onChange;
-  final void Function(double) onChangeStart;
-  final void Function(double) onChangeEnd;
 
   @override
   State<OperatorLevelSlider> createState() => _OperatorLevelSliderState();
@@ -49,8 +45,6 @@ class _OperatorLevelSliderState extends State<OperatorLevelSlider> {
         max: widget.maxValue.toDouble(),
         value: widget.currValue.toDouble(),
         onChanged: _onChange,
-        onChangeStart: widget.onChangeStart,
-        onChangeEnd: widget.onChangeEnd,
       ),
     );
   }
@@ -92,12 +86,13 @@ class CustomThumbShape extends SliderComponentShape {
       ..close();
     context.canvas.drawPath(thumbPath, thumbPaint);
 
-    final textPainter = TextPainter(
+    final valueTextPainter = TextPainter(
       text: TextSpan(
         text: '$currValue',
         style: const TextStyle(
           fontFamily: FontFamily.nanumGothic,
           fontWeight: FontWeight.w700,
+          color: Colors.white,
           shadows: [
             Shadow(blurRadius: Sizes.size5),
           ],
@@ -106,11 +101,35 @@ class CustomThumbShape extends SliderComponentShape {
       textDirection: TextDirection.ltr,
       textAlign: TextAlign.center,
     );
-    textPainter.layout();
-    final textCenter = Offset(
-      center.dx - textPainter.width / 2,
-      center.dy - textPainter.height / 2,
+    valueTextPainter.layout();
+    final valueTextCenter = Offset(
+      center.dx - valueTextPainter.width / 2,
+      center.dy - valueTextPainter.height / 2,
     );
-    textPainter.paint(context.canvas, textCenter);
+    valueTextPainter.paint(context.canvas, valueTextCenter);
+
+    final levelTextPainter = TextPainter(
+      text: const TextSpan(
+        text: 'Lv',
+        style: TextStyle(
+          fontFamily: FontFamily.nanumGothic,
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+          shadows: [
+            Shadow(blurRadius: Sizes.size14),
+            Shadow(blurRadius: Sizes.size2),
+            Shadow(blurRadius: Sizes.size2),
+          ],
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center,
+    );
+    levelTextPainter.layout();
+    final levelTextOffset = Offset(
+      center.dx - levelTextPainter.width / 2 - Sizes.size14,
+      center.dy - levelTextPainter.height / 2 - Sizes.size14,
+    );
+    levelTextPainter.paint(context.canvas, levelTextOffset);
   }
 }
