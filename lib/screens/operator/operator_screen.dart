@@ -6,6 +6,7 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/update/update_screen.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
 // import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
@@ -425,9 +426,15 @@ class _OperatorScreenState extends State<OperatorScreen> {
                       slivers: [
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            (context, index) => OperatorListItem(
-                              operator_: filteredList[index],
-                              index: index,
+                            (context, index) => GestureDetector(
+                              onTap: () => OpenDetailScreen.onOperatorTab(
+                                context: context,
+                                operator_: filteredList[index],
+                              ),
+                              child: OperatorListItem(
+                                operator_: filteredList[index],
+                                index: index,
+                              ),
                             ),
                             childCount: filteredList.length,
                           ),
