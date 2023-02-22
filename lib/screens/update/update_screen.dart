@@ -185,6 +185,36 @@ class _UpdateScreenState extends State<UpdateScreen> {
           savePath = 'operator';
           break;
         }
+      case 'skill':
+        {
+          try {
+            localData = await json.decode(
+                await rootBundle.loadString('assets/json/skill_table.json'));
+          } catch (_) {}
+          serverPath = 'data/skill_table';
+          savePath = category;
+          break;
+        }
+      case 'module':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/uniequip_table.json'))['equipDict'];
+          } catch (_) {}
+          serverPath = 'data/uniequip_table/equipDict';
+          savePath = category;
+          break;
+        }
+      case 'module_data':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/battle_equip_table.json'));
+          } catch (_) {}
+          serverPath = 'data/battle_equip_table';
+          savePath = category;
+          break;
+        }
     }
 
     if (category.contains('image/')) {

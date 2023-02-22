@@ -53,3 +53,4 @@ app.*.map.json
 
 # ETC
 /legacy/
+/assets/json/test.json
