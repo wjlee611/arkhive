@@ -95,12 +95,12 @@ class OperatorLevelPhaseModel {
 }
 
 class OperatorLevelPhaseAttrKeyFrameModel {
-  final int? level;
+  final int level;
   final OperatorStatsDataModel data;
 
   OperatorLevelPhaseAttrKeyFrameModel.fromJson(Map<String, dynamic> json)
       : level = json['level'],
-        data = OperatorStatsDataModel.fromJson(json['data'] ?? {});
+        data = OperatorStatsDataModel.fromJson(json['data']);
 }
 
 // OPERATOR SKILLS MODEL
@@ -189,7 +189,7 @@ class OperatorPotentialRanksModel {
 
 // OPERATOR ETC MODEL
 class OperatorStatsDataModel {
-  final double? maxHp,
+  final double maxHp,
       atk,
       def,
       magicResistance,
@@ -199,14 +199,14 @@ class OperatorStatsDataModel {
       attackSpeed;
 
   OperatorStatsDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = json['maxHp']?.toDouble(),
-        atk = json['atk']?.toDouble(),
-        def = json['def']?.toDouble(),
+      : maxHp = json['maxHp'].toDouble(),
+        atk = json['atk'].toDouble(),
+        def = json['def'].toDouble(),
         magicResistance = json['magicResistance'],
-        cost = json['cost']?.toDouble(),
-        blockCnt = json['blockCnt']?.toDouble(),
-        respawnTime = json['respawnTime']?.toDouble(),
-        attackSpeed = json['attackSpeed'];
+        cost = json['cost'].toDouble(),
+        blockCnt = json['blockCnt'].toDouble(),
+        respawnTime = json['respawnTime'].toDouble(),
+        attackSpeed = json['baseAttackTime'];
 }
 
 class OperatorUnlockCondModel {

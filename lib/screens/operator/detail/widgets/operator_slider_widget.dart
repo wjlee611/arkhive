@@ -2,25 +2,27 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 
-class OperatorLevelSlider extends StatefulWidget {
-  const OperatorLevelSlider({
+class OperatorSlider extends StatefulWidget {
+  const OperatorSlider({
     super.key,
     required this.minValue,
     required this.maxValue,
     required this.currValue,
     required this.onChange,
+    required this.tag,
   });
 
   final int minValue;
   final int maxValue;
   final int currValue;
   final void Function(int) onChange;
+  final String tag;
 
   @override
-  State<OperatorLevelSlider> createState() => _OperatorLevelSliderState();
+  State<OperatorSlider> createState() => _OperatorSliderState();
 }
 
-class _OperatorLevelSliderState extends State<OperatorLevelSlider> {
+class _OperatorSliderState extends State<OperatorSlider> {
   int _value = 1;
 
   void _onChange(double value) {
@@ -34,7 +36,10 @@ class _OperatorLevelSliderState extends State<OperatorLevelSlider> {
   Widget build(BuildContext context) {
     return SliderTheme(
       data: SliderThemeData(
-        thumbShape: CustomThumbShape(currValue: widget.currValue),
+        thumbShape: CustomThumbShape(
+          currValue: widget.currValue,
+          tag: widget.tag,
+        ),
         activeTrackColor: Colors.yellow.shade800,
         inactiveTrackColor: Colors.yellow.shade600,
         overlayColor: Colors.yellow.shade600.withOpacity(0.5),
@@ -51,11 +56,12 @@ class _OperatorLevelSliderState extends State<OperatorLevelSlider> {
 }
 
 class CustomThumbShape extends SliderComponentShape {
+  CustomThumbShape({required this.currValue, required this.tag});
+
   final double thumbRadius = Sizes.size16;
   final double thumbHeight = Sizes.size32;
-  int currValue = 1;
-
-  CustomThumbShape({required this.currValue});
+  final int currValue;
+  final String tag;
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
@@ -109,9 +115,9 @@ class CustomThumbShape extends SliderComponentShape {
     valueTextPainter.paint(context.canvas, valueTextCenter);
 
     final levelTextPainter = TextPainter(
-      text: const TextSpan(
-        text: 'Lv',
-        style: TextStyle(
+      text: TextSpan(
+        text: tag,
+        style: const TextStyle(
           fontFamily: FontFamily.nanumGothic,
           fontWeight: FontWeight.w700,
           color: Colors.white,
@@ -127,7 +133,7 @@ class CustomThumbShape extends SliderComponentShape {
     );
     levelTextPainter.layout();
     final levelTextOffset = Offset(
-      center.dx - levelTextPainter.width / 2 - Sizes.size14,
+      center.dx - levelTextPainter.width / 2 - tag.length * Sizes.size8,
       center.dy - levelTextPainter.height / 2 - Sizes.size14,
     );
     levelTextPainter.paint(context.canvas, levelTextOffset);

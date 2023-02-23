@@ -4,6 +4,11 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_detail_header_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_stat_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
+import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 
 class OperatorDetailScreen extends StatefulWidget {
@@ -75,9 +80,44 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v130,
-                  Text(widget.operator_.name!),
+                  CommonTitleWidget(text: widget.operator_.name!),
+                  Gaps.v5,
+                  Wrap(
+                    direction: Axis.horizontal,
+                    spacing: Sizes.size4,
+                    runSpacing: Sizes.size4,
+                    children: [
+                      if (widget.operator_.rarity != null)
+                        OperatorStarWidget(rarity: widget.operator_.rarity!),
+                      if (widget.operator_.profession != null)
+                        OperatorTagWidget(
+                          tag: proSelector(widget.operator_.profession!),
+                        ),
+                      if (widget.operator_.subProfessionId != null)
+                        OperatorTagWidget(
+                          tag:
+                              subProSelector(widget.operator_.subProfessionId!),
+                        ),
+                    ],
+                  ),
+                  Gaps.v10,
+                  if (widget.operator_.position != null ||
+                      widget.operator_.tagList.isNotEmpty)
+                    OperatorTagWrapWidget(
+                      position: widget.operator_.position,
+                      tagList: widget.operator_.tagList,
+                    ),
+                  if (widget.operator_.phases.isNotEmpty &&
+                      widget.operator_.phases.first.attributesKeyFrames
+                          .isNotEmpty)
+                    OperatorStatWidget(
+                      phase: widget.operator_.phases[_elite],
+                      level: _level,
+                      favor: widget.operator_.favorKeyFrames,
+                    ),
                 ],
               ),
             ),

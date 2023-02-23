@@ -2,7 +2,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/detail/widgets/elite_select_button_widget.dart';
-import 'package:arkhive/screens/operator/detail/widgets/operator_level_slider_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
 import 'package:arkhive/tools/diagonal_clipper.dart';
 import 'package:flutter/foundation.dart';
@@ -66,7 +66,7 @@ class _OperatorDetailHeaderState extends State<OperatorDetailHeader> {
             Hero(
               tag: widget.operator_.phases.first.characterPrefabKey!,
               child: Transform.translate(
-                offset: const Offset(Sizes.size10, Sizes.size7),
+                offset: const Offset(Sizes.size10, Sizes.size5),
                 child: Transform.scale(
                   scale: 0.65,
                   child: Transform.rotate(
@@ -127,11 +127,12 @@ class _OperatorDetailHeaderState extends State<OperatorDetailHeader> {
                   offset: const Offset(Sizes.size5, 0),
                   child: SizedBox(
                     width: Sizes.size72 * 2,
-                    child: OperatorLevelSlider(
+                    child: OperatorSlider(
                       minValue: 1,
                       maxValue: widget.operator_.phases[_elite].maxLevel!,
                       currValue: _level,
                       onChange: _onLevelChange,
+                      tag: 'Lv',
                     ),
                   ),
                 ),
