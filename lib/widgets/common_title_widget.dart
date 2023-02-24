@@ -7,7 +7,7 @@ class CommonTitleWidget extends StatelessWidget {
   const CommonTitleWidget({
     super.key,
     required this.text,
-    this.color = const Color(0xFFF9A825),
+    this.color = const Color(0xFF546E7A),
   });
 
   final String text;
@@ -15,37 +15,54 @@ class CommonTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: Sizes.size1,
-            spreadRadius: Sizes.size1,
-            color: Colors.black.withOpacity(0.3),
+    return Row(
+      children: [
+        Flexible(
+          child: Container(
+            height: Sizes.size1,
+            color: Colors.grey.shade300,
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
+        ),
+        Gaps.h10,
+        Container(
+          decoration: BoxDecoration(
             color: color,
-            width: Sizes.size5,
-            height: Sizes.size20,
+            borderRadius: BorderRadiusDirectional.circular(Sizes.size10),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: Sizes.size1,
+                spreadRadius: Sizes.size1,
+                color: Colors.black.withOpacity(0.2),
+              ),
+            ],
           ),
-          Gaps.h5,
-          Text(
-            text,
-            style: const TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-              fontSize: Sizes.size14,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size3,
+              horizontal: Sizes.size20,
+            ),
+            child: Text(
+              text,
+              style: const TextStyle(
+                fontFamily: FontFamily.nanumGothic,
+                fontWeight: FontWeight.w700,
+                fontSize: Sizes.size14,
+                color: Colors.white,
+                shadows: [
+                  Shadow(blurRadius: Sizes.size1),
+                ],
+              ),
             ),
           ),
-          Gaps.h5,
-        ],
-      ),
+        ),
+        Gaps.h10,
+        Flexible(
+          child: Container(
+            height: Sizes.size1,
+            color: Colors.grey.shade300,
+          ),
+        ),
+      ],
     );
   }
 }

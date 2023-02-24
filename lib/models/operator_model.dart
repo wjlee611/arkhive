@@ -18,6 +18,7 @@ class OperatorModel {
   final int? maxPotentialLevel, rarity;
   final bool? isNotObtainable;
   final List<String> tagList;
+  final List<OperatorTalentsCandidatesModel> traitCandidate;
   final List<OperatorLevelPhaseModel> phases;
   final List<OperatorSkillsModel> skills;
   final List<OperatorTalentsModel> talents;
@@ -40,6 +41,11 @@ class OperatorModel {
         tagList = [
           if (json['tagList'] != null)
             for (var data in json['tagList']) data
+        ],
+        traitCandidate = [
+          if (json['trait'] != null && json['trait']['candidates'] != null)
+            for (var data in json['trait']['candidates'])
+              OperatorTalentsCandidatesModel.fromJson(data)
         ],
         phases = [
           if (json['phases'] != null)
@@ -162,7 +168,7 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
   final OperatorUnlockCondModel unlockCondition;
   @override
   final int? requiredPotentialRank;
-  final String? name, description;
+  final String? name, description, overrideDescripton;
   final List<BlackboardModel> blackboard;
 
   OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
@@ -171,6 +177,7 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
         requiredPotentialRank = json['requiredPotentialRank'],
         name = json['name'],
         description = json['description'],
+        overrideDescripton = json['overrideDescripton'],
         blackboard = [
           if (json['blackboard'] != null)
             for (var data in json['blackboard']) BlackboardModel.fromJson(data)

@@ -1,8 +1,10 @@
 import 'dart:typed_data';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_detail_header_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_stat_widget.dart';
@@ -48,6 +50,26 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     });
   }
 
+  T? _reqPotentalRankSelector<T extends PotentialRank>({
+    required List<T> candidates,
+    required int currPot,
+    int currElite = 2,
+    int currLevel = 60,
+  }) {
+    T? result;
+
+    for (var candidate in candidates) {
+      if (candidate.unlockCondition.phase! <= currElite &&
+          candidate.unlockCondition.level! <= currLevel) {
+        if (candidate.requiredPotentialRank! <= currPot) {
+          result = candidate;
+        }
+      }
+    }
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,10 +102,12 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v130,
-                  CommonTitleWidget(text: widget.operator_.name!),
+                  CommonTitleWidget(
+                    text: widget.operator_.name!,
+                    color: Colors.yellow.shade800,
+                  ),
                   Gaps.v5,
                   Wrap(
                     direction: Axis.horizontal,
@@ -103,7 +127,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                         ),
                     ],
                   ),
-                  Gaps.v10,
+                  Gaps.v16,
                   if (widget.operator_.position != null ||
                       widget.operator_.tagList.isNotEmpty)
                     OperatorTagWrapWidget(
@@ -117,6 +141,18 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                       phase: widget.operator_.phases[_elite],
                       level: _level,
                       favor: widget.operator_.favorKeyFrames,
+                    ),
+                  if (widget.operator_.description != null)
+                    OperatorDescriptionWidget(
+                      description: widget.operator_.description!,
+                      candidate: widget.operator_.traitCandidate.isNotEmpty
+                          ? _reqPotentalRankSelector(
+                              candidates: widget.operator_.traitCandidate,
+                              currPot: _potential,
+                              currElite: _elite,
+                              currLevel: _level,
+                            )
+                          : null,
                     ),
                 ],
               ),

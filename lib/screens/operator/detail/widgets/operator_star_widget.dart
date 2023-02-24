@@ -13,26 +13,29 @@ class OperatorStarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        for (var i = 0; i < rarity + 1; i++)
-          SizedBox(
-            width: Sizes.size16 + Sizes.size2,
-            child: Transform.rotate(
-              angle: 17 * math.pi / 180,
-              child: Icon(
-                Icons.star,
-                color: Colors.yellow.shade700,
-                size: Sizes.size24 + Sizes.size2,
-                shadows: const [
-                  Shadow(blurRadius: Sizes.size5),
-                ],
+    return Padding(
+      padding: const EdgeInsets.only(top: Sizes.size1),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (var i = 0; i < rarity + 1; i++)
+            SizedBox(
+              width: Sizes.size16 + Sizes.size2,
+              child: Transform.rotate(
+                angle: 17 * math.pi / 180,
+                child: Icon(
+                  Icons.star,
+                  color: Colors.yellow.shade700,
+                  size: Sizes.size24 + Sizes.size2,
+                  shadows: const [
+                    Shadow(blurRadius: Sizes.size5),
+                  ],
+                ),
               ),
             ),
-          ),
-        Gaps.h5,
-      ],
+          Gaps.h5,
+        ],
+      ),
     );
   }
 }

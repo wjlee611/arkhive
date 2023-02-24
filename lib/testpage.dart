@@ -373,95 +373,95 @@ class _TestPageScreenState extends State<TestPageScreen> {
   }
 }
 
-class FormattedTextWidget extends StatelessWidget {
-  final String text;
-  final Map<String, dynamic> variables;
+// class FormattedTextWidget extends StatelessWidget {
+//   final String text;
+//   final Map<String, dynamic> variables;
 
-  const FormattedTextWidget({
-    super.key,
-    required this.text,
-    this.variables = const {},
-  });
+//   const FormattedTextWidget({
+//     super.key,
+//     required this.text,
+//     this.variables = const {},
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    List<TextSpan> textSpans = [];
-    RegExp separator = RegExp(r"<@.*?>.*?</>");
+//   @override
+//   Widget build(BuildContext context) {
+//     List<TextSpan> textSpans = [];
+//     RegExp separator = RegExp(r"<@.*?>.*?</>");
 
-    List<String> parts = [];
-    int lastIndex = 0;
-    for (Match match in separator.allMatches(text)) {
-      if (lastIndex != match.start) {
-        parts.add(text.substring(lastIndex, match.start));
-      }
-      parts.add(match.group(0)!);
-      lastIndex = match.end;
-    }
-    if (lastIndex != text.length) {
-      parts.add(text.substring(lastIndex));
-    }
+//     List<String> parts = [];
+//     int lastIndex = 0;
+//     for (Match match in separator.allMatches(text)) {
+//       if (lastIndex != match.start) {
+//         parts.add(text.substring(lastIndex, match.start));
+//       }
+//       parts.add(match.group(0)!);
+//       lastIndex = match.end;
+//     }
+//     if (lastIndex != text.length) {
+//       parts.add(text.substring(lastIndex));
+//     }
 
-    for (String part in parts) {
-      if (part.startsWith('<@')) {
-        String tag = part.substring(0, part.indexOf('>') + 1);
-        String value =
-            part.substring(part.indexOf('>') + 1, part.indexOf('</>'));
-        switch (tag) {
-          case '<@ba.talpu>':
-            textSpans.add(
-              TextSpan(
-                text: value,
-                style: const TextStyle(color: Colors.blue),
-              ),
-            );
-            break;
-          case '<@ba.vup>':
-          case '<@ba.vdown>':
-            String varValue = "";
-            if (value.contains('0%')) {
-              String variable =
-                  value.substring(value.indexOf('{') + 1, value.indexOf(':'));
-              // String format =
-              //     value.substring(value.indexOf(':') + 1, value.indexOf('}'));
-              if (tag == "<@ba.vup>") {
-                varValue = '+';
-              } else {
-                varValue = '-';
-              }
-              // varValue +=
-              //     '${((variables[variable] * 100).toStringAsFixed(1) + format.replaceAll('0%', '%')).replaceAll('.0', '')}';
-              varValue +=
-                  '${((variables[variable] * 100).toStringAsFixed(1) + '%').replaceAll('.0', '')}';
-            } else {
-              String variable =
-                  value.substring(value.indexOf('{') + 1, value.indexOf('}'));
-              if (tag == "<@ba.vup>") {
-                varValue = '+';
-              } else {
-                varValue = '-';
-              }
-              varValue += variables[variable].toString().replaceAll('.0', '');
-            }
-            textSpans.add(
-              TextSpan(
-                text: varValue,
-                style: TextStyle(
-                  color: tag == "<@ba.vup>" ? Colors.blue : Colors.red,
-                ),
-              ),
-            );
-            break;
-        }
-      } else {
-        textSpans.add(TextSpan(text: part));
-      }
-    }
+//     for (String part in parts) {
+//       if (part.startsWith('<@')) {
+//         String tag = part.substring(0, part.indexOf('>') + 1);
+//         String value =
+//             part.substring(part.indexOf('>') + 1, part.indexOf('</>'));
+//         switch (tag) {
+//           case '<@ba.talpu>':
+//             textSpans.add(
+//               TextSpan(
+//                 text: value,
+//                 style: const TextStyle(color: Colors.blue),
+//               ),
+//             );
+//             break;
+//           case '<@ba.vup>':
+//           case '<@ba.vdown>':
+//             String varValue = "";
+//             if (value.contains('0%')) {
+//               String variable =
+//                   value.substring(value.indexOf('{') + 1, value.indexOf(':'));
+//               // String format =
+//               //     value.substring(value.indexOf(':') + 1, value.indexOf('}'));
+//               if (tag == "<@ba.vup>") {
+//                 varValue = '+';
+//               } else {
+//                 varValue = '-';
+//               }
+//               // varValue +=
+//               //     '${((variables[variable] * 100).toStringAsFixed(1) + format.replaceAll('0%', '%')).replaceAll('.0', '')}';
+//               varValue +=
+//                   '${((variables[variable] * 100).toStringAsFixed(1) + '%').replaceAll('.0', '')}';
+//             } else {
+//               String variable =
+//                   value.substring(value.indexOf('{') + 1, value.indexOf('}'));
+//               if (tag == "<@ba.vup>") {
+//                 varValue = '+';
+//               } else {
+//                 varValue = '-';
+//               }
+//               varValue += variables[variable].toString().replaceAll('.0', '');
+//             }
+//             textSpans.add(
+//               TextSpan(
+//                 text: varValue,
+//                 style: TextStyle(
+//                   color: tag == "<@ba.vup>" ? Colors.blue : Colors.red,
+//                 ),
+//               ),
+//             );
+//             break;
+//         }
+//       } else {
+//         textSpans.add(TextSpan(text: part));
+//       }
+//     }
 
-    return RichText(
-      text: TextSpan(
-        style: DefaultTextStyle.of(context).style,
-        children: textSpans,
-      ),
-    );
-  }
-}
+//     return RichText(
+//       text: TextSpan(
+//         style: DefaultTextStyle.of(context).style,
+//         children: textSpans,
+//       ),
+//     );
+//   }
+// }

@@ -43,9 +43,9 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
     required double first,
     required double last,
   }) {
-    final double diff = (last - first) / (widget.favor.last.level - 1);
+    final double diff = (last - first) / widget.favor.last.level;
     final favor = _favor > 100 ? 50 : _favor / 2;
-    return first + diff * (favor - 1);
+    return first + diff * favor;
   }
 
   String _statFormatter(double stat) {
@@ -58,23 +58,21 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
     var fData = widget.phase.attributesKeyFrames.first.data;
     var lData = widget.phase.attributesKeyFrames.last.data;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CommonTitleWidget(text: '스탯'),
-        Transform.translate(
-          offset: const Offset(Sizes.size16, 0),
-          child: SizedBox(
-            width: Sizes.size52 * 4,
-            child: OperatorSlider(
-              minValue: 0,
-              maxValue: 200,
-              currValue: _favor,
-              onChange: _onFavorChange,
-              tag: '신뢰도',
-            ),
+        Gaps.v5,
+        SizedBox(
+          width: Sizes.size52 * 4,
+          child: OperatorSlider(
+            minValue: 0,
+            maxValue: 200,
+            currValue: _favor,
+            onChange: _onFavorChange,
+            tag: '신뢰도',
           ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OperatorStatBoxWidget(
               title: '최대 체력',
@@ -92,12 +90,14 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
             Gaps.h5,
             OperatorStatBoxWidget(
               title: '재배치 시간',
-              stat: '${fData.respawnTime.toString().replaceAll('.0', '')}초',
+              stat: fData.respawnTime.toString().replaceAll('.0', ''),
+              unit: '초',
             ),
           ],
         ),
         Gaps.v5,
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OperatorStatBoxWidget(
               title: '공격',
@@ -121,6 +121,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
         ),
         Gaps.v5,
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OperatorStatBoxWidget(
               title: '방어',
@@ -144,6 +145,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
         ),
         Gaps.v5,
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             OperatorStatBoxWidget(
               title: '마법 저항',
@@ -161,10 +163,12 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
             Gaps.h5,
             OperatorStatBoxWidget(
               title: '공격 속도',
-              stat: '${fData.attackSpeed.toString().replaceAll('.0', '')}/초',
+              stat: fData.attackSpeed.toString(),
+              unit: '초/회',
             ),
           ],
         ),
+        Gaps.v16,
       ],
     );
   }
@@ -175,53 +179,74 @@ class OperatorStatBoxWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.stat,
+    this.unit = "",
   });
 
-  final String title, stat;
+  final String title, stat, unit;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Sizes.size52 * 2,
+      width: Sizes.size60 * 2,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-              blurRadius: Sizes.size1,
-              spreadRadius: Sizes.size1,
-              color: Colors.black.withOpacity(0.3))
+            blurRadius: Sizes.size1,
+            spreadRadius: Sizes.size1,
+            color: Colors.black.withOpacity(0.3),
+          )
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size2,
-              horizontal: Sizes.size5,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.yellow.shade800,
-            ),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontWeight: FontWeight.w700,
-                fontSize: Sizes.size10,
-                color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.only(right: Sizes.size3),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size2,
+                horizontal: Sizes.size5,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey.shade600,
+              ),
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontWeight: FontWeight.w700,
+                  fontSize: Sizes.size10,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          Text(
-            stat,
-            style: const TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-              fontSize: Sizes.size12,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  stat,
+                  style: const TextStyle(
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                    fontSize: Sizes.size12,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: Sizes.size1),
+                  child: Text(
+                    unit,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                      fontSize: Sizes.size9,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

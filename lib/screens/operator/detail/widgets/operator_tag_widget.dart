@@ -17,7 +17,6 @@ class OperatorTagWrapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CommonTitleWidget(text: '태그'),
         Gaps.v5,
