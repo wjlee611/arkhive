@@ -120,8 +120,10 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                           .isNotEmpty)
                     OperatorStatWidget(
                       phase: widget.operator_.phases[_elite],
+                      pot: _potential,
                       level: _level,
                       favor: widget.operator_.favorKeyFrames,
+                      potRanks: widget.operator_.potentialRanks,
                     ),
                   if (widget.operator_.description != null)
                     OperatorDescriptionWidget(
@@ -142,6 +144,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                       elite: _elite,
                       level: _level,
                     ),
+                  Gaps.v60,
                 ],
               ),
             ),

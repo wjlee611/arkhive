@@ -23,7 +23,7 @@ class OperatorTalentsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const CommonTitleWidget(text: '재능'),
-        Gaps.v5,
+        Gaps.v7,
         for (var talent in talents)
           OperatorTalentWidget(
             talent: talent,

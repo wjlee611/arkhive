@@ -188,10 +188,25 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
 class OperatorPotentialRanksModel {
   final int? type;
   final String? description;
+  final List<OperatorPotentialAttrModifireModel> attributeModifiers;
 
   OperatorPotentialRanksModel.fromJson(Map<String, dynamic> json)
       : type = json['type'],
-        description = json['description'];
+        description = json['description'],
+        attributeModifiers = [
+          if (json['buff'] != null)
+            for (var data in json['buff']['attributes']['attributeModifiers'])
+              OperatorPotentialAttrModifireModel.fromJson(data)
+        ];
+}
+
+class OperatorPotentialAttrModifireModel {
+  final String attributeType;
+  final double value;
+
+  OperatorPotentialAttrModifireModel.fromJson(Map<String, dynamic> json)
+      : attributeType = json['attributeType'].toString(),
+        value = json['value'];
 }
 
 // OPERATOR ETC MODEL
@@ -203,6 +218,7 @@ class OperatorStatsDataModel {
       cost,
       blockCnt,
       respawnTime,
+      baseAttackTime,
       attackSpeed;
 
   OperatorStatsDataModel.fromJson(Map<String, dynamic> json)
@@ -213,7 +229,8 @@ class OperatorStatsDataModel {
         cost = json['cost'].toDouble(),
         blockCnt = json['blockCnt'].toDouble(),
         respawnTime = json['respawnTime'].toDouble(),
-        attackSpeed = json['baseAttackTime'];
+        baseAttackTime = json['baseAttackTime'],
+        attackSpeed = json['attackSpeed'];
 }
 
 class OperatorUnlockCondModel {
