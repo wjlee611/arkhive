@@ -28,6 +28,7 @@ class OperatorDescriptionWidget extends StatelessWidget {
               ? blackboardListToMap(blackboards: candidate!.blackboard)
               : {},
         ),
+        Gaps.v16,
       ],
     );
   }

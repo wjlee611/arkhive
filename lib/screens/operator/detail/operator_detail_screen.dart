@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
@@ -9,7 +8,9 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_detail_header_w
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_stat_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -48,26 +49,6 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
     setState(() {
       _level = level;
     });
-  }
-
-  T? _reqPotentalRankSelector<T extends PotentialRank>({
-    required List<T> candidates,
-    required int currPot,
-    int currElite = 2,
-    int currLevel = 60,
-  }) {
-    T? result;
-
-    for (var candidate in candidates) {
-      if (candidate.unlockCondition.phase! <= currElite &&
-          candidate.unlockCondition.level! <= currLevel) {
-        if (candidate.requiredPotentialRank! <= currPot) {
-          result = candidate;
-        }
-      }
-    }
-
-    return result;
   }
 
   @override
@@ -146,13 +127,20 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                     OperatorDescriptionWidget(
                       description: widget.operator_.description!,
                       candidate: widget.operator_.traitCandidate.isNotEmpty
-                          ? _reqPotentalRankSelector(
+                          ? reqPotEliteSelector(
                               candidates: widget.operator_.traitCandidate,
                               currPot: _potential,
                               currElite: _elite,
                               currLevel: _level,
                             )
                           : null,
+                    ),
+                  if (widget.operator_.talents.isNotEmpty)
+                    OperatorTalentsWidget(
+                      talents: widget.operator_.talents,
+                      pot: _potential,
+                      elite: _elite,
+                      level: _level,
                     ),
                 ],
               ),

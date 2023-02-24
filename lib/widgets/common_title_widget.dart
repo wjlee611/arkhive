@@ -66,3 +66,56 @@ class CommonTitleWidget extends StatelessWidget {
     );
   }
 }
+
+class CommonSubTitleWidget extends StatelessWidget {
+  const CommonSubTitleWidget({
+    super.key,
+    required this.text,
+    this.color = const Color(0xFFF9A825),
+  });
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: Sizes.size1,
+                spreadRadius: Sizes.size1,
+                color: Colors.black.withOpacity(0.2),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: Sizes.size3,
+                height: Sizes.size20,
+                decoration: BoxDecoration(
+                  color: color,
+                ),
+              ),
+              Gaps.h5,
+              Text(
+                text,
+                style: const TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontWeight: FontWeight.w700,
+                  fontSize: Sizes.size12,
+                  color: Colors.black,
+                ),
+              ),
+              Gaps.h5,
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

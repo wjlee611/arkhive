@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class FormattedTextWidget extends StatelessWidget {
   final String text;
   final Map<String, dynamic> variables;
+  final bool center;
 
   const FormattedTextWidget({
     super.key,
     required this.text,
     this.variables = const {},
+    this.center = true,
   });
 
   @override
@@ -93,7 +95,7 @@ class FormattedTextWidget extends StatelessWidget {
         style: DefaultTextStyle.of(context).style,
         children: textSpans,
       ),
-      textAlign: TextAlign.center,
+      textAlign: center ? TextAlign.center : TextAlign.start,
     );
   }
 }
