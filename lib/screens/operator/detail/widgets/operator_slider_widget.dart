@@ -8,14 +8,16 @@ class OperatorSlider extends StatefulWidget {
     required this.minValue,
     required this.maxValue,
     required this.currValue,
-    required this.onChange,
+    this.onChange,
+    this.onChangeEnd,
     required this.tag,
   });
 
   final int minValue;
   final int maxValue;
   final int currValue;
-  final void Function(int) onChange;
+  final void Function(int)? onChange;
+  final void Function(int)? onChangeEnd;
   final String tag;
 
   @override
@@ -28,7 +30,15 @@ class _OperatorSliderState extends State<OperatorSlider> {
   void _onChange(double value) {
     if (value.toInt() != _value) {
       _value = value.toInt();
-      widget.onChange(value.toInt());
+      if (widget.onChange != null) {
+        widget.onChange!(value.toInt());
+      }
+    }
+  }
+
+  void _onChangeEnd(double value) {
+    if (widget.onChangeEnd != null) {
+      widget.onChangeEnd!(value.toInt());
     }
   }
 
@@ -50,6 +60,7 @@ class _OperatorSliderState extends State<OperatorSlider> {
         max: widget.maxValue.toDouble(),
         value: widget.currValue.toDouble(),
         onChanged: _onChange,
+        onChangeEnd: _onChangeEnd,
       ),
     );
   }
@@ -94,7 +105,7 @@ class CustomThumbShape extends SliderComponentShape {
 
     final valueTextPainter = TextPainter(
       text: TextSpan(
-        text: '$currValue',
+        text: '${currValue > 100 ? 100 + (currValue - 100) * 10 : currValue}',
         style: const TextStyle(
           fontFamily: FontFamily.nanumGothic,
           fontWeight: FontWeight.w700,
@@ -133,8 +144,8 @@ class CustomThumbShape extends SliderComponentShape {
     );
     levelTextPainter.layout();
     final levelTextOffset = Offset(
-      center.dx - levelTextPainter.width / 2 - tag.length * Sizes.size8,
-      center.dy - levelTextPainter.height / 2 - Sizes.size14,
+      center.dx - levelTextPainter.width / 2,
+      center.dy - levelTextPainter.height / 2 + Sizes.size16,
     );
     levelTextPainter.paint(context.canvas, levelTextOffset);
   }

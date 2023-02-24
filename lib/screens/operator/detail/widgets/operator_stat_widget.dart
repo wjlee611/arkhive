@@ -2,7 +2,6 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +12,13 @@ class OperatorStatWidget extends StatefulWidget {
     required this.pot,
     required this.level,
     required this.favor,
+    required this.favorPhase,
     required this.potRanks,
   });
 
   final OperatorLevelPhaseModel phase;
-  final int pot, level;
-  final List<OperatorLevelPhaseAttrKeyFrameModel> favor;
+  final int pot, level, favor;
+  final List<OperatorLevelPhaseAttrKeyFrameModel> favorPhase;
   final List<OperatorPotentialRanksModel> potRanks;
 
   @override
@@ -28,32 +28,30 @@ class OperatorStatWidget extends StatefulWidget {
 class _OperatorStatWidgetState extends State<OperatorStatWidget> {
   late OperatorStatsDataModel fData;
   late OperatorStatsDataModel lData;
-  int _favor = 0;
   Map<String, double> _potStats = {};
 
-  late double favHp, favAtk, favDef, favRes;
+  late double _favHp, _favAtk, _favDef, _favRes;
 
   @override
   void initState() {
     super.initState();
     fData = widget.phase.attributesKeyFrames.first.data;
     lData = widget.phase.attributesKeyFrames.last.data;
-
-    favHp = _favCalculator(
-      first: widget.favor.first.data.maxHp,
-      last: widget.favor.last.data.maxHp,
+    _favHp = _favCalculator(
+      first: widget.favorPhase.first.data.maxHp,
+      last: widget.favorPhase.last.data.maxHp,
     );
-    favAtk = _favCalculator(
-      first: widget.favor.first.data.atk,
-      last: widget.favor.last.data.atk,
+    _favAtk = _favCalculator(
+      first: widget.favorPhase.first.data.atk,
+      last: widget.favorPhase.last.data.atk,
     );
-    favDef = _favCalculator(
-      first: widget.favor.first.data.def,
-      last: widget.favor.last.data.def,
+    _favDef = _favCalculator(
+      first: widget.favorPhase.first.data.def,
+      last: widget.favorPhase.last.data.def,
     );
-    favRes = _favCalculator(
-      first: widget.favor.first.data.magicResistance,
-      last: widget.favor.last.data.magicResistance,
+    _favRes = _favCalculator(
+      first: widget.favorPhase.first.data.magicResistance,
+      last: widget.favorPhase.last.data.magicResistance,
     );
   }
 
@@ -67,28 +65,24 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
       fData = widget.phase.attributesKeyFrames.first.data;
       lData = widget.phase.attributesKeyFrames.last.data;
     }
-  }
-
-  void _onFavorChange(int favor) {
-    setState(() {
-      _favor = favor;
-      favHp = _favCalculator(
-        first: widget.favor.first.data.maxHp,
-        last: widget.favor.last.data.maxHp,
+    if (oldWidget.favor != widget.favor) {
+      _favHp = _favCalculator(
+        first: widget.favorPhase.first.data.maxHp,
+        last: widget.favorPhase.last.data.maxHp,
       );
-      favAtk = _favCalculator(
-        first: widget.favor.first.data.atk,
-        last: widget.favor.last.data.atk,
+      _favAtk = _favCalculator(
+        first: widget.favorPhase.first.data.atk,
+        last: widget.favorPhase.last.data.atk,
       );
-      favDef = _favCalculator(
-        first: widget.favor.first.data.def,
-        last: widget.favor.last.data.def,
+      _favDef = _favCalculator(
+        first: widget.favorPhase.first.data.def,
+        last: widget.favorPhase.last.data.def,
       );
-      favRes = _favCalculator(
-        first: widget.favor.first.data.magicResistance,
-        last: widget.favor.last.data.magicResistance,
+      _favRes = _favCalculator(
+        first: widget.favorPhase.first.data.magicResistance,
+        last: widget.favorPhase.last.data.magicResistance,
       );
-    });
+    }
   }
 
   double _statCalculator({
@@ -103,13 +97,12 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
     required double first,
     required double last,
   }) {
-    final double diff = (last - first) / widget.favor.last.level;
-    final favor = _favor > 100 ? 50 : _favor / 2;
+    final double diff = (last - first) / widget.favorPhase.last.level;
+    final favor = widget.favor > 100 ? 50 : widget.favor / 2;
     return first + diff * favor;
   }
 
   double _stkSpdCalculator() {
-    var fData = widget.phase.attributesKeyFrames.first.data;
     var atkSpd = fData.attackSpeed;
     var baseAtkTime = fData.baseAttackTime;
     return 1 / ((atkSpd + (_potStats['7'] ?? 0)) / baseAtkTime / 100);
@@ -149,18 +142,6 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const CommonTitleWidget(text: '스탯'),
-        Gaps.v5,
-        SizedBox(
-          width: Sizes.size52 * 4,
-          child: OperatorSlider(
-            minValue: 0,
-            maxValue: 200,
-            currValue: _favor,
-            onChange: _onFavorChange,
-            tag: '신뢰도',
-          ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -171,7 +152,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       first: fData.maxHp,
                       last: lData.maxHp,
                     ) +
-                    favHp +
+                    _favHp +
                     (_potStats['0'] ?? 0),
               ),
             ),
@@ -196,7 +177,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       first: fData.atk,
                       last: lData.atk,
                     ) +
-                    favAtk +
+                    _favAtk +
                     (_potStats['1'] ?? 0),
               ),
             ),
@@ -220,7 +201,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       first: fData.def,
                       last: lData.def,
                     ) +
-                    favDef +
+                    _favDef +
                     (_potStats['2'] ?? 0),
               ),
             ),
@@ -242,7 +223,7 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       first: fData.magicResistance,
                       last: lData.magicResistance,
                     ) +
-                    favRes +
+                    _favRes +
                     (_potStats['3'] ?? 0),
               ),
             ),
@@ -282,42 +263,42 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (_favor != 0)
+            if (widget.favor != 0)
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CommonSubTitleWidget(text: '신뢰도 증가량'),
                   Gaps.v3,
-                  if (favHp != 0)
+                  if (_favHp != 0)
                     Text(
-                      '체력: ${favHp.round()}',
+                      '체력: ${_favHp.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
                         fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
                       ),
                     ),
-                  if (favAtk != 0)
+                  if (_favAtk != 0)
                     Text(
-                      '공격: ${favAtk.round()}',
+                      '공격: ${_favAtk.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
                         fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
                       ),
                     ),
-                  if (favDef != 0)
+                  if (_favDef != 0)
                     Text(
-                      '방어: ${favDef.round()}',
+                      '방어: ${_favDef.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
                         fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
                       ),
                     ),
-                  if (favRes != 0)
+                  if (_favRes != 0)
                     Text(
-                      '마법 저항: ${favRes.round()}',
+                      '마법 저항: ${_favRes.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
                         fontWeight: FontWeight.w700,

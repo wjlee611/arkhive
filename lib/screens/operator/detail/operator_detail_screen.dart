@@ -13,6 +13,7 @@ import 'package:arkhive/tools/profession_selector.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class OperatorDetailScreen extends StatefulWidget {
   const OperatorDetailScreen({
@@ -32,6 +33,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
   int _potential = 0;
   int _elite = 0;
   int _level = 1;
+  int _favor = 0;
 
   void _onPotSelected(int pot) {
     setState(() {
@@ -48,6 +50,12 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
   void _onLevelChange(int level) {
     setState(() {
       _level = level;
+    });
+  }
+
+  void _onFavorChange(int favor) {
+    setState(() {
+      _favor = favor;
     });
   }
 
@@ -84,7 +92,48 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
               padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
               child: Column(
                 children: [
-                  Gaps.v130,
+                  Gaps.v96,
+                  Hero(
+                    tag: widget.operator_.phases.first.characterPrefabKey!,
+                    child: Transform.scale(
+                      scale: 0.65,
+                      child: Transform.rotate(
+                        angle: 45 * math.pi / 180,
+                        child: Container(
+                          width: Sizes.size96,
+                          height: Sizes.size96,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                            color: Colors.blueGrey.shade100,
+                            border: Border.all(
+                              width: Sizes.size7,
+                              color: Colors.yellow.shade800,
+                              strokeAlign: BorderSide.strokeAlignOutside,
+                            ),
+                          ),
+                          child: Transform.scale(
+                            scale: 1.4,
+                            child: Transform.rotate(
+                              angle: -45 * math.pi / 180,
+                              child: widget.opImage != null
+                                  ? Image.memory(
+                                      widget.opImage!,
+                                      width: Sizes.size96,
+                                      height: Sizes.size96,
+                                      gaplessPlayback: true,
+                                    )
+                                  : Image.asset(
+                                      'assets/images/prts.png',
+                                      width: Sizes.size96,
+                                      height: Sizes.size96,
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Gaps.v10,
                   CommonTitleWidget(
                     text: widget.operator_.name!,
                     color: Colors.yellow.shade800,
@@ -118,12 +167,19 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                   if (widget.operator_.phases.isNotEmpty &&
                       widget.operator_.phases.first.attributesKeyFrames
                           .isNotEmpty)
-                    OperatorStatWidget(
-                      phase: widget.operator_.phases[_elite],
-                      pot: _potential,
-                      level: _level,
-                      favor: widget.operator_.favorKeyFrames,
-                      potRanks: widget.operator_.potentialRanks,
+                    Column(
+                      children: [
+                        const CommonTitleWidget(text: '스탯'),
+                        Gaps.v5,
+                        OperatorStatWidget(
+                          phase: widget.operator_.phases[_elite],
+                          pot: _potential,
+                          level: _level,
+                          favor: _favor,
+                          favorPhase: widget.operator_.favorKeyFrames,
+                          potRanks: widget.operator_.potentialRanks,
+                        ),
+                      ],
                     ),
                   if (widget.operator_.description != null)
                     OperatorDescriptionWidget(
@@ -155,6 +211,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
             onPotSelected: _onPotSelected,
             onEliteSelected: _onEliteSelected,
             onLevelChange: _onLevelChange,
+            onFavorChange: _onFavorChange,
           ),
         ],
       ),

@@ -7,7 +7,6 @@ import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_
 import 'package:arkhive/tools/diagonal_clipper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class OperatorDetailHeader extends StatefulWidget {
   const OperatorDetailHeader({
@@ -17,6 +16,7 @@ class OperatorDetailHeader extends StatefulWidget {
     required this.onPotSelected,
     required this.onEliteSelected,
     required this.onLevelChange,
+    required this.onFavorChange,
   });
 
   final Uint8List? image;
@@ -24,6 +24,7 @@ class OperatorDetailHeader extends StatefulWidget {
   final Function(int) onPotSelected;
   final Function(int) onEliteSelected;
   final Function(int) onLevelChange;
+  final Function(int) onFavorChange;
 
   @override
   State<OperatorDetailHeader> createState() => _OperatorDetailHeaderState();
@@ -32,6 +33,7 @@ class OperatorDetailHeader extends StatefulWidget {
 class _OperatorDetailHeaderState extends State<OperatorDetailHeader> {
   int _elite = 0;
   int _level = 1;
+  int _favor = 0;
 
   void _onEliteChange(int elite) {
     _onLevelChange(1);
@@ -43,6 +45,11 @@ class _OperatorDetailHeaderState extends State<OperatorDetailHeader> {
   void _onLevelChange(int level) {
     widget.onLevelChange(level);
     _level = level;
+  }
+
+  void _onFavorChange(int favor) {
+    widget.onFavorChange(favor);
+    _favor = favor;
   }
 
   @override
@@ -59,85 +66,45 @@ class _OperatorDetailHeaderState extends State<OperatorDetailHeader> {
             ),
           ),
         ),
+        Gaps.h20,
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Hero(
-              tag: widget.operator_.phases.first.characterPrefabKey!,
-              child: Transform.translate(
-                offset: const Offset(Sizes.size10, Sizes.size5),
-                child: Transform.scale(
-                  scale: 0.65,
-                  child: Transform.rotate(
-                    angle: 45 * math.pi / 180,
-                    child: Container(
-                      width: Sizes.size96,
-                      height: Sizes.size96,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey.shade100,
-                        border: Border.all(
-                          width: Sizes.size7,
-                          color: Colors.black.withOpacity(0.3),
-                          strokeAlign: BorderSide.strokeAlignOutside,
-                        ),
-                      ),
-                      child: Transform.scale(
-                        scale: 1.4,
-                        child: Transform.rotate(
-                          angle: -45 * math.pi / 180,
-                          child: widget.image != null
-                              ? Image.memory(
-                                  widget.image!,
-                                  width: Sizes.size96,
-                                  height: Sizes.size96,
-                                  gaplessPlayback: true,
-                                )
-                              : Image.asset(
-                                  'assets/images/prts.png',
-                                  width: Sizes.size96,
-                                  height: Sizes.size96,
-                                ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            PotentialSelectButton(
+              onSelected: widget.onPotSelected,
+              length: widget.operator_.maxPotentialLevel!,
             ),
-            Gaps.h20,
+            EliteSelectButton(
+              onSelected: _onEliteChange,
+              length: widget.operator_.phases.length,
+            ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  children: [
-                    PotentialSelectButton(
-                      onSelected: widget.onPotSelected,
-                      length: widget.operator_.maxPotentialLevel!,
-                    ),
-                    Gaps.h10,
-                    EliteSelectButton(
-                      onSelected: _onEliteChange,
-                      length: widget.operator_.phases.length,
-                    ),
-                  ],
+                SizedBox(
+                  width: Sizes.size72 * 2,
+                  height: Sizes.size44,
+                  child: OperatorSlider(
+                    minValue: 1,
+                    maxValue: widget.operator_.phases[_elite].maxLevel!,
+                    currValue: _level,
+                    onChange: _onLevelChange,
+                    tag: 'Lv',
+                  ),
                 ),
-                Transform.translate(
-                  offset: const Offset(Sizes.size5, 0),
-                  child: SizedBox(
-                    width: Sizes.size72 * 2,
-                    child: OperatorSlider(
-                      minValue: 1,
-                      maxValue: widget.operator_.phases[_elite].maxLevel!,
-                      currValue: _level,
-                      onChange: _onLevelChange,
-                      tag: 'Lv',
-                    ),
+                SizedBox(
+                  width: Sizes.size72 * 2,
+                  height: Sizes.size44,
+                  child: OperatorSlider(
+                    minValue: 0,
+                    maxValue: 110,
+                    currValue: _favor,
+                    onChange: _onFavorChange,
+                    tag: '신뢰도',
                   ),
                 ),
               ],
-            ),
+            )
           ],
         ),
       ],
