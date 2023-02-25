@@ -18,24 +18,9 @@ class FormattedTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<TextSpan> textSpans = [];
-
-    RegExp separator = RegExp(r"<.*?>");
-    List<String> parts = [];
-    int lastIndex = 0;
-    for (Match match in separator.allMatches(text)) {
-      if (lastIndex != match.start) {
-        parts.add(text.substring(lastIndex, match.start));
-      }
-      parts.add(match.group(0)!);
-      lastIndex = match.end;
-    }
-    if (lastIndex != text.length) {
-      parts.add(text.substring(lastIndex));
-    }
-
     const List<String> tags = [
       '<@ba.kw>',
+      '<@ba.talpu>',
       '<@ba.rem>',
       '<@ba.vdown>',
       '<@ba.vup>',
@@ -63,144 +48,176 @@ class FormattedTextWidget extends StatelessWidget {
       '</>',
     ];
 
-    DSStack<String> tagsStack = DSStack<String>();
-    List<Widget> widgets = [];
-    for (var part in parts) {
-      for (var word in part.split(' ')) {
-        if (word == '' || word == ' ') continue;
-        var newWord = word;
-        bool isDuration = false;
-        bool isVariable = false;
-        if (word.contains('{') && word.contains('}')) {
-          isVariable = true;
-          var variable = word
-              .substring(word.indexOf('{') + 1, word.indexOf('}'))
-              .split(':')
-              .first;
-          if (variable.contains('duration') || variable.contains('time')) {
-            isDuration = true;
-          }
-          var value = variables[variable];
-          if (word.contains(':0%')) {
-            newWord =
-                '${(value * 100).toStringAsFixed(1).replaceAll('.0', '')}%';
-          } else {
-            newWord = value.toString().replaceAll('.0', '');
-          }
+    List<List<Widget>> widgets = [];
+    List<String> lines = text.split('\n');
+    int line = -1;
+
+    for (var singleLineText in lines) {
+      widgets.add([]);
+      line += 1;
+
+      // Separate by tags -> parts
+      RegExp separator = RegExp(r"<.*?>");
+      List<String> parts = [];
+      int lastIndex = 0;
+      for (Match match in separator.allMatches(singleLineText)) {
+        if (lastIndex != match.start) {
+          parts.add(singleLineText.substring(lastIndex, match.start));
         }
-        if (tags.contains(newWord)) {
-          // tag
-          if (newWord != '</>') {
-            tagsStack.push(newWord);
-          } else {
-            if (tagsStack.isNotEmpty) {
-              tagsStack.pop();
+        parts.add(match.group(0)!);
+        lastIndex = match.end;
+      }
+      if (lastIndex != singleLineText.length) {
+        parts.add(singleLineText.substring(lastIndex));
+      }
+
+      // Analyse using stack
+      DSStack<String> tagsStack = DSStack<String>();
+      for (var part in parts) {
+        for (var word in part.split(' ')) {
+          if (word == '' || word == ' ') continue;
+          var newWord = word;
+          bool isDuration = false;
+          bool isVariable = false;
+          if (word.contains('{') && word.contains('}')) {
+            isVariable = true;
+            var variable = word
+                .substring(word.indexOf('{') + 1, word.indexOf('}'))
+                .split(':')
+                .first;
+            if (variable.contains('duration') || variable.contains('time')) {
+              isDuration = true;
+            }
+            var value = variables[variable];
+            if (word.contains(':0%')) {
+              newWord =
+                  '${(value * 100).toStringAsFixed(1).replaceAll('.0', '')}%';
+            } else {
+              newWord = value.toString().replaceAll('.0', '');
             }
           }
-        } else {
-          // normal
-          if (tagsStack.isEmpty) {
-            widgets.add(Text(
-              newWord,
-              style: const TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size12,
-                color: Colors.black87,
-              ),
-            ));
+          if (tags.contains(newWord)) {
+            // tag
+            if (newWord != '</>') {
+              tagsStack.push(newWord);
+            } else {
+              if (tagsStack.isNotEmpty) {
+                tagsStack.pop();
+              }
+            }
           } else {
-            // wrap by tag
-            switch (tagsStack.peek) {
-              case '<@ba.kw>':
-                widgets.add(Text(
-                  newWord,
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size12,
-                    color: Colors.blue,
-                  ),
-                ));
-                break;
-              case '<@ba.rem>':
-                widgets.add(Text(
-                  newWord,
-                  style: TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size12,
-                    color: Colors.yellow.shade800,
-                  ),
-                ));
-                break;
-              case '<@ba.vdown>':
-                if (!newWord.contains('+') && !newWord.contains('-')) {
-                  if (!isDuration && isVariable) {
-                    newWord = '-$newWord';
+            // normal
+            if (tagsStack.isEmpty) {
+              widgets[line].add(Text(
+                newWord,
+                style: const TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontSize: Sizes.size12,
+                  color: Colors.black87,
+                ),
+              ));
+            } else {
+              // wrap by tag
+              switch (tagsStack.peek) {
+                case '<@ba.kw>':
+                case '<@ba.talpu>':
+                  widgets[line].add(Text(
+                    newWord,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.blue,
+                    ),
+                  ));
+                  break;
+                case '<@ba.rem>':
+                  widgets[line].add(Text(
+                    newWord,
+                    style: TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.yellow.shade800,
+                    ),
+                  ));
+                  break;
+                case '<@ba.vdown>':
+                  if (!newWord.contains('+') && !newWord.contains('-')) {
+                    if (!isDuration && isVariable) {
+                      newWord = '-$newWord';
+                    }
                   }
-                }
-                widgets.add(Text(
-                  newWord,
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size12,
-                    color: Colors.red,
-                  ),
-                ));
-                break;
-              case '<@ba.vup>':
-                if (!newWord.contains('+') && !newWord.contains('-')) {
-                  if (!isDuration && isVariable) {
-                    newWord = '+$newWord';
+                  widgets[line].add(Text(
+                    newWord,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.red,
+                    ),
+                  ));
+                  break;
+                case '<@ba.vup>':
+                  if (!newWord.contains('+') && !newWord.contains('-')) {
+                    if (!isDuration && isVariable) {
+                      newWord = '+$newWord';
+                    }
                   }
-                }
-                widgets.add(Text(
-                  newWord,
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size12,
-                    color: Colors.blue,
-                  ),
-                ));
-                break;
-              case '<\$ba.buffres>':
-              case '<\$ba.camou>':
-              case '<\$ba.cold>':
-              case '<\$ba.inspire>':
-              case '<\$ba.invisible>':
-              case '<\$ba.protect>':
-              case '<\$ba.root>':
-              case '<\$ba.sleep>':
-              case '<\$ba.sluggish>':
-              case '<\$ba.stun>':
-              case '<\$ba.shield>':
-              case '<\$ba.binding>':
-              case '<\$ba.dt.neural>':
-              case '<\$ba.charged>':
-              case '<\$ba.strong>':
-              case '<\$ba.dt.element>':
-              case '<\$ba.fragile>':
-              case '<\$ba.frozen>':
-              case '<\$ba.overdrive>':
-              case '<\$ba.debuff>':
-              case '<\$ba.levitate>':
-                // 추후 기능 추가
-                widgets.add(Text(
-                  newWord,
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size12,
-                    color: Colors.grey,
-                  ),
-                ));
-                break;
+                  widgets[line].add(Text(
+                    newWord,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.blue,
+                    ),
+                  ));
+                  break;
+                case '<\$ba.buffres>':
+                case '<\$ba.camou>':
+                case '<\$ba.cold>':
+                case '<\$ba.inspire>':
+                case '<\$ba.invisible>':
+                case '<\$ba.protect>':
+                case '<\$ba.root>':
+                case '<\$ba.sleep>':
+                case '<\$ba.sluggish>':
+                case '<\$ba.stun>':
+                case '<\$ba.shield>':
+                case '<\$ba.binding>':
+                case '<\$ba.dt.neural>':
+                case '<\$ba.charged>':
+                case '<\$ba.strong>':
+                case '<\$ba.dt.element>':
+                case '<\$ba.fragile>':
+                case '<\$ba.frozen>':
+                case '<\$ba.overdrive>':
+                case '<\$ba.debuff>':
+                case '<\$ba.levitate>':
+                  // 추후 기능 추가
+                  widgets[line].add(Text(
+                    newWord,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.grey,
+                    ),
+                  ));
+                  break;
+              }
             }
           }
         }
       }
     }
 
-    return Wrap(
-      spacing: Sizes.size3,
-      children: widgets,
+    return Column(
+      crossAxisAlignment:
+          center ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      children: [
+        for (int i = 0; i < line + 1; i++)
+          Wrap(
+            spacing: Sizes.size3,
+            children: widgets[i],
+          ),
+      ],
     );
   }
 }

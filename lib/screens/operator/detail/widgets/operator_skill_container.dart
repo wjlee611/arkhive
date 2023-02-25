@@ -232,6 +232,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CommonSubTitleWidget(text: skill.name!),
+            Gaps.v5,
             FormattedTextWidget(
               text: skill.description!,
               variables: blackboardListToMap(blackboards: skill.blackboard),

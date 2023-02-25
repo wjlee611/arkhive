@@ -194,7 +194,15 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                             )
                           : null,
                     ),
-                  if (widget.operator_.talents.isNotEmpty)
+                  if (widget.operator_.talents.isNotEmpty &&
+                      reqPotEliteSelector(
+                            candidates:
+                                widget.operator_.talents.first.candidates,
+                            currPot: _potential,
+                            currElite: _elite,
+                            currLevel: _level,
+                          ) !=
+                          null)
                     OperatorTalentsWidget(
                       talents: widget.operator_.talents,
                       pot: _potential,

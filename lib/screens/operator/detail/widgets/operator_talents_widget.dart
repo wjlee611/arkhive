@@ -25,12 +25,24 @@ class OperatorTalentsWidget extends StatelessWidget {
         const CommonTitleWidget(text: '재능'),
         Gaps.v7,
         for (var talent in talents)
-          OperatorTalentWidget(
-            talent: talent,
-            pot: pot,
-            elite: elite,
-            level: level,
-          ),
+          if (reqPotEliteSelector(
+                candidates: talent.candidates,
+                currPot: pot,
+                currElite: elite,
+                currLevel: level,
+              ) !=
+              null)
+            OperatorTalentWidget(
+              talent: reqPotEliteSelector(
+                candidates: talent.candidates,
+                currPot: pot,
+                currElite: elite,
+                currLevel: level,
+              )!,
+              pot: pot,
+              elite: elite,
+              level: level,
+            ),
       ],
     );
   }
@@ -45,21 +57,19 @@ class OperatorTalentWidget extends StatelessWidget {
     required this.level,
   });
 
-  final OperatorTalentsModel talent;
+  final OperatorTalentsCandidatesModel talent;
   final int pot, elite, level;
 
   @override
   Widget build(BuildContext context) {
-    var currTalent =
-        reqPotEliteSelector(candidates: talent.candidates, currPot: pot)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CommonSubTitleWidget(text: currTalent.name!),
+        CommonSubTitleWidget(text: talent.name!),
         Gaps.v3,
         FormattedTextWidget(
-          text: currTalent.description!,
-          variables: blackboardListToMap(blackboards: currTalent.blackboard),
+          text: talent.description!,
+          variables: blackboardListToMap(blackboards: talent.blackboard),
           center: false,
         ),
         Gaps.v10,
