@@ -40,6 +40,14 @@ class FormattedTextWidget extends StatelessWidget {
         String varValue = '';
         String variable = '';
 
+        if (tag == "<@ba.vup>") {
+          if (value != '{duration}') {
+            varValue = '+';
+          }
+        } else if (tag == "<@ba.vdown>") {
+          varValue = '-';
+        }
+
         if (value.contains(':')) {
           String format = value
               .substring(value.indexOf(':') + 1, value.indexOf('}'))
@@ -56,16 +64,15 @@ class FormattedTextWidget extends StatelessWidget {
           varValue = value;
         }
 
-        if (tag == "<@ba.vup>") {
-          varValue = '+';
-        } else if (tag == "<@ba.vdown>") {
-          varValue = '-';
-        }
         textSpans.add(
           TextSpan(
             text: varValue.replaceAll('.0', ''),
             style: TextStyle(
-              color: tag == "<@ba.vdown>" ? Colors.red : Colors.blue,
+              color: tag == "<@ba.vdown>"
+                  ? Colors.red
+                  : tag == "<@ba.rem>"
+                      ? Colors.yellow.shade800
+                      : Colors.blue,
             ),
           ),
         );
@@ -76,6 +83,7 @@ class FormattedTextWidget extends StatelessWidget {
             part.substring(part.indexOf('>') + 1, part.indexOf('</>'));
         switch (tag) {
           case '<\$ba.sluggish>':
+          case '<\$ba.debuff>':
             textSpans.add(
               TextSpan(
                 text: value,

@@ -3,6 +3,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_skill_container.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_detail_header_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
@@ -200,6 +201,8 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                       elite: _elite,
                       level: _level,
                     ),
+                  if (widget.operator_.skills.isNotEmpty)
+                    OperatorSkillContainer(skills: widget.operator_.skills),
                   Gaps.v60,
                 ],
               ),
