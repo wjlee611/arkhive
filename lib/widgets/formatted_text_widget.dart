@@ -79,22 +79,37 @@ class FormattedTextWidget extends StatelessWidget {
           var newWord = word;
           bool isDuration = false;
           bool isVariable = false;
+          bool isNoMark = false;
           if (word.contains('{') && word.contains('}')) {
             isVariable = true;
             var variable = word
                 .substring(word.indexOf('{') + 1, word.indexOf('}'))
                 .split(':')
-                .first;
-            if (variable.contains('duration') || variable.contains('time')) {
+                .first
+                .replaceAll('+', '')
+                .replaceAll('-', '')
+                .toLowerCase();
+            if (variable.contains('duration') ||
+                variable.contains('time') ||
+                variable.contains('sec')) {
               isDuration = true;
             }
+            if (variable.contains('@') ||
+                variable.contains('scale') ||
+                variable.contains('value') ||
+                variable.contains('damage')) {
+              isNoMark = true;
+            }
             var value = variables[variable];
-            if (word.contains(':0%')) {
-              newWord =
+            String valueString;
+            if (word.contains(':0%') || word.contains(':0.0%')) {
+              valueString =
                   '${(value * 100).toStringAsFixed(1).replaceAll('.0', '')}%';
             } else {
-              newWord = value.toString().replaceAll('.0', '');
+              valueString = value.toString().replaceAll('.0', '');
             }
+            newWord = word.replaceRange(
+                word.indexOf('{'), word.indexOf('}') + 1, valueString);
           }
           if (tags.contains(newWord)) {
             // tag
@@ -142,7 +157,7 @@ class FormattedTextWidget extends StatelessWidget {
                   break;
                 case '<@ba.vdown>':
                   if (!newWord.contains('+') && !newWord.contains('-')) {
-                    if (!isDuration && isVariable) {
+                    if (!isDuration && !isNoMark && isVariable) {
                       newWord = '-$newWord';
                     }
                   }
@@ -157,7 +172,7 @@ class FormattedTextWidget extends StatelessWidget {
                   break;
                 case '<@ba.vup>':
                   if (!newWord.contains('+') && !newWord.contains('-')) {
-                    if (!isDuration && isVariable) {
+                    if (!isDuration && !isNoMark && isVariable) {
                       newWord = '+$newWord';
                     }
                   }
