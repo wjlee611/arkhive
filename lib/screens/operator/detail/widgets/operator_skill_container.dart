@@ -233,9 +233,13 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
           children: [
             CommonSubTitleWidget(text: skill.name!),
             Gaps.v5,
+            // spType 1, 2, 4, 8
             FormattedTextWidget(
               text: skill.description!,
-              variables: blackboardListToMap(blackboards: skill.blackboard),
+              variables: boardListAndDurationToMap(
+                blackboards: skill.blackboard,
+                duration: skill.duration,
+              ),
               center: false,
             )
           ],

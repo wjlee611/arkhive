@@ -69,7 +69,7 @@ class OperatorTalentWidget extends StatelessWidget {
         Gaps.v3,
         FormattedTextWidget(
           text: talent.description!,
-          variables: blackboardListToMap(blackboards: talent.blackboard),
+          variables: boardListAndDurationToMap(blackboards: talent.blackboard),
           center: false,
         ),
         Gaps.v10,

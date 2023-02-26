@@ -80,6 +80,7 @@ class FormattedTextWidget extends StatelessWidget {
           bool isDuration = false;
           bool isVariable = false;
           bool isNoMark = false;
+          // Case of variable -> replace newWord
           if (word.contains('{') && word.contains('}')) {
             isVariable = true;
             var variable = word
@@ -89,18 +90,23 @@ class FormattedTextWidget extends StatelessWidget {
                 .replaceAll('+', '')
                 .replaceAll('-', '')
                 .toLowerCase();
+            // Duration condition
             if (variable.contains('duration') ||
                 variable.contains('time') ||
-                variable.contains('sec')) {
+                variable.contains('sec') ||
+                variable.contains('stun')) {
               isDuration = true;
             }
+            // No mark(+/-) condition
             if (variable.contains('@') ||
                 variable.contains('scale') ||
                 variable.contains('value') ||
-                variable.contains('damage')) {
+                variable.contains('damage') ||
+                variable.contains('target')) {
               isNoMark = true;
             }
-            var value = variables[variable];
+            print(variable);
+            var value = variables[variable].abs();
             String valueString;
             if (word.contains(':0%') || word.contains(':0.0%')) {
               valueString =
@@ -111,8 +117,9 @@ class FormattedTextWidget extends StatelessWidget {
             newWord = word.replaceRange(
                 word.indexOf('{'), word.indexOf('}') + 1, valueString);
           }
+          // Analysis and fill widgets
           if (tags.contains(newWord)) {
-            // tag
+            // Case of tag
             if (newWord != '</>') {
               tagsStack.push(newWord);
             } else {
@@ -121,7 +128,7 @@ class FormattedTextWidget extends StatelessWidget {
               }
             }
           } else {
-            // normal
+            // Case of normal text
             if (tagsStack.isEmpty) {
               widgets[line].add(Text(
                 newWord,
@@ -132,7 +139,7 @@ class FormattedTextWidget extends StatelessWidget {
                 ),
               ));
             } else {
-              // wrap by tag
+              // Case of text which wrap by tag
               switch (tagsStack.peek) {
                 case '<@ba.kw>':
                 case '<@ba.talpu>':
@@ -237,11 +244,16 @@ class FormattedTextWidget extends StatelessWidget {
   }
 }
 
-Map<String, double> blackboardListToMap(
-    {required List<BlackboardModel> blackboards}) {
+Map<String, double> boardListAndDurationToMap({
+  required List<BlackboardModel> blackboards,
+  double? duration,
+}) {
   Map<String, double> result = {
     for (var data in blackboards) data.key!: data.value!
   };
+  if (!result.keys.contains('duration') && duration != null) {
+    result['duration'] = duration;
+  }
 
   return result;
 }

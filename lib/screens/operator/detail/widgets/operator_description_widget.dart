@@ -25,7 +25,7 @@ class OperatorDescriptionWidget extends StatelessWidget {
               ? candidate!.overrideDescripton!
               : description,
           variables: candidate?.blackboard != null
-              ? blackboardListToMap(blackboards: candidate!.blackboard)
+              ? boardListAndDurationToMap(blackboards: candidate!.blackboard)
               : {},
         ),
         Gaps.v16,
