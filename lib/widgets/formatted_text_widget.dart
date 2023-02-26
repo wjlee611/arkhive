@@ -77,35 +77,27 @@ class FormattedTextWidget extends StatelessWidget {
         for (var word in part.split(' ')) {
           if (word == '' || word == ' ') continue;
           var newWord = word;
-          bool isDuration = false;
-          bool isVariable = false;
-          bool isNoMark = false;
           // Case of variable -> replace newWord
           if (word.contains('{') && word.contains('}')) {
-            isVariable = true;
+            var isNegative = false;
+            // Variable extraction
             var variable = word
                 .substring(word.indexOf('{') + 1, word.indexOf('}'))
                 .split(':')
                 .first
-                .replaceAll('+', '')
-                .replaceAll('-', '')
                 .toLowerCase();
-            // Duration condition
-            if (variable.contains('duration') ||
-                variable.contains('time') ||
-                variable.contains('sec') ||
-                variable.contains('stun')) {
-              isDuration = true;
+            // Check negative variable
+            if (variable.contains('-')) {
+              isNegative = true;
+              variable = variable.replaceAll('-', '');
             }
-            // No mark(+/-) condition
-            if (variable.contains('@') ||
-                variable.contains('scale') ||
-                variable.contains('value') ||
-                variable.contains('damage') ||
-                variable.contains('target')) {
-              isNoMark = true;
+            double value;
+            if (isNegative) {
+              value = -variables[variable];
+            } else {
+              value = variables[variable];
             }
-            var value = variables[variable].abs();
+            // Variable formatting
             String valueString;
             if (word.contains(':0%') || word.contains(':0.0%')) {
               valueString =
@@ -113,11 +105,13 @@ class FormattedTextWidget extends StatelessWidget {
             } else {
               valueString = value.toString().replaceAll('.0', '');
             }
+            // Replace variable space to newWord
             newWord = word.replaceRange(
                 word.indexOf('{'), word.indexOf('}') + 1, valueString);
           }
           // Analysis and fill widgets
           if (tags.contains(newWord)) {
+            // Analysis //
             // Case of tag
             if (newWord != '</>') {
               tagsStack.push(newWord);
@@ -127,6 +121,7 @@ class FormattedTextWidget extends StatelessWidget {
               }
             }
           } else {
+            // Fill widgets //
             // Case of normal text
             if (tagsStack.isEmpty) {
               widgets[line].add(Text(
@@ -140,17 +135,6 @@ class FormattedTextWidget extends StatelessWidget {
             } else {
               // Case of text which wrap by tag
               switch (tagsStack.peek) {
-                case '<@ba.kw>':
-                case '<@ba.talpu>':
-                  widgets[line].add(Text(
-                    newWord,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.blue,
-                    ),
-                  ));
-                  break;
                 case '<@ba.rem>':
                   widgets[line].add(Text(
                     newWord,
@@ -161,33 +145,25 @@ class FormattedTextWidget extends StatelessWidget {
                     ),
                   ));
                   break;
-                case '<@ba.vdown>':
-                  if (!newWord.contains('+') && !newWord.contains('-')) {
-                    if (!isDuration && !isNoMark && isVariable) {
-                      newWord = '-$newWord';
-                    }
-                  }
-                  widgets[line].add(Text(
-                    newWord,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.red,
-                    ),
-                  ));
-                  break;
+                case '<@ba.kw>':
+                case '<@ba.talpu>':
                 case '<@ba.vup>':
-                  if (!newWord.contains('+') && !newWord.contains('-')) {
-                    if (!isDuration && !isNoMark && isVariable) {
-                      newWord = '+$newWord';
-                    }
-                  }
                   widgets[line].add(Text(
                     newWord,
                     style: const TextStyle(
                       fontFamily: FontFamily.nanumGothic,
                       fontSize: Sizes.size12,
                       color: Colors.blue,
+                    ),
+                  ));
+                  break;
+                case '<@ba.vdown>':
+                  widgets[line].add(Text(
+                    newWord,
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size12,
+                      color: Colors.red,
                     ),
                   ));
                   break;
@@ -217,6 +193,7 @@ class FormattedTextWidget extends StatelessWidget {
                     newWord,
                     style: const TextStyle(
                       fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
                       fontSize: Sizes.size12,
                       color: Colors.grey,
                     ),
