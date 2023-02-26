@@ -274,8 +274,8 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       '체력: ${_favHp.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
                     ),
                   if (_favAtk != 0)
@@ -283,8 +283,8 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       '공격: ${_favAtk.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
                     ),
                   if (_favDef != 0)
@@ -292,8 +292,8 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       '방어: ${_favDef.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
                     ),
                   if (_favRes != 0)
@@ -301,8 +301,8 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       '마법 저항: ${_favRes.round()}',
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
                     ),
                 ],
@@ -319,8 +319,8 @@ class _OperatorStatWidgetState extends State<OperatorStatWidget> {
                       widget.potRanks[i].description!,
                       style: const TextStyle(
                         fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
                         fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
                     ),
                 ],

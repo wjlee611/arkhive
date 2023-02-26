@@ -230,8 +230,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   .buffer
                   .asUint8List();
         } catch (_) {
-          // From firebase
-          print('image');
+          // From firebase\
           var storageChild = storageRef.child("$imageCat/$dependency.png");
           imageData = await storageChild.getData(1024 * 200);
         }
@@ -254,8 +253,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           // From local
           resData = localData[dependency];
         } else {
-          // From firebase
-          print('data');
+          // From firebase\
           var depRef = databaseRef.child('$serverPath/$dependency');
           DatabaseEvent databaseEvent = await depRef.once();
           resData =

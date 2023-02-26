@@ -105,7 +105,6 @@ class FormattedTextWidget extends StatelessWidget {
                 variable.contains('target')) {
               isNoMark = true;
             }
-            print(variable);
             var value = variables[variable].abs();
             String valueString;
             if (word.contains(':0%') || word.contains(':0.0%')) {

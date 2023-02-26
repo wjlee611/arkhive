@@ -47,7 +47,7 @@ class EfficiencyStageRow extends StatelessWidget {
       child: Row(
         children: [
           Gaps.h7,
-          Container(
+          SizedBox(
             child: Text(
               "${index + 1}",
               style: TextStyle(
