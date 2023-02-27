@@ -107,6 +107,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 if (newCategory == 'operator') {
                   updateRemain.add(key: 'image/operator', value: data);
                 }
+                // Add module data
+                if (newCategory == 'module') {
+                  updateRemain.add(key: 'module_data', value: data);
+                }
               }
             }
           }
