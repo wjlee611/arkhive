@@ -72,10 +72,14 @@ class CommonSubTitleWidget extends StatelessWidget {
     super.key,
     required this.text,
     this.color = const Color(0xFFF9A825),
+    this.size = Sizes.size12,
+    this.isShadow = true,
   });
 
   final String text;
   final Color color;
+  final double size;
+  final bool isShadow;
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +89,12 @@ class CommonSubTitleWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
-              BoxShadow(
-                blurRadius: Sizes.size1,
-                spreadRadius: Sizes.size1,
-                color: Colors.black.withOpacity(0.2),
-              ),
+              if (isShadow)
+                BoxShadow(
+                  blurRadius: Sizes.size1,
+                  spreadRadius: Sizes.size1,
+                  color: Colors.black.withOpacity(0.2),
+                ),
             ],
           ),
           child: Row(
@@ -104,10 +109,10 @@ class CommonSubTitleWidget extends StatelessWidget {
               Gaps.h5,
               Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: FontFamily.nanumGothic,
                   fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size12,
+                  fontSize: size,
                   color: Colors.black,
                 ),
               ),

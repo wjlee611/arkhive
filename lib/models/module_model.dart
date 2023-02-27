@@ -2,7 +2,12 @@ import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/operator_model.dart';
 
 class ModuleModel {
-  final String? uniEquipId, uniEquipName, uniEquipIcon, typeIcon, charId;
+  final String? uniEquipId,
+      uniEquipName,
+      uniEquipIcon,
+      typeIcon,
+      charId,
+      equipShiningColor;
   final List<String> missionList;
   final Map<String, List<EvolveCostModel>> itemCost;
 
@@ -12,6 +17,7 @@ class ModuleModel {
         uniEquipIcon = json['uniEquipIcon'],
         typeIcon = json['typeIcon'],
         charId = json['charId'],
+        equipShiningColor = json['equipShiningColor'],
         missionList = [
           if (json['missionList'] != null)
             for (var data in json['missionList']) data
@@ -65,11 +71,13 @@ class ModuleDataPhaseModel {
 
 class ModuleDataPartsModel {
   final String? target;
+  final bool? isToken;
   final List<ModuleTalentDataBundleModel> addOrOverrideTalentDataBundle;
   final List<ModuleTraitDataBundleModel> overrideTraitDataBundle;
 
   ModuleDataPartsModel.fromJson(Map<String, dynamic> json)
       : target = json['target'],
+        isToken = json['isToken'],
         addOrOverrideTalentDataBundle = [
           if (json['addOrOverrideTalentDataBundle']['candidates'] != null)
             for (var data in json['addOrOverrideTalentDataBundle']
@@ -106,7 +114,7 @@ class ModuleTalentDataBundleModel implements PotentialRank {
 }
 
 class ModuleTraitDataBundleModel implements PotentialRank {
-  final String? additionalDescription;
+  final String? additionalDescription, overrideDescripton;
   @override
   final OperatorUnlockCondModel unlockCondition;
   @override
@@ -115,6 +123,7 @@ class ModuleTraitDataBundleModel implements PotentialRank {
 
   ModuleTraitDataBundleModel.fromJson(Map<String, dynamic> json)
       : additionalDescription = json['additionalDescription'],
+        overrideDescripton = json['overrideDescripton'],
         unlockCondition =
             OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
         requiredPotentialRank = json['requiredPotentialRank'],

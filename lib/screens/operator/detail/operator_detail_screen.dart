@@ -216,6 +216,7 @@ class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
                     OperatorModuleContainer(
                       operatorKey:
                           widget.operator_.phases.first.characterPrefabKey!,
+                      potential: _potential,
                     ),
                   Gaps.v60,
                 ],
