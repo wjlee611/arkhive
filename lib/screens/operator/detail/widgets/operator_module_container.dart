@@ -221,16 +221,18 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
     _updateTalent = null;
     for (var part in widget.module.phases[_level].parts) {
       if (part.isToken == null || part.isToken!) continue;
-      if (part.target!.contains('TRAIT')) {
+      if (part.target!.contains('TRAIT') || part.target!.contains('DISPLAY')) {
         _updateTrait = reqPotEliteSelector<ModuleTraitDataBundleModel>(
           candidates: part.overrideTraitDataBundle,
           currPot: widget.potential,
         );
-      } else {
-        _updateTalent = reqPotEliteSelector<ModuleTalentDataBundleModel>(
+      } else if (part.target!.contains('TALENT')) {
+        var nullTest = reqPotEliteSelector<ModuleTalentDataBundleModel>(
           candidates: part.addOrOverrideTalentDataBundle,
           currPot: widget.potential,
         );
+        if (nullTest == null || nullTest.name == null) continue;
+        _updateTalent = nullTest;
       }
     }
   }
