@@ -274,6 +274,22 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
       case 'magic_resistance':
         result = '마법 저항';
         break;
+      case 'cost':
+        result = '배치 코스트';
+        break;
+      case 'respawn_time':
+        result = '재배치 시간';
+        break;
+    }
+    return result;
+  }
+
+  String _moduleStatFormatter(double value) {
+    String result = '';
+    if (value > 0) {
+      result = '+${value.toStringAsFixed(1).replaceAll('.0', '')}';
+    } else {
+      result = value.toStringAsFixed(1).replaceAll('.0', '');
     }
     return result;
   }
@@ -373,7 +389,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                   ),
                   Gaps.h3,
                   Text(
-                    '+${attr.value!.toStringAsFixed(1).replaceAll('.0', '')}',
+                    _moduleStatFormatter(attr.value!),
                     style: const TextStyle(
                       fontFamily: FontFamily.nanumGothic,
                       fontSize: Sizes.size12,
