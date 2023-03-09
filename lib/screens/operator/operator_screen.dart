@@ -1,18 +1,20 @@
 import 'dart:convert';
-
-import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
-import 'package:arkhive/screens/update/update_screen.dart';
+import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/tools/willpop_function.dart';
-// import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-enum SortOptions { starUp, starDown, nameUp, nameDown }
+enum SortOptions {
+  starUp,
+  starDown,
+  nameUp,
+  nameDown,
+}
 
 enum Professions {
   all,
@@ -40,7 +42,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
   SortOptions _sortOption = SortOptions.starUp;
   Professions _selectedProfession = Professions.all;
   bool _isLoading = false;
-  bool _onSearch = false;
   String _searchKeyword = "";
 
   @override
@@ -74,19 +75,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
     });
 
     return result;
-  }
-
-  void _openUpdater() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const UpdateScreen(),
-      ),
-    ).then(
-      (_) => setState(() {
-        _futureOperators = futureOperators();
-      }),
-    );
   }
 
   List<OperatorModel> _runFilter(List<OperatorModel> list) {
@@ -191,12 +179,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
     });
   }
 
-  void _onSearchTap() {
-    setState(() {
-      _onSearch = !_onSearch;
-    });
-  }
-
   void _onSearchChange(String? value) {
     setState(() {
       _searchKeyword = value ?? '';
@@ -208,10 +190,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
       _searchController.text = '';
       _searchKeyword = '';
     });
-  }
-
-  void _onTapOutside(PointerDownEvent _) {
-    FocusScope.of(context).unfocus();
   }
 
   @override
@@ -226,174 +204,23 @@ class _OperatorScreenState extends State<OperatorScreen> {
             ),
           ],
         ),
-        child: BottomAppBar(
-          color: Colors.blueGrey.shade700,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
-              child: Row(
-                children: [
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.all),
-                    profession: Professions.all,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.all,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.vanguard),
-                    profession: Professions.vanguard,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.vanguard,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.guard),
-                    profession: Professions.guard,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.guard,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.defender),
-                    profession: Professions.defender,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.defender,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.sniper),
-                    profession: Professions.sniper,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.sniper,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.caster),
-                    profession: Professions.caster,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.caster,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.medic),
-                    profession: Professions.medic,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.medic,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.supporter),
-                    profession: Professions.supporter,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.supporter,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.specialist),
-                    profession: Professions.specialist,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.specialist,
-                  ),
-                  ProfessionButton(
-                    onTap: () => _onProfessionTap(Professions.perparation),
-                    profession: Professions.perparation,
-                    isSelected: _searchKeyword.isEmpty &&
-                        _selectedProfession == Professions.perparation,
-                  ),
-                ],
-              ),
-            ),
-          ),
+        child: OperatorBottomAppBar(
+          onProfessionTap: _onProfessionTap,
+          selectedProfession: _selectedProfession,
+          searchKeyword: _searchKeyword,
         ),
       ),
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: CustomScrollView(
           slivers: [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              title: Row(
-                children: [
-                  SortButton(
-                    initialValue: _sortOption,
-                    onSelected: _onSortSelected,
-                  ),
-                  if (_isLoading)
-                    SizedBox(
-                      width: Sizes.size48,
-                      height: Sizes.size20,
-                      child: Center(
-                        child: SizedBox(
-                          width: Sizes.size20,
-                          height: Sizes.size20,
-                          child: CircularProgressIndicator(
-                            color: Colors.yellow.shade800,
-                          ),
-                        ),
-                      ),
-                    )
-                  else
-                    IconButton(
-                      onPressed: _onSearchTap,
-                      icon: Icon(
-                        Icons.search_rounded,
-                        color:
-                            _onSearch ? Colors.yellow.shade800 : Colors.white,
-                      ),
-                    ),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: _onSearch
-                          ? TextField(
-                              controller: _searchController,
-                              onChanged: _onSearchChange,
-                              onTapOutside: _onTapOutside,
-                              style: const TextStyle(color: Colors.white),
-                              cursorColor: Colors.yellow.shade800,
-                              decoration: InputDecoration(
-                                labelText: '검색',
-                                labelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: FontFamily.nanumGothic,
-                                ),
-                                suffixIconColor: Colors.white,
-                                suffixIcon: GestureDetector(
-                                  onTap: _onDeleteTap,
-                                  child: const Icon(Icons.cancel_rounded),
-                                ),
-                              ),
-                            )
-                          : Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: Sizes.size2,
-                                horizontal: Sizes.size5,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size5),
-                              ),
-                              child: Text(
-                                _sortOption == SortOptions.starUp
-                                    ? '레어도 오름차순'
-                                    : _sortOption == SortOptions.starDown
-                                        ? '레어도 내림차순'
-                                        : _sortOption == SortOptions.nameUp
-                                            ? '이름 오름차순'
-                                            : '이름 내림차순',
-                                style: TextStyle(
-                                  fontFamily: FontFamily.nanumGothic,
-                                  fontSize: Sizes.size14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.blueGrey.shade700,
-                                ),
-                              ),
-                            ),
-                    ),
-                  ),
-                  Gaps.h10,
-                ],
-              ),
-              elevation: Sizes.size3,
-              forceElevated: true,
-              backgroundColor: Colors.blueGrey.shade700,
-              centerTitle: false,
-              pinned: true,
+            OperatorSliverAppBar(
+              isLoading: _isLoading,
+              sortOption: _sortOption,
+              onSortSelected: _onSortSelected,
+              onSearchChange: _onSearchChange,
+              onDeleteTap: _onDeleteTap,
+              searchController: _searchController,
             ),
             SliverFillRemaining(
               child: FutureBuilder(
@@ -436,203 +263,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ProfessionButton extends StatelessWidget {
-  const ProfessionButton({
-    super.key,
-    required this.onTap,
-    required this.profession,
-    required this.isSelected,
-  });
-
-  final Function() onTap;
-  final Professions profession;
-  final bool isSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: SizedBox(
-        width: Sizes.size48,
-        height: Sizes.size48,
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            if (isSelected)
-              IgnorePointer(
-                child: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      width: Sizes.size48,
-                      height: Sizes.size48,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          stops: const [
-                            0,
-                            0.2,
-                          ],
-                          colors: [
-                            Colors.yellow.shade800,
-                            Colors.blueGrey.shade700,
-                          ],
-                        ),
-                      ),
-                    ),
-                    Transform.translate(
-                      offset: const Offset(0, -Sizes.size12),
-                      child: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.yellow.shade800,
-                        size: Sizes.size32,
-                      ),
-                    ),
-                    Container(
-                      width: Sizes.size48,
-                      height: Sizes.size3,
-                      color: Colors.yellow.shade800,
-                    ),
-                  ],
-                ),
-              ),
-            if (profession == Professions.all)
-              Center(
-                child: Text(
-                  "전체",
-                  style: TextStyle(
-                    color: isSelected ? Colors.yellow.shade800 : Colors.white,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              )
-            else if (profession == Professions.perparation)
-              Center(
-                child: Text(
-                  "예비",
-                  style: TextStyle(
-                    color: isSelected ? Colors.yellow.shade800 : Colors.white,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              )
-            else
-              Center(
-                child: Transform.translate(
-                  offset: Offset(
-                    profession == Professions.sniper ? -Sizes.size3 : 0,
-                    0,
-                  ),
-                  child: Image.asset(
-                    profession == Professions.vanguard
-                        ? 'assets/images/class_vanguard.png'
-                        : profession == Professions.guard
-                            ? 'assets/images/class_guard.png'
-                            : profession == Professions.defender
-                                ? 'assets/images/class_defender.png'
-                                : profession == Professions.sniper
-                                    ? 'assets/images/class_sniper.png'
-                                    : profession == Professions.caster
-                                        ? 'assets/images/class_caster.png'
-                                        : profession == Professions.medic
-                                            ? 'assets/images/class_medic.png'
-                                            : profession ==
-                                                    Professions.supporter
-                                                ? 'assets/images/class_supporter.png'
-                                                : 'assets/images/class_specialist.png',
-                    width: Sizes.size32,
-                    height: Sizes.size32,
-                    color: isSelected ? Colors.yellow.shade800 : Colors.white,
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class SortButton extends StatelessWidget {
-  const SortButton({
-    super.key,
-    required this.initialValue,
-    required this.onSelected,
-  });
-
-  final SortOptions initialValue;
-  final Function(SortOptions) onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton(
-      initialValue: initialValue,
-      onSelected: onSelected,
-      offset: const Offset(0, 0),
-      icon: Icon(
-        Icons.filter_alt_rounded,
-        color: Colors.yellow.shade800,
-      ),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          width: Sizes.size5,
-          color: Colors.blueGrey.shade700,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(Sizes.size10)),
-      ),
-      elevation: 0,
-      itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: SortOptions.starUp,
-          child: Text(
-            '레어도 오름차순',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        const PopupMenuItem(
-          value: SortOptions.starDown,
-          child: Text(
-            '레어도 내림차순',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        const PopupMenuItem(
-          value: SortOptions.nameUp,
-          child: Text(
-            '이름 오름차순',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-        const PopupMenuItem(
-          value: SortOptions.nameDown,
-          child: Text(
-            '이름 내림차순',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

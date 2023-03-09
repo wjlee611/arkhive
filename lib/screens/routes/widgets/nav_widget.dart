@@ -8,10 +8,10 @@ import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
+import 'package:arkhive/screens/routes/widgets/nav_new_screen_listtile_widget.dart';
+import 'package:arkhive/screens/routes/widgets/nav_stack_screen_listtile_widget.dart';
 import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
-import 'package:arkhive/widgets/nav_new_screen_listtile_widget.dart';
-import 'package:arkhive/widgets/nav_stack_screen_listtile_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
