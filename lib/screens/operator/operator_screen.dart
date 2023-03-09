@@ -5,7 +5,6 @@ import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.d
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
-import 'package:arkhive/tools/willpop_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -210,58 +209,55 @@ class _OperatorScreenState extends State<OperatorScreen> {
           searchKeyword: _searchKeyword,
         ),
       ),
-      body: WillPopScope(
-        onWillPop: () => WillPopFunction.onWillPop(context: context),
-        child: CustomScrollView(
-          slivers: [
-            OperatorSliverAppBar(
-              isLoading: _isLoading,
-              sortOption: _sortOption,
-              onSortSelected: _onSortSelected,
-              onSearchChange: _onSearchChange,
-              onDeleteTap: _onDeleteTap,
-              searchController: _searchController,
-            ),
-            SliverFillRemaining(
-              child: FutureBuilder(
-                future: _futureOperators,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var filteredList = _runFilter(snapshot.data!);
-                    return CustomScrollView(
-                      slivers: [
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) => GestureDetector(
-                              onTap: () => OpenDetailScreen.onOperatorTab(
-                                context: context,
-                                operator_: filteredList[index],
-                              ),
-                              child: OperatorListItem(
-                                operator_: filteredList[index],
-                                index: index,
-                              ),
+      body: CustomScrollView(
+        slivers: [
+          OperatorSliverAppBar(
+            isLoading: _isLoading,
+            sortOption: _sortOption,
+            onSortSelected: _onSortSelected,
+            onSearchChange: _onSearchChange,
+            onDeleteTap: _onDeleteTap,
+            searchController: _searchController,
+          ),
+          SliverFillRemaining(
+            child: FutureBuilder(
+              future: _futureOperators,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var filteredList = _runFilter(snapshot.data!);
+                  return CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => GestureDetector(
+                            onTap: () => OpenDetailScreen.onOperatorTab(
+                              context: context,
+                              operator_: filteredList[index],
                             ),
-                            childCount: filteredList.length,
+                            child: OperatorListItem(
+                              operator_: filteredList[index],
+                              index: index,
+                            ),
                           ),
+                          childCount: filteredList.length,
                         ),
-                      ],
-                    );
-                  } else {
-                    return Center(
-                      child: Image.asset(
-                        'assets/images/prts.png',
-                        color: Colors.grey.shade400,
-                        width: Sizes.size60,
-                        height: Sizes.size60,
                       ),
-                    );
-                  }
-                },
-              ),
+                    ],
+                  );
+                } else {
+                  return Center(
+                    child: Image.asset(
+                      'assets/images/prts.png',
+                      color: Colors.grey.shade400,
+                      width: Sizes.size60,
+                      height: Sizes.size60,
+                    ),
+                  );
+                }
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

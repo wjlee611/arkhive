@@ -1,6 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/firebase_options.dart';
-import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/routes/routes_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';

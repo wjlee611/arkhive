@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
@@ -10,8 +11,15 @@ import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RoutesScreen extends StatelessWidget {
+class RoutesScreen extends StatefulWidget {
   const RoutesScreen({super.key});
+
+  @override
+  State<RoutesScreen> createState() => _RoutesScreenState();
+}
+
+class _RoutesScreenState extends State<RoutesScreen> {
+  DateTime? _currentBackPressTime;
 
   Widget _screenSelector(Screens screen) {
     switch (screen) {
@@ -53,6 +61,32 @@ class RoutesScreen extends StatelessWidget {
     }
   }
 
+  Future<bool> _onWillPop() async {
+    DateTime now = DateTime.now();
+    if (_currentBackPressTime == null ||
+        now.difference(_currentBackPressTime!) > const Duration(seconds: 2)) {
+      _currentBackPressTime = now;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          elevation: 0,
+          content: const Text(
+            '종료할까요?',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: Sizes.size14,
+              fontFamily: FontFamily.nanumGothic,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          duration: const Duration(seconds: 2),
+          backgroundColor: Colors.black.withOpacity(0.5),
+        ),
+      );
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ScreenBloc, ScreenState>(
@@ -76,7 +110,8 @@ class RoutesScreen extends StatelessWidget {
             },
           ),
         ),
-        body: _screenSelector(state.currScreen),
+        body: WillPopScope(
+            onWillPop: _onWillPop, child: _screenSelector(state.currScreen)),
         drawer: const NavDrawer(),
       ),
     );
