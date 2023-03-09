@@ -1,9 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/screens/item/widgets/item_button_widget.dart';
 import 'package:arkhive/tools/willpop_function.dart';
-import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
 class ItemScreen extends StatefulWidget {
@@ -14,28 +11,9 @@ class ItemScreen extends StatefulWidget {
 }
 
 class _ItemScreenState extends State<ItemScreen> {
-  GlobalData globalData = GlobalData();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          '창고 아이템',
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        backgroundColor: Colors.blueGrey.shade700,
-        leading: IconButton(
-          icon: const Icon(Icons.sort),
-          onPressed: () => scaffoldKey.currentState!.openDrawer(),
-        ),
-      ),
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: CustomScrollView(
@@ -50,9 +28,11 @@ class _ItemScreenState extends State<ItemScreen> {
                   childAspectRatio: 1,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  childCount: globalData.items.length,
+                  // childCount: globalData.items.length,
+                  childCount: 0,
                   (context, index) {
-                    return ItemButton(item: globalData.items[index]);
+                    // return ItemButton(item: globalData.items[index]);
+                    return Container();
                   },
                 ),
               ),
@@ -72,10 +52,11 @@ class _ItemScreenState extends State<ItemScreen> {
                 height: Sizes.size48,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text(
-                      '///    ${globalData.items.length} results    ///',
-                      style: const TextStyle(
+                      // '///    ${globalData.items.length} results    ///',
+                      '///    0 results    ///',
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: Sizes.size12,
                         fontFamily: FontFamily.nanumGothic,
@@ -89,7 +70,6 @@ class _ItemScreenState extends State<ItemScreen> {
           ],
         ),
       ),
-      drawer: const NavDrawer(),
     );
   }
 }

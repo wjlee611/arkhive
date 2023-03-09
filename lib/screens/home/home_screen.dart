@@ -1,13 +1,10 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/global_data.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/home/widgets/favorites_widget.dart';
 import 'package:arkhive/screens/home/widgets/manual_widget.dart';
 import 'package:arkhive/screens/home/widgets/prts_widget.dart';
 import 'package:arkhive/screens/home/widgets/url_widget.dart';
 import 'package:arkhive/tools/willpop_function.dart';
-import 'package:arkhive/widgets/nav_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,28 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalData globalData = GlobalData();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'Arkhive',
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        backgroundColor: Colors.blueGrey.shade700,
-        leading: IconButton(
-          icon: const Icon(Icons.sort),
-          onPressed: () => scaffoldKey.currentState!.openDrawer(),
-        ),
-      ),
       body: WillPopScope(
         onWillPop: () => WillPopFunction.onWillPop(context: context),
         child: SingleChildScrollView(
@@ -109,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      drawer: const NavDrawer(),
     );
   }
 }

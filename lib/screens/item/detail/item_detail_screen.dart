@@ -7,7 +7,6 @@ import 'package:arkhive/screens/item/detail/widgets/item_efficiency_stage_row_wi
 import 'package:arkhive/tools/diagonal_clipper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:wrapped_korean_text/wrapped_korean_text.dart';
 
 class ItemDetailScreen extends StatefulWidget {
   final ItemModel item;
@@ -174,26 +173,26 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          WrappedKoreanText(
+                        children: const [
+                          Text(
                             '* 위에 나열된 리스트는 상시 개방 중인 스테이지의 통계 자료만 표시됩니다.',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black54,
                               fontFamily: FontFamily.nanumGothic,
                               fontSize: Sizes.size12,
                             ),
                           ),
-                          WrappedKoreanText(
+                          Text(
                             '* 일반적으로 상시 개방 스테이지 보다 이벤트 개방 스테이지의 이성 효율이 더 높습니다.',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black54,
                               fontFamily: FontFamily.nanumGothic,
                               fontSize: Sizes.size12,
                             ),
                           ),
-                          WrappedKoreanText(
+                          Text(
                             '* [원암 큐브 번들]과 같은 일부 아이템은 기반시설 생산을 통해 얻는 것이 더 효율적입니다.',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black54,
                               fontFamily: FontFamily.nanumGothic,
                               fontSize: Sizes.size12,

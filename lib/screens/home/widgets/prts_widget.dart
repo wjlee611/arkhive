@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/update/update_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -15,8 +13,6 @@ class PRTSWidget extends StatefulWidget {
 }
 
 class _PRTSWidgetState extends State<PRTSWidget> {
-  GlobalData globalData = GlobalData();
-
   @override
   void initState() {
     super.initState();
@@ -29,9 +25,7 @@ class _PRTSWidgetState extends State<PRTSWidget> {
     // Get data
     DatabaseEvent databaseEvent = await databaseRef.once();
     try {
-      setState(() {
-        globalData.newVer = jsonEncode(databaseEvent.snapshot.value);
-      });
+      print(jsonEncode(databaseEvent.snapshot.value));
     } catch (_) {}
   }
 
@@ -85,18 +79,14 @@ class _PRTSWidgetState extends State<PRTSWidget> {
                 height: Sizes.size48,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
+                  padding: EdgeInsets.symmetric(horizontal: Sizes.size10),
                   child: Text(
-                    globalData.newVer == null
-                        ? "[오프라인] 데이터 초기화 완료.\n어서오세요, 박사님."
-                        : globalData.oldVer != globalData.newVer
-                            ? "박사님, 새로운 데이터가 확인되었습니다. 여기를 누르셔서 업데이트 하실 수 있습니다."
-                            : "데이터 초기화 완료.\n어서오세요, 박사님.",
+                    "데이터 초기화 완료.\n어서오세요, 박사님.",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: Sizes.size12,
                       fontFamily: FontFamily.nanumGothic,
                     ),

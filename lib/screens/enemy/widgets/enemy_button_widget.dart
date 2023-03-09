@@ -23,8 +23,7 @@ class EnemyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => OpenDetailScreen.onEnemyTab(
-        code: enemy.code,
-        enemyImage: getImageFromSP("enemy/${enemy.code}"),
+        enemy: enemy,
         context: context,
       ),
       child: FutureBuilder(

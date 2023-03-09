@@ -35,7 +35,6 @@ class OperatorScreen extends StatefulWidget {
 }
 
 class _OperatorScreenState extends State<OperatorScreen> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchController = TextEditingController();
   late Future<List<OperatorModel>> _futureOperators;
   SortOptions _sortOption = SortOptions.starUp;
@@ -218,48 +217,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        centerTitle: _searchKeyword.isEmpty ? true : false,
-        title: _onSearch
-            ? TextField(
-                controller: _searchController,
-                onChanged: _onSearchChange,
-                onTapOutside: _onTapOutside,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.yellow.shade800,
-                decoration: InputDecoration(
-                  labelText: '검색',
-                  labelStyle: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: FontFamily.nanumGothic,
-                  ),
-                  suffixIconColor: Colors.white,
-                  suffixIcon: GestureDetector(
-                    onTap: _onDeleteTap,
-                    child: const Icon(Icons.cancel_rounded),
-                  ),
-                ),
-              )
-            : Text(
-                _searchKeyword.isEmpty ? '오퍼레이터' : '검색결과: $_searchKeyword',
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-        backgroundColor: Colors.blueGrey.shade700,
-        actions: [
-          IconButton(
-            onPressed: _openUpdater,
-            icon: const Icon(Icons.update),
-          ),
-        ],
-        // leading: IconButton(
-        //   icon: const Icon(Icons.sort),
-        //   onPressed: () => scaffoldKey.currentState!.openDrawer(),
-        // ),
-      ),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           boxShadow: [
@@ -381,31 +338,52 @@ class _OperatorScreenState extends State<OperatorScreen> {
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Sizes.size2,
-                          horizontal: Sizes.size5,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(Sizes.size5),
-                        ),
-                        child: Text(
-                          _sortOption == SortOptions.starUp
-                              ? '레어도 오름차순'
-                              : _sortOption == SortOptions.starDown
-                                  ? '레어도 내림차순'
-                                  : _sortOption == SortOptions.nameUp
-                                      ? '이름 오름차순'
-                                      : '이름 내림차순',
-                          style: TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size14,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.blueGrey.shade700,
-                          ),
-                        ),
-                      ),
+                      child: _onSearch
+                          ? TextField(
+                              controller: _searchController,
+                              onChanged: _onSearchChange,
+                              onTapOutside: _onTapOutside,
+                              style: const TextStyle(color: Colors.white),
+                              cursorColor: Colors.yellow.shade800,
+                              decoration: InputDecoration(
+                                labelText: '검색',
+                                labelStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: FontFamily.nanumGothic,
+                                ),
+                                suffixIconColor: Colors.white,
+                                suffixIcon: GestureDetector(
+                                  onTap: _onDeleteTap,
+                                  child: const Icon(Icons.cancel_rounded),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: Sizes.size2,
+                                horizontal: Sizes.size5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.size5),
+                              ),
+                              child: Text(
+                                _sortOption == SortOptions.starUp
+                                    ? '레어도 오름차순'
+                                    : _sortOption == SortOptions.starDown
+                                        ? '레어도 내림차순'
+                                        : _sortOption == SortOptions.nameUp
+                                            ? '이름 오름차순'
+                                            : '이름 내림차순',
+                                style: TextStyle(
+                                  fontFamily: FontFamily.nanumGothic,
+                                  fontSize: Sizes.size14,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.blueGrey.shade700,
+                                ),
+                              ),
+                            ),
                     ),
                   ),
                   Gaps.h10,
@@ -458,7 +436,6 @@ class _OperatorScreenState extends State<OperatorScreen> {
           ],
         ),
       ),
-      // drawer: const NavDrawer(),
     );
   }
 }

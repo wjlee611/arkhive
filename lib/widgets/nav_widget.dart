@@ -1,3 +1,4 @@
+import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/screens_model.dart';
@@ -12,7 +13,6 @@ import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:arkhive/widgets/nav_new_screen_listtile_widget.dart';
 import 'package:arkhive/widgets/nav_stack_screen_listtile_widget.dart';
 import 'package:flutter/material.dart';
-import '../global_data.dart';
 import 'dart:math' as math;
 
 class NavDrawer extends StatefulWidget {
@@ -23,8 +23,6 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
-  final GlobalData _globalData = GlobalData();
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -116,47 +114,35 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
                 padding: EdgeInsets.zero,
                 children: [
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.main,
-                    isSelected: _globalData.screen == ScreenModel.main,
-                    icon: Icons.home_outlined,
-                    title: '메인 화면',
-                    newScreen: const HomeScreen(),
+                    screen: Screens.home,
+                    newScreen: HomeScreen(),
                   ),
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.item,
-                    isSelected: _globalData.screen == ScreenModel.item,
-                    icon: Icons.hive_outlined,
-                    title: '창고 아이템',
-                    newScreen: const ItemScreen(),
+                    screen: Screens.items,
+                    newScreen: ItemScreen(),
                   ),
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.gimmick,
-                    isSelected: _globalData.screen == ScreenModel.gimmick,
-                    icon: Icons.api_outlined,
-                    title: '스테이지 기믹',
-                    newScreen: const GimmickScreen(),
+                    screen: Screens.gimmick,
+                    newScreen: GimmickScreen(),
                   ),
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.stage,
-                    isSelected: _globalData.screen == ScreenModel.stage,
-                    icon: Icons.account_tree_outlined,
-                    title: '스테이지 정보',
-                    newScreen: const StageScreen(),
+                    screen: Screens.stages,
+                    newScreen: StageScreen(),
                   ),
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.operators,
-                    isSelected: _globalData.screen == ScreenModel.operators,
-                    icon: Icons.badge_outlined,
-                    title: '오퍼레이터',
-                    newScreen: const OperatorScreen(),
+                    screen: Screens.operators,
+                    newScreen: OperatorScreen(),
                   ),
-                  NewScreenListTile(
+                  const NewScreenListTile(
                     id: ScreenModel.enemy,
-                    isSelected: _globalData.screen == ScreenModel.enemy,
-                    icon: Icons.whatshot_outlined,
-                    title: '적',
-                    newScreen: const EnemyScreen(),
+                    screen: Screens.enemies,
+                    newScreen: EnemyScreen(),
                   ),
                   SizedBox(
                     height: 30,
@@ -189,7 +175,8 @@ class _NavDrawerState extends State<NavDrawer> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    "Arkhive ${GlobalData.appVersion}",
+                    // "Arkhive ${GlobalData.appVersion}",
+                    "app version",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: FontFamily.nanumGothic,

@@ -16,8 +16,7 @@ class ItemButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => OpenDetailScreen.onItemTab(
-        code: item.code,
-        itemImage: getImageFromSP("item/${item.code}"),
+        item: item,
         context: context,
       ),
       style: const ButtonStyle(
