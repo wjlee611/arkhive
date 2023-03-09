@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/updater_models.dart';
 import 'package:arkhive/screens/update/widgets/update_indicator_widget.dart';
@@ -20,7 +19,6 @@ class UpdateScreen extends StatefulWidget {
 }
 
 class _UpdateScreenState extends State<UpdateScreen> {
-  GlobalData globalData = GlobalData();
   String updateStatus = 'Pending';
   int downloadedAssets = 0;
   int remainDownloadAssets = 0;
@@ -304,13 +302,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
             SizedBox(
               height: Sizes.size80,
               child: UpdaterPRTS(
-                text: globalData.newVer == null
-                    ? "오프라인 상태에선 업데이트 할 수 없습니다.\n종료하신 후 네트워크에 연결하신 후 다시 시도해주세요."
-                    : updateStatus == "Pending"
-                        ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
-                        : updateStatus == "Update Completed!"
-                            ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
-                            : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
+                text: updateStatus == "Pending"
+                    ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
+                    : updateStatus == "Update Completed!"
+                        ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
+                        : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
               ),
             ),
             Expanded(
@@ -375,13 +371,10 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       TextButton(
-                        onPressed: updateStatus == 'Pending' &&
-                                globalData.newVer != null
-                            ? _onUpdateTap
-                            : null,
+                        onPressed:
+                            updateStatus == 'Pending' ? _onUpdateTap : null,
                         style: TextButton.styleFrom(
-                          backgroundColor: updateStatus == 'Pending' &&
-                                  globalData.newVer != null
+                          backgroundColor: updateStatus == 'Pending'
                               ? Colors.yellow.shade700
                               : Colors.grey,
                         ),

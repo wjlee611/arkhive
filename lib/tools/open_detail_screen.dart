@@ -1,12 +1,6 @@
-import 'package:arkhive/global_data.dart';
-import 'package:arkhive/models/enemy_model.dart';
-import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
-import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/tools/load_image_from_securestorage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class OpenDetailScreen {
@@ -43,51 +37,51 @@ class OpenDetailScreen {
     );
   }
 
-  static void onEnemyTab({
-    required String code,
-    required dynamic context,
-    required Future<Uint8List?> enemyImage,
-    int level = 0,
-  }) async {
-    List<EnemyModel> list = GlobalData().enemies;
-    Uint8List? enemyImage_;
-    await enemyImage.then((value) => enemyImage_ = value);
+  // static void onEnemyTab({
+  //   required String code,
+  //   required dynamic context,
+  //   required Future<Uint8List?> enemyImage,
+  //   int level = 0,
+  // }) async {
+  //   List<EnemyModel> list = GlobalData().enemies;
+  //   Uint8List? enemyImage_;
+  //   await enemyImage.then((value) => enemyImage_ = value);
 
-    for (var enemy in list) {
-      if (enemy.code == code) {
-        Navigator.push(
-          context,
-          _createRoute(EnemyDetailScreen(
-            enemy: enemy,
-            initLevel: level,
-            enemyImage: enemyImage_,
-          )),
-        );
-        return;
-      }
-    }
-  }
+  //   for (var enemy in list) {
+  //     if (enemy.code == code) {
+  //       Navigator.push(
+  //         context,
+  //         _createRoute(EnemyDetailScreen(
+  //           enemy: enemy,
+  //           initLevel: level,
+  //           enemyImage: enemyImage_,
+  //         )),
+  //       );
+  //       return;
+  //     }
+  //   }
+  // }
 
-  static void onItemTab({
-    required String code,
-    required dynamic context,
-    required Future<Uint8List?> itemImage,
-  }) async {
-    List<ItemModel> list = GlobalData().items;
-    Uint8List? itemImage_;
-    await itemImage.then((value) => itemImage_ = value);
+  // static void onItemTab({
+  //   required String code,
+  //   required dynamic context,
+  //   required Future<Uint8List?> itemImage,
+  // }) async {
+  //   List<ItemModel> list = GlobalData().items;
+  //   Uint8List? itemImage_;
+  //   await itemImage.then((value) => itemImage_ = value);
 
-    for (var item in list) {
-      if (item.code == code) {
-        Navigator.push(
-          context,
-          _createRoute(ItemDetailScreen(
-            item: item,
-            itemImage: itemImage_,
-          )),
-        );
-        return;
-      }
-    }
-  }
+  //   for (var item in list) {
+  //     if (item.code == code) {
+  //       Navigator.push(
+  //         context,
+  //         _createRoute(ItemDetailScreen(
+  //           item: item,
+  //           itemImage: itemImage_,
+  //         )),
+  //       );
+  //       return;
+  //     }
+  //   }
+  // }
 }

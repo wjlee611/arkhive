@@ -348,6 +348,7 @@ class _OperatorScreenState extends State<OperatorScreen> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              automaticallyImplyLeading: false,
               title: Row(
                 children: [
                   SortButton(
