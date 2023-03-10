@@ -31,6 +31,7 @@ class OperatorDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PanelController panelController = PanelController();
     return BlocProvider(
       create: (context) => OperatorStatBloc(),
       child: Scaffold(
@@ -58,6 +59,8 @@ class OperatorDetailScreen extends StatelessWidget {
           ],
         ),
         body: SlidingUpPanel(
+          controller: panelController,
+          isDraggable: false,
           minHeight: Sizes.size96,
           maxHeight: Sizes.size96 * 3 + Sizes.size10,
           color: Colors.blueGrey.shade700,
@@ -69,6 +72,7 @@ class OperatorDetailScreen extends StatelessWidget {
           panelBuilder: (_) => OperatorSlidingPanel(
             image: opImage,
             operator_: operator_,
+            controller: panelController,
           ),
           backdropEnabled: true,
           body: SingleChildScrollView(
