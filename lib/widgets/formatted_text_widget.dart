@@ -211,10 +211,11 @@ class FormattedTextWidget extends StatelessWidget {
           center ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         for (int i = 0; i < line + 1; i++)
-          Wrap(
-            spacing: Sizes.size3,
-            children: widgets[i],
-          ),
+          if (widgets[i].isNotEmpty)
+            Wrap(
+              spacing: Sizes.size3,
+              children: widgets[i],
+            ),
       ],
     );
   }
