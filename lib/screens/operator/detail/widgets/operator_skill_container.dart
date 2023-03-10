@@ -120,6 +120,7 @@ class _OperatorSkillContainerState extends State<OperatorSkillContainer>
                   ),
                   Gaps.v5,
                   OperatorSkillInfoWidget(skill: skill),
+                  Gaps.v10,
                 ],
               );
             } else {

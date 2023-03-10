@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-
+import 'package:arkhive/bloc/operator_stat_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/operator_model.dart';
@@ -8,49 +8,45 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.d
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorSlidingPanel extends StatefulWidget {
   const OperatorSlidingPanel({
     super.key,
     this.image,
     required this.operator_,
-    required this.onPotSelected,
-    required this.onEliteSelected,
-    required this.onLevelChange,
-    required this.onFavorChange,
   });
 
   final Uint8List? image;
   final OperatorModel operator_;
-  final Function(int) onPotSelected;
-  final Function(int) onEliteSelected;
-  final Function(int) onLevelChange;
-  final Function(int) onFavorChange;
 
   @override
   State<OperatorSlidingPanel> createState() => _OperatorSlidingPanelState();
 }
 
 class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
-  int _elite = 0;
-  int _level = 1;
-  int _favor = 0;
+  void _onPotentialChange(int potential) {
+    context
+        .read<OperatorStatBloc>()
+        .add(OperatorPotentialChangeEvent(potential: potential));
+  }
 
   void _onEliteChange(int elite) {
-    _onLevelChange(1);
-    widget.onEliteSelected(elite);
-    _level = 1;
-    _elite = elite;
+    context.read<OperatorStatBloc>()
+      ..add(OperatorLevelChangeEvent(level: 1))
+      ..add(OperatorEliteChangeEvent(elite: elite));
   }
 
   void _onLevelChange(int level) {
-    widget.onLevelChange(level);
-    _level = level;
+    context
+        .read<OperatorStatBloc>()
+        .add(OperatorLevelChangeEvent(level: level));
   }
 
   void _onFavorChange(int favor) {
-    widget.onFavorChange(favor);
-    _favor = favor;
+    context
+        .read<OperatorStatBloc>()
+        .add(OperatorFavorChangeEvent(favor: favor));
   }
 
   @override
@@ -64,7 +60,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
             Column(
               children: [
                 PotentialSelectButton(
-                  onSelected: widget.onPotSelected,
+                  onSelected: _onPotentialChange,
                   length: widget.operator_.maxPotentialLevel!,
                 ),
                 Gaps.v5,
@@ -94,12 +90,14 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
             ),
             SizedBox(
               height: Sizes.size44,
-              child: OperatorSlider(
-                minValue: 1,
-                maxValue: widget.operator_.phases[_elite].maxLevel!,
-                currValue: _level,
-                onChange: _onLevelChange,
-                tag: '',
+              child: BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                builder: (context, state) => OperatorSlider(
+                  minValue: 1,
+                  maxValue: widget.operator_.phases[state.elite].maxLevel!,
+                  currValue: state.level,
+                  onChange: _onLevelChange,
+                  tag: '',
+                ),
               ),
             ),
           ],
@@ -113,12 +111,14 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
             ),
             SizedBox(
               height: Sizes.size44,
-              child: OperatorSlider(
-                minValue: 0,
-                maxValue: 110,
-                currValue: _favor,
-                onChange: _onFavorChange,
-                tag: '',
+              child: BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                builder: (context, state) => OperatorSlider(
+                  minValue: 0,
+                  maxValue: 110,
+                  currValue: state.favor,
+                  onChange: _onFavorChange,
+                  tag: '',
+                ),
               ),
             )
           ],
