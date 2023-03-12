@@ -1,104 +1,79 @@
+import 'package:arkhive/models/common_models.dart';
+
 class EnemyModel {
-  final String name, code, enemyType, attackType, category;
-  // ignore: library_private_types_in_public_api
-  final List<_EnemyStatModel> level;
+  final String? enemyId,
+      enemyIndex,
+      name,
+      enemyRace,
+      enemyLevel,
+      attackType,
+      endure,
+      attack,
+      defence,
+      resistance,
+      ability;
 
   EnemyModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        code = json['code'],
-        level = [
-          for (var levelJson in json['level'])
-            _EnemyStatModel.fromJson(levelJson)
-        ],
-        enemyType = json['enemyType'],
+      : enemyId = json['enemyId'],
+        enemyIndex = json['enemyIndex'],
+        name = json['name'],
+        enemyRace = json['enemyRace'],
+        enemyLevel = json['enemyLevel'],
         attackType = json['attackType'],
-        category = json['category'];
+        endure = json['endure'],
+        attack = json['attack'],
+        defence = json['defence'],
+        resistance = json['resistance'],
+        ability = json['ability'];
 }
 
-class _EnemyStatModel {
-  final String hp, atk, def, res, weight, abilities;
-  final bool stunImm, silenceImm;
+class EnemyDataModel {
+  final String? key;
+  final List<EnemyAttrValueDataModel> values;
 
-  _EnemyStatModel.fromJson(Map<String, dynamic> json)
-      : hp = json['hp'],
-        atk = json['atk'],
-        def = json['def'],
-        res = json['res'],
-        weight = json['weight'],
-        abilities = json['abilities'],
-        stunImm = json['stunImm'] == 'true' ? true : false,
-        silenceImm = json['silenceImm'] == 'true' ? true : false;
+  EnemyDataModel.fromJson(Map<String, dynamic> json)
+      : key = json['Key'],
+        values = [
+          if (json['Value'] != null)
+            for (var data in json['Value'])
+              EnemyAttrValueDataModel.fromJson(data)
+        ];
 }
 
-class EnemyInfoTitle {
-  static String atkType = '공격 방식';
-  static String weightLevel = '무게 레벨';
-  static String enemyType = '위험 분류등급';
+class EnemyValueDataModel {
+  final EnemyAttrValueDataModel? attributes;
+  final List<BlackboardModel> talentBlackboard;
+
+  EnemyValueDataModel.fromJson(Map<String, dynamic> json)
+      : attributes = json['attributes'],
+        talentBlackboard = [
+          if (json['talentBlackboard'] != null)
+            for (var data in json['talentBlackboard'])
+              BlackboardModel.fromJson(data)
+        ];
 }
 
-class EnemyType {
-  static String normal = '일반';
-  static String elite = '엘리트';
-  static String boss = '보스';
-}
+class EnemyAttrValueDataModel {
+  final int? maxHp, atk, def, magicResistance, massLevel;
+  final double? moveSpeed, attackSpeed, baseAttackTime;
+  final bool? stunImmune,
+      silenceImmune,
+      sleepImmune,
+      frozenImmune,
+      levitateImmune;
 
-class EnemyAtkType {
-  static String noAttack = '공격하지 않음';
-  static String melee = '근거리';
-  static String meleeArts = '근거리 아츠';
-  static String ranged = '원거리';
-  static String rangedArts = '원거리 아츠';
+  EnemyAttrValueDataModel.fromJson(Map<String, dynamic> json)
+      : maxHp = json['maxHp']['m_value'],
+        atk = json['atk']['m_value'],
+        def = json['def']['m_value'],
+        magicResistance = json['magicResistance']['m_value'],
+        massLevel = json['massLevel']['m_value'],
+        moveSpeed = json['moveSpeed']['m_value'],
+        attackSpeed = json['attackSpeed']['m_value'],
+        baseAttackTime = json['baseAttackTime']['m_value'],
+        stunImmune = json['stunImmune']['m_value'],
+        silenceImmune = json['silenceImmune']['m_value'],
+        sleepImmune = json['sleepImmune']['m_value'],
+        frozenImmune = json['frozenImmune']['m_value'],
+        levitateImmune = json['levitateImmune']['m_value'];
 }
-
-class EnemyCategory {
-  static String infectedCreature = "감염생물";
-  static String drone = "드론";
-  static String sarkaz = "살카즈";
-  static String possessed = "숙주";
-  static String artsCreation = "아츠 피조물";
-  static String apparition = "요괴";
-  static String seaMonster = "바다 괴물";
-}
-
-// levels enemy list
-/**
- * B1
- * B2
- * O1
- * O2
- * 01
- * A1
- * A2
- * A3
- * A4
- * 02
- * 03
- * 04
- * 05
- * 08
- * 09
- * 10
- * B8
- * C0
- * D1
- * D2
- * D4
- * S1
- * S3
- * S5
- * SC
- * 14
- * 15
- * Y1
- * FTT
- * DH15
- * NL11
- * NL14
- * NL17
- * NL20
- * LE17
- * DLD
- * GPN
- * UM1
- * all bosses
- */
