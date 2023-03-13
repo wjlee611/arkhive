@@ -19,67 +19,20 @@ class UpdateScreen extends StatefulWidget {
 }
 
 class _UpdateScreenState extends State<UpdateScreen> {
-  String updateStatus = 'Pending';
-  int downloadedAssets = 0;
-  int remainDownloadAssets = 0;
-
-  // void firebaseUpdater() async {
-  //   const storage = FlutterSecureStorage();
-  //   // OPERATOR
-  //   await _dataUpdater(
-  //     category: "operator",
-  //     jsonImageKey: "image_name",
-  //     storage: storage,
-  //   );
-  //   // ENEMY
-  //   await _dataUpdater(
-  //     category: "enemy",
-  //     jsonImageKey: "code",
-  //     storage: storage,
-  //   );
-  //   // ITEMS
-  //   await _dataUpdater(
-  //     category: "item",
-  //     jsonImageKey: "code",
-  //     storage: storage,
-  //   );
-
-  //   try {
-  //     // APPLY
-  //     await globalData.globalDataInitializer();
-
-  //     if (globalData.newVer == null) {
-  //       // VERSION UPDATE
-  //       DatabaseReference databaseRef =
-  //           FirebaseDatabase.instance.ref("update_checker");
-  //       // Get data
-  //       DatabaseEvent databaseEvent = await databaseRef.once();
-  //       // Save data
-  //       String? stringData = jsonEncode(databaseEvent.snapshot.value);
-  //       await storage.write(key: 'update_checker', value: stringData);
-  //       globalData.oldVer = jsonEncode(databaseEvent.snapshot.value);
-  //     } else {
-  //       await storage.write(key: 'update_checker', value: globalData.newVer!);
-  //       globalData.oldVer = globalData.newVer!;
-  //     }
-
-  //     setState(() {
-  //       updateStatus = 'Update Completed!';
-  //     });
-  //   } catch (e) {
-  //     print('error at firebaseUpdater: $e');
-  //   }
-  // }
+  String _updateStatus = 'Pending';
+  int _downloadedAssets = 0;
+  int _remainDownloadAssets = 0;
 
   void _onUpdateTap() async {
     DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
     const storage = FlutterSecureStorage();
-    remainDownloadAssets = 0;
-    downloadedAssets = 0;
+    _remainDownloadAssets = 0;
+    _downloadedAssets = 0;
     Map<String, List<String>> dataLists = {};
+    List<String> skipList = [];
 
     setState(() {
-      updateStatus = 'Check dependency...';
+      _updateStatus = 'Check dependency...';
     });
     // Add update required file depend on version
     var depRef = databaseRef.child('data_dependency');
@@ -105,9 +58,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 if (newCategory == 'operator') {
                   updateRemain.add(key: 'image/operator', value: data);
                 }
+                if (newCategory == 'enemy') {
+                  updateRemain.add(key: 'image/enemy', value: data);
+                }
                 // Add module data
                 if (newCategory == 'module') {
                   updateRemain.add(key: 'module_data', value: data);
+                }
+                // Add enemy data
+                if (newCategory == 'enemy') {
+                  updateRemain.add(key: 'enemy_data', value: data);
                 }
               }
             }
@@ -120,7 +80,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       if (updateRemain.categories[category] != null) {
         updateRemain.categories[category] =
             updateRemain.categories[category]!.toSet().toList();
-        remainDownloadAssets += updateRemain.categories[category]!.length;
+        _remainDownloadAssets += updateRemain.categories[category]!.length;
       }
     }
     for (var category in dataLists.keys) {
@@ -130,14 +90,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
     }
 
     setState(() {
-      updateStatus = 'Update...';
+      _updateStatus = 'Update...';
     });
     for (var category in updateRemain.categories.keys) {
       if (updateRemain.categories[category] != null) {
-        await _dataUpdater(
-          databaseRef: databaseRef,
-          category: category,
-          dependencies: updateRemain.categories[category]!,
+        skipList.addAll(
+          await _dataUpdater(
+            databaseRef: databaseRef,
+            category: category,
+            dependencies: updateRemain.categories[category]!,
+          ),
         );
       }
     }
@@ -150,11 +112,14 @@ class _UpdateScreenState extends State<UpdateScreen> {
     }
 
     setState(() {
-      updateStatus = 'Completed!';
+      _updateStatus = 'Completed!';
     });
+
+    if (skipList.isEmpty) return;
+    _showDialog(skipList);
   }
 
-  Future<void> _dataUpdater({
+  Future<List<String>> _dataUpdater({
     required DatabaseReference databaseRef,
     required String category,
     required List<String> dependencies,
@@ -163,6 +128,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
     Map<String, dynamic> localData = {};
     String serverPath = '';
     String savePath = '';
+    List<String> skipList = [];
 
     switch (category) {
       case 'operator':
@@ -217,12 +183,32 @@ class _UpdateScreenState extends State<UpdateScreen> {
           savePath = category;
           break;
         }
+      case 'enemy':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/enemy_handbook_table.json'));
+          } catch (_) {}
+          serverPath = 'data/enemy_handbook_table';
+          savePath = category;
+          break;
+        }
+      case 'enemy_data':
+        {
+          try {
+            localData = await json.decode(
+                await rootBundle.loadString('assets/json/enemy_database.json'));
+          } catch (_) {}
+          serverPath = 'data/enemy_database';
+          savePath = category;
+          break;
+        }
     }
 
     if (category.contains('image/')) {
       // Image
+      Reference storageRef = FirebaseStorage.instance.ref("data");
       for (var dependency in dependencies) {
-        Reference storageRef = FirebaseStorage.instance.ref("data");
         String imageCat = category.split('/').last;
         Uint8List? imageData;
         try {
@@ -232,52 +218,134 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   .buffer
                   .asUint8List();
         } catch (_) {
-          // From firebase\
-          var storageChild = storageRef.child("$imageCat/$dependency.png");
-          imageData = await storageChild.getData(1024 * 200);
+          try {
+            // From firebase
+            var storageChild = storageRef.child('$imageCat/$dependency.png');
+            imageData = await storageChild.getData(1024 * 200);
+          } catch (_) {
+            skipList.add('skip download: $imageCat/$dependency.png');
+            setState(() {
+              _downloadedAssets += 1;
+            });
+            continue;
+          }
         }
-        if (imageData != null) {
+        try {
+          if (imageData == null) continue;
           await storage.write(
               key: '$category/$dependency', value: base64.encode(imageData));
-        } else {
-          print('skip: $category/$dependency');
+        } catch (_) {
+          skipList.add('save fail: $category/$dependency.png');
         }
 
         setState(() {
-          downloadedAssets += 1;
+          _downloadedAssets += 1;
         });
       }
     } else {
       // Data
       for (var dependency in dependencies) {
         Map<String, dynamic>? resData;
-        if (localData[dependency] != null) {
-          // From local
-          resData = localData[dependency];
-        } else {
-          // From firebase\
-          var depRef = databaseRef.child('$serverPath/$dependency');
-          DatabaseEvent databaseEvent = await depRef.once();
-          resData =
-              await json.decode(json.encode(databaseEvent.snapshot.value));
+        try {
+          if (localData[dependency] != null) {
+            // From local
+            resData = localData[dependency];
+          } else {
+            // From firebase\
+            var depRef = databaseRef.child('$serverPath/$dependency');
+            DatabaseEvent databaseEvent = await depRef.once();
+            resData =
+                await json.decode(json.encode(databaseEvent.snapshot.value));
+          }
+        } catch (_) {
+          skipList.add('skip download: $serverPath/$dependency');
+          setState(() {
+            _downloadedAssets += 1;
+          });
+          continue;
         }
-        if (resData != null) {
+        try {
+          if (resData == null) continue;
           await storage.write(
               key: '$savePath/$dependency', value: json.encode(resData));
-        } else {
-          print('skip: $category/$dependency');
+        } catch (_) {
+          skipList.add('save fail: $category/$dependency');
         }
 
         setState(() {
-          downloadedAssets += 1;
+          _downloadedAssets += 1;
         });
       }
     }
+
+    return skipList;
   }
 
   void _onDeleteTap() async {
     const storage = FlutterSecureStorage();
     await storage.deleteAll();
+  }
+
+  void _showDialog(List<String> list) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            'Failed Download Dependency',
+            style: TextStyle(
+              fontFamily: FontFamily.nanumGothic,
+              fontWeight: FontWeight.w700,
+              fontSize: Sizes.size16,
+            ),
+          ),
+          content: SizedBox(
+            height: Sizes.size96 * 4,
+            child: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  for (var skip in list)
+                    Text(
+                      '- $skip',
+                      style: const TextStyle(
+                        fontFamily: FontFamily.nanumGothic,
+                        fontSize: Sizes.size12,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            const Text(
+              '신고 부탁드립니다!',
+              style: TextStyle(
+                fontFamily: FontFamily.nanumGothic,
+                fontSize: Sizes.size12,
+                color: Colors.blue,
+              ),
+            ),
+            TextButton(
+              style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+              ),
+              child: const Text(
+                "확인",
+                style: TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontSize: Sizes.size12,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -302,9 +370,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
             SizedBox(
               height: Sizes.size80,
               child: UpdaterPRTS(
-                text: updateStatus == "Pending"
+                text: _updateStatus == "Pending"
                     ? "박사님, [데이터 업데이트]를 터치하시어 업데이트를 진행하실 수 있습니다. 서버 과부화 방지를 위해 잦은 업데이트는 삼가 부탁드립니다."
-                    : updateStatus == "Update Completed!"
+                    : _updateStatus == "Completed!"
                         ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
                         : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",
               ),
@@ -348,7 +416,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                           color: Colors.yellow.shade700,
                           child: Center(
                             child: Text(
-                              updateStatus,
+                              _updateStatus,
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: Sizes.size12,
@@ -363,8 +431,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   ),
                   Gaps.v36,
                   UpdateIndicator(
-                    current: downloadedAssets,
-                    remain: remainDownloadAssets,
+                    current: _downloadedAssets,
+                    remain: _remainDownloadAssets,
                   ),
                   Gaps.v28,
                   Column(
@@ -372,9 +440,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     children: [
                       TextButton(
                         onPressed:
-                            updateStatus == 'Pending' ? _onUpdateTap : null,
+                            _updateStatus == 'Pending' ? _onUpdateTap : null,
                         style: TextButton.styleFrom(
-                          backgroundColor: updateStatus == 'Pending'
+                          backgroundColor: _updateStatus == 'Pending'
                               ? Colors.yellow.shade700
                               : Colors.grey,
                         ),

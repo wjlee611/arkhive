@@ -4,9 +4,7 @@ import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/tools/load_image_from_securestorage.dart';
 import 'package:flutter/material.dart';
-
 import '../models/enemy_model.dart';
-import '../screens/enemy/detail/enemy_detail_screen.dart';
 
 class OpenDetailScreen {
   static Route _createRoute(Widget widget) {
@@ -47,14 +45,14 @@ class OpenDetailScreen {
     required dynamic context,
     int level = 0,
   }) async {
-    await Navigator.push(
-      context,
-      _createRoute(EnemyDetailScreen(
-        enemy: enemy,
-        enemyImage: await getImageFromSP('image/enemy/${enemy.code}'),
-        initLevel: level,
-      )),
-    );
+    // await Navigator.push(
+    //   context,
+    //   _createRoute(EnemyDetailScreen(
+    //     enemy: enemy,
+    //     enemyImage: await getImageFromSP('image/enemy/${enemy.enemyId}'),
+    //     initLevel: level,
+    //   )),
+    // );
   }
 
   static void onItemTab({
