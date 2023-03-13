@@ -12,6 +12,7 @@ class EnemyModel {
       defence,
       resistance,
       ability;
+  final bool? hideInHandbook;
 
   EnemyModel.fromJson(Map<String, dynamic> json)
       : enemyId = json['enemyId'],
@@ -24,7 +25,8 @@ class EnemyModel {
         attack = json['attack'],
         defence = json['defence'],
         resistance = json['resistance'],
-        ability = json['ability'];
+        ability = json['ability'],
+        hideInHandbook = json['hideInHandbook'];
 }
 
 class EnemyDataModel {

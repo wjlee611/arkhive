@@ -27,7 +27,7 @@ class EnemyButton extends StatelessWidget {
         context: context,
       ),
       child: FutureBuilder(
-        future: getImageFromSP("enemy/${enemy.enemyId}"),
+        future: getImageFromSP("image/enemy/${enemy.enemyId!}"),
         builder: (context, snapshot) {
           return Card(
             clipBehavior: Clip.hardEdge,
