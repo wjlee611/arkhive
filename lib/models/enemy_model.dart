@@ -30,15 +30,12 @@ class EnemyModel {
 }
 
 class EnemyDataModel {
-  final String? key;
-  final List<EnemyAttrValueDataModel> values;
+  final List<EnemyValueDataModel> values;
 
   EnemyDataModel.fromJson(Map<String, dynamic> json)
-      : key = json['Key'],
-        values = [
+      : values = [
           if (json['Value'] != null)
-            for (var data in json['Value'])
-              EnemyAttrValueDataModel.fromJson(data)
+            for (var data in json['Value']) EnemyValueDataModel.fromJson(data)
         ];
 }
 
@@ -47,17 +44,18 @@ class EnemyValueDataModel {
   final List<BlackboardModel> talentBlackboard;
 
   EnemyValueDataModel.fromJson(Map<String, dynamic> json)
-      : attributes = json['attributes'],
+      : attributes =
+            EnemyAttrValueDataModel.fromJson(json['enemyData']?['attributes']),
         talentBlackboard = [
-          if (json['talentBlackboard'] != null)
-            for (var data in json['talentBlackboard'])
+          if (json['enemyData']?['talentBlackboard'] != null)
+            for (var data in json['enemyData']['talentBlackboard'])
               BlackboardModel.fromJson(data)
         ];
 }
 
 class EnemyAttrValueDataModel {
-  final int? maxHp, atk, def, magicResistance, massLevel;
-  final double? moveSpeed, attackSpeed, baseAttackTime;
+  final int? maxHp, atk, def, massLevel;
+  final double? magicResistance, moveSpeed, attackSpeed, baseAttackTime;
   final bool? stunImmune,
       silenceImmune,
       sleepImmune,
@@ -65,17 +63,17 @@ class EnemyAttrValueDataModel {
       levitateImmune;
 
   EnemyAttrValueDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = json['maxHp']['m_value'],
-        atk = json['atk']['m_value'],
-        def = json['def']['m_value'],
-        magicResistance = json['magicResistance']['m_value'],
-        massLevel = json['massLevel']['m_value'],
-        moveSpeed = json['moveSpeed']['m_value'],
-        attackSpeed = json['attackSpeed']['m_value'],
-        baseAttackTime = json['baseAttackTime']['m_value'],
-        stunImmune = json['stunImmune']['m_value'],
-        silenceImmune = json['silenceImmune']['m_value'],
-        sleepImmune = json['sleepImmune']['m_value'],
-        frozenImmune = json['frozenImmune']['m_value'],
-        levitateImmune = json['levitateImmune']['m_value'];
+      : maxHp = json['maxHp']?['m_value'],
+        atk = json['atk']?['m_value'],
+        def = json['def']?['m_value'],
+        magicResistance = json['magicResistance']?['m_value'],
+        massLevel = json['massLevel']?['m_value'],
+        moveSpeed = json['moveSpeed']?['m_value'],
+        attackSpeed = json['attackSpeed']?['m_value'],
+        baseAttackTime = json['baseAttackTime']?['m_value'],
+        stunImmune = json['stunImmune']?['m_value'],
+        silenceImmune = json['silenceImmune']?['m_value'],
+        sleepImmune = json['sleepImmune']?['m_value'],
+        frozenImmune = json['frozenImmune']?['m_value'],
+        levitateImmune = json['levitateImmune']?['m_value'];
 }

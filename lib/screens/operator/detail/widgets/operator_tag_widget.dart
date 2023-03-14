@@ -31,7 +31,7 @@ class OperatorTagWrapWidget extends StatelessWidget {
                     ? '근거리'
                     : position! == 'RANGED'
                         ? '원거리'
-                        : '근/원거리',
+                        : '근거리 원거리',
               ),
             for (var tag in tagList) OperatorTagWidget(tag: tag),
           ],

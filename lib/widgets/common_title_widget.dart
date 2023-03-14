@@ -25,6 +25,9 @@ class CommonTitleWidget extends StatelessWidget {
         ),
         Gaps.h10,
         Container(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width - Sizes.size80,
+          ),
           decoration: BoxDecoration(
             color: color,
             borderRadius: BorderRadiusDirectional.circular(Sizes.size10),
@@ -43,6 +46,7 @@ class CommonTitleWidget extends StatelessWidget {
             ),
             child: Text(
               text,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontFamily: FontFamily.nanumGothic,
                 fontWeight: FontWeight.w700,

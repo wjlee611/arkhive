@@ -1,5 +1,6 @@
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/tools/load_image_from_securestorage.dart';
@@ -45,14 +46,14 @@ class OpenDetailScreen {
     required dynamic context,
     int level = 0,
   }) async {
-    // await Navigator.push(
-    //   context,
-    //   _createRoute(EnemyDetailScreen(
-    //     enemy: enemy,
-    //     enemyImage: await getImageFromSP('image/enemy/${enemy.enemyId}'),
-    //     initLevel: level,
-    //   )),
-    // );
+    await Navigator.push(
+      context,
+      _createRoute(EnemyDetailScreen(
+        enemy: enemy,
+        enemyImage: await getImageFromSP('image/enemy/${enemy.enemyId}'),
+        initLevel: level,
+      )),
+    );
   }
 
   static void onItemTab({
