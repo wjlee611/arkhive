@@ -40,12 +40,12 @@ class EnemyDataModel {
 }
 
 class EnemyValueDataModel {
-  final EnemyAttrValueDataModel? attributes;
+  final EnemyAttrDataModel? attributes;
   final List<BlackboardModel> talentBlackboard;
 
   EnemyValueDataModel.fromJson(Map<String, dynamic> json)
       : attributes =
-            EnemyAttrValueDataModel.fromJson(json['enemyData']?['attributes']),
+            EnemyAttrDataModel.fromJson(json['enemyData']?['attributes']),
         talentBlackboard = [
           if (json['enemyData']?['talentBlackboard'] != null)
             for (var data in json['enemyData']['talentBlackboard'])
@@ -53,27 +53,72 @@ class EnemyValueDataModel {
         ];
 }
 
-class EnemyAttrValueDataModel {
-  final int? maxHp, atk, def, massLevel;
-  final double? magicResistance, moveSpeed, attackSpeed, baseAttackTime;
-  final bool? stunImmune,
+class EnemyAttrDataModel {
+  EnemyAttrValueDataModel<int>? maxHp, atk, def, massLevel;
+  EnemyAttrValueDataModel<double>? magicResistance,
+      moveSpeed,
+      attackSpeed,
+      baseAttackTime;
+  EnemyAttrValueDataModel<bool>? stunImmune,
       silenceImmune,
       sleepImmune,
       frozenImmune,
       levitateImmune;
 
+  EnemyAttrDataModel.fromJson(Map<String, dynamic> json)
+      : maxHp = EnemyAttrValueDataModel.fromJson(json['maxHp']),
+        atk = EnemyAttrValueDataModel.fromJson(json['atk']),
+        def = EnemyAttrValueDataModel.fromJson(json['def']),
+        magicResistance =
+            EnemyAttrValueDataModel.fromJson(json['magicResistance']),
+        massLevel = EnemyAttrValueDataModel.fromJson(json['massLevel']),
+        moveSpeed = EnemyAttrValueDataModel.fromJson(json['moveSpeed']),
+        attackSpeed = EnemyAttrValueDataModel.fromJson(json['attackSpeed']),
+        baseAttackTime =
+            EnemyAttrValueDataModel.fromJson(json['baseAttackTime']),
+        stunImmune = EnemyAttrValueDataModel.fromJson(json['stunImmune']),
+        silenceImmune = EnemyAttrValueDataModel.fromJson(json['silenceImmune']),
+        sleepImmune = EnemyAttrValueDataModel.fromJson(json['sleepImmune']),
+        frozenImmune = EnemyAttrValueDataModel.fromJson(json['frozenImmune']),
+        levitateImmune =
+            EnemyAttrValueDataModel.fromJson(json['levitateImmune']);
+
+  void copyWith({
+    EnemyAttrValueDataModel<int>? maxHp,
+    atk,
+    def,
+    massLevel,
+    EnemyAttrValueDataModel<double>? magicResistance,
+    moveSpeed,
+    attackSpeed,
+    baseAttackTime,
+    EnemyAttrValueDataModel<bool>? stunImmune,
+    silenceImmune,
+    sleepImmune,
+    frozenImmune,
+    levitateImmune,
+  }) {
+    this.maxHp = maxHp ?? this.maxHp;
+    this.atk = atk ?? this.atk;
+    this.def = def ?? this.def;
+    this.massLevel = massLevel ?? this.massLevel;
+    this.magicResistance = magicResistance ?? this.magicResistance;
+    this.moveSpeed = moveSpeed ?? this.moveSpeed;
+    this.attackSpeed = attackSpeed ?? this.attackSpeed;
+    this.baseAttackTime = baseAttackTime ?? this.baseAttackTime;
+    this.stunImmune = stunImmune ?? this.stunImmune;
+    this.silenceImmune = silenceImmune ?? this.silenceImmune;
+    this.sleepImmune = sleepImmune ?? this.sleepImmune;
+    this.frozenImmune = frozenImmune ?? this.frozenImmune;
+    this.levitateImmune = levitateImmune ?? this.levitateImmune;
+  }
+}
+
+class EnemyAttrValueDataModel<T> {
+  final bool? isDefined;
+  final T? value;
+
   EnemyAttrValueDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = json['maxHp']?['m_value'],
-        atk = json['atk']?['m_value'],
-        def = json['def']?['m_value'],
-        magicResistance = json['magicResistance']?['m_value'],
-        massLevel = json['massLevel']?['m_value'],
-        moveSpeed = json['moveSpeed']?['m_value'],
-        attackSpeed = json['attackSpeed']?['m_value'],
-        baseAttackTime = json['baseAttackTime']?['m_value'],
-        stunImmune = json['stunImmune']?['m_value'],
-        silenceImmune = json['silenceImmune']?['m_value'],
-        sleepImmune = json['sleepImmune']?['m_value'],
-        frozenImmune = json['frozenImmune']?['m_value'],
-        levitateImmune = json['levitateImmune']?['m_value'];
+      : isDefined = json['m_defined'],
+        value = json['m_value'];
 }

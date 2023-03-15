@@ -19,6 +19,7 @@ class FormattedTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> tags = [
+      '<@eb.key>',
       '<@ba.kw>',
       '<@ba.talpu>',
       '<@ba.rem>',
@@ -45,6 +46,8 @@ class FormattedTextWidget extends StatelessWidget {
       '<\$ba.overdrive>',
       '<\$ba.debuff>',
       '<\$ba.levitate>',
+      '<\$ba.dt.erosion>',
+      '<\$ba.refraction>',
       '</>',
     ];
 
@@ -145,6 +148,7 @@ class FormattedTextWidget extends StatelessWidget {
                     ),
                   ));
                   break;
+                case '<@eb.key>':
                 case '<@ba.kw>':
                 case '<@ba.talpu>':
                 case '<@ba.vup>':
@@ -188,6 +192,8 @@ class FormattedTextWidget extends StatelessWidget {
                 case '<\$ba.overdrive>':
                 case '<\$ba.debuff>':
                 case '<\$ba.levitate>':
+                case '<\$ba.dt.erosion>':
+                case '<\$ba.refraction>':
                   // 추후 기능 추가
                   widgets[line].add(Text(
                     newWord,

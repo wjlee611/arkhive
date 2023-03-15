@@ -124,8 +124,8 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                         Gaps.v16,
                         EnemyCombatInfo(
                           enemy: widget.enemy,
-                          attribute:
-                              snapshot.data!.values[_selectedLevel].attributes!,
+                          enemyDatas: snapshot.data!.values,
+                          level: _selectedLevel,
                         ),
                         if (widget.enemy.ability != null)
                           Column(
@@ -137,11 +137,11 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
                               FormattedTextWidget(text: widget.enemy.ability!),
                             ],
                           ),
-                        if (snapshot.data!.values[_selectedLevel]
-                            .talentBlackboard.isNotEmpty)
+                        if (snapshot
+                            .data!.values[0].talentBlackboard.isNotEmpty)
                           EnemyHiddenInfoWidget(
-                            blackboard: snapshot
-                                .data!.values[_selectedLevel].talentBlackboard,
+                            enemyDatas: snapshot.data!.values,
+                            level: _selectedLevel,
                           ),
                         Gaps.v130,
                       ],
