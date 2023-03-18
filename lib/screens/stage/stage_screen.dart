@@ -37,6 +37,7 @@ class _StageScreenState extends State<StageScreen> {
 
         var actData = await json.decode(actString);
         var modeledActData = ActivityModel.fromJson(actData);
+        if (!(modeledActData.hasStage ?? false)) continue;
 
         if (modeledActData.isReplicate ?? false) {
           for (var key in resultMap.keys) {
@@ -83,13 +84,13 @@ class _StageScreenState extends State<StageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-        child: FutureBuilder(
-          future: futureStages(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return SingleChildScrollView(
+      body: FutureBuilder(
+        future: futureStages(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -97,16 +98,16 @@ class _StageScreenState extends State<StageScreen> {
                       StagesContainer(stages: stages),
                   ],
                 ),
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: Colors.yellow.shade800,
-                ),
-              );
-            }
-          },
-        ),
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Colors.yellow.shade800,
+              ),
+            );
+          }
+        },
       ),
     );
   }
@@ -143,7 +144,11 @@ class _StagesContainerState extends State<StagesContainer> {
         if (stageString == null || stageString == 'null') continue;
 
         var stageData = await json.decode(stageString);
-        result.add(StageModel.fromJson(stageData));
+        var modeledStageData = StageModel.fromJson(stageData);
+        if ((modeledStageData.isStoryOnly ?? true) ||
+            (modeledStageData.isPredefined ?? true) ||
+            (modeledStageData.isStagePatch ?? true)) continue;
+        result.add(modeledStageData);
       }
     }
 
@@ -158,52 +163,89 @@ class _StagesContainerState extends State<StagesContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  if (widget.stages.nameFirst != null)
-                    Text('${widget.stages.nameFirst!} - '),
-                  Text(widget.stages.nameSecond!),
-                ],
-              ),
-              AnimatedRotation(
-                duration: const Duration(milliseconds: 200),
-                turns: _isOpen ? 0.5 : 0,
-                child: IconButton(
-                  onPressed: _onOpenTap,
-                  icon: const Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                  ),
+    return AnimatedPadding(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeOut,
+      padding: _isOpen
+          ? const EdgeInsets.symmetric(
+              vertical: Sizes.size16,
+              horizontal: Sizes.size5,
+            )
+          : const EdgeInsets.symmetric(vertical: Sizes.size5),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Sizes.size10),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: Sizes.size1,
+              blurStyle: BlurStyle.outer,
+              color: Colors.black.withOpacity(0.4),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: _onOpenTap,
+              borderRadius: BorderRadius.circular(Sizes.size10),
+              child: Container(
+                height: Sizes.size40,
+                padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        if (widget.stages.nameFirst != null)
+                          Text('${widget.stages.nameFirst!} - '),
+                        Text(widget.stages.nameSecond!),
+                      ],
+                    ),
+                    AnimatedRotation(
+                      duration: const Duration(milliseconds: 200),
+                      turns: _isOpen ? 0.5 : 0,
+                      child: const Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+            if (_isOpen)
+              FutureBuilder(
+                future: futureStage(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return CustomScrollView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      slivers: [
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) => Column(
+                              children: [
+                                for (var stage in snapshot.data!)
+                                  Text(stage.code!),
+                              ],
+                            ),
+                            childCount: 1,
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.yellow.shade800,
+                      ),
+                    );
+                  }
+                },
+              ),
+          ],
         ),
-        if (_isOpen)
-          FutureBuilder(
-            future: futureStage(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    for (var stage in snapshot.data!) Text(stage.code!),
-                  ],
-                );
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.yellow.shade800,
-                  ),
-                );
-              }
-            },
-          )
-      ],
+      ),
     );
   }
 }

@@ -32,7 +32,7 @@ class ZoneModel {
 class ActivityModel {
   final String? id, name;
   final int? startTime, endTime, rewardEndTime;
-  final bool? isReplicate;
+  final bool? hasStage, isReplicate;
 
   ActivityModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -40,6 +40,7 @@ class ActivityModel {
         startTime = json['startTime'],
         endTime = json['endTime'],
         rewardEndTime = json['rewardEndTime'],
+        hasStage = json['hasStage'],
         isReplicate = json['isReplicate'];
 }
 
@@ -47,6 +48,7 @@ class StageModel {
   final String? difficulty, zoneId, code, name, description;
   final int? apCost, apFailReturn;
   final StageRewordModel? stageDropInfo;
+  final bool? isStoryOnly, isPredefined, isStagePatch;
 
   StageModel.fromJson(Map<String, dynamic> json)
       : difficulty = json['difficulty'],
@@ -56,7 +58,10 @@ class StageModel {
         description = json['description'],
         apCost = json['apCost'],
         apFailReturn = json['apFailReturn'],
-        stageDropInfo = StageRewordModel.fromJson(json['stageDropInfo']);
+        stageDropInfo = StageRewordModel.fromJson(json['stageDropInfo']),
+        isStoryOnly = json['isStoryOnly'],
+        isPredefined = json['isPredefined'],
+        isStagePatch = json['isStagePatch'];
 }
 
 class StageRewordModel {
