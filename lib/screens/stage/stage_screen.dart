@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:flutter/material.dart';
@@ -75,10 +74,10 @@ class _StageScreenState extends State<StageScreen> {
     }
 
     result = [for (var key in resultMap.keys) resultMap[key]!];
-    List<StagesModel> resultRev = [];
-    resultRev = [for (var stages in result.reversed) stages];
+    List<StagesModel> resultInv = [];
+    resultInv = [for (var stages in result.reversed) stages];
 
-    return resultRev;
+    return resultInv;
   }
 
   @override
@@ -125,15 +124,17 @@ class StagesContainer extends StatefulWidget {
   State<StagesContainer> createState() => _StagesContainerState();
 }
 
-class _StagesContainerState extends State<StagesContainer> {
+class _StagesContainerState extends State<StagesContainer>
+    with TickerProviderStateMixin {
+  TabController? _tabController;
   bool _isOpen = false;
 
-  Future<List<StageModel>> futureStage() async {
+  Future<Map<String, List<StageModel>>> futureStage() async {
     const storage = FlutterSecureStorage();
-    List<StageModel> result = [];
+    Map<String, List<StageModel>> result = {};
 
     String? stageIndexString = await storage.read(key: 'index/stage');
-    if (stageIndexString == null || stageIndexString == 'null') return [];
+    if (stageIndexString == null || stageIndexString == 'null') return {};
 
     var stageIndexData = await json.decode(stageIndexString);
     var stageIndex = StagesIndexingModel.fromJson(stageIndexData);
@@ -148,17 +149,54 @@ class _StagesContainerState extends State<StagesContainer> {
         if ((modeledStageData.isStoryOnly ?? true) ||
             (modeledStageData.isPredefined ?? true) ||
             (modeledStageData.isStagePatch ?? true)) continue;
-        result.add(modeledStageData);
+
+        if (result[modeledStageData.zoneId] == null) {
+          result[modeledStageData.zoneId!] = [];
+        }
+        result[modeledStageData.zoneId!]!.add(modeledStageData);
       }
     }
 
-    return result;
+    if (_tabController == null) {
+      _tabController = TabController(length: result.keys.length, vsync: this);
+      _tabController!.addListener(_onTabChange);
+    }
+
+    Map<String, List<StageModel>> resultInv = {};
+    resultInv = {
+      for (var key in result.keys.toList().reversed) key: result[key]!,
+    };
+
+    return resultInv;
+  }
+
+  @override
+  void dispose() {
+    _tabController?.removeListener(_onTabChange);
+    _tabController?.dispose();
+    super.dispose();
   }
 
   void _onOpenTap() {
     setState(() {
       _isOpen = !_isOpen;
     });
+  }
+
+  void _onTabChange() {
+    setState(() {});
+  }
+
+  Future<String> _zone2Name(String zone) async {
+    const storage = FlutterSecureStorage();
+    String? zoneString = await storage.read(key: 'zone/$zone');
+    if (zoneString == null || zoneString == 'null') return zone;
+
+    var zoneData = await json.decode(zoneString);
+    var modeledZoneData = ZoneModel.fromJson(zoneData);
+    if (modeledZoneData.zoneNameSecond == null) return zone;
+
+    return modeledZoneData.zoneNameSecond!;
   }
 
   @override
@@ -223,10 +261,43 @@ class _StagesContainerState extends State<StagesContainer> {
                       slivers: [
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
-                            (context, index) => Column(
+                            (context, index) => ListView(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              scrollDirection: Axis.vertical,
                               children: [
-                                for (var stage in snapshot.data!)
-                                  Text(stage.code!),
+                                if (snapshot.data!.keys.length > 1)
+                                  TabBar(
+                                    controller: _tabController,
+                                    isScrollable: true,
+                                    physics: const BouncingScrollPhysics(),
+                                    indicatorColor: Colors.yellow.shade800,
+                                    tabs: [
+                                      for (var key in snapshot.data!.keys)
+                                        Tab(
+                                          child: FutureBuilder(
+                                            future: _zone2Name(key),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                return Text(snapshot.data!);
+                                              } else {
+                                                return Center(
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color:
+                                                        Colors.yellow.shade800,
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                for (var value in snapshot.data![(snapshot
+                                    .data!.keys
+                                    .toList())[_tabController!.index]]!)
+                                  Text(value.code!),
                               ],
                             ),
                             childCount: 1,
@@ -236,8 +307,12 @@ class _StagesContainerState extends State<StagesContainer> {
                     );
                   } else {
                     return Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.yellow.shade800,
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.symmetric(vertical: Sizes.size20),
+                        child: CircularProgressIndicator(
+                          color: Colors.yellow.shade800,
+                        ),
                       ),
                     );
                   }
