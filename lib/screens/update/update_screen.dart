@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/models/updater_models.dart';
 import 'package:arkhive/screens/update/widgets/update_indicator_widget.dart';
 import 'package:arkhive/screens/update/widgets/updater_prts_widget.dart';
@@ -42,73 +43,75 @@ class _UpdateScreenState extends State<UpdateScreen> {
     UpdateVersionsModel ver = UpdateVersionsModel.fromJson(jsonData);
     UpdateDependencyModel updateRemain = UpdateDependencyModel();
     for (var version in ver.versions.keys) {
-      if (ver.versions[version] != null) {
-        UpdateDependencyModel dep = ver.versions[version]!;
-        for (var category in dep.categories.keys) {
-          if (dep.categories[category] != null) {
-            var newCategory =
-                category == 'operator_patch' ? 'operator' : category;
-            dataLists[newCategory] = dataLists[newCategory] ?? [];
-            for (var data in dep.categories[category]!) {
-              dataLists[newCategory]!.add(data);
-              // Add only missing data
-              if (!await storage.containsKey(key: '$newCategory/$data')) {
-                updateRemain.add(key: category, value: data);
-                // Add image
-                if (newCategory == 'operator') {
-                  updateRemain.add(key: 'image/operator', value: data);
-                }
-                if (newCategory == 'enemy') {
-                  updateRemain.add(key: 'image/enemy', value: data);
-                }
-                // Add module data
-                if (newCategory == 'module') {
-                  updateRemain.add(key: 'module_data', value: data);
-                }
-                // Add enemy data
-                if (newCategory == 'enemy') {
-                  updateRemain.add(key: 'enemy_data', value: data);
-                }
-              }
-            }
+      if (ver.versions[version] == null) continue;
+
+      UpdateDependencyModel dep = ver.versions[version]!;
+      for (var category in dep.categories.keys) {
+        if (dep.categories[category] == null) continue;
+
+        var newCategory = category == 'operator_patch' ? 'operator' : category;
+        dataLists[newCategory] = dataLists[newCategory] ?? [];
+        for (var data in dep.categories[category]!) {
+          dataLists[newCategory]!.add(data);
+          // Add only missing data
+          if (await storage.containsKey(key: '$newCategory/$data')) continue;
+
+          updateRemain.add(key: category, value: data);
+          // Add image
+          if (newCategory == 'operator') {
+            updateRemain.add(key: 'image/operator', value: data);
+          }
+          if (newCategory == 'enemy') {
+            updateRemain.add(key: 'image/enemy', value: data);
+          }
+          // Add module data
+          if (newCategory == 'module') {
+            updateRemain.add(key: 'module_data', value: data);
+          }
+          // Add enemy data
+          if (newCategory == 'enemy') {
+            updateRemain.add(key: 'enemy_data', value: data);
+          }
+          // Add zone2activity
+          if (newCategory == 'zone' && data.contains('_zone')) {
+            updateRemain.add(key: 'zone2activity', value: data);
           }
         }
       }
     }
     // Deduplication
     for (var category in updateRemain.categories.keys) {
-      if (updateRemain.categories[category] != null) {
-        updateRemain.categories[category] =
-            updateRemain.categories[category]!.toSet().toList();
-        _remainDownloadAssets += updateRemain.categories[category]!.length;
-      }
+      if (updateRemain.categories[category] == null) continue;
+
+      updateRemain.categories[category] =
+          updateRemain.categories[category]!.toSet().toList();
+      _remainDownloadAssets += updateRemain.categories[category]!.length;
     }
     for (var category in dataLists.keys) {
-      if (dataLists[category] != null) {
-        dataLists[category] = dataLists[category]!.toSet().toList();
-      }
+      if (dataLists[category] == null) continue;
+
+      dataLists[category] = dataLists[category]!.toSet().toList();
     }
 
     setState(() {
       _updateStatus = 'Update...';
     });
     for (var category in updateRemain.categories.keys) {
-      if (updateRemain.categories[category] != null) {
-        skipList.addAll(
-          await _dataUpdater(
-            databaseRef: databaseRef,
-            category: category,
-            dependencies: updateRemain.categories[category]!,
-          ),
-        );
-      }
+      if (updateRemain.categories[category] == null) continue;
+
+      skipList.addAll(
+        await _dataUpdater(
+          databaseRef: databaseRef,
+          category: category,
+          dependencies: updateRemain.categories[category]!,
+        ),
+      );
     }
     for (var category in dataLists.keys) {
-      if (dataLists[category] != null) {
-        Map<String, List<String>> listJson = {"data": dataLists[category]!};
-        await storage.write(
-            key: 'list_$category', value: json.encode(listJson));
-      }
+      if (dataLists[category] == null) continue;
+
+      Map<String, List<String>> listJson = {"data": dataLists[category]!};
+      await storage.write(key: 'list_$category', value: json.encode(listJson));
     }
 
     setState(() {
@@ -203,6 +206,46 @@ class _UpdateScreenState extends State<UpdateScreen> {
           savePath = category;
           break;
         }
+      case 'activity':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/activity_table.json'))['basicInfo'];
+          } catch (_) {}
+          serverPath = 'data/activity_table/basicInfo';
+          savePath = category;
+          break;
+        }
+      case 'zone':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/zone_table.json'))['zones'];
+          } catch (_) {}
+          serverPath = 'data/zone_table/zones';
+          savePath = category;
+          break;
+        }
+      case 'zone2activity':
+        {
+          try {
+            localData = await json.decode(await rootBundle.loadString(
+                'assets/json/activity_table.json'))['zoneToActivity'];
+          } catch (_) {}
+          serverPath = 'data/activity_table/zoneToActivity';
+          savePath = category;
+          break;
+        }
+      case 'stage':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/stage_table.json'))['stages'];
+          } catch (_) {}
+          serverPath = 'data/stage_table/stages';
+          savePath = category;
+          break;
+        }
     }
 
     if (category.contains('image/')) {
@@ -231,7 +274,13 @@ class _UpdateScreenState extends State<UpdateScreen> {
           }
         }
         try {
-          if (imageData == null) continue;
+          if (imageData == null) {
+            skipList.add('save fail: $category/$dependency.png');
+            setState(() {
+              _downloadedAssets += 1;
+            });
+            continue;
+          }
           await storage.write(
               key: '$category/$dependency', value: base64.encode(imageData));
         } catch (_) {
@@ -244,18 +293,39 @@ class _UpdateScreenState extends State<UpdateScreen> {
       }
     } else {
       // Data
+      // FOR INDEXING //
+      late StagesIndexingModel stageIndex;
+      if (category == 'stage') {
+        var stageIndexString = await storage.read(key: 'index/stage');
+        if (stageIndexString == null || stageIndexString == 'null') {
+          stageIndex = StagesIndexingModel.init();
+        } else {
+          stageIndex =
+              StagesIndexingModel.fromJson(await json.decode(stageIndexString));
+        }
+      }
+
       for (var dependency in dependencies) {
         Map<String, dynamic>? resData;
+        String? resString;
         try {
           if (localData[dependency] != null) {
             // From local
-            resData = localData[dependency];
+            try {
+              resData = localData[dependency];
+            } catch (_) {
+              resString = localData[dependency];
+            }
           } else {
-            // From firebase\
+            // From firebase
             var depRef = databaseRef.child('$serverPath/$dependency');
             DatabaseEvent databaseEvent = await depRef.once();
-            resData =
-                await json.decode(json.encode(databaseEvent.snapshot.value));
+            try {
+              resData =
+                  await json.decode(json.encode(databaseEvent.snapshot.value));
+            } catch (_) {
+              resString = databaseEvent.snapshot.value.toString();
+            }
           }
         } catch (_) {
           skipList.add('skip download: $serverPath/$dependency');
@@ -265,9 +335,25 @@ class _UpdateScreenState extends State<UpdateScreen> {
           continue;
         }
         try {
-          if (resData == null) continue;
-          await storage.write(
-              key: '$savePath/$dependency', value: json.encode(resData));
+          if (resData == null && resString == null) {
+            skipList.add('save fail: $category/$dependency');
+            setState(() {
+              _downloadedAssets += 1;
+            });
+            continue;
+          }
+          if (resString != null) {
+            await storage.write(key: '$savePath/$dependency', value: resString);
+          } else {
+            await storage.write(
+                key: '$savePath/$dependency', value: json.encode(resData));
+
+            // FOR INDEXING //
+            if (category == 'stage') {
+              var stage = StageModel.fromJson(resData!);
+              stageIndex.addStage(zone: stage.zoneId!, stage: dependency);
+            }
+          }
         } catch (_) {
           skipList.add('save fail: $category/$dependency');
         }
@@ -275,6 +361,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
         setState(() {
           _downloadedAssets += 1;
         });
+      }
+
+      // FOR INDEXING
+      if (category == 'stage') {
+        await storage.write(
+            key: 'index/stage', value: json.encode(stageIndex.zone));
       }
     }
 
