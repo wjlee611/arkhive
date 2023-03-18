@@ -2,7 +2,6 @@ class StagesModel {
   final String? nameFirst, nameSecond;
   final bool isEvent;
   final int? open, close, shopClose;
-  List<StageModel> stages;
   List<String> zones;
 
   StagesModel({
@@ -12,13 +11,8 @@ class StagesModel {
     this.open,
     this.close,
     this.shopClose,
-    required this.stages,
     required this.zones,
   });
-
-  void loadStage({required List<StageModel> stages}) {
-    this.stages = stages;
-  }
 
   void addZone({required String zone}) {
     zones.add(zone);
@@ -38,13 +32,15 @@ class ZoneModel {
 class ActivityModel {
   final String? id, name;
   final int? startTime, endTime, rewardEndTime;
+  final bool? isReplicate;
 
   ActivityModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         name = json['name'],
         startTime = json['startTime'],
         endTime = json['endTime'],
-        rewardEndTime = json['rewardEndTime'];
+        rewardEndTime = json['rewardEndTime'],
+        isReplicate = json['isReplicate'];
 }
 
 class StageModel {
@@ -91,7 +87,10 @@ class StagesIndexingModel {
 
   StagesIndexingModel.fromJson(Map<String, dynamic> json)
       : zone = {
-          for (var key in json.keys) key: json[key],
+          for (var key in json.keys)
+            key: [
+              for (var stage in json[key]) stage,
+            ],
         };
 
   void setStages({
