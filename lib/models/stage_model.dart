@@ -45,13 +45,14 @@ class ActivityModel {
 }
 
 class StageModel {
-  final String? difficulty, zoneId, code, name, description;
+  final String? difficulty, diffGroup, zoneId, code, name, description;
   final int? apCost, apFailReturn;
   final StageRewordModel? stageDropInfo;
   final bool? isStoryOnly, isPredefined, isStagePatch;
 
   StageModel.fromJson(Map<String, dynamic> json)
       : difficulty = json['difficulty'],
+        diffGroup = json['diffGroup'],
         zoneId = json['zoneId'],
         code = json['code'],
         name = json['name'],
