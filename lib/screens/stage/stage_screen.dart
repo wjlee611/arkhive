@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_container_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +15,13 @@ class StageScreen extends StatefulWidget {
 }
 
 class _StageScreenState extends State<StageScreen> {
-  Future<List<StagesModel>> _futureStages() async {
+  Future<Map<String, List<StagesModel>>> _futureStages() async {
     const storage = FlutterSecureStorage();
     Map<String, StagesModel> resultMap = {};
-    List<StagesModel> result = [];
+    Map<String, List<StagesModel>> result = {};
 
     String? zoneListString = await storage.read(key: 'list_zone');
-    if (zoneListString == null || zoneListString == 'null') return [];
+    if (zoneListString == null || zoneListString == 'null') return {};
 
     var zoneListData = await json.decode(zoneListString)['data'];
     for (var zone in (zoneListData as List).reversed) {
@@ -59,7 +60,7 @@ class _StageScreenState extends State<StageScreen> {
             open: modeledActData.startTime,
             close: modeledActData.endTime,
             shopClose: modeledActData.rewardEndTime,
-            isEvent: true,
+            type: 'EVENT',
             zones: [zone],
           );
         } else {
@@ -69,51 +70,117 @@ class _StageScreenState extends State<StageScreen> {
         resultMap[modeledZoneData.zoneId!] = StagesModel(
           nameFirst: modeledZoneData.zoneNameFirst,
           nameSecond: modeledZoneData.zoneNameSecond,
-          isEvent: false,
+          type: 'MAINLINE',
           zones: [zone],
         );
       }
     }
 
-    result = [for (var key in resultMap.keys) resultMap[key]!];
-    List<StagesModel> resultInv = [];
-    resultInv = [for (var stages in result.reversed) stages];
+    for (var key in resultMap.keys.toList().reversed) {
+      if (result[resultMap[key]!.type] == null) {
+        result[resultMap[key]!.type!] = [];
+      }
+      result[resultMap[key]!.type!]!.add(resultMap[key]!);
+    }
 
-    return resultInv;
+    return result;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder(
-        future: _futureStages(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Gaps.v32,
-                    for (var stages in snapshot.data!)
-                      StagesContainer(stages: stages),
-                    Gaps.v130,
-                  ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          toolbarHeight: 0,
+          backgroundColor: Colors.blueGrey.shade700,
+          bottom: TabBar(
+            isScrollable: true,
+            indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(
+                width: Sizes.size3,
+                color: Colors.yellow.shade800,
+              ),
+              insets: const EdgeInsets.symmetric(horizontal: Sizes.size14),
+            ),
+            tabs: const [
+              Tab(
+                child: Text(
+                  '메인',
+                  style: TextStyle(
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                    fontSize: Sizes.size14,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            );
-          } else {
-            return Center(
-              child: Image.asset(
-                'assets/images/prts.png',
-                color: Colors.grey.shade400,
-                width: Sizes.size60,
-                height: Sizes.size60,
+              Tab(
+                child: Text(
+                  '이벤트',
+                  style: TextStyle(
+                    fontFamily: FontFamily.nanumGothic,
+                    fontWeight: FontWeight.w700,
+                    fontSize: Sizes.size14,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            );
-          }
-        },
+            ],
+          ),
+        ),
+        body: FutureBuilder(
+          future: _futureStages(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: Sizes.size20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Gaps.v32,
+                          for (var stages in snapshot.data!['MAINLINE']!)
+                            StagesContainer(stages: stages),
+                          Gaps.v130,
+                        ],
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: Sizes.size20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Gaps.v32,
+                          for (var stages in snapshot.data!['EVENT']!)
+                            StagesContainer(stages: stages),
+                          Gaps.v130,
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Center(
+                child: Image.asset(
+                  'assets/images/prts.png',
+                  color: Colors.grey.shade400,
+                  width: Sizes.size60,
+                  height: Sizes.size60,
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

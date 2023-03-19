@@ -1,13 +1,12 @@
 class StagesModel {
-  final String? nameFirst, nameSecond;
-  final bool isEvent;
+  final String? nameFirst, nameSecond, type;
   final int? open, close, shopClose;
   List<String> zones;
 
   StagesModel({
     this.nameFirst,
     this.nameSecond,
-    required this.isEvent,
+    required this.type,
     this.open,
     this.close,
     this.shopClose,
