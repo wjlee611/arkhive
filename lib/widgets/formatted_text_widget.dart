@@ -19,7 +19,6 @@ class FormattedTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> tags = [
-      '<@eb.key>',
       '<@ba.kw>',
       '<@ba.talpu>',
       '<@ba.rem>',
@@ -48,6 +47,9 @@ class FormattedTextWidget extends StatelessWidget {
       '<\$ba.levitate>',
       '<\$ba.dt.erosion>',
       '<\$ba.refraction>',
+      '<@eb.key>',
+      '<@lv.item>',
+      '<@lv.fs>',
       '</>',
     ];
 
@@ -148,10 +150,11 @@ class FormattedTextWidget extends StatelessWidget {
                     ),
                   ));
                   break;
-                case '<@eb.key>':
                 case '<@ba.kw>':
                 case '<@ba.talpu>':
                 case '<@ba.vup>':
+                case '<@eb.key>':
+                case '<@lv.item>':
                   widgets[line].add(Text(
                     newWord,
                     style: const TextStyle(
@@ -162,6 +165,7 @@ class FormattedTextWidget extends StatelessWidget {
                   ));
                   break;
                 case '<@ba.vdown>':
+                case '<@lv.fs>':
                   widgets[line].add(Text(
                     newWord,
                     style: const TextStyle(

@@ -69,8 +69,8 @@ class StageRewordModel {
 
   StageRewordModel.fromJson(Map<String, dynamic> json)
       : rewords = [
-          if (json['displayRewards'] != null)
-            for (var reword in json['displayRewards'])
+          if (json['displayDetailRewards'] != null)
+            for (var reword in json['displayDetailRewards'])
               StageItemModel.fromJson(reword)
         ];
 }

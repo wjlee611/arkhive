@@ -1,8 +1,10 @@
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
+import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
 import 'package:arkhive/tools/load_image_from_securestorage.dart';
 import 'package:flutter/material.dart';
 import '../models/enemy_model.dart';
@@ -52,6 +54,18 @@ class OpenDetailScreen {
         enemy: enemy,
         enemyImage: await getImageFromSP('image/enemy/${enemy.enemyId}'),
         initLevel: level,
+      )),
+    );
+  }
+
+  static void onStageTab({
+    required StageModel stage,
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(StageDetailScreen(
+        stage: stage,
       )),
     );
   }
