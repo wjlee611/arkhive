@@ -1,9 +1,11 @@
-import 'dart:convert';
+import 'package:arkhive/bloc/versionCheck/version_check_bloc.dart';
+import 'package:arkhive/bloc/versionCheck/version_check_event.dart';
+import 'package:arkhive/bloc/versionCheck/version_check_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/update/update_screen.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PRTSWidget extends StatefulWidget {
   const PRTSWidget({super.key});
@@ -16,17 +18,9 @@ class _PRTSWidgetState extends State<PRTSWidget> {
   @override
   void initState() {
     super.initState();
-    _updateChecker();
-  }
 
-  void _updateChecker() async {
-    DatabaseReference databaseRef =
-        FirebaseDatabase.instance.ref("update_checker");
-    // Get data
-    DatabaseEvent databaseEvent = await databaseRef.once();
-    try {
-      print(jsonEncode(databaseEvent.snapshot.value));
-    } catch (_) {}
+    // Version check once
+    context.read<VersionCheckBloc>().add(const VersionCheckEvent());
   }
 
   void _onTapUpdater() {
@@ -54,47 +48,56 @@ class _PRTSWidgetState extends State<PRTSWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onTapUpdater,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Sizes.size10),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blueGrey.shade100,
-              blurRadius: Sizes.size5,
-            ),
-          ],
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: Row(
-          children: [
-            Container(
-              color: Colors.blueGrey.shade600,
-              padding: const EdgeInsets.all(Sizes.size5),
-              child: Image.asset(
-                'assets/images/prts.png',
-                width: Sizes.size48,
-                height: Sizes.size48,
+    return BlocBuilder<VersionCheckBloc, VersionCheckStateABS>(
+      builder: (context, state) => GestureDetector(
+        onTap: _onTapUpdater,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(Sizes.size10),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blueGrey.shade100,
+                blurRadius: Sizes.size5,
               ),
-            ),
-            const Expanded(
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Sizes.size10),
-                  child: Text(
-                    "데이터 초기화 완료.\n어서오세요, 박사님.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: Sizes.size12,
-                      fontFamily: FontFamily.nanumGothic,
+            ],
+          ),
+          clipBehavior: Clip.hardEdge,
+          child: Row(
+            children: [
+              Container(
+                color: Colors.blueGrey.shade600,
+                padding: const EdgeInsets.all(Sizes.size5),
+                child: Image.asset(
+                  'assets/images/prts.png',
+                  width: Sizes.size48,
+                  height: Sizes.size48,
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: Sizes.size10),
+                    child: Text(
+                      state is VersionCheckInitState
+                          ? "초기화 중..."
+                          : state is VersionCheckLoadingState
+                              ? "업데이트를 확인 중 입니다..."
+                              : state is VersionCheckErrorState
+                                  ? "업데이트 정보를 받아오는 데 실패했습니다.\n인터넷 연결을 확인해주세요."
+                                  : "어서오세요, 박사님.",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: Sizes.size12,
+                        fontFamily: FontFamily.nanumGothic,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

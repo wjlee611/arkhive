@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/bloc/versionCheck/version_check_bloc.dart';
 import 'package:arkhive/firebase_options.dart';
 import 'package:arkhive/screens/routes/routes_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -32,8 +33,17 @@ class Arkhive extends StatelessWidget {
         primaryColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => ScreenBloc(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ScreenBloc(),
+          ),
+          BlocProvider(
+            create: (context) => VersionCheckBloc(
+              currAPPVersion: '1.0.0',
+            ),
+          ),
+        ],
         child: const RoutesScreen(),
       ),
     );
