@@ -31,7 +31,7 @@ class _PRTSWidgetState extends State<PRTSWidget> {
       return "업데이트를 확인 중 입니다...";
     }
     if (state is VersionCheckErrorState) {
-      return "업데이트 정보를 받아오는 데 실패했습니다.\n인터넷 연결을 확인해주세요.";
+      return "업데이트 정보를 받아오는 데 실패했습니다.\n잠시 후 다시 시도해주세요.";
     }
 
     var loadedState = state as VersionCheckLoadedState;

@@ -43,7 +43,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
       targetVersion = '000000';
     }
     var currVersion = await storage.read(key: 'db_version') ?? 'N/A';
-    currVersion.split('_').last;
+    currVersion = currVersion.split('_').last;
     if (currVersion == 'N/A' || currVersion == '') {
       currVersion = '000000';
     }
@@ -93,9 +93,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
     // 기본적으로 000001에 모든 데이터를 저장하여 관리함.
     // 나중에 유지 보수, 버그 픽스시 데이터를 업데이트 해야 하는 경우에만 별도로 버전을 추가함.
     for (var version in ver.versions.keys) {
-      // version <= targetVersion 인 경우에만 업데이트
-      if (int.parse(version) > int.parse(targetVersion)) break;
       if (ver.versions[version] == null) continue;
+      // version <= targetVersion 인 경우에만 업데이트
+      if (int.parse(version) > int.parse(targetVersion)) continue;
+
+      // currVersion < version 인 경우 업데이트
+      // 단, version == 000001은 반드시 탐색
+      if (version != '000001' &&
+          (int.parse(currVersion) >= int.parse(version))) {
+        continue;
+      }
 
       // dep에 ver와 같은 형태로 version에 해당하는 data_dependency를 저장
       UpdateDependencyModel dep = ver.versions[version]!;
@@ -116,8 +123,11 @@ class _UpdateScreenState extends State<UpdateScreen> {
           // 없는 데이터를 검사하지 않고 추가.
           dataLists[newCategory]!.add(data);
 
-          // 데이터가 없는 경우에만 updateRemain에 추가
-          if (await storage.containsKey(key: '$newCategory/$data')) continue;
+          // version == '000001'인 경우에는 데이터가 없는 경우에만 updateRemain에 추가
+          // 그 외의 경우에는 반드시 updateRemain에 추가
+          if (version == '000001') {
+            if (await storage.containsKey(key: '$newCategory/$data')) continue;
+          }
           updateRemain.add(key: category, value: data);
           // Add image
           if (newCategory == 'operator') {
@@ -202,7 +212,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           updatedDBVersion: targetDBVersion,
         ));
 
-    // 업데이트 중 누락된 파일이 있는 경우 알림
+    // DEBUG: 업데이트 중 누락된 파일이 있는 경우 알림 (나중에 제거)
     if (skipList.isEmpty) return;
     _showDialog(skipList);
   }
@@ -474,6 +484,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   void _onDeleteTap() async {
     if (!mounted) return;
     context.read<VersionCheckBloc>().add(const VersionCheckResetEvent());
+    _updateStatus = "Pending";
   }
 
   void _showDialog(List<String> list) {
@@ -481,9 +492,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text(
-            'Failed Download Dependency',
-            style: TextStyle(
+          title: Text(
+            'Failed to update (${list.length})',
+            style: const TextStyle(
               fontFamily: FontFamily.nanumGothic,
               fontWeight: FontWeight.w700,
               fontSize: Sizes.size16,
@@ -495,13 +506,38 @@ class _UpdateScreenState extends State<UpdateScreen> {
               child: ListBody(
                 children: [
                   for (var skip in list)
-                    Text(
-                      '- $skip',
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontSize: Sizes.size12,
-                        color: Colors.redAccent,
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent,
+                            borderRadius: BorderRadius.circular(Sizes.size3),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Sizes.size2,
+                            horizontal: Sizes.size5,
+                          ),
+                          child: Text(
+                            skip.split(":").first,
+                            style: const TextStyle(
+                              fontFamily: FontFamily.nanumGothic,
+                              fontSize: Sizes.size12,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          skip.split(":").last,
+                          style: const TextStyle(
+                            fontFamily: FontFamily.nanumGothic,
+                            fontSize: Sizes.size12,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.redAccent,
+                          ),
+                        ),
+                        Gaps.v5,
+                      ],
                     ),
                 ],
               ),
