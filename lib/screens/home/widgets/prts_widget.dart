@@ -47,7 +47,7 @@ class _PRTSWidgetState extends State<PRTSWidget> {
 
   void _onTapUpdater(VersionCheckStateABS state) {
     if (state is! VersionCheckLoadedState) return;
-    if (state.targetDBVersion == '') return;
+    // if (state.targetDBVersion == '') return;
 
     Navigator.push(
       context,

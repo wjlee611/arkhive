@@ -39,9 +39,7 @@ class Arkhive extends StatelessWidget {
             create: (context) => ScreenBloc(),
           ),
           BlocProvider(
-            create: (context) => VersionCheckBloc(
-              currAPPVersion: '1.0.0',
-            ),
+            create: (context) => VersionCheckBloc(),
           ),
         ],
         child: const RoutesScreen(),

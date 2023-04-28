@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:arkhive/bloc/versionCheck/version_check_bloc.dart';
+import 'package:arkhive/bloc/versionCheck/version_check_event.dart';
 import 'package:arkhive/bloc/versionCheck/version_check_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
@@ -28,8 +29,25 @@ class _UpdateScreenState extends State<UpdateScreen> {
   int _remainDownloadAssets = 0;
 
   void _onUpdateTap(VersionCheckStateABS state) async {
+    if (state is! VersionCheckLoadedState) return;
+
+    var targetDBVersion = state.targetDBVersion; // 업데이트 DB 버전
+    if (targetDBVersion == '') return;
+
     DatabaseReference databaseRef = FirebaseDatabase.instance.ref();
     const storage = FlutterSecureStorage();
+
+    var targetVersion =
+        targetDBVersion.split('_').last; // data_dependency에서 체크할 업데이트 버전
+    if (targetVersion == 'N/A' || targetVersion == '') {
+      targetVersion = '000000';
+    }
+    var currVersion = await storage.read(key: 'db_version') ?? 'N/A';
+    currVersion.split('_').last;
+    if (currVersion == 'N/A' || currVersion == '') {
+      currVersion = '000000';
+    }
+
     _remainDownloadAssets = 0; // 남은 다운로드가 필요한 파일 수
     _downloadedAssets = 0; // 다운로드가 완료된 파일 수
     List<String> skipList = []; // 다운로드 실패한 항목의 key값을 저장하는 리스트
@@ -39,19 +57,6 @@ class _UpdateScreenState extends State<UpdateScreen> {
     // 리스트를 불러오게 하기 위함.
     // 따라서 버전과 관계 없이 모든 데이터를 불러오도록 함.
     Map<String, List<String>> dataLists = {};
-
-    if (state is! VersionCheckLoadedState) return;
-    var targetDBVersion = state.targetDBVersion; // 업데이트 DB 버전
-    var targetVersion =
-        targetDBVersion.split('_').last; // data_dependency에서 체크할 업데이트 버전
-    if (targetVersion == 'N/A' || targetVersion == '') {
-      targetVersion = '000000';
-    }
-    var currVersion = await storage.read(key: 'db_version') ?? 'N/A';
-    currVersion.split('_').last;
-    if (currVersion == 'N/A' || currVersion == '') {
-      targetVersion = '000000';
-    }
 
     // 업데이트 종속성 검사 단계 //
     setState(() {
@@ -89,8 +94,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
     // 나중에 유지 보수, 버그 픽스시 데이터를 업데이트 해야 하는 경우에만 별도로 버전을 추가함.
     for (var version in ver.versions.keys) {
       // version <= targetVersion 인 경우에만 업데이트
-      // if (int.parse(currVersion) >= int.parse(version)) continue; // currVersion < version 조건 추가
       if (int.parse(version) > int.parse(targetVersion)) break;
+      if (ver.versions[version] == null) continue;
 
       // dep에 ver와 같은 형태로 version에 해당하는 data_dependency를 저장
       UpdateDependencyModel dep = ver.versions[version]!;
@@ -191,6 +196,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
     setState(() {
       _updateStatus = 'Completed!';
     });
+
+    if (!mounted) return;
+    context.read<VersionCheckBloc>().add(VersionCheckUpdateEvent(
+          updatedDBVersion: targetDBVersion,
+        ));
+
     // 업데이트 중 누락된 파일이 있는 경우 알림
     if (skipList.isEmpty) return;
     _showDialog(skipList);
@@ -461,8 +472,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
   }
 
   void _onDeleteTap() async {
-    const storage = FlutterSecureStorage();
-    await storage.deleteAll();
+    if (!mounted) return;
+    context.read<VersionCheckBloc>().add(const VersionCheckResetEvent());
   }
 
   void _showDialog(List<String> list) {
@@ -530,6 +541,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VersionCheckBloc, VersionCheckStateABS>(
+      buildWhen: (previous, current) => current is VersionCheckLoadedState,
       builder: (context, state) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -551,7 +563,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 height: Sizes.size80,
                 child: UpdaterPRTS(
                   text: _updateStatus == "Pending"
-                      ? "현재 버전: ${(state as VersionCheckLoadedState).currDBVersion}\n새 버전: ${(state).targetDBVersion}"
+                      ? "현재 버전: ${(state as VersionCheckLoadedState).currDBVersion}\n새 버전: ${state.targetDBVersion == '' ? '이미 최신버전 입니다.' : state.targetDBVersion}"
                       : _updateStatus == "Completed!"
                           ? "업데이트가 완료되었습니다. 이 화면에서 나가셔도 좋습니다."
                           : "데이터 업데이트 중에는 이 화면에서 나가지 말아주시길 당부드립니다.",

@@ -8,12 +8,16 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class VersionCheckBloc
     extends Bloc<VersionCheckEventABS, VersionCheckStateABS> {
-  final String currAPPVersion;
-
-  VersionCheckBloc({
-    required this.currAPPVersion,
-  }) : super(VersionCheckInitState(currAPPVersion: currAPPVersion)) {
-    on<VersionCheckEvent>(_versionCheckHandler, transformer: droppable());
+  VersionCheckBloc() : super(const VersionCheckInitState()) {
+    on<VersionCheckEvent>(
+      _versionCheckHandler,
+      transformer: droppable(),
+    );
+    on<VersionCheckUpdateEvent>(_versionCheckUpdateHandler);
+    on<VersionCheckResetEvent>(
+      _versionCheckResetHandler,
+      transformer: droppable(),
+    );
   }
 
   Future<void> _versionCheckHandler(
@@ -21,10 +25,50 @@ class VersionCheckBloc
     Emitter<VersionCheckStateABS> emit,
   ) async {
     if (state is! VersionCheckInitState) return;
-    var currAPPVersion = (state as VersionCheckInitState).currAPPVersion;
 
     emit(const VersionCheckLoadingState());
 
+    await _getVersion(emit);
+  }
+
+  Future<void> _versionCheckUpdateHandler(
+    VersionCheckUpdateEvent event,
+    Emitter<VersionCheckStateABS> emit,
+  ) async {
+    if (state is! VersionCheckLoadedState) return;
+    var loadedState = state as VersionCheckLoadedState;
+
+    emit(const VersionCheckLoadingState());
+
+    var targetDBVersion = loadedState.targetDBVersion;
+    if (loadedState.targetDBVersion == event.updatedDBVersion) {
+      targetDBVersion = '';
+    }
+
+    emit(VersionCheckLoadedState(
+      currAPPVersion: loadedState.currAPPVersion,
+      currDBVersion: event.updatedDBVersion,
+      targetAPPVersion: loadedState.targetAPPVersion,
+      targetDBVersion: targetDBVersion,
+    ));
+  }
+
+  Future<void> _versionCheckResetHandler(
+    VersionCheckResetEvent event,
+    Emitter<VersionCheckStateABS> emit,
+  ) async {
+    const storage = FlutterSecureStorage();
+    await storage.deleteAll();
+
+    emit(const VersionCheckInitState());
+
+    await _getVersion(emit);
+  }
+
+  Future<void> _getVersion(
+    Emitter<VersionCheckStateABS> emit,
+  ) async {
+    var currAPPVersion = state.appVersion;
     try {
       DatabaseReference databaseRef =
           FirebaseDatabase.instance.ref("update_checker");

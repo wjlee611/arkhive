@@ -1,21 +1,19 @@
 import 'package:equatable/equatable.dart';
 
 abstract class VersionCheckStateABS extends Equatable {
+  final String appVersion = '1.0.0';
+
   const VersionCheckStateABS();
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [appVersion];
 }
 
 class VersionCheckInitState extends VersionCheckStateABS {
-  final String currAPPVersion;
-
-  const VersionCheckInitState({
-    required this.currAPPVersion,
-  });
+  const VersionCheckInitState();
 
   @override
-  List<Object?> get props => [currAPPVersion];
+  List<Object?> get props => [];
 }
 
 class VersionCheckLoadingState extends VersionCheckStateABS {
