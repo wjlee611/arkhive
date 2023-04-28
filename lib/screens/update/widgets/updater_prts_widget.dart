@@ -44,6 +44,7 @@ class UpdaterPRTS extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: Sizes.size10),
                     child: Text(
                       text,
+                      textAlign: TextAlign.start,
                       style: const TextStyle(
                         fontSize: Sizes.size12,
                         fontFamily: FontFamily.nanumGothic,

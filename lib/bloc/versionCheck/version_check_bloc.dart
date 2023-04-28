@@ -41,16 +41,10 @@ class VersionCheckBloc
       }
 
       const storage = FlutterSecureStorage();
-      var currDBVersion =
-          await storage.read(key: 'db_version') ?? 'update required';
+      var currDBVersion = await storage.read(key: 'db_version') ?? 'N/A';
       if (currDBVersion == latestVersion[1]) {
         latestVersion[1] = '';
       }
-
-      print('currAPPVersion: $currAPPVersion');
-      print('currDBVersion: $currDBVersion');
-      print('targetAPPVersion: ${latestVersion[0]}');
-      print('targetDBVersion: ${latestVersion[1]}');
 
       emit(VersionCheckLoadedState(
         currAPPVersion: currAPPVersion,
