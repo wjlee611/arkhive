@@ -1,7 +1,10 @@
 {
   "infos": {
     "char_002_amiya": {
-      "tmplIds": ["char_002_amiya", "char_1001_amiya2"],
+      "tmplIds": [
+        "char_002_amiya",
+        "char_1001_amiya2"
+      ],
       "default": "char_002_amiya"
     }
   },
@@ -18,7 +21,10 @@
       "tokenKey": null,
       "appellation": "Amiya",
       "position": "MELEE",
-      "tagList": ["딜러", "지원"],
+      "tagList": [
+        "딜러",
+        "지원"
+      ],
       "itemUsage": "로도스 아일랜드 공개적인 리더인 아미야는 당신과 함께 싸울 것입니다.",
       "itemDesc": "힘내요, 박사님.",
       "itemObtainApproach": "메인 스토리",

@@ -2,7 +2,9 @@
   "enemy_1007_slime": {
     "enemyId": "enemy_1007_slime",
     "enemyIndex": "B1",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 1,
     "name": "원석충",
     "enemyRace": "감염생물",
@@ -21,7 +23,9 @@
   "enemy_1007_slime_2": {
     "enemyId": "enemy_1007_slime_2",
     "enemyIndex": "B2",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 2,
     "name": "원석충 α",
     "enemyRace": "감염생물",
@@ -40,7 +44,9 @@
   "enemy_1007_slime_3": {
     "enemyId": "enemy_1007_slime_3",
     "enemyIndex": "B3",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 3,
     "name": "원석충 β",
     "enemyRace": "감염생물",
@@ -59,7 +65,9 @@
   "enemy_1004_mslime": {
     "enemyId": "enemy_1004_mslime",
     "enemyIndex": "B4",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 4,
     "name": "산성 원석충",
     "enemyRace": "감염생물",
@@ -78,7 +86,9 @@
   "enemy_1004_mslime_2": {
     "enemyId": "enemy_1004_mslime_2",
     "enemyIndex": "B5",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 5,
     "name": "산성 원석충 α",
     "enemyRace": "감염생물",
@@ -97,7 +107,9 @@
   "enemy_1021_bslime": {
     "enemyId": "enemy_1021_bslime",
     "enemyIndex": "B6",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 6,
     "name": "고에너지 원석충",
     "enemyRace": "감염생물",
@@ -116,7 +128,9 @@
   "enemy_1021_bslime_2": {
     "enemyId": "enemy_1021_bslime_2",
     "enemyIndex": "B7",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 7,
     "name": "고에너지 원석충 α",
     "enemyRace": "감염생물",
@@ -135,7 +149,9 @@
   "enemy_1000_gopro": {
     "enemyId": "enemy_1000_gopro",
     "enemyIndex": "O1",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 8,
     "name": "사냥개",
     "enemyRace": "감염생물",
@@ -154,7 +170,9 @@
   "enemy_1000_gopro_2": {
     "enemyId": "enemy_1000_gopro_2",
     "enemyIndex": "O2",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 9,
     "name": "사냥개 Pro",
     "enemyRace": "감염생물",
@@ -173,7 +191,9 @@
   "enemy_1000_gopro_3": {
     "enemyId": "enemy_1000_gopro_3",
     "enemyIndex": "O3",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 10,
     "name": "흉폭한 사냥개 Pro",
     "enemyRace": "감염생물",
@@ -572,7 +592,9 @@
   "enemy_1016_diaman": {
     "enemyId": "enemy_1016_diaman",
     "enemyIndex": "B8",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 31,
     "name": "메탈 크랩",
     "enemyRace": "감염생물",
@@ -629,7 +651,9 @@
   "enemy_1005_yokai": {
     "enemyId": "enemy_1005_yokai",
     "enemyIndex": "D1",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 34,
     "name": "요마",
     "enemyRace": "드론",
@@ -648,7 +672,9 @@
   "enemy_1005_yokai_2": {
     "enemyId": "enemy_1005_yokai_2",
     "enemyIndex": "D2",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 35,
     "name": "요마 MKII",
     "enemyRace": "드론",
@@ -667,7 +693,9 @@
   "enemy_1005_yokai_3": {
     "enemyId": "enemy_1005_yokai_3",
     "enemyIndex": "D3",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 36,
     "name": "랩터",
     "enemyRace": "드론",
@@ -686,7 +714,9 @@
   "enemy_1017_defdrn": {
     "enemyId": "enemy_1017_defdrn",
     "enemyIndex": "D4",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 37,
     "name": "디펜더-4",
     "enemyRace": "드론",
@@ -800,7 +830,9 @@
   "enemy_1010_demon": {
     "enemyId": "enemy_1010_demon",
     "enemyIndex": "S1",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 43,
     "name": "살카즈 대검사",
     "enemyRace": "살카즈",
@@ -819,7 +851,9 @@
   "enemy_1010_demon_2": {
     "enemyId": "enemy_1010_demon_2",
     "enemyIndex": "S2",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 44,
     "name": "살카즈 대검사 리더",
     "enemyRace": "살카즈",
@@ -838,7 +872,9 @@
   "enemy_1012_dcross": {
     "enemyId": "enemy_1012_dcross",
     "enemyIndex": "S3",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 45,
     "name": "살카즈 스나이퍼",
     "enemyRace": "살카즈",
@@ -857,7 +893,9 @@
   "enemy_1012_dcross_2": {
     "enemyId": "enemy_1012_dcross_2",
     "enemyIndex": "S4",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 46,
     "name": "살카즈 스나이퍼 리더",
     "enemyRace": "살카즈",
@@ -876,7 +914,9 @@
   "enemy_1022_dmage": {
     "enemyId": "enemy_1022_dmage",
     "enemyIndex": "S5",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 47,
     "name": "살카즈 캐스터",
     "enemyRace": "살카즈",
@@ -895,7 +935,9 @@
   "enemy_1022_dmage_2": {
     "enemyId": "enemy_1022_dmage_2",
     "enemyIndex": "S6",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 48,
     "name": "살카즈 캐스터 리더",
     "enemyRace": "살카즈",
@@ -914,7 +956,9 @@
   "enemy_1501_demonk": {
     "enemyId": "enemy_1501_demonk",
     "enemyIndex": "SC",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 49,
     "name": "살카즈 백부장",
     "enemyRace": "살카즈",
@@ -1446,7 +1490,9 @@
   "enemy_1040_bombd": {
     "enemyId": "enemy_1040_bombd",
     "enemyIndex": "D5",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 77,
     "name": "폭탄새",
     "enemyRace": "드론",
@@ -1465,7 +1511,9 @@
   "enemy_1040_bombd_2": {
     "enemyId": "enemy_1040_bombd_2",
     "enemyIndex": "D6",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 78,
     "name": "폭탄새-G",
     "enemyRace": "드론",
@@ -1484,7 +1532,9 @@
   "enemy_1041_lazerd": {
     "enemyId": "enemy_1041_lazerd",
     "enemyIndex": "D7",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 79,
     "name": "아츠 마스터 A1",
     "enemyRace": "드론",
@@ -1503,7 +1553,9 @@
   "enemy_1041_lazerd_2": {
     "enemyId": "enemy_1041_lazerd_2",
     "enemyIndex": "D8",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 80,
     "name": "아츠 마스터 A2",
     "enemyRace": "드론",
@@ -1522,7 +1574,9 @@
   "enemy_1042_frostd": {
     "enemyId": "enemy_1042_frostd",
     "enemyIndex": "D9",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 81,
     "name": "프로스트",
     "enemyRace": "드론",
@@ -1541,7 +1595,9 @@
   "enemy_1043_zomsbr": {
     "enemyId": "enemy_1043_zomsbr",
     "enemyIndex": "P1",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 82,
     "name": "숙주 병사",
     "enemyRace": "숙주",
@@ -1560,7 +1616,9 @@
   "enemy_1043_zomsbr_2": {
     "enemyId": "enemy_1043_zomsbr_2",
     "enemyIndex": "P2",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 83,
     "name": "숙주 병사 리더",
     "enemyRace": "숙주",
@@ -1579,7 +1637,9 @@
   "enemy_1044_zomstr": {
     "enemyId": "enemy_1044_zomstr",
     "enemyIndex": "P3",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 84,
     "name": "숙주 부랑자",
     "enemyRace": "숙주",
@@ -1598,7 +1658,9 @@
   "enemy_1044_zomstr_2": {
     "enemyId": "enemy_1044_zomstr_2",
     "enemyIndex": "P4",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 85,
     "name": "숙주 방랑자",
     "enemyRace": "숙주",
@@ -2187,7 +2249,9 @@
   "enemy_1061_zomshd": {
     "enemyId": "enemy_1061_zomshd",
     "enemyIndex": "P5",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 116,
     "name": "숙주 중기갑병",
     "enemyRace": "숙주",
@@ -2206,7 +2270,9 @@
   "enemy_1061_zomshd_2": {
     "enemyId": "enemy_1061_zomshd_2",
     "enemyIndex": "P6",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 117,
     "name": "숙주 중기갑병 리더",
     "enemyRace": "숙주",
@@ -2225,7 +2291,9 @@
   "enemy_1062_rager": {
     "enemyId": "enemy_1062_rager",
     "enemyIndex": "P7",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 118,
     "name": "폭주한 숙주 병사",
     "enemyRace": "숙주",
@@ -2244,7 +2312,9 @@
   "enemy_1062_rager_2": {
     "enemyId": "enemy_1062_rager_2",
     "enemyIndex": "P8",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 119,
     "name": "폭주한 숙주 리더",
     "enemyRace": "숙주",
@@ -2263,7 +2333,9 @@
   "enemy_1063_rageth": {
     "enemyId": "enemy_1063_rageth",
     "enemyIndex": "P9",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 120,
     "name": "폭주한 숙주 투척병",
     "enemyRace": "숙주",
@@ -2282,7 +2354,9 @@
   "enemy_1063_rageth_2": {
     "enemyId": "enemy_1063_rageth_2",
     "enemyIndex": "P10",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 121,
     "name": "폭주한 숙주 투척병 리더",
     "enemyRace": "숙주",
@@ -2320,7 +2394,9 @@
   "enemy_1065_snwolf": {
     "enemyId": "enemy_1065_snwolf",
     "enemyIndex": "O4",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 123,
     "name": "프로스트팽",
     "enemyRace": "감염생물",
@@ -2339,7 +2415,9 @@
   "enemy_1065_snwolf_2": {
     "enemyId": "enemy_1065_snwolf_2",
     "enemyIndex": "O5",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 124,
     "name": "프로스트샤프",
     "enemyRace": "감염생물",
@@ -2396,7 +2474,9 @@
   "enemy_1067_snslime": {
     "enemyId": "enemy_1067_snslime",
     "enemyIndex": "B9",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 127,
     "name": "빙폭 원석충",
     "enemyRace": "감염생물",
@@ -2415,7 +2495,9 @@
   "enemy_1067_snslime_2": {
     "enemyId": "enemy_1067_snslime_2",
     "enemyIndex": "B10",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 128,
     "name": "빙폭 원석충 α",
     "enemyRace": "감염생물",
@@ -2510,7 +2592,9 @@
   "enemy_1070_iced": {
     "enemyId": "enemy_1070_iced",
     "enemyIndex": "D10",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 133,
     "name": "언리얼",
     "enemyRace": "드론",
@@ -2529,7 +2613,9 @@
   "enemy_1071_dftman": {
     "enemyId": "enemy_1071_dftman",
     "enemyIndex": "S7",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 134,
     "name": "살카즈 도병",
     "enemyRace": "살카즈",
@@ -2548,7 +2634,9 @@
   "enemy_1071_dftman_2": {
     "enemyId": "enemy_1071_dftman_2",
     "enemyIndex": "S8",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 135,
     "name": "살카즈 소드캐스터",
     "enemyRace": "살카즈",
@@ -2567,7 +2655,9 @@
   "enemy_1072_dlancer": {
     "enemyId": "enemy_1072_dlancer",
     "enemyIndex": "S9",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 136,
     "name": "살카즈 랜서",
     "enemyRace": "살카즈",
@@ -2586,7 +2676,9 @@
   "enemy_1072_dlancer_2": {
     "enemyId": "enemy_1072_dlancer_2",
     "enemyIndex": "S10",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 137,
     "name": "살카즈 랜서 리더",
     "enemyRace": "살카즈",
@@ -2605,7 +2697,9 @@
   "enemy_1073_dscout": {
     "enemyId": "enemy_1073_dscout",
     "enemyIndex": "S11",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 138,
     "name": "살카즈 보초",
     "enemyRace": "살카즈",
@@ -2624,7 +2718,9 @@
   "enemy_1073_dscout_2": {
     "enemyId": "enemy_1073_dscout_2",
     "enemyIndex": "S12",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 139,
     "name": "살카즈 보초 리더",
     "enemyRace": "살카즈",
@@ -2643,7 +2739,9 @@
   "enemy_1074_dbskar": {
     "enemyId": "enemy_1074_dbskar",
     "enemyIndex": "S13",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 140,
     "name": "살카즈 저주술사",
     "enemyRace": "살카즈",
@@ -2662,7 +2760,9 @@
   "enemy_1074_dbskar_2": {
     "enemyId": "enemy_1074_dbskar_2",
     "enemyIndex": "S14",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 141,
     "name": "살카즈 저주술사 리더",
     "enemyRace": "살카즈",
@@ -2681,7 +2781,9 @@
   "enemy_1075_dmgswd": {
     "enemyId": "enemy_1075_dmgswd",
     "enemyIndex": "S15",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 142,
     "name": "살카즈 마검사",
     "enemyRace": "살카즈",
@@ -2700,7 +2802,9 @@
   "enemy_1075_dmgswd_2": {
     "enemyId": "enemy_1075_dmgswd_2",
     "enemyIndex": "S16",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 143,
     "name": "살카즈 마검사 리더",
     "enemyRace": "살카즈",
@@ -2757,7 +2861,9 @@
   "enemy_1077_sotihd": {
     "enemyId": "enemy_1077_sotihd",
     "enemyIndex": "SI1",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 146,
     "name": "유격대 사냥개",
     "enemyRace": "감염생물",
@@ -2776,7 +2882,9 @@
   "enemy_1077_sotihd_2": {
     "enemyId": "enemy_1077_sotihd_2",
     "enemyIndex": "SI2",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 147,
     "name": "유격대 사냥개 Pro",
     "enemyRace": "감염생물",
@@ -3023,7 +3131,9 @@
   "enemy_1084_sotidm": {
     "enemyId": "enemy_1084_sotidm",
     "enemyIndex": "SP6",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 160,
     "name": "유격대 살카즈 전사",
     "enemyRace": "살카즈",
@@ -3042,7 +3152,9 @@
   "enemy_1084_sotidm_2": {
     "enemyId": "enemy_1084_sotidm_2",
     "enemyIndex": "SP7",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 161,
     "name": "유격대 살카즈 전사 리더",
     "enemyRace": "살카즈",
@@ -3061,7 +3173,9 @@
   "enemy_1084_sotidm_3": {
     "enemyId": "enemy_1084_sotidm_3",
     "enemyIndex": "TL1",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 162,
     "name": "용병군 살카즈 전사",
     "enemyRace": "살카즈",
@@ -3080,7 +3194,9 @@
   "enemy_1085_sotiwz": {
     "enemyId": "enemy_1085_sotiwz",
     "enemyIndex": "SP8",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 163,
     "name": "유격대 살카즈 캐스터",
     "enemyRace": "살카즈",
@@ -3099,7 +3215,9 @@
   "enemy_1085_sotiwz_2": {
     "enemyId": "enemy_1085_sotiwz_2",
     "enemyIndex": "SP9",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 164,
     "name": "유격대 살카즈 캐스터 리더",
     "enemyRace": "살카즈",
@@ -3118,7 +3236,9 @@
   "enemy_1085_sotiwz_3": {
     "enemyId": "enemy_1085_sotiwz_3",
     "enemyIndex": "TL2",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 165,
     "name": "용병군 살카즈 캐스터",
     "enemyRace": "살카즈",
@@ -3289,7 +3409,9 @@
   "enemy_1090_mdsnpr": {
     "enemyId": "enemy_1090_mdsnpr",
     "enemyIndex": "L9",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 174,
     "name": "머드락 소대 투척병",
     "enemyRace": "살카즈",
@@ -3308,7 +3430,9 @@
   "enemy_1090_mdsnpr_2": {
     "enemyId": "enemy_1090_mdsnpr_2",
     "enemyIndex": "L10",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 175,
     "name": "머드락 소대 투척병 리더",
     "enemyRace": "살카즈",
@@ -3327,7 +3451,9 @@
   "enemy_1091_mdhmmr": {
     "enemyId": "enemy_1091_mdhmmr",
     "enemyIndex": "L11",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 176,
     "name": "머드락 소대 행동팀원",
     "enemyRace": "살카즈",
@@ -3346,7 +3472,9 @@
   "enemy_1091_mdhmmr_2": {
     "enemyId": "enemy_1091_mdhmmr_2",
     "enemyIndex": "L12",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 177,
     "name": "머드락 소대 행동팀장",
     "enemyRace": "살카즈",
@@ -3365,7 +3493,9 @@
   "enemy_1092_mdgint": {
     "enemyId": "enemy_1092_mdgint",
     "enemyIndex": "L13",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 178,
     "name": "머드락의 거대 석상",
     "enemyRace": "아츠 피조물",
@@ -3384,7 +3514,9 @@
   "enemy_1092_mdgint_2": {
     "enemyId": "enemy_1092_mdgint_2",
     "enemyIndex": "L14",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 179,
     "name": "마법 거대 석상",
     "enemyRace": "아츠 피조물",
@@ -3655,7 +3787,7 @@
     "name": "이름없는 정예 기사",
     "enemyRace": null,
     "enemyLevel": "NORMAL",
-    "description": "몸값이 조금 오르긴 했지만, 실력은 여전히 별로인 카시미어의 프리랜서 기사. 여전히 이 정도 수준이라면 조만간 카시미어 기사 스포츠의 흐름에 사라져버리고 말 것이다.",
+    "description": "몸값이 조금 오르긴 했지만, 실력은 여전히 별로인 카시미어의 프리랜서 기사. 여전히 이 정도 수준이라면 조만간 카시미어 기사 스포츠의 흐름에 사라져버리고 말 것이다.",
     "attackType": "근거리",
     "endure": "B",
     "attack": "B",
@@ -3669,7 +3801,9 @@
   "enemy_1100_scorpn": {
     "enemyId": "enemy_1100_scorpn",
     "enemyIndex": "K3",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 194,
     "name": "훈련용 글룸핀서",
     "enemyRace": "감염생물",
@@ -3688,7 +3822,9 @@
   "enemy_1100_scorpn_2": {
     "enemyId": "enemy_1100_scorpn_2",
     "enemyIndex": "K4",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 195,
     "name": "훈련용 흉폭한 글룸핀서",
     "enemyRace": "감염생물",
@@ -3916,7 +4052,9 @@
   "enemy_1105_tyokai": {
     "enemyId": "enemy_1105_tyokai",
     "enemyIndex": "TY1",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 207,
     "name": "협찬 드론",
     "enemyRace": "드론",
@@ -3935,7 +4073,9 @@
   "enemy_1105_tyokai_2": {
     "enemyId": "enemy_1105_tyokai_2",
     "enemyIndex": "TY2",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 208,
     "name": "호화 협찬 드론",
     "enemyRace": "드론",
@@ -3954,7 +4094,9 @@
   "enemy_1106_byokai": {
     "enemyId": "enemy_1106_byokai",
     "enemyIndex": "TY3",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 209,
     "name": "투지 상승용 드론",
     "enemyRace": "드론",
@@ -4163,7 +4305,9 @@
   "enemy_1112_emppnt": {
     "enemyId": "enemy_1112_emppnt",
     "enemyIndex": "U11",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 220,
     "name": "제국 아틸러리 타게티어",
     "enemyRace": "드론",
@@ -4182,7 +4326,9 @@
   "enemy_1112_emppnt_2": {
     "enemyId": "enemy_1112_emppnt_2",
     "enemyIndex": "U12",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 221,
     "name": "제국 아틸러리 코어 타게티어",
     "enemyRace": "드론",
@@ -4239,7 +4385,9 @@
   "enemy_1114_rgrdmn": {
     "enemyId": "enemy_1114_rgrdmn",
     "enemyIndex": "P11",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 224,
     "name": "살카즈 숙주 백부장",
     "enemyRace": "숙주",
@@ -4258,7 +4406,9 @@
   "enemy_1114_rgrdmn_2": {
     "enemyId": "enemy_1114_rgrdmn_2",
     "enemyIndex": "P12",
-    "enemyTags": ["mutant"],
+    "enemyTags": [
+      "mutant"
+    ],
     "sortId": 225,
     "name": "살카즈 숙주 방위 백부장",
     "enemyRace": "숙주",
@@ -4564,7 +4714,9 @@
   "enemy_1122_sphond": {
     "enemyId": "enemy_1122_sphond",
     "enemyIndex": "SF01",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 241,
     "name": "'샤오차오'",
     "enemyRace": "요괴",
@@ -4583,7 +4735,9 @@
   "enemy_1122_sphond_2": {
     "enemyId": "enemy_1122_sphond_2",
     "enemyIndex": "SF02",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 242,
     "name": "조급한 '샤오차오'",
     "enemyRace": "요괴",
@@ -4602,7 +4756,9 @@
   "enemy_1123_spsbr": {
     "enemyId": "enemy_1123_spsbr",
     "enemyIndex": "SF03",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 243,
     "name": "'아야오'",
     "enemyRace": "요괴",
@@ -4621,7 +4777,9 @@
   "enemy_1123_spsbr_2": {
     "enemyId": "enemy_1123_spsbr_2",
     "enemyIndex": "SF04",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 244,
     "name": "진지한 '아야오'",
     "enemyRace": "요괴",
@@ -4640,7 +4798,9 @@
   "enemy_1124_spbow": {
     "enemyId": "enemy_1124_spbow",
     "enemyIndex": "SF05",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 245,
     "name": "'비시엔'",
     "enemyRace": "요괴",
@@ -4659,7 +4819,9 @@
   "enemy_1124_spbow_2": {
     "enemyId": "enemy_1124_spbow_2",
     "enemyIndex": "SF06",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 246,
     "name": "우회하는 '비시엔'",
     "enemyRace": "요괴",
@@ -4678,7 +4840,9 @@
   "enemy_1125_spshld": {
     "enemyId": "enemy_1125_spshld",
     "enemyIndex": "SF07",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 247,
     "name": "'터우시엔'",
     "enemyRace": "요괴",
@@ -4697,7 +4861,9 @@
   "enemy_1125_spshld_2": {
     "enemyId": "enemy_1125_spshld_2",
     "enemyIndex": "SF08",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 248,
     "name": "부동의 '터우시엔'",
     "enemyRace": "요괴",
@@ -4716,7 +4882,9 @@
   "enemy_1126_spslme": {
     "enemyId": "enemy_1126_spslme",
     "enemyIndex": "SF09",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 249,
     "name": "'더이'",
     "enemyRace": "요괴",
@@ -4735,7 +4903,9 @@
   "enemy_1126_spslme_2": {
     "enemyId": "enemy_1126_spslme_2",
     "enemyIndex": "SF10",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 250,
     "name": "황홀한 '더이'",
     "enemyRace": "요괴",
@@ -4754,7 +4924,9 @@
   "enemy_1127_sptrkg": {
     "enemyId": "enemy_1127_sptrkg",
     "enemyIndex": "SF11",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 251,
     "name": "'저무'",
     "enemyRace": "요괴",
@@ -4773,7 +4945,9 @@
   "enemy_1127_sptrkg_2": {
     "enemyId": "enemy_1127_sptrkg_2",
     "enemyIndex": "SF12",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 252,
     "name": "쉬지 않는 '저무'",
     "enemyRace": "요괴",
@@ -4792,7 +4966,9 @@
   "enemy_1128_spmage": {
     "enemyId": "enemy_1128_spmage",
     "enemyIndex": "SF13",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 253,
     "name": "'뚜'",
     "enemyRace": "요괴",
@@ -4811,7 +4987,9 @@
   "enemy_1128_spmage_2": {
     "enemyId": "enemy_1128_spmage_2",
     "enemyIndex": "SF14",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 254,
     "name": "복잡한 '뚜'",
     "enemyRace": "요괴",
@@ -4830,7 +5008,9 @@
   "enemy_1129_spklr": {
     "enemyId": "enemy_1129_spklr",
     "enemyIndex": "SF15",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 255,
     "name": "'셩누'",
     "enemyRace": "요괴",
@@ -4849,7 +5029,9 @@
   "enemy_1129_spklr_2": {
     "enemyId": "enemy_1129_spklr_2",
     "enemyIndex": "SF16",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 256,
     "name": "거침없는 '셩누'",
     "enemyRace": "요괴",
@@ -4868,7 +5050,9 @@
   "enemy_1130_infstr": {
     "enemyId": "enemy_1130_infstr",
     "enemyIndex": "R1",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 257,
     "name": "오리지뉴턴트 꼭두각시",
     "enemyRace": "감염생물",
@@ -4887,7 +5071,9 @@
   "enemy_1131_sbeast": {
     "enemyId": "enemy_1131_sbeast",
     "enemyIndex": "R2",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 258,
     "name": "변이된 샌드비스트",
     "enemyRace": "감염생물",
@@ -4906,7 +5092,9 @@
   "enemy_1131_sbeast_2": {
     "enemyId": "enemy_1131_sbeast_2",
     "enemyIndex": "R3",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 259,
     "name": "변이된 샌드비스트 α",
     "enemyRace": "감염생물",
@@ -4925,7 +5113,9 @@
   "enemy_1132_sarchn": {
     "enemyId": "enemy_1132_sarchn",
     "enemyIndex": "R4",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 260,
     "name": "변이된 바위 거미",
     "enemyRace": "감염생물",
@@ -4944,7 +5134,9 @@
   "enemy_1132_sarchn_2": {
     "enemyId": "enemy_1132_sarchn_2",
     "enemyIndex": "R5",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 261,
     "name": "변이된 바위 거미α",
     "enemyRace": "감염생물",
@@ -4963,7 +5155,9 @@
   "enemy_1133_harchn": {
     "enemyId": "enemy_1133_harchn",
     "enemyIndex": "R6",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 262,
     "name": "변이된 거대 바위 거미",
     "enemyRace": "감염생물",
@@ -4982,7 +5176,9 @@
   "enemy_1133_harchn_2": {
     "enemyId": "enemy_1133_harchn_2",
     "enemyIndex": "R7",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 263,
     "name": "변이된 거대 바위 거미 α",
     "enemyRace": "감염생물",
@@ -5001,7 +5197,9 @@
   "enemy_1134_diamd": {
     "enemyId": "enemy_1134_diamd",
     "enemyIndex": "R8",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 264,
     "name": "오리지뉴턴트",
     "enemyRace": "감염생물",
@@ -5020,7 +5218,9 @@
   "enemy_1134_diamd_2": {
     "enemyId": "enemy_1134_diamd_2",
     "enemyIndex": "R9",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 265,
     "name": "오리지뉴턴트  α",
     "enemyRace": "감염생물",
@@ -5115,7 +5315,9 @@
   "enemy_1137_plasm": {
     "enemyId": "enemy_1137_plasm",
     "enemyIndex": "R14",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 270,
     "name": "오리지뉴턴트 생물",
     "enemyRace": "감염생물",
@@ -5134,7 +5336,9 @@
   "enemy_1138_tumor": {
     "enemyId": "enemy_1138_tumor",
     "enemyIndex": "R15",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 271,
     "name": "오리지뉴턴트 악성 종양",
     "enemyRace": "감염생물",
@@ -5191,7 +5395,9 @@
   "enemy_1140_merhd": {
     "enemyId": "enemy_1140_merhd",
     "enemyIndex": "PG3",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 274,
     "name": "전술 사냥개",
     "enemyRace": "감염생물",
@@ -5210,7 +5416,9 @@
   "enemy_1140_merhd_2": {
     "enemyId": "enemy_1140_merhd_2",
     "enemyIndex": "PG4",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 275,
     "name": "전술 사냥개 Pro",
     "enemyRace": "감염생물",
@@ -5381,7 +5589,9 @@
   "enemy_1145_atkspd": {
     "enemyId": "enemy_1145_atkspd",
     "enemyIndex": "PS1",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 284,
     "name": "'파편'",
     "enemyRace": "드론",
@@ -5400,7 +5610,9 @@
   "enemy_1145_atkspd_2": {
     "enemyId": "enemy_1145_atkspd_2",
     "enemyIndex": "PS2",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 285,
     "name": "'파편' U타입",
     "enemyRace": "드론",
@@ -5419,7 +5631,9 @@
   "enemy_1146_defspd": {
     "enemyId": "enemy_1146_defspd",
     "enemyIndex": "PS3",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 286,
     "name": "'모루'",
     "enemyRace": "드론",
@@ -5438,7 +5652,9 @@
   "enemy_1146_defspd_2": {
     "enemyId": "enemy_1146_defspd_2",
     "enemyIndex": "PS4",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 287,
     "name": "'모루' B타입",
     "enemyRace": "드론",
@@ -5457,7 +5673,9 @@
   "enemy_1147_dshond": {
     "enemyId": "enemy_1147_dshond",
     "enemyIndex": "SM1",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 288,
     "name": "해안의 폭주자",
     "enemyRace": "바다 괴물",
@@ -5476,7 +5694,9 @@
   "enemy_1147_dshond_2": {
     "enemyId": "enemy_1147_dshond_2",
     "enemyIndex": "SM2",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 289,
     "name": "부영양의 폭주자",
     "enemyRace": "바다 괴물",
@@ -5495,7 +5715,9 @@
   "enemy_1148_dssbr": {
     "enemyId": "enemy_1148_dssbr",
     "enemyIndex": "SM3",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 290,
     "name": "저해의 활주자",
     "enemyRace": "바다 괴물",
@@ -5514,7 +5736,9 @@
   "enemy_1148_dssbr_2": {
     "enemyId": "enemy_1148_dssbr_2",
     "enemyIndex": "SM4",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 291,
     "name": "부영양의 활주자",
     "enemyRace": "바다 괴물",
@@ -5533,7 +5757,9 @@
   "enemy_1149_dsbow": {
     "enemyId": "enemy_1149_dsbow",
     "enemyIndex": "SM5",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 292,
     "name": "바다의 분사자",
     "enemyRace": "바다 괴물",
@@ -5552,7 +5778,9 @@
   "enemy_1149_dsbow_2": {
     "enemyId": "enemy_1149_dsbow_2",
     "enemyIndex": "SM6",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 293,
     "name": "부영양의 분사자",
     "enemyRace": "바다 괴물",
@@ -5571,7 +5799,9 @@
   "enemy_1150_dsjely": {
     "enemyId": "enemy_1150_dsjely",
     "enemyIndex": "SM7",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 294,
     "name": "부해의 항해자",
     "enemyRace": "바다 괴물",
@@ -5590,7 +5820,9 @@
   "enemy_1150_dsjely_2": {
     "enemyId": "enemy_1150_dsjely_2",
     "enemyIndex": "SM8",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 295,
     "name": "부영양의 항해자",
     "enemyRace": "바다 괴물",
@@ -5609,7 +5841,9 @@
   "enemy_1151_dslntc": {
     "enemyId": "enemy_1151_dslntc",
     "enemyIndex": "SM9",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 296,
     "name": "발해의 수확자",
     "enemyRace": "바다 괴물",
@@ -5628,7 +5862,9 @@
   "enemy_1151_dslntc_2": {
     "enemyId": "enemy_1151_dslntc_2",
     "enemyIndex": "SM10",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 297,
     "name": "부영양의 수확자",
     "enemyRace": "바다 괴물",
@@ -5647,7 +5883,9 @@
   "enemy_1152_dsurch": {
     "enemyId": "enemy_1152_dsurch",
     "enemyIndex": "SM11",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 298,
     "name": "낭해의 저항자",
     "enemyRace": "바다 괴물",
@@ -5666,7 +5904,9 @@
   "enemy_1152_dsurch_2": {
     "enemyId": "enemy_1152_dsurch_2",
     "enemyIndex": "SM12",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 299,
     "name": "부영양의 저항자",
     "enemyRace": "바다 괴물",
@@ -5685,7 +5925,9 @@
   "enemy_1153_dsexcu": {
     "enemyId": "enemy_1153_dsexcu",
     "enemyIndex": "SM13",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 300,
     "name": "태초 바다의 랜서",
     "enemyRace": "바다 괴물",
@@ -5704,7 +5946,9 @@
   "enemy_1153_dsexcu_2": {
     "enemyId": "enemy_1153_dsexcu_2",
     "enemyIndex": "SM14",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 301,
     "name": "부영양의 랜서",
     "enemyRace": "바다 괴물",
@@ -5723,7 +5967,9 @@
   "enemy_1154_dsmant": {
     "enemyId": "enemy_1154_dsmant",
     "enemyIndex": "FTT",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 302,
     "name": "첫 발언자",
     "enemyRace": "바다 괴물",
@@ -5951,7 +6197,9 @@
   "enemy_1162_magmot": {
     "enemyId": "enemy_1162_magmot",
     "enemyIndex": "DH9",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 314,
     "name": "웨이브 캐스터 쾌속정",
     "enemyRace": "기계",
@@ -5970,7 +6218,9 @@
   "enemy_1162_magmot_2": {
     "enemyId": "enemy_1162_magmot_2",
     "enemyIndex": "DH10",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 315,
     "name": "웨이브 리더 쾌속정",
     "enemyRace": "기계",
@@ -5989,7 +6239,9 @@
   "enemy_1163_hvymot": {
     "enemyId": "enemy_1163_hvymot",
     "enemyIndex": "DH11",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 316,
     "name": "선원 모터보트",
     "enemyRace": "기계",
@@ -6008,7 +6260,9 @@
   "enemy_1163_hvymot_2": {
     "enemyId": "enemy_1163_hvymot_2",
     "enemyIndex": "DH12",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 317,
     "name": "갑판장 모터보트",
     "enemyRace": "기계",
@@ -6027,7 +6281,9 @@
   "enemy_1164_bmbmot": {
     "enemyId": "enemy_1164_bmbmot",
     "enemyIndex": "DH13",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 318,
     "name": "무인 폭발선",
     "enemyRace": "기계",
@@ -6046,7 +6302,9 @@
   "enemy_1164_bmbmot_2": {
     "enemyId": "enemy_1164_bmbmot_2",
     "enemyIndex": "DH14",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 319,
     "name": "무인 폭발정",
     "enemyRace": "기계",
@@ -6065,7 +6323,9 @@
   "enemy_1164_bmbmot_3": {
     "enemyId": "enemy_1164_bmbmot_3",
     "enemyIndex": "DH15",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 320,
     "name": "판초의 폭발선",
     "enemyRace": "기계",
@@ -6369,7 +6629,9 @@
   "enemy_1172_dugago": {
     "enemyId": "enemy_1172_dugago",
     "enemyIndex": "GGY1",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 336,
     "name": "무덤지기 석상",
     "enemyRace": "아츠 피조물",
@@ -6388,7 +6650,9 @@
   "enemy_1172_dugago_2": {
     "enemyId": "enemy_1172_dugago_2",
     "enemyIndex": "GGY2",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 337,
     "name": "성난 무덤지기 석상",
     "enemyRace": "아츠 피조물",
@@ -6559,7 +6823,9 @@
   "enemy_1178_dscorp": {
     "enemyId": "enemy_1178_dscorp",
     "enemyIndex": "NL1",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 346,
     "name": "암조 글룸핀서",
     "enemyRace": "감염생물",
@@ -6578,7 +6844,9 @@
   "enemy_1178_dscorp_2": {
     "enemyId": "enemy_1178_dscorp_2",
     "enemyIndex": "NL2",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 347,
     "name": "암조 글룸핀서 α",
     "enemyRace": "감염생물",
@@ -6996,7 +7264,9 @@
   "enemy_1188_krgdrn": {
     "enemyId": "enemy_1188_krgdrn",
     "enemyIndex": "IL3",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 369,
     "name": "단단한 얼음",
     "enemyRace": "드론",
@@ -7015,7 +7285,9 @@
   "enemy_1188_krgdrn_2": {
     "enemyId": "enemy_1188_krgdrn_2",
     "enemyIndex": "IL4",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 370,
     "name": "솔리드아이스 AS.T",
     "enemyRace": "드론",
@@ -7262,7 +7534,9 @@
   "enemy_1195_sfyin": {
     "enemyId": "enemy_1195_sfyin",
     "enemyIndex": "AN1",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 383,
     "name": "모룽",
     "enemyRace": "요괴",
@@ -7281,7 +7555,9 @@
   "enemy_1195_sfyin_2": {
     "enemyId": "enemy_1195_sfyin_2",
     "enemyIndex": "AN2",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 384,
     "name": "밍졘",
     "enemyRace": "요괴",
@@ -7300,7 +7576,9 @@
   "enemy_1196_msfyin": {
     "enemyId": "enemy_1196_msfyin",
     "enemyIndex": "AN3",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 385,
     "name": "목제 인장",
     "enemyRace": "요괴",
@@ -7319,7 +7597,9 @@
   "enemy_1196_msfyin_2": {
     "enemyId": "enemy_1196_msfyin_2",
     "enemyIndex": "AN4",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 386,
     "name": "홍목 인장",
     "enemyRace": "요괴",
@@ -7338,7 +7618,9 @@
   "enemy_1197_sfshu": {
     "enemyId": "enemy_1197_sfshu",
     "enemyIndex": "AN5",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 387,
     "name": "수신",
     "enemyRace": "요괴",
@@ -7357,7 +7639,9 @@
   "enemy_1197_sfshu_2": {
     "enemyId": "enemy_1197_sfshu_2",
     "enemyIndex": "AN6",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 388,
     "name": "야치",
     "enemyRace": "요괴",
@@ -7376,7 +7660,9 @@
   "enemy_1198_msfshu": {
     "enemyId": "enemy_1198_msfshu",
     "enemyIndex": "AN7",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 389,
     "name": "소설 두루마리",
     "enemyRace": "요괴",
@@ -7395,7 +7681,9 @@
   "enemy_1198_msfshu_2": {
     "enemyId": "enemy_1198_msfshu_2",
     "enemyIndex": "AN8",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 390,
     "name": "시화 두루마리",
     "enemyRace": "요괴",
@@ -7414,7 +7702,9 @@
   "enemy_1199_sfjin": {
     "enemyId": "enemy_1199_sfjin",
     "enemyIndex": "AN9",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 391,
     "name": "센구안",
     "enemyRace": "요괴",
@@ -7433,7 +7723,9 @@
   "enemy_1199_sfjin_2": {
     "enemyId": "enemy_1199_sfjin_2",
     "enemyIndex": "AN10",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 392,
     "name": "옌싱",
     "enemyRace": "요괴",
@@ -7452,7 +7744,9 @@
   "enemy_1200_msfjin": {
     "enemyId": "enemy_1200_msfjin",
     "enemyIndex": "AN11",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 393,
     "name": "청동 거울",
     "enemyRace": "요괴",
@@ -7471,7 +7765,9 @@
   "enemy_1200_msfjin_2": {
     "enemyId": "enemy_1200_msfjin_2",
     "enemyIndex": "AN12",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 394,
     "name": "황동 거울",
     "enemyRace": "요괴",
@@ -7490,7 +7786,9 @@
   "enemy_1201_sfzhi": {
     "enemyId": "enemy_1201_sfzhi",
     "enemyIndex": "AN13",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 395,
     "name": "모랑",
     "enemyRace": "요괴",
@@ -7509,7 +7807,9 @@
   "enemy_1201_sfzhi_2": {
     "enemyId": "enemy_1201_sfzhi_2",
     "enemyIndex": "AN14",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 396,
     "name": "신타오",
     "enemyRace": "요괴",
@@ -7528,7 +7828,9 @@
   "enemy_1202_msfzhi": {
     "enemyId": "enemy_1202_msfzhi",
     "enemyIndex": "AN15",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 397,
     "name": "목제 문진",
     "enemyRace": "요괴",
@@ -7547,7 +7849,9 @@
   "enemy_1202_msfzhi_2": {
     "enemyId": "enemy_1202_msfzhi_2",
     "enemyIndex": "AN16",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 398,
     "name": "홍목 문진",
     "enemyRace": "요괴",
@@ -7566,7 +7870,9 @@
   "enemy_1203_sfhu": {
     "enemyId": "enemy_1203_sfhu",
     "enemyIndex": "AN17",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 399,
     "name": "펑취안",
     "enemyRace": "요괴",
@@ -7585,7 +7891,9 @@
   "enemy_1203_sfhu_2": {
     "enemyId": "enemy_1203_sfhu_2",
     "enemyIndex": "AN18",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 400,
     "name": "치훙",
     "enemyRace": "요괴",
@@ -7604,7 +7912,9 @@
   "enemy_1204_msfhu": {
     "enemyId": "enemy_1204_msfhu",
     "enemyIndex": "AN19",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 401,
     "name": "청자 다기",
     "enemyRace": "요괴",
@@ -7623,7 +7933,9 @@
   "enemy_1204_msfhu_2": {
     "enemyId": "enemy_1204_msfhu_2",
     "enemyIndex": "AN20",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 402,
     "name": "채색 다기",
     "enemyRace": "요괴",
@@ -7642,7 +7954,9 @@
   "enemy_1205_sfpin": {
     "enemyId": "enemy_1205_sfpin",
     "enemyIndex": "AN21",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 403,
     "name": "칭화",
     "enemyRace": "요괴",
@@ -7661,7 +7975,9 @@
   "enemy_1205_sfpin_2": {
     "enemyId": "enemy_1205_sfpin_2",
     "enemyIndex": "AN22",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 404,
     "name": "츠샤",
     "enemyRace": "요괴",
@@ -7680,7 +7996,9 @@
   "enemy_1206_msfpin": {
     "enemyId": "enemy_1206_msfpin",
     "enemyIndex": "AN23",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 405,
     "name": "청자 꽃병",
     "enemyRace": "요괴",
@@ -7699,7 +8017,9 @@
   "enemy_1206_msfpin_2": {
     "enemyId": "enemy_1206_msfpin_2",
     "enemyIndex": "AN24",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 406,
     "name": "채색 꽃병",
     "enemyRace": "요괴",
@@ -7718,7 +8038,9 @@
   "enemy_1207_sfji": {
     "enemyId": "enemy_1207_sfji",
     "enemyIndex": "AN25",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 407,
     "name": "첸사",
     "enemyRace": "요괴",
@@ -7737,7 +8059,9 @@
   "enemy_1207_sfji_2": {
     "enemyId": "enemy_1207_sfji_2",
     "enemyIndex": "AN26",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 408,
     "name": "신싱",
     "enemyRace": "요괴",
@@ -7756,7 +8080,9 @@
   "enemy_1208_msfji": {
     "enemyId": "enemy_1208_msfji",
     "enemyIndex": "AN27",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 409,
     "name": "구리 창끝",
     "enemyRace": "요괴",
@@ -7775,7 +8101,9 @@
   "enemy_1208_msfji_2": {
     "enemyId": "enemy_1208_msfji_2",
     "enemyIndex": "AN28",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 410,
     "name": "철제 창끝",
     "enemyRace": "요괴",
@@ -7794,7 +8122,9 @@
   "enemy_1209_sfden": {
     "enemyId": "enemy_1209_sfden",
     "enemyIndex": "AN29",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 411,
     "name": "칭밍",
     "enemyRace": "요괴",
@@ -7813,7 +8143,9 @@
   "enemy_1209_sfden_2": {
     "enemyId": "enemy_1209_sfden_2",
     "enemyIndex": "AN30",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 412,
     "name": "탕황",
     "enemyRace": "요괴",
@@ -7832,7 +8164,9 @@
   "enemy_1210_msfden": {
     "enemyId": "enemy_1210_msfden",
     "enemyIndex": "AN31",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 413,
     "name": "구리 등잔",
     "enemyRace": "요괴",
@@ -7851,7 +8185,9 @@
   "enemy_1210_msfden_2": {
     "enemyId": "enemy_1210_msfden_2",
     "enemyIndex": "AN32",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 414,
     "name": "철제 등잔",
     "enemyRace": "요괴",
@@ -7870,7 +8206,9 @@
   "enemy_1211_msfsui": {
     "enemyId": "enemy_1211_msfsui",
     "enemyIndex": "AN33",
-    "enemyTags": ["animated"],
+    "enemyTags": [
+      "animated"
+    ],
     "sortId": 415,
     "name": "도깨비불",
     "enemyRace": "요괴",
@@ -8079,7 +8417,9 @@
   "enemy_1217_rescar": {
     "enemyId": "enemy_1217_rescar",
     "enemyIndex": "SK11",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 426,
     "name": "패스파인더 디저트 상인",
     "enemyRace": "기계",
@@ -8098,7 +8438,9 @@
   "enemy_1217_rescar_2": {
     "enemyId": "enemy_1217_rescar_2",
     "enemyIndex": "SK12",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 427,
     "name": "패스파인더 유명 디저트 상인",
     "enemyRace": "기계",
@@ -8117,7 +8459,9 @@
   "enemy_1218_bomscr": {
     "enemyId": "enemy_1218_bomscr",
     "enemyIndex": "SK13",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 428,
     "name": "캔디 카트",
     "enemyRace": "기계",
@@ -8136,7 +8480,9 @@
   "enemy_1218_bomscr_2": {
     "enemyId": "enemy_1218_bomscr_2",
     "enemyIndex": "SK14",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 429,
     "name": "정교한 캔디 카트",
     "enemyRace": "기계",
@@ -8269,7 +8615,9 @@
   "enemy_1222_dpvt": {
     "enemyId": "enemy_1222_dpvt",
     "enemyIndex": "SCI5",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 436,
     "name": "살카즈 후예 전사",
     "enemyRace": "살카즈",
@@ -8288,7 +8636,9 @@
   "enemy_1222_dpvt_2": {
     "enemyId": "enemy_1222_dpvt_2",
     "enemyIndex": "SCI6",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 437,
     "name": "살카즈 후예 전사 리더",
     "enemyRace": "살카즈",
@@ -8307,7 +8657,9 @@
   "enemy_1223_dmech": {
     "enemyId": "enemy_1223_dmech",
     "enemyIndex": "SCI7",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 438,
     "name": "살카즈 후예 기술자",
     "enemyRace": "살카즈",
@@ -8326,7 +8678,9 @@
   "enemy_1223_dmech_2": {
     "enemyId": "enemy_1223_dmech_2",
     "enemyIndex": "SCI8",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 439,
     "name": "살카즈 후예 기술자 리더",
     "enemyRace": "살카즈",
@@ -8345,7 +8699,9 @@
   "enemy_1224_dsuply": {
     "enemyId": "enemy_1224_dsuply",
     "enemyIndex": "SCI9",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 440,
     "name": "살카즈 후예 보급차",
     "enemyRace": "기계",
@@ -8364,7 +8720,9 @@
   "enemy_1224_dsuply_2": {
     "enemyId": "enemy_1224_dsuply_2",
     "enemyIndex": "SCI10",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 441,
     "name": "살카즈 후예 개조 보급차",
     "enemyRace": "기계",
@@ -8383,7 +8741,9 @@
   "enemy_1225_dkmage": {
     "enemyId": "enemy_1225_dkmage",
     "enemyIndex": "SCI11",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 442,
     "name": "살카즈 후예 체인 캐스터",
     "enemyRace": "살카즈",
@@ -8402,7 +8762,9 @@
   "enemy_1225_dkmage_2": {
     "enemyId": "enemy_1225_dkmage_2",
     "enemyIndex": "SCI12",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 443,
     "name": "살카즈 후예 체인 캐스터 리더",
     "enemyRace": "살카즈",
@@ -8421,7 +8783,9 @@
   "enemy_1226_dklord": {
     "enemyId": "enemy_1226_dklord",
     "enemyIndex": "SCI13",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 444,
     "name": "살카즈 후예 원한자",
     "enemyRace": "살카즈",
@@ -8440,7 +8804,9 @@
   "enemy_1226_dklord_2": {
     "enemyId": "enemy_1226_dklord_2",
     "enemyIndex": "SCI14",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 445,
     "name": "살카즈 후예 분노자",
     "enemyRace": "살카즈",
@@ -8459,7 +8825,9 @@
   "enemy_1227_dair": {
     "enemyId": "enemy_1227_dair",
     "enemyIndex": "SCI15",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 446,
     "name": "살카즈 공사용 드론",
     "enemyRace": "드론",
@@ -8478,7 +8846,9 @@
   "enemy_1227_dair_2": {
     "enemyId": "enemy_1227_dair_2",
     "enemyIndex": "SCI16",
-    "enemyTags": ["drone"],
+    "enemyTags": [
+      "drone"
+    ],
     "sortId": 447,
     "name": "살카즈 첨단 공사용 드론",
     "enemyRace": "드론",
@@ -8535,7 +8905,9 @@
   "enemy_1229_darmy": {
     "enemyId": "enemy_1229_darmy",
     "enemyIndex": "SCI19",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 450,
     "name": "살카즈 왕정군 전사",
     "enemyRace": "살카즈",
@@ -8554,7 +8926,9 @@
   "enemy_1229_darmy_2": {
     "enemyId": "enemy_1229_darmy_2",
     "enemyIndex": "SCI20",
-    "enemyTags": ["sarkaz"],
+    "enemyTags": [
+      "sarkaz"
+    ],
     "sortId": 451,
     "name": "살카즈 왕정군 정예 전사",
     "enemyRace": "살카즈",
@@ -8573,7 +8947,9 @@
   "enemy_1230_dsbudr": {
     "enemyId": "enemy_1230_dsbudr",
     "enemyIndex": "SM15",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 452,
     "name": "심해의 정초자",
     "enemyRace": "바다 괴물",
@@ -8592,7 +8968,9 @@
   "enemy_1230_dsbudr_2": {
     "enemyId": "enemy_1230_dsbudr_2",
     "enemyIndex": "SM16",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 453,
     "name": "부영양의 정초자",
     "enemyRace": "바다 괴물",
@@ -8611,7 +8989,9 @@
   "enemy_1230_dsbudr_4": {
     "enemyId": "enemy_1230_dsbudr_4",
     "enemyIndex": "SM17",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 454,
     "name": "퇴행의 정초자",
     "enemyRace": "바다 괴물",
@@ -8630,7 +9010,9 @@
   "enemy_1231_dsrunr": {
     "enemyId": "enemy_1231_dsrunr",
     "enemyIndex": "SM18",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 455,
     "name": "심해의 포식자",
     "enemyRace": "바다 괴물",
@@ -8649,7 +9031,9 @@
   "enemy_1231_dsrunr_2": {
     "enemyId": "enemy_1231_dsrunr_2",
     "enemyIndex": "SM19",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 456,
     "name": "부영양의 포식자",
     "enemyRace": "바다 괴물",
@@ -8668,7 +9052,9 @@
   "enemy_1231_dsrunr_4": {
     "enemyId": "enemy_1231_dsrunr_4",
     "enemyIndex": "SM20",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 457,
     "name": "퇴행의 포식자",
     "enemyRace": "바다 괴물",
@@ -8687,7 +9073,9 @@
   "enemy_1232_dssalr": {
     "enemyId": "enemy_1232_dssalr",
     "enemyIndex": "SM21",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 458,
     "name": "심해의 인도자",
     "enemyRace": "바다 괴물",
@@ -8706,7 +9094,9 @@
   "enemy_1232_dssalr_2": {
     "enemyId": "enemy_1232_dssalr_2",
     "enemyIndex": "SM22",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 459,
     "name": "부영양의 인도자",
     "enemyRace": "바다 괴물",
@@ -8725,7 +9115,9 @@
   "enemy_1232_dssalr_4": {
     "enemyId": "enemy_1232_dssalr_4",
     "enemyIndex": "SM23",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 460,
     "name": "퇴행의 인도자",
     "enemyRace": "바다 괴물",
@@ -8744,7 +9136,9 @@
   "enemy_1233_dsshtr": {
     "enemyId": "enemy_1233_dsshtr",
     "enemyIndex": "SM24",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 461,
     "name": "심해의 분출자",
     "enemyRace": "바다 괴물",
@@ -8763,7 +9157,9 @@
   "enemy_1233_dsshtr_2": {
     "enemyId": "enemy_1233_dsshtr_2",
     "enemyIndex": "SM25",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 462,
     "name": "부영양의 분출자",
     "enemyRace": "바다 괴물",
@@ -8782,7 +9178,9 @@
   "enemy_1233_dsshtr_4": {
     "enemyId": "enemy_1233_dsshtr_4",
     "enemyIndex": "SM26",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 463,
     "name": "퇴행의 분출자",
     "enemyRace": "바다 괴물",
@@ -8801,7 +9199,9 @@
   "enemy_1234_dsubrl": {
     "enemyId": "enemy_1234_dsubrl",
     "enemyIndex": "SM27",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 464,
     "name": "심해의 소용자",
     "enemyRace": "바다 괴물",
@@ -8820,7 +9220,9 @@
   "enemy_1234_dsubrl_2": {
     "enemyId": "enemy_1234_dsubrl_2",
     "enemyIndex": "SM28",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 465,
     "name": "부영양의 소용자",
     "enemyRace": "바다 괴물",
@@ -8839,7 +9241,9 @@
   "enemy_1234_dsubrl_4": {
     "enemyId": "enemy_1234_dsubrl_4",
     "enemyIndex": "SM29",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 466,
     "name": "퇴행의 소용자",
     "enemyRace": "바다 괴물",
@@ -8858,7 +9262,9 @@
   "enemy_1235_dsbskr": {
     "enemyId": "enemy_1235_dsbskr",
     "enemyIndex": "SM30",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 467,
     "name": "심해의 열초자",
     "enemyRace": "바다 괴물",
@@ -8877,7 +9283,9 @@
   "enemy_1235_dsbskr_2": {
     "enemyId": "enemy_1235_dsbskr_2",
     "enemyIndex": "SM31",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 468,
     "name": "부영양의 열초자",
     "enemyRace": "바다 괴물",
@@ -8896,7 +9304,9 @@
   "enemy_1235_dsbskr_4": {
     "enemyId": "enemy_1235_dsbskr_4",
     "enemyIndex": "SM32",
-    "enemyTags": ["seamonster"],
+    "enemyTags": [
+      "seamonster"
+    ],
     "sortId": 469,
     "name": "퇴행의 열초자",
     "enemyRace": "바다 괴물",
@@ -8920,7 +9330,7 @@
     "name": "'길거리 한량'",
     "enemyRace": null,
     "enemyLevel": "NORMAL",
-    "description": "감염자로 위장한 전투원으로, 현지 상황을 잘 파악하고 있다. 일반 감염자와 바가 없어 인파에 섞여들기 쉽다.",
+    "description": "감염자로 위장한 전투원으로, 현지 상황을 잘 파악하고 있다. 일반 감염자와 다를 바가 없어 인파에 섞여들기 쉽다.",
     "attackType": "근거리",
     "endure": "C",
     "attack": "B",
@@ -8991,7 +9401,9 @@
   "enemy_1240_ltgint": {
     "enemyId": "enemy_1240_ltgint",
     "enemyIndex": "LE5",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 474,
     "name": "양산형 거대 석상",
     "enemyRace": "아츠 피조물",
@@ -9010,7 +9422,9 @@
   "enemy_1240_ltgint_2": {
     "enemyId": "enemy_1240_ltgint_2",
     "enemyIndex": "LE6",
-    "enemyTags": ["originiumartscraft"],
+    "enemyTags": [
+      "originiumartscraft"
+    ],
     "sortId": 475,
     "name": "개량된 양산형 거대 석상",
     "enemyRace": "아츠 피조물",
@@ -9181,7 +9595,9 @@
   "enemy_1246_aslime": {
     "enemyId": "enemy_1246_aslime",
     "enemyIndex": "LE15",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 484,
     "name": "검은 원석충",
     "enemyRace": "감염생물",
@@ -9200,7 +9616,9 @@
   "enemy_1246_aslime_2": {
     "enemyId": "enemy_1246_aslime_2",
     "enemyIndex": "LE16",
-    "enemyTags": ["infection"],
+    "enemyTags": [
+      "infection"
+    ],
     "sortId": 485,
     "name": "검은 원석충 α",
     "enemyRace": "감염생물",
@@ -9232,6 +9650,341 @@
     "resistance": "B",
     "ability": "<@eb.key>저지 불가</>, 동시에 <@eb.key>2 개의 목표</>를 공격하며, 자신의 위치에 <@eb.key>허상</>을 소환한다",
     "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1249_lysdb": {
+    "enemyId": "enemy_1249_lysdb",
+    "enemyIndex": "RO01",
+    "enemyTags": null,
+    "sortId": 487,
+    "name": "라인 랩 방위과 직원",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "라인 랩의 경비 인력. 라인 랩이 지급한 진압용 장비를 착용하고 있으며, 폭동 진압 작전 훈련을 통해 어느 정도의 경비 능력을 갖추었다.",
+    "attackType": "근거리",
+    "endure": "B",
+    "attack": "B",
+    "defence": "C",
+    "resistance": "D",
+    "ability": "물리 또는 마법 대미지를 1회 무효화",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1249_lysdb_2": {
+    "enemyId": "enemy_1249_lysdb_2",
+    "enemyIndex": "RO02",
+    "enemyTags": null,
+    "sortId": 488,
+    "name": "라인 랩 방위과 엘리트",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "라인 랩의 상급 경비 인력. 라인 랩이 지급한 진압용 장비를 착용하고 있으며, 특급 폭동 진압 작전 훈련을 통해 경비 능력이 대폭 향상됐다.",
+    "attackType": "근거리",
+    "endure": "B",
+    "attack": "B",
+    "defence": "C",
+    "resistance": "D",
+    "ability": "물리 또는 마법 대미지를 1회 무효화",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1250_lyengs": {
+    "enemyId": "enemy_1250_lyengs",
+    "enemyIndex": "RO03",
+    "enemyTags": null,
+    "sortId": 489,
+    "name": "라인 랩 엔지니어링과 직원",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "라인 랩의 엔지니어. 장비 지급 및 생산 과정에서 전문적인 의견을 제시하며, 업무적으로 에너지과와 긴밀한 관계를 유지하고 있다.",
+    "attackType": "원거리 아츠",
+    "endure": "B",
+    "attack": "C",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 지속해서 비활성화된 R 시리즈 기동 장갑의 체력 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1250_lyengs_2": {
+    "enemyId": "enemy_1250_lyengs_2",
+    "enemyIndex": "RO04",
+    "enemyTags": null,
+    "sortId": 490,
+    "name": "라인 랩 엔지니어링과 엘리트",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "라인 랩의 상급 엔지니어. 에너지과는 라인 랩을 위해 컬럼비아 당국의 자원을 대량으로 얻어 냈고, 엔지니어링과는 이를 이용해 더욱 많은 첨단 장비를 설계 및 생산한다.",
+    "attackType": "원거리 아츠",
+    "endure": "B",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 지속해서 비활성화된 R 시리즈 기동 장갑의 체력 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1251_lysyta": {
+    "enemyId": "enemy_1251_lysyta",
+    "enemyIndex": "RO05",
+    "enemyTags": null,
+    "sortId": 491,
+    "name": "Dor-1호 실패작",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "도로시의 실험 실패작. 불규칙한 형상의 은색 물체로 은은한 빛을 내뿜고 있다. 잠든 후의 꿈결을 방불케 한다.",
+    "attackType": "근거리",
+    "endure": "C",
+    "attack": "C",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1251_lysyta_2": {
+    "enemyId": "enemy_1251_lysyta_2",
+    "enemyIndex": "RO06",
+    "enemyTags": null,
+    "sortId": 492,
+    "name": "Dor-α호 실패작",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "도로시의 실험 실패작. 불규칙한 형상의 은색 물체가 은은한 빛을 내뿜고 있다. 하지만 생소한 외형에 사람들은 본능적으로 공포를 느껴 멀리하고 싶어 한다.",
+    "attackType": "근거리",
+    "endure": "C",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1252_lysytb": {
+    "enemyId": "enemy_1252_lysytb",
+    "enemyIndex": "RO07",
+    "enemyTags": null,
+    "sortId": 493,
+    "name": "Dor-2호 복제품",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "도로시가 2차 실험에서 얻은 산물. 처음 만들어졌을 때 이것의 아름다움에 취하고 말았다.",
+    "attackType": "원거리",
+    "endure": "B",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1252_lysytb_2": {
+    "enemyId": "enemy_1252_lysytb_2",
+    "enemyIndex": "RO08",
+    "enemyTags": null,
+    "sortId": 494,
+    "name": "Dor-β호 복제품",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "도로시가 2차 실험에서 얻은 산물. 기대 효과에 못 미치지만, 그녀는 희망에 부풀어 있다.",
+    "attackType": "원거리",
+    "endure": "A",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "A",
+    "ability": "비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1253_lysytc": {
+    "enemyId": "enemy_1253_lysytc",
+    "enemyIndex": "RO09",
+    "enemyTags": null,
+    "sortId": 495,
+    "name": "Dor-3호 개량형",
+    "enemyRace": null,
+    "enemyLevel": "ELITE",
+    "description": "도로시 비밀 실험의 피조물. 도로시에게 있어 이건 단순한 피조물이 아니라, 그녀의 가족이자 꿈과도 같은 존재이다.",
+    "attackType": "근거리 아츠",
+    "endure": "B",
+    "attack": "B",
+    "defence": "A",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 저지당하지 않은 상태에서 피격 물리 또는 마법 대미지가 50% 감소, 비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1253_lysytc_2": {
+    "enemyId": "enemy_1253_lysytc_2",
+    "enemyIndex": "RO10",
+    "enemyTags": null,
+    "sortId": 496,
+    "name": "Dor-γ호 개량형",
+    "enemyRace": null,
+    "enemyLevel": "ELITE",
+    "description": "도로시 비밀 실험의 피조물. 꿈은 결국 현실로 돌아오기 마련이다. 도로시는 스스로 포근한 울타리가 되길 바란다.",
+    "attackType": "근거리 아츠",
+    "endure": "B",
+    "attack": "B",
+    "defence": "A",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 저지당하지 않은 상태에서 피격 물리 또는 마법 대미지가 50% 감소, 비활성화된 R 시리즈 기동 장갑에 부딪칠 경우 기동 장갑의 SP 일정량 회복",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1254_lypa": {
+    "enemyId": "enemy_1254_lypa",
+    "enemyIndex": "RO11",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 497,
+    "name": "실험용 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "무인 기동 장갑. 조종사가 올라 탈필요 없이도 뛰어난 민첩함을 자랑한다.",
+    "attackType": "근거리",
+    "endure": "B",
+    "attack": "A",
+    "defence": "B",
+    "resistance": "C",
+    "ability": null,
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1254_lypa_2": {
+    "enemyId": "enemy_1254_lypa_2",
+    "enemyIndex": "RO12",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 498,
+    "name": "테스트용 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "무인 기동 장갑. 마치 자의식을 가진 것처럼, 베테랑 엔지니어조차도 조종하는 사람이 따로 있는지 분간하기 어려울 정도이다.",
+    "attackType": "근거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": null,
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1255_lybgpa": {
+    "enemyId": "enemy_1255_lybgpa",
+    "enemyIndex": "RO13",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 499,
+    "name": "R-31 중형 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "대략 반년 전부터 용병단에서 사용하던 모델로, 성능은 5년 전 군 양산형 모델 수준이다. 라인 랩 에너지과는 다방면으로 협력하고 있으며, 지금도 더욱 많은 협력을 모색하고 있다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "S",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "목표에 [과부하] 효과 부여, 공격 속도 대폭 향상, 공격 시 물리 대미지를 입히고 목표를 <$ba.stun>기절</>",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1255_lybgpa_2": {
+    "enemyId": "enemy_1255_lybgpa_2",
+    "enemyIndex": "RO14",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 500,
+    "name": "R-31a 중형 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "대략 반년 전부터 용병단에서 사용하던 모델로, 성능은 5년 전 군 양산형 모델 수준이다. 기술에는 제한이 없다. 컬럼비아 사람들은 언제나 법을 지키는 선에서 최고의 효율을 뽑고자 한다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "S",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "목표에 [과부하] 효과 부여, 공격 속도 대폭 향상, 공격 시 물리 대미지를 입히고 목표를 <$ba.stun>기절</>",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1256_lyacpa": {
+    "enemyId": "enemy_1256_lyacpa",
+    "enemyIndex": "RO15",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 501,
+    "name": "R-11 돌격 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "원거리 무기를 탑재한 모델로 공격력이 대폭 강화되었다. 이런 실험적인 무기는 기술이 초기 단계라 하더라도, 그 위력만큼은 결코 얕볼 수 없다.",
+    "attackType": "원거리",
+    "endure": "S",
+    "attack": "A+",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "동시에 4개의 목표 공격",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1256_lyacpa_2": {
+    "enemyId": "enemy_1256_lyacpa_2",
+    "enemyIndex": "RO16",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 502,
+    "name": "R-11a 돌격 기동 장갑",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "원거리 무기를 탑재한 모델로 공격력이 대폭 강화되었다. 이러한 기술이 만약 양산에 투입된다면 어떠한 혁신을 가져올지 상상조차 안 된다.",
+    "attackType": "원거리",
+    "endure": "S",
+    "attack": "A+",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "동시에 4개의 목표 공격",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1257_lydrty": {
+    "enemyId": "enemy_1257_lydrty",
+    "enemyIndex": "RO17",
+    "enemyTags": null,
+    "sortId": 503,
+    "name": "도로시",
+    "enemyRace": null,
+    "enemyLevel": "ELITE",
+    "description": "도로시 프랭크스, 라인 랩 오리지늄 아츠 응용과 주임. 그녀는 과학기술과 이상의 힘으로 사람과 사람 간의 거리를 좁히고, 약소한 자들에게 보호를 제공하길 원한다.",
+    "attackType": "원거리",
+    "endure": "S",
+    "attack": "A",
+    "defence": "B",
+    "resistance": "D",
+    "ability": "저지 불가, 함정을 설치해 함정을 밟은 아군 유닛에 <@eb.key>마법 대미지</>를 입히고 일정 시간 <$ba.stun>기절</>, 방어 포인트에 들어가도 스테이지 HP가 감소하지 않음",
+    "isInvalidKilled": true,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
   },
@@ -9352,7 +10105,9 @@
   "enemy_1261_dursho": {
     "enemyId": "enemy_1261_dursho",
     "enemyIndex": "DUR7",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 510,
     "name": "발리볼 서브 카트",
     "enemyRace": "기계",
@@ -9371,7 +10126,9 @@
   "enemy_1261_dursho_2": {
     "enemyId": "enemy_1261_dursho_2",
     "enemyIndex": "DUR8",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 511,
     "name": "발리볼 스파이크 카트",
     "enemyRace": "기계",
@@ -9390,7 +10147,9 @@
   "enemy_1262_durplc": {
     "enemyId": "enemy_1262_durplc",
     "enemyIndex": "DUR9",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 512,
     "name": "아이언 서핑 코치",
     "enemyRace": "기계",
@@ -9409,7 +10168,9 @@
   "enemy_1262_durplc_2": {
     "enemyId": "enemy_1262_durplc_2",
     "enemyIndex": "DUR10",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 513,
     "name": "알로이 서핑 코치",
     "enemyRace": "기계",
@@ -9428,7 +10189,9 @@
   "enemy_1263_durbus": {
     "enemyId": "enemy_1263_durbus",
     "enemyIndex": "DUR11",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 514,
     "name": "폐쇄형 비치 카",
     "enemyRace": "기계",
@@ -9447,7 +10210,9 @@
   "enemy_1263_durbus_2": {
     "enemyId": "enemy_1263_durbus_2",
     "enemyIndex": "DUR12",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 515,
     "name": "경기용 비치 카",
     "enemyRace": "기계",
@@ -9466,7 +10231,9 @@
   "enemy_1264_durgrd": {
     "enemyId": "enemy_1264_durgrd",
     "enemyIndex": "DUR13",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 516,
     "name": "벌꿀주급 웨이크어퍼",
     "enemyRace": "기계",
@@ -9485,7 +10252,9 @@
   "enemy_1264_durgrd_2": {
     "enemyId": "enemy_1264_durgrd_2",
     "enemyIndex": "DUR14",
-    "enemyTags": ["machine"],
+    "enemyTags": [
+      "machine"
+    ],
     "sortId": 517,
     "name": "스피리츠급 웨이크어퍼",
     "enemyRace": "기계",
@@ -9520,11 +10289,423 @@
     "overrideKillCntInfos": {},
     "hideInHandbook": true
   },
+  "enemy_1266_nhapos": {
+    "enemyId": "enemy_1266_nhapos",
+    "enemyIndex": "NAC1",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 519,
+    "name": "나흐체러르 추종자",
+    "enemyRace": "살카즈",
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 부대의 구성원으로, 생존 시간이 길수록 처치하기 어렵다. 소문에 공포의 존재가 될 때까지 힘을 흡수한다고 알려져 있다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "S",
+    "defence": "A",
+    "resistance": "B",
+    "ability": "'부식된 고목'이 출현한 후부터 처치된 적이 많을수록 <@eb.key>HP, 공격력, 방어력이 강화</>되며, <@eb.key>오염의 침식</>을 시전하여 주변 아군의 HP가 지속해서 감소한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1267_nhpbr": {
+    "enemyId": "enemy_1267_nhpbr",
+    "enemyIndex": "NAC2",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 520,
+    "name": "살카즈 부패의 전사",
+    "enemyRace": "살카즈",
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 부대의 구성원으로, 이미 오염에 침식되어 있어 죽으면서도 주변을 오염시킨다. 쓰러져도 썩은 몸은 그대로 남아 있다.",
+    "attackType": "근거리",
+    "endure": "B",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "C",
+    "ability": "쓰러지면 <@eb.key>오염의 침식</>을 시전하며, 주변 아군의 HP가 지속해서 감소한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1267_nhpbr_2": {
+    "enemyId": "enemy_1267_nhpbr_2",
+    "enemyIndex": "NAC3",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 521,
+    "name": "살카즈 부패의 전사 리더",
+    "enemyRace": "살카즈",
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 부대의 구성원 중 정예로, 온몸이 완전히 오염에 침식되어, 죽음은 그들이 더 많은 오염을 일으키게 하며, 오염된 땅에는 그 어떤 생명도 살아남기 어렵다. 쓰러져도 썩은 몸은 완전히 사라지지 않는다.",
+    "attackType": "근거리",
+    "endure": "B",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "C",
+    "ability": "쓰러지면 <@eb.key>오염의 침식</>을 시전하며, 주변 아군의 HP가 지속해서 감소한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1268_nhnrs": {
+    "enemyId": "enemy_1268_nhnrs",
+    "enemyIndex": "NAC4",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 522,
+    "name": "살카즈 부패의 캐스터",
+    "enemyRace": "살카즈",
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 부대의 구성원으로, 적을 공격하는 동시에 동족을 치유하는 힘을 장악했다. 포식은 부식의 시작이며, 생명의 궁극적인 합류에 공유된다.",
+    "attackType": "원거리 아츠",
+    "endure": "B",
+    "attack": "C",
+    "defence": "C",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 지속해서 <@eb.key>'부식된 고목'</>의 HP를 회복한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1268_nhnrs_2": {
+    "enemyId": "enemy_1268_nhnrs_2",
+    "enemyIndex": "NAC5",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 523,
+    "name": "살카즈 부패의 캐스터 리더",
+    "enemyRace": "살카즈",
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 부대의 구성원 중 정예로, 적을 공격하는 동시에 동족을 치유하는 힘을 장악했다. 포식은 부식의 시작이며, 생명의 궁극적인 합류에 공유된다.",
+    "attackType": "원거리 아츠",
+    "endure": "B",
+    "attack": "B",
+    "defence": "C",
+    "resistance": "A",
+    "ability": "공격 시 <@eb.key>마법 대미지</>를 입히며, 지속해서 <@eb.key>'부식된 고목'</>의 HP를 회복한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1269_nhfly": {
+    "enemyId": "enemy_1269_nhfly",
+    "enemyIndex": "NAC6",
+    "enemyTags": null,
+    "sortId": 524,
+    "name": "메마른 씨앗",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 킹의 오리지늄 아츠 피조물로, 의식은 없지만 스스로 폭파한다. 죽음은 부식의 기본이며, 이것들은 죽음을 창조한다.",
+    "attackType": "원거리",
+    "endure": "D+",
+    "attack": "A",
+    "defence": "D",
+    "resistance": "D",
+    "ability": "<@eb.key>[공중 유닛]</>, 오퍼레이터에게 접근하면 자폭하여 물리 대미지를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1269_nhfly_2": {
+    "enemyId": "enemy_1269_nhfly_2",
+    "enemyIndex": "NAC7",
+    "enemyTags": null,
+    "sortId": 525,
+    "name": "부패의 씨앗",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "나흐체러르 킹의 오리지늄 아츠 피조물로, 마른 나뭇가지는 상식을 어기고 소생을 포기하여 죽음으로 직진한다. 죽음은 부식의 기본이며, 이것들은 죽음을 창조한다.",
+    "attackType": "원거리",
+    "endure": "D+",
+    "attack": "A+",
+    "defence": "D",
+    "resistance": "D",
+    "ability": "<@eb.key>[공중 유닛]</>, 오퍼레이터에게 접근하면 자폭하여 물리 대미지를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1270_nhstlk": {
+    "enemyId": "enemy_1270_nhstlk",
+    "enemyIndex": "NAC8",
+    "enemyTags": null,
+    "sortId": 526,
+    "name": "롯체이서",
+    "enemyRace": null,
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 킹의 오리지늄 아츠 피조물로, 속도가 빠르며 치유가 무엇인지 이해하지 못한다. 죽음만이 그것들의 전부이기에, 치유의 힘이 나타나면 능력은 효과를 잃게 된다.",
+    "attackType": "근거리",
+    "endure": "A",
+    "attack": "B",
+    "defence": "D",
+    "resistance": "C",
+    "ability": "<@eb.key>움직임이 빠르며</>, 목표에 일정 시간 동안 지속해서 마법 대미지를 입히지만, 목표가 치료받으면 <@eb.key>해당 효과가 해제</>된다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1270_nhstlk_2": {
+    "enemyId": "enemy_1270_nhstlk_2",
+    "enemyIndex": "NAC9",
+    "enemyTags": null,
+    "sortId": 527,
+    "name": "광기의 롯체이서",
+    "enemyRace": null,
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 킹의 오리지늄 아츠 피조물로, 움직임을 멈춰도 치유가 무엇인지 이해하지 못한다. 죽음만이 그것들의 전부이기에, 생각이 죽음에 용납되지 않는 한 절대 멈추지 않는다.",
+    "attackType": "근거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "C",
+    "resistance": "C",
+    "ability": "<@eb.key>움직임이 빠르며</>, 목표에 일정 시간 동안 지속해서 마법 대미지를 입히지만, 목표가 치료받으면 <@eb.key>해당 효과가 해제</>된다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1271_nhkodo": {
+    "enemyId": "enemy_1271_nhkodo",
+    "enemyIndex": "NAC10",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 528,
+    "name": "살카즈 부패의 포식자",
+    "enemyRace": "살카즈",
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 부대의 구성원으로, 앞길을 가로막는 자들을 전부 삼켜버린다. 생자는 물론, 힘을 흡수할 수 있는 모든 것이 그들에겐 식량이다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "A+",
+    "defence": "D",
+    "resistance": "C",
+    "ability": "최초로 저지당하면 저지한 유닛을 삼켜버려 자신의 <@eb.key>방어력</>이 대폭 상승하고 <@eb.key>이동 속도</>가 감소하지만, 쓰러지면 삼켜버린 유닛이 다시 복귀한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1271_nhkodo_2": {
+    "enemyId": "enemy_1271_nhkodo_2",
+    "enemyIndex": "NAC11",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 529,
+    "name": "살카즈 부패의 흡수자",
+    "enemyRace": "살카즈",
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 부대의 구성원 중 정예로, 앞길을 가로막는 자들을 전부 삼켜버리며, 자신이 죽어서야 다시 내뱉는다. 생자는 물론, 힘을 흡수할 수 있는 모든 것이 그들에겐 식량이다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "A+",
+    "defence": "D",
+    "resistance": "C",
+    "ability": "최초로 저지당하면 저지한 유닛을 삼켜버려 자신의 <@eb.key>방어력</>이 대폭 상승하고 <@eb.key>이동 속도</>가 감소하지만, 쓰러지면 삼켜버린 유닛이 다시 복귀한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1272_nhtank": {
+    "enemyId": "enemy_1272_nhtank",
+    "enemyIndex": "NAC12",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 530,
+    "name": "살카즈 부패의 전차",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 부대의 군사 장비로, 부대의 행진을 가로막는 모든 장애물을 제거한다. 만만치 않은 공격 능력을 갖췄음에도, 이것들의 주요한 역할은 역시 오염이다.",
+    "attackType": "근거리 원거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "<@eb.key>지상 유닛만 공격</>하고, 근거리 공격으로 <@eb.key>더 큰 대미지</>를 입히며, 수차례 공격 후 다음 공격 시 <@eb.key>오염의 침식</>을 시전한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1272_nhtank_2": {
+    "enemyId": "enemy_1272_nhtank_2",
+    "enemyIndex": "NAC13",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 531,
+    "name": "최첨단 살카즈 부패의 전차",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "나흐체러르 부대의 고급 군사 장비로, 부대의 행진을 가로막는 모든 장애물을 제거하며, 거리가 가까울수록 공격력이 높아진다. 만만치 않은 공격 능력을 갖췄음에도, 이것들의 주요한 역할은 역시 오염이다.",
+    "attackType": "근거리 원거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "<@eb.key>지상 유닛만 공격</>하고, 근거리 공격으로 <@eb.key>더 큰 대미지</>를 입히며, 수차례 공격 후 다음 공격 시 <@eb.key>오염의 침식</>을 시전한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1273_stmgun": {
+    "enemyId": "enemy_1273_stmgun",
+    "enemyIndex": "LUD1",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 532,
+    "name": "런디니움 방위군 자주포",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "런디니움의 도시 방위용 무기로, 공격 범위가 넓다. 부피가 비교적 큰 편이라 런디니움 근로자들이 공장에서 조립해 만든 것이다.",
+    "attackType": "원거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "사정거리가 비교적 멀고, <@eb.key>최대 HP가 가장 높은</> 목표를 지정해 수차례 폭격하여, 범위 내 <@eb.key>HP 비율이 가장 높은</> 아군에 <@eb.key>마법 대미지</>를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1273_stmgun_2": {
+    "enemyId": "enemy_1273_stmgun_2",
+    "enemyIndex": "LUD2",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 533,
+    "name": "고정밀 런디니움 방위군 자주포",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "런디니움의 도시 방위용 무기로, 공격 범위가 넓고 정확도가 대폭 상승했다. 부피가 비교적 큰 편이라 런디니움 근로자들이 공장에서 조립해 만든 것이다.",
+    "attackType": "원거리",
+    "endure": "S",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "사정거리가 비교적 멀고, <@eb.key>최대 HP가 가장 높은</> 목표를 지정해 수차례 폭격하여, 범위 내 <@eb.key>HP 비율이 가장 높은</> 아군에 <@eb.key>마법 대미지</>를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1274_stmram": {
+    "enemyId": "enemy_1274_stmram",
+    "enemyIndex": "LUD3",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 534,
+    "name": "증기전차",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "빅토리아가 자랑하는 증기 기술로 만든 전차로, 종종 파괴되기 전에 막강한 작전 능력을 발휘한다.",
+    "attackType": "근거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "HP가 50%까지 감소하면 <@eb.key>공격 속도</>와 <@eb.key>이동 속도</>가 대폭 상승하며, 대부분 상태 이상 효과에 면역한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1274_stmram_2": {
+    "enemyId": "enemy_1274_stmram_2",
+    "enemyIndex": "LUD4",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 535,
+    "name": "극온 증기전차",
+    "enemyRace": "기계",
+    "enemyLevel": "ELITE",
+    "description": "빅토리아가 자랑하는 증기 기술로 만든 고급 전차로, 종종 파괴되기 전에 막강한 작전 능력을 발휘하며, 마지막 순간에 폭주하는 것을 통제할 방법은 거의 없다.",
+    "attackType": "근거리",
+    "endure": "A",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "C",
+    "ability": "HP가 50%까지 감소하면 <@eb.key>공격 속도</>와 <@eb.key>이동 속도</>가 대폭 상승하며, 대부분 상태 이상 효과에 면역한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1275_dwlock": {
+    "enemyId": "enemy_1275_dwlock",
+    "enemyIndex": "NAC14",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 536,
+    "name": "살카즈 왕정군 캐스터",
+    "enemyRace": "살카즈",
+    "enemyLevel": "ELITE",
+    "description": "살카즈 왕정군 소속 캐스터로, 이들의 주술은 전장에서 많은 기계나 군사 장비보다 더 상대하기 어렵다. 그들의 작전 스타일은 살카즈 특색이 있으면서도, 더 규율적이다.",
+    "attackType": "원거리 아츠",
+    "endure": "A",
+    "attack": "B",
+    "defence": "C",
+    "resistance": "A",
+    "ability": "공격 시 추가로 <@eb.key>쇠약 피해</>를 입히고, 아군 유닛을 지정해 지속해서 마법 대미지를 입히며, 시전이 끝나면 <@eb.key>범위 쇠약 피해</>를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1275_dwlock_2": {
+    "enemyId": "enemy_1275_dwlock_2",
+    "enemyIndex": "NAC15",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 537,
+    "name": "살카즈 왕정군 정예 캐스터",
+    "enemyRace": "살카즈",
+    "enemyLevel": "ELITE",
+    "description": "살카즈 왕정군 소속 정예 캐스터로, 이들의 주술은 전장에서 많은 기계나 군사 장비보다 더 상대하기 어렵다. 규율성 외에도, 최근 몇 년간의 훈련에서 이들은 매우 뛰어난 전문성을 보여줬다.",
+    "attackType": "원거리 아츠",
+    "endure": "A",
+    "attack": "B",
+    "defence": "C",
+    "resistance": "A",
+    "ability": "공격 시 추가로 <@eb.key>쇠약 피해</>를 입히고, 아군 유닛을 지정해 지속해서 마법 대미지를 입히며, 시전이 끝나면 <@eb.key>범위 쇠약 피해</>를 입힌다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1276_telex": {
+    "enemyId": "enemy_1276_telex",
+    "enemyIndex": "THE",
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 538,
+    "name": "테레시스",
+    "enemyRace": "살카즈",
+    "enemyLevel": "BOSS",
+    "description": "테레시스, 카즈델의 섭정왕. 런디니움에서 살카즈 대군을 소집하고 더 샤드 빌딩을 점령했다. 그가 대공작에게 선전포고하는 것을 막지 못하면 곧 전면전이 폭발할 것이다.",
+    "attackType": "근거리",
+    "endure": "?",
+    "attack": "?",
+    "defence": "?",
+    "resistance": "?",
+    "ability": "공격받지 않고, 사라져도 스테이지 HP가 차감되지 않으며, 앞길을 가로막은 모든 목표를 쓰러뜨린다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
   "enemy_2001_duckmi": {
     "enemyId": "enemy_2001_duckmi",
     "enemyIndex": "DLD",
     "enemyTags": null,
-    "sortId": 519,
+    "sortId": 539,
     "name": "덕로드",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -9543,7 +10724,7 @@
     "enemyId": "enemy_2002_bearmi",
     "enemyIndex": "GPN",
     "enemyTags": null,
-    "sortId": 520,
+    "sortId": 540,
     "name": "고프닉",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -9562,7 +10743,7 @@
     "enemyId": "enemy_2009_csaudc",
     "enemyIndex": "CS1",
     "enemyTags": null,
-    "sortId": 521,
+    "sortId": 542,
     "name": "놀라서 웃는 관객",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -9581,7 +10762,7 @@
     "enemyId": "enemy_2010_csdcr",
     "enemyIndex": "CS2",
     "enemyTags": null,
-    "sortId": 522,
+    "sortId": 543,
     "name": "스칼릿 싱어",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -9599,8 +10780,10 @@
   "enemy_2011_csppt": {
     "enemyId": "enemy_2011_csppt",
     "enemyIndex": "CS3",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 523,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 544,
     "name": "극장 조립체",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "ELITE",
@@ -9619,7 +10802,7 @@
     "enemyId": "enemy_2012_csbln",
     "enemyIndex": "CS4",
     "enemyTags": null,
-    "sortId": 524,
+    "sortId": 545,
     "name": "'깜짝 선물'",
     "enemyRace": null,
     "enemyLevel": "NORMAL",
@@ -9638,7 +10821,7 @@
     "enemyId": "enemy_2017_csphts",
     "enemyIndex": "PTS",
     "enemyTags": null,
-    "sortId": 525,
+    "sortId": 546,
     "name": "불길한 환영",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -9656,8 +10839,10 @@
   "enemy_4001_toxcar": {
     "enemyId": "enemy_4001_toxcar",
     "enemyIndex": "MU1",
-    "enemyTags": ["machine"],
-    "sortId": 526,
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 556,
     "name": "개조된 가스차",
     "enemyRace": "기계",
     "enemyLevel": "ELITE",
@@ -9675,8 +10860,10 @@
   "enemy_4001_toxcar_2": {
     "enemyId": "enemy_4001_toxcar_2",
     "enemyIndex": "MU2",
-    "enemyTags": ["machine"],
-    "sortId": 527,
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 557,
     "name": "고에너지 가스차",
     "enemyRace": "기계",
     "enemyLevel": "ELITE",
@@ -9694,8 +10881,10 @@
   "enemy_4002_syokai": {
     "enemyId": "enemy_4002_syokai",
     "enemyIndex": "MU3",
-    "enemyTags": ["drone"],
-    "sortId": 528,
+    "enemyTags": [
+      "drone"
+    ],
+    "sortId": 558,
     "name": "저가 중고 드론",
     "enemyRace": "드론",
     "enemyLevel": "NORMAL",
@@ -9713,8 +10902,10 @@
   "enemy_4002_syokai_2": {
     "enemyId": "enemy_4002_syokai_2",
     "enemyIndex": "MU4",
-    "enemyTags": ["drone"],
-    "sortId": 529,
+    "enemyTags": [
+      "drone"
+    ],
+    "sortId": 559,
     "name": "개조된 중고 드론",
     "enemyRace": "드론",
     "enemyLevel": "NORMAL",
@@ -9732,8 +10923,10 @@
   "enemy_4003_pbank": {
     "enemyId": "enemy_4003_pbank",
     "enemyIndex": "MU5",
-    "enemyTags": ["machine"],
-    "sortId": 530,
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 560,
     "name": "이동식 전원",
     "enemyRace": "기계",
     "enemyLevel": "NORMAL",
@@ -9751,8 +10944,10 @@
   "enemy_1050_lslime": {
     "enemyId": "enemy_1050_lslime",
     "enemyIndex": "UM1",
-    "enemyTags": ["infection"],
-    "sortId": 531,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 561,
     "name": "폼페이",
     "enemyRace": "감염생물",
     "enemyLevel": "BOSS",
@@ -9771,7 +10966,7 @@
     "enemyId": "enemy_1500_skulsr",
     "enemyIndex": "SS",
     "enemyTags": null,
-    "sortId": 532,
+    "sortId": 562,
     "name": "스컬슈레더",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9790,7 +10985,7 @@
     "enemyId": "enemy_1502_crowns",
     "enemyIndex": "CS",
     "enemyTags": null,
-    "sortId": 533,
+    "sortId": 563,
     "name": "크라운슬레이어",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9809,7 +11004,7 @@
     "enemyId": "enemy_1503_talula",
     "enemyIndex": "TA",
     "enemyTags": null,
-    "sortId": 534,
+    "sortId": 564,
     "name": "탈룰라",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9827,8 +11022,10 @@
   "enemy_1504_cqbw": {
     "enemyId": "enemy_1504_cqbw",
     "enemyIndex": "W",
-    "enemyTags": ["sarkaz"],
-    "sortId": 535,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 565,
     "name": "W",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -9847,7 +11044,7 @@
     "enemyId": "enemy_1505_frstar",
     "enemyIndex": "FN",
     "enemyTags": null,
-    "sortId": 536,
+    "sortId": 566,
     "name": "프로스트노바",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9866,7 +11063,7 @@
     "enemyId": "enemy_1507_mephi",
     "enemyIndex": "MP",
     "enemyTags": null,
-    "sortId": 537,
+    "sortId": 567,
     "name": "메피스토",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9885,7 +11082,7 @@
     "enemyId": "enemy_1508_faust",
     "enemyIndex": "FA",
     "enemyTags": null,
-    "sortId": 538,
+    "sortId": 568,
     "name": "파우스트",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9904,7 +11101,7 @@
     "enemyId": "enemy_1509_mousek",
     "enemyIndex": "MK",
     "enemyTags": null,
-    "sortId": 539,
+    "sortId": 569,
     "name": "래트킹",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9923,7 +11120,7 @@
     "enemyId": "enemy_1510_frstar2",
     "enemyIndex": "FNF",
     "enemyTags": null,
-    "sortId": 540,
+    "sortId": 570,
     "name": "프로스트노바-겨울의 상처",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -9941,8 +11138,10 @@
   "enemy_1506_patrt": {
     "enemyId": "enemy_1506_patrt",
     "enemyIndex": "PT",
-    "enemyTags": ["sarkaz"],
-    "sortId": 541,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 571,
     "name": "패트리어트",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -9960,8 +11159,10 @@
   "enemy_1511_mdrock": {
     "enemyId": "enemy_1511_mdrock",
     "enemyIndex": "MR",
-    "enemyTags": ["sarkaz"],
-    "sortId": 542,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 572,
     "name": "머드락",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -9979,8 +11180,10 @@
   "enemy_1512_mcmstr": {
     "enemyId": "enemy_1512_mcmstr",
     "enemyIndex": "BU",
-    "enemyTags": ["machine"],
-    "sortId": 543,
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 573,
     "name": "'거대하고 못생긴 것'",
     "enemyRace": "기계",
     "enemyLevel": "BOSS",
@@ -9998,8 +11201,10 @@
   "enemy_1513_dekght": {
     "enemyId": "enemy_1513_dekght",
     "enemyIndex": "DK1",
-    "enemyTags": ["sarkaz"],
-    "sortId": 544,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 574,
     "name": "부패한 기사",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -10017,8 +11222,10 @@
   "enemy_1513_dekght_2": {
     "enemyId": "enemy_1513_dekght_2",
     "enemyIndex": "DK2",
-    "enemyTags": ["sarkaz"],
-    "sortId": 545,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 575,
     "name": "쇠퇴한 기사",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -10037,7 +11244,7 @@
     "enemyId": "enemy_1514_smephi",
     "enemyIndex": "SMP",
     "enemyTags": null,
-    "sortId": 546,
+    "sortId": 576,
     "name": "메피스토, '노래하는 자'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10056,7 +11263,7 @@
     "enemyId": "enemy_1515_bsnake",
     "enemyIndex": "BSN",
     "enemyTags": null,
-    "sortId": 547,
+    "sortId": 577,
     "name": " '불사의 검은 뱀'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10075,7 +11282,7 @@
     "enemyId": "enemy_1516_jakill",
     "enemyIndex": "JAK",
     "enemyTags": null,
-    "sortId": 548,
+    "sortId": 578,
     "name": "제셀톤 윌리엄스",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10093,8 +11300,10 @@
   "enemy_1517_xi": {
     "enemyId": "enemy_1517_xi",
     "enemyIndex": "DSK",
-    "enemyTags": ["animated"],
-    "sortId": 549,
+    "enemyTags": [
+      "animated"
+    ],
+    "sortId": 579,
     "name": "'즈자이'",
     "enemyRace": "요괴",
     "enemyLevel": "BOSS",
@@ -10112,8 +11321,10 @@
   "enemy_1519_bgball": {
     "enemyId": "enemy_1519_bgball",
     "enemyIndex": "BB",
-    "enemyTags": ["infection"],
-    "sortId": 550,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 580,
     "name": " '진화의 본질'",
     "enemyRace": "감염생물",
     "enemyLevel": "BOSS",
@@ -10132,7 +11343,7 @@
     "enemyId": "enemy_1520_empgrd",
     "enemyIndex": "EMG",
     "enemyTags": null,
-    "sortId": 551,
+    "sortId": 581,
     "name": "'황제의 칼날', 사냥꾼",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10150,8 +11361,10 @@
   "enemy_1521_dslily": {
     "enemyId": "enemy_1521_dslily",
     "enemyIndex": "SVK",
-    "enemyTags": ["seamonster"],
-    "sortId": 552,
+    "enemyTags": [
+      "seamonster"
+    ],
+    "sortId": 582,
     "name": "살비엔토 주교 퀸투스",
     "enemyRace": "바다 괴물",
     "enemyLevel": "BOSS",
@@ -10170,7 +11383,7 @@
     "enemyId": "enemy_1522_captan",
     "enemyIndex": "CPS",
     "enemyTags": null,
-    "sortId": 553,
+    "sortId": 583,
     "name": "판초 살라스",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10180,7 +11393,7 @@
     "attack": "A+",
     "defence": "A",
     "resistance": "B",
-    "ability": "폭발선과 '연'을 소환하여 작전한다. 물대포로 최대 HP가 가장 높은 유닛을 공격해 지속적으로 마법 대미지와 <$ba.dt.erosion>침식 피해</>를 입힌다. 제2형태 돌입 시 주기적으로 주변의 모든 유닛을 공격, 동시에 화기로 방어력이 가장 높은 유닛을 공격해 상대의 방어력을 감소한다. 아군 유닛을 처치하거나 자신이 처치당하면 모든 적의 공격 속도와 이동 속도가 상승한다.",
+    "ability": "폭발선과 '연'을 소환하여 작전한다. 물대포로 최대 HP가 가장 높은 아군을 공격해 지속적으로 마법 대미지와 <$ba.dt.erosion>침식 피해</>를 입힌다. 제2형태 돌입 시 주기적으로 주변의 모든 유닛을 공격, 동시에 총기로 방어력이 가장 높은 유닛을 공격해 상대의 방어력을 감소한다. 아군 유닛을 처치하거나 자신이 처치당하면 모든 적의 공격 속도와 이동 속도가 상승한다",
     "isInvalidKilled": false,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
@@ -10189,7 +11402,7 @@
     "enemyId": "enemy_1523_mandra",
     "enemyIndex": "MD",
     "enemyTags": null,
-    "sortId": 554,
+    "sortId": 584,
     "name": "만드라고라",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10208,7 +11421,7 @@
     "enemyId": "enemy_1524_bldkgt",
     "enemyIndex": "BK",
     "enemyTags": null,
-    "sortId": 555,
+    "sortId": 585,
     "name": "피의 기사 디카이오폴리스",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10227,7 +11440,7 @@
     "enemyId": "enemy_1525_blkswb",
     "enemyIndex": "BJ",
     "enemyTags": null,
-    "sortId": 556,
+    "sortId": 586,
     "name": "데겐블레허",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10245,8 +11458,10 @@
   "enemy_1526_sfsui": {
     "enemyId": "enemy_1526_sfsui",
     "enemyIndex": "SUI",
-    "enemyTags": ["animated"],
-    "sortId": 557,
+    "enemyTags": [
+      "animated"
+    ],
+    "sortId": 587,
     "name": "쉐이 형상",
     "enemyRace": "요괴",
     "enemyLevel": "BOSS",
@@ -10265,7 +11480,7 @@
     "enemyId": "enemy_1527_martyr",
     "enemyIndex": "AND",
     "enemyTags": null,
-    "sortId": 558,
+    "sortId": 588,
     "name": "'순교자', 안도아인",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10283,8 +11498,10 @@
   "enemy_1528_manfri": {
     "enemyId": "enemy_1528_manfri",
     "enemyIndex": "MAN",
-    "enemyTags": ["sarkaz"],
-    "sortId": 559,
+    "enemyTags": [
+      "sarkaz"
+    ],
+    "sortId": 589,
     "name": "맨프레드",
     "enemyRace": "살카즈",
     "enemyLevel": "BOSS",
@@ -10302,8 +11519,10 @@
   "enemy_1529_dsdevr": {
     "enemyId": "enemy_1529_dsdevr",
     "enemyIndex": "AMA",
-    "enemyTags": ["seamonster"],
-    "sortId": 560,
+    "enemyTags": [
+      "seamonster"
+    ],
+    "sortId": 590,
     "name": "신탁 도살자, 위매니의 의지",
     "enemyRace": "바다 괴물",
     "enemyLevel": "BOSS",
@@ -10321,8 +11540,10 @@
   "enemy_1530_white": {
     "enemyId": "enemy_1530_white",
     "enemyIndex": "KRE",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 561,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 591,
     "name": "크라이데, '속세의 유체'",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "BOSS",
@@ -10332,7 +11553,26 @@
     "attack": "A",
     "defence": "B",
     "resistance": "C",
-    "ability": "공격이 <@eb.key>스플래시</> 대미지를 주며, 저지당하면 상대를 <$ba.stun>기절</>한다. [마지막 쉼표] 초기 방어력과 마법 저항이 비교적 높지만, 처음 쓰러뜨리면 아군이 되며, 방어력과 마법 저항 버프를 잃는 대신 공격과 스킬이 강화된다. [공진 과부하] 리포밍 플럭스에 지속해서 피해를 준다. [허무한 비탄] 모든 목표를 차례대로 공격하고 자신은 대량의 HP를 잃게 되며, 리포밍 플럭스에 있을 때 <@eb.key>공격 속도가 저하</>된다.",
+    "ability": "공격이 <@eb.key>스플래시</> 대미지를 주며, 저지당하면 상대를 <$ba.stun>기절</>시킨다. [마지막 쉼표] 초기 방어력과 마법 저항이 비교적 높지만, 처음 쓰러뜨리면 아군이 되며, 방어력과 마법 저항 버프를 잃는 대신 공격과 스킬이 강화된다. [공진 과부하] 리포밍 플럭스에 지속해서 피해를 준다. [허무한 비탄] 모든 목표를 차례대로 공격하고 자신은 대량의 HP를 잃게 되며, 리포밍 플럭스에 있을 때 <@eb.key>공격 속도가 저하</>된다.",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1531_bbrain": {
+    "enemyId": "enemy_1531_bbrain",
+    "enemyIndex": "BBR",
+    "enemyTags": null,
+    "sortId": 592,
+    "name": "'각성'",
+    "enemyRace": null,
+    "enemyLevel": "BOSS",
+    "description": "도로시가 직접 만들어낸 '비전'. 여기서 사람들은 더 이상 고생할 필요가 없다. 과학기술이 할 수 없는 일은 사랑과 희망이 해낼 수 있다.",
+    "attackType": "공격하지 않음",
+    "endure": "S",
+    "attack": "A+",
+    "defence": "B",
+    "resistance": "A",
+    "ability": "이동 불가, 일정 시간마다 자신을 특정 위치로 이동, [부서진 비전]을 시전해 전장의 모든 유닛에 큰 물리 대미지를 입힌다. 이 대미지는 전장에 있는 모든 아군 유닛이 균등하게 분담한다. 일정 시간마다 좌우 두 방향으로 [여정]을 발사하여 처음 적중된 유닛에 물리 대미지를 입히고, '각성'은 50%의 피격 대미지를 다른 도로시 실험체에 이전한다. 제2형태에서 공격력이 상승, 즉시 전장에 있는 모든 R 시리즈 기동 장갑을 활성화, [부서진 비전]은 고지대 유닛을 <$ba.stun>기절</>시키며, '각성'이 네 방향을 향해 [여정]을 발사한다.",
     "isInvalidKilled": false,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
@@ -10340,8 +11580,10 @@
   "enemy_1532_minima": {
     "enemyId": "enemy_1532_minima",
     "enemyIndex": "CST",
-    "enemyTags": ["drone"],
-    "sortId": 563,
+    "enemyTags": [
+      "drone"
+    ],
+    "sortId": 593,
     "name": "'물욕 대항자'",
     "enemyRace": "드론",
     "enemyLevel": "BOSS",
@@ -10351,7 +11593,28 @@
     "attack": "B",
     "defence": "B",
     "resistance": "A",
-    "ability": "전장에 있으면 모든 [기계] 적이 강화된다. 공격 시 소형 드론을 파견해 일정 시간 동안 목표에 지속적인 마법 대미지를 입히며, 자신은 소형 드론의 지정대상 외의 목표를 우선으로 공격한다. 주기적으로 물리 및 마법 대미지를 막을 수 있는 실드 생성, 실드가 존재하는 동안 공격 범위 내 다른 적은 <$ba.invisible>은신</> 효과를 획득한다. 주기적으로 <@eb.key>주변에 오퍼레이터가 가장 많은 아군 유닛</>을 목표로 지정하여 목표와 주변에 지속적인 마법 대미지를 입힌다. 주기적으로 <@eb.key>주변에 오퍼레이터가 가장 많은 아군 유닛</>을 목표로 지정하여 목표와 주변을 지속해서 <$ba.stun>기절</>시킨다. HP가 0이 되면 스티치가 출현하고 스티치는 일정 시간 동안 <$ba.stun>기절</>한다",
+    "ability": "전장에 있으면 모든 [기계] 적이 강화된다. 공격 시 소형 드론을 파견해 일정 시간 동안 목표에 지속적인 마법 대미지를 입히며, 자신은 소형 드론의 지정대상 외의 목표를 우선으로 공격한다. 주기적으로 물리 및 마법 대미지를 무효화시키는 실드 생성, 실드가 존재하는 동안 공격 범위 내 다른 적은 <$ba.invisible>은신</> 효과를 획득한다. 주기적으로 <@eb.key>주변에 오퍼레이터가 가장 많은 아군 유닛</>을 목표로 지정하여 목표와 주변에 지속적인 마법 대미지를 입힌다. 주기적으로 <@eb.key>주변에 오퍼레이터가 가장 많은 아군 유닛</>을 목표로 지정하여 목표와 주변을 지속해서 <$ba.stun>기절</>시킨다. HP가 0이 되면 스티치가 출현하고 스티치는 일정 시간 동안 <$ba.stun>기절</>한다",
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_1533_stmkgt": {
+    "enemyId": "enemy_1533_stmkgt",
+    "enemyIndex": "LYN",
+    "enemyTags": [
+      "machine"
+    ],
+    "sortId": 594,
+    "name": "'마지막 증기 기사'",
+    "enemyRace": "기계",
+    "enemyLevel": "BOSS",
+    "description": "증기 기사는 빅토리아의 영광이자, 빅토리아의 최강 전투력과 최고 명예의 상징이다. 마지막 한 명의 증기 기사가 먼지투성이인 폐허 속에서 일어나, 자신의 마음속에 있는 빅토리아를 지키기 위해 돌격한다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "S",
+    "defence": "S",
+    "resistance": "B",
+    "ability": "등장 시 공격 속도 및 이동 속도 감소, [증기 증압] 방출 후 해제. [증기 증압]: 공격 속도 및 이동 속도 상승, 상태 이상 효과 면역, 종료 시 자신은 기절. [사수]: 차지 공격, 더 큰 대미지를 3회 입힌다. [필사의 각오]: HP가 일정량 감소할 때마다 공중에 날아올라 <@eb.key>최대 HP가 가장 높은</> 목표를 지정해 주변의 <@eb.key>HP 비율이 가장 높은</> 아군에 수차례 마법 대미지를 입힌다. 제2형태 돌입 시 방어력과 마법 저항이 감소하고, 무한 [증기 증압] 상태가 되며, [필사의 각오]는 목표 1개를 추가로 지정한다",
     "isInvalidKilled": false,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
@@ -10359,8 +11622,10 @@
   "enemy_2003_rockman": {
     "enemyId": "enemy_2003_rockman",
     "enemyIndex": "WDG",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 564,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 595,
     "name": "길을 잃은 거대 석상",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "BOSS",
@@ -10379,7 +11644,7 @@
     "enemyId": "enemy_2004_balloon",
     "enemyIndex": "JTM",
     "enemyTags": null,
-    "sortId": 565,
+    "sortId": 596,
     "name": "제트맨",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10398,7 +11663,7 @@
     "enemyId": "enemy_2005_axetro",
     "enemyIndex": "FSK",
     "enemyTags": null,
-    "sortId": 566,
+    "sortId": 597,
     "name": "'버림받은 자'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10417,7 +11682,7 @@
     "enemyId": "enemy_2006_flsnip",
     "enemyIndex": "RSH",
     "enemyTags": null,
-    "sortId": 567,
+    "sortId": 598,
     "name": "녹슨 망치 전사",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10436,7 +11701,7 @@
     "enemyId": "enemy_2007_flwitch",
     "enemyIndex": "FZM",
     "enemyTags": null,
-    "sortId": 568,
+    "sortId": 599,
     "name": "'프로스트 디재스터'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10455,7 +11720,7 @@
     "enemyId": "enemy_2008_flking",
     "enemyIndex": "GST",
     "enemyTags": null,
-    "sortId": 569,
+    "sortId": 600,
     "name": "'툼스톤'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10473,8 +11738,10 @@
   "enemy_2013_csbot": {
     "enemyId": "enemy_2013_csbot",
     "enemyIndex": "MSC",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 570,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 601,
     "name": "바드 인형",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "BOSS",
@@ -10493,7 +11760,7 @@
     "enemyId": "enemy_2014_csicer",
     "enemyIndex": "ICR",
     "enemyTags": null,
-    "sortId": 571,
+    "sortId": 602,
     "name": "'설녀'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10512,7 +11779,7 @@
     "enemyId": "enemy_2015_csicem",
     "enemyIndex": "ICM",
     "enemyTags": null,
-    "sortId": 572,
+    "sortId": 603,
     "name": "'서리남'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10531,7 +11798,7 @@
     "enemyId": "enemy_2016_csphtm",
     "enemyIndex": "PTM",
     "enemyTags": null,
-    "sortId": 573,
+    "sortId": 604,
     "name": "루시안, '블러드 다이아몬드'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10549,8 +11816,10 @@
   "enemy_2018_csdoll": {
     "enemyId": "enemy_2018_csdoll",
     "enemyIndex": "DOL",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 574,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 605,
     "name": "슬퍼하는 자물쇠",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "BOSS",
@@ -10569,7 +11838,7 @@
     "enemyId": "enemy_2019_cshost",
     "enemyIndex": "HST",
     "enemyTags": null,
-    "sortId": 575,
+    "sortId": 606,
     "name": "'극단 대변자'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10588,7 +11857,7 @@
     "enemyId": "enemy_2020_cswrtr",
     "enemyIndex": "WRT",
     "enemyTags": null,
-    "sortId": 576,
+    "sortId": 607,
     "name": "'극작가'",
     "enemyRace": null,
     "enemyLevel": "BOSS",
@@ -10598,16 +11867,73 @@
     "attack": "A",
     "defence": "A",
     "resistance": "B",
-    "ability": "방어 포인트에 진입 시 스테이지 HP가 30 감소. 공격 시 목표 및 주변 4칸의 아군 유닛에 대미지를 입히며, 주기적으로 전장에 있는 모든 아군 유닛을 공격. 주기적으로 아츠를 시전하여 아군 오퍼레이터의 공격 속도를 대폭 저하하고 초당 일정한 마법 대미지를 입히며, 효과를 받은 오퍼레이터가 퇴각 시 해당 위치는 영구 봉인되어 다시 배치 불가. HP가 절반 이하로 떨어지면 방어력, 마법 저항 및 스킬 발동 속도가 대폭 상승",
+    "ability": "방어 포인트에 진입 시 스테이지 HP가 30 감소. 공격 시 목표 및 주변 4칸의 아군 유닛에 대미지를 입히며, 주기적으로 전장에 있는 모든 아군 유닛을 공격. 주기적으로 아츠를 시전하여 아군 오퍼레이터의 공격 속도를 대폭 저하하고 초당 일정한 마법 대미지를 입히며, 효과를 받은 오퍼레이터가 퇴각 시 해당 위치는 영구 봉인되어 다시 배치 불가. HP가 절반 이하로 떨어지면 방어력, 마법 저항 및 스킬 발동 속도가 대폭 상승",
     "isInvalidKilled": false,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
+  },
+  "enemy_5008_cstrwd": {
+    "enemyId": "enemy_5008_cstrwd",
+    "enemyIndex": "-",
+    "enemyTags": null,
+    "sortId": 620,
+    "name": "-",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "-",
+    "attackType": "-",
+    "endure": "-",
+    "attack": "-",
+    "defence": "-",
+    "resistance": "-",
+    "ability": "-",
+    "isInvalidKilled": true,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": true
+  },
+  "enemy_5009_shtrwd": {
+    "enemyId": "enemy_5009_shtrwd",
+    "enemyIndex": "-",
+    "enemyTags": null,
+    "sortId": 621,
+    "name": "-",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "-",
+    "attackType": "-",
+    "endure": "-",
+    "attack": "-",
+    "defence": "-",
+    "resistance": "-",
+    "ability": "-",
+    "isInvalidKilled": true,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": true
+  },
+  "enemy_5010_catrdg": {
+    "enemyId": "enemy_5010_catrdg",
+    "enemyIndex": "-",
+    "enemyTags": null,
+    "sortId": 622,
+    "name": "-",
+    "enemyRace": null,
+    "enemyLevel": "NORMAL",
+    "description": "-",
+    "attackType": "-",
+    "endure": "-",
+    "attack": "-",
+    "defence": "-",
+    "resistance": "-",
+    "ability": "-",
+    "isInvalidKilled": true,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": true
   },
   "enemy_6001_trsgst": {
     "enemyId": "enemy_6001_trsgst",
     "enemyIndex": "DL1",
     "enemyTags": null,
-    "sortId": 580,
+    "sortId": 623,
     "name": "날렵한 도둑",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -10626,7 +11952,7 @@
     "enemyId": "enemy_6002_trswlf",
     "enemyIndex": "DL2",
     "enemyTags": null,
-    "sortId": 581,
+    "sortId": 624,
     "name": "눈물 흘리는 탐정",
     "enemyRace": null,
     "enemyLevel": "ELITE",
@@ -10644,8 +11970,10 @@
   "enemy_6003_trsslm": {
     "enemyId": "enemy_6003_trsslm",
     "enemyIndex": "DL3",
-    "enemyTags": ["infection"],
-    "sortId": 582,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 625,
     "name": "'반짝이는 풉'",
     "enemyRace": "감염생물",
     "enemyLevel": "ELITE",
@@ -10663,8 +11991,10 @@
   "enemy_6004_pleslm": {
     "enemyId": "enemy_6004_pleslm",
     "enemyIndex": "DL4",
-    "enemyTags": ["infection"],
-    "sortId": 583,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 626,
     "name": "'밀라노'",
     "enemyRace": "감염생물",
     "enemyLevel": "BOSS",
@@ -10682,8 +12012,10 @@
   "enemy_6005_llstone": {
     "enemyId": "enemy_6005_llstone",
     "enemyIndex": "DL5",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 584,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 627,
     "name": "원암 거대 석상",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "BOSS",
@@ -10701,8 +12033,10 @@
   "enemy_6006_fystone": {
     "enemyId": "enemy_6006_fystone",
     "enemyIndex": "DL6",
-    "enemyTags": ["originiumartscraft"],
-    "sortId": 585,
+    "enemyTags": [
+      "originiumartscraft"
+    ],
+    "sortId": 628,
     "name": "원암 광석",
     "enemyRace": "아츠 피조물",
     "enemyLevel": "NORMAL",
@@ -10720,8 +12054,10 @@
   "enemy_6007_mtslm": {
     "enemyId": "enemy_6007_mtslm",
     "enemyIndex": "DL7",
-    "enemyTags": ["infection"],
-    "sortId": 586,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 629,
     "name": "'로밍 하우스'",
     "enemyRace": "감염생물",
     "enemyLevel": "BOSS",
@@ -10739,8 +12075,10 @@
   "enemy_6008_mtslms": {
     "enemyId": "enemy_6008_mtslms",
     "enemyIndex": "DL8",
-    "enemyTags": ["infection"],
-    "sortId": 587,
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 630,
     "name": "형광 원석충",
     "enemyRace": "감염생물",
     "enemyLevel": "NORMAL",
@@ -10751,6 +12089,27 @@
     "defence": "A",
     "resistance": "C",
     "ability": null,
+    "isInvalidKilled": false,
+    "overrideKillCntInfos": {},
+    "hideInHandbook": false
+  },
+  "enemy_6009_nlkgtbs": {
+    "enemyId": "enemy_6009_nlkgtbs",
+    "enemyIndex": "DL9",
+    "enemyTags": [
+      "infection"
+    ],
+    "sortId": 631,
+    "name": "'폭식의 결과'",
+    "enemyRace": "감염생물",
+    "enemyLevel": "BOSS",
+    "description": "\n변이로 인해 촉수 형태의 구기가 생긴 거대 글룸핀서, 강인한 '촉수'가 어쩌다 보니 먹이 섭취 효율을 높여줬다. 녀석이 공업 플랫폼에 저장된 각종 원료를 닥치는 대로 섭취한 결과, 체내에서 다양한 위험 물질이 지속해서 반응하여, 청소 작업이 이상한 냄새가 나는 악몽으로 변해버렸다.",
+    "attackType": "근거리",
+    "endure": "S",
+    "attack": "A",
+    "defence": "A",
+    "resistance": "A",
+    "ability": "위험 등급이 상승하면 공업 원료 1종을 선택하여 시전할 수 있으며, 피격 대미지가 감소하지만, 자신을 저지한 유닛에 무효. HP가 최초로 25% 미만이 되면 최대 HP의 일정 비율에 해당하는 실드를 획득한다",
     "isInvalidKilled": false,
     "overrideKillCntInfos": {},
     "hideInHandbook": false
