@@ -292,7 +292,7 @@ String subProSelector(String eng) {
     }
   };
 
-  return list[eng]['subProfessionName'];
+  return list[eng]?['subProfessionName'] ?? eng;
 }
 
 String proSelector(String eng) {
