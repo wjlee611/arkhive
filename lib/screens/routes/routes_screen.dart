@@ -4,7 +4,6 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
-import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_widget.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
@@ -25,8 +24,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
     switch (screen) {
       case Screens.home:
         return const HomeScreen();
-      case Screens.items:
-        return const ItemScreen();
+      // case Screens.items:
+      //   return const ItemScreen();
       case Screens.stages:
         return const StageScreen();
       case Screens.gimmick:

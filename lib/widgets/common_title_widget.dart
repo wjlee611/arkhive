@@ -15,58 +15,61 @@ class CommonTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Flexible(
-          child: Container(
-            height: Sizes.size1,
-            color: Colors.grey.shade300,
-          ),
+    return Material(
+      borderRadius: BorderRadius.circular(
+        Sizes.size10,
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(
+          Sizes.size10,
         ),
-        Gaps.h10,
-        Container(
-          constraints: BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width - Sizes.size80,
-          ),
+        child: Container(
+          width: double.infinity,
+          height: Sizes.size40,
           decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadiusDirectional.circular(Sizes.size10),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: Sizes.size1,
-                spreadRadius: Sizes.size1,
-                color: Colors.black.withOpacity(0.2),
+            gradient: LinearGradient(
+              colors: [
+                color.withOpacity(0.3),
+                Colors.white.withOpacity(0),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            border: Border(
+              top: BorderSide(
+                color: color,
+                width: Sizes.size3,
+              ),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Gaps.v5,
+              Text(
+                text,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: FontFamily.nanumGothic,
+                  fontSize: Sizes.size16,
+                  fontWeight: FontWeight.w700,
+                  shadows: [
+                    const Shadow(
+                      blurRadius: Sizes.size10,
+                    ),
+                    Shadow(
+                      blurRadius: Sizes.size5,
+                      color: color,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size3,
-              horizontal: Sizes.size20,
-            ),
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontWeight: FontWeight.w700,
-                fontSize: Sizes.size14,
-                color: Colors.white,
-                shadows: [
-                  Shadow(blurRadius: Sizes.size1),
-                ],
-              ),
-            ),
-          ),
         ),
-        Gaps.h10,
-        Flexible(
-          child: Container(
-            height: Sizes.size1,
-            color: Colors.grey.shade300,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
