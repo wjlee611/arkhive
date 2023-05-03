@@ -136,6 +136,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
           if (newCategory == 'enemy') {
             updateRemain.add(key: 'image/enemy', value: data);
           }
+          // TODO: Item image 추가
           // Add module data
           if (newCategory == 'module') {
             updateRemain.add(key: 'module_data', value: data);
@@ -197,6 +198,12 @@ class _UpdateScreenState extends State<UpdateScreen> {
       Map<String, List<String>> listJson = {"data": dataLists[category]!};
       await storage.write(key: 'list_$category', value: json.encode(listJson));
     }
+
+    // 펭귄 물류 데이터 분석 부서 업데이트
+    setState(() {
+      _updateStatus = 'Update penguin...';
+    });
+    // TODO: penguin logistics statics 업데이트
 
     // DB 버전 업데이트
     await storage.write(key: 'db_version', value: targetDBVersion);
@@ -339,6 +346,16 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 .loadString('assets/json/stage_table.json'))['stages'];
           } catch (_) {}
           serverPath = 'data/stage_table/stages';
+          savePath = category;
+          break;
+        }
+      case 'item':
+        {
+          try {
+            localData = await json.decode(await rootBundle
+                .loadString('assets/json/item_table.json'))['items'];
+          } catch (_) {}
+          serverPath = 'data/item_table/items';
           savePath = category;
           break;
         }
