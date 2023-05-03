@@ -3738,13 +3738,5 @@
       "uni_set_fNearl",
       "uni_set_reception"
     ]
-  },
-  "230111": {
-    "operator": ["char_285_medic2", "char_286_cast3"]
-  },
-  "230112": {
-    "operator": ["char_220_grani", "char_263_skadi"],
-    "token": ["token_10024_ebnhlz_rcube", "token_10026_bgsnow_subbow"],
-    "trap": ["trap_090_recodr", "trap_091_brctrl"]
   }
 }

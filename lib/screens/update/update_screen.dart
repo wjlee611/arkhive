@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
 class UpdateScreen extends StatefulWidget {
   const UpdateScreen({super.key});
@@ -203,7 +204,9 @@ class _UpdateScreenState extends State<UpdateScreen> {
     setState(() {
       _updateStatus = 'Update penguin...';
     });
-    // TODO: penguin logistics statics 업데이트
+    if (await _penguinUpdater()) {
+      skipList.add('penguin-stats');
+    }
 
     // DB 버전 업데이트
     await storage.write(key: 'db_version', value: targetDBVersion);
@@ -496,6 +499,35 @@ class _UpdateScreenState extends State<UpdateScreen> {
     }
 
     return skipList;
+  }
+
+  Future<bool> _penguinUpdater() async {
+    const storage = FlutterSecureStorage();
+    String data;
+
+    try {
+      // use penguin api
+      Uri uri = Uri.parse(
+          'https://penguin-stats.io/PenguinStats/api/v2/result/matrix');
+      final res = await http.get(uri);
+
+      if (res.statusCode == 200) {
+        data = res.body;
+      } else {
+        throw Exception('Fail penguin api');
+      }
+    } catch (_) {
+      try {
+        // use local penguin data
+        data = await rootBundle.loadString('assets/json/item_drop_table.json');
+      } catch (_) {
+        // fail
+        return true;
+      }
+    }
+    // isFail = false;
+    await storage.write(key: 'penguin_stats', value: data);
+    return false;
   }
 
   void _onDeleteTap() async {
