@@ -37,6 +37,10 @@ class _StageListContainerState extends State<StageListContainer>
     const storage = FlutterSecureStorage();
     Map<String, List<StageModel>> result = {};
 
+    const easyName = '스토리 체험 환경';
+    const normalName = '표준 실전 환경';
+    const toughName = '고난 험지 환경';
+
     String? stageIndexString = await storage.read(key: 'index/stage');
     if (stageIndexString == null || stageIndexString == 'null') return {};
 
@@ -66,24 +70,40 @@ class _StageListContainerState extends State<StageListContainer>
       for (var key in result.keys.toList().reversed) key: result[key]!,
     };
 
-    // FOR MAIN 9~ ZONE
     Map<String, List<StageModel>> tmp = {};
     for (var key in resultInv.keys) {
       for (var stage in resultInv[key]!) {
-        String key = stage.zoneId ?? 'NONE';
+        String zone = stage.zoneId ?? 'NONE';
+        // FOR MAIN 9~ ZONE
         switch (stage.diffGroup) {
+          case 'ALL':
+            zone = 'ALL';
+            break;
           case 'EASY':
-            key = '스토리 체험 환경';
+            zone = easyName;
             break;
           case 'NORMAL':
-            key = '표준 실전 환경';
+            zone = normalName;
             break;
           case 'TOUGH':
-            key = '고난 험지 환경';
+            zone = toughName;
             break;
         }
-        if (tmp[key] == null) tmp[key] = [];
-        tmp[key]!.add(stage);
+
+        if (zone == 'ALL') {
+          if (tmp[easyName] == null) tmp[easyName] = [];
+          tmp[easyName]!.add(stage);
+
+          if (tmp[normalName] == null) tmp[normalName] = [];
+          tmp[normalName]!.add(stage);
+
+          if (key == 'main_9') continue;
+          if (tmp[toughName] == null) tmp[toughName] = [];
+          tmp[toughName]!.add(stage);
+        } else {
+          if (tmp[zone] == null) tmp[zone] = [];
+          tmp[zone]!.add(stage);
+        }
       }
     }
     resultInv = tmp;
