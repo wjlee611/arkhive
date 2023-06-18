@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 class CheckboxWidget extends StatelessWidget {
   const CheckboxWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.isImm,
-  }) : super(key: key);
+  });
 
   final String title;
   final bool isImm;

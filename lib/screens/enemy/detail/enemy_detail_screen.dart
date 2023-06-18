@@ -1,15 +1,18 @@
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/screens/enemy/detail/widgets/checkbox_widget.dart';
-import 'package:arkhive/screens/enemy/detail/widgets/diagonal_header_widget.dart';
-import 'package:arkhive/screens/enemy/detail/widgets/infotag_widget.dart';
+import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
+import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
+import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';
+import 'package:arkhive/screens/enemy/detail/widgets/enemy_tag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/level_select_button_widget.dart';
-import 'package:arkhive/screens/enemy/detail/widgets/stat_container_widget.dart';
-import 'package:arkhive/screens/enemy/detail/widgets/titletext_widget.dart';
-import 'package:flutter/foundation.dart';
+import 'package:arkhive/widgets/common_title_widget.dart';
+import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class EnemyDetailScreen extends StatefulWidget {
   final EnemyModel enemy;
@@ -34,6 +37,17 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
   void initState() {
     super.initState();
     _selectedLevel = widget.initLevel;
+  }
+
+  Future<EnemyDataModel?> _futureEnemyData() async {
+    const storage = FlutterSecureStorage();
+
+    String? enemyDataString =
+        await storage.read(key: 'enemy_data/${widget.enemy.enemyId}');
+    if (enemyDataString == null) return null;
+
+    var enemyDataJson = await json.decode(enemyDataString);
+    return EnemyDataModel.fromJson(enemyDataJson);
   }
 
   void _onTapLevel(int i) {
@@ -70,172 +84,83 @@ class _EnemyDetailScreenState extends State<EnemyDetailScreen> {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Gaps.v130,
-                  if (widget.enemy.level.length > 1)
-                    LevelSelectButton(
-                      selectedLevel: _selectedLevel,
-                      levelLength: widget.enemy.level.length,
-                      onTapLevel: _onTapLevel,
-                    ),
-                  widget.enemy.level.length > 1 ? Gaps.v16 : Container(),
-                  const TitleText(title: "개체 이름"),
-                  Gaps.v5,
-                  Padding(
+          FutureBuilder(
+            future: _futureEnemyData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                  child: Padding(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: Sizes.size5),
-                    child: Text(
-                      widget.enemy.name,
-                      style: TextStyle(
-                        color: Colors.blueGrey.shade800,
-                        fontSize: Sizes.size16,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  if (widget.enemy.category != "")
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: Sizes.size5),
-                      child: Container(
-                        margin: const EdgeInsets.only(top: Sizes.size5),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: Sizes.size1,
-                              spreadRadius: Sizes.size1 / 10,
-                              color: Colors.black.withOpacity(0.2),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              height: Sizes.size20,
-                              width: Sizes.size5,
-                              color: Colors.yellow.shade700,
-                            ),
-                            Container(
-                              height: Sizes.size20,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.size10),
-                              child: Center(
-                                child: Text(
-                                  widget.enemy.category,
-                                  style: TextStyle(
-                                    color: Colors.blueGrey.shade800,
-                                    fontSize: Sizes.size12,
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  Gaps.v20,
-                  const TitleText(title: "개체 전투 능력"),
-                  Gaps.v7,
-                  InfoTag(
-                    title: EnemyInfoTitle.atkType,
-                    value: widget.enemy.attackType,
-                  ),
-                  Gaps.v6,
-                  InfoTag(
-                    title: EnemyInfoTitle.weightLevel,
-                    value: widget.enemy.level[_selectedLevel].weight,
-                  ),
-                  Gaps.v2,
-                  SingleChildScrollView(
-                    padding: const EdgeInsets.all(Sizes.size5),
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+                        const EdgeInsets.symmetric(horizontal: Sizes.size20),
+                    child: Column(
                       children: [
-                        StatContainer(
-                          title: "체력",
-                          stat: widget.enemy.level[_selectedLevel].hp,
+                        Gaps.v130,
+                        if (snapshot.data!.values.length > 1)
+                          LevelSelectButton(
+                            selectedLevel: _selectedLevel,
+                            levelLength: snapshot.data!.values.length,
+                            onTapLevel: _onTapLevel,
+                          ),
+                        snapshot.data!.values.length > 1
+                            ? Gaps.v16
+                            : Container(),
+                        CommonTitleWidget(
+                          text: widget.enemy.name!,
+                          color: Colors.yellow.shade800,
                         ),
-                        Gaps.h10,
-                        StatContainer(
-                          title: "공격력",
-                          stat: widget.enemy.level[_selectedLevel].atk,
+                        Gaps.v5,
+                        Wrap(
+                          direction: Axis.horizontal,
+                          spacing: Sizes.size4,
+                          runSpacing: Sizes.size4,
+                          children: [
+                            if (widget.enemy.enemyLevel != null)
+                              EnemyLevelTagWidget(
+                                  tag: widget.enemy.enemyLevel!),
+                            if (widget.enemy.enemyRace != null)
+                              EnemyTagWidget(tag: widget.enemy.enemyRace!),
+                          ],
                         ),
-                        Gaps.h10,
-                        StatContainer(
-                          title: "방어력",
-                          stat: widget.enemy.level[_selectedLevel].def,
+                        Gaps.v16,
+                        EnemyCombatInfo(
+                          enemy: widget.enemy,
+                          enemyDatas: snapshot.data!.values,
+                          level: _selectedLevel,
                         ),
-                        Gaps.h10,
-                        StatContainer(
-                          title: "마법 저항",
-                          stat: widget.enemy.level[_selectedLevel].res,
-                        ),
+                        if (widget.enemy.ability != null)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Gaps.v16,
+                              const CommonTitleWidget(text: '특수 능력'),
+                              Gaps.v5,
+                              FormattedTextWidget(text: widget.enemy.ability!),
+                            ],
+                          ),
+                        if (snapshot
+                            .data!.values[0].talentBlackboard.isNotEmpty)
+                          EnemyHiddenInfoWidget(
+                            enemyDatas: snapshot.data!.values,
+                            level: _selectedLevel,
+                          ),
+                        Gaps.v130,
                       ],
                     ),
                   ),
-                  Gaps.v20,
-                  const TitleText(title: "개체 특이사항"),
-                  Gaps.v7,
-                  InfoTag(
-                    title: EnemyInfoTitle.enemyType,
-                    value: widget.enemy.enemyType,
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.yellow.shade800,
                   ),
-                  Gaps.v5,
-                  CheckboxWidget(
-                    title: "침묵 저항",
-                    isImm: widget.enemy.level[_selectedLevel].silenceImm,
-                  ),
-                  Gaps.v5,
-                  CheckboxWidget(
-                    title: "기절 저항",
-                    isImm: widget.enemy.level[_selectedLevel].stunImm,
-                  ),
-                  Gaps.v5,
-                  if (widget.enemy.level[_selectedLevel].abilities != "")
-                    Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: Sizes.size4),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            left: BorderSide(
-                              color: Colors.blueGrey.shade600,
-                              width: Sizes.size4,
-                            ),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: Sizes.size5),
-                          child: Text(
-                            widget.enemy.level[_selectedLevel].abilities,
-                            style: TextStyle(
-                              color: Colors.blueGrey.shade800,
-                              fontSize: Sizes.size14,
-                              fontFamily: FontFamily.nanumGothic,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  Gaps.v60,
-                ],
-              ),
-            ),
+                );
+              }
+            },
           ),
-          DiagonalHeader(
+          EnemyHeader(
             image: widget.enemyImage,
-            code: widget.enemy.code,
+            tag: widget.enemy.enemyId!,
+            code: widget.enemy.enemyIndex!,
           ),
         ],
       ),

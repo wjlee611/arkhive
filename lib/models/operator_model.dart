@@ -1,167 +1,242 @@
+import 'package:arkhive/models/common_models.dart';
+
+/// USING AT
+///
+/// operator
+/// token
+/// trap
+
 class OperatorModel {
-  final String name, rare, class_, position, imageName;
-  final List<TalentModel> talent;
-  final List<SkillModel> skill;
-  final List<ModuleModel> module;
+  final String? name,
+      description,
+      position,
+      profession,
+      subProfessionId,
+      nationId,
+      groupId,
+      teamId;
+  final int? maxPotentialLevel, rarity;
+  final bool? isNotObtainable;
+  final List<String> tagList;
+  final List<OperatorTalentsCandidatesModel> traitCandidate;
+  final List<OperatorLevelPhaseModel> phases;
+  final List<OperatorSkillsModel> skills;
+  final List<OperatorTalentsModel> talents;
+  final List<OperatorPotentialRanksModel> potentialRanks;
+  final List<OperatorLevelPhaseAttrKeyFrameModel> favorKeyFrames;
+  final List<OperatorAllSkillLvlupModel> allSkillLvlup;
 
   OperatorModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        rare = json['rare'],
-        class_ = json['class'],
+        description = json['description'],
+        nationId = json['nationId'],
+        groupId = json['groupId'],
+        teamId = json['teamId'],
         position = json['position'],
-        imageName = json["image_name"],
-        talent = [
-          if (json['talent'] != null)
-            for (var talJson in json['talent']) TalentModel.fromJson(talJson)
+        profession = json['profession'],
+        subProfessionId = json['subProfessionId'],
+        maxPotentialLevel = json['maxPotentialLevel'],
+        rarity = json['rarity'],
+        isNotObtainable = json['isNotObtainable'],
+        tagList = [
+          if (json['tagList'] != null)
+            for (var data in json['tagList']) data
         ],
-        skill = [
-          if (json['skill'] != null)
-            for (var skillJson in json['skill']) SkillModel.fronJson(skillJson)
+        traitCandidate = [
+          if (json['trait'] != null && json['trait']['candidates'] != null)
+            for (var data in json['trait']['candidates'])
+              OperatorTalentsCandidatesModel.fromJson(data)
         ],
-        module = [
-          if (json['module'] != null)
-            for (var moduleJson in json['module'])
-              ModuleModel.fromJson(moduleJson)
+        phases = [
+          if (json['phases'] != null)
+            for (var data in json['phases'])
+              OperatorLevelPhaseModel.fromJson(data)
+        ],
+        skills = [
+          if (json['skills'] != null)
+            for (var data in json['skills']) OperatorSkillsModel.fromJson(data)
+        ],
+        talents = [
+          if (json['talents'] != null)
+            for (var data in json['talents'])
+              OperatorTalentsModel.fromJson(data)
+        ],
+        potentialRanks = [
+          if (json['potentialRanks'] != null)
+            for (var data in json['potentialRanks'])
+              OperatorPotentialRanksModel.fromJson(data)
+        ],
+        favorKeyFrames = [
+          if (json['favorKeyFrames'] != null)
+            for (var data in json['favorKeyFrames'])
+              OperatorLevelPhaseAttrKeyFrameModel.fromJson(data)
+        ],
+        allSkillLvlup = [
+          if (json['allSkillLvlup'] != null)
+            for (var data in json['allSkillLvlup'])
+              OperatorAllSkillLvlupModel.fromJson(data)
         ];
 }
 
-class TalentModel {
-  final String name, info;
+// OPERATOR STAT MODEL
+class OperatorLevelPhaseModel {
+  final String? characterPrefabKey, rangeId;
+  final int? maxLevel;
+  final List<OperatorLevelPhaseAttrKeyFrameModel> attributesKeyFrames;
+  final List<EvolveCostModel> evolveCost;
 
-  TalentModel.fromJson(Map<String, dynamic> json)
-      : name = json['talent_name'],
-        info = json['talent_info'];
-}
-
-class SkillModel {
-  final String name, sp, duration, type, info;
-
-  SkillModel.fronJson(Map<String, dynamic> json)
-      : name = json['skill_name'],
-        sp = json['sp'],
-        duration = json['duration'],
-        type = json['type'],
-        info = json['info'];
-}
-
-class ModuleModel {
-  final String name, code;
-  // ignore: library_private_types_in_public_api
-  final List<_ModuleEffectModel> effect;
-
-  ModuleModel.fromJson(Map<String, dynamic> json)
-      : name = json['module_name'],
-        code = json['module_code'],
-        effect = [
-          for (var effJson in json['effect'])
-            _ModuleEffectModel.fromJson(effJson)
+  OperatorLevelPhaseModel.fromJson(Map<String, dynamic> json)
+      : characterPrefabKey = json['characterPrefabKey'],
+        rangeId = json['rangeId'],
+        maxLevel = json['maxLevel'],
+        attributesKeyFrames = [
+          if (json['attributesKeyFrames'] != null)
+            for (var data in json['attributesKeyFrames'])
+              OperatorLevelPhaseAttrKeyFrameModel.fromJson(data)
+        ],
+        evolveCost = [
+          if (json['evolveCost'] != null)
+            for (var data in json['evolveCost']) EvolveCostModel.fromJson(data)
         ];
 }
 
-class _ModuleEffectModel {
-  final String stat;
-  final TalentModel talent;
+class OperatorLevelPhaseAttrKeyFrameModel {
+  final int level;
+  final OperatorStatsDataModel data;
 
-  _ModuleEffectModel.fromJson(Map<String, dynamic> json)
-      : stat = json['stat'],
-        talent = TalentModel.fromJson(json['talent']);
+  OperatorLevelPhaseAttrKeyFrameModel.fromJson(Map<String, dynamic> json)
+      : level = json['level'],
+        data = OperatorStatsDataModel.fromJson(json['data']);
 }
 
-class OperatorPositions {
-  static String vanguard = '뱅가드';
-  static String sniper = '스나이퍼';
-  static String guard = '가드';
-  static String caster = '캐스터';
-  static String defender = '디펜더';
-  static String medic = '메딕';
-  static String specialist = '스페셜리스트';
-  static String supporter = '서포터';
-  // vanguard positions
-  static String tactician =
-      "공격 범위 내 전술 포인트를 1회 선택해 지원군 소환 가능, 지원군이 저지하는 적을 공격할 때 본인 공격력이 150%까지 상승";
-  static String charger = "적 처치시 배치 코스트 +1, 퇴각 시 초기 배치 코스트 반환";
-  static String pioneer = "적 2명 저지 가능";
-  static String standardBearer = "스킬을 사용하는 동안 저지 수가 0이 된다";
-  // sniper positions
-  static String marksman = "비행 유닛 우선 공격";
-  static String marksman_1star =
-      "공중 목표 우선 공격, 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다";
-  static String artilleryman = "적에게 광역 물리 대미지";
-  static String deadeye = "공격 범위 안의 가장 방어력이 낮은 적을 우선적으로 공격";
-  static String heavyshooter = "고정밀 근거리 사격";
-  static String spreadshooter =
-      "공격 범위 내 모든 적 공격. 자신의 전방 첫 줄의 적에게 공격력이 150%까지 상승한다";
-  static String besieger = "공격 범위 안의 가장 무거운 적을 우선적으로 공격";
-  static String flinger =
-      "지상에 위치한 작은 범위 내 적에게 2회 물리 대미지를 준다. (2번째 공격은 여진으로써, 대미지가 공격력의 절반으로 감소)";
-  // guard positions
-  static String dreadnought = "적 1명 저지 가능"; // 드레드노트
-  static String dreadnought_1star =
-      "적 1명 저지 가능. 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다"; // 드레드노트
-  static String lord = "공격력의 80%로 원거리 공격 가능"; // 로드
-  static String centurion = "저지 중인 모든 적 동시 공격"; // 공격수
-  static String instructor =
-      "비교적 먼 곳의 적도 공격 가능, 저지하지 않은 적 공격 시 공격력이 120%까지 상승"; // 교관
-  static String fighter = "적 1명 저지 가능"; // 파이터
-  static String artsFighter = "일반 공격으로 적에게 마법 대미지"; // 아츠 파이터
-  static String musha = "치료 대상으로 판정되지 않으며, 매 회 공격을 통해 자신의 HP를 70회복한다"; // 무사
-  static String swordmaster = "일반 공격이 2회 연속 공격"; // 소드마스터
-  static String liberator =
-      "평소에는 공격하지 않고 저지 가능 수가 0이며, 스킬 미발동 상태에서 40초간 공격력이 최대 +200%까지 점진적으로 상승, 스킬 종료 후 공격력 리셋"; // 해방자
-  static String reaper =
-      "아군의 치료를 받을 수 없으며, 공격 시 광역 대미지를 입히고, 적 1명 적중할 때마다 자신의 HP가 50만큼 회복, 최대 효과 수는 저지 가능 수와 동일"; // 리퍼
-  // caster positions
-  static String coreCaster = "일반 공격으로 적에게 마법 대미지"; // 코어 캐스터
-  static String splashCaster = "일반 공격으로 적에게 광역 마법 대미지"; // 스플래시 캐스터
-  static String mechAccordCaster =
-      "공중 유닛을 조작하여 적에게 마법 대미지. 공중 유닛은 연속으로 동일한 적을 공격할 시 대미지가 증가한다(최고 오퍼레이터의 110% 공격력에 해당하는 대미지)"; // 메카 캐스터
-  static String mysticCaster =
-      "일반 공격으로 적에게 마법 대미지, 공격 목표를 못 찾으면 공격 에너지를 저장한 후 일제히 발사(최대 3개)"; // 미스틱 캐스터
-  static String chainCaster =
-      "공격 시 마법 대미지 부여, 공격이 4명의 적에게 튕기며, 튕길 때마다 대미지가 15%씩 감소, 동시에 일시적인 [정지] 효과 부여"; // 체인 캐스터
-  static String phalanxCaster =
-      "평소엔 공격을 하지 않고 방어력과 마법 저항이 대폭 상승(평상시 방어력 +200%, 마법저항력 +20), 스킬 발동 시 공격 범위 내의 모든 적에게 광역 마법 대미지"; // 진법 캐스터
-  static String blastCaster = "공격이 초원거리 범위 마법 대미지를 준다"; // 블래스트 캐스터
-  // defender positions
-  static String protector = "적 3명 저지 가능"; // 프로텍터
-  static String artsProtector = "스킬 발동 시 일반공격이 마법 피해를 준다"; // 아츠 프로텍터
-  static String guardian = "스킬로 아군 유닛 HP 회복"; // 가디언
-  static String sentinelIronGuard = "적 3명 저지 가능, 원거리 공격을 한다"; // 파수꾼
-  static String juggernaut = "아군의 치료를 받지 못한다"; // 저거너트
-  static String fortress = "적을 저지하지 않을 때, 원거리 광역 물리 공격 시전"; // 포트리스
-  static String duelist = "적을 저지할 때만 SP 회복 가능"; // 결전자
-  // medic positions
-  static String singleMedic = "아군 HP 회복"; // 메딕
-  static String singleMedic_1star =
-      "아군 HP를 회복할 수 있고, 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다"; // 메딕
-  static String multiTargetMedic = "아군 유닛 3명의 HP를 동시 회복"; // 멀티 타겟 메딕
-  static String therapist =
-      "치료 범위가 넓지만 치료 대상이 멀리 있을 시 치료 효과가 80%로 변한다"; // 테라피스트
-  static String wanderingMedic =
-      "아군 유닛의 HP 회복, 동시에 공격력의 50%에 해당하는 원소 피해 회복(부상이 없는 아군 유닛의 원소 피해도 회복 가능)"; // 방랑 메딕
-  static String incantationMedic =
-      "공격이 마법 대미지를 입히고, 적 공격 시 공격범위 내의 아군 1명에게 피해량의 50%만큼 HP를 치료"; // 주술 메딕
-  // specialist positions
-  static String executor = "재배치 시간 대폭 감소"; // 처형자
-  static String executor_1star =
-      "공격을 진행하지 않고, 배치 인원 수 제약을 받지 않으나, 재배치 시간이 매우 길다"; // 처형자
-  static String hookmaster = "스킬을 통해 적의 위치를 강제 이동. 원거리 유닛 칸에도 배치 가능"; // 후크마스터
-  static String pushStroker = "저지 중인 모든 적 동시 공격. 원거리 유닛 칸에도 배치 가능"; // 추격자
-  static String ambusher =
-      "공격 범위 내 모든 적 동시 공격. 50%의 물리 및 마법 회피율 보유, 쉽게 적의 목표가 되지 않음"; // 매복자
-  static String merchant =
-      "재배치 시간 감소, 퇴각 시 배치 코스트를 반환하지 않으며, 3초마다 배치 코스트 3 소모(부족 시 자동 퇴각)"; // 상인
-  static String trapmaster = "전투를 지원하는 함정 사용 가능, 단 적이 있는 칸에는 함정 설치 불가"; // 함정술사
-  static String dollkeeper =
-      "치명상을 입어도 퇴각하지 않고 [대역]을 교체 투입하며(저지 가능 수 0), 20초 후 다시 본체로 교체"; // 인형사
-  static String geek = "자신의 HP가 지속적으로 감소"; // 기인
-  // supporter positions
-  static String decelBinder = "적에게 마법 대미지를 입히고 잠시 [정지] 효과를 준다"; // 감속자
-  static String summoner = "적에게 마법 대미지, 소환물 사용 가능"; // 소환사
-  static String artificer = "적 2명 저지 가능, [지원 장치]를 사용해 작전 지원"; // 기능공
-  static String hexer = "일반 공격으로 적에게 마법 대미지"; // 약화자
-  static String bard =
-      "공격을 진행하지 않고 공격 범위 내 모든 아군의 HP를 매초마다 자신의 공격력 10%만큼 회복, 자신은 [격려]의 영향을 받지 않는다"; // 음유시인
-  static String abjurer =
-      "공격 시 마법 대미지를 입히고, 스킬 발동 후 아군 치료로 변경(치유량은 공격력의 75%에 해당)"; // 비호자
+// OPERATOR SKILLS MODEL
+class OperatorSkillsModel {
+  final String? skillId;
+  final List<OperatorSkillslevelUpCostCondModel> levelUpCostCond;
+  final OperatorUnlockCondModel unlockCond;
+
+  OperatorSkillsModel.fromJson(Map<String, dynamic> json)
+      : skillId = json['skillId'],
+        levelUpCostCond = [
+          if (json['levelUpCostCond'] != null)
+            for (var data in json['levelUpCostCond'])
+              OperatorSkillslevelUpCostCondModel.fromJson(data)
+        ],
+        unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {});
+}
+
+class OperatorSkillslevelUpCostCondModel {
+  final OperatorUnlockCondModel unlockCond;
+  final int? lvlUpTime;
+  final List<EvolveCostModel> levelUpCost;
+
+  OperatorSkillslevelUpCostCondModel.fromJson(Map<String, dynamic> json)
+      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
+        lvlUpTime = json['lvlUpTime'],
+        levelUpCost = [
+          if (json['levelUpCost'] != null)
+            for (var data in json['levelUpCost']) EvolveCostModel.fromJson(data)
+        ];
+}
+
+class OperatorAllSkillLvlupModel {
+  final OperatorUnlockCondModel unlockCond;
+  final List<EvolveCostModel> lvlUpCost;
+
+  OperatorAllSkillLvlupModel.fromJson(Map<String, dynamic> json)
+      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
+        lvlUpCost = [
+          if (json['lvlUpCost'] != null)
+            for (var data in json['lvlUpCost']) EvolveCostModel.fromJson(data)
+        ];
+}
+
+// OPERATOR TALENTS MODEL
+class OperatorTalentsModel {
+  final List<OperatorTalentsCandidatesModel> candidates;
+
+  OperatorTalentsModel.fromJson(Map<String, dynamic> json)
+      : candidates = [
+          if (json['candidates'] != null)
+            for (var data in json['candidates'])
+              OperatorTalentsCandidatesModel.fromJson(data)
+        ];
+}
+
+class OperatorTalentsCandidatesModel implements PotentialRank {
+  @override
+  final OperatorUnlockCondModel unlockCondition;
+  @override
+  final int? requiredPotentialRank;
+  final String? name, description, overrideDescripton;
+  final List<BlackboardModel> blackboard;
+
+  OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
+      : unlockCondition =
+            OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
+        requiredPotentialRank = json['requiredPotentialRank'],
+        name = json['name'],
+        description = json['description'],
+        overrideDescripton = json['overrideDescripton'],
+        blackboard = [
+          if (json['blackboard'] != null)
+            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
+        ];
+}
+
+// OPERATOR POTENTIAL RANKS MODEL
+class OperatorPotentialRanksModel {
+  final int? type;
+  final String? description;
+  final List<OperatorPotentialAttrModifireModel> attributeModifiers;
+
+  OperatorPotentialRanksModel.fromJson(Map<String, dynamic> json)
+      : type = json['type'],
+        description = json['description'],
+        attributeModifiers = [
+          if (json['buff'] != null)
+            for (var data in json['buff']['attributes']['attributeModifiers'])
+              OperatorPotentialAttrModifireModel.fromJson(data)
+        ];
+}
+
+class OperatorPotentialAttrModifireModel {
+  final String attributeType;
+  final double value;
+
+  OperatorPotentialAttrModifireModel.fromJson(Map<String, dynamic> json)
+      : attributeType = json['attributeType'].toString(),
+        value = json['value'];
+}
+
+// OPERATOR ETC MODEL
+class OperatorStatsDataModel {
+  final double maxHp,
+      atk,
+      def,
+      magicResistance,
+      cost,
+      blockCnt,
+      respawnTime,
+      baseAttackTime,
+      attackSpeed;
+
+  OperatorStatsDataModel.fromJson(Map<String, dynamic> json)
+      : maxHp = json['maxHp'].toDouble(),
+        atk = json['atk'].toDouble(),
+        def = json['def'].toDouble(),
+        magicResistance = json['magicResistance'],
+        cost = json['cost'].toDouble(),
+        blockCnt = json['blockCnt'].toDouble(),
+        respawnTime = json['respawnTime'].toDouble(),
+        baseAttackTime = json['baseAttackTime'],
+        attackSpeed = json['attackSpeed'];
+}
+
+class OperatorUnlockCondModel {
+  final int? phase, level;
+
+  OperatorUnlockCondModel.fromJson(Map<String, dynamic> json)
+      : phase = json['phase'],
+        level = json['level'];
 }

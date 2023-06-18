@@ -37,7 +37,7 @@ class UpdateIndicator extends StatelessWidget {
           Column(
             children: [
               Text(
-                "${((current / remain) * 100).toStringAsFixed(1)}%",
+                "${((current / remain) * 100).toStringAsFixed(2)}%",
                 style: TextStyle(
                   color: Colors.yellow.shade700,
                   fontFamily: FontFamily.nanumGothic,

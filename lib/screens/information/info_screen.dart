@@ -1,6 +1,5 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/global_data.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/information/widgets/info_container_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +13,6 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  final GlobalData _globalData = GlobalData();
-
   void _tabDonate() {
     // TODO: donate function
   }
@@ -120,12 +117,12 @@ class _InfoScreenState extends State<InfoScreen> {
                   ),
                   const InfoContainer(
                     tag: "버전",
-                    info: GlobalData.appVersion,
+                    info: "app version",
                   ),
                   Gaps.v20,
-                  InfoContainer(
+                  const InfoContainer(
                     tag: "게임 버전",
-                    info: _globalData.oldVer.replaceAll('"', ''),
+                    info: "game version",
                   ),
                   Gaps.v20,
                   const InfoContainer(

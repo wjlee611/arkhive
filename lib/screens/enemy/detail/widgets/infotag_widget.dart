@@ -1,5 +1,4 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
 
@@ -16,19 +15,14 @@ class InfoTag extends StatelessWidget {
     required String title,
     required String value,
   }) {
-    if (title == EnemyInfoTitle.atkType) {
-      if (value == EnemyAtkType.noAttack) return Colors.blueGrey.shade600;
+    if (title == '공격 방식') {
+      if (value == '공격하지 않음') return Colors.blueGrey.shade600;
       if (value.contains('아츠')) return Colors.redAccent;
       if (value.contains('치료')) return Colors.green;
       return Colors.blueAccent;
     }
-    if (title == EnemyInfoTitle.weightLevel) {
+    if (title == '무게 레벨') {
       return Colors.yellow.shade700;
-    }
-    if (title == EnemyInfoTitle.enemyType) {
-      if (value == EnemyType.elite) return Colors.deepOrange;
-      if (value == EnemyType.boss) return Colors.purple;
-      return Colors.blueGrey.shade600;
     }
     return Colors.blueGrey.shade600;
   }

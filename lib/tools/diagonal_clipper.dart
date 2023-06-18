@@ -6,7 +6,7 @@ class DiagonalClipper extends CustomClipper<Path> {
     final path = Path();
     // 대각선이 끊어지는 부분 수정가능
     path.lineTo(0.0, size.height);
-    path.lineTo(size.width, size.height * 0.4);
+    path.lineTo(size.width, size.height * 0.6);
     path.lineTo(size.width, 0.0);
     path.close();
     return path;

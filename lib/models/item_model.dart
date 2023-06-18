@@ -1,27 +1,63 @@
 class ItemModel {
-  final String code, name, info;
-  final int tier;
-  final List<String> obtain;
-  // ignore: library_private_types_in_public_api
-  final List<_DropRateModel> drop;
+  final String itemId;
+  final String name;
+  final String description;
+  final int rarity;
+  final String usage;
+  final String classifyType; // GOLD, MATERIAL, DIAMOND, DIAMOND_SHD ...
 
   ItemModel.fromJson(Map<String, dynamic> json)
-      : code = json['code'],
+      : itemId = json['itemId'],
         name = json['name'],
-        tier = int.parse(json['tier']),
-        info = json['info'],
-        obtain = [for (var obtain_ in json['obtain']) obtain_.toString()],
-        drop = [
-          if (json['drop'] != null)
-            for (var dropJson in json['drop']) _DropRateModel.fromJson(dropJson)
-        ];
+        description = json['description'],
+        rarity = json['rarity'],
+        usage = json['usage'],
+        classifyType = json['classifyType'];
 }
 
-class _DropRateModel {
-  final String stage;
-  final double sanityPerItem;
+class ItemDropModel {
+  final String stageId;
+  final String itemId;
+  final int times;
+  final int quantity;
 
-  _DropRateModel.fromJson(Map<String, dynamic> json)
-      : stage = json['stage'],
-        sanityPerItem = double.parse(json['spi']);
+  ItemDropModel.fromJson(Map<String, dynamic> json)
+      : stageId = json['stageId'],
+        itemId = json['itemId'],
+        times = json['times'],
+        quantity = json['quantity'];
+}
+
+class Stage2ItemModel {
+  Map<String, List<ItemDropModel>> stage;
+
+  Stage2ItemModel() : stage = {};
+
+  void add({
+    required String stageId,
+    required Map<String, dynamic> json,
+  }) {
+    if (!stage.containsKey(stageId)) {
+      stage[stageId] = [];
+    }
+
+    stage[stageId]!.add(ItemDropModel.fromJson(json));
+  }
+}
+
+class Item2StageModel {
+  Map<String, List<ItemDropModel>> item;
+
+  Item2StageModel() : item = {};
+
+  void add({
+    required String itemId,
+    required Map<String, dynamic> json,
+  }) {
+    if (!item.containsKey(itemId)) {
+      item[itemId] = [];
+    }
+
+    item[itemId]!.add(ItemDropModel.fromJson(json));
+  }
 }

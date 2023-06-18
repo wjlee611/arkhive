@@ -1,167 +1,191 @@
+import 'dart:typed_data';
+import 'package:arkhive/bloc/operator_stat_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/screens/operator/detail/module_card/module_card_widget.dart';
-import 'package:arkhive/screens/operator/detail/skill_card/skill_card_widget.dart';
-import 'package:arkhive/screens/operator/detail/widgets/operator_image_widget.dart';
-import 'package:arkhive/screens/operator/detail/widgets/operator_name_widget.dart';
-import 'package:arkhive/screens/operator/detail/widgets/posinfo_card_widget.dart';
-import 'package:arkhive/screens/operator/detail/widgets/talent_card_widget.dart';
-import 'package:flutter/foundation.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_module_container.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_skill_container.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_stat_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
+import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/tools/required_pot_elite_selector.dart';
+import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class OperatorDetailScreen extends StatefulWidget {
-  final OperatorModel operator_;
-  final Uint8List? opImage;
-
+class OperatorDetailScreen extends StatelessWidget {
   const OperatorDetailScreen({
     super.key,
     required this.operator_,
-    required this.opImage,
+    this.opImage,
   });
 
-  @override
-  State<OperatorDetailScreen> createState() => _OperatorDetailScreenState();
-}
-
-class _OperatorDetailScreenState extends State<OperatorDetailScreen> {
-  String _classImageSelector(String operClass) {
-    if (operClass == OperatorPositions.vanguard) {
-      return "assets/images/class_vanguard.png";
-    }
-    if (operClass == OperatorPositions.guard) {
-      return "assets/images/class_guard.png";
-    }
-    if (operClass == OperatorPositions.defender) {
-      return "assets/images/class_defender.png";
-    }
-    if (operClass == OperatorPositions.sniper) {
-      return "assets/images/class_sniper.png";
-    }
-    if (operClass == OperatorPositions.caster) {
-      return "assets/images/class_caster.png";
-    }
-    if (operClass == OperatorPositions.medic) {
-      return "assets/images/class_medic.png";
-    }
-    if (operClass == OperatorPositions.supporter) {
-      return "assets/images/class_supporter.png";
-    }
-    return "assets/images/class_specialist.png";
-  }
+  final OperatorModel operator_;
+  final Uint8List? opImage;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        title: const Text(
-          "이력서",
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        backgroundColor: Colors.blueGrey.shade700,
-        actions: [
-          IconButton(
-            onPressed: () {
-              //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
-            },
-            icon: Icon(
-              Icons.star_border_outlined,
-              color: Colors.yellow.shade700,
+    PanelController panelController = PanelController();
+    return BlocProvider(
+      create: (context) => OperatorStatBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          title: const Text(
+            "이력서",
+            style: TextStyle(
+              fontFamily: FontFamily.nanumGothic,
+              fontWeight: FontWeight.w700,
             ),
           ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Container(
-            color: Colors.blueGrey.shade700,
-            child: Container(
-              margin: const EdgeInsets.only(top: Sizes.size48),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(blurRadius: Sizes.size5),
-                ],
-                borderRadius: BorderRadiusDirectional.vertical(
-                  top: Radius.circular(Sizes.size48),
-                ),
+          backgroundColor: Colors.blueGrey.shade700,
+          actions: [
+            IconButton(
+              onPressed: () {
+                //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
+              },
+              icon: Icon(
+                Icons.star_border_outlined,
+                color: Colors.yellow.shade700,
               ),
-              clipBehavior: Clip.hardEdge,
-              child: ListView(
+            ),
+          ],
+        ),
+        body: SlidingUpPanel(
+          controller: panelController,
+          isDraggable: false,
+          minHeight: Sizes.size96,
+          maxHeight: Sizes.size96 * 3 + Sizes.size10,
+          color: Colors.blueGrey.shade700,
+          borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(Sizes.size20),
+            bottomRight: Radius.circular(Sizes.size20),
+          ),
+          slideDirection: SlideDirection.DOWN,
+          panelBuilder: (_) => OperatorSlidingPanel(
+            image: opImage,
+            operator_: operator_,
+            controller: panelController,
+          ),
+          backdropEnabled: true,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
+              child: Column(
                 children: [
-                  Gaps.v44,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Gaps.v130,
+                  CommonTitleWidget(
+                    text: operator_.name!,
+                    color: Colors.yellow.shade800,
+                  ),
+                  Gaps.v5,
+                  Wrap(
+                    direction: Axis.horizontal,
+                    spacing: Sizes.size4,
+                    runSpacing: Sizes.size4,
                     children: [
-                      for (var i = 0; i < int.parse(widget.operator_.rare); i++)
-                        SizedBox(
-                          width: Sizes.size16 + Sizes.size2,
-                          child: Transform.rotate(
-                            angle: 17 * math.pi / 180,
-                            child: Icon(
-                              Icons.star,
-                              color: Colors.yellow.shade700,
-                              size: Sizes.size24 + Sizes.size2,
-                              shadows: const [
-                                Shadow(blurRadius: Sizes.size5),
-                              ],
-                            ),
+                      if (operator_.rarity != null)
+                        OperatorStarWidget(rarity: operator_.rarity!),
+                      if (operator_.profession != null)
+                        OperatorTagWidget(
+                          tag: proSelector(operator_.profession!),
+                        ),
+                      if (operator_.subProfessionId != null)
+                        OperatorTagWidget(
+                          tag: subProSelector(operator_.subProfessionId!),
+                        ),
+                    ],
+                  ),
+                  Gaps.v16,
+                  if (operator_.position != null ||
+                      operator_.tagList.isNotEmpty)
+                    OperatorTagWrapWidget(
+                      position: operator_.position,
+                      tagList: operator_.tagList,
+                    ),
+                  if (operator_.phases.isNotEmpty &&
+                      operator_.phases.first.attributesKeyFrames.isNotEmpty)
+                    Column(
+                      children: [
+                        const CommonTitleWidget(text: '스탯'),
+                        Gaps.v5,
+                        BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                          builder: (context, state) => OperatorStatWidget(
+                            phase: operator_.phases[state.elite],
+                            pot: state.potential,
+                            level: state.level,
+                            favor: state.favor,
+                            favorPhase: operator_.favorKeyFrames,
+                            potRanks: operator_.potentialRanks,
                           ),
                         ),
-                      Gaps.h5,
-                    ],
-                  ),
-                  Gaps.v20,
-                  OperatorName(name: widget.operator_.name),
-                  Gaps.v10,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        _classImageSelector(widget.operator_.class_),
-                        width: Sizes.size36,
-                        height: Sizes.size36,
-                        color: Colors.blueGrey.shade700,
+                      ],
+                    ),
+                  if (operator_.description != null)
+                    BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                      buildWhen: (previous, current) {
+                        return previous.favor == current.favor;
+                      },
+                      builder: (context, state) => OperatorDescriptionWidget(
+                        description: operator_.description!,
+                        candidate: operator_.traitCandidate.isNotEmpty
+                            ? reqPotEliteSelector(
+                                candidates: operator_.traitCandidate,
+                                currPot: state.potential,
+                                currElite: state.elite,
+                                currLevel: state.level,
+                              )
+                            : null,
                       ),
-                      Gaps.h20,
-                      Text(
-                        widget.operator_.position.replaceFirst('*', ''),
-                        style: TextStyle(
-                          color: Colors.blueGrey.shade700,
-                          fontSize: Sizes.size20,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
+                    ),
+                  BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                    buildWhen: (previous, current) {
+                      return previous.favor == current.favor;
+                    },
+                    builder: (context, state) {
+                      if (operator_.talents.isNotEmpty &&
+                          reqPotEliteSelector(
+                                candidates: operator_.talents.first.candidates,
+                                currPot: state.potential,
+                                currElite: state.elite,
+                                currLevel: state.level,
+                              ) !=
+                              null) {
+                        return OperatorTalentsWidget(
+                          talents: operator_.talents,
+                          pot: state.potential,
+                          elite: state.elite,
+                          level: state.level,
+                        );
+                      }
+                      return Container();
+                    },
                   ),
-                  Gaps.v20,
-                  PosInfoCard(operatorPos: widget.operator_.position),
-                  Gaps.v20,
-                  TalentCard(talents: widget.operator_.talent),
-                  if (widget.operator_.skill.isNotEmpty) Gaps.v20,
-                  if (widget.operator_.skill.isNotEmpty)
-                    SkillCard(skills: widget.operator_.skill),
-                  if (widget.operator_.module.isNotEmpty) Gaps.v20,
-                  if (widget.operator_.module.isNotEmpty)
-                    ModuleCard(modules: widget.operator_.module),
-                  Gaps.v60,
+                  if (operator_.skills.isNotEmpty)
+                    OperatorSkillContainer(skills: operator_.skills),
+                  if (operator_.phases.first.characterPrefabKey != null)
+                    BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                      buildWhen: (previous, current) {
+                        return previous.potential != current.potential;
+                      },
+                      builder: (context, state) => OperatorModuleContainer(
+                        operatorKey: operator_.phases.first.characterPrefabKey!,
+                        potential: state.potential,
+                      ),
+                    ),
+                  Gaps.v130,
                 ],
               ),
             ),
           ),
-          OperatorImage(
-            imageNameTag: widget.operator_.imageName,
-            opImage: widget.opImage,
-          ),
-        ],
+        ),
       ),
     );
   }

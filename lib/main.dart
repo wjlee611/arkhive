@@ -1,8 +1,11 @@
+import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/bloc/versionCheck/version_check_bloc.dart';
 import 'package:arkhive/firebase_options.dart';
-import 'package:arkhive/screens/home/home_screen.dart';
+import 'package:arkhive/screens/routes/routes_screen.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +33,17 @@ class Arkhive extends StatelessWidget {
         primaryColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ScreenBloc(),
+          ),
+          BlocProvider(
+            create: (context) => VersionCheckBloc(),
+          ),
+        ],
+        child: const RoutesScreen(),
+      ),
     );
   }
 }

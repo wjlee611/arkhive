@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 class StatContainer extends StatelessWidget {
   const StatContainer({
-    Key? key,
+    super.key,
     required this.title,
     required this.stat,
-  }) : super(key: key);
+    required this.statRank,
+  });
 
-  final String title;
-  final String stat;
+  final String title, stat, statRank;
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +61,30 @@ class StatContainer extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Sizes.size3),
               ),
               child: Center(
-                child: Text(
-                  stat.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                      (Match m) => "${m[1]},"),
-                  style: TextStyle(
-                    color: Colors.blueGrey.shade800,
-                    fontSize: Sizes.size12,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Text(
+                      statRank,
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade800.withOpacity(0.2),
+                        fontSize: Sizes.size32,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      stat.replaceAllMapped(
+                          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                          (Match m) => "${m[1]},"),
+                      style: TextStyle(
+                        color: Colors.blueGrey.shade800,
+                        fontSize: Sizes.size12,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

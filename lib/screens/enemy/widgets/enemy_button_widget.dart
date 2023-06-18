@@ -14,8 +14,8 @@ class EnemyButton extends StatelessWidget {
   final EnemyModel enemy;
 
   Color _colorPicker(String enemyType) {
-    if (enemyType == EnemyType.elite) return Colors.deepOrange;
-    if (enemyType == EnemyType.boss) return Colors.purple;
+    if (enemyType == 'ELITE') return Colors.deepOrange;
+    if (enemyType == 'BOSS') return Colors.purple;
     return Colors.blueGrey.shade600;
   }
 
@@ -23,22 +23,21 @@ class EnemyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => OpenDetailScreen.onEnemyTab(
-        code: enemy.code,
-        enemyImage: getImageFromSP("enemy/${enemy.code}"),
+        enemy: enemy,
         context: context,
       ),
       child: FutureBuilder(
-        future: getImageFromSP("enemy/${enemy.code}"),
+        future: getImageFromSP("image/enemy/${enemy.enemyId!}"),
         builder: (context, snapshot) {
           return Card(
             clipBehavior: Clip.hardEdge,
-            color: _colorPicker(enemy.enemyType),
+            color: _colorPicker(enemy.enemyLevel!),
             elevation: Sizes.size5,
             child: Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Hero(
-                  tag: enemy.code,
+                  tag: enemy.enemyId!,
                   child: snapshot.hasData
                       ? Image.memory(
                           snapshot.data!,
@@ -56,16 +55,16 @@ class EnemyButton extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Sizes.size3),
-                    color: _colorPicker(enemy.enemyType),
+                    color: _colorPicker(enemy.enemyLevel!),
                     boxShadow: [
                       BoxShadow(
                         blurRadius: Sizes.size5,
-                        color: _colorPicker(enemy.enemyType),
+                        color: _colorPicker(enemy.enemyLevel!),
                       ),
                     ],
                   ),
                   child: Text(
-                    enemy.code.replaceAll('_', '*'),
+                    enemy.enemyIndex!,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: Sizes.size14,
