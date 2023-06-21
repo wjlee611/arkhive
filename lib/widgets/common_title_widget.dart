@@ -39,7 +39,7 @@ class CommonTitleWidget extends StatelessWidget {
             border: Border(
               top: BorderSide(
                 color: color,
-                width: Sizes.size3,
+                width: Sizes.size2,
               ),
             ),
           ),
@@ -57,10 +57,17 @@ class CommonTitleWidget extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                   shadows: [
                     const Shadow(
-                      blurRadius: Sizes.size10,
+                      blurRadius: Sizes.size20,
+                    ),
+                    const Shadow(
+                      blurRadius: Sizes.size32,
                     ),
                     Shadow(
-                      blurRadius: Sizes.size5,
+                      blurRadius: Sizes.size10,
+                      color: color,
+                    ),
+                    Shadow(
+                      blurRadius: Sizes.size10,
                       color: color,
                     ),
                   ],

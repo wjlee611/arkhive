@@ -8,9 +8,11 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/operator_stats_container.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/profession_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -147,46 +149,9 @@ class OperatorDetailScreen extends StatelessWidget {
             if (operator_.phases.isNotEmpty &&
                 operator_.phases.first.attributesKeyFrames.isNotEmpty)
               const OperatorStatsContainer(),
-            // if (operator_.description != null)
-            //   BlocBuilder<OperatorStatBloc, OperatorStatState>(
-            //     buildWhen: (previous, current) {
-            //       return previous.favor == current.favor;
-            //     },
-            //     builder: (context, state) => OperatorDescriptionWidget(
-            //       description: operator_.description!,
-            //       candidate: operator_.traitCandidate.isNotEmpty
-            //           ? reqPotEliteSelector(
-            //               candidates: operator_.traitCandidate,
-            //               currPot: state.potential,
-            //               currElite: state.elite,
-            //               currLevel: state.level,
-            //             )
-            //           : null,
-            //     ),
-            //   ),
-            // BlocBuilder<OperatorStatBloc, OperatorStatState>(
-            //   buildWhen: (previous, current) {
-            //     return previous.favor == current.favor;
-            //   },
-            //   builder: (context, state) {
-            //     if (operator_.talents.isNotEmpty &&
-            //         reqPotEliteSelector(
-            //               candidates: operator_.talents.first.candidates,
-            //               currPot: state.potential,
-            //               currElite: state.elite,
-            //               currLevel: state.level,
-            //             ) !=
-            //             null) {
-            //       return OperatorTalentsWidget(
-            //         talents: operator_.talents,
-            //         pot: state.potential,
-            //         elite: state.elite,
-            //         level: state.level,
-            //       );
-            //     }
-            //     return Container();
-            //   },
-            // ),
+            if (operator_.description != null)
+              const OperatorDescriptionWidget(),
+            if (operator_.talents.isNotEmpty) const OperatorTalentsWidget(),
             // if (operator_.skills.isNotEmpty)
             //   OperatorSkillContainer(skills: operator_.skills),
             // if (operator_.phases.first.characterPrefabKey != null)

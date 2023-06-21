@@ -1,67 +1,65 @@
+import 'package:arkhive/bloc/operator/operator_data/operator_data_bloc.dart';
+import 'package:arkhive/bloc/operator/operator_data/operator_data_state.dart';
+import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart';
+import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorTalentsWidget extends StatelessWidget {
-  const OperatorTalentsWidget({
-    super.key,
-    required this.talents,
-    required this.pot,
-    required this.elite,
-    required this.level,
-  });
-
-  final List<OperatorTalentsModel> talents;
-  final int pot, elite, level;
+  const OperatorTalentsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CommonTitleWidget(text: '재능'),
-        Gaps.v7,
-        for (var talent in talents)
-          if (reqPotEliteSelector(
-                candidates: talent.candidates,
-                currPot: pot,
-                currElite: elite,
-                currLevel: level,
-              ) !=
-              null)
-            OperatorTalentWidget(
-              talent: reqPotEliteSelector(
-                candidates: talent.candidates,
-                currPot: pot,
-                currElite: elite,
-                currLevel: level,
-              )!,
-              pot: pot,
-              elite: elite,
-              level: level,
-            ),
-      ],
+    return BlocBuilder<OperatorDataBloc, OperatorDataState>(
+      builder: (context, dataState) {
+        return BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
+          buildWhen: (previous, current) {
+            if (previous.potential != current.potential ||
+                previous.elite != current.elite) return true;
+            return false;
+          },
+          builder: (context, statState) {
+            if (dataState is! OperatorDataLoadedState) return Container();
+            if (reqPotEliteSelector(
+                  candidates: dataState.operator_.talents.first.candidates,
+                  currPot: statState.potential,
+                  currElite: statState.elite,
+                  // currLevel: statState.level,
+                ) ==
+                null) return Container();
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CommonTitleWidget(text: '재능'),
+                Gaps.v7,
+                for (var talent in dataState.operator_.talents)
+                  _talentWidget(
+                    context,
+                    reqPotEliteSelector(
+                      candidates: talent.candidates,
+                      currPot: statState.potential,
+                      currElite: statState.elite,
+                      // currLevel: statState.level,
+                    ),
+                  ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
-}
 
-class OperatorTalentWidget extends StatelessWidget {
-  const OperatorTalentWidget({
-    super.key,
-    required this.talent,
-    required this.pot,
-    required this.elite,
-    required this.level,
-  });
+  Widget _talentWidget(
+      BuildContext context, OperatorTalentsCandidatesModel? talent) {
+    if (talent == null) return Container();
 
-  final OperatorTalentsCandidatesModel talent;
-  final int pot, elite, level;
-
-  @override
-  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
