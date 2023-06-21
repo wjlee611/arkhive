@@ -4,9 +4,10 @@ import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter/services.dart';
 
 enum SortOptions {
   starUp,
@@ -54,19 +55,18 @@ class _OperatorScreenState extends State<OperatorScreen> {
       _isLoading = true;
     });
 
-    const storage = FlutterSecureStorage();
     List<OperatorModel> result = [];
+    String jsonString = await rootBundle
+        .loadString('${getGameDataRoot()}excel/character_table.json');
+    Map<String, dynamic> jsonData = await json.decode(jsonString);
 
-    String? operatorListString = await storage.read(key: 'list_operator');
-    if (operatorListString != null && operatorListString != 'null') {
-      var operatorListData = await json.decode(operatorListString)['data'];
-      for (var operator_ in operatorListData) {
-        String? operatorString = await storage.read(key: 'operator/$operator_');
-        if (operatorString != null && operatorString != 'null') {
-          var operatorData = await json.decode(operatorString);
-          result.add(OperatorModel.fromJson(operatorData));
-        }
-      }
+    for (var operatorData in jsonData.entries) {
+      // 오직 캐릭터만
+      if (!operatorData.key.startsWith('char_')) continue;
+      // 샬렘 중복 제외
+      if (operatorData.key == 'char_512_aprot') continue;
+
+      result.add(OperatorModel.fromJson(operatorData.value));
     }
 
     setState(() {
@@ -232,7 +232,10 @@ class _OperatorScreenState extends State<OperatorScreen> {
                           (context, index) => GestureDetector(
                             onTap: () => OpenDetailScreen.onOperatorTab(
                               context: context,
-                              operator_: filteredList[index],
+                              operatorKey: filteredList[index]
+                                  .phases
+                                  .first
+                                  .characterPrefabKey!,
                             ),
                             child: OperatorListItem(
                               operator_: filteredList[index],

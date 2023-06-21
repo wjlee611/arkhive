@@ -2,7 +2,6 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/tools/load_image_from_securestorage.dart';
 import 'package:flutter/material.dart';
 
 class OperatorListItem extends StatelessWidget {
@@ -27,63 +26,47 @@ class OperatorListItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
       ),
-      child: FutureBuilder(
-        future: getImageFromSP(
-            "image/operator/${operator_.phases.first.characterPrefabKey}"),
-        builder: (context, snapshot) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: Sizes.size52,
-                width: Sizes.size5,
-                decoration: BoxDecoration(
-                  color: _rarityColorSelector(operator_.rarity!),
-                ),
-              ),
-              Hero(
-                tag: operator_.phases.first.characterPrefabKey!,
-                child: Container(
-                  width: Sizes.size52,
-                  height: Sizes.size52,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(),
-                  child: snapshot.hasData
-                      ? Image.memory(
-                          snapshot.data!,
-                          width: Sizes.size52,
-                          height: Sizes.size52,
-                          gaplessPlayback: true,
-                        )
-                      : Image.asset(
-                          "assets/images/prts.png",
-                          width: Sizes.size52,
-                          height: Sizes.size52,
-                        ),
-                ),
-              ),
-              Gaps.h20,
-              Flexible(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        operator_.name!,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: Sizes.size14,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: Sizes.size52,
+            width: Sizes.size5,
+            decoration: BoxDecoration(
+              color: _rarityColorSelector(operator_.rarity!),
+            ),
+          ),
+          Hero(
+            tag: operator_.phases.first.characterPrefabKey!,
+            child: Container(
+              width: Sizes.size52,
+              height: Sizes.size52,
+              clipBehavior: Clip.hardEdge,
+              decoration: const BoxDecoration(),
+              child: Image.asset(
+                  'assets/images/operator/${operator_.phases.first.characterPrefabKey}.png'),
+            ),
+          ),
+          Gaps.h20,
+          Flexible(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    operator_.name!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: Sizes.size14,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

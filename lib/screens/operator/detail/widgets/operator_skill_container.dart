@@ -4,10 +4,11 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter/services.dart';
 
 class OperatorSkillContainer extends StatefulWidget {
   const OperatorSkillContainer({
@@ -48,15 +49,14 @@ class _OperatorSkillContainerState extends State<OperatorSkillContainer>
   Future<List<SkillModel>> _futureSkills(
       List<OperatorSkillsModel> skills) async {
     List<SkillModel> result = [];
-    const storage = FlutterSecureStorage();
+    String jsonString = await rootBundle
+        .loadString('${getGameDataRoot()}excel/skill_table.json');
+    Map<String, dynamic> jsonData = await json.decode(jsonString);
 
-    for (var skill in skills) {
-      String? skillString = await storage.read(key: 'skill/${skill.skillId}');
-      if (skillString != null) {
-        var skillJson = await json.decode(skillString);
-        result.add(SkillModel.fromJson(skillJson));
-      }
-    }
+    jsonData.forEach((key, value) => {
+          if (skills.any((element) => element.skillId == key))
+            result.add(SkillModel.fromJson(value))
+        });
 
     return result;
   }

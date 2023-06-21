@@ -1,4 +1,3 @@
-import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
@@ -28,15 +27,13 @@ class OpenDetailScreen {
   }
 
   static void onOperatorTab({
-    required OperatorModel operator_,
+    required String operatorKey,
     required dynamic context,
   }) async {
     await Navigator.push(
       context,
       _createRoute(OperatorDetailScreen(
-        operator_: operator_,
-        opImage: await getImageFromSP(
-            'image/operator/${operator_.phases.first.characterPrefabKey!}'),
+        operatorKey: operatorKey,
       )),
     );
   }

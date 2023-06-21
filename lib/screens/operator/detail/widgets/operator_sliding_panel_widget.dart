@@ -1,9 +1,11 @@
-import 'dart:typed_data';
-import 'package:arkhive/bloc/operator_stat_bloc.dart';
+import 'package:arkhive/bloc/operator/operator_data/operator_data_bloc.dart';
+import 'package:arkhive/bloc/operator/operator_data/operator_data_state.dart';
+import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart';
+import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
+import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/detail/widgets/elite_select_button_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
@@ -15,13 +17,11 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 class OperatorSlidingPanel extends StatefulWidget {
   const OperatorSlidingPanel({
     super.key,
-    this.image,
-    required this.operator_,
+    required this.operatorKey,
     required this.controller,
   });
 
-  final Uint8List? image;
-  final OperatorModel operator_;
+  final String operatorKey;
   final PanelController controller;
 
   @override
@@ -31,26 +31,26 @@ class OperatorSlidingPanel extends StatefulWidget {
 class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
   void _onPotentialChange(int potential) {
     context
-        .read<OperatorStatBloc>()
-        .add(OperatorPotentialChangeEvent(potential: potential));
+        .read<OperatorStatusBloc>()
+        .add(OperatorStatusPotentialChangeEvent(potential: potential));
   }
 
   void _onEliteChange(int elite) {
-    context.read<OperatorStatBloc>()
-      ..add(OperatorLevelChangeEvent(level: 1))
-      ..add(OperatorEliteChangeEvent(elite: elite));
+    context
+        .read<OperatorStatusBloc>()
+        .add(OperatorStatusEliteChangeEvent(elite: elite));
   }
 
   void _onLevelChange(int level) {
     context
-        .read<OperatorStatBloc>()
-        .add(OperatorLevelChangeEvent(level: level));
+        .read<OperatorStatusBloc>()
+        .add(OperatorStatusLevelChangeEvent(level: level));
   }
 
   void _onFavorChange(int favor) {
     context
-        .read<OperatorStatBloc>()
-        .add(OperatorFavorChangeEvent(favor: favor));
+        .read<OperatorStatusBloc>()
+        .add(OperatorStatusFavorChangeEvent(favor: favor));
   }
 
   void _onToggleBtnTap() {
@@ -66,81 +66,92 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                PotentialSelectButton(
-                  onSelected: _onPotentialChange,
-                  length: widget.operator_.maxPotentialLevel!,
-                ),
-                Gaps.v5,
-                const CommonSubTitleWidget(text: '잠재능력'),
-              ],
-            ),
-            Gaps.h20,
-            Column(
-              children: [
-                EliteSelectButton(
-                  onSelected: _onEliteChange,
-                  length: widget.operator_.phases.length,
-                ),
-                Gaps.v5,
-                const CommonSubTitleWidget(text: '정예화 단계'),
-              ],
-            ),
-          ],
-        ),
-        Gaps.v20,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              width: Sizes.size52,
-              child: CommonSubTitleWidget(text: '레벨'),
-            ),
-            SizedBox(
-              height: Sizes.size44,
-              child: BlocBuilder<OperatorStatBloc, OperatorStatState>(
-                buildWhen: (previous, current) {
-                  return previous.level != current.level;
-                },
-                builder: (context, state) => OperatorSlider(
-                  minValue: 1,
-                  maxValue: widget.operator_.phases[state.elite].maxLevel!,
-                  currValue: state.level,
-                  onChange: _onLevelChange,
-                  tag: '',
-                ),
+        BlocBuilder<OperatorDataBloc, OperatorDataState>(
+            builder: (context, dataState) {
+          if (dataState is! OperatorDataLoadedState) {
+            return const CircularProgressIndicator();
+          }
+          return Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      PotentialSelectButton(
+                        onSelected: _onPotentialChange,
+                        length: dataState.operator_.potentialRanks.length,
+                      ),
+                      Gaps.v5,
+                      const CommonSubTitleWidget(text: '잠재능력'),
+                    ],
+                  ),
+                  Gaps.h20,
+                  Column(
+                    children: [
+                      EliteSelectButton(
+                        onSelected: _onEliteChange,
+                        length: dataState.operator_.phases.length,
+                      ),
+                      Gaps.v5,
+                      const CommonSubTitleWidget(text: '정예화 단계'),
+                    ],
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              width: Sizes.size52,
-              child: CommonSubTitleWidget(text: '신뢰도'),
-            ),
-            SizedBox(
-              height: Sizes.size44,
-              child: BlocBuilder<OperatorStatBloc, OperatorStatState>(
-                buildWhen: (previous, current) {
-                  return previous.favor != current.favor;
-                },
-                builder: (context, state) => OperatorSlider(
-                  minValue: 0,
-                  maxValue: 110,
-                  currValue: state.favor,
-                  onChange: _onFavorChange,
-                  tag: '',
-                ),
+              Gaps.v20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: Sizes.size52,
+                    child: CommonSubTitleWidget(text: '레벨'),
+                  ),
+                  SizedBox(
+                    height: Sizes.size44,
+                    child: BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
+                      buildWhen: (previous, current) {
+                        return (previous.level != current.level) ||
+                            (previous.maxLevel != current.maxLevel);
+                      },
+                      builder: (context, statState) => OperatorSlider(
+                        minValue: 1,
+                        maxValue: statState.maxLevel,
+                        currValue: statState.level,
+                        onChange: _onLevelChange,
+                        tag: '',
+                      ),
+                    ),
+                  )
+                ],
               ),
-            )
-          ],
-        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    width: Sizes.size52,
+                    child: CommonSubTitleWidget(text: '신뢰도'),
+                  ),
+                  SizedBox(
+                    height: Sizes.size44,
+                    child: BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
+                      buildWhen: (previous, current) {
+                        return previous.favor != current.favor;
+                      },
+                      builder: (context, statState) => OperatorSlider(
+                        minValue: 0,
+                        maxValue: 110,
+                        currValue: statState.favor,
+                        onChange: _onFavorChange,
+                        tag: '',
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          );
+        }),
         const Expanded(child: SizedBox()),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
@@ -152,7 +163,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                 alignment: Alignment.topLeft,
                 children: [
                   Hero(
-                    tag: widget.operator_.phases.first.characterPrefabKey!,
+                    tag: widget.operatorKey,
                     child: Container(
                       width: Sizes.size72,
                       height: Sizes.size72,
@@ -164,21 +175,11 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                           strokeAlign: BorderSide.strokeAlignOutside,
                         ),
                       ),
-                      child: widget.image != null
-                          ? Image.memory(
-                              widget.image!,
-                              width: Sizes.size96,
-                              height: Sizes.size96,
-                              gaplessPlayback: true,
-                            )
-                          : Image.asset(
-                              'assets/images/prts.png',
-                              width: Sizes.size96,
-                              height: Sizes.size96,
-                            ),
+                      child: Image.asset(
+                          'assets/images/operator/${widget.operatorKey}.png'),
                     ),
                   ),
-                  BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                  BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
                     buildWhen: (previous, current) {
                       return previous.potential != current.potential;
                     },
@@ -197,7 +198,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
               Gaps.h14,
               Column(
                 children: [
-                  BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                  BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
                     buildWhen: (previous, current) {
                       return previous.elite != current.elite;
                     },
@@ -209,7 +210,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                       ),
                     ),
                   ),
-                  BlocBuilder<OperatorStatBloc, OperatorStatState>(
+                  BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
                     buildWhen: (previous, current) {
                       return previous.level != current.level;
                     },
@@ -250,7 +251,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                 Icons.favorite_rounded,
                 color: Colors.redAccent,
               ),
-              BlocBuilder<OperatorStatBloc, OperatorStatState>(
+              BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
                 buildWhen: (previous, current) {
                   return previous.favor != current.favor;
                 },
