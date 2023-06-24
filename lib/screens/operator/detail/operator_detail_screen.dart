@@ -7,6 +7,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/detail/operator_skills/operator_skills_container.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/operator_stats_container.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_widget.dart';
@@ -152,8 +153,7 @@ class OperatorDetailScreen extends StatelessWidget {
             if (operator_.description != null)
               const OperatorDescriptionWidget(),
             if (operator_.talents.isNotEmpty) const OperatorTalentsWidget(),
-            // if (operator_.skills.isNotEmpty)
-            //   OperatorSkillContainer(skills: operator_.skills),
+            if (operator_.skills.isNotEmpty) const OperatorSkillsContainer(),
             // if (operator_.phases.first.characterPrefabKey != null)
             //   BlocBuilder<OperatorStatBloc, OperatorStatState>(
             //     buildWhen: (previous, current) {

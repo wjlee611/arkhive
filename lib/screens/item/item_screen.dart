@@ -53,6 +53,7 @@ class _ItemScreenState extends State<ItemScreen> {
                   var filteredLists = _runFilter(snapshot.data!);
                   return const CustomScrollView();
                 }
+                return const CircularProgressIndicator();
               },
             ),
           ),
