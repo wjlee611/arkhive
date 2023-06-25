@@ -92,7 +92,6 @@ class _OperatorModuleSelectWidgetState extends State<OperatorModuleSelectWidget>
         ),
         Gaps.v5,
         OperatorModuleInfoWidget(module: module),
-        Gaps.v10,
       ],
     );
   }

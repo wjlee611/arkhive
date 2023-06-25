@@ -1,5 +1,6 @@
 import 'package:arkhive/bloc/operator/operator_data/operator_data_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_data/operator_data_state.dart';
+import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_select_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class OperatorSkillsContainer extends StatelessWidget {
             return Container();
           },
         ),
+        Gaps.v32,
       ],
     );
   }

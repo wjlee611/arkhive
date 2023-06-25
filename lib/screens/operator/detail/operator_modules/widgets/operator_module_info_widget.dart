@@ -301,7 +301,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                         variables: boardListAndDurationToMap(
                             blackboards: _updateTrait!.blackboard),
                       ),
-                      const SizedBox(height: 10),
+                      Gaps.v10,
                     ],
                   ),
                 if (_updateTalent != null)
