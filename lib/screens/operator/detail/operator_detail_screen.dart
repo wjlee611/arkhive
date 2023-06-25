@@ -154,7 +154,7 @@ class OperatorDetailScreen extends StatelessWidget {
                   ),
               ],
             ),
-            Gaps.v16,
+            Gaps.v32,
             if (operator_.position != null || operator_.tagList.isNotEmpty)
               OperatorTagWrapWidget(
                 position: operator_.position,

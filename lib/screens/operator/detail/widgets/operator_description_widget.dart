@@ -42,7 +42,7 @@ class OperatorDescriptionWidget extends StatelessWidget {
                         blackboards: candidate!.blackboard)
                     : {},
               ),
-              Gaps.v16,
+              Gaps.v32,
             ],
           );
         },

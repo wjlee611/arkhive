@@ -60,11 +60,9 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
               isScrollable: true,
               physics: const NeverScrollableScrollPhysics(),
               indicator: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.yellow.shade800,
-                    width: Sizes.size3,
-                  ),
+                border: Border.all(
+                  color: Colors.yellow.shade800,
+                  width: Sizes.size2,
                 ),
               ),
               labelColor: Colors.yellow.shade800,
@@ -93,7 +91,6 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
         ),
         Gaps.v5,
         OperatorSkillInfoWidget(skill: skill),
-        Gaps.v10,
       ],
     );
   }

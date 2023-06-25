@@ -194,7 +194,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),
                         child: Text(
-                          '레벨${i + 1}',
+                          '레벨 ${i + 1}',
                           style: const TextStyle(
                             fontFamily: FontFamily.nanumGothic,
                             fontWeight: FontWeight.w700,

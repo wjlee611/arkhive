@@ -36,7 +36,7 @@ class OperatorTagWrapWidget extends StatelessWidget {
             for (var tag in tagList) OperatorTagWidget(tag: tag),
           ],
         ),
-        Gaps.v16,
+        Gaps.v32,
       ],
     );
   }

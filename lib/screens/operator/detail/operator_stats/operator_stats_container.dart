@@ -21,6 +21,7 @@ class OperatorStatsContainer extends StatelessWidget {
     return Column(
       children: [
         const CommonTitleWidget(text: '스탯'),
+        Gaps.v6,
         BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
           buildWhen: (previous, current) => previous != current,
           builder: (context, state) => _bulidBody(context, state),
@@ -189,7 +190,7 @@ class OperatorStatsContainer extends StatelessWidget {
         //       ),
         //   ],
         // ),
-        Gaps.v16,
+        Gaps.v32,
       ],
     );
   }

@@ -48,6 +48,7 @@ class OperatorTalentsWidget extends StatelessWidget {
                       // currLevel: statState.level,
                     ),
                   ),
+                Gaps.v20,
               ],
             );
           },
