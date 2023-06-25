@@ -57,10 +57,17 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
       Map<String, dynamic> jsonData =
           await json.decode(jsonString)['equipDict'];
 
-      jsonData.forEach((key, value) => {
-            if (key.contains(event.operatorKey))
-              modules.add(ModuleModel.fromJson(value))
-          });
+      jsonData.forEach((key, value) {
+        if (key.contains(event.operatorKey.split('_').last)) {
+          var module = ModuleModel.fromJson(value);
+          if (module.uniEquipIcon != 'original') {
+            modules.add(module);
+          }
+        }
+      });
+      modules.sort(
+        (a, b) => a.typeIcon!.compareTo(b.typeIcon!),
+      );
 
       // Get module data
       jsonString = await rootBundle

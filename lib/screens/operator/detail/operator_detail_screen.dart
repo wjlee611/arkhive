@@ -6,7 +6,10 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/screens/operator/detail/operator_modules/operator_modules_container.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/operator_skills_container.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/operator_stats_container.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_description_widget.dart';
@@ -97,7 +100,12 @@ class OperatorDetailScreen extends StatelessWidget {
                 context
                     .read<OperatorStatusBloc>()
                     .add(OperatorStatusInitEvent(operator_: state.operator_));
-                return _buildBody(context, state.operator_);
+                return _buildBody(
+                  context: context,
+                  operator_: state.operator_,
+                  skills: state.skills,
+                  modules: state.modules,
+                );
               }
               if (state is OperatorDataErrorState) {
                 return Center(
@@ -112,7 +120,12 @@ class OperatorDetailScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(BuildContext context, OperatorModel operator_) {
+  Widget _buildBody({
+    required BuildContext context,
+    required OperatorModel operator_,
+    required List<SkillModel> skills,
+    required List<ModuleModel> modules,
+  }) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
@@ -153,17 +166,8 @@ class OperatorDetailScreen extends StatelessWidget {
             if (operator_.description != null)
               const OperatorDescriptionWidget(),
             if (operator_.talents.isNotEmpty) const OperatorTalentsWidget(),
-            if (operator_.skills.isNotEmpty) const OperatorSkillsContainer(),
-            // if (operator_.phases.first.characterPrefabKey != null)
-            //   BlocBuilder<OperatorStatBloc, OperatorStatState>(
-            //     buildWhen: (previous, current) {
-            //       return previous.potential != current.potential;
-            //     },
-            //     builder: (context, state) => OperatorModuleContainer(
-            //       operatorKey: operator_.phases.first.characterPrefabKey!,
-            //       potential: state.potential,
-            //     ),
-            //   ),
+            if (skills.isNotEmpty) const OperatorSkillsContainer(),
+            if (modules.isNotEmpty) const OperatorModulesContainer(),
             Gaps.v130,
           ],
         ),
