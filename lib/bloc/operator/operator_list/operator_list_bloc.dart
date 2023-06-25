@@ -66,6 +66,11 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
         ));
       }
 
+      result = _sortByOption(
+        target: result,
+        option: SortOptions.starUp,
+      );
+
       emit(OperatorListLoadedState(
         operatorList: result,
         filteredOperatorList: result,

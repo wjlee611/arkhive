@@ -39,6 +39,9 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
 
   void _onTapOutside(PointerDownEvent _) {
     FocusScope.of(context).unfocus();
+    setState(() {
+      _onSearch = false;
+    });
   }
 
   void _onSearchChange(String? string) {
@@ -114,9 +117,14 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             if (state.searchQuery?.isNotEmpty == true)
-                              _tag(
-                                "검색: ${state.searchQuery!}",
-                                isSearch: true,
+                              Row(
+                                children: [
+                                  _tag(
+                                    "검색: ${state.searchQuery!}",
+                                    isSearch: true,
+                                  ),
+                                  Gaps.h5,
+                                ],
                               ),
                             if (state.operatorList == null ||
                                 state.operatorList!.isEmpty)
@@ -131,7 +139,13 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
                               _tag(_sortOptionToString(
                                   state.selectedSortOption)),
                             if (state is OperatorListLoadedState)
-                              _tag("${state.filteredOperatorList.length}명 검색됨"),
+                              Row(
+                                children: [
+                                  Gaps.h5,
+                                  _tag(
+                                      "${state.filteredOperatorList.length}명 검색됨"),
+                                ],
+                              ),
                           ],
                         ),
                       ),
@@ -158,7 +172,6 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
             vertical: Sizes.size2,
             horizontal: Sizes.size5,
           ),
-          margin: const EdgeInsets.only(right: Sizes.size5),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(Sizes.size5),
@@ -191,7 +204,6 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
         vertical: Sizes.size2,
         horizontal: Sizes.size5,
       ),
-      margin: const EdgeInsets.only(left: Sizes.size5),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(Sizes.size5),
