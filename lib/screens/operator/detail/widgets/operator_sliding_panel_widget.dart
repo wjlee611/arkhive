@@ -54,6 +54,10 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
   }
 
   void _onToggleBtnTap() {
+    if (context.read<OperatorDataBloc>().state is! OperatorDataLoadedState) {
+      return;
+    }
+
     if (widget.controller.isPanelOpen) {
       widget.controller.close();
     } else {
@@ -67,91 +71,94 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
       mainAxisSize: MainAxisSize.min,
       children: [
         BlocBuilder<OperatorDataBloc, OperatorDataState>(
-            builder: (context, dataState) {
-          if (dataState is! OperatorDataLoadedState) {
-            return const CircularProgressIndicator();
-          }
-          return Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      PotentialSelectButton(
-                        onSelected: _onPotentialChange,
-                        length: dataState.operator_.potentialRanks.length,
-                      ),
-                      Gaps.v5,
-                      const CommonSubTitleWidget(text: '잠재능력'),
-                    ],
-                  ),
-                  Gaps.h20,
-                  Column(
-                    children: [
-                      EliteSelectButton(
-                        onSelected: _onEliteChange,
-                        length: dataState.operator_.phases.length,
-                      ),
-                      Gaps.v5,
-                      const CommonSubTitleWidget(text: '정예화 단계'),
-                    ],
-                  ),
-                ],
-              ),
-              Gaps.v20,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: Sizes.size52,
-                    child: CommonSubTitleWidget(text: '레벨'),
-                  ),
-                  SizedBox(
-                    height: Sizes.size44,
-                    child: BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
-                      buildWhen: (previous, current) {
-                        return (previous.level != current.level) ||
-                            (previous.maxLevel != current.maxLevel);
-                      },
-                      builder: (context, statState) => OperatorSlider(
-                        minValue: 1,
-                        maxValue: statState.maxLevel,
-                        currValue: statState.level,
-                        onChange: _onLevelChange,
-                        tag: '',
-                      ),
+          builder: (context, dataState) {
+            if (dataState is! OperatorDataLoadedState) {
+              return Container();
+            }
+            return Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        PotentialSelectButton(
+                          onSelected: _onPotentialChange,
+                          length: dataState.operator_.potentialRanks.length,
+                        ),
+                        Gaps.v5,
+                        const CommonSubTitleWidget(text: '잠재능력'),
+                      ],
                     ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    width: Sizes.size52,
-                    child: CommonSubTitleWidget(text: '신뢰도'),
-                  ),
-                  SizedBox(
-                    height: Sizes.size44,
-                    child: BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
-                      buildWhen: (previous, current) {
-                        return previous.favor != current.favor;
-                      },
-                      builder: (context, statState) => OperatorSlider(
-                        minValue: 0,
-                        maxValue: 110,
-                        currValue: statState.favor,
-                        onChange: _onFavorChange,
-                        tag: '',
-                      ),
+                    Gaps.h20,
+                    Column(
+                      children: [
+                        EliteSelectButton(
+                          onSelected: _onEliteChange,
+                          length: dataState.operator_.phases.length,
+                        ),
+                        Gaps.v5,
+                        const CommonSubTitleWidget(text: '정예화 단계'),
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ],
-          );
-        }),
+                  ],
+                ),
+                Gaps.v20,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: Sizes.size52,
+                      child: CommonSubTitleWidget(text: '레벨'),
+                    ),
+                    SizedBox(
+                      height: Sizes.size44,
+                      child:
+                          BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
+                        buildWhen: (previous, current) {
+                          return (previous.level != current.level) ||
+                              (previous.maxLevel != current.maxLevel);
+                        },
+                        builder: (context, statState) => OperatorSlider(
+                          minValue: 1,
+                          maxValue: statState.maxLevel,
+                          currValue: statState.level,
+                          onChange: _onLevelChange,
+                          tag: '',
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      width: Sizes.size52,
+                      child: CommonSubTitleWidget(text: '신뢰도'),
+                    ),
+                    SizedBox(
+                      height: Sizes.size44,
+                      child:
+                          BlocBuilder<OperatorStatusBloc, OperatorStatusState>(
+                        buildWhen: (previous, current) {
+                          return previous.favor != current.favor;
+                        },
+                        builder: (context, statState) => OperatorSlider(
+                          minValue: 0,
+                          maxValue: 110,
+                          currValue: statState.favor,
+                          onChange: _onFavorChange,
+                          tag: '',
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
         const Expanded(child: SizedBox()),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),

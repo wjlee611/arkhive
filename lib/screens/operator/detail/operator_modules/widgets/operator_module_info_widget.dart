@@ -39,7 +39,6 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
     moduleData =
         (context.read<OperatorDataBloc>().state as OperatorDataLoadedState)
             .moduleDatas[widget.module.uniEquipId]!;
-    print(widget.module.uniEquipId);
 
     _levelTabController = TabController(
       length: moduleData!.phases.length,
@@ -76,7 +75,6 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
 
   void _updateContents() {
     int potential = context.read<OperatorStatusBloc>().state.potential;
-    print(potential);
     _updateTrait = null;
     _updateTalent = null;
 

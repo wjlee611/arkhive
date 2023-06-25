@@ -30,8 +30,17 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
       Map<String, dynamic> jsonData = await json.decode(jsonString);
       operator_ = OperatorModel.fromJson(jsonData[event.operatorKey]);
     } catch (_) {
-      emit(const OperatorDataErrorState(message: '오퍼레이터'));
-      return;
+      try {
+        // Loading Promotion operator Data
+        String jsonString = await rootBundle
+            .loadString('${getGameDataRoot()}excel/char_patch_table.json');
+        Map<String, dynamic> jsonData =
+            await json.decode(jsonString)['patchChars'];
+        operator_ = OperatorModel.fromJson(jsonData[event.operatorKey]);
+      } catch (_) {
+        emit(const OperatorDataErrorState(message: '오퍼레이터'));
+        return;
+      }
     }
 
     // Loading Skill Data

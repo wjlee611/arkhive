@@ -18,6 +18,7 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dar
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,9 +93,7 @@ class OperatorDetailScreen extends StatelessWidget {
                 return Container();
               }
               if (state is OperatorDataLoadingState) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const CommonLoadingWidget();
               }
               if (state is OperatorDataLoadedState) {
                 context

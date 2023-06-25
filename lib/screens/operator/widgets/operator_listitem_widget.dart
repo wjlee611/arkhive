@@ -1,7 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator_list_model.dart';
 import 'package:flutter/material.dart';
 
 class OperatorListItem extends StatelessWidget {
@@ -11,7 +11,7 @@ class OperatorListItem extends StatelessWidget {
     required this.index,
   });
 
-  final OperatorModel operator_;
+  final OperatorListModel operator_;
   final int index;
 
   Color _rarityColorSelector(int rarity) {
@@ -33,18 +33,19 @@ class OperatorListItem extends StatelessWidget {
             height: Sizes.size52,
             width: Sizes.size5,
             decoration: BoxDecoration(
-              color: _rarityColorSelector(operator_.rarity!),
+              color: _rarityColorSelector(operator_.rarity),
             ),
           ),
           Hero(
-            tag: operator_.phases.first.characterPrefabKey!,
+            tag: operator_.operatorKey,
             child: Container(
               width: Sizes.size52,
               height: Sizes.size52,
               clipBehavior: Clip.hardEdge,
               decoration: const BoxDecoration(),
               child: Image.asset(
-                  'assets/images/operator/${operator_.phases.first.characterPrefabKey}.png'),
+                'assets/images/operator/${operator_.operatorKey}.png',
+              ),
             ),
           ),
           Gaps.h20,
@@ -53,7 +54,7 @@ class OperatorListItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    operator_.name!,
+                    operator_.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
