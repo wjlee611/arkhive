@@ -9,6 +9,7 @@ import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
+import 'package:arkhive/widgets/common_no_result_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -72,29 +73,7 @@ class OperatorScreen extends StatelessWidget {
                   if ((state as OperatorListLoadedState)
                       .filteredOperatorList
                       .isEmpty) {
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/prts.png',
-                            color: Colors.grey.shade400,
-                            width: Sizes.size60,
-                            height: Sizes.size60,
-                          ),
-                          Gaps.v5,
-                          const Text(
-                            '검색 결과가 없습니다.',
-                            style: TextStyle(
-                              fontSize: Sizes.size16,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: FontFamily.nanumGothic,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
+                    return const CommonNoResultWidget();
                   }
                   return CustomScrollView(
                     slivers: [

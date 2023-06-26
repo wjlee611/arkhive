@@ -1,36 +1,35 @@
+import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_bloc.dart';
+import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
+import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/enemy/widgets/enemy_filters_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EnemySliverAppBar extends StatefulWidget {
-  const EnemySliverAppBar({
-    super.key,
-    required this.isLoading,
-    required this.onFilterChange,
-    required this.onSearchChange,
-    required this.onDeleteTap,
-    required this.searchController,
-  });
-
-  final bool isLoading;
-  final Function(List<bool>) onFilterChange;
-  final Function(String?) onSearchChange;
-  final Function() onDeleteTap;
-  final TextEditingController searchController;
+  const EnemySliverAppBar({super.key});
 
   @override
   State<EnemySliverAppBar> createState() => _OperatorSliverAppBarState();
 }
 
 class _OperatorSliverAppBarState extends State<EnemySliverAppBar> {
+  late TextEditingController _searchController;
   bool _onSearch = false;
-  final List<bool> _isChecked = [
-    true, // normal
-    true, // elite
-    true, // boss
-  ];
-  String searchString = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   void _onSearchTap() {
     setState(() {
@@ -40,97 +39,32 @@ class _OperatorSliverAppBarState extends State<EnemySliverAppBar> {
 
   void _onTapOutside(PointerDownEvent _) {
     FocusScope.of(context).unfocus();
+    setState(() {
+      _onSearch = false;
+    });
   }
 
   void _onSearchChange(String? string) {
-    searchString = string ?? '';
-    widget.onSearchChange(string);
+    context
+        .read<EnemyListBloc>()
+        .add(EnemyListSearchEvent(searchQuery: string ?? ''));
   }
 
   void _onDeleteTap() {
-    searchString = '';
-    widget.onDeleteTap();
-  }
-
-  void _onFilterChange({
-    required int index,
-    required bool? value,
-    required Function(void Function()) setState,
-  }) {
-    setState(() {
-      _isChecked[index] = value ?? false;
-    });
-    widget.onFilterChange(_isChecked);
+    _searchController.clear();
+    context
+        .read<EnemyListBloc>()
+        .add(const EnemyListSearchEvent(searchQuery: ''));
   }
 
   @override
   Widget build(BuildContext context) {
-    return SliverAppBar(
-      automaticallyImplyLeading: false,
-      title: Row(
-        children: [
-          PopupMenuButton(
-            offset: const Offset(0, 0),
-            icon: Icon(
-              Icons.filter_alt_rounded,
-              color: _isChecked.any((element) => element)
-                  ? Colors.yellow.shade800
-                  : Colors.white,
-            ),
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: Sizes.size5,
-                color: Colors.blueGrey.shade700,
-              ),
-              borderRadius:
-                  const BorderRadius.all(Radius.circular(Sizes.size10)),
-            ),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                child: StatefulBuilder(
-                  builder: (context, setState) => Column(
-                    children: [
-                      for (int i = 0; i < 3; i++)
-                        CheckboxListTile(
-                          value: _isChecked[i],
-                          title: Text(
-                            i == 0
-                                ? '일반'
-                                : i == 1
-                                    ? '정예'
-                                    : '보스',
-                            style: const TextStyle(
-                              fontFamily: FontFamily.nanumGothic,
-                            ),
-                          ),
-                          onChanged: (value) => _onFilterChange(
-                            index: i,
-                            value: value,
-                            setState: setState,
-                          ),
-                          activeColor: Colors.yellow.shade800,
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          if (widget.isLoading)
-            SizedBox(
-              width: Sizes.size48,
-              height: Sizes.size20,
-              child: Center(
-                child: SizedBox(
-                  width: Sizes.size20,
-                  height: Sizes.size20,
-                  child: CircularProgressIndicator(
-                    color: Colors.yellow.shade800,
-                  ),
-                ),
-              ),
-            )
-          else
+    return BlocBuilder<EnemyListBloc, EnemyListState>(
+      builder: (context, state) => SliverAppBar(
+        automaticallyImplyLeading: false,
+        title: Row(
+          children: [
+            const EnemyFiltersButton(),
             IconButton(
               onPressed: _onSearchTap,
               icon: Icon(
@@ -138,94 +72,142 @@ class _OperatorSliverAppBarState extends State<EnemySliverAppBar> {
                 color: _onSearch ? Colors.yellow.shade800 : Colors.white,
               ),
             ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: _onSearch
-                  ? TextField(
-                      controller: widget.searchController,
-                      onChanged: _onSearchChange,
-                      onTapOutside: _onTapOutside,
-                      style: const TextStyle(color: Colors.white),
-                      cursorColor: Colors.yellow.shade800,
-                      decoration: InputDecoration(
-                        labelText: '검색',
-                        labelStyle: const TextStyle(
-                          color: Colors.white,
-                          fontFamily: FontFamily.nanumGothic,
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: _onSearch
+                    ? TextField(
+                        controller: _searchController,
+                        onChanged: _onSearchChange,
+                        onTapOutside: _onTapOutside,
+                        style: const TextStyle(color: Colors.white),
+                        cursorColor: Colors.yellow.shade800,
+                        decoration: InputDecoration(
+                          labelText: '검색',
+                          labelStyle: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: FontFamily.nanumGothic,
+                          ),
+                          suffixIconColor: Colors.white,
+                          suffixIcon: GestureDetector(
+                            onTap: _onDeleteTap,
+                            child: const Icon(Icons.cancel_rounded),
+                          ),
                         ),
-                        suffixIconColor: Colors.white,
-                        suffixIcon: GestureDetector(
-                          onTap: _onDeleteTap,
-                          child: const Icon(Icons.cancel_rounded),
-                        ),
-                      ),
-                    )
-                  : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          if (searchString.isNotEmpty)
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: Sizes.size2,
-                                horizontal: Sizes.size5,
+                      )
+                    : SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            if (state.searchQuery?.isNotEmpty == true)
+                              Row(
+                                children: [
+                                  _tag(
+                                    "검색: ${state.searchQuery!}",
+                                    isSearch: true,
+                                  ),
+                                  Gaps.h5,
+                                ],
                               ),
-                              margin: const EdgeInsets.only(right: Sizes.size5),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size5),
-                              ),
-                              child: Text(
-                                searchString,
-                                style: TextStyle(
-                                  fontFamily: FontFamily.nanumGothic,
-                                  fontSize: Sizes.size14,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.blueGrey.shade700,
+                            if (state.enemyList == null ||
+                                state.enemyList!.isEmpty)
+                              SizedBox(
+                                width: Sizes.size20,
+                                height: Sizes.size20,
+                                child: CircularProgressIndicator(
+                                  color: Colors.yellow.shade800,
                                 ),
+                              )
+                            else
+                              _tag(
+                                state.searchQuery?.isNotEmpty == true
+                                    ? "필터 해제"
+                                    : state.selectedFilterOption
+                                                ?.any((element) => element) ==
+                                            true
+                                        ? "필터 적용"
+                                        : "필터 없음",
                               ),
-                            ),
-                          // Container(
-                          //   padding: const EdgeInsets.symmetric(
-                          //     vertical: Sizes.size2,
-                          //     horizontal: Sizes.size5,
-                          //   ),
-                          //   decoration: BoxDecoration(
-                          //     color: Colors.white,
-                          //     borderRadius: BorderRadius.circular(Sizes.size5),
-                          //   ),
-                          //   child: Text(
-                          //     widget.sortOption == SortOptions.starUp
-                          //         ? '레어도 오름차순'
-                          //         : widget.sortOption == SortOptions.starDown
-                          //             ? '레어도 내림차순'
-                          //             : widget.sortOption == SortOptions.nameUp
-                          //                 ? '이름 오름차순'
-                          //                 : '이름 내림차순',
-                          //     style: TextStyle(
-                          //       fontFamily: FontFamily.nanumGothic,
-                          //       fontSize: Sizes.size14,
-                          //       fontWeight: FontWeight.w700,
-                          //       color: Colors.blueGrey.shade700,
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
+                            if (state is EnemyListLoadedState)
+                              Row(
+                                children: [
+                                  Gaps.h5,
+                                  _tag(
+                                      "${state.filteredEnemyList.length}명 검색됨"),
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
+              ),
             ),
-          ),
-          Gaps.h10,
-        ],
+            Gaps.h10,
+          ],
+        ),
+        elevation: Sizes.size3,
+        forceElevated: true,
+        backgroundColor: Colors.blueGrey.shade700,
+        centerTitle: false,
+        pinned: true,
       ),
-      elevation: Sizes.size3,
-      forceElevated: true,
-      backgroundColor: Colors.blueGrey.shade700,
-      centerTitle: false,
-      pinned: true,
+    );
+  }
+
+  Widget _tag(String text, {bool isSearch = false}) {
+    if (isSearch) {
+      return GestureDetector(
+        onTap: _onDeleteTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.size2,
+            horizontal: Sizes.size5,
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(Sizes.size5),
+          ),
+          child: Row(
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                  fontFamily: FontFamily.nanumGothic,
+                  fontSize: Sizes.size14,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.blueGrey.shade700,
+                ),
+              ),
+              Gaps.h5,
+              Icon(
+                Icons.cancel,
+                size: Sizes.size16,
+                color: Colors.blueGrey.shade700,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.size2,
+        horizontal: Sizes.size5,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(Sizes.size5),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontFamily: FontFamily.nanumGothic,
+          fontSize: Sizes.size14,
+          fontWeight: FontWeight.w700,
+          color: Colors.blueGrey.shade700,
+        ),
+      ),
     );
   }
 }

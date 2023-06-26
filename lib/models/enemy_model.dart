@@ -12,6 +12,7 @@ class EnemyModel {
       defence,
       resistance,
       ability;
+  final List<String> tags;
   final bool? hideInHandbook;
 
   EnemyModel.fromJson(Map<String, dynamic> json)
@@ -26,6 +27,10 @@ class EnemyModel {
         defence = json['defence'],
         resistance = json['resistance'],
         ability = json['ability'],
+        tags = [
+          if (json['tags'] != null)
+            for (var data in json['tags']) data.toString()
+        ],
         hideInHandbook = json['hideInHandbook'];
 }
 
