@@ -101,7 +101,7 @@ class CommonSubTitleWidget extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: isShadow ? Colors.white : Colors.transparent,
             boxShadow: [
               if (isShadow)
                 BoxShadow(

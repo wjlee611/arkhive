@@ -80,6 +80,7 @@ flutter:
     - assets/images/item/
     - assets/data/
     - assets/data/ko_KR/gamedata/excel/
+    - assets/data/ko_KR/gamedata/levels/enemydata/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

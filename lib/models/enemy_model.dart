@@ -70,6 +70,39 @@ class EnemyAttrDataModel {
       frozenImmune,
       levitateImmune;
 
+  EnemyAttrDataModel({
+    this.maxHp,
+    this.atk,
+    this.def,
+    this.massLevel,
+    this.magicResistance,
+    this.moveSpeed,
+    this.attackSpeed,
+    this.baseAttackTime,
+    this.stunImmune,
+    this.silenceImmune,
+    this.sleepImmune,
+    this.frozenImmune,
+    this.levitateImmune,
+  });
+
+  EnemyAttrDataModel.copy(EnemyAttrDataModel obj)
+      : this(
+          maxHp: obj.maxHp,
+          atk: obj.atk,
+          def: obj.def,
+          massLevel: obj.massLevel,
+          magicResistance: obj.magicResistance,
+          moveSpeed: obj.moveSpeed,
+          attackSpeed: obj.attackSpeed,
+          baseAttackTime: obj.baseAttackTime,
+          stunImmune: obj.stunImmune,
+          silenceImmune: obj.silenceImmune,
+          sleepImmune: obj.sleepImmune,
+          frozenImmune: obj.frozenImmune,
+          levitateImmune: obj.levitateImmune,
+        );
+
   EnemyAttrDataModel.fromJson(Map<String, dynamic> json)
       : maxHp = EnemyAttrValueDataModel.fromJson(json['maxHp']),
         atk = EnemyAttrValueDataModel.fromJson(json['atk']),

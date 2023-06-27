@@ -38,8 +38,13 @@ class EnemyFiltersButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<EnemyListBloc, EnemyListState>(
-      buildWhen: (previous, current) =>
-          previous.selectedFilterOption != current.selectedFilterOption,
+      buildWhen: (previous, current) {
+        if (previous.selectedFilterOption != current.selectedFilterOption ||
+            previous.searchQuery != current.searchQuery) {
+          return true;
+        }
+        return false;
+      },
       builder: (context_, state) => PopupMenuButton(
         offset: const Offset(0, 0),
         icon: Icon(

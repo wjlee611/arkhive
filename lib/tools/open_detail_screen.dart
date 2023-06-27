@@ -1,4 +1,5 @@
 import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,13 +41,13 @@ class OpenDetailScreen {
     required dynamic context,
     int level = 0,
   }) async {
-    // await Navigator.push(
-    //   context,
-    //   _createRoute(EnemyDetailScreen(
-    //     enemyKey: enemyKey,
-    //     initLevel: level,
-    //   )),
-    // );
+    await Navigator.push(
+      context,
+      _createRoute(EnemyDetailScreen(
+        enemyKey: enemyKey,
+        initLevel: level,
+      )),
+    );
   }
 
   static void onStageTab({

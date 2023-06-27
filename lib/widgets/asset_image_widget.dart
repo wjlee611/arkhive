@@ -5,17 +5,26 @@ class AssetImageWidget extends StatelessWidget {
   const AssetImageWidget({
     super.key,
     required this.path,
+    this.width,
+    this.height,
   });
 
   final String path;
+  final double? width, height;
 
   /// 개발용
   Future<Image> _futureImage() async {
     return rootBundle.load(path).then((value) {
-      return Image.memory(value.buffer.asUint8List());
+      return Image.memory(
+        value.buffer.asUint8List(),
+        width: width,
+        height: height,
+      );
     }).catchError((_) {
       return Image.asset(
         'assets/images/prts.png',
+        width: width,
+        height: height,
       );
     });
   }
@@ -23,7 +32,11 @@ class AssetImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 릴리즈용
-    // return Image.asset(path);
+    return Image.asset(
+      path,
+      width: width,
+      height: height,
+    );
 
     /// 개발용
     return FutureBuilder(
@@ -34,6 +47,8 @@ class AssetImageWidget extends StatelessWidget {
         }
         return Image.asset(
           'assets/images/prts.png',
+          width: width,
+          height: height,
         );
       },
     );
