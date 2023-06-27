@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
 import 'package:arkhive/models/enemy_list_model.dart';
@@ -22,23 +23,16 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
     emit(const EnemyListLoadingState());
 
     try {
-      List<EnemyListModel> result = [];
       String jsonString = await rootBundle
           .loadString('${getGameDataRoot()}excel/enemy_handbook_table.json');
-      Map<String, dynamic> jsonData = await json.decode(jsonString);
 
-      for (var enemyData in jsonData.entries) {
-        var enemy = EnemyModel.fromJson(enemyData.value);
-        if (enemy.hideInHandbook ?? true) continue;
-
-        result.add(EnemyListModel(
-          enemyKey: enemy.enemyId!,
-          enemyIndex: enemy.enemyIndex!,
-          name: enemy.name!,
-          level: enemy.enemyLevel!,
-          tags: enemy.tags,
-        ));
-      }
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
+        _deserializeEnemyListModel,
+        [port.sendPort, jsonString],
+      );
+      var result = await port.first;
+      port.close();
 
       emit(EnemyListLoadedState(
         enemyList: result,
@@ -114,5 +108,29 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
       selectedFilterOption: state.selectedFilterOption,
       searchQuery: event.searchQuery,
     ));
+  }
+
+  // Isolate
+  static void _deserializeEnemyListModel(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    List<EnemyListModel> result = [];
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+    for (var enemyData in jsonData.entries) {
+      var enemy = EnemyModel.fromJson(enemyData.value);
+      if (enemy.hideInHandbook ?? true) continue;
+
+      result.add(EnemyListModel(
+        enemyKey: enemy.enemyId!,
+        enemyIndex: enemy.enemyIndex!,
+        name: enemy.name!,
+        level: enemy.enemyLevel!,
+        tags: enemy.tags,
+      ));
+    }
+
+    Isolate.exit(sendPort, result);
   }
 }

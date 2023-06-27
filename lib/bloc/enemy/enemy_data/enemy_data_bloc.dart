@@ -23,16 +23,16 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
 
     // Loading Enemy
     try {
-      ReceivePort port = ReceivePort();
       String jsonString = await rootBundle
           .loadString('${getGameDataRoot()}excel/enemy_handbook_table.json');
 
-      final isolate = await Isolate.spawn(
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
         _deserializeEnemyModel,
         [port.sendPort, jsonString, event.enemyKey],
       );
-
       enemy = await port.first;
+      port.close();
     } catch (e) {
       emit(const EnemyDataErrorState(message: '적'));
       return;
@@ -40,16 +40,16 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
 
     // Loading Enemy Data
     try {
-      ReceivePort port = ReceivePort();
       String jsonString = await rootBundle.loadString(
           '${getGameDataRoot()}levels/enemydata/enemy_database.json');
 
-      final isolate = await Isolate.spawn(
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
         _deserializeEnemyDataModel,
         [port.sendPort, jsonString, event.enemyKey],
       );
-
       enemyData = await port.first;
+      port.close();
     } catch (e) {
       emit(const EnemyDataErrorState(message: '적 데이터'));
       return;
@@ -70,19 +70,20 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
     ));
   }
 
-  static void _deserializeEnemyModel(List<dynamic> values) {
-    SendPort sendPort = values[0];
-    String jsonString = values[1];
-    String enemyKey = values[2];
+  // Isolate
+  static void _deserializeEnemyModel(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    String enemyKey = args[2];
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
     Isolate.exit(sendPort, EnemyModel.fromJson(jsonData[enemyKey]));
   }
 
-  static void _deserializeEnemyDataModel(List<dynamic> values) {
-    SendPort sendPort = values[0];
-    String jsonString = values[1];
-    String enemyKey = values[2];
+  static void _deserializeEnemyDataModel(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    String enemyKey = args[2];
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
     List<dynamic> enemyDataList = jsonData['enemies'];

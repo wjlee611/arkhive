@@ -86,7 +86,7 @@ class EnemyHeader extends StatelessWidget {
                     Text(
                       state is EnemyDataLoadedState
                           ? state.enemy.enemyIndex!
-                          : ';)',
+                          : '/**/',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: Sizes.size16,

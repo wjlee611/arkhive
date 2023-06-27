@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/models/operator_list_model.dart';
@@ -25,46 +26,30 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
 
     try {
       List<OperatorListModel> result = [];
+
+      // For normal
       String jsonString = await rootBundle
           .loadString('${getGameDataRoot()}excel/character_table.json');
-      Map<String, dynamic> jsonData = await json.decode(jsonString);
 
-      for (var operatorData in jsonData.entries) {
-        // 오직 캐릭터만
-        if (!operatorData.key.startsWith('char_')) continue;
-        // 샬렘 중복 제외
-        if (operatorData.key == 'char_512_aprot') continue;
-
-        var operator_ = OperatorModel.fromJson(operatorData.value);
-        result.add(OperatorListModel(
-          operatorKey: operatorData.key,
-          name: operator_.name!,
-          // 예비 인원의 경우 별도의 처리
-          profession:
-              operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
-          rarity: operator_.rarity!,
-        ));
-      }
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
+        _deserializeOperatorListModel,
+        [port.sendPort, jsonString],
+      );
+      result.addAll(await port.first);
+      port.close();
 
       // For promotion
       jsonString = await rootBundle
           .loadString('${getGameDataRoot()}excel/char_patch_table.json');
-      jsonData = await json.decode(jsonString)['patchChars'];
 
-      for (var operatorData in jsonData.entries) {
-        // 오직 캐릭터만
-        if (!operatorData.key.startsWith('char_')) continue;
-
-        var operator_ = OperatorModel.fromJson(operatorData.value);
-        result.add(OperatorListModel(
-          operatorKey: operatorData.key,
-          name: operator_.name!,
-          // 예비 인원의 경우 별도의 처리
-          profession:
-              operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
-          rarity: operator_.rarity!,
-        ));
-      }
+      port = ReceivePort();
+      await Isolate.spawn(
+        _deserializePromotionOperatorListModel,
+        [port.sendPort, jsonString],
+      );
+      result.addAll(await port.first);
+      port.close();
 
       result = _sortByOption(
         target: result,
@@ -236,5 +221,58 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
     }
 
     return result;
+  }
+
+  // Isolate
+  static void _deserializeOperatorListModel(List<dynamic> args) async {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    List<OperatorListModel> result = [];
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+    for (var operatorData in jsonData.entries) {
+      // 오직 캐릭터만
+      if (!operatorData.key.startsWith('char_')) continue;
+      // 샬렘 중복 제외
+      if (operatorData.key == 'char_512_aprot') continue;
+
+      var operator_ = OperatorModel.fromJson(operatorData.value);
+      result.add(OperatorListModel(
+        operatorKey: operatorData.key,
+        name: operator_.name!,
+        // 예비 인원의 경우 별도의 처리
+        profession:
+            operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
+        rarity: operator_.rarity!,
+      ));
+    }
+
+    Isolate.exit(sendPort, result);
+  }
+
+  static void _deserializePromotionOperatorListModel(List<dynamic> args) async {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    List<OperatorListModel> result = [];
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString)['patchChars'];
+
+    for (var operatorData in jsonData.entries) {
+      // 오직 캐릭터만
+      if (!operatorData.key.startsWith('char_')) continue;
+
+      var operator_ = OperatorModel.fromJson(operatorData.value);
+      result.add(OperatorListModel(
+        operatorKey: operatorData.key,
+        name: operator_.name!,
+        // 예비 인원의 경우 별도의 처리
+        profession:
+            operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
+        rarity: operator_.rarity!,
+      ));
+    }
+
+    Isolate.exit(sendPort, result);
   }
 }
