@@ -6,24 +6,26 @@ class CommonLoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox(
-          width: Sizes.size80,
-          height: Sizes.size3,
-          child: LinearProgressIndicator(
-            color: Colors.yellow.shade800,
-            backgroundColor: Colors.transparent,
+    return Center(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          SizedBox(
+            width: Sizes.size80,
+            height: Sizes.size3,
+            child: LinearProgressIndicator(
+              color: Colors.yellow.shade800,
+              backgroundColor: Colors.transparent,
+            ),
           ),
-        ),
-        Image.asset(
-          'assets/images/prts.png',
-          color: Colors.grey.shade400,
-          width: Sizes.size60,
-          height: Sizes.size60,
-        ),
-      ],
+          Image.asset(
+            'assets/images/prts.png',
+            color: Colors.grey.shade400,
+            width: Sizes.size60,
+            height: Sizes.size60,
+          ),
+        ],
+      ),
     );
   }
 }

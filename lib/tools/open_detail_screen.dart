@@ -27,8 +27,8 @@ class OpenDetailScreen {
   static void onOperatorTab({
     required String operatorKey,
     required dynamic context,
-  }) async {
-    await Navigator.push(
+  }) {
+    Navigator.push(
       context,
       _createRoute(OperatorDetailScreen(
         operatorKey: operatorKey,
@@ -40,8 +40,8 @@ class OpenDetailScreen {
     required String enemyKey,
     required dynamic context,
     int level = 0,
-  }) async {
-    await Navigator.push(
+  }) {
+    Navigator.push(
       context,
       _createRoute(EnemyDetailScreen(
         enemyKey: enemyKey,

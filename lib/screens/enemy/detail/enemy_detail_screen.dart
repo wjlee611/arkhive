@@ -86,7 +86,7 @@ class EnemyDetailScreen extends StatelessWidget {
                     child: Text('${state.message} 데이터를 불러오는데 실패했습니다.'),
                   );
                 }
-                return Container();
+                return const CommonLoadingWidget();
               },
             ),
             EnemyHeader(enemyKey: enemyKey),
