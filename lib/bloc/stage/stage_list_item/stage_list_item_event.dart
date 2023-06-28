@@ -1,3 +1,4 @@
+import 'package:arkhive/models/stage_list_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class StageListItemEvent extends Equatable {
@@ -8,12 +9,14 @@ abstract class StageListItemEvent extends Equatable {
 }
 
 class StageListItemOnTabEvent extends StageListItemEvent {
-  final String zoneId;
+  final String actId;
+  final List<ZoneListModel> zones;
 
   const StageListItemOnTabEvent({
-    required this.zoneId,
+    required this.actId,
+    required this.zones,
   });
 
   @override
-  List<Object?> get props => [zoneId];
+  List<Object?> get props => [actId];
 }

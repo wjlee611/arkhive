@@ -5,6 +5,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
+import 'package:arkhive/screens/stage/widgets/stage_zone_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,9 +24,10 @@ class StageActContainer extends StatefulWidget {
 class _StageActContainerState extends State<StageActContainer> {
   void _onOpenTap(BuildContext context) {
     setState(() {
-      context
-          .read<StageListItemBloc>()
-          .add(StageListItemOnTabEvent(zoneId: widget.act.actId));
+      context.read<StageListItemBloc>().add(StageListItemOnTabEvent(
+            actId: widget.act.actId,
+            zones: widget.act.zones,
+          ));
     });
   }
 
@@ -44,7 +46,7 @@ class _StageActContainerState extends State<StageActContainer> {
   Widget build(BuildContext context) {
     return BlocBuilder<StageListItemBloc, StageListItemState>(
       builder: (context, state) {
-        bool isOpen = state.zoneIsOpenMap[widget.act.actId] ?? false;
+        bool isOpen = state.actIsOpenMap[widget.act.actId] ?? false;
         return AnimatedPadding(
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeOut,
@@ -146,18 +148,7 @@ class _StageActContainerState extends State<StageActContainer> {
                     ),
                   ),
                 ),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.fastOutSlowIn,
-                  height: isOpen ? 500 : 0,
-                  child: Container(
-                    height: 1000,
-                    decoration: const BoxDecoration(
-                      color: Colors.blueAccent,
-                    ),
-                  ),
-                ),
-                // StageListContainer(stages: widget.stages),
+                StageZoneContainer(act: widget.act),
               ],
             ),
           ),

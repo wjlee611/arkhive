@@ -1,8 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/models/stage_model.dart';
-import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/models/stage_list_model.dart';
 import 'package:flutter/material.dart';
 
 class StageListCardWidget extends StatelessWidget {
@@ -11,13 +10,13 @@ class StageListCardWidget extends StatelessWidget {
     required this.stage,
   });
 
-  final StageModel stage;
+  final StageListModel stage;
 
   void _onTap({
-    required StageModel stage,
+    required StageListModel stage,
     required BuildContext context,
   }) {
-    OpenDetailScreen.onStageTab(stage: stage, context: context);
+    // OpenDetailScreen.onStageTab(stage: stage, context: context);
   }
 
   @override
@@ -44,7 +43,7 @@ class StageListCardWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Sizes.size3),
               ),
               child: Text(
-                stage.code ?? '???',
+                stage.code,
                 style: const TextStyle(
                   fontFamily: FontFamily.nanumGothic,
                   fontWeight: FontWeight.w700,
@@ -56,7 +55,7 @@ class StageListCardWidget extends StatelessWidget {
             Gaps.h5,
             Flexible(
               child: Text(
-                stage.name ?? '',
+                stage.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
