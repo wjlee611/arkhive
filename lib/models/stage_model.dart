@@ -1,33 +1,3 @@
-class StagesModel {
-  final String? nameFirst, nameSecond, type;
-  final int? open, close, shopClose;
-  List<String> zones;
-
-  StagesModel({
-    this.nameFirst,
-    this.nameSecond,
-    required this.type,
-    this.open,
-    this.close,
-    this.shopClose,
-    required this.zones,
-  });
-
-  void addZone({required String zone}) {
-    zones.add(zone);
-  }
-}
-
-class ZoneModel {
-  final String? zoneId, type, zoneNameFirst, zoneNameSecond;
-
-  ZoneModel.fromJson(Map<String, dynamic> json)
-      : zoneId = json['zoneID'],
-        type = json['type'],
-        zoneNameFirst = json['zoneNameFirst'],
-        zoneNameSecond = json['zoneNameSecond'];
-}
-
 class ActivityModel {
   final String? id, name;
   final int? startTime, endTime, rewardEndTime;
@@ -43,14 +13,25 @@ class ActivityModel {
         isReplicate = json['isReplicate'];
 }
 
+class ZoneModel {
+  final String? zoneId, type, zoneNameFirst, zoneNameSecond;
+
+  ZoneModel.fromJson(Map<String, dynamic> json)
+      : zoneId = json['zoneID'],
+        type = json['type'],
+        zoneNameFirst = json['zoneNameFirst'],
+        zoneNameSecond = json['zoneNameSecond'];
+}
+
 class StageModel {
-  final String? difficulty, diffGroup, zoneId, code, name, description;
+  final String? stageId, difficulty, diffGroup, zoneId, code, name, description;
   final int? apCost, apFailReturn;
   final StageRewordModel? stageDropInfo;
   final bool? isStoryOnly, isPredefined, isStagePatch;
 
   StageModel.fromJson(Map<String, dynamic> json)
-      : difficulty = json['difficulty'],
+      : stageId = json['stageId'],
+        difficulty = json['difficulty'],
         diffGroup = json['diffGroup'],
         zoneId = json['zoneId'],
         code = json['code'],
@@ -83,33 +64,4 @@ class StageItemModel {
       : type = json['type'],
         id = json['id'],
         dropType = json['dropType'];
-}
-
-class StagesIndexingModel {
-  Map<String, List<String>> zone;
-
-  StagesIndexingModel.init() : zone = {};
-
-  StagesIndexingModel.fromJson(Map<String, dynamic> json)
-      : zone = {
-          for (var key in json.keys)
-            key: [
-              for (var stage in json[key]) stage,
-            ],
-        };
-
-  void setStages({
-    required String zone,
-    required List<String> stages,
-  }) {
-    this.zone[zone] = stages;
-  }
-
-  void addStage({
-    required String zone,
-    required String stage,
-  }) {
-    if (this.zone[zone] == null) this.zone[zone] = [];
-    this.zone[zone]!.add(stage);
-  }
 }
