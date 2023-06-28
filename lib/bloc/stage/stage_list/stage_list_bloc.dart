@@ -59,20 +59,17 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
             activityModel.id == 'act7d5') {
           result[1].addActivity(ActivityListModel(
             title: activityModel.name!,
-            actIds: activityModel.id!,
-            timeStamps: [
-              StageTimeStampModel(
-                startTime: activityModel.startTime!,
-                endTime: activityModel.endTime!,
-                rewardEndTime: activityModel.rewardEndTime!,
-              )
-            ],
+            actId: activityModel.id!,
+            timeStamps: StageTimeStampModel(
+              startTime: activityModel.startTime!,
+              endTime: activityModel.endTime!,
+              rewardEndTime: activityModel.rewardEndTime!,
+            ),
             zones: [
               ZoneListModel(
                 title: 'N/A',
                 zoneId: 'main_2',
                 type: 'ACTIVITY',
-                stages: [],
               ),
             ],
           ));
@@ -81,14 +78,12 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
 
         result[1].addActivity(ActivityListModel(
           title: activityModel.name!,
-          actIds: activityModel.id!,
-          timeStamps: [
-            StageTimeStampModel(
-              startTime: activityModel.startTime!,
-              endTime: activityModel.endTime!,
-              rewardEndTime: activityModel.rewardEndTime!,
-            )
-          ],
+          actId: activityModel.id!,
+          timeStamps: StageTimeStampModel(
+            startTime: activityModel.startTime!,
+            endTime: activityModel.endTime!,
+            rewardEndTime: activityModel.rewardEndTime!,
+          ),
           zones: [],
         ));
       }
@@ -120,7 +115,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           zoneTitle = zoneModel.zoneNameSecond ?? 'N/A';
         } else {
           zoneTitle =
-              '${zoneModel.zoneNameFirst!}-${zoneModel.zoneNameSecond ?? 'N/A'}';
+              '${zoneModel.zoneNameFirst!} - ${zoneModel.zoneNameSecond ?? 'N/A'}';
         }
 
         // 메인
@@ -131,14 +126,12 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           if (mainlineIdx < 9) {
             result[0].addActivity(ActivityListModel(
               title: zoneTitle,
-              actIds: zoneModel.zoneId!,
-              timeStamps: [],
+              actId: zoneModel.zoneId!,
               zones: [
                 ZoneListModel(
                   title: '표준 실전 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'NONE',
-                  stages: [],
                 )
               ],
             ));
@@ -147,20 +140,17 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           else if (mainlineIdx == 9) {
             result[0].addActivity(ActivityListModel(
               title: zoneTitle,
-              actIds: zoneModel.zoneId!,
-              timeStamps: [],
+              actId: zoneModel.zoneId!,
               zones: [
                 ZoneListModel(
                   title: '스토리 체험 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'EASY',
-                  stages: [],
                 ),
                 ZoneListModel(
                   title: '표준 실전 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'NORMAL',
-                  stages: [],
                 )
               ],
             ));
@@ -169,26 +159,22 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           else {
             result[0].addActivity(ActivityListModel(
               title: zoneTitle,
-              actIds: zoneModel.zoneId!,
-              timeStamps: [],
+              actId: zoneModel.zoneId!,
               zones: [
                 ZoneListModel(
                   title: '스토리 체험 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'EASY',
-                  stages: [],
                 ),
                 ZoneListModel(
                   title: '표준 실전 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'NORMAL',
-                  stages: [],
                 ),
                 ZoneListModel(
                   title: '고난 험지 환경',
                   zoneId: zoneModel.zoneId!,
                   type: 'TOUGH',
-                  stages: [],
                 )
               ],
             ));
@@ -203,7 +189,6 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
               title: zoneTitle,
               zoneId: zoneModel.zoneId!,
               type: zoneModel.type!,
-              stages: [],
             ),
           );
         }

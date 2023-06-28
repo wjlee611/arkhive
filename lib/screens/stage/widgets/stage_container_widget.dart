@@ -1,16 +1,16 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_list_container_widget.dart';
 import 'package:flutter/material.dart';
 
 class StagesContainer extends StatefulWidget {
   const StagesContainer({
     super.key,
-    required this.stages,
+    required this.act,
   });
 
-  final StagesModel stages;
+  final ActivityListModel act;
 
   @override
   State<StagesContainer> createState() => _StagesContainerState();
