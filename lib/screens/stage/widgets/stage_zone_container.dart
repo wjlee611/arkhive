@@ -62,12 +62,44 @@ class _StageZoneContainerState extends State<StageZoneContainer>
     }
   }
 
+  String _timestampToDate(int timestamp) {
+    DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    String year = date.year.toString().substring(2);
+    String month = date.month.toString().padLeft(2, '0');
+    String day = date.day.toString().padLeft(2, '0');
+    String hour = date.hour.toString().padLeft(2, '0');
+    String minute = date.minute.toString().padLeft(2, '0');
+
+    return '$year-$month-$day $hour:$minute';
+  }
+
+  double _containerHeightCalc({
+    required bool isOpen,
+    required bool isTabVisible,
+    required bool isTimeVisible,
+    required int length,
+  }) {
+    if (isOpen && length > 0) {
+      var height = (Sizes.size52 + Sizes.size1) * length - Sizes.size1;
+      if (isTimeVisible) {
+        height += Sizes.size40;
+      }
+      if (isTabVisible) {
+        height += Sizes.size40;
+      }
+      return height;
+    }
+    return 0;
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('build zone');
     return BlocBuilder<StageListItemBloc, StageListItemState>(
       buildWhen: (previous, current) {
         if (current is StageListItemLoadingState &&
             current.loadingActId == widget.act.actId) {
+          print('${current.loadingActId} is loading');
           return true;
         }
         if (current is StageListItemLoadedState &&
@@ -76,76 +108,122 @@ class _StageZoneContainerState extends State<StageZoneContainer>
         }
         return false;
       },
-      builder: (context, state) => AnimatedContainer(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.fastOutSlowIn,
-        height: state.actIsOpenMap[widget.act.actId] == true ? 500 : 0,
-        child: state is StageListItemLoadingState
-            ? const CommonLoadingWidget()
-            : ListView(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  SizedBox(
-                    height: Sizes.size40,
-                    child: TabBar(
-                      controller: _zoneTabController,
-                      isScrollable: true,
-                      physics: const BouncingScrollPhysics(),
-                      indicator: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.yellow.shade800,
-                            width: Sizes.size3,
+      builder: (context, state) {
+        var length = state
+                .zoneToStageMap[
+                    widget.act.zones[_zoneTabController.index].zoneId]
+                ?.length ??
+            0;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastOutSlowIn,
+          height: state is StageListItemLoadingState
+              ? Sizes.size80
+              : _containerHeightCalc(
+                  isOpen: state.actIsOpenMap[widget.act.actId] == true,
+                  isTabVisible: widget.act.zones.length > 1,
+                  isTimeVisible: widget.act.timeStamps != null,
+                  length: length,
+                ),
+          child: state is StageListItemLoadingState
+              ? const CommonLoadingWidget()
+              : ListView(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    if (widget.act.timeStamps != null)
+                      SizedBox(
+                        height: Sizes.size40,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: Sizes.size20),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '${_timestampToDate(widget.act.timeStamps!.startTime)} ~ ${_timestampToDate(widget.act.timeStamps!.endTime)}',
+                                  style: const TextStyle(
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: Sizes.size12,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                Text(
+                                  '이벤트 교환소: ~ ${_timestampToDate(widget.act.timeStamps!.rewardEndTime)}',
+                                  style: const TextStyle(
+                                    fontFamily: FontFamily.nanumGothic,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: Sizes.size12,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      labelColor: Colors.yellow.shade800,
-                      unselectedLabelColor: Colors.black,
-                      tabs: [
-                        for (int i = 0; i < widget.act.zones.length; i++)
-                          Tab(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: Sizes.size2),
-                              child: Text(
-                                widget.act.zones[i].title,
-                                style: const TextStyle(
-                                  fontFamily: FontFamily.nanumGothic,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: Sizes.size12,
-                                ),
+                    if (widget.act.zones.length > 1)
+                      SizedBox(
+                        height: Sizes.size40,
+                        child: TabBar(
+                          controller: _zoneTabController,
+                          isScrollable: true,
+                          physics: const BouncingScrollPhysics(),
+                          indicator: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.yellow.shade800,
+                                width: Sizes.size3,
                               ),
                             ),
                           ),
-                      ],
+                          labelColor: Colors.yellow.shade800,
+                          unselectedLabelColor: Colors.black,
+                          tabs: [
+                            for (int i = 0; i < widget.act.zones.length; i++)
+                              Tab(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: Sizes.size2),
+                                  child: Text(
+                                    widget.act.zones[i].title,
+                                    style: const TextStyle(
+                                      fontFamily: FontFamily.nanumGothic,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: Sizes.size12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ListView.separated(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return StageListCardWidget(
+                          stage: state.zoneToStageMap[widget.act
+                              .zones[_zoneTabController.index].zoneId]![index],
+                        );
+                      },
+                      separatorBuilder: (context, index) => Container(
+                        width: double.infinity,
+                        height: Sizes.size1,
+                        color: Colors.black12,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: Sizes.size16),
+                      ),
+                      itemCount: length,
                     ),
-                  ),
-                  ListView.separated(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return StageListCardWidget(
-                        stage: state.zoneToStageMap[widget.act
-                            .zones[_zoneTabController.index].zoneId]![index],
-                      );
-                    },
-                    separatorBuilder: (context, index) => Container(
-                      width: double.infinity,
-                      height: Sizes.size1,
-                      color: Colors.black12,
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: Sizes.size16),
-                    ),
-                    itemCount: state
-                            .zoneToStageMap[widget
-                                .act.zones[_zoneTabController.index].zoneId]
-                            ?.length ??
-                        0,
-                  ),
-                ],
-              ),
-      ),
+                  ],
+                ),
+        );
+      },
     );
   }
 }

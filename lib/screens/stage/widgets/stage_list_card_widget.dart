@@ -28,6 +28,7 @@ class StageListCardWidget extends StatelessWidget {
       ),
       borderRadius: BorderRadius.circular(Sizes.size10),
       child: Container(
+        height: Sizes.size52,
         padding: const EdgeInsets.all(Sizes.size16),
         child: Row(
           children: [

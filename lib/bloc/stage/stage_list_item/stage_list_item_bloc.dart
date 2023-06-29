@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_event.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
@@ -41,34 +42,53 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
       try {
         String jsonString = await rootBundle
             .loadString('${getGameDataRoot()}excel/stage_table.json');
-        Map<String, dynamic> jsonData = await json.decode(jsonString)['stages'];
 
-        for (var stage in jsonData.values) {
-          var stageModel = StageModel.fromJson(stage);
-          if (stageModel.zoneId == null) continue;
-
-          if (event.zones.any((zone) => zone.zoneId == stageModel.zoneId)) {
-            if (zoneToStages[stageModel.zoneId] == null) {
-              zoneToStages[stageModel.zoneId!] = [];
-            }
-            zoneToStages[stageModel.zoneId]!.add(
-              StageListModel(
-                stageId: stageModel.stageId!,
-                zoneId: stageModel.zoneId!,
-                code: stageModel.code!,
-                name: stageModel.name!,
-                difficulty: stageModel.difficulty!,
-                diffGroup: stageModel.diffGroup!,
-              ),
-            );
-          }
-        }
+        ReceivePort port = ReceivePort();
+        await Isolate.spawn(
+          _deserializeZoneToStages,
+          [port.sendPort, jsonString, event.zones],
+        );
+        zoneToStages = await port.first;
+        port.close();
       } catch (_) {}
+
       emit(StageListItemLoadedState(
         loadedActId: event.actId,
         actIsOpenMap: state.actIsOpenMap,
         zoneToStageMap: state.zoneToStageMap..addAll(zoneToStages),
       ));
     }
+  }
+
+  static void _deserializeZoneToStages(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+    List<ZoneListModel> zones = args[2];
+    Map<String, List<StageListModel>> result = {};
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString)['stages'];
+
+    for (var stage in jsonData.values) {
+      var stageModel = StageModel.fromJson(stage);
+      if (stageModel.zoneId == null) continue;
+
+      if (zones.any((zone) => zone.zoneId == stageModel.zoneId)) {
+        if (result[stageModel.zoneId] == null) {
+          result[stageModel.zoneId!] = [];
+        }
+        result[stageModel.zoneId]!.add(
+          StageListModel(
+            stageId: stageModel.stageId!,
+            zoneId: stageModel.zoneId!,
+            code: stageModel.code!,
+            name: stageModel.name!,
+            difficulty: stageModel.difficulty!,
+            diffGroup: stageModel.diffGroup!,
+          ),
+        );
+      }
+    }
+
+    sendPort.send(result);
   }
 }
