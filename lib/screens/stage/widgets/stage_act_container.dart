@@ -32,7 +32,6 @@ class _StageActContainerState extends State<StageActContainer> {
 
   @override
   Widget build(BuildContext context) {
-    print('build act');
     return BlocBuilder<StageListItemBloc, StageListItemState>(
       builder: (context, state) {
         bool isOpen = state.actIsOpenMap[widget.act.actId] ?? false;

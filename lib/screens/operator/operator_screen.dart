@@ -1,7 +1,6 @@
 import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
-import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.dart';

@@ -94,12 +94,10 @@ class _StageZoneContainerState extends State<StageZoneContainer>
 
   @override
   Widget build(BuildContext context) {
-    print('build zone');
     return BlocBuilder<StageListItemBloc, StageListItemState>(
       buildWhen: (previous, current) {
         if (current is StageListItemLoadingState &&
             current.loadingActId == widget.act.actId) {
-          print('${current.loadingActId} is loading');
           return true;
         }
         if (current is StageListItemLoadedState &&
@@ -125,105 +123,116 @@ class _StageZoneContainerState extends State<StageZoneContainer>
                   isTimeVisible: widget.act.timeStamps != null,
                   length: length,
                 ),
-          child: state is StageListItemLoadingState
-              ? const CommonLoadingWidget()
-              : ListView(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
+          child: _bodyBuild(
+            state: state,
+            length: length,
+            isOpen: state.actIsOpenMap[widget.act.actId] == true,
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _bodyBuild({
+    required StageListItemState state,
+    required int length,
+    required bool isOpen,
+  }) {
+    if (state is StageListItemLoadingState || !isOpen) {
+      return const CommonLoadingWidget();
+    }
+    return ListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        if (widget.act.timeStamps != null)
+          SizedBox(
+            height: Sizes.size40,
+            child: Padding(
+              padding: const EdgeInsets.only(right: Sizes.size20),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    if (widget.act.timeStamps != null)
-                      SizedBox(
-                        height: Sizes.size40,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: Sizes.size20),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  '${_timestampToDate(widget.act.timeStamps!.startTime)} ~ ${_timestampToDate(widget.act.timeStamps!.endTime)}',
-                                  style: const TextStyle(
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size12,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                                Text(
-                                  '이벤트 교환소: ~ ${_timestampToDate(widget.act.timeStamps!.rewardEndTime)}',
-                                  style: const TextStyle(
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size12,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                    Text(
+                      '${_timestampToDate(widget.act.timeStamps!.startTime)} ~ ${_timestampToDate(widget.act.timeStamps!.endTime)}',
+                      style: const TextStyle(
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                        fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
-                    if (widget.act.zones.length > 1)
-                      SizedBox(
-                        height: Sizes.size40,
-                        child: TabBar(
-                          controller: _zoneTabController,
-                          isScrollable: true,
-                          physics: const BouncingScrollPhysics(),
-                          indicator: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.yellow.shade800,
-                                width: Sizes.size3,
-                              ),
-                            ),
-                          ),
-                          labelColor: Colors.yellow.shade800,
-                          unselectedLabelColor: Colors.black,
-                          tabs: [
-                            for (int i = 0; i < widget.act.zones.length; i++)
-                              Tab(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: Sizes.size2),
-                                  child: Text(
-                                    widget.act.zones[i].title,
-                                    style: const TextStyle(
-                                      fontFamily: FontFamily.nanumGothic,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: Sizes.size12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+                    ),
+                    Text(
+                      '이벤트 교환소: ~ ${_timestampToDate(widget.act.timeStamps!.rewardEndTime)}',
+                      style: const TextStyle(
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                        fontSize: Sizes.size12,
+                        color: Colors.black87,
                       ),
-                    ListView.separated(
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return StageListCardWidget(
-                          stage: state.zoneToStageMap[widget.act
-                              .zones[_zoneTabController.index].zoneId]![index],
-                        );
-                      },
-                      separatorBuilder: (context, index) => Container(
-                        width: double.infinity,
-                        height: Sizes.size1,
-                        color: Colors.black12,
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: Sizes.size16),
-                      ),
-                      itemCount: length,
                     ),
                   ],
                 ),
-        );
-      },
+              ),
+            ),
+          ),
+        if (widget.act.zones.length > 1)
+          SizedBox(
+            height: Sizes.size40,
+            child: TabBar(
+              controller: _zoneTabController,
+              isScrollable: true,
+              physics: const BouncingScrollPhysics(),
+              indicator: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.yellow.shade800,
+                    width: Sizes.size3,
+                  ),
+                ),
+              ),
+              labelColor: Colors.yellow.shade800,
+              unselectedLabelColor: Colors.black,
+              tabs: [
+                for (int i = 0; i < widget.act.zones.length; i++)
+                  Tab(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: Sizes.size2),
+                      child: Text(
+                        widget.act.zones[i].title,
+                        style: const TextStyle(
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                          fontSize: Sizes.size12,
+                        ),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ListView.separated(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) {
+            return StageListCardWidget(
+              stage: state.zoneToStageMap[
+                  widget.act.zones[_zoneTabController.index].zoneId]![index],
+            );
+          },
+          separatorBuilder: (context, index) => Container(
+            width: double.infinity,
+            height: Sizes.size1,
+            color: Colors.black12,
+            margin: const EdgeInsets.symmetric(horizontal: Sizes.size16),
+          ),
+          itemCount: length,
+        ),
+      ],
     );
   }
 }
