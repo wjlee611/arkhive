@@ -88,10 +88,9 @@ class StageScreen extends StatelessWidget {
                           sliver: SliverList(
                             delegate: SliverChildBuilderDelegate(
                               (context, index) => StageActContainer(
-                                act:
-                                    category.activityMap.values.toList()[index],
+                                act: category.activities[index],
                               ),
-                              childCount: category.activityMap.length,
+                              childCount: category.activities.length,
                             ),
                           ),
                         ),

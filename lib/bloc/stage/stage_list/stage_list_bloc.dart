@@ -24,9 +24,9 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     // Add category
     try {
       result.add(CategoryListModel(
-          category: '메인', type: 'MAINLINE', activityMap: {})); // [0]
+          category: '메인', type: 'MAINLINE', activities: [])); // [0]
       result.add(CategoryListModel(
-          category: '이벤트', type: 'ACTIVITY', activityMap: {})); // [1]
+          category: '이벤트', type: 'ACTIVITY', activities: [])); // [1]
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
     }
@@ -85,12 +85,29 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString)['basicInfo'];
 
-    for (Map<String, dynamic> activity in jsonData.values) {
+    for (Map<String, dynamic> activity in jsonData.values.toList().reversed) {
       var activityModel = ActivityModel.fromJson(activity);
 
       if (!(activityModel.hasStage ?? true)) continue;
       // 재개방
-      // if (activityModel.isReplicate ?? false) continue;
+      if (activityModel.isReplicate ?? false) {
+        result[1].updateActByRep(
+          ActivityListModel(
+            title: activityModel.name!,
+            actId: activityModel.id!,
+            timeStamps: [
+              StageTimeStampModel(
+                startTime: activityModel.startTime!,
+                endTime: activityModel.endTime!,
+                rewardEndTime: activityModel.rewardEndTime!,
+              ),
+            ],
+            zones: [],
+          ),
+        );
+        continue;
+      }
+
       // 위기 협약 - act5d1, 케오베 = act12d6, 디펱스 프로토콜 - act17d1  제외
       if (activityModel.id == 'act5d1' ||
           activityModel.id == 'act12d6' ||
@@ -105,11 +122,13 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
         result[1].addActivity(ActivityListModel(
           title: activityModel.name!,
           actId: activityModel.id!,
-          timeStamps: StageTimeStampModel(
-            startTime: activityModel.startTime!,
-            endTime: activityModel.endTime!,
-            rewardEndTime: activityModel.rewardEndTime!,
-          ),
+          timeStamps: [
+            StageTimeStampModel(
+              startTime: activityModel.startTime!,
+              endTime: activityModel.endTime!,
+              rewardEndTime: activityModel.rewardEndTime!,
+            ),
+          ],
           zones: [
             ZoneListModel(
               title: 'N/A',
@@ -124,14 +143,18 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       result[1].addActivity(ActivityListModel(
         title: activityModel.name!,
         actId: activityModel.id!,
-        timeStamps: StageTimeStampModel(
-          startTime: activityModel.startTime!,
-          endTime: activityModel.endTime!,
-          rewardEndTime: activityModel.rewardEndTime!,
-        ),
+        timeStamps: [
+          StageTimeStampModel(
+            startTime: activityModel.startTime!,
+            endTime: activityModel.endTime!,
+            rewardEndTime: activityModel.rewardEndTime!,
+          ),
+        ],
         zones: [],
       ));
     }
+
+    result[1].activities = result[1].activities.reversed.toList();
 
     sendPort.send(result);
   }
@@ -179,60 +202,69 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
         int mainlineIdx = int.parse(zoneModel.zoneId!.split('_').last);
         // 8 지역까지는 zone 없음
         if (mainlineIdx < 9) {
-          result[0].addActivity(ActivityListModel(
-            title: zoneTitle,
-            actId: zoneModel.zoneId!,
-            zones: [
-              ZoneListModel(
-                title: '표준 실전 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'NONE',
-              )
-            ],
-          ));
+          result[0].addActivity(
+            ActivityListModel(
+              title: zoneTitle,
+              actId: zoneModel.zoneId!,
+              zones: [
+                ZoneListModel(
+                  title: '표준 실전 환경',
+                  zoneId: '${zoneModel.zoneId!}_NONE',
+                  type: zoneModel.type!,
+                )
+              ],
+              timeStamps: [],
+            ),
+          );
         }
         // 9 지역은 스토리 체험 환경, 표준 실전 환경 2개 추기
         else if (mainlineIdx == 9) {
-          result[0].addActivity(ActivityListModel(
-            title: zoneTitle,
-            actId: zoneModel.zoneId!,
-            zones: [
-              ZoneListModel(
-                title: '스토리 체험 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'EASY',
-              ),
-              ZoneListModel(
-                title: '표준 실전 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'NORMAL',
-              )
-            ],
-          ));
+          result[0].addActivity(
+            ActivityListModel(
+              title: zoneTitle,
+              actId: zoneModel.zoneId!,
+              zones: [
+                ZoneListModel(
+                  title: '스토리 체험 환경',
+                  zoneId: '${zoneModel.zoneId!}_EASY',
+                  type: zoneModel.type!,
+                ),
+                ZoneListModel(
+                  title: '표준 실전 환경',
+                  zoneId: '${zoneModel.zoneId!}_NORMAL',
+                  type: zoneModel.type!,
+                )
+              ],
+              timeStamps: [],
+            ),
+          );
         }
         // 10 지역 부터는 스토리 체험 환경, 표준 실전 환경, 고난 험지 환경 3개 추가
         else {
-          result[0].addActivity(ActivityListModel(
-            title: zoneTitle,
-            actId: zoneModel.zoneId!,
-            zones: [
-              ZoneListModel(
-                title: '스토리 체험 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'EASY',
-              ),
-              ZoneListModel(
-                title: '표준 실전 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'NORMAL',
-              ),
-              ZoneListModel(
-                title: '고난 험지 환경',
-                zoneId: zoneModel.zoneId!,
-                type: 'TOUGH',
-              )
-            ],
-          ));
+          result[0].addActivity(
+            ActivityListModel(
+              title: zoneTitle,
+              actId: zoneModel.zoneId!,
+              zones: [
+                ZoneListModel(
+                  title: '스토리 체험 환경',
+                  zoneId: '${zoneModel.zoneId!}_EASY',
+                  type: zoneModel.type!,
+                ),
+                ZoneListModel(
+                  title: '표준 실전 환경',
+                  zoneId: '${zoneModel.zoneId!}_NORMAL',
+                  type: zoneModel.type!,
+                ),
+                ZoneListModel(
+                  title: '고난 험지 환경',
+                  zoneId: '${zoneModel.zoneId!}_TOUGH',
+                  type: zoneModel.type!,
+                )
+              ],
+              timeStamps: [],
+            ),
+          );
         }
       }
 

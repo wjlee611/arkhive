@@ -24,13 +24,21 @@ class ZoneModel {
 }
 
 class StageModel {
-  final String? stageId, difficulty, diffGroup, zoneId, code, name, description;
+  final String? stageType,
+      stageId,
+      difficulty,
+      diffGroup,
+      zoneId,
+      code,
+      name,
+      description;
   final int? apCost, apFailReturn;
   final StageRewordModel? stageDropInfo;
   final bool? isStoryOnly, isPredefined, isStagePatch;
 
   StageModel.fromJson(Map<String, dynamic> json)
-      : stageId = json['stageId'],
+      : stageType = json['stageType'],
+        stageId = json['stageId'],
         difficulty = json['difficulty'],
         diffGroup = json['diffGroup'],
         zoneId = json['zoneId'],

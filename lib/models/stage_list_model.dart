@@ -3,44 +3,60 @@
 class CategoryListModel {
   final String category;
   final String type; // MAINLINE, WEEKLY, ACTIVITY, ...
-  Map<String, ActivityListModel> activityMap;
+  List<ActivityListModel> activities;
 
   CategoryListModel({
     required this.category,
     required this.type,
-    required this.activityMap,
+    required this.activities,
   });
 
   void addActivity(ActivityListModel activity) {
-    activityMap[activity.actId] = activity;
+    activities.add(activity);
   }
 
   void addZone({
     required String targetAct,
     required ZoneListModel zone,
   }) {
-    activityMap[targetAct]?.zones.add(zone);
+    for (var act in activities) {
+      if (act.actId == targetAct) {
+        activities[activities.indexOf(act)].zones.add(zone);
+      }
+    }
+  }
+
+  void updateActByRep(ActivityListModel activity) {
+    for (var act in activities) {
+      if (activity.title.contains(act.title)) {
+        activities[activities.indexOf(act)].actId = activity.actId;
+        activities[activities.indexOf(act)]
+            .timeStamps
+            .addAll(activity.timeStamps);
+        return;
+      }
+    }
   }
 }
 
 // 스툴티페라 나비스, ...
 class ActivityListModel {
   final String title; // 언더 타이즈
-  final String actId; // act18d3(언더 타이즈), act11sre(언더 타이즈 재개방)
-  final StageTimeStampModel? timeStamps; // 각 이벤트 시작, 종료, 상점 개방일
+  String actId; // act18d3(언더 타이즈), act11sre(언더 타이즈 재개방)
+  List<StageTimeStampModel> timeStamps; // 각 이벤트 시작, 종료, 상점 개방일
   List<ZoneListModel> zones; // 그랑파로, ...
 
   ActivityListModel({
     required this.title,
     required this.actId,
-    this.timeStamps,
+    required this.timeStamps,
     required this.zones,
   });
 
   ActivityListModel copyWith({
     String? title,
     String? actId,
-    StageTimeStampModel? timeStamps,
+    List<StageTimeStampModel>? timeStamps,
     List<ZoneListModel>? zones,
   }) =>
       ActivityListModel(

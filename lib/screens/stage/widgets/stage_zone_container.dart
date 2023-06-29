@@ -4,6 +4,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_list_card_widget.dart';
+import 'package:arkhive/screens/stage/widgets/stage_open_date_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,34 +63,28 @@ class _StageZoneContainerState extends State<StageZoneContainer>
     }
   }
 
-  String _timestampToDate(int timestamp) {
-    DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-    String year = date.year.toString().substring(2);
-    String month = date.month.toString().padLeft(2, '0');
-    String day = date.day.toString().padLeft(2, '0');
-    String hour = date.hour.toString().padLeft(2, '0');
-    String minute = date.minute.toString().padLeft(2, '0');
-
-    return '$year-$month-$day $hour:$minute';
+  int _zoneLengthModifire() {
+    return 0;
   }
 
   double _containerHeightCalc({
     required bool isOpen,
     required bool isTabVisible,
-    required bool isTimeVisible,
+    required int tsLength,
     required int length,
   }) {
-    if (isOpen && length > 0) {
-      var height = (Sizes.size52 + Sizes.size1) * length - Sizes.size1;
-      if (isTimeVisible) {
-        height += Sizes.size40;
-      }
-      if (isTabVisible) {
-        height += Sizes.size40;
-      }
+    double height = 0;
+    if (!isOpen) {
       return height;
     }
-    return 0;
+    if (length > 0) {
+      height = (Sizes.size52 + Sizes.size1) * length - Sizes.size1;
+    }
+    height += Sizes.size40 * tsLength;
+    if (isTabVisible) {
+      height += Sizes.size40;
+    }
+    return height;
   }
 
   @override
@@ -120,7 +115,7 @@ class _StageZoneContainerState extends State<StageZoneContainer>
               : _containerHeightCalc(
                   isOpen: state.actIsOpenMap[widget.act.actId] == true,
                   isTabVisible: widget.act.zones.length > 1,
-                  isTimeVisible: widget.act.timeStamps != null,
+                  tsLength: widget.act.timeStamps.length,
                   length: length,
                 ),
           child: _bodyBuild(
@@ -145,39 +140,10 @@ class _StageZoneContainerState extends State<StageZoneContainer>
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        if (widget.act.timeStamps != null)
-          SizedBox(
-            height: Sizes.size40,
-            child: Padding(
-              padding: const EdgeInsets.only(right: Sizes.size20),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      '${_timestampToDate(widget.act.timeStamps!.startTime)} ~ ${_timestampToDate(widget.act.timeStamps!.endTime)}',
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                        fontSize: Sizes.size12,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    Text(
-                      '이벤트 교환소: ~ ${_timestampToDate(widget.act.timeStamps!.rewardEndTime)}',
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                        fontSize: Sizes.size12,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+        for (var ts in widget.act.timeStamps)
+          StageOpenDateWidget(
+            title: widget.act.timeStamps.indexOf(ts) > 0 ? '재개방' : '',
+            timeStamp: ts,
           ),
         if (widget.act.zones.length > 1)
           SizedBox(

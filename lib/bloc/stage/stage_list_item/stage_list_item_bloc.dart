@@ -71,15 +71,24 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
     for (var stage in jsonData.values) {
       var stageModel = StageModel.fromJson(stage);
       if (stageModel.zoneId == null) continue;
+      // stageModel.isPredefined 는 일단 제외
+      if (stageModel.isStagePatch == true || stageModel.isStoryOnly == true) {
+        continue;
+      }
 
-      if (zones.any((zone) => zone.zoneId == stageModel.zoneId)) {
-        if (result[stageModel.zoneId] == null) {
-          result[stageModel.zoneId!] = [];
+      String zoneIdKey = stageModel.zoneId!;
+      if (stageModel.stageType == 'MAIN') {
+        zoneIdKey = '${stageModel.zoneId!}_${stageModel.diffGroup!}';
+      }
+
+      if (zones.any((zone) => zone.zoneId == zoneIdKey)) {
+        if (result[zoneIdKey] == null) {
+          result[zoneIdKey] = [];
         }
-        result[stageModel.zoneId]!.add(
+        result[zoneIdKey]!.add(
           StageListModel(
             stageId: stageModel.stageId!,
-            zoneId: stageModel.zoneId!,
+            zoneId: zoneIdKey,
             code: stageModel.code!,
             name: stageModel.name!,
             difficulty: stageModel.difficulty!,
