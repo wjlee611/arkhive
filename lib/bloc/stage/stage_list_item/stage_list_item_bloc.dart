@@ -71,12 +71,20 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
     for (var stage in jsonData.values) {
       var stageModel = StageModel.fromJson(stage);
       if (stageModel.zoneId == null) continue;
+
       // stageModel.isPredefined 는 일단 제외
-      if (stageModel.isStagePatch == true || stageModel.isStoryOnly == true) {
+      if (stageModel.isStoryOnly == true) {
         continue;
       }
 
       String zoneIdKey = stageModel.zoneId!;
+      // 전장의 비화 (SW-EV)
+      // 에인션트 포지 (AF)
+      // 오후의 일화 (SA) 별도 처리
+      if (stageModel.isStagePatch == true) {
+        zoneIdKey = stageModel.stageId?.split('_').first ?? '';
+      }
+
       if (stageModel.stageType == 'MAIN') {
         zoneIdKey = '${stageModel.zoneId!}_${stageModel.diffGroup!}';
       }

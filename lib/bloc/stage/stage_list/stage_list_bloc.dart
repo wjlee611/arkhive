@@ -132,7 +132,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           zones: [
             ZoneListModel(
               title: 'N/A',
-              zoneId: 'main_2',
+              zoneId: activityModel.id!,
               type: 'ACTIVITY',
             ),
           ],
