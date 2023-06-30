@@ -72,8 +72,9 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
       var stageModel = StageModel.fromJson(stage);
       if (stageModel.zoneId == null) continue;
 
-      // stageModel.isPredefined 는 일단 제외
-      if (stageModel.isStoryOnly == true) {
+      if (stageModel.isStoryOnly == true ||
+          (stageModel.isPredefined == true &&
+              stageModel.stageType != 'ACTIVITY')) {
         continue;
       }
 

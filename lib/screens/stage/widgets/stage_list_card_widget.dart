@@ -2,6 +2,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class StageListCardWidget extends StatelessWidget {
@@ -13,17 +14,17 @@ class StageListCardWidget extends StatelessWidget {
   final StageListModel stage;
 
   void _onTap({
-    required StageListModel stage,
+    required String stageKey,
     required BuildContext context,
   }) {
-    // OpenDetailScreen.onStageTab(stage: stage, context: context);
+    OpenDetailScreen.onStageTab(stageKey: stageKey, context: context);
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => _onTap(
-        stage: stage,
+        stageKey: stage.stageId,
         context: context,
       ),
       borderRadius: BorderRadius.circular(Sizes.size10),
