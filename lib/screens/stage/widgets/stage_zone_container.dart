@@ -63,10 +63,6 @@ class _StageZoneContainerState extends State<StageZoneContainer>
     }
   }
 
-  int _zoneLengthModifire() {
-    return 0;
-  }
-
   double _containerHeightCalc({
     required bool isOpen,
     required bool isTabVisible,

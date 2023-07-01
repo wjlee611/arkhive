@@ -18,17 +18,6 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
     StageListItemOnTabEvent event,
     Emitter<StageListItemState> emit,
   ) async {
-    emit(StageListItemLoadedState(
-      loadedActId: event.actId,
-      actIsOpenMap: state.actIsOpenMap
-        ..addAll({
-          event.actId: state.actIsOpenMap[event.actId] == null
-              ? true
-              : !state.actIsOpenMap[event.actId]!,
-        }),
-      zoneToStageMap: state.zoneToStageMap,
-    ));
-
     // 처음 여는 경우
     if (event.zones.any((zone) => state.zoneToStageMap[zone.zoneId] == null)) {
       emit(StageListItemLoadingState(
@@ -54,10 +43,28 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
 
       emit(StageListItemLoadedState(
         loadedActId: event.actId,
-        actIsOpenMap: state.actIsOpenMap,
+        actIsOpenMap: state.actIsOpenMap
+          ..addAll({
+            event.actId: state.actIsOpenMap[event.actId] == null
+                ? true
+                : !state.actIsOpenMap[event.actId]!,
+          }),
         zoneToStageMap: state.zoneToStageMap..addAll(zoneToStages),
       ));
+
+      return;
     }
+
+    emit(StageListItemLoadedState(
+      loadedActId: event.actId,
+      actIsOpenMap: state.actIsOpenMap
+        ..addAll({
+          event.actId: state.actIsOpenMap[event.actId] == null
+              ? true
+              : !state.actIsOpenMap[event.actId]!,
+        }),
+      zoneToStageMap: state.zoneToStageMap,
+    ));
   }
 
   static void _deserializeZoneToStages(List<dynamic> args) {
@@ -72,9 +79,8 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
       var stageModel = StageModel.fromJson(stage);
       if (stageModel.zoneId == null) continue;
 
-      if (stageModel.isStoryOnly == true ||
-          (stageModel.isPredefined == true &&
-              stageModel.stageType != 'ACTIVITY')) {
+      // 스토리 스테이지, 연습 스테이지 제외
+      if (stageModel.isStoryOnly == true || stageModel.isPredefined == true) {
         continue;
       }
 
@@ -85,15 +91,17 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
       if (stageModel.isStagePatch == true) {
         zoneIdKey = stageModel.stageId?.split('_').first ?? '';
       }
-
-      if (stageModel.stageType == 'MAIN') {
+      // 메인 별도처리
+      if (stageModel.stageType == 'MAIN' || stageModel.stageType == 'SUB') {
         zoneIdKey = '${stageModel.zoneId!}_${stageModel.diffGroup!}';
       }
 
       if (zones.any((zone) => zone.zoneId == zoneIdKey)) {
+        // 다시는 업데이트 하지 않도록 없더라고 일단 빈 배열 생성
         if (result[zoneIdKey] == null) {
           result[zoneIdKey] = [];
         }
+
         result[zoneIdKey]!.add(
           StageListModel(
             stageId: stageModel.stageId!,

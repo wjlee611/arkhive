@@ -184,7 +184,15 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     for (Map<String, dynamic> zone in jsonData.values) {
       var zoneModel = ZoneModel.fromJson(zone);
 
-      if (!result.any((element) => element.type == zoneModel.type)) {
+      // 카테고리에 없는 zone은 무시
+      if (!result.any((category) => category.type == zoneModel.type)) {
+        continue;
+      }
+
+      // 이상적인 도시: 엔드리스 카니발의
+      // 엑시비전 트랙 (act20side_zone4), 얼티메이트 트랙 (act20side_zone5) 제외
+      if (zoneModel.zoneId == 'act20side_zone4' ||
+          zoneModel.zoneId == 'act20side_zone5') {
         continue;
       }
 

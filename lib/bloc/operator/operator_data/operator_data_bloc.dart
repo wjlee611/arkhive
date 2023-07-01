@@ -36,8 +36,8 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
       );
       operator_ = await port.first;
       port.close();
-    } catch (_) {
-      try {
+
+      if (operator_ == null) {
         // Loading Promotion operator Data
         String jsonString = await rootBundle
             .loadString('${getGameDataRoot()}excel/char_patch_table.json');
@@ -49,10 +49,10 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
         );
         operator_ = await port.first;
         port.close();
-      } catch (_) {
-        emit(const OperatorDataErrorState(message: '오퍼레이터'));
-        return;
       }
+    } catch (_) {
+      emit(const OperatorDataErrorState(message: '오퍼레이터'));
+      return;
     }
 
     // Loading Skill Data
@@ -122,6 +122,9 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     String operatorKey = args[2];
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
+    if (jsonData[operatorKey] == null) {
+      Isolate.exit(sendPort, null);
+    }
 
     Isolate.exit(sendPort, OperatorModel.fromJson(jsonData[operatorKey]));
   }
