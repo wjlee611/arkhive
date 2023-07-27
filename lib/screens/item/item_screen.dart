@@ -62,15 +62,15 @@ class ItemScreen extends StatelessWidget {
                         sliver: SliverGrid(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
+                            crossAxisCount: 1, // 4
                             mainAxisSpacing: Sizes.size5,
                             crossAxisSpacing: Sizes.size5,
-                            childAspectRatio: 1,
+                            childAspectRatio: 8, // 1
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
                               return Text(
-                                "${state.filteredItemList[index].iconId} - ${state.filteredItemList[index].classifyType}",
+                                "${state.filteredItemList[index].name} - ${state.filteredItemList[index].iconId}\n${state.filteredItemList[index].classifyType} - ${state.filteredItemList[index].itemType}",
                               );
                             },
                             childCount: state.filteredItemList.length,

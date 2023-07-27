@@ -5,7 +5,7 @@ class ItemModel {
   final String description;
   final int rarity;
   final String usage;
-  final String classifyType; // GOLD, MATERIAL, DIAMOND, DIAMOND_SHD ...
+  final String classifyType, itemType;
 
   ItemModel.fromJson(Map<String, dynamic> json)
       : itemId = json['itemId'],
@@ -15,7 +15,8 @@ class ItemModel {
         description = json['description'] ?? '',
         rarity = json['rarity'],
         usage = json['usage'] ?? '',
-        classifyType = json['classifyType'];
+        classifyType = json['classifyType'],
+        itemType = json['itemType'];
 }
 
 class ItemDropModel {
