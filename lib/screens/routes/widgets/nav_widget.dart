@@ -6,6 +6,7 @@ import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
 import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
+import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_new_screen_listtile_widget.dart';
 import 'package:arkhive/screens/routes/widgets/nav_stack_screen_listtile_widget.dart';
@@ -118,11 +119,11 @@ class _NavDrawerState extends State<NavDrawer> {
                     screen: Screens.home,
                     newScreen: HomeScreen(),
                   ),
-                  // const NewScreenListTile(
-                  //   id: ScreenModel.item,
-                  //   screen: Screens.items,
-                  //   newScreen: ItemScreen(),
-                  // ),
+                  const NewScreenListTile(
+                    id: ScreenModel.item,
+                    screen: Screens.items,
+                    newScreen: ItemScreen(),
+                  ),
                   const NewScreenListTile(
                     id: ScreenModel.gimmick,
                     screen: Screens.gimmick,
@@ -168,11 +169,11 @@ class _NavDrawerState extends State<NavDrawer> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: Sizes.size20,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     // "Arkhive ${GlobalData.appVersion}",
                     "app version",

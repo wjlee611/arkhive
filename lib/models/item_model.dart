@@ -1,5 +1,6 @@
 class ItemModel {
-  final String itemId;
+  final String itemId, iconId;
+  final int sortId;
   final String name;
   final String description;
   final int rarity;
@@ -8,10 +9,12 @@ class ItemModel {
 
   ItemModel.fromJson(Map<String, dynamic> json)
       : itemId = json['itemId'],
+        iconId = json['iconId'],
+        sortId = json['sortId'],
         name = json['name'],
-        description = json['description'],
+        description = json['description'] ?? '',
         rarity = json['rarity'],
-        usage = json['usage'],
+        usage = json['usage'] ?? '',
         classifyType = json['classifyType'];
 }
 

@@ -67,8 +67,8 @@ class EnemyScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(Sizes.size20),
                         sliver: SliverGrid(
                           gridDelegate:
-                              const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: Sizes.size96,
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
                             mainAxisSpacing: Sizes.size5,
                             crossAxisSpacing: Sizes.size5,
                             childAspectRatio: 1,
