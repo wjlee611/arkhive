@@ -3,6 +3,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/item/widgets/item_sliver_appbar_widget.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -19,7 +20,7 @@ class ItemScreen extends StatelessWidget {
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            // const EnemySliverAppBar(),
+            const ItemSliverAppBar(),
             SliverFillRemaining(
               child: BlocBuilder<ItemListBloc, ItemListState>(
                 buildWhen: (previous, current) {
@@ -59,27 +60,23 @@ class ItemScreen extends StatelessWidget {
                   return CustomScrollView(
                     slivers: [
                       SliverPadding(
-                        padding: const EdgeInsets.all(Sizes.size20),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: Sizes.size20,
+                          horizontal: Sizes.size28,
+                        ),
                         sliver: SliverGrid(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1, // 4
-                            mainAxisSpacing: Sizes.size5,
-                            crossAxisSpacing: Sizes.size5,
-                            childAspectRatio: 8, // 1
+                            crossAxisCount: 4,
+                            mainAxisSpacing: Sizes.size14,
+                            crossAxisSpacing: Sizes.size14,
+                            childAspectRatio: 1,
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
-                              return Row(
-                                children: [
-                                  AssetImageWidget(
-                                    path:
-                                        'assets/images/item/${state.filteredItemList[index].iconId}.png',
-                                  ),
-                                  Text(
-                                    "${state.filteredItemList[index].name} - ${state.filteredItemList[index].iconId}\n${state.filteredItemList[index].classifyType} - ${state.filteredItemList[index].itemType}",
-                                  ),
-                                ],
+                              return AssetImageWidget(
+                                path:
+                                    'assets/images/item/${state.filteredItemList[index].iconId}.png',
                               );
                             },
                             childCount: state.filteredItemList.length,

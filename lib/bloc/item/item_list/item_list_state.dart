@@ -1,10 +1,9 @@
 import 'package:arkhive/models/item_list_model.dart';
 import 'package:equatable/equatable.dart';
 
-enum ItemListSortOptions {
+enum ItemListFilterOptions {
   all,
-  none,
-  normal,
+  normal, // normal & none
   consume,
   material,
 }
@@ -12,12 +11,12 @@ enum ItemListSortOptions {
 abstract class ItemListState extends Equatable {
   final List<ItemListModel>? itemList;
 
-  final ItemListSortOptions? selectedSortOption;
+  final ItemListFilterOptions? selectedFilterOption;
   final String? searchQuery;
 
   const ItemListState({
     this.itemList,
-    this.selectedSortOption,
+    this.selectedFilterOption,
     this.searchQuery,
   });
 }
@@ -26,14 +25,14 @@ class ItemListInitState extends ItemListState {
   ItemListInitState()
       : super(
           itemList: [],
-          selectedSortOption: ItemListSortOptions.all,
+          selectedFilterOption: ItemListFilterOptions.all,
           searchQuery: "",
         );
 
   @override
   List<Object?> get props => [
         itemList,
-        selectedSortOption,
+        selectedFilterOption,
         searchQuery,
       ];
 }
@@ -41,14 +40,14 @@ class ItemListInitState extends ItemListState {
 class ItemListLoadingState extends ItemListState {
   const ItemListLoadingState({
     super.itemList,
-    super.selectedSortOption,
+    super.selectedFilterOption,
     super.searchQuery,
   });
 
   @override
   List<Object?> get props => [
         itemList,
-        selectedSortOption,
+        selectedFilterOption,
         searchQuery,
       ];
 }
@@ -59,7 +58,7 @@ class ItemListLoadedState extends ItemListState {
   const ItemListLoadedState({
     super.itemList,
     required this.filteredItemList,
-    super.selectedSortOption,
+    super.selectedFilterOption,
     super.searchQuery,
   });
 
@@ -67,7 +66,7 @@ class ItemListLoadedState extends ItemListState {
   List<Object?> get props => [
         itemList,
         filteredItemList,
-        selectedSortOption,
+        selectedFilterOption,
         searchQuery,
       ];
 }

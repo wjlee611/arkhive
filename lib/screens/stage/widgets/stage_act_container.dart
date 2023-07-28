@@ -62,7 +62,7 @@ class _StageActContainerState extends State<StageActContainer> {
                   onTap: () => _onOpenTap(context),
                   borderRadius: BorderRadius.circular(Sizes.size10),
                   child: SizedBox(
-                    height: Sizes.size40,
+                    height: Sizes.size52,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: Sizes.size20,

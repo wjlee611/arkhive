@@ -1,21 +1,21 @@
-import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_bloc.dart';
-import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
-import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
+import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
+import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
+import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
-import 'package:arkhive/screens/enemy/widgets/enemy_filters_button.dart';
+import 'package:arkhive/screens/item/widgets/item_filters_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EnemySliverAppBar extends StatefulWidget {
-  const EnemySliverAppBar({super.key});
+class ItemSliverAppBar extends StatefulWidget {
+  const ItemSliverAppBar({super.key});
 
   @override
-  State<EnemySliverAppBar> createState() => _EnemySliverAppBarState();
+  State<ItemSliverAppBar> createState() => _ItemSliverAppBarState();
 }
 
-class _EnemySliverAppBarState extends State<EnemySliverAppBar> {
+class _ItemSliverAppBarState extends State<ItemSliverAppBar> {
   late TextEditingController _searchController;
   bool _onSearch = false;
 
@@ -46,25 +46,41 @@ class _EnemySliverAppBarState extends State<EnemySliverAppBar> {
 
   void _onSearchChange(String? string) {
     context
-        .read<EnemyListBloc>()
-        .add(EnemyListSearchEvent(searchQuery: string ?? ''));
+        .read<ItemListBloc>()
+        .add(ItemListSearchEvent(searchQuery: string ?? ''));
   }
 
   void _onDeleteTap() {
     _searchController.clear();
     context
-        .read<EnemyListBloc>()
-        .add(const EnemyListSearchEvent(searchQuery: ''));
+        .read<ItemListBloc>()
+        .add(const ItemListSearchEvent(searchQuery: ''));
+  }
+
+  String _filterOptionToString(ItemListFilterOptions? option) {
+    if (option == null) {
+      return '';
+    }
+    switch (option) {
+      case ItemListFilterOptions.all:
+        return '전체';
+      case ItemListFilterOptions.normal:
+        return '일반';
+      case ItemListFilterOptions.consume:
+        return '사용';
+      case ItemListFilterOptions.material:
+        return '육성 재료';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EnemyListBloc, EnemyListState>(
+    return BlocBuilder<ItemListBloc, ItemListState>(
       builder: (context, state) => SliverAppBar(
         automaticallyImplyLeading: false,
         title: Row(
           children: [
-            const EnemyFiltersButton(),
+            const ItemFiltersButton(),
             IconButton(
               onPressed: _onSearchTap,
               icon: Icon(
@@ -110,8 +126,8 @@ class _EnemySliverAppBarState extends State<EnemySliverAppBar> {
                                   Gaps.h5,
                                 ],
                               ),
-                            if (state.enemyList == null ||
-                                state.enemyList!.isEmpty)
+                            if (state.itemList == null ||
+                                state.itemList!.isEmpty)
                               SizedBox(
                                 width: Sizes.size20,
                                 height: Sizes.size20,
@@ -121,20 +137,15 @@ class _EnemySliverAppBarState extends State<EnemySliverAppBar> {
                               )
                             else
                               _tag(
-                                state.searchQuery?.isNotEmpty == true
-                                    ? "필터 해제"
-                                    : state.selectedFilterOption
-                                                ?.any((element) => element) ==
-                                            true
-                                        ? "필터 적용"
-                                        : "필터 없음",
+                                _filterOptionToString(
+                                    state.selectedFilterOption),
                               ),
-                            if (state is EnemyListLoadedState)
+                            if (state is ItemListLoadedState)
                               Row(
                                 children: [
                                   Gaps.h5,
                                   _tag(
-                                      "${state.filteredEnemyList.length}명 검색됨"),
+                                      "${state.filteredItemList.length}항목 검색됨"),
                                 ],
                               ),
                           ],

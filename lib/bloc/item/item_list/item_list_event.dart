@@ -9,10 +9,10 @@ class ItemListInitEvent extends ItemListEvent {
 }
 
 class ItemListSortEvent extends ItemListEvent {
-  final ItemListSortOptions sortOption;
+  final ItemListFilterOptions filter;
 
   const ItemListSortEvent({
-    required this.sortOption,
+    required this.filter,
   });
 }
 

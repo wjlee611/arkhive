@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/models/item_list_model.dart';
@@ -12,8 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
   ItemListBloc() : super(ItemListInitState()) {
     on<ItemListInitEvent>(_itemListInitEventHandler);
-    // on<ItemListSortEvent>(_itemListSortEventHandler);
-    // on<ItemListSearchEvent>(_itemListSearchEventHandler);
+    on<ItemListSortEvent>(_itemListSortEventHandler);
+    on<ItemListSearchEvent>(_itemListSearchEventHandler);
   }
 
   Future<void> _itemListInitEventHandler(
@@ -38,12 +37,81 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       emit(ItemListLoadedState(
         itemList: result,
         filteredItemList: result,
-        selectedSortOption: ItemListSortOptions.all,
-        searchQuery: "",
+        selectedFilterOption: ItemListFilterOptions.all,
+        searchQuery: '',
       ));
     } catch (e) {
       emit(ItemListErrorState(message: e.toString()));
     }
+  }
+
+  Future<void> _itemListSortEventHandler(
+    ItemListSortEvent event,
+    Emitter<ItemListState> emit,
+  ) async {
+    if (state.itemList == null || state.itemList!.isEmpty) return;
+
+    emit(ItemListLoadingState(
+      itemList: state.itemList,
+      searchQuery: state.searchQuery,
+      selectedFilterOption: event.filter,
+    ));
+
+    List<ItemListModel> result = [];
+
+    for (var item in state.itemList!) {
+      switch (event.filter) {
+        case ItemListFilterOptions.all:
+          result.add(item);
+          break;
+        case ItemListFilterOptions.normal:
+          if (item.classifyType == 'NORMAL' || item.classifyType == 'NONE') {
+            result.add(item);
+          }
+          break;
+        case ItemListFilterOptions.consume:
+          if (item.classifyType == 'CONSUME') result.add(item);
+          break;
+        case ItemListFilterOptions.material:
+          if (item.classifyType == 'MATERIAL') result.add(item);
+          break;
+      }
+    }
+
+    emit(ItemListLoadedState(
+      filteredItemList: result,
+      selectedFilterOption: event.filter,
+      itemList: state.itemList,
+      searchQuery: state.searchQuery,
+    ));
+  }
+
+  Future<void> _itemListSearchEventHandler(
+    ItemListSearchEvent event,
+    Emitter<ItemListState> emit,
+  ) async {
+    if (state.itemList == null || state.itemList!.isEmpty) return;
+
+    emit(ItemListLoadingState(
+      itemList: state.itemList,
+      searchQuery: event.searchQuery,
+      selectedFilterOption: state.selectedFilterOption,
+    ));
+
+    List<ItemListModel> result = [];
+
+    for (var item in state.itemList!) {
+      if (item.name.toLowerCase().contains(event.searchQuery.toLowerCase())) {
+        result.add(item);
+      }
+    }
+
+    emit(ItemListLoadedState(
+      filteredItemList: result,
+      searchQuery: event.searchQuery,
+      itemList: state.itemList,
+      selectedFilterOption: state.selectedFilterOption,
+    ));
   }
 
   // Isolate
