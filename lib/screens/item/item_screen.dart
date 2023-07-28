@@ -3,6 +3,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
 import 'package:flutter/material.dart';
@@ -69,8 +70,16 @@ class ItemScreen extends StatelessWidget {
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
-                              return Text(
-                                "${state.filteredItemList[index].name} - ${state.filteredItemList[index].iconId}\n${state.filteredItemList[index].classifyType} - ${state.filteredItemList[index].itemType}",
+                              return Row(
+                                children: [
+                                  AssetImageWidget(
+                                    path:
+                                        'assets/images/item/${state.filteredItemList[index].iconId}.png',
+                                  ),
+                                  Text(
+                                    "${state.filteredItemList[index].name} - ${state.filteredItemList[index].iconId}\n${state.filteredItemList[index].classifyType} - ${state.filteredItemList[index].itemType}",
+                                  ),
+                                ],
                               );
                             },
                             childCount: state.filteredItemList.length,

@@ -32,11 +32,11 @@ class AssetImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 릴리즈용
-    return Image.asset(
-      path,
-      width: width,
-      height: height,
-    );
+    // return Image.asset(
+    //   path,
+    //   width: width,
+    //   height: height,
+    // );
 
     /// 개발용
     return FutureBuilder(

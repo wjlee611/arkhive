@@ -57,9 +57,9 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
     for (var itemData in jsonData.entries) {
       var item = ItemModel.fromJson(itemData.value);
 
-      if (item.itemType.contains('TKT_GACHA')) continue; // 오퍼레이터 지정권
       if (item.itemType.contains('LMTGS_COIN')) continue; // 헤드헌팅 데이터 계약
       if (item.itemType.contains('RENAMING')) continue; // ID 정보 갱신 카드
+      if (item.itemType == 'RETRO_COIN') continue; // 기록 결정
       if (item.itemType == "AP_SUPPLY" &&
           ![
             // whitelist
@@ -69,12 +69,15 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       if (item.itemType.contains("VOUCHER") &&
           ![
             // whitelist
-            'voucher_recruitR5_pick2',
             'voucher_skin',
-            'voucher_recruitR4_1',
+            'voucher_recruitR5_pick2',
             'voucher_recruitR3_1',
-            'voucher_chipPack',
-            'voucher_chip',
+            'voucher_recruitR4_1',
+            // 아래 데이터는 현재 테이블에 존재하지 않음 (버그인가?)
+            // 'voucher_elite_II_5',
+            // 'voucher_elite_II_6',
+            // 'voucher_levelmax_5',
+            // 'voucher_levelmax_6',
           ].any((id) => item.iconId == id)) {
         continue; // 선택권, 허가증
       }
@@ -96,9 +99,15 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
             'EXP_PLAYER',
             'SOCIAL_PT',
             'AP_GAMEPLAY',
-            'TKT_TRY',
             'AP_BASE',
+            'TKT_TRY',
           ].any((id) => item.iconId == id)) continue; // 오퍼 이성 회복 및 기타
+      if (item.itemType.contains('TKT_GACHA') &&
+          ![
+            // whitelist
+            'TKT_GACHA',
+            'TKT_GACHA_10',
+          ].any((id) => item.iconId == id)) continue; // 특별 헤드헌팅
 
       result.add(
         ItemListModel(
