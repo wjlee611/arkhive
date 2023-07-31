@@ -10,11 +10,10 @@ class SplashCubit extends Cubit<SplashState> {
 
 enum SplashState {
   init('초기화 중입니다'),
-  tags('필수 데이터를 불러오는 중입니다 (1/2)'),
-  range('필수 데이터를 불러오는 중입니다 (2/2)'),
-  penguin('펭귄 물류 데이터를 분석하는 중입니다'),
-  complete('어서오세요, 박사님.'),
-  error('초기화에 실패했습니다.');
+  tags('태그 데이터를\n불러오는 중입니다'),
+  range('사거리 데이터를\n불러오는 중입니다'),
+  penguin('펭귄 물류 데이터를\n분석하는 중입니다'),
+  complete('어서오세요, 박사님.');
 
   const SplashState(this.message);
 

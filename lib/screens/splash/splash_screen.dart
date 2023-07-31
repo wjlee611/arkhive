@@ -143,12 +143,15 @@ class SplashScreen extends StatelessWidget {
                           strokeWidth: Sizes.size2,
                         ),
                       ),
-                      Gaps.h5,
-                      Text(
-                        context.read<SplashCubit>().state.message,
-                        style: const TextStyle(
-                          fontSize: Sizes.size10,
-                          fontFamily: FontFamily.nanumGothic,
+                      Gaps.h10,
+                      SizedBox(
+                        width: Sizes.size48 * 2,
+                        child: Text(
+                          context.read<SplashCubit>().state.message,
+                          style: const TextStyle(
+                            fontSize: Sizes.size10,
+                            fontFamily: FontFamily.nanumGothic,
+                          ),
                         ),
                       ),
                     ],

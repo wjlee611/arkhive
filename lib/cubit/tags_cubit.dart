@@ -8,7 +8,7 @@ class TagsCubit extends Cubit<TagsState> {
   Future<void> loadTags() async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 300));
 
     emit(state.copyWith(status: CommonLoadState.loaded));
   }
