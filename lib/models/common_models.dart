@@ -1,5 +1,12 @@
 import 'package:arkhive/models/operator_model.dart';
 
+enum CommonLoadState {
+  init,
+  loading,
+  loaded,
+  error,
+}
+
 class BlackboardModel {
   final String? key;
   final double? value;
