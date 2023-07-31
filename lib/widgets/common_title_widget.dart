@@ -59,8 +59,9 @@ class CommonTitleWidget extends StatelessWidget {
                     const Shadow(
                       blurRadius: Sizes.size20,
                     ),
-                    const Shadow(
-                      blurRadius: Sizes.size32,
+                    Shadow(
+                      blurRadius: Sizes.size14,
+                      color: color,
                     ),
                     Shadow(
                       blurRadius: Sizes.size10,

@@ -1,4 +1,5 @@
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
+import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,16 +62,17 @@ class OpenDetailScreen {
     );
   }
 
-  // static void onItemTab({
-  //   required ItemModel item,
-  //   required dynamic context,
-  // }) async {
-  //   await Navigator.push(
-  //     context,
-  //     _createRoute(ItemDetailScreen(
-  //       item: item,
-  //       itemImage: await getImageFromSP('image/item/${item.code}'),
-  //     )),
-  //   );
-  // }
+  static void onItemTab({
+    required String itemKey,
+    required String iconId,
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(ItemDetailScreen(
+        itemKey: itemKey,
+        iconId: iconId,
+      )),
+    );
+  }
 }

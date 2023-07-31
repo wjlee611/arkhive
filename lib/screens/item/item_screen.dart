@@ -4,6 +4,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/item/widgets/item_sliver_appbar_widget.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -74,9 +75,19 @@ class ItemScreen extends StatelessWidget {
                           ),
                           delegate: SliverChildBuilderDelegate(
                             (context, index) {
-                              return AssetImageWidget(
-                                path:
-                                    'assets/images/item/${state.filteredItemList[index].iconId}.png',
+                              return GestureDetector(
+                                onTap: () => OpenDetailScreen.onItemTab(
+                                  itemKey: state.filteredItemList[index].itemId,
+                                  iconId: state.filteredItemList[index].iconId,
+                                  context: context,
+                                ),
+                                child: Hero(
+                                  tag: state.filteredItemList[index].iconId,
+                                  child: AssetImageWidget(
+                                    path:
+                                        'assets/images/item/${state.filteredItemList[index].iconId}.png',
+                                  ),
+                                ),
                               );
                             },
                             childCount: state.filteredItemList.length,
