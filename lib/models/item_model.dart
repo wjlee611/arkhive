@@ -33,37 +33,3 @@ class ItemDropModel {
         times = json['times'],
         quantity = json['quantity'];
 }
-
-class Stage2ItemModel {
-  Map<String, List<ItemDropModel>> stage;
-
-  Stage2ItemModel() : stage = {};
-
-  void add({
-    required String stageId,
-    required Map<String, dynamic> json,
-  }) {
-    if (!stage.containsKey(stageId)) {
-      stage[stageId] = [];
-    }
-
-    stage[stageId]!.add(ItemDropModel.fromJson(json));
-  }
-}
-
-class Item2StageModel {
-  Map<String, List<ItemDropModel>> item;
-
-  Item2StageModel() : item = {};
-
-  void add({
-    required String itemId,
-    required Map<String, dynamic> json,
-  }) {
-    if (!item.containsKey(itemId)) {
-      item[itemId] = [];
-    }
-
-    item[itemId]!.add(ItemDropModel.fromJson(json));
-  }
-}

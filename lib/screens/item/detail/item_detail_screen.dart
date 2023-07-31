@@ -3,6 +3,7 @@ import 'package:arkhive/bloc/item/item_data/item_data_event.dart';
 import 'package:arkhive/bloc/item/item_data/item_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
@@ -110,6 +111,14 @@ class ItemDetailScreen extends StatelessWidget {
                   FormattedTextWidget(text: item.obtainApproach!),
                 ],
               ),
+            BlocBuilder<PenguinCubit, PenguinState>(
+                builder: (context, state) => Column(
+                      children: [
+                        for (var item
+                            in state.items?.withId?[item.itemId] ?? [])
+                          Text('${item.stageId} - ${item.times}'),
+                      ],
+                    )),
           ],
         ),
       ),
