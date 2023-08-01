@@ -129,6 +129,30 @@ class ItemPenguinItemWidget extends StatelessWidget {
                   fontSize: Sizes.size16,
                 ),
               ),
+              if (penguinData.diffGroup == 'NORMAL' ||
+                  penguinData.diffGroup == 'TOUGH')
+                Container(
+                  margin: const EdgeInsets.only(left: Sizes.size5),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Sizes.size2,
+                    horizontal: Sizes.size5,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Sizes.size3),
+                    color: penguinData.diffGroup == 'TOUGH'
+                        ? Colors.redAccent
+                        : Colors.blueAccent,
+                  ),
+                  child: Text(
+                    penguinData.diffGroup == 'TOUGH' ? '고난' : '일반',
+                    style: const TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontSize: Sizes.size10,
+                    ),
+                  ),
+                ),
             ],
           ),
           Text(
