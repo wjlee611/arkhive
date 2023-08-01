@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
+import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
@@ -18,7 +19,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
       automaticallyImplyLeading: false,
       pinned: true,
       floating: true,
-      collapsedHeight: 200,
+      collapsedHeight: 201,
       shadowColor: Colors.transparent,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.zero,
@@ -26,37 +27,79 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
           children: [
             Gaps.v32,
             const CommonTitleWidget(text: '획득 방법 - 분석'),
-            Text(
-              '* Powered by penguin-stats.io',
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size10,
+            SizedBox(
+              height: Sizes.size28,
+              child: Column(
+                children: [
+                  Text(
+                    '* Powered by penguin-stats.io',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size10,
+                    ),
+                  ),
+                  Gaps.v2,
+                  Text(
+                    '* Last Update: 0000-00-00',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontFamily: FontFamily.nanumGothic,
+                      fontSize: Sizes.size10,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Gaps.v3,
-            Text(
-              '* Last Update: 0000-00-00',
-              style: TextStyle(
-                color: Colors.grey.shade700,
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size10,
-              ),
-            ),
-            Gaps.v32,
-            const Row(
+            Gaps.v20,
+            Row(
               children: [
-                ItemPenguinSortBtn(sortOption: PenguinSortOption.sanity),
-                Gaps.h5,
-                ItemPenguinSortBtn(sortOption: PenguinSortOption.rate),
-                Gaps.h5,
-                ItemPenguinSortBtn(sortOption: PenguinSortOption.times),
+                const Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ItemPenguinSortBtn(
+                            sortOption: PenguinSortOption.sanity),
+                        Gaps.h5,
+                        ItemPenguinSortBtn(sortOption: PenguinSortOption.rate),
+                        Gaps.h5,
+                        ItemPenguinSortBtn(sortOption: PenguinSortOption.times),
+                      ],
+                    ),
+                  ),
+                ),
+                BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
+                  builder: (context, state) => Row(
+                    children: [
+                      Text(
+                        state.isIncludePerm ? '비 상시맵\n포함 됨' : '상시맵 만\n포함 됨',
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black54,
+                          fontSize: Sizes.size10,
+                        ),
+                      ),
+                      Switch(
+                        value: state.isIncludePerm,
+                        activeColor: Colors.yellow.shade700,
+                        onChanged: (value) {
+                          context
+                              .read<ItemPenguinBloc>()
+                              .add(ItemPenguinToggleEvent(
+                                isIncludePerm: value,
+                              ));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-            Gaps.v2,
             Container(
               padding: const EdgeInsets.only(
-                top: Sizes.size10,
                 bottom: Sizes.size10,
                 left: Sizes.size10,
                 right: Sizes.size20,

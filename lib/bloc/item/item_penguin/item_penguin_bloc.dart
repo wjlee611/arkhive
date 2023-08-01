@@ -16,6 +16,7 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
     on<ItemPenguinSanitySortEvent>(_itemPenguinSanitySortEventHandler);
     on<ItemPenguinRateSortEvent>(_itemPenguinRateSortEventHandler);
     on<ItemPenguinTimesSortEvent>(_itemPenguinTimesSortEventHandler);
+    on<ItemPenguinToggleEvent>(_itemPenguinToggleEventHandler);
   }
 
   Future<void> _itemPenguinSanitySortEventHandler(
@@ -62,8 +63,13 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       emit(state.copyWith(
         sortOption: PenguinSortOption.sanity,
         sortedPenguin: result,
-        status: CommonLoadState.loaded,
       ));
+
+      // filter
+      _itemPenguinToggleEventHandler(
+        ItemPenguinToggleEvent(isIncludePerm: state.isIncludePerm),
+        emit,
+      );
     } catch (e) {
       emit(ItemPenguinState(
         sortedPenguin: state.sortedPenguin,
@@ -115,8 +121,13 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       emit(state.copyWith(
         sortOption: PenguinSortOption.rate,
         sortedPenguin: result,
-        status: CommonLoadState.loaded,
       ));
+
+      // filter
+      _itemPenguinToggleEventHandler(
+        ItemPenguinToggleEvent(isIncludePerm: state.isIncludePerm),
+        emit,
+      );
     } catch (e) {
       emit(ItemPenguinState(
         sortedPenguin: state.sortedPenguin,
@@ -167,12 +178,45 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       emit(state.copyWith(
         sortOption: PenguinSortOption.times,
         sortedPenguin: result,
-        status: CommonLoadState.loaded,
       ));
+
+      // filter
+      _itemPenguinToggleEventHandler(
+        ItemPenguinToggleEvent(isIncludePerm: state.isIncludePerm),
+        emit,
+      );
     } catch (e) {
       emit(ItemPenguinState(
         sortedPenguin: state.sortedPenguin,
         status: CommonLoadState.error,
+      ));
+    }
+  }
+
+  Future<void> _itemPenguinToggleEventHandler(
+    ItemPenguinToggleEvent event,
+    Emitter<ItemPenguinState> emit,
+  ) async {
+    emit(state.copyWith(status: CommonLoadState.loading));
+
+    if (event.isIncludePerm) {
+      emit(state.copyWith(
+        isIncludePerm: true,
+        filteredPenguin: state.sortedPenguin,
+        status: CommonLoadState.loaded,
+      ));
+    } else {
+      List<PenguinSortModel> result = [];
+      for (var penguin in state.sortedPenguin ?? [] as List<PenguinSortModel>) {
+        if (!(penguin.penguin.stageId?.contains('_perm') ?? true)) {
+          result.add(penguin);
+        }
+      }
+
+      emit(state.copyWith(
+        isIncludePerm: false,
+        filteredPenguin: result,
+        status: CommonLoadState.loaded,
       ));
     }
   }

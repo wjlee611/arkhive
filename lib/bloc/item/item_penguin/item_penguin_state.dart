@@ -4,30 +4,40 @@ import 'package:equatable/equatable.dart';
 
 class ItemPenguinState extends Equatable {
   final List<PenguinSortModel>? sortedPenguin;
+  final List<PenguinSortModel>? filteredPenguin;
   final PenguinSortOption? sortOption;
+  final bool isIncludePerm;
   final CommonLoadState? status;
 
   const ItemPenguinState({
     this.sortedPenguin,
+    this.filteredPenguin,
     this.sortOption,
+    this.isIncludePerm = true,
     this.status,
   });
 
   ItemPenguinState copyWith({
     List<PenguinSortModel>? sortedPenguin,
+    List<PenguinSortModel>? filteredPenguin,
     PenguinSortOption? sortOption,
+    bool? isIncludePerm,
     CommonLoadState? status,
   }) =>
       ItemPenguinState(
         sortedPenguin: sortedPenguin ?? this.sortedPenguin,
+        filteredPenguin: filteredPenguin ?? this.filteredPenguin,
         sortOption: sortOption ?? this.sortOption,
+        isIncludePerm: isIncludePerm ?? this.isIncludePerm,
         status: status ?? this.status,
       );
 
   @override
   List<Object?> get props => [
         sortedPenguin,
+        filteredPenguin,
         sortOption,
+        isIncludePerm,
         status,
       ];
 }

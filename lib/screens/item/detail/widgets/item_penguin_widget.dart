@@ -28,7 +28,7 @@ class _ItemPenguinWidgetState extends State<ItemPenguinWidget> {
             child: Text('데이터를 불러오는데 실패했습니다.'),
           );
         }
-        if (state.sortedPenguin == null) {
+        if (state.filteredPenguin == null) {
           return const SliverToBoxAdapter(
             child: CommonLoadingWidget(),
           );
@@ -37,11 +37,11 @@ class _ItemPenguinWidgetState extends State<ItemPenguinWidget> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               return ItemPenguinItemWidget(
-                penguinData: state.sortedPenguin![index],
+                penguinData: state.filteredPenguin![index],
                 idx: index,
               );
             },
-            childCount: state.sortedPenguin?.length ?? 0,
+            childCount: state.filteredPenguin?.length ?? 0,
           ),
         );
       },
