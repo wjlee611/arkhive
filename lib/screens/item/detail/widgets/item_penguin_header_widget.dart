@@ -1,9 +1,12 @@
+import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/screens/item/detail/widgets/item_penguin_sort_btn.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinHeaderWidget extends StatelessWidget {
   const ItemPenguinHeaderWidget({super.key});
@@ -40,22 +43,17 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                 fontSize: Sizes.size10,
               ),
             ),
-            Gaps.v16,
-            Row(
+            Gaps.v32,
+            const Row(
               children: [
-                Text(
-                  PenguinSortOption.sanity.message,
-                  style: TextStyle(
-                    color: Colors.yellow.shade700,
-                  ),
-                ),
+                ItemPenguinSortBtn(sortOption: PenguinSortOption.sanity),
                 Gaps.h5,
-                Text(PenguinSortOption.rate.message),
+                ItemPenguinSortBtn(sortOption: PenguinSortOption.rate),
                 Gaps.h5,
-                Text(PenguinSortOption.times.message),
+                ItemPenguinSortBtn(sortOption: PenguinSortOption.times),
               ],
             ),
-            Gaps.v10,
+            Gaps.v2,
             Container(
               padding: const EdgeInsets.only(
                 top: Sizes.size10,
@@ -72,10 +70,10 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         '순위',
@@ -83,7 +81,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                           fontFamily: FontFamily.nanumGothic,
                           fontWeight: FontWeight.w700,
                           color: Colors.black54,
-                          fontSize: Sizes.size16,
+                          fontSize: Sizes.size14,
                         ),
                       ),
                       Gaps.h36,
@@ -93,18 +91,20 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                           fontFamily: FontFamily.nanumGothic,
                           fontWeight: FontWeight.w700,
                           color: Colors.black54,
-                          fontSize: Sizes.size16,
+                          fontSize: Sizes.size14,
                         ),
                       ),
                     ],
                   ),
-                  Text(
-                    '이성/1개',
-                    style: TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black54,
-                      fontSize: Sizes.size16,
+                  BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
+                    builder: (context, state) => Text(
+                      '단위: ${state.sortOption?.unit ?? '-'}',
+                      style: const TextStyle(
+                        fontFamily: FontFamily.nanumGothic,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black54,
+                        fontSize: Sizes.size14,
+                      ),
                     ),
                   ),
                 ],

@@ -91,51 +91,57 @@ class ItemDetailScreen extends StatelessWidget {
     required BuildContext context,
     required ItemModel item,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Gaps.v130,
-                CommonTitleWidget(
-                  text: item.name,
-                  color: Colors.yellow.shade800,
-                ),
-                Gaps.v5,
-                FormattedTextWidget(text: item.description),
-                if (item.obtainApproach != null)
-                  Column(
-                    children: [
-                      Gaps.v32,
-                      const CommonTitleWidget(
-                        text: '획득 방법',
-                      ),
-                      Gaps.v5,
-                      FormattedTextWidget(text: item.obtainApproach!),
-                    ],
+    return BlocProvider(
+      create: (context) => ItemPenguinBloc(
+        context.read<PenguinCubit>().state.items!.withId![item.itemId]!,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Gaps.v130,
+                  CommonTitleWidget(
+                    text: item.name,
+                    color: Colors.yellow.shade800,
                   ),
-              ],
+                  Gaps.v5,
+                  FormattedTextWidget(text: item.description),
+                  if (item.obtainApproach != null)
+                    Column(
+                      children: [
+                        Gaps.v32,
+                        const CommonTitleWidget(
+                          text: '획득 방법',
+                        ),
+                        Gaps.v5,
+                        FormattedTextWidget(text: item.obtainApproach!),
+                      ],
+                    ),
+                ],
+              ),
             ),
-          ),
-          if (context.read<PenguinCubit>().state.items?.withId?[item.itemId] !=
-              null)
-            const ItemPenguinHeaderWidget(),
-          if (context.read<PenguinCubit>().state.items?.withId?[item.itemId] !=
-              null)
-            BlocProvider(
-              create: (context) => ItemPenguinBloc(context
-                  .read<PenguinCubit>()
-                  .state
-                  .items!
-                  .withId![item.itemId]!),
-              child: const ItemPenguinWidget(),
+            if (context
+                    .read<PenguinCubit>()
+                    .state
+                    .items
+                    ?.withId?[item.itemId] !=
+                null)
+              const ItemPenguinHeaderWidget(),
+            if (context
+                    .read<PenguinCubit>()
+                    .state
+                    .items
+                    ?.withId?[item.itemId] !=
+                null)
+              const ItemPenguinWidget(),
+            const SliverToBoxAdapter(
+              child: Gaps.v130,
             ),
-          const SliverToBoxAdapter(
-            child: Gaps.v130,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

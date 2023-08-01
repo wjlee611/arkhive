@@ -1,8 +1,11 @@
+import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
+import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinItemWidget extends StatelessWidget {
   final PenguinSortModel penguinData;
@@ -14,9 +17,29 @@ class ItemPenguinItemWidget extends StatelessWidget {
     required this.idx,
   });
 
+  String _textSelector(BuildContext context) {
+    var bloc = context.read<ItemPenguinBloc>();
+    if (bloc.state.sortOption == null) return '계산 중';
+
+    switch (bloc.state.sortOption!) {
+      case PenguinSortOption.sanity:
+        {
+          return (penguinData.sanityx1000! / 1000).toStringAsFixed(3);
+        }
+      case PenguinSortOption.rate:
+        {
+          return '${(penguinData.ratex1000! / 10).toStringAsFixed(1)}%';
+        }
+      case PenguinSortOption.times:
+        {
+          return penguinData.times.toString().replaceAllMapped(
+              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => "${m[1]},");
+        }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(idx);
     return Container(
       height: Sizes.size40,
       margin: const EdgeInsets.only(
@@ -109,7 +132,7 @@ class ItemPenguinItemWidget extends StatelessWidget {
             ],
           ),
           Text(
-            (penguinData.sanityx1000! / 1000).toStringAsFixed(3),
+            _textSelector(context),
             style: const TextStyle(
               fontFamily: FontFamily.nanumGothic,
               fontWeight: FontWeight.w700,

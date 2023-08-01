@@ -14,16 +14,15 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
   ItemPenguinBloc(this._penguins)
       : super(const ItemPenguinState(status: CommonLoadState.init)) {
     on<ItemPenguinSanitySortEvent>(_itemPenguinSanitySortEventHandler);
-    // on<ItemPenguinRateSortEvent>(_itemPenguinRateSortEventHandler);
-    // on<ItemPenguinTimesSortEvent>(_itemPenguinTimesSortEventHandler);
+    on<ItemPenguinRateSortEvent>(_itemPenguinRateSortEventHandler);
+    on<ItemPenguinTimesSortEvent>(_itemPenguinTimesSortEventHandler);
   }
 
   Future<void> _itemPenguinSanitySortEventHandler(
     ItemPenguinSanitySortEvent event,
     Emitter<ItemPenguinState> emit,
   ) async {
-    emit(ItemPenguinState(
-      sortedPenguin: state.sortedPenguin,
+    emit(state.copyWith(
       status: CommonLoadState.loading,
     ));
 
@@ -60,7 +59,113 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       // sort
       result.sort((a, b) => a.sanityx1000!.compareTo(b.sanityx1000!));
 
+      emit(state.copyWith(
+        sortOption: PenguinSortOption.sanity,
+        sortedPenguin: result,
+        status: CommonLoadState.loaded,
+      ));
+    } catch (e) {
       emit(ItemPenguinState(
+        sortedPenguin: state.sortedPenguin,
+        status: CommonLoadState.error,
+      ));
+    }
+  }
+
+  Future<void> _itemPenguinRateSortEventHandler(
+    ItemPenguinRateSortEvent event,
+    Emitter<ItemPenguinState> emit,
+  ) async {
+    emit(state.copyWith(
+      status: CommonLoadState.loading,
+    ));
+
+    try {
+      // loading stage data
+      String jsonString = await rootBundle
+          .loadString('${getGameDataRoot()}excel/stage_table.json');
+
+      Map<String, dynamic> stagesData = await json.decode(jsonString)['stages'];
+      Map<String, StageModel> stages = {};
+      for (var stageData in stagesData.entries) {
+        stages[stageData.key] = StageModel.fromJson(stageData.value);
+      }
+
+      // analyse
+      List<PenguinSortModel> result = [];
+      for (var penguin in _penguins) {
+        var stageId = penguin.stageId?.replaceAll('_perm', '');
+
+        var sanity = stages[stageId]?.apCost ?? 99;
+        var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
+
+        if (sanity <= 0) continue;
+        if (stages[stageId]?.code == null) continue;
+
+        result.add(PenguinSortModel(
+          penguin: penguin,
+          stageCode: stages[stageId]?.code,
+          ratex1000: (rate * 1000).ceil(),
+        ));
+      }
+
+      // sort
+      result.sort((a, b) => b.ratex1000!.compareTo(a.ratex1000!));
+
+      emit(state.copyWith(
+        sortOption: PenguinSortOption.rate,
+        sortedPenguin: result,
+        status: CommonLoadState.loaded,
+      ));
+    } catch (e) {
+      emit(ItemPenguinState(
+        sortedPenguin: state.sortedPenguin,
+        status: CommonLoadState.error,
+      ));
+    }
+  }
+
+  Future<void> _itemPenguinTimesSortEventHandler(
+    ItemPenguinTimesSortEvent event,
+    Emitter<ItemPenguinState> emit,
+  ) async {
+    emit(state.copyWith(
+      status: CommonLoadState.loading,
+    ));
+
+    try {
+      // loading stage data
+      String jsonString = await rootBundle
+          .loadString('${getGameDataRoot()}excel/stage_table.json');
+
+      Map<String, dynamic> stagesData = await json.decode(jsonString)['stages'];
+      Map<String, StageModel> stages = {};
+      for (var stageData in stagesData.entries) {
+        stages[stageData.key] = StageModel.fromJson(stageData.value);
+      }
+
+      // analyse
+      List<PenguinSortModel> result = [];
+      for (var penguin in _penguins) {
+        var stageId = penguin.stageId?.replaceAll('_perm', '');
+
+        var sanity = stages[stageId]?.apCost ?? 99;
+
+        if (sanity <= 0) continue;
+        if (stages[stageId]?.code == null) continue;
+
+        result.add(PenguinSortModel(
+          penguin: penguin,
+          stageCode: stages[stageId]?.code,
+          times: penguin.times,
+        ));
+      }
+
+      // sort
+      result.sort((a, b) => b.times!.compareTo(a.times!));
+
+      emit(state.copyWith(
+        sortOption: PenguinSortOption.times,
         sortedPenguin: result,
         status: CommonLoadState.loaded,
       ));

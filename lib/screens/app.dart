@@ -43,6 +43,7 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
       routerConfig: _router,
       title: 'Arkhive',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         primaryColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
