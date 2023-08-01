@@ -19,11 +19,11 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
       automaticallyImplyLeading: false,
       pinned: true,
       floating: true,
-      collapsedHeight: 201,
-      shadowColor: Colors.transparent,
+      toolbarHeight: 200,
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: EdgeInsets.zero,
         title: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Gaps.v32,
             const CommonTitleWidget(text: '획득 방법 - 분석'),
@@ -52,52 +52,60 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
               ),
             ),
             Gaps.v20,
-            Row(
-              children: [
-                const Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+            Container(
+              height: Sizes.size36,
+              clipBehavior: Clip.hardEdge,
+              decoration: const BoxDecoration(),
+              child: Row(
+                children: [
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ItemPenguinSortBtn(
+                              sortOption: PenguinSortOption.sanity),
+                          Gaps.h5,
+                          ItemPenguinSortBtn(
+                              sortOption: PenguinSortOption.rate),
+                          Gaps.h5,
+                          ItemPenguinSortBtn(
+                              sortOption: PenguinSortOption.times),
+                        ],
+                      ),
+                    ),
+                  ),
+                  BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
+                    builder: (context, state) => Row(
                       children: [
-                        ItemPenguinSortBtn(
-                            sortOption: PenguinSortOption.sanity),
-                        Gaps.h5,
-                        ItemPenguinSortBtn(sortOption: PenguinSortOption.rate),
-                        Gaps.h5,
-                        ItemPenguinSortBtn(sortOption: PenguinSortOption.times),
+                        Text(
+                          state.isIncludePerm ? '비 상시맵\n포함 됨' : '상시맵 만\n포함 됨',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            fontFamily: FontFamily.nanumGothic,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black54,
+                            fontSize: Sizes.size10,
+                          ),
+                        ),
+                        Switch(
+                          value: state.isIncludePerm,
+                          activeColor: Colors.yellow.shade700,
+                          onChanged: (value) {
+                            context
+                                .read<ItemPenguinBloc>()
+                                .add(ItemPenguinToggleEvent(
+                                  isIncludePerm: value,
+                                ));
+                          },
+                        ),
                       ],
                     ),
                   ),
-                ),
-                BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
-                  builder: (context, state) => Row(
-                    children: [
-                      Text(
-                        state.isIncludePerm ? '비 상시맵\n포함 됨' : '상시맵 만\n포함 됨',
-                        textAlign: TextAlign.right,
-                        style: const TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black54,
-                          fontSize: Sizes.size10,
-                        ),
-                      ),
-                      Switch(
-                        value: state.isIncludePerm,
-                        activeColor: Colors.yellow.shade700,
-                        onChanged: (value) {
-                          context
-                              .read<ItemPenguinBloc>()
-                              .add(ItemPenguinToggleEvent(
-                                isIncludePerm: value,
-                              ));
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
+            Gaps.v5,
             Container(
               padding: const EdgeInsets.only(
                 bottom: Sizes.size10,
@@ -113,6 +121,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              height: Sizes.size28,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
