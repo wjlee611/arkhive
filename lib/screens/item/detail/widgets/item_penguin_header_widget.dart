@@ -32,7 +32,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    '* Powered by penguin-stats.io',
+                    '* Powered by penguin-stats.io, CN Server',
                     style: TextStyle(
                       color: Colors.grey.shade700,
                       fontFamily: FontFamily.nanumGothic,
@@ -41,7 +41,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   ),
                   Gaps.v2,
                   Text(
-                    '* Last Update: 0000-00-00',
+                    '* Last Update: 2023.08.01',
                     style: TextStyle(
                       color: Colors.grey.shade700,
                       fontFamily: FontFamily.nanumGothic,

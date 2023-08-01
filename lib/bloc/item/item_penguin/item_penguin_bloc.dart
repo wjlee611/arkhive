@@ -41,18 +41,18 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       // analyse
       List<PenguinSortModel> result = [];
       for (var penguin in _penguins) {
-        var stageId = penguin.stageId?.replaceAll('_perm', '');
-
-        var sanity = stages[stageId]?.apCost ?? 99;
+        var sanity = stages[penguin.stageId]?.apCost ?? 99;
         var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
         var sanityEffx1000 = (sanity / rate * 1000).ceil();
 
         if (sanityEffx1000 <= 0) continue;
-        if (stages[stageId]?.code == null) continue;
+        if (stages[penguin.stageId]?.code == null) continue;
 
         result.add(PenguinSortModel(
           penguin: penguin,
-          stageCode: stages[stageId]?.code,
+          stageCode: stages[penguin.stageId]?.code,
+          diffGroup: stages[penguin.stageId]?.diffGroup,
+          stageType: stages[penguin.stageId]?.stageType,
           sanityx1000: sanityEffx1000,
         ));
       }
@@ -100,17 +100,17 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       // analyse
       List<PenguinSortModel> result = [];
       for (var penguin in _penguins) {
-        var stageId = penguin.stageId?.replaceAll('_perm', '');
-
-        var sanity = stages[stageId]?.apCost ?? 99;
+        var sanity = stages[penguin.stageId]?.apCost ?? 99;
         var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
 
         if (sanity <= 0) continue;
-        if (stages[stageId]?.code == null) continue;
+        if (stages[penguin.stageId]?.code == null) continue;
 
         result.add(PenguinSortModel(
           penguin: penguin,
-          stageCode: stages[stageId]?.code,
+          stageCode: stages[penguin.stageId]?.code,
+          diffGroup: stages[penguin.stageId]?.diffGroup,
+          stageType: stages[penguin.stageId]?.stageType,
           ratex1000: (rate * 1000).ceil(),
         ));
       }
@@ -158,16 +158,16 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       // analyse
       List<PenguinSortModel> result = [];
       for (var penguin in _penguins) {
-        var stageId = penguin.stageId?.replaceAll('_perm', '');
-
-        var sanity = stages[stageId]?.apCost ?? 99;
+        var sanity = stages[penguin.stageId]?.apCost ?? 99;
 
         if (sanity <= 0) continue;
-        if (stages[stageId]?.code == null) continue;
+        if (stages[penguin.stageId]?.code == null) continue;
 
         result.add(PenguinSortModel(
           penguin: penguin,
-          stageCode: stages[stageId]?.code,
+          stageCode: stages[penguin.stageId]?.code,
+          diffGroup: stages[penguin.stageId]?.diffGroup,
+          stageType: stages[penguin.stageId]?.stageType,
           times: penguin.times,
         ));
       }
@@ -208,9 +208,8 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
     } else {
       List<PenguinSortModel> result = [];
       for (var penguin in state.sortedPenguin ?? [] as List<PenguinSortModel>) {
-        if (!(penguin.penguin.stageId?.contains('_perm') ?? true)) {
-          result.add(penguin);
-        }
+        if (penguin.stageType == 'ACTIVITY') continue;
+        result.add(penguin);
       }
 
       emit(state.copyWith(
