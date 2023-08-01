@@ -57,22 +57,56 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
             ),
             Gaps.v10,
             Container(
-              padding: const EdgeInsets.all(Sizes.size10),
+              padding: const EdgeInsets.only(
+                top: Sizes.size10,
+                bottom: Sizes.size10,
+                left: Sizes.size10,
+                right: Sizes.size20,
+              ),
               margin: const EdgeInsets.only(top: Sizes.size5),
               decoration: const BoxDecoration(
-                color: Colors.blueAccent,
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.grey,
+                    width: Sizes.size2,
+                  ),
+                ),
               ),
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Text('순위'),
-                      Gaps.h20,
-                      Text('스테이지'),
+                      Text(
+                        '순위',
+                        style: TextStyle(
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black54,
+                          fontSize: Sizes.size16,
+                        ),
+                      ),
+                      Gaps.h36,
+                      Text(
+                        '스테이지',
+                        style: TextStyle(
+                          fontFamily: FontFamily.nanumGothic,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black54,
+                          fontSize: Sizes.size16,
+                        ),
+                      ),
                     ],
                   ),
-                  Text('이성/1개'),
+                  Text(
+                    '이성/1개',
+                    style: TextStyle(
+                      fontFamily: FontFamily.nanumGothic,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black54,
+                      fontSize: Sizes.size16,
+                    ),
+                  ),
                 ],
               ),
             ),
