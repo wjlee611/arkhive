@@ -54,3 +54,9 @@ app.*.map.json
 # ETC
 /legacy/
 /assets/json/test.json
+
+# AK GameData
+/assets/data/en_US/
+/assets/data/ko_KR/
+/assets/data/penguin_matrix.json
+/assets/images/
