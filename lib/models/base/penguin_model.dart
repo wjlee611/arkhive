@@ -11,21 +11,48 @@ class PenguinModel extends Equatable {
   final int? quantity;
   final int? start;
 
-  PenguinModel({
-    String? stageId,
+  const PenguinModel({
+    this.stageId,
     this.itemId,
     this.times,
     this.quantity,
     this.start,
-  }) : stageId = stageId?.replaceAll('_perm', '');
+  });
 
   factory PenguinModel.fromJson(Map<String, dynamic> json) =>
       _$PenguinModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PenguinModelToJson(this);
 
   @override
   List<Object?> get props => [
         stageId,
         itemId,
+      ];
+}
+
+class PenguinSortModel extends Equatable {
+  final PenguinModel penguin;
+  final String? stageCode;
+  final int? sanityx1000;
+  final int? ratex1000;
+  final int? times;
+
+  const PenguinSortModel({
+    required this.penguin,
+    this.stageCode,
+    this.sanityx1000,
+    this.ratex1000,
+    this.times,
+  });
+
+  @override
+  List<Object?> get props => [
+        penguin,
+        stageCode,
+        sanityx1000,
+        ratex1000,
+        times,
       ];
 }
 

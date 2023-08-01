@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/models/base/penguin_model.dart';
 import 'package:arkhive/models/common_models.dart';
 import 'package:equatable/equatable.dart';

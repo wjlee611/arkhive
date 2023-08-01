@@ -20,16 +20,3 @@ class ItemModel {
         classifyType = json['classifyType'],
         itemType = json['itemType'];
 }
-
-class ItemDropModel {
-  final String stageId;
-  final String itemId;
-  final int times;
-  final int quantity;
-
-  ItemDropModel.fromJson(Map<String, dynamic> json)
-      : stageId = json['stageId'],
-        itemId = json['itemId'],
-        times = json['times'],
-        quantity = json['quantity'];
-}

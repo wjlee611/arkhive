@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/bloc/item/item_data/item_data_event.dart';
 import 'package:arkhive/bloc/item/item_data/item_data_state.dart';
 import 'package:arkhive/models/item_model.dart';

@@ -1,12 +1,15 @@
 import 'package:arkhive/bloc/item/item_data/item_data_bloc.dart';
 import 'package:arkhive/bloc/item/item_data/item_data_event.dart';
 import 'package:arkhive/bloc/item/item_data/item_data_state.dart';
+import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
+import 'package:arkhive/screens/item/detail/widgets/item_penguin_header_widget.dart';
+import 'package:arkhive/screens/item/detail/widgets/item_penguin_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -88,39 +91,51 @@ class ItemDetailScreen extends StatelessWidget {
     required BuildContext context,
     required ItemModel item,
   }) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-        child: Column(
-          children: [
-            Gaps.v130,
-            CommonTitleWidget(
-              text: item.name,
-              color: Colors.yellow.shade800,
-            ),
-            Gaps.v5,
-            FormattedTextWidget(text: item.description),
-            Gaps.v32,
-            if (item.obtainApproach != null)
-              Column(
-                children: [
-                  const CommonTitleWidget(
-                    text: '획득 방법',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Gaps.v130,
+                CommonTitleWidget(
+                  text: item.name,
+                  color: Colors.yellow.shade800,
+                ),
+                Gaps.v5,
+                FormattedTextWidget(text: item.description),
+                if (item.obtainApproach != null)
+                  Column(
+                    children: [
+                      Gaps.v32,
+                      const CommonTitleWidget(
+                        text: '획득 방법',
+                      ),
+                      Gaps.v5,
+                      FormattedTextWidget(text: item.obtainApproach!),
+                    ],
                   ),
-                  Gaps.v5,
-                  FormattedTextWidget(text: item.obtainApproach!),
-                ],
-              ),
-            BlocBuilder<PenguinCubit, PenguinState>(
-                builder: (context, state) => Column(
-                      children: [
-                        for (var item
-                            in state.items?.withId?[item.itemId] ?? [])
-                          Text('${item.stageId} - ${item.times}'),
-                      ],
-                    )),
-          ],
-        ),
+              ],
+            ),
+          ),
+          if (context.read<PenguinCubit>().state.items?.withId?[item.itemId] !=
+              null)
+            const ItemPenguinHeaderWidget(),
+          if (context.read<PenguinCubit>().state.items?.withId?[item.itemId] !=
+              null)
+            BlocProvider(
+              create: (context) => ItemPenguinBloc(context
+                  .read<PenguinCubit>()
+                  .state
+                  .items!
+                  .withId![item.itemId]!),
+              child: const ItemPenguinWidget(),
+            ),
+          const SliverToBoxAdapter(
+            child: Gaps.v130,
+          ),
+        ],
       ),
     );
   }
