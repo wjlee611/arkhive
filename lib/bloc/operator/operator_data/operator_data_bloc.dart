@@ -164,7 +164,7 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     Map<String, dynamic> jsonData = jsonDecode(jsonString)['equipDict'];
 
     jsonData.forEach((key, value) {
-      if (key.contains(operatorKey.split('_').last)) {
+      if (key.split('_').last == operatorKey.split('_').last) {
         var module = ModuleModel.fromJson(value);
         if (module.typeIcon != 'original') {
           modules.add(module);

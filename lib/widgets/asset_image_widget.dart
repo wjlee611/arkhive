@@ -2,6 +2,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class AssetImageWidget extends StatelessWidget {
+  static bool isDevMode = false;
+
   const AssetImageWidget({
     super.key,
     required this.path,
@@ -31,26 +33,28 @@ class AssetImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// 릴리즈용
-    // return Image.asset(
-    //   path,
-    //   width: width,
-    //   height: height,
-    // );
-
     /// 개발용
-    return FutureBuilder(
-      future: _futureImage(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return snapshot.data as Image;
-        }
-        return Image.asset(
-          'assets/images/prts.png',
-          width: width,
-          height: height,
-        );
-      },
+    if (isDevMode) {
+      return FutureBuilder(
+        future: _futureImage(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data as Image;
+          }
+          return Image.asset(
+            'assets/images/prts.png',
+            width: width,
+            height: height,
+          );
+        },
+      );
+    }
+
+    /// 릴리즈용
+    return Image.asset(
+      path,
+      width: width,
+      height: height,
     );
   }
 }
