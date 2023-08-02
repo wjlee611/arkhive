@@ -2,6 +2,10 @@ abstract class ItemPenguinEvent {
   ItemPenguinEvent();
 }
 
+class ItemPenguinInitEvent extends ItemPenguinEvent {
+  ItemPenguinInitEvent();
+}
+
 class ItemPenguinSanitySortEvent extends ItemPenguinEvent {
   ItemPenguinSanitySortEvent();
 }

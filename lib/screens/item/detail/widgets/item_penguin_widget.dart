@@ -21,7 +21,7 @@ class _ItemPenguinWidgetState extends State<ItemPenguinWidget> {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         if (state.status == CommonLoadState.init) {
-          context.read<ItemPenguinBloc>().add(ItemPenguinSanitySortEvent());
+          context.read<ItemPenguinBloc>().add(ItemPenguinInitEvent());
         }
         if (state.status == CommonLoadState.error) {
           return const SliverToBoxAdapter(
