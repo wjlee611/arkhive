@@ -14,7 +14,7 @@ class ItemFiltersButton extends StatelessWidget {
 
   Color _iconColorSelector(BuildContext context) {
     var query = context.read<ItemListBloc>().state.searchQuery;
-    if (query?.isNotEmpty == true) return Colors.white;
+    if (query?.isNotEmpty == true) return Colors.grey;
 
     return Colors.yellow.shade800;
   }
@@ -23,6 +23,10 @@ class ItemFiltersButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ItemListBloc, ItemListState>(
       builder: (context, state) => PopupMenuButton(
+        enabled:
+            context.read<ItemListBloc>().state.searchQuery?.isNotEmpty == true
+                ? false
+                : true,
         initialValue: state.selectedFilterOption,
         onSelected: (option) => _onSelected(context, option),
         offset: const Offset(0, 0),

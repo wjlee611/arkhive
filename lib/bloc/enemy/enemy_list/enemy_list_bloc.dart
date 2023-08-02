@@ -76,7 +76,6 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
       enemyList: state.enemyList,
       filteredEnemyList: result,
       selectedFilterOption: event.filters,
-      searchQuery: state.searchQuery,
     ));
   }
 
@@ -85,6 +84,15 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
     Emitter<EnemyListState> emit,
   ) async {
     if (state.enemyList == null || state.enemyList!.isEmpty) return;
+    if (event.searchQuery.isEmpty) {
+      _enemyListSelectFiltersEventHandler(
+        EnemyListSelectFiltersEvent(
+          filters: state.selectedFilterOption ?? [true, true, true],
+        ),
+        emit,
+      );
+      return;
+    }
 
     emit(EnemyListLoadingState(
       enemyList: state.enemyList,

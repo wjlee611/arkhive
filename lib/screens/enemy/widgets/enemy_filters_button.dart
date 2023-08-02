@@ -30,7 +30,7 @@ class EnemyFiltersButton extends StatelessWidget {
     if (!filters.any((element) => element)) return Colors.white;
 
     var query = context.read<EnemyListBloc>().state.searchQuery;
-    if (query?.isNotEmpty == true) return Colors.white;
+    if (query?.isNotEmpty == true) return Colors.grey;
 
     return Colors.yellow.shade800;
   }
@@ -46,6 +46,10 @@ class EnemyFiltersButton extends StatelessWidget {
         return false;
       },
       builder: (context_, state) => PopupMenuButton(
+        enabled:
+            context_.read<EnemyListBloc>().state.searchQuery?.isNotEmpty == true
+                ? false
+                : true,
         offset: const Offset(0, 0),
         icon: Icon(
           Icons.filter_alt_rounded,

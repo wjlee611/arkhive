@@ -82,7 +82,6 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       filteredItemList: result,
       selectedFilterOption: event.filter,
       itemList: state.itemList,
-      searchQuery: state.searchQuery,
     ));
   }
 
@@ -91,6 +90,15 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
     Emitter<ItemListState> emit,
   ) async {
     if (state.itemList == null || state.itemList!.isEmpty) return;
+    if (event.searchQuery.isEmpty) {
+      _itemListSortEventHandler(
+        ItemListSortEvent(
+          filter: state.selectedFilterOption ?? ItemListFilterOptions.all,
+        ),
+        emit,
+      );
+      return;
+    }
 
     emit(ItemListLoadingState(
       itemList: state.itemList,
