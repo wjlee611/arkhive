@@ -9,6 +9,7 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/widgets/elite_select_button_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
+import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -182,8 +183,10 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                           strokeAlign: BorderSide.strokeAlignOutside,
                         ),
                       ),
-                      child: Image.asset(
-                          'assets/images/operator/${widget.operatorKey}.png'),
+                      child: AssetImageWidget(
+                        path:
+                            'assets/images/operator/${widget.operatorKey}.png',
+                      ),
                     ),
                   ),
                   BlocBuilder<OperatorStatusBloc, OperatorStatusState>(

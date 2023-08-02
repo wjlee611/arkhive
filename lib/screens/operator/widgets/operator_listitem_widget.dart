@@ -2,6 +2,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_list_model.dart';
+import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';
 
 class OperatorListItem extends StatelessWidget {
@@ -43,8 +44,8 @@ class OperatorListItem extends StatelessWidget {
               height: Sizes.size52,
               clipBehavior: Clip.hardEdge,
               decoration: const BoxDecoration(),
-              child: Image.asset(
-                'assets/images/operator/${operator_.operatorKey}.png',
+              child: AssetImageWidget(
+                path: 'assets/images/operator/${operator_.operatorKey}.png',
               ),
             ),
           ),

@@ -166,7 +166,7 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     jsonData.forEach((key, value) {
       if (key.contains(operatorKey.split('_').last)) {
         var module = ModuleModel.fromJson(value);
-        if (module.uniEquipIcon != 'original') {
+        if (module.typeIcon != 'original') {
           modules.add(module);
         }
       }

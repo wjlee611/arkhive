@@ -32,25 +32,25 @@ class AssetImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// 릴리즈용
-    return Image.asset(
-      path,
-      width: width,
-      height: height,
-    );
+    // return Image.asset(
+    //   path,
+    //   width: width,
+    //   height: height,
+    // );
 
     /// 개발용
-    // return FutureBuilder(
-    //   future: _futureImage(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       return snapshot.data as Image;
-    //     }
-    //     return Image.asset(
-    //       'assets/images/prts.png',
-    //       width: width,
-    //       height: height,
-    //     );
-    //   },
-    // );
+    return FutureBuilder(
+      future: _futureImage(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return snapshot.data as Image;
+        }
+        return Image.asset(
+          'assets/images/prts.png',
+          width: width,
+          height: height,
+        );
+      },
+    );
   }
 }
