@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
   final List<PenguinModel> _penguins;
-  late List<PenguinSortModel> _penguinSortSources;
+  late List<PenguinItemModel> _penguinSortSources;
 
   ItemPenguinBloc(this._penguins)
       : super(const ItemPenguinState(status: CommonLoadState.init)) {
@@ -44,7 +44,7 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
       port.close();
 
       // analyse
-      List<PenguinSortModel> result = [];
+      List<PenguinItemModel> result = [];
       for (var penguin in _penguins) {
         var sanity = stages[penguin.stageId]?.apCost ?? 99;
         var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
@@ -53,7 +53,7 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
         if (sanityEffx1000 <= 0) continue;
         if (stages[penguin.stageId]?.code == null) continue;
 
-        result.add(PenguinSortModel(
+        result.add(PenguinItemModel(
           penguin: penguin,
           stageCode: stages[penguin.stageId]?.code,
           diffGroup: stages[penguin.stageId]?.diffGroup,
@@ -187,8 +187,8 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
         status: CommonLoadState.loaded,
       ));
     } else {
-      List<PenguinSortModel> result = [];
-      for (var penguin in state.sortedPenguin ?? [] as List<PenguinSortModel>) {
+      List<PenguinItemModel> result = [];
+      for (var penguin in state.sortedPenguin ?? [] as List<PenguinItemModel>) {
         if (penguin.stageType == 'ACTIVITY') continue;
         result.add(penguin);
       }

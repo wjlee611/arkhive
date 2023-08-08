@@ -31,14 +31,46 @@ class PenguinModel extends Equatable {
       ];
 }
 
-class PenguinSortModel extends Equatable {
+// 스테이지별 아이템 모델
+class PenguinStageModel extends Equatable {
+  final PenguinModel? penguin;
+  final String? name, iconId;
+  final bool isFirstDrop;
+  final int? sanityx1000;
+  final int? ratex1000;
+  final int? times;
+
+  const PenguinStageModel({
+    this.penguin,
+    this.name,
+    this.iconId,
+    bool? isFirstDrop,
+    this.sanityx1000,
+    this.ratex1000,
+    this.times,
+  }) : isFirstDrop = isFirstDrop ?? false;
+
+  @override
+  List<Object?> get props => [
+        penguin,
+        name,
+        iconId,
+        isFirstDrop,
+        sanityx1000,
+        ratex1000,
+        times,
+      ];
+}
+
+// 아이템별 스테이지 모델
+class PenguinItemModel extends Equatable {
   final PenguinModel penguin;
   final String? stageCode, diffGroup, stageType;
   final int? sanityx1000;
   final int? ratex1000;
   final int? times;
 
-  const PenguinSortModel({
+  const PenguinItemModel({
     required this.penguin,
     this.stageCode,
     this.diffGroup,

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinItemWidget extends StatelessWidget {
-  final PenguinSortModel penguinData;
+  final PenguinItemModel penguinData;
   final int idx;
 
   const ItemPenguinItemWidget({

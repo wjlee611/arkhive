@@ -1,0 +1,130 @@
+import 'dart:convert';
+import 'dart:isolate';
+import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_event.dart';
+import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_state.dart';
+import 'package:arkhive/models/base/penguin_model.dart';
+import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/item_model.dart';
+import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
+  final List<PenguinModel>? penguins; // 스테이지에 해당하는 팽귄 데이터만 들어있음. 하드모드는 없음.
+  final StageModel _stage;
+
+  StagePenguinBloc(this.penguins, this._stage)
+      : super(const StagePenguinState(status: CommonLoadState.init)) {
+    on<StagePenguinInitEvent>(_stagePenguinInitEventHandler);
+  }
+
+  Future<void> _stagePenguinInitEventHandler(
+    StagePenguinInitEvent event,
+    Emitter<StagePenguinState> emit,
+  ) async {
+    emit(state.copyWith(
+      status: CommonLoadState.loading,
+    ));
+
+    try {
+      // loading item data
+      String jsonString = await rootBundle
+          .loadString('${getGameDataRoot()}excel/item_table.json');
+
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
+        _deserializeItemModel,
+        [port.sendPort, jsonString],
+      );
+      Map<String, ItemModel> items = await port.first;
+      port.close();
+
+      // analyse
+      // from ingame data - 첫 드랍(2: 일반, 3: 특수, 4: 추가 제외) 정보
+      List<PenguinStageModel> result = [];
+      for (var item
+          in _stage.stageDropInfo?.rewords ?? [] as List<StageItemModel>) {
+        if (item.dropType == 2 || item.dropType == 3 || item.dropType == 4) {
+          continue;
+        }
+
+        var name = items[item.id]?.name ?? item.id;
+        if (name?.contains('furni') == true) {
+          name = '이벤트 가구';
+        }
+
+        result.add(PenguinStageModel(
+          iconId: items[item.id]?.iconId ?? item.id,
+          name: name,
+          isFirstDrop: true,
+          sanityx1000: 0,
+        ));
+
+        if (item.type == 'ACTIVITY_ITEM' && _stage.difficulty == 'NORMAL') {
+          result.add(PenguinStageModel(
+            iconId: items[item.id]?.iconId ?? item.id,
+            name: name,
+            sanityx1000: 1000,
+            ratex1000: (_stage.apCost ?? 0) * 1000,
+          ));
+        }
+      }
+
+      // from penguin data - 확률 드랍 정보
+      int? times;
+      if (penguins != null) {
+        for (var penguin in penguins!) {
+          var sanity = _stage.apCost ?? 99;
+          var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
+          var sanityEffx1000 = (sanity / rate * 1000).ceil();
+
+          if (penguin.itemId?.contains('furni') == true) continue;
+
+          times = times ?? penguin.times;
+
+          result.add(PenguinStageModel(
+            penguin: penguin,
+            iconId: items[penguin.itemId]?.iconId ??
+                items[penguin.itemId]?.iconId ??
+                penguin.itemId,
+            name: items[penguin.itemId]?.name ??
+                items[penguin.itemId]?.name ??
+                penguin.itemId,
+            sanityx1000: sanityEffx1000,
+            ratex1000: (rate * 1000).ceil(),
+            times: penguin.times,
+          ));
+        }
+      }
+
+      // sort
+      result.sort((a, b) => (a.sanityx1000 ?? double.infinity)
+          .compareTo((b.sanityx1000 ?? double.infinity)));
+
+      emit(state.copyWith(
+        sortedPenguin: result,
+        times: times,
+        status: CommonLoadState.loaded,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        status: CommonLoadState.error,
+      ));
+    }
+  }
+
+  // Isolate
+  static void _deserializeItemModel(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+
+    Map<String, dynamic> stagesData = jsonDecode(jsonString)['items'];
+    Map<String, ItemModel> result = {};
+    for (var stageData in stagesData.entries) {
+      result[stageData.key] = ItemModel.fromJson(stageData.value);
+    }
+
+    Isolate.exit(sendPort, result);
+  }
+}

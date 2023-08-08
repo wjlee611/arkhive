@@ -1,10 +1,13 @@
+import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -72,49 +75,53 @@ class StageDetailScreen extends StatelessWidget {
   }
 
   Widget _buildBody(StageModel stage) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Gaps.v20,
-            CommonTitleWidget(
-              text: stage.name ?? '???',
-              color: Colors.yellow.shade800,
-            ),
-            if (stage.description != null)
-              Column(
-                children: [
-                  Gaps.v10,
-                  FormattedTextWidget(
-                    text: stage.description!,
-                    center: false,
-                  ),
-                ],
+    return BlocProvider(
+      create: (context) => StagePenguinBloc(
+        context.read<PenguinCubit>().state.stages!.withId![stage.stageId],
+        stage,
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gaps.v20,
+              CommonTitleWidget(
+                text: stage.name ?? '???',
+                color: Colors.yellow.shade800,
               ),
-            Gaps.v10,
-            SanityInfoTag(
-              title: '소모 이성',
-              value: stage.apCost ?? -1,
-            ),
-            Gaps.v5,
-            SanityInfoTag(
-              title: '반환 이성',
-              value: stage.apFailReturn ?? -1,
-            ),
-            Gaps.v20,
-            if (stage.stageDropInfo != null)
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CommonTitleWidget(text: '드랍 아이템'),
-                  Gaps.v10,
-                  for (var item in stage.stageDropInfo!.rewords)
-                    Text('${item.type}(${item.dropType}) - ${item.id}')
-                ],
+              if (stage.description != null)
+                Column(
+                  children: [
+                    Gaps.v10,
+                    FormattedTextWidget(
+                      text: stage.description!,
+                      center: false,
+                    ),
+                  ],
+                ),
+              Gaps.v10,
+              SanityInfoTag(
+                title: '소모 이성',
+                value: stage.apCost ?? -1,
               ),
-          ],
+              Gaps.v5,
+              SanityInfoTag(
+                title: '반환 이성',
+                value: stage.apFailReturn ?? -1,
+              ),
+              Gaps.v20,
+              if (stage.stageDropInfo != null)
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonTitleWidget(text: '드랍 아이템'),
+                    StageItemListWidget(),
+                  ],
+                ),
+            ],
+          ),
         ),
       ),
     );

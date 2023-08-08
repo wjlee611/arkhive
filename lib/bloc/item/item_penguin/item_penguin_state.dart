@@ -3,8 +3,8 @@ import 'package:arkhive/models/common_models.dart';
 import 'package:equatable/equatable.dart';
 
 class ItemPenguinState extends Equatable {
-  final List<PenguinSortModel>? sortedPenguin;
-  final List<PenguinSortModel>? filteredPenguin;
+  final List<PenguinItemModel>? sortedPenguin;
+  final List<PenguinItemModel>? filteredPenguin;
   final PenguinSortOption? sortOption;
   final bool isIncludePerm;
   final CommonLoadState? status;
@@ -18,8 +18,8 @@ class ItemPenguinState extends Equatable {
   });
 
   ItemPenguinState copyWith({
-    List<PenguinSortModel>? sortedPenguin,
-    List<PenguinSortModel>? filteredPenguin,
+    List<PenguinItemModel>? sortedPenguin,
+    List<PenguinItemModel>? filteredPenguin,
     PenguinSortOption? sortOption,
     bool? isIncludePerm,
     CommonLoadState? status,
