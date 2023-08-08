@@ -120,6 +120,7 @@ class StageDetailScreen extends StatelessWidget {
                     StageItemListWidget(),
                   ],
                 ),
+              Gaps.v130,
             ],
           ),
         ),

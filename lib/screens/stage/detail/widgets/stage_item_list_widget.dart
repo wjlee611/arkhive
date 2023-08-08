@@ -1,8 +1,10 @@
 import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_bloc.dart';
 import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_event.dart';
 import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_state.dart';
+import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_penguin_item_widget.dart';
+import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +29,20 @@ class StageItemListWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('팽귄 보고서 수: ${state.times}'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(Sizes.size5),
+                  child: SanityInfoTag(
+                    title: '팽귄 물류 분석 보고서',
+                    value: state.times ?? 0,
+                    isFormatting: true,
+                    unit: '개',
+                  ),
+                ),
+              ],
+            ),
             for (var penguin in state.sortedPenguin!)
               StagePenguinItemWidget(penguin: penguin),
           ],

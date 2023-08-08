@@ -7,10 +7,21 @@ class SanityInfoTag extends StatelessWidget {
     super.key,
     required this.title,
     required this.value,
+    this.isFormatting,
+    this.unit,
   });
 
   final String title;
   final int value;
+  final bool? isFormatting;
+  final String? unit;
+
+  String _textFormatter() {
+    if (isFormatting == true) {
+      return '${value.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => "${m[1]},")}${unit != null ? ' $unit' : ''}';
+    }
+    return '${value == -1 ? 'N/A' : value.toString()}${unit != null ? ' $unit' : ''}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +39,9 @@ class SanityInfoTag extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
+          Container(
             height: Sizes.size24,
-            width: Sizes.size72,
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.size14),
             child: Center(
               child: Text(
                 title,
@@ -48,7 +59,7 @@ class SanityInfoTag extends StatelessWidget {
             color: Colors.yellow.shade800,
             child: Center(
               child: Text(
-                value == -1 ? 'N/A' : value.toString(),
+                _textFormatter(),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: Sizes.size14,

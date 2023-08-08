@@ -54,8 +54,14 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
           name = '이벤트 가구';
         }
 
+        bool isIcon = false;
+        if (['MATERIAL', 'DIAMOND', 'CARD_EXP']
+            .contains(items[item.id]?.itemType)) {
+          isIcon = true;
+        }
+
         result.add(PenguinStageModel(
-          iconId: items[item.id]?.iconId ?? item.id,
+          iconId: isIcon ? items[item.id]?.iconId : null,
           name: name,
           isFirstDrop: true,
           sanityx1000: 0,
@@ -63,7 +69,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
 
         if (item.type == 'ACTIVITY_ITEM' && _stage.difficulty == 'NORMAL') {
           result.add(PenguinStageModel(
-            iconId: items[item.id]?.iconId ?? item.id,
+            iconId: isIcon ? items[item.id]?.iconId : null,
             name: name,
             sanityx1000: 1000,
             ratex1000: (_stage.apCost ?? 0) * 1000,
@@ -80,17 +86,21 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
           var sanityEffx1000 = (sanity / rate * 1000).ceil();
 
           if (penguin.itemId?.contains('furni') == true) continue;
+          if (penguin.itemId?.contains('ap_supply') == true) continue;
 
           times = times ?? penguin.times;
 
+          bool isIcon = false;
+
+          if (['MATERIAL', 'DIAMOND', 'CARD_EXP']
+              .contains(items[penguin.itemId]?.itemType)) {
+            isIcon = true;
+          }
+
           result.add(PenguinStageModel(
             penguin: penguin,
-            iconId: items[penguin.itemId]?.iconId ??
-                items[penguin.itemId]?.iconId ??
-                penguin.itemId,
-            name: items[penguin.itemId]?.name ??
-                items[penguin.itemId]?.name ??
-                penguin.itemId,
+            iconId: isIcon ? items[penguin.itemId]?.iconId : null,
+            name: items[penguin.itemId]?.name ?? penguin.itemId,
             sanityx1000: sanityEffx1000,
             ratex1000: (rate * 1000).ceil(),
             times: penguin.times,
