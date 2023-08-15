@@ -13,6 +13,7 @@ import 'package:arkhive/screens/item/detail/widgets/item_penguin_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
+import 'package:arkhive/widgets/penguin_server_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,6 +44,7 @@ class ItemDetailScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
+            const PenguinServerSelector(),
             IconButton(
               onPressed: () {
                 //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
@@ -92,9 +94,7 @@ class ItemDetailScreen extends StatelessWidget {
     required ItemModel item,
   }) {
     return BlocProvider(
-      create: (context) => ItemPenguinBloc(
-        context.read<PenguinCubit>().state.items!.withId![item.itemId]!,
-      ),
+      create: (context) => ItemPenguinBloc(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
         child: CustomScrollView(
@@ -137,7 +137,9 @@ class ItemDetailScreen extends StatelessWidget {
                     .items
                     ?.withId?[item.itemId] !=
                 null)
-              const ItemPenguinWidget(),
+              ItemPenguinWidget(
+                itemId: item.itemId,
+              ),
             const SliverToBoxAdapter(
               child: Gaps.v130,
             ),

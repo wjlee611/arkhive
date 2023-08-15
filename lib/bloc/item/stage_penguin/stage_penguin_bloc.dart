@@ -11,10 +11,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
-  final List<PenguinModel>? penguins; // 스테이지에 해당하는 팽귄 데이터만 들어있음. 하드모드는 없음.
+  List<PenguinModel> _penguins = [];
   final StageModel _stage;
 
-  StagePenguinBloc(this.penguins, this._stage)
+  StagePenguinBloc(this._stage)
       : super(const StagePenguinState(status: CommonLoadState.init)) {
     on<StagePenguinInitEvent>(_stagePenguinInitEventHandler);
   }
@@ -26,6 +26,8 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
     emit(state.copyWith(
       status: CommonLoadState.loading,
     ));
+
+    _penguins = event.penguinSrc;
 
     try {
       // loading item data
@@ -79,33 +81,31 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
 
       // from penguin data - 확률 드랍 정보
       int? times;
-      if (penguins != null) {
-        for (var penguin in penguins!) {
-          var sanity = _stage.apCost ?? 99;
-          var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
-          var sanityEffx1000 = (sanity / rate * 1000).ceil();
+      for (var penguin in _penguins) {
+        var sanity = _stage.apCost ?? 99;
+        var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
+        var sanityEffx1000 = (sanity / rate * 1000).ceil();
 
-          if (penguin.itemId?.contains('furni') == true) continue;
-          if (penguin.itemId?.contains('ap_supply') == true) continue;
+        if (penguin.itemId?.contains('furni') == true) continue;
+        if (penguin.itemId?.contains('ap_supply') == true) continue;
 
-          times = times ?? penguin.times;
+        times = times ?? penguin.times;
 
-          bool isIcon = false;
+        bool isIcon = false;
 
-          if (['MATERIAL', 'DIAMOND', 'CARD_EXP']
-              .contains(items[penguin.itemId]?.itemType)) {
-            isIcon = true;
-          }
-
-          result.add(PenguinStageModel(
-            penguin: penguin,
-            iconId: isIcon ? items[penguin.itemId]?.iconId : null,
-            name: items[penguin.itemId]?.name ?? penguin.itemId,
-            sanityx1000: sanityEffx1000,
-            ratex1000: (rate * 1000).ceil(),
-            times: penguin.times,
-          ));
+        if (['MATERIAL', 'DIAMOND', 'CARD_EXP']
+            .contains(items[penguin.itemId]?.itemType)) {
+          isIcon = true;
         }
+
+        result.add(PenguinStageModel(
+          penguin: penguin,
+          iconId: isIcon ? items[penguin.itemId]?.iconId : null,
+          name: items[penguin.itemId]?.name ?? penguin.itemId,
+          sanityx1000: sanityEffx1000,
+          ratex1000: (rate * 1000).ceil(),
+          times: penguin.times,
+        ));
       }
 
       // sort

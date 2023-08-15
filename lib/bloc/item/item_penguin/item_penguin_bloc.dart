@@ -10,10 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
-  final List<PenguinModel> _penguins;
-  late List<PenguinItemModel> _penguinSortSources;
+  List<PenguinModel> _penguins = [];
+  List<PenguinItemModel> _penguinSortSources = [];
 
-  ItemPenguinBloc(this._penguins)
+  ItemPenguinBloc()
       : super(const ItemPenguinState(status: CommonLoadState.init)) {
     on<ItemPenguinInitEvent>(_itemPenguinInitEventHandler);
     on<ItemPenguinSanitySortEvent>(_itemPenguinSanitySortEventHandler);
@@ -29,6 +29,8 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
     emit(state.copyWith(
       status: CommonLoadState.loading,
     ));
+
+    _penguins = event.penguinSrc;
 
     try {
       // loading stage data

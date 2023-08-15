@@ -3,6 +3,7 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_sort_btn.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -31,14 +32,17 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
               height: Sizes.size28,
               child: Column(
                 children: [
-                  Text(
-                    '* Powered by penguin-stats.io, CN Server',
-                    style: TextStyle(
-                      color: Colors.grey.shade700,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size10,
-                    ),
-                  ),
+                  BlocBuilder<PenguinCubit, PenguinState>(
+                      builder: (context, state) {
+                    return Text(
+                      '* Powered by penguin-stats.io, ${state.server?.region ?? '-'} Server',
+                      style: TextStyle(
+                        color: Colors.grey.shade700,
+                        fontFamily: FontFamily.nanumGothic,
+                        fontSize: Sizes.size10,
+                      ),
+                    );
+                  }),
                   Gaps.v2,
                   Text(
                     '* Last Update: 2023.08.01',

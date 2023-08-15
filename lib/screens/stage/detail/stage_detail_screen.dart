@@ -4,7 +4,6 @@ import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
@@ -12,6 +11,7 @@ import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dar
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
+import 'package:arkhive/widgets/penguin_server_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,6 +49,7 @@ class StageDetailScreen extends StatelessWidget {
               ),
               backgroundColor: Colors.blueGrey.shade700,
               actions: [
+                const PenguinServerSelector(),
                 IconButton(
                   onPressed: () {
                     //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
@@ -77,7 +78,6 @@ class StageDetailScreen extends StatelessWidget {
   Widget _buildBody(StageModel stage) {
     return BlocProvider(
       create: (context) => StagePenguinBloc(
-        context.read<PenguinCubit>().state.stages!.withId![stage.stageId],
         stage,
       ),
       child: SingleChildScrollView(
@@ -113,11 +113,11 @@ class StageDetailScreen extends StatelessWidget {
               ),
               Gaps.v20,
               if (stage.stageDropInfo != null)
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CommonTitleWidget(text: '드랍 아이템'),
-                    StageItemListWidget(),
+                    const CommonTitleWidget(text: '드랍 아이템'),
+                    StageItemListWidget(stageId: stage.stageId ?? ''),
                   ],
                 ),
               Gaps.v130,

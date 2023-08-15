@@ -6,15 +6,33 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+enum PenguinServer {
+  cn('CN'),
+  us('US');
+
+  final String region;
+
+  const PenguinServer(this.region);
+}
+
 class PenguinCubit extends Cubit<PenguinState> {
   PenguinCubit() : super(const PenguinState(status: CommonLoadState.init));
 
-  Future<void> loadPenguin() async {
+  Future<void> loadPenguin({
+    PenguinServer? server = PenguinServer.cn,
+  }) async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
     try {
-      String jsonString =
-          await rootBundle.loadString('assets/data/penguin_matrix.json');
+      String jsonString = '';
+
+      if (server == PenguinServer.cn) {
+        jsonString =
+            await rootBundle.loadString('assets/data/penguin_matrix_cn.json');
+      } else {
+        jsonString =
+            await rootBundle.loadString('assets/data/penguin_matrix_us.json');
+      }
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -27,6 +45,7 @@ class PenguinCubit extends Cubit<PenguinState> {
       port.close();
 
       emit(state.copyWith(
+        server: server,
         stages: stage,
         items: item,
         status: CommonLoadState.loaded,
@@ -60,27 +79,34 @@ class PenguinCubit extends Cubit<PenguinState> {
 }
 
 class PenguinState extends Equatable {
+  final PenguinServer? server;
   final PenguinStage? stages;
   final PenguinItem? items;
   final CommonLoadState? status;
 
   const PenguinState({
+    this.server,
     this.stages,
     this.items,
     this.status,
   });
 
   PenguinState copyWith({
+    PenguinServer? server,
     PenguinStage? stages,
     PenguinItem? items,
     CommonLoadState? status,
   }) =>
       PenguinState(
+        server: server ?? this.server,
         stages: stages ?? this.stages,
         items: items ?? this.items,
         status: status ?? this.status,
       );
 
   @override
-  List<Object?> get props => [status];
+  List<Object?> get props => [
+        server,
+        status,
+      ];
 }

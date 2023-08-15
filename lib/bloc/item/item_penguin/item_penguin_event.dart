@@ -1,9 +1,15 @@
+import 'package:arkhive/models/base/penguin_model.dart';
+
 abstract class ItemPenguinEvent {
   ItemPenguinEvent();
 }
 
 class ItemPenguinInitEvent extends ItemPenguinEvent {
-  ItemPenguinInitEvent();
+  final List<PenguinModel> penguinSrc;
+
+  ItemPenguinInitEvent({
+    required this.penguinSrc,
+  });
 }
 
 class ItemPenguinSanitySortEvent extends ItemPenguinEvent {
