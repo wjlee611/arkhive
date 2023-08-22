@@ -7,6 +7,7 @@ class OperatorStatusState extends Equatable {
   final int level;
   final int maxLevel;
   final int favor;
+  final String? rangeId;
   // Calculated operator stats
   final double maxHp;
   final double atk;
@@ -23,6 +24,7 @@ class OperatorStatusState extends Equatable {
     required this.level,
     required this.maxLevel,
     required this.favor,
+    this.rangeId,
     required this.maxHp,
     required this.atk,
     required this.def,
@@ -39,6 +41,7 @@ class OperatorStatusState extends Equatable {
         level = 1,
         maxLevel = 1,
         favor = 0,
+        rangeId = null,
         maxHp = 0,
         atk = 0,
         def = 0,
@@ -54,6 +57,7 @@ class OperatorStatusState extends Equatable {
     int? level,
     int? maxLevel,
     int? favor,
+    String? rangeId,
     double? maxHp,
     double? atk,
     double? def,
@@ -69,6 +73,7 @@ class OperatorStatusState extends Equatable {
       level: level ?? this.level,
       maxLevel: maxLevel ?? this.maxLevel,
       favor: favor ?? this.favor,
+      rangeId: rangeId ?? this.rangeId,
       maxHp: maxHp ?? this.maxHp,
       atk: atk ?? this.atk,
       def: def ?? this.def,
@@ -87,6 +92,7 @@ class OperatorStatusState extends Equatable {
         level,
         maxLevel,
         favor,
+        rangeId,
         maxHp,
         atk,
         def,

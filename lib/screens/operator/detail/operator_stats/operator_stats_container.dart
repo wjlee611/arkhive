@@ -4,6 +4,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/widgets/operator_statbox_widget.dart';
+import 'package:arkhive/widgets/common_range_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,23 @@ class OperatorStatsContainer extends StatelessWidget {
   Widget _bulidBody(BuildContext context, OperatorStatusState state) {
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "사정거리",
+              style: TextStyle(
+                fontSize: Sizes.size12,
+                fontFamily: FontFamily.nanumGothic,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Gaps.h10,
+            CommonRangeWidget(rangeId: state.rangeId),
+            Gaps.h5,
+          ],
+        ),
+        Gaps.v5,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -99,9 +117,9 @@ class OperatorStatsContainer extends StatelessWidget {
           ],
         ),
         Gaps.v10,
-        Column(
+        const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               '*정예화 단계, 레벨, 신뢰도, 잠재능력 증가량\n  상기 데이터가 반영된 스탯입니다.',
               style: TextStyle(

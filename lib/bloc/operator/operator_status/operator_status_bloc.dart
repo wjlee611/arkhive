@@ -36,6 +36,7 @@ class OperatorStatusBloc
       level: 1,
       maxLevel: _operator.phases.first.maxLevel ?? 1,
       favor: 0,
+      rangeId: _operator.phases.first.rangeId,
       maxHp: initStats.maxHp +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
@@ -150,6 +151,7 @@ class OperatorStatusBloc
 
     emit(state.copyWith(
       elite: event.elite,
+      rangeId: _operator.phases[event.elite].rangeId,
       level: 1,
       maxLevel: _operator.phases[event.elite].maxLevel ?? 1,
       maxHp:
