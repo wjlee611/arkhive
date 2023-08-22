@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-enum Screens { home, items, stages, gimmick, operators, enemies }
+enum Screens { home, items, stages, operators, enemies }
 
 // Bloc //
 class ScreenBloc extends Bloc<ScreenChangeEvent, ScreenState> {

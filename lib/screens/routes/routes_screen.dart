@@ -2,7 +2,6 @@ import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
-import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
@@ -29,8 +28,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
         return const ItemScreen();
       case Screens.stages:
         return const StageScreen();
-      case Screens.gimmick:
-        return const GimmickScreen();
+      // case Screens.gimmick:
+      //   return const GimmickScreen();
       case Screens.operators:
         return const OperatorScreen();
       case Screens.enemies:
@@ -50,8 +49,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
         return '창고 아이템';
       case Screens.stages:
         return '스테이지 정보';
-      case Screens.gimmick:
-        return '스테이지 기믹';
+      // case Screens.gimmick:
+      //   return '스테이지 기믹';
       case Screens.operators:
         return '오퍼레이터';
       case Screens.enemies:

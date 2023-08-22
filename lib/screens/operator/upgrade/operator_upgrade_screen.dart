@@ -6,6 +6,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/screens/operator/upgrade/widgets/operator_upgrade_costs_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -21,6 +22,25 @@ class OperatorUpgradeScreen extends StatelessWidget {
     required this.operator_,
     required this.modules,
   });
+
+  Color _moduleColorPicker(String? color) {
+    Color result = Colors.grey;
+    switch (color) {
+      case 'red':
+        result = Colors.red;
+        break;
+      case 'blue':
+        result = Colors.blue;
+        break;
+      case 'green':
+        result = Colors.green;
+        break;
+      case 'yellow':
+        result = Colors.yellowAccent.shade700;
+        break;
+    }
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,47 +88,31 @@ class OperatorUpgradeScreen extends StatelessWidget {
                 children: [
                   Gaps.v20,
                   const CommonTitleWidget(text: '정예화'),
-                  for (var phase in operator_.phases)
-                    Row(
-                      children: [
-                        for (var cost in phase.evolveCost)
-                          Padding(
-                            padding: const EdgeInsets.only(left: Sizes.size10),
-                            child: Text(cost.id ?? 'na'),
-                          )
-                      ],
+                  for (int i = 1; i < operator_.phases.length; i++)
+                    OperatorUpgradeCostsWidget(
+                      costs: operator_.phases[i].evolveCost,
                     ),
                   Gaps.v20,
                   const CommonTitleWidget(text: '스킬'),
                   for (var skill in operator_.allSkillLvlup)
-                    Row(
-                      children: [
-                        for (var cost in skill.lvlUpCost)
-                          Padding(
-                            padding: const EdgeInsets.only(left: Sizes.size10),
-                            child: Text(cost.id ?? 'na'),
-                          )
-                      ],
-                    ),
+                    OperatorUpgradeCostsWidget(costs: skill.lvlUpCost),
                   for (int i = 0; i < operator_.skills.length; i++)
                     Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: Sizes.size10),
-                          child: CommonSubTitleWidget(text: '${i + 1} 스킬'),
-                        ),
+                        if (operator_.skills[i].levelUpCostCond.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: Sizes.size10,
+                              top: Sizes.size20,
+                            ),
+                            child:
+                                CommonSubTitleWidget(text: '${i + 1} 스킬 마스터리'),
+                          ),
                         for (var skillLvl
                             in operator_.skills[i].levelUpCostCond)
-                          Row(
-                            children: [
-                              for (var cost in skillLvl.levelUpCost)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: Sizes.size10),
-                                  child: Text(cost.id ?? 'na'),
-                                )
-                            ],
-                          )
+                          OperatorUpgradeCostsWidget(
+                            costs: skillLvl.levelUpCost,
+                          ),
                       ],
                     ),
                   Gaps.v20,
@@ -117,21 +121,19 @@ class OperatorUpgradeScreen extends StatelessWidget {
                     Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: Sizes.size10),
+                          padding: const EdgeInsets.only(
+                            left: Sizes.size10,
+                            top: Sizes.size20,
+                          ),
                           child: CommonSubTitleWidget(
-                              text: '${module.typeIcon} 타입'),
+                            text: module.typeIcon?.toUpperCase() ?? 'na',
+                            color: _moduleColorPicker(module.equipShiningColor),
+                          ),
                         ),
                         for (var moduleStage in module.itemCost.entries)
-                          Row(
-                            children: [
-                              for (var stage in moduleStage.value)
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: Sizes.size10),
-                                  child: Text(stage.id ?? 'na'),
-                                )
-                            ],
-                          )
+                          OperatorUpgradeCostsWidget(
+                            costs: moduleStage.value,
+                          ),
                       ],
                     ),
                   Gaps.v130,

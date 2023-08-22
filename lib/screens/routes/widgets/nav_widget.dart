@@ -3,7 +3,6 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/screens_model.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
-import 'package:arkhive/screens/gimmick/gimmick_screen.dart';
 import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
@@ -124,11 +123,11 @@ class _NavDrawerState extends State<NavDrawer> {
                     screen: Screens.items,
                     newScreen: ItemScreen(),
                   ),
-                  const NewScreenListTile(
-                    id: ScreenModel.gimmick,
-                    screen: Screens.gimmick,
-                    newScreen: GimmickScreen(),
-                  ),
+                  // const NewScreenListTile(
+                  //   id: ScreenModel.gimmick,
+                  //   screen: Screens.gimmick,
+                  //   newScreen: GimmickScreen(),
+                  // ),
                   const NewScreenListTile(
                     id: ScreenModel.stage,
                     screen: Screens.stages,

@@ -31,8 +31,8 @@ class NewScreenListTile extends StatelessWidget {
         return '창고 아이템';
       case Screens.stages:
         return '스테이지 정보';
-      case Screens.gimmick:
-        return '스테이지 기믹';
+      // case Screens.gimmick:
+      //   return '스테이지 기믹';
       case Screens.operators:
         return '오퍼레이터';
       case Screens.enemies:
@@ -50,8 +50,8 @@ class NewScreenListTile extends StatelessWidget {
         return Icons.hive_outlined;
       case Screens.stages:
         return Icons.account_tree_outlined;
-      case Screens.gimmick:
-        return Icons.api_outlined;
+      // case Screens.gimmick:
+      //   return Icons.api_outlined;
       case Screens.operators:
         return Icons.badge_outlined;
       case Screens.enemies:
