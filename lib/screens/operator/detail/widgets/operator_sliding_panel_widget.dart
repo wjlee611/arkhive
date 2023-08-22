@@ -9,6 +9,7 @@ import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/widgets/elite_select_button_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,20 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
     } else {
       widget.controller.open();
     }
+  }
+
+  void _onUpgradeBtnTab() {
+    var state = context.read<OperatorDataBloc>().state;
+
+    if (state is! OperatorDataLoadedState) {
+      return;
+    }
+
+    OpenDetailScreen.onOperatorUpgradeTab(
+      operator_: state.operator_,
+      modules: state.modules,
+      context: context,
+    );
   }
 
   @override
@@ -278,6 +293,13 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                 ),
               ),
               const Expanded(child: SizedBox()),
+              IconButton(
+                onPressed: _onUpgradeBtnTab,
+                icon: const Icon(
+                  Icons.upload,
+                  color: Colors.white,
+                ),
+              ),
               IconButton(
                 onPressed: _onToggleBtnTap,
                 icon: const Icon(

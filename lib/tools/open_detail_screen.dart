@@ -1,6 +1,9 @@
+import 'package:arkhive/models/module_model.dart';
+import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
+import 'package:arkhive/screens/operator/upgrade/operator_upgrade_screen.dart';
 import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +35,20 @@ class OpenDetailScreen {
       context,
       _createRoute(OperatorDetailScreen(
         operatorKey: operatorKey,
+      )),
+    );
+  }
+
+  static void onOperatorUpgradeTab({
+    required OperatorModel operator_,
+    required List<ModuleModel> modules,
+    required dynamic context,
+  }) {
+    Navigator.push(
+      context,
+      _createRoute(OperatorUpgradeScreen(
+        operator_: operator_,
+        modules: modules,
       )),
     );
   }
