@@ -35,19 +35,15 @@ class SplashScreen extends StatelessWidget {
         BlocListener<SplashCubit, SplashState>(
           listener: (context, state) {
             if (state == SplashState.tags) {
-              print('tags');
               context.read<TagsCubit>().loadTags();
             }
             if (state == SplashState.range) {
-              print('range');
               context.read<RangeCubit>().loadRange();
             }
             if (state == SplashState.penguin) {
-              print('penguin');
               context.read<PenguinCubit>().loadPenguin();
             }
             if (state == SplashState.complete) {
-              print('complete');
               context.replace('/route');
             }
           },

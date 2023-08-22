@@ -1,8 +1,12 @@
+import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/stack.dart';
+import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FormattedTextWidget extends StatelessWidget {
   final String text;
@@ -16,42 +20,13 @@ class FormattedTextWidget extends StatelessWidget {
     this.center = true,
   });
 
+  void _closeSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
+
   @override
   Widget build(BuildContext context) {
-    const List<String> tags = [
-      '<@ba.kw>',
-      '<@ba.talpu>',
-      '<@ba.rem>',
-      '<@ba.vdown>',
-      '<@ba.vup>',
-      '<\$ba.buffres>',
-      '<\$ba.camou>',
-      '<\$ba.cold>',
-      '<\$ba.inspire>',
-      '<\$ba.invisible>',
-      '<\$ba.protect>',
-      '<\$ba.root>',
-      '<\$ba.sleep>',
-      '<\$ba.sluggish>',
-      '<\$ba.stun>',
-      '<\$ba.shield>',
-      '<\$ba.binding>',
-      '<\$ba.dt.neural>',
-      '<\$ba.charged>',
-      '<\$ba.strong>',
-      '<\$ba.dt.element>',
-      '<\$ba.fragile>',
-      '<\$ba.frozen>',
-      '<\$ba.overdrive>',
-      '<\$ba.debuff>',
-      '<\$ba.levitate>',
-      '<\$ba.dt.erosion>',
-      '<\$ba.refraction>',
-      '<@eb.key>',
-      '<@lv.item>',
-      '<@lv.fs>',
-      '</>',
-    ];
+    var tagState = context.read<TagsCubit>().state;
 
     List<List<Widget>> widgets = [];
     List<String> lines = text.split('\n');
@@ -62,18 +37,18 @@ class FormattedTextWidget extends StatelessWidget {
       line += 1;
 
       // Separate by tags -> parts
-      RegExp separator = RegExp(r"<.*?>");
+      RegExp separator = RegExp(r"<[^<>]*[@$\/][^<>]*>");
       List<String> parts = [];
       int lastIndex = 0;
       for (Match match in separator.allMatches(singleLineText)) {
         if (lastIndex != match.start) {
-          parts.add(singleLineText.substring(lastIndex, match.start));
+          parts.add(singleLineText.substring(lastIndex, match.start).trim());
         }
         parts.add(match.group(0)!);
         lastIndex = match.end;
       }
       if (lastIndex != singleLineText.length) {
-        parts.add(singleLineText.substring(lastIndex));
+        parts.add(singleLineText.substring(lastIndex).trim());
       }
 
       // Analyse using stack
@@ -115,15 +90,19 @@ class FormattedTextWidget extends StatelessWidget {
                 word.indexOf('{'), word.indexOf('}') + 1, valueString);
           }
           // Analysis and fill widgets
-          if (tags.contains(newWord)) {
+          if (tagState.richTextTags!.keys.contains(newWord)) {
             // Analysis //
-            // Case of tag
-            if (newWord != '</>') {
-              tagsStack.push(newWord);
-            } else {
-              if (tagsStack.isNotEmpty) {
-                tagsStack.pop();
-              }
+            // Case of TagRichText
+            tagsStack.push(newWord);
+          } else if (tagState.termTags!.keys.contains(newWord)) {
+            // Analysis //
+            // Case of TagTermDescription
+            tagsStack.push(newWord);
+          } else if (newWord == '</>') {
+            // Analysis //
+            // Case of </>
+            if (tagsStack.isNotEmpty) {
+              tagsStack.pop();
             }
           } else {
             // Fill widgets //
@@ -139,76 +118,72 @@ class FormattedTextWidget extends StatelessWidget {
               ));
             } else {
               // Case of text which wrap by tag
-              switch (tagsStack.peek) {
-                case '<@ba.rem>':
-                  widgets[line].add(Text(
+              if (tagState.richTextTags!.keys.contains(tagsStack.peek)) {
+                var colorStr = tagState.richTextTags![tagsStack.peek]!.color;
+                if (colorStr == 'FFFFFF') colorStr = '0098DC';
+                var colorVal = 0xff000000 + int.parse(colorStr, radix: 16);
+
+                widgets[line].add(
+                  Text(
                     newWord,
                     style: TextStyle(
                       fontFamily: FontFamily.nanumGothic,
                       fontSize: Sizes.size12,
-                      color: Colors.yellow.shade800,
+                      color: Color(colorVal),
                     ),
-                  ));
-                  break;
-                case '<@ba.kw>':
-                case '<@ba.talpu>':
-                case '<@ba.vup>':
-                case '<@eb.key>':
-                case '<@lv.item>':
-                  widgets[line].add(Text(
-                    newWord,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.blue,
+                  ),
+                );
+              } else if (tagState.termTags!.keys.contains(tagsStack.peek)) {
+                final name =
+                    tagState.termTags![tagsStack.peek]!.termName!.substring(0);
+                final msg = tagState.termTags![tagsStack.peek]!.description!
+                    .substring(0);
+                widgets[line].add(
+                  GestureDetector(
+                    onTap: () {
+                      _closeSnackBar(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CommonSubTitleWidget(text: name),
+                              Gaps.v5,
+                              FormattedTextWidget(text: msg, center: false),
+                            ],
+                          ),
+                          backgroundColor: Colors.white,
+                          duration: const Duration(seconds: 10),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.blueGrey.shade700,
+                              width: Sizes.size2,
+                            ),
+                            borderRadius: BorderRadius.circular(Sizes.size20),
+                          ),
+                          action: SnackBarAction(
+                            label: '닫기',
+                            onPressed: () {
+                              try {
+                                _closeSnackBar(context);
+                              } catch (_) {}
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      newWord,
+                      style: const TextStyle(
+                        fontFamily: FontFamily.nanumGothic,
+                        fontSize: Sizes.size12,
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.grey,
+                      ),
                     ),
-                  ));
-                  break;
-                case '<@ba.vdown>':
-                case '<@lv.fs>':
-                  widgets[line].add(Text(
-                    newWord,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.red,
-                    ),
-                  ));
-                  break;
-                case '<\$ba.buffres>':
-                case '<\$ba.camou>':
-                case '<\$ba.cold>':
-                case '<\$ba.inspire>':
-                case '<\$ba.invisible>':
-                case '<\$ba.protect>':
-                case '<\$ba.root>':
-                case '<\$ba.sleep>':
-                case '<\$ba.sluggish>':
-                case '<\$ba.stun>':
-                case '<\$ba.shield>':
-                case '<\$ba.binding>':
-                case '<\$ba.dt.neural>':
-                case '<\$ba.charged>':
-                case '<\$ba.strong>':
-                case '<\$ba.dt.element>':
-                case '<\$ba.fragile>':
-                case '<\$ba.frozen>':
-                case '<\$ba.overdrive>':
-                case '<\$ba.debuff>':
-                case '<\$ba.levitate>':
-                case '<\$ba.dt.erosion>':
-                case '<\$ba.refraction>':
-                  // 추후 기능 추가
-                  widgets[line].add(Text(
-                    newWord,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
-                      fontSize: Sizes.size12,
-                      color: Colors.grey,
-                    ),
-                  ));
-                  break;
+                  ),
+                );
               }
             }
           }

@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:isolate';
+
+import 'package:arkhive/models/base/tags_model.dart';
 import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TagsCubit extends Cubit<TagsState> {
@@ -8,27 +14,83 @@ class TagsCubit extends Cubit<TagsState> {
   Future<void> loadTags() async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
-    await Future.delayed(const Duration(milliseconds: 300));
+    try {
+      String jsonString = await rootBundle
+          .loadString('${getGameDataRoot()}excel/gamedata_const.json');
 
-    emit(state.copyWith(status: CommonLoadState.loaded));
+      ReceivePort port = ReceivePort();
+      await Isolate.spawn(
+        _deserializeTagsModel,
+        [port.sendPort, jsonString],
+      );
+      var response = await port.first;
+      Map<String, TagRichTextModel> richTextTags = response[0];
+      Map<String, TagTermDescriptionModel> termTags = response[1];
+      port.close();
+
+      emit(state.copyWith(
+        richTextTags: richTextTags,
+        termTags: termTags,
+        status: CommonLoadState.loaded,
+      ));
+      return;
+    } catch (e) {
+      emit(state.copyWith(status: CommonLoadState.error));
+      return;
+    }
+  }
+
+  // Isolate
+  static void _deserializeTagsModel(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+
+    Map<String, TagRichTextModel> richTextTags = {};
+    Map<String, TagTermDescriptionModel> termTags = {};
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString);
+    Map<String, dynamic> richTextData = jsonData['richTextStyles'];
+    Map<String, dynamic> termData = jsonData['termDescriptionDict'];
+
+    for (var tag in richTextData.entries) {
+      var tagModel = TagRichTextModel(value: tag.value);
+      richTextTags['<@${tag.key}>'] = tagModel;
+    }
+    for (var tag in termData.entries) {
+      var tagModel = TagTermDescriptionModel.fromJson(tag.value);
+      termTags['<\$${tag.key}>'] = tagModel;
+    }
+
+    Isolate.exit(sendPort, [richTextTags, termTags]);
   }
 }
 
 class TagsState extends Equatable {
-  // TODO: modeling tags
+  final Map<String, TagRichTextModel>? richTextTags;
+  final Map<String, TagTermDescriptionModel>? termTags;
   final CommonLoadState? status;
 
   const TagsState({
+    this.richTextTags,
+    this.termTags,
     this.status,
   });
 
   TagsState copyWith({
+    Map<String, TagRichTextModel>? richTextTags,
+    Map<String, TagTermDescriptionModel>? termTags,
     CommonLoadState? status,
   }) =>
       TagsState(
+        richTextTags: richTextTags ?? this.richTextTags,
+        termTags: termTags ?? this.termTags,
         status: status ?? this.status,
       );
 
   @override
-  List<Object?> get props => [status];
+  List<Object?> get props => [
+        richTextTags,
+        termTags,
+        status,
+      ];
 }
