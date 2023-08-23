@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/information/widgets/info_container_widget.dart';
@@ -114,12 +115,12 @@ class _InfoScreenState extends State<InfoScreen> {
                   ),
                   const InfoContainer(
                     tag: "버전",
-                    info: "app version",
+                    info: AppData.version,
                   ),
                   Gaps.v20,
                   const InfoContainer(
                     tag: "게임 버전",
-                    info: "game version",
+                    info: AppData.gameVersion,
                   ),
                   Gaps.v20,
                   const InfoContainer(

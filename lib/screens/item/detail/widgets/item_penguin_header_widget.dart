@@ -1,6 +1,7 @@
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
@@ -42,7 +43,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   }),
                   Gaps.v2,
                   AppFont(
-                    '* Last Update: 2023.08.01',
+                    '* Last Update: ${AppData.penguinDate}',
                     color: Theme.of(context).textTheme.labelSmall!.color,
                     fontSize: Sizes.size10,
                   ),

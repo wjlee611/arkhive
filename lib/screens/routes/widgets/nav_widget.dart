@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/screens_model.dart';
@@ -182,10 +183,11 @@ class _NavDrawerState extends State<NavDrawer> {
                   ],
                 ),
                 AppFont(
-                  "app version",
+                  'version. ${AppData.version}',
                   color: Colors.white,
                   fontSize: Sizes.size10,
                 ),
+                Gaps.v10,
               ],
             ),
           ],
