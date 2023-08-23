@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
@@ -30,7 +31,7 @@ class StagePenguinItemWidget extends StatelessWidget {
     int? value,
     required TextType type,
   }) {
-    if (value == null) return 'N/A';
+    if (value == null) return AppData.nullStr;
 
     switch (type) {
       case TextType.sanity:
@@ -51,6 +52,7 @@ class StagePenguinItemWidget extends StatelessWidget {
     OpenDetailScreen.onItemTab(
       itemKey: penguin.penguin!.itemId!,
       iconId: penguin.iconId!,
+      name: penguin.name ?? penguin.penguin!.itemId!,
       context: context,
     );
   }
@@ -92,7 +94,7 @@ class StagePenguinItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppFont(
-                penguin.name ?? 'N/A',
+                penguin.name ?? AppData.nullStr,
                 fontWeight: FontWeight.w700,
               ),
               if (!penguin.isFirstDrop)

@@ -1,3 +1,4 @@
+import 'package:arkhive/cubit/favorite_cubit.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/cubit/range_cubit.dart';
 import 'package:arkhive/cubit/splash_cubit.dart';
@@ -42,6 +43,10 @@ class Arkhive extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SettingCubit(),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (context) => FavoriteCubit(),
           lazy: false,
         ),
         BlocProvider(

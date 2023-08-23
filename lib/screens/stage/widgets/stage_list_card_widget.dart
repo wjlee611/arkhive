@@ -15,9 +15,16 @@ class StageListCardWidget extends StatelessWidget {
 
   void _onTap({
     required String stageKey,
+    required String stageCode,
+    required String diff,
     required BuildContext context,
   }) {
-    OpenDetailScreen.onStageTab(stageKey: stageKey, context: context);
+    OpenDetailScreen.onStageTab(
+      stageKey: stageKey,
+      stageCode: stageCode,
+      diff: diff,
+      context: context,
+    );
   }
 
   @override
@@ -25,6 +32,8 @@ class StageListCardWidget extends StatelessWidget {
     return InkWell(
       onTap: () => _onTap(
         stageKey: stage.stageId,
+        stageCode: stage.code,
+        diff: stage.diffGroup,
         context: context,
       ),
       borderRadius: BorderRadius.circular(Sizes.size10),

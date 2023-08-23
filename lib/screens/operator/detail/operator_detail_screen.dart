@@ -5,6 +5,7 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/skill_model.dart';
@@ -18,6 +19,7 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/profession_selector.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +30,11 @@ class OperatorDetailScreen extends StatelessWidget {
   const OperatorDetailScreen({
     super.key,
     required this.operatorKey,
+    required this.name,
   });
 
   final String operatorKey;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +60,11 @@ class OperatorDetailScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
-            IconButton(
-              onPressed: () {
-                //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
-              },
-              icon: Icon(
-                Icons.star_border_outlined,
-                color: Colors.yellow.shade700,
-              ),
+            CommonFavoriteWidget(
+              keyId: operatorKey,
+              iconId: operatorKey,
+              name: name,
+              category: FavorCategory.oper,
             ),
           ],
         ),

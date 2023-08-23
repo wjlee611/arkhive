@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_event.dart';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_state.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
@@ -134,7 +135,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           ],
           zones: [
             ZoneListModel(
-              title: 'N/A',
+              title: AppData.nullStr,
               zoneId: activityModel.id!,
               type: 'ACTIVITY',
             ),
@@ -201,10 +202,10 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
 
       var zoneTitle = '';
       if (zoneModel.zoneNameFirst == null) {
-        zoneTitle = zoneModel.zoneNameSecond ?? 'N/A';
+        zoneTitle = zoneModel.zoneNameSecond ?? AppData.nullStr;
       } else {
         zoneTitle =
-            '${zoneModel.zoneNameFirst!} - ${zoneModel.zoneNameSecond ?? 'N/A'}';
+            '${zoneModel.zoneNameFirst!} - ${zoneModel.zoneNameSecond ?? AppData.nullStr}';
       }
 
       // 메인

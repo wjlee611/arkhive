@@ -5,11 +5,13 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
+import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -21,10 +23,12 @@ class ItemDetailScreen extends StatelessWidget {
   const ItemDetailScreen({
     super.key,
     required this.itemKey,
+    required this.name,
     required this.iconId,
   });
 
   final String itemKey;
+  final String name;
   final String iconId;
 
   @override
@@ -44,14 +48,11 @@ class ItemDetailScreen extends StatelessWidget {
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
             const PenguinServerSelector(),
-            IconButton(
-              onPressed: () {
-                //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
-              },
-              icon: Icon(
-                Icons.star_border_outlined,
-                color: Colors.yellow.shade700,
-              ),
+            CommonFavoriteWidget(
+              keyId: itemKey,
+              iconId: iconId,
+              name: name,
+              category: FavorCategory.item,
             ),
           ],
         ),

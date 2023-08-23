@@ -35,6 +35,7 @@ class _OperatorUpgradeItemBtnState extends State<OperatorUpgradeItemBtn> {
     OpenDetailScreen.onItemTab(
       itemKey: item.itemId,
       iconId: item.iconId,
+      name: item.name,
       context: context,
     );
   }

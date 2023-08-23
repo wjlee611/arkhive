@@ -1,10 +1,12 @@
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_diffgroup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,6 +46,8 @@ class ItemPenguinItemWidget extends StatelessWidget {
 
     OpenDetailScreen.onStageTab(
       stageKey: penguinData.penguin.stageId!,
+      stageCode: penguinData.stageCode ?? penguinData.penguin.stageId!,
+      diff: penguinData.diffGroup ?? AppData.nullStr,
       context: context,
     );
   }
@@ -134,27 +138,7 @@ class ItemPenguinItemWidget extends StatelessWidget {
                   fontSize: Sizes.size14,
                   fontWeight: FontWeight.w700,
                 ),
-                if (penguinData.diffGroup == 'NORMAL' ||
-                    penguinData.diffGroup == 'TOUGH')
-                  Container(
-                    margin: const EdgeInsets.only(left: Sizes.size5),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size2,
-                      horizontal: Sizes.size5,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Sizes.size3),
-                      color: penguinData.diffGroup == 'TOUGH'
-                          ? Colors.redAccent
-                          : Colors.blueAccent,
-                    ),
-                    child: AppFont(
-                      penguinData.diffGroup == 'TOUGH' ? '고난' : '일반',
-                      color: Colors.white,
-                      fontSize: Sizes.size10,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                CommonDiffGroupWidget(diffGroup: penguinData.diffGroup),
               ],
             ),
             AppFont(

@@ -64,6 +64,7 @@ class ItemScreen extends StatelessWidget {
                                 onTap: () => OpenDetailScreen.onItemTab(
                                   itemKey: state.filteredItemList[index].itemId,
                                   iconId: state.filteredItemList[index].iconId,
+                                  name: state.filteredItemList[index].name,
                                   context: context,
                                 ),
                                 child: Hero(

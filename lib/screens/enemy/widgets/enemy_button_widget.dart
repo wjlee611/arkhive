@@ -24,6 +24,8 @@ class EnemyButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => OpenDetailScreen.onEnemyTab(
         enemyKey: enemy.enemyKey,
+        name: enemy.name,
+        code: enemy.enemyIndex,
         context: context,
       ),
       child: Card(

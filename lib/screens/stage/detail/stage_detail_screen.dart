@@ -4,10 +4,12 @@ import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -19,9 +21,13 @@ class StageDetailScreen extends StatelessWidget {
   const StageDetailScreen({
     super.key,
     required this.stageKey,
+    required this.stageCode,
+    required this.diff,
   });
 
   final String stageKey;
+  final String stageCode;
+  final String diff;
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +45,7 @@ class StageDetailScreen extends StatelessWidget {
               centerTitle: true,
               elevation: 0,
               title: AppFont(
-                (state is StageDataLoadedState)
-                    ? state.stage.code ?? '???'
-                    : '스테이지 정보',
+                stageCode,
                 color: Colors.white,
                 fontSize: Sizes.size16,
                 fontWeight: FontWeight.w700,
@@ -49,14 +53,11 @@ class StageDetailScreen extends StatelessWidget {
               backgroundColor: Colors.blueGrey.shade700,
               actions: [
                 const PenguinServerSelector(),
-                IconButton(
-                  onPressed: () {
-                    //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
-                  },
-                  icon: Icon(
-                    Icons.star_border_outlined,
-                    color: Colors.yellow.shade700,
-                  ),
+                CommonFavoriteWidget(
+                  keyId: stageKey,
+                  name: stageCode,
+                  diff: diff,
+                  category: FavorCategory.stage,
                 ),
               ],
             ),

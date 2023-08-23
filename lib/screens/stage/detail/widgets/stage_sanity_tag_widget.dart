@@ -1,3 +1,4 @@
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class SanityInfoTag extends StatelessWidget {
     if (isFormatting == true) {
       return '${value.toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => "${m[1]},")}${unit != null ? ' $unit' : ''}';
     }
-    return '${value == -1 ? 'N/A' : value.toString()}${unit != null ? ' $unit' : ''}';
+    return '${value == -1 ? AppData.nullStr : value.toString()}${unit != null ? ' $unit' : ''}';
   }
 
   @override

@@ -29,12 +29,14 @@ class OpenDetailScreen {
 
   static void onOperatorTab({
     required String operatorKey,
+    required String name,
     required dynamic context,
   }) {
     Navigator.push(
       context,
       _createRoute(OperatorDetailScreen(
         operatorKey: operatorKey,
+        name: name,
       )),
     );
   }
@@ -55,26 +57,34 @@ class OpenDetailScreen {
 
   static void onEnemyTab({
     required String enemyKey,
-    required dynamic context,
     int level = 0,
+    required String name,
+    String? code,
+    required dynamic context,
   }) {
     Navigator.push(
       context,
       _createRoute(EnemyDetailScreen(
         enemyKey: enemyKey,
         initLevel: level,
+        name: name,
+        code: code,
       )),
     );
   }
 
   static void onStageTab({
     required String stageKey,
+    required String stageCode,
+    required String diff,
     required dynamic context,
   }) {
     Navigator.push(
       context,
       _createRoute(StageDetailScreen(
         stageKey: stageKey,
+        stageCode: stageCode,
+        diff: diff,
       )),
     );
   }
@@ -82,6 +92,7 @@ class OpenDetailScreen {
   static void onItemTab({
     required String itemKey,
     required String iconId,
+    required String name,
     required dynamic context,
   }) async {
     await Navigator.push(
@@ -89,6 +100,7 @@ class OpenDetailScreen {
       _createRoute(ItemDetailScreen(
         itemKey: itemKey,
         iconId: iconId,
+        name: name,
       )),
     );
   }

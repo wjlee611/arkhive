@@ -17,9 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        // physics: const BouncingScrollPhysics(
-        //   parent: AlwaysScrollableScrollPhysics(),
-        // ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
           child: Column(
@@ -76,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const FavoritesWidget(),
+              Gaps.v130,
             ],
           ),
         ),

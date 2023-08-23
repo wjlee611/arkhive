@@ -5,12 +5,14 @@ import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_tag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/level_select_button_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -22,10 +24,14 @@ class EnemyDetailScreen extends StatelessWidget {
     super.key,
     required this.enemyKey,
     this.initLevel = 0,
+    required this.name,
+    this.code,
   });
 
   final String enemyKey;
   final int initLevel;
+  final String name;
+  final String? code;
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +56,11 @@ class EnemyDetailScreen extends StatelessWidget {
           ),
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
-            IconButton(
-              onPressed: () {
-                //TODO: 즐겨찾기 추가/삭제 알고리즘 추가
-              },
-              icon: Icon(
-                Icons.star_border_outlined,
-                color: Colors.yellow.shade700,
-              ),
+            CommonFavoriteWidget(
+              keyId: enemyKey,
+              iconId: enemyKey,
+              name: name,
+              category: FavorCategory.enemy,
             ),
           ],
         ),
@@ -88,7 +91,10 @@ class EnemyDetailScreen extends StatelessWidget {
                 return const CommonLoadingWidget();
               },
             ),
-            EnemyHeader(enemyKey: enemyKey),
+            EnemyHeader(
+              enemyKey: enemyKey,
+              code: code,
+            ),
           ],
         ),
       ),

@@ -13,9 +13,11 @@ class EnemyHeader extends StatelessWidget {
   const EnemyHeader({
     super.key,
     required this.enemyKey,
+    this.code,
   });
 
   final String enemyKey;
+  final String? code;
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +86,10 @@ class EnemyHeader extends StatelessWidget {
                       ),
                     ),
                     AppFont(
-                      state is EnemyDataLoadedState
-                          ? state.enemy.enemyIndex!
-                          : '/**/',
+                      code ??
+                          (state is EnemyDataLoadedState
+                              ? state.enemy.enemyIndex!
+                              : '/**/'),
                       color: Colors.white,
                       fontSize: Sizes.size16,
                       fontWeight: FontWeight.w700,

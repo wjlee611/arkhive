@@ -1,7 +1,10 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/favorite_cubit.dart';
+import 'package:arkhive/screens/home/widgets/favorite_listitem_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoritesWidget extends StatelessWidget {
   const FavoritesWidget({super.key});
@@ -43,15 +46,28 @@ class FavoritesWidget extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(Sizes.size10),
-            // TODO: 즐겨찾기 저장 시: 카테고리,사진이름,이름
-            // 즐겨찾기 불러올 시: split후, [1], [2]로 아이콘 추가
-            // 즐겨찾기 클릭 시: [0]에서 [2]이름 탐색 후 [0]에 맟는 화면 띄워주기
-            child: AppFont(
-              "즐겨찾기에 동록된 항목이 없습니다.",
-              fontSize: Sizes.size12,
-            ),
+          BlocBuilder<FavoriteCubit, FavoriteState>(
+            builder: (context, state) {
+              if (state.favs.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(Sizes.size10),
+                  child: AppFont(
+                    "즐겨찾기에 동록된 항목이 없습니다.",
+                    fontSize: Sizes.size12,
+                  ),
+                );
+              }
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) => FavoriteListItemWidget(
+                  fav: state.favs[index],
+                  index: index,
+                ),
+                itemCount: state.favs.length,
+              );
+            },
           ),
         ],
       ),

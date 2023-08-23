@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class NewScreenListTile extends StatelessWidget {
       case Screens.enemies:
         return '적';
       default:
-        return 'N/A';
+        return AppData.nullStr;
     }
   }
 

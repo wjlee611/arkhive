@@ -66,6 +66,7 @@ class OperatorScreen extends StatelessWidget {
                               context: context,
                               operatorKey:
                                   state.filteredOperatorList[index].operatorKey,
+                              name: state.filteredOperatorList[index].name,
                             ),
                             child: OperatorListItem(
                               operator_: state.filteredOperatorList[index],
