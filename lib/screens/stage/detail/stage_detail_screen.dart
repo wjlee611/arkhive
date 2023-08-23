@@ -81,6 +81,7 @@ class StageDetailScreen extends StatelessWidget {
         stage,
       ),
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
           child: Column(

@@ -101,6 +101,7 @@ class EnemyDetailScreen extends StatelessWidget {
     required EnemyDataModel enemyData,
   }) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
         child: Column(

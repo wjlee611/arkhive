@@ -80,6 +80,7 @@ class OperatorUpgradeScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
               child: ListView(
+                physics: const BouncingScrollPhysics(),
                 children: [
                   Gaps.v20,
                   const CommonTitleWidget(text: '정예화'),

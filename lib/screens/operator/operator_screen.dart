@@ -57,6 +57,7 @@ class OperatorScreen extends StatelessWidget {
                     return const CommonNoResultWidget();
                   }
                   return CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate(

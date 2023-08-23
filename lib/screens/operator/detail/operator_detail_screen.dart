@@ -125,6 +125,7 @@ class OperatorDetailScreen extends StatelessWidget {
     required List<ModuleModel> modules,
   }) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
         child: Column(

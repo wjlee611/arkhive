@@ -76,6 +76,7 @@ class StageScreen extends StatelessWidget {
                 children: [
                   for (var category in state.categories)
                     CustomScrollView(
+                      physics: const BouncingScrollPhysics(),
                       slivers: [
                         SliverPadding(
                           padding: const EdgeInsets.all(Sizes.size20),

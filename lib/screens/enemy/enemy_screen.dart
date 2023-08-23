@@ -44,6 +44,7 @@ class EnemyScreen extends StatelessWidget {
                     return const CommonNoResultWidget();
                   }
                   return CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
                     slivers: [
                       SliverPadding(
                         padding: const EdgeInsets.all(Sizes.size20),
