@@ -42,6 +42,7 @@ class StageDetailScreen extends StatelessWidget {
                 (state is StageDataLoadedState)
                     ? state.stage.code ?? '???'
                     : '스테이지 정보',
+                color: Colors.white,
                 fontSize: Sizes.size16,
                 fontWeight: FontWeight.w700,
               ),

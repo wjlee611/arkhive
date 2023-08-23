@@ -62,10 +62,10 @@ class ItemPenguinItemWidget extends StatelessWidget {
         padding: const EdgeInsets.only(right: Sizes.size20),
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Theme.of(context).shadowColor,
               spreadRadius: 1,
               blurRadius: 3,
             )
@@ -131,7 +131,6 @@ class ItemPenguinItemWidget extends StatelessWidget {
                 Gaps.h10,
                 AppFont(
                   '${penguinData.stageCode}',
-                  color: Colors.black54,
                   fontSize: Sizes.size14,
                   fontWeight: FontWeight.w700,
                 ),

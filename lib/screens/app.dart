@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/screens/routes/routes_screen.dart';
 import 'package:arkhive/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +40,33 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _router,
-      title: 'Arkhive',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        primaryColor: Colors.white,
+    return BlocBuilder<SettingCubit, SettingState>(
+      builder: (context, state) => MaterialApp.router(
+        routerConfig: _router,
+        title: 'Arkhive',
+        theme: state.settings.isDarkTheme == true
+            ? ThemeData(
+                scaffoldBackgroundColor: const Color(0xff282828),
+                primaryColor: const Color(0xff282828),
+                shadowColor: const Color(0xff111111),
+                textTheme: TextTheme(
+                  bodySmall: const TextStyle(color: Color(0xffe5e5e5)),
+                  labelMedium: const TextStyle(color: Colors.grey),
+                  labelSmall: TextStyle(color: Colors.grey.shade300),
+                ),
+              )
+            : ThemeData(
+                scaffoldBackgroundColor: const Color(0xffefefef),
+                primaryColor: const Color(0xffefefef),
+                shadowColor: const Color(0xffcccccc),
+                textTheme: TextTheme(
+                  bodySmall: const TextStyle(color: Colors.black87),
+                  labelMedium: const TextStyle(color: Colors.black54),
+                  labelSmall: TextStyle(color: Colors.grey.shade700),
+                ),
+              ),
+        debugShowCheckedModeBanner: false,
       ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

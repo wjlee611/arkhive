@@ -1,49 +1,47 @@
 import 'package:arkhive/models/base/setting_model.dart';
-import 'package:arkhive/models/common_models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class SettingCubit extends HydratedCubit<SettingState> {
   SettingCubit() : super(const SettingState.init());
 
-  // TODO : update settings
-
   @override
   SettingState? fromJson(Map<String, dynamic> json) => SettingState(
-        settings: json['setting'] as SettingModel,
-        status: CommonLoadState.loaded,
+        settings: SettingModel.fromJson(json['setting']),
       );
 
   @override
-  Map<String, dynamic>? toJson(SettingState state) =>
-      {'setting': state.settings};
+  Map<String, dynamic>? toJson(SettingState state) => {
+        'setting': state.settings.toJson(),
+      };
+
+  void toggleTheme() {
+    emit(
+      state.copyWith(
+        settings: state.settings.copyWith(
+          isDarkTheme: !(state.settings.isDarkTheme ?? false),
+        ),
+      ),
+    );
+  }
 }
 
 class SettingState extends Equatable {
   final SettingModel settings;
-  final CommonLoadState? status;
 
   const SettingState({
     required this.settings,
-    this.status,
   });
 
   SettingState copyWith({
     SettingModel? settings,
-    CommonLoadState? status,
   }) =>
       SettingState(
         settings: settings ?? this.settings,
-        status: status ?? this.status,
       );
 
-  const SettingState.init()
-      : settings = const SettingModel(),
-        status = CommonLoadState.init;
+  const SettingState.init() : settings = const SettingModel(isDarkTheme: false);
 
   @override
-  List<Object?> get props => [
-        settings,
-        status,
-      ];
+  List<Object?> get props => [settings];
 }

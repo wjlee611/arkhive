@@ -91,7 +91,6 @@ class SplashScreen extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: Center(
           child: BlocBuilder<SplashCubit, SplashState>(
             builder: (context, state) {

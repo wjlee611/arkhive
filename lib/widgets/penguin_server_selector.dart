@@ -47,6 +47,7 @@ class PenguinServerSelector extends StatelessWidget {
           ),
           borderRadius: const BorderRadius.all(Radius.circular(Sizes.size10)),
         ),
+        color: Theme.of(context).primaryColor,
         elevation: 0,
         itemBuilder: (context) => [
           const PopupMenuItem(

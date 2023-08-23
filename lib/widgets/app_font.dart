@@ -1,6 +1,8 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppFont extends StatelessWidget {
   final String text;
@@ -28,18 +30,20 @@ class AppFont extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      style: TextStyle(
-        color: color,
-        fontFamily: FontFamily.nanumGothic,
-        fontSize: fontSize,
-        fontWeight: fontWeight,
-        fontStyle: fontStyle,
-        shadows: shadows,
+    return BlocBuilder<SettingCubit, SettingState>(
+      builder: (context, state) => Text(
+        text,
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        style: TextStyle(
+          color: color ?? Theme.of(context).textTheme.bodySmall!.color,
+          fontFamily: FontFamily.nanumGothic,
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          fontStyle: fontStyle,
+          shadows: shadows,
+        ),
       ),
     );
   }

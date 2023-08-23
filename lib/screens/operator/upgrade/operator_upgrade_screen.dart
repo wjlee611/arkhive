@@ -52,6 +52,7 @@ class OperatorUpgradeScreen extends StatelessWidget {
           elevation: 0,
           title: const AppFont(
             "육성 재료",
+            color: Colors.white,
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w700,
           ),

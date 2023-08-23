@@ -12,6 +12,7 @@ class SettingsScreen extends StatelessWidget {
         centerTitle: true,
         title: const AppFont(
           '설정',
+          color: Colors.white,
           fontSize: Sizes.size16,
           fontWeight: FontWeight.w700,
         ),

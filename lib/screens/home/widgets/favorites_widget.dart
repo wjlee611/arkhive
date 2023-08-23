@@ -11,10 +11,10 @@ class FavoritesWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.size10),
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.blueGrey.shade100,
+            color: Theme.of(context).shadowColor,
             blurRadius: Sizes.size5,
           ),
         ],

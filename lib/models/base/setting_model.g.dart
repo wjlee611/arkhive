@@ -7,10 +7,10 @@ part of 'setting_model.dart';
 // **************************************************************************
 
 SettingModel _$SettingModelFromJson(Map<String, dynamic> json) => SettingModel(
-      isLightTheme: json['isLightTheme'] as bool?,
+      isDarkTheme: json['isDarkTheme'] as bool?,
     );
 
 Map<String, dynamic> _$SettingModelToJson(SettingModel instance) =>
     <String, dynamic>{
-      'isLightTheme': instance.isLightTheme,
+      'isDarkTheme': instance.isDarkTheme,
     };

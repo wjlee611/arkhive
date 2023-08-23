@@ -24,6 +24,7 @@ class _InfoScreenState extends State<InfoScreen> {
         centerTitle: true,
         title: const AppFont(
           '정보',
+          color: Colors.white,
           fontSize: Sizes.size16,
           fontWeight: FontWeight.w700,
         ),

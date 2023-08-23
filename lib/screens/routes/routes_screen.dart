@@ -91,6 +91,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
           centerTitle: true,
           title: AppFont(
             _titleSelector(state.currScreen),
+            color: Colors.white,
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w700,
           ),

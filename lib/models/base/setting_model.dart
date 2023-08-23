@@ -5,17 +5,17 @@ part 'setting_model.g.dart';
 
 @JsonSerializable()
 class SettingModel extends Equatable {
-  final bool? isLightTheme;
+  final bool? isDarkTheme;
 
   const SettingModel({
-    this.isLightTheme,
+    this.isDarkTheme,
   });
 
   SettingModel copyWith({
-    bool? isLightTheme,
+    bool? isDarkTheme,
   }) =>
       SettingModel(
-        isLightTheme: isLightTheme ?? this.isLightTheme,
+        isDarkTheme: isDarkTheme ?? this.isDarkTheme,
       );
 
   factory SettingModel.fromJson(Map<String, dynamic> json) =>
@@ -24,5 +24,5 @@ class SettingModel extends Equatable {
   Map<String, dynamic> toJson() => _$SettingModelToJson(this);
 
   @override
-  List<Object?> get props => [isLightTheme];
+  List<Object?> get props => [isDarkTheme];
 }

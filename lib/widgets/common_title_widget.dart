@@ -30,8 +30,12 @@ class CommonTitleWidget extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                color.withOpacity(0.3),
-                Colors.white.withOpacity(0),
+                color,
+                Theme.of(context).primaryColor,
+              ],
+              stops: const [
+                0,
+                0.7,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

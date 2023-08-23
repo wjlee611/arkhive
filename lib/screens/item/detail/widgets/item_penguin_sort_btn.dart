@@ -52,7 +52,7 @@ class ItemPenguinSortBtn extends StatelessWidget {
           decoration: BoxDecoration(
             color: state.sortOption == sortOption
                 ? Colors.yellow.shade700
-                : Colors.white,
+                : Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(Sizes.size40),
             border: Border.all(
               color: Colors.yellow.shade700,
@@ -61,7 +61,9 @@ class ItemPenguinSortBtn extends StatelessWidget {
           ),
           child: AppFont(
             sortOption.message,
-            color: state.sortOption == sortOption ? Colors.white : Colors.black,
+            color: state.sortOption == sortOption
+                ? Colors.white
+                : Theme.of(context).textTheme.bodySmall!.color,
             fontWeight: state.sortOption == sortOption
                 ? FontWeight.w700
                 : FontWeight.w400,

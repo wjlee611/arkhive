@@ -36,14 +36,14 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                       builder: (context, state) {
                     return AppFont(
                       '* Powered by penguin-stats.io, ${state.server?.region ?? '-'} Server',
-                      color: Colors.grey.shade700,
+                      color: Theme.of(context).textTheme.labelSmall!.color,
                       fontSize: Sizes.size10,
                     );
                   }),
                   Gaps.v2,
                   AppFont(
                     '* Last Update: 2023.08.01',
-                    color: Colors.grey.shade700,
+                    color: Theme.of(context).textTheme.labelSmall!.color,
                     fontSize: Sizes.size10,
                   ),
                 ],
@@ -78,7 +78,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                       children: [
                         AppFont(
                           state.isIncludePerm ? '비 상시맵\n포함 됨' : '상시맵 만\n포함 됨',
-                          color: Colors.black54,
+                          color: Theme.of(context).textTheme.labelMedium!.color,
                           fontSize: Sizes.size10,
                           fontWeight: FontWeight.w700,
                           textAlign: TextAlign.right,
@@ -120,18 +120,18 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       AppFont(
                         '순위',
-                        color: Colors.black54,
+                        color: Theme.of(context).textTheme.labelMedium!.color,
                         fontSize: Sizes.size14,
                         fontWeight: FontWeight.w700,
                       ),
                       Gaps.h36,
                       AppFont(
                         '스테이지',
-                        color: Colors.black54,
+                        color: Theme.of(context).textTheme.labelMedium!.color,
                         fontSize: Sizes.size14,
                         fontWeight: FontWeight.w700,
                       ),
@@ -140,8 +140,7 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
                     builder: (context, state) => AppFont(
                       '단위: ${state.sortOption?.unit ?? '-'}',
-                      color: Colors.black54,
-                      // fontSize: Sizes.size14,
+                      color: Theme.of(context).textTheme.labelMedium!.color,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

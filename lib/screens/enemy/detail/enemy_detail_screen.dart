@@ -44,6 +44,7 @@ class EnemyDetailScreen extends StatelessWidget {
           elevation: 0,
           title: const AppFont(
             "적 유닛 파일",
+            color: Colors.white,
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w700,
           ),

@@ -110,7 +110,7 @@ class FormattedTextWidget extends StatelessWidget {
             if (tagsStack.isEmpty) {
               widgets[line].add(AppFont(
                 newWord,
-                color: Colors.black87,
+                color: Theme.of(context).textTheme.bodySmall!.color,
               ));
             } else {
               // Case of text which wrap by tag
