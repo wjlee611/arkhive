@@ -59,10 +59,10 @@ class OperatorTagWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.size20),
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         border: Border.all(
           width: Sizes.size3 / Sizes.size2,
-          color: Colors.grey.shade300,
+          color: Theme.of(context).shadowColor,
         ),
       ),
       child: AppFont(tag),

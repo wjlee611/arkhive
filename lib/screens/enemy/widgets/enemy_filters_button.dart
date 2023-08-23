@@ -62,42 +62,41 @@ class EnemyFiltersButton extends StatelessWidget {
           ),
           borderRadius: const BorderRadius.all(Radius.circular(Sizes.size10)),
         ),
+        color: Theme.of(context).primaryColor,
+        elevation: 0,
         itemBuilder: (context) => [
-          PopupMenuItem(
-            child: BlocBuilder<EnemyListBloc, EnemyListState>(
-              buildWhen: (previous, current) =>
-                  previous.selectedFilterOption != current.selectedFilterOption,
-              bloc: context.read<EnemyListBloc>(),
-              builder: (context, state) => Column(
-                children: [
-                  for (int i = 0; i < 3; i++)
-                    CheckboxListTile(
-                      value: state.selectedFilterOption?[i],
-                      title: AppFont(
-                        i == 0
-                            ? '일반'
-                            : i == 1
-                                ? '정예'
-                                : '보스',
-                        color: i == 0
-                            ? Colors.blueGrey.shade600
-                            : i == 1
-                                ? Colors.deepOrange
-                                : Colors.purple,
-                        fontSize: Sizes.size14,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      onChanged: (value) => _onFilterChange(
-                        context_,
-                        index: i,
-                        value: value,
-                      ),
-                      activeColor: Colors.yellow.shade800,
-                    ),
-                ],
+          for (int i = 0; i < 3; i++)
+            PopupMenuItem(
+              child: BlocBuilder<EnemyListBloc, EnemyListState>(
+                buildWhen: (previous, current) =>
+                    previous.selectedFilterOption !=
+                    current.selectedFilterOption,
+                bloc: context.read<EnemyListBloc>(),
+                builder: (context, state) => CheckboxListTile(
+                  value: state.selectedFilterOption?[i],
+                  title: AppFont(
+                    i == 0
+                        ? '일반'
+                        : i == 1
+                            ? '정예'
+                            : '보스',
+                    color: i == 0
+                        ? Theme.of(context).textTheme.bodyMedium!.color
+                        : i == 1
+                            ? Colors.deepOrange
+                            : Colors.purple,
+                    fontSize: Sizes.size14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  onChanged: (value) => _onFilterChange(
+                    context_,
+                    index: i,
+                    value: value,
+                  ),
+                  activeColor: Colors.yellow.shade800,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

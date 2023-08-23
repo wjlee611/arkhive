@@ -157,7 +157,8 @@ class _StageZoneContainerState extends State<StageZoneContainer>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor:
+                  Theme.of(context).textTheme.bodySmall!.color,
               tabs: [
                 for (int i = 0; i < widget.act.zones.length; i++)
                   Tab(
@@ -165,6 +166,7 @@ class _StageZoneContainerState extends State<StageZoneContainer>
                       padding: const EdgeInsets.only(top: Sizes.size2),
                       child: AppFont(
                         widget.act.zones[i].title,
+                        forceColorNull: true,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -185,7 +187,7 @@ class _StageZoneContainerState extends State<StageZoneContainer>
           separatorBuilder: (context, index) => Container(
             width: double.infinity,
             height: Sizes.size1,
-            color: Colors.black12,
+            color: Theme.of(context).shadowColor.withOpacity(0.5),
             margin: const EdgeInsets.symmetric(horizontal: Sizes.size16),
           ),
           itemCount: length,

@@ -47,19 +47,21 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
         theme: state.settings.isDarkTheme == true
             ? ThemeData(
                 scaffoldBackgroundColor: const Color(0xff282828),
-                primaryColor: const Color(0xff282828),
+                primaryColor: const Color(0xff313131),
                 shadowColor: const Color(0xff111111),
                 textTheme: TextTheme(
+                  bodyMedium: TextStyle(color: Colors.blueGrey.shade400),
                   bodySmall: const TextStyle(color: Color(0xffe5e5e5)),
                   labelMedium: const TextStyle(color: Colors.grey),
-                  labelSmall: TextStyle(color: Colors.grey.shade300),
+                  labelSmall: TextStyle(color: Colors.grey.shade500),
                 ),
               )
             : ThemeData(
                 scaffoldBackgroundColor: const Color(0xffefefef),
-                primaryColor: const Color(0xffefefef),
-                shadowColor: const Color(0xffcccccc),
+                primaryColor: const Color(0xfff5f5f5),
+                shadowColor: const Color(0xff999999),
                 textTheme: TextTheme(
+                  bodyMedium: TextStyle(color: Colors.blueGrey.shade800),
                   bodySmall: const TextStyle(color: Colors.black87),
                   labelMedium: const TextStyle(color: Colors.black54),
                   labelSmall: TextStyle(color: Colors.grey.shade700),

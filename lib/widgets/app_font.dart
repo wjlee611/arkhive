@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppFont extends StatelessWidget {
   final String text;
+  final bool forceColorNull;
   final Color? color;
   final double fontSize;
   final FontWeight fontWeight;
@@ -18,6 +19,7 @@ class AppFont extends StatelessWidget {
   const AppFont(
     this.text, {
     super.key,
+    this.forceColorNull = false,
     this.color,
     this.fontSize = Sizes.size12,
     this.fontWeight = FontWeight.w400,
@@ -37,7 +39,9 @@ class AppFont extends StatelessWidget {
         maxLines: maxLines,
         overflow: overflow,
         style: TextStyle(
-          color: color ?? Theme.of(context).textTheme.bodySmall!.color,
+          color: forceColorNull
+              ? null
+              : color ?? Theme.of(context).textTheme.bodySmall!.color,
           fontFamily: FontFamily.nanumGothic,
           fontSize: fontSize,
           fontWeight: fontWeight,

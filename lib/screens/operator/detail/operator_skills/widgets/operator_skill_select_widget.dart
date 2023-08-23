@@ -66,7 +66,8 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor:
+                  Theme.of(context).textTheme.bodySmall!.color,
               tabs: [
                 for (int i = 0; i < widget.skills.length; i++)
                   SizedBox(
@@ -76,6 +77,7 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
                         padding: const EdgeInsets.only(top: Sizes.size2),
                         child: AppFont(
                           '${i + 1} 스킬',
+                          forceColorNull: true,
                           fontWeight: FontWeight.w700,
                         ),
                       ),

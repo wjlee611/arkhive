@@ -145,7 +145,7 @@ class FormattedTextWidget extends StatelessWidget {
                             ],
                           ),
                           behavior: SnackBarBehavior.floating,
-                          backgroundColor: Colors.white,
+                          backgroundColor: Theme.of(context).primaryColor,
                           duration: const Duration(seconds: 10),
                           shape: RoundedRectangleBorder(
                             side: BorderSide(

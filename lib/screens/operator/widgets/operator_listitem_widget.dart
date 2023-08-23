@@ -25,7 +25,9 @@ class OperatorListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: index % 2 == 0 ? Colors.white : Colors.grey.shade100,
+        color: index % 2 == 0
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).primaryColor.withOpacity(0),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

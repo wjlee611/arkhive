@@ -17,12 +17,12 @@ class OperatorStatBoxWidget extends StatelessWidget {
     return Container(
       width: Sizes.size60 * 2,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
             blurRadius: Sizes.size1,
             spreadRadius: Sizes.size1,
-            color: Colors.black.withOpacity(0.3),
+            color: Theme.of(context).shadowColor,
           )
         ],
       ),
@@ -36,9 +36,7 @@ class OperatorStatBoxWidget extends StatelessWidget {
                 vertical: Sizes.size2,
                 horizontal: Sizes.size5,
               ),
-              decoration: BoxDecoration(
-                color: Colors.blueGrey.shade600,
-              ),
+              color: Colors.blueGrey.shade600,
               child: AppFont(
                 title,
                 color: Colors.white,

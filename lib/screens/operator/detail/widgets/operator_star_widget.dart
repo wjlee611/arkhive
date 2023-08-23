@@ -28,7 +28,7 @@ class OperatorStarWidget extends StatelessWidget {
                   color: Colors.yellow.shade700,
                   size: Sizes.size24 + Sizes.size2,
                   shadows: const [
-                    Shadow(blurRadius: Sizes.size5),
+                    Shadow(blurRadius: Sizes.size3),
                   ],
                 ),
               ),

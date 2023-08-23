@@ -2,6 +2,7 @@ import 'package:arkhive/bloc/stage/stage_list/stage_list_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_event.dart';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_state.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
+import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/stage/widgets/stage_act_container.dart';
 import 'package:arkhive/widgets/app_font.dart';
@@ -86,6 +87,9 @@ class StageScreen extends StatelessWidget {
                               childCount: category.activities.length,
                             ),
                           ),
+                        ),
+                        const SliverToBoxAdapter(
+                          child: Gaps.v130,
                         ),
                       ],
                     ),

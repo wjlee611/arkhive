@@ -44,7 +44,7 @@ class LevelSelectButton extends StatelessWidget {
                   BoxShadow(
                     blurRadius: Sizes.size2,
                     spreadRadius: Sizes.size1 / 10,
-                    color: Colors.black.withOpacity(0.3),
+                    color: Theme.of(context).shadowColor,
                   ),
                 ],
                 borderWidth: 0,
@@ -70,7 +70,7 @@ class LevelSelectButton extends StatelessWidget {
                 selectedIconSize: const Size(Sizes.size28, Sizes.size28),
                 borderColor: Colors.transparent,
                 indicatorColor: Colors.yellow.shade700,
-                innerColor: Colors.black.withOpacity(0.3),
+                innerColor: Colors.transparent,
                 borderRadius: BorderRadius.zero,
                 height: Sizes.size32,
                 animationCurve: Curves.easeOutExpo,

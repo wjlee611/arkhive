@@ -66,7 +66,10 @@ class EnemyHiddenInfoWidget extends StatelessWidget {
                                 ),
                                 AppFont(
                                   ':',
-                                  color: Colors.blueGrey.shade700,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                   fontWeight: FontWeight.w700,
                                 ),
                                 Gaps.h5,

@@ -47,12 +47,12 @@ class _StageActContainerState extends State<StageActContainer> {
           child: Container(
             clipBehavior: Clip.hardEdge,
             decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(Sizes.size10),
               boxShadow: [
                 BoxShadow(
-                  blurRadius: Sizes.size1,
-                  blurStyle: BlurStyle.outer,
-                  color: Colors.black.withOpacity(0.4),
+                  blurRadius: Sizes.size3,
+                  color: Theme.of(context).shadowColor,
                 ),
               ],
             ),
@@ -81,8 +81,10 @@ class _StageActContainerState extends State<StageActContainer> {
                           AnimatedRotation(
                             duration: const Duration(milliseconds: 200),
                             turns: isOpen ? 0.5 : 0,
-                            child: const Icon(
+                            child: Icon(
                               Icons.keyboard_arrow_down_rounded,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall!.color,
                             ),
                           ),
                         ],

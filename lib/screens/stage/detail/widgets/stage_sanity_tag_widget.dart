@@ -27,12 +27,12 @@ class SanityInfoTag extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
             blurRadius: Sizes.size2,
             spreadRadius: Sizes.size1 / 10,
-            color: Colors.black.withOpacity(0.3),
+            color: Theme.of(context).shadowColor,
           ),
         ],
       ),
@@ -45,7 +45,7 @@ class SanityInfoTag extends StatelessWidget {
             child: Center(
               child: AppFont(
                 title,
-                color: Colors.blueGrey.shade800,
+                color: Theme.of(context).textTheme.labelSmall!.color,
                 fontSize: Sizes.size10,
               ),
             ),

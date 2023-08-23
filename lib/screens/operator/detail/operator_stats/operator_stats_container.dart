@@ -39,7 +39,7 @@ class OperatorStatsContainer extends StatelessWidget {
           children: [
             AppFont(
               "사정거리",
-              color: Colors.blueGrey.shade800,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
               fontWeight: FontWeight.w700,
             ),
             Gaps.h10,
@@ -119,13 +119,13 @@ class OperatorStatsContainer extends StatelessWidget {
           children: [
             AppFont(
               '*정예화 단계, 레벨, 신뢰도, 잠재능력 증가량\n  상기 데이터가 반영된 스탯입니다.',
-              color: Colors.grey.shade700,
+              color: Theme.of(context).textTheme.labelSmall!.color,
               fontSize: Sizes.size10,
             ),
             Gaps.v3,
             AppFont(
               '*공격 속도는 연산이 적용된 결과로 표시됩니다.',
-              color: Colors.grey.shade700,
+              color: Theme.of(context).textTheme.labelSmall!.color,
               fontSize: Sizes.size10,
             ),
           ],

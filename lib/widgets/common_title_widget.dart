@@ -31,7 +31,7 @@ class CommonTitleWidget extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 color,
-                Theme.of(context).primaryColor,
+                Theme.of(context).scaffoldBackgroundColor,
               ],
               stops: const [
                 0,
@@ -103,13 +103,14 @@ class CommonSubTitleWidget extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: isShadow ? Colors.white : Colors.transparent,
+            color:
+                isShadow ? Theme.of(context).primaryColor : Colors.transparent,
             boxShadow: [
               if (isShadow)
                 BoxShadow(
                   blurRadius: Sizes.size1,
                   spreadRadius: Sizes.size1,
-                  color: Colors.black.withOpacity(0.2),
+                  color: Theme.of(context).shadowColor,
                 ),
             ],
           ),
@@ -127,7 +128,7 @@ class CommonSubTitleWidget extends StatelessWidget {
                 text,
                 fontSize: size,
                 fontWeight: FontWeight.w700,
-                color: Colors.black87,
+                color: Theme.of(context).textTheme.bodySmall!.color,
               ),
               Gaps.h5,
             ],

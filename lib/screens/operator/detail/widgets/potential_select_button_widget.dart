@@ -38,6 +38,7 @@ class _PotentialSelectButtonState extends State<PotentialSelectButton> {
         ),
         borderRadius: const BorderRadius.all(Radius.circular(Sizes.size10)),
       ),
+      color: Theme.of(context).primaryColor,
       elevation: 0,
       itemBuilder: (context) => [
         for (int i = 0; i < widget.length + 1; i++)

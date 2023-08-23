@@ -19,7 +19,7 @@ class StatContainer extends StatelessWidget {
       height: Sizes.size72,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         boxShadow: [
           BoxShadow(
             blurRadius: Sizes.size2,
@@ -38,7 +38,7 @@ class StatContainer extends StatelessWidget {
                   alignment: Alignment.center,
                   child: AppFont(
                     title,
-                    color: Colors.blueGrey.shade600,
+                    color: Theme.of(context).textTheme.bodyMedium!.color,
                     fontSize: Sizes.size10,
                     fontWeight: FontWeight.w700,
                   ),
@@ -63,7 +63,11 @@ class StatContainer extends StatelessWidget {
                   children: [
                     AppFont(
                       statRank,
-                      color: Colors.blueGrey.shade800.withOpacity(0.2),
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .color!
+                          .withOpacity(0.2),
                       fontSize: Sizes.size32,
                       fontWeight: FontWeight.w700,
                     ),
@@ -72,7 +76,7 @@ class StatContainer extends StatelessWidget {
                         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
                         (Match m) => "${m[1]},",
                       ),
-                      color: Colors.blueGrey.shade800,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontWeight: FontWeight.w700,
                     ),
                   ],

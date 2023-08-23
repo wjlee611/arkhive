@@ -33,12 +33,12 @@ class InfoTag extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Sizes.size5),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           boxShadow: [
             BoxShadow(
               blurRadius: Sizes.size2,
               spreadRadius: Sizes.size1 / 10,
-              color: Colors.black.withOpacity(0.3),
+              color: Theme.of(context).shadowColor,
             ),
           ],
         ),
@@ -51,7 +51,6 @@ class InfoTag extends StatelessWidget {
               child: Center(
                 child: AppFont(
                   title,
-                  color: Colors.blueGrey.shade800,
                   fontSize: Sizes.size10,
                 ),
               ),

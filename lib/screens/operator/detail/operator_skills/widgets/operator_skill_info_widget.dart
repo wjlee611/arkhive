@@ -86,7 +86,8 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor:
+                  Theme.of(context).textTheme.bodySmall!.color,
               tabs: [
                 for (int i = 0; i < widget.skill.levels.length; i++)
                   SizedBox(
@@ -96,6 +97,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                         padding: const EdgeInsets.only(top: Sizes.size2),
                         child: AppFont(
                           i < 7 ? 'R${i + 1}' : 'R7M${i - 6}',
+                          forceColorNull: true,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -156,12 +158,12 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                   Gaps.v3,
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(Sizes.size2),
                       boxShadow: [
                         BoxShadow(
                           blurRadius: Sizes.size1,
-                          color: Colors.grey.shade300,
+                          color: Theme.of(context).shadowColor,
                         ),
                       ],
                     ),
