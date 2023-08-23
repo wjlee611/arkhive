@@ -44,7 +44,7 @@ class ItemPenguinState extends Equatable {
 
 enum PenguinSortOption {
   sanity('이성 효율', '이성/1개'),
-  rate('드랍률', '%'),
+  rate('드랍률', '(%)'),
   times('보고서 수', '개');
 
   final String message;

@@ -2,8 +2,8 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/stack.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -108,13 +108,9 @@ class FormattedTextWidget extends StatelessWidget {
             // Fill widgets //
             // Case of normal text
             if (tagsStack.isEmpty) {
-              widgets[line].add(Text(
+              widgets[line].add(AppFont(
                 newWord,
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontSize: Sizes.size12,
-                  color: Colors.black87,
-                ),
+                color: Colors.black87,
               ));
             } else {
               // Case of text which wrap by tag
@@ -124,13 +120,9 @@ class FormattedTextWidget extends StatelessWidget {
                 var colorVal = 0xff000000 + int.parse(colorStr, radix: 16);
 
                 widgets[line].add(
-                  Text(
+                  AppFont(
                     newWord,
-                    style: TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Color(colorVal),
-                    ),
+                    color: Color(colorVal),
                   ),
                 );
               } else if (tagState.termTags!.keys.contains(tagsStack.peek)) {
@@ -152,6 +144,7 @@ class FormattedTextWidget extends StatelessWidget {
                               FormattedTextWidget(text: msg, center: false),
                             ],
                           ),
+                          behavior: SnackBarBehavior.floating,
                           backgroundColor: Colors.white,
                           duration: const Duration(seconds: 10),
                           shape: RoundedRectangleBorder(
@@ -172,15 +165,11 @@ class FormattedTextWidget extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text(
+                    child: AppFont(
                       newWord,
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontSize: Sizes.size12,
-                        fontWeight: FontWeight.w700,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.grey,
-                      ),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                 );

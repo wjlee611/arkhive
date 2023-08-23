@@ -1,7 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/information/widgets/info_container_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -22,12 +22,10 @@ class _InfoScreenState extends State<InfoScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: const AppFont(
           '정보',
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
+          fontSize: Sizes.size16,
+          fontWeight: FontWeight.w700,
         ),
         backgroundColor: Colors.blueGrey.shade700,
       ),
@@ -100,19 +98,17 @@ class _InfoScreenState extends State<InfoScreen> {
                       0,
                       -Sizes.size28,
                     ),
-                    child: Text(
+                    child: AppFont(
                       'Arkhive',
-                      style: TextStyle(
-                          color: Colors.yellow.shade700,
-                          fontFamily: FontFamily.nanumGothic,
-                          fontSize: Sizes.size36,
-                          fontWeight: FontWeight.w700,
-                          shadows: const [
-                            Shadow(
-                              color: Colors.black38,
-                              blurRadius: Sizes.size5,
-                            ),
-                          ]),
+                      color: Colors.yellow.shade700,
+                      fontSize: Sizes.size36,
+                      fontWeight: FontWeight.w700,
+                      shadows: const [
+                        Shadow(
+                          color: Colors.black38,
+                          blurRadius: Sizes.size5,
+                        ),
+                      ],
                     ),
                   ),
                   const InfoContainer(
@@ -151,7 +147,10 @@ class _InfoScreenState extends State<InfoScreen> {
                             ],
                           ),
                           clipBehavior: Clip.hardEdge,
-                          child: const Text('Donate ♥️'),
+                          child: const AppFont(
+                            'Donate ♥️',
+                            fontSize: Sizes.size14,
+                          ),
                         ),
                       ],
                     ),

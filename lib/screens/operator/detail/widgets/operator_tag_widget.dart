@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -65,14 +65,7 @@ class OperatorTagWidget extends StatelessWidget {
           color: Colors.grey.shade300,
         ),
       ),
-      child: Text(
-        tag,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: Sizes.size12,
-          fontFamily: FontFamily.nanumGothic,
-        ),
-      ),
+      child: AppFont(tag),
     );
   }
 }

@@ -10,12 +10,12 @@ class OperatorBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Colors.blueGrey.shade700,
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.size10),
+          padding: EdgeInsets.symmetric(horizontal: Sizes.size10),
           child: Row(
-            children: const [
+            children: [
               ProfessionButton(profession: Professions.all),
               ProfessionButton(profession: Professions.vanguard),
               ProfessionButton(profession: Professions.guard),

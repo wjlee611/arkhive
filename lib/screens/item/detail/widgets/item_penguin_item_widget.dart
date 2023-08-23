@@ -3,8 +3,8 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -111,35 +111,29 @@ class ItemPenguinItemWidget extends StatelessWidget {
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.only(left: Sizes.size10),
-                        child: Text(
+                        child: AppFont(
                           '${idx + 1}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size16,
-                            fontWeight: FontWeight.w700,
-                            fontStyle: FontStyle.italic,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.9),
-                                blurRadius: 3,
-                              ),
-                            ],
-                          ),
+                          color: Colors.white,
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.italic,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black.withOpacity(0.9),
+                              blurRadius: 3,
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ],
                 ),
                 Gaps.h10,
-                Text(
+                AppFont(
                   '${penguinData.stageCode}',
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black54,
-                    fontSize: Sizes.size16,
-                  ),
+                  color: Colors.black54,
+                  fontSize: Sizes.size14,
+                  fontWeight: FontWeight.w700,
                 ),
                 if (penguinData.diffGroup == 'NORMAL' ||
                     penguinData.diffGroup == 'TOUGH')
@@ -155,26 +149,19 @@ class ItemPenguinItemWidget extends StatelessWidget {
                           ? Colors.redAccent
                           : Colors.blueAccent,
                     ),
-                    child: Text(
+                    child: AppFont(
                       penguinData.diffGroup == 'TOUGH' ? '고난' : '일반',
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                        fontSize: Sizes.size10,
-                      ),
+                      color: Colors.white,
+                      fontSize: Sizes.size10,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
               ],
             ),
-            Text(
+            AppFont(
               _textSelector(context),
-              style: const TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
-                fontSize: Sizes.size14,
-              ),
+              fontSize: Sizes.size14,
+              fontWeight: FontWeight.w700,
             ),
           ],
         ),

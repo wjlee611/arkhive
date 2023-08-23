@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -73,15 +73,19 @@ class EnemyFiltersButton extends StatelessWidget {
                   for (int i = 0; i < 3; i++)
                     CheckboxListTile(
                       value: state.selectedFilterOption?[i],
-                      title: Text(
+                      title: AppFont(
                         i == 0
                             ? '일반'
                             : i == 1
                                 ? '정예'
                                 : '보스',
-                        style: const TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                        ),
+                        color: i == 0
+                            ? Colors.blueGrey.shade600
+                            : i == 1
+                                ? Colors.deepOrange
+                                : Colors.purple,
+                        fontSize: Sizes.size14,
+                        fontWeight: FontWeight.w700,
                       ),
                       onChanged: (value) => _onFilterChange(
                         context_,

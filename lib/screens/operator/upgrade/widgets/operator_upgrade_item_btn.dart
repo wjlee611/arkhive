@@ -1,9 +1,9 @@
 import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/item_list_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,13 +58,19 @@ class _OperatorUpgradeItemBtnState extends State<OperatorUpgradeItemBtn> {
               color: Colors.yellow.shade800,
               borderRadius: BorderRadius.circular(Sizes.size3),
             ),
-            child: Text(
-              widget.cost.count?.toString() ?? '0',
-              style: const TextStyle(
-                color: Colors.white,
-                fontFamily: FontFamily.nanumGothic,
-                fontWeight: FontWeight.w700,
-              ),
+            child: AppFont(
+              widget.cost.count?.toString().replaceAllMapped(
+                      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                      (Match m) => "${m[1]},") ??
+                  '0',
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              shadows: [
+                Shadow(
+                  color: Colors.black.withOpacity(0.5),
+                  blurRadius: Sizes.size2,
+                ),
+              ],
             ),
           ),
         ],

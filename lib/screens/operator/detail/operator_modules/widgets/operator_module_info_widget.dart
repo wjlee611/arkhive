@@ -4,9 +4,9 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -191,13 +191,9 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),
-                        child: Text(
+                        child: AppFont(
                           '레벨 ${i + 1}',
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.size12,
-                          ),
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
@@ -207,7 +203,10 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
           ),
         ),
         Gaps.v7,
-        CommonSubTitleWidget(text: widget.module.uniEquipName!),
+        CommonSubTitleWidget(
+          text: widget.module.uniEquipName!,
+          color: _moduleColorPicker(widget.module.equipShiningColor),
+        ),
         Gaps.v3,
         Row(
           children: [
@@ -220,14 +219,10 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                 borderRadius: BorderRadius.circular(Sizes.size2),
                 color: _moduleColorPicker(widget.module.equipShiningColor),
               ),
-              child: Text(
+              child: AppFont(
                 widget.module.typeIcon!.toUpperCase(),
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size12,
-                  color: Colors.white,
-                ),
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ],
@@ -246,22 +241,11 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                 .phases[_levelTabController.index].attributeBlackboard)
               Row(
                 children: [
-                  Text(
-                    _moduleStatPicker(attr.key),
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.black87,
-                    ),
-                  ),
+                  AppFont(_moduleStatPicker(attr.key)),
                   Gaps.h3,
-                  Text(
+                  AppFont(
                     _moduleStatFormatter(attr.value!),
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size12,
-                      color: Colors.blue,
-                    ),
+                    color: Colors.blue,
                   ),
                 ],
               ),

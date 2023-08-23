@@ -2,6 +2,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,42 +46,30 @@ class ItemFiltersButton extends StatelessWidget {
         itemBuilder: (context) => [
           const PopupMenuItem(
             value: ItemListFilterOptions.all,
-            child: Text(
+            child: AppFont(
               '전체',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: ItemListFilterOptions.normal,
-            child: Text(
+            child: AppFont(
               '일반',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: ItemListFilterOptions.consume,
-            child: Text(
+            child: AppFont(
               '사용',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: ItemListFilterOptions.material,
-            child: Text(
+            child: AppFont(
               '육성 재료',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
         ],

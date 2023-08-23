@@ -1,12 +1,12 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_widget.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +36,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
         return const EnemyScreen();
       default:
         return const Center(
-          child: Text('Page not found: 404'),
+          child: AppFont('Page not found: 404'),
         );
     }
   }
@@ -68,14 +68,11 @@ class _RoutesScreenState extends State<RoutesScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           elevation: 0,
-          content: const Text(
+          content: const AppFont(
             '종료할까요?',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: Sizes.size14,
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-            ),
+            color: Colors.white,
+            fontSize: Sizes.size14,
+            fontWeight: FontWeight.w700,
           ),
           duration: const Duration(seconds: 2),
           backgroundColor: Colors.black.withOpacity(0.5),
@@ -92,12 +89,10 @@ class _RoutesScreenState extends State<RoutesScreen> {
       builder: (context, state) => Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
+          title: AppFont(
             _titleSelector(state.currScreen),
-            style: const TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-            ),
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
           leading: Builder(

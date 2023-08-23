@@ -51,12 +51,6 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
   ) async {
     if (state.enemyList == null || state.enemyList!.isEmpty) return;
 
-    emit(EnemyListLoadingState(
-      enemyList: state.enemyList,
-      selectedFilterOption: event.filters,
-      searchQuery: state.searchQuery,
-    ));
-
     List<EnemyListModel> result = [];
     for (var enemy in state.enemyList!) {
       if (event.filters[0] && enemy.level == 'NORMAL') {
@@ -93,12 +87,6 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
       );
       return;
     }
-
-    emit(EnemyListLoadingState(
-      enemyList: state.enemyList,
-      selectedFilterOption: state.selectedFilterOption,
-      searchQuery: event.searchQuery,
-    ));
 
     List<EnemyListModel> result = [];
     for (var enemy in state.enemyList!) {

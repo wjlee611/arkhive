@@ -1,4 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class EliteSelectButton extends StatefulWidget {
@@ -42,13 +43,7 @@ class _EliteSelectButtonState extends State<EliteSelectButton> {
         for (int i = 0; i < widget.length; i++)
           PopupMenuItem(
             value: i,
-            child: Text(
-              '정예화 단계 $i',
-              style: const TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            child: AppFont('정예화 단계 $i'),
           ),
       ],
       child: Transform.translate(

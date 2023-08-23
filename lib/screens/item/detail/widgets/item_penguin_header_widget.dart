@@ -4,8 +4,8 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_sort_btn.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,23 +34,17 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                 children: [
                   BlocBuilder<PenguinCubit, PenguinState>(
                       builder: (context, state) {
-                    return Text(
+                    return AppFont(
                       '* Powered by penguin-stats.io, ${state.server?.region ?? '-'} Server',
-                      style: TextStyle(
-                        color: Colors.grey.shade700,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontSize: Sizes.size10,
-                      ),
+                      color: Colors.grey.shade700,
+                      fontSize: Sizes.size10,
                     );
                   }),
                   Gaps.v2,
-                  Text(
+                  AppFont(
                     '* Last Update: 2023.08.01',
-                    style: TextStyle(
-                      color: Colors.grey.shade700,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size10,
-                    ),
+                    color: Colors.grey.shade700,
+                    fontSize: Sizes.size10,
                   ),
                 ],
               ),
@@ -82,15 +76,12 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                   BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
                     builder: (context, state) => Row(
                       children: [
-                        Text(
+                        AppFont(
                           state.isIncludePerm ? '비 상시맵\n포함 됨' : '상시맵 만\n포함 됨',
+                          color: Colors.black54,
+                          fontSize: Sizes.size10,
+                          fontWeight: FontWeight.w700,
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black54,
-                            fontSize: Sizes.size10,
-                          ),
                         ),
                         Switch(
                           value: state.isIncludePerm,
@@ -131,36 +122,27 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                 children: [
                   const Row(
                     children: [
-                      Text(
+                      AppFont(
                         '순위',
-                        style: TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black54,
-                          fontSize: Sizes.size14,
-                        ),
+                        color: Colors.black54,
+                        fontSize: Sizes.size14,
+                        fontWeight: FontWeight.w700,
                       ),
                       Gaps.h36,
-                      Text(
+                      AppFont(
                         '스테이지',
-                        style: TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black54,
-                          fontSize: Sizes.size14,
-                        ),
+                        color: Colors.black54,
+                        fontSize: Sizes.size14,
+                        fontWeight: FontWeight.w700,
                       ),
                     ],
                   ),
                   BlocBuilder<ItemPenguinBloc, ItemPenguinState>(
-                    builder: (context, state) => Text(
+                    builder: (context, state) => AppFont(
                       '단위: ${state.sortOption?.unit ?? '-'}',
-                      style: const TextStyle(
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black54,
-                        fontSize: Sizes.size14,
-                      ),
+                      color: Colors.black54,
+                      // fontSize: Sizes.size14,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],

@@ -1,7 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/operator_modules/widgets/operator_module_info_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:arkhive/models/module_model.dart';
 
@@ -75,13 +75,9 @@ class _OperatorModuleSelectWidgetState extends State<OperatorModuleSelectWidget>
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),
-                        child: Text(
+                        child: AppFont(
                           '${widget.modules[i].typeIcon!.split('-').last.toUpperCase()}타입',
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.size12,
-                          ),
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),

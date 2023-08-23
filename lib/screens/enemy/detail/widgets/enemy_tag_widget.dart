@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class EnemyLevelTagWidget extends StatelessWidget {
@@ -37,18 +37,14 @@ class EnemyLevelTagWidget extends StatelessWidget {
           color: Colors.grey.shade300,
         ),
       ),
-      child: Text(
+      child: AppFont(
         tag == 'ELITE'
             ? '정예'
             : tag == 'BOSS'
                 ? '보스'
                 : '일반',
-        style: TextStyle(
-          color: _textColorPicker(tag),
-          fontWeight: FontWeight.w700,
-          fontSize: Sizes.size12,
-          fontFamily: FontFamily.nanumGothic,
-        ),
+        color: _textColorPicker(tag),
+        fontWeight: FontWeight.w700,
       ),
     );
   }
@@ -77,14 +73,7 @@ class EnemyTagWidget extends StatelessWidget {
           color: Colors.grey.shade300,
         ),
       ),
-      child: Text(
-        tag,
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: Sizes.size12,
-          fontFamily: FontFamily.nanumGothic,
-        ),
-      ),
+      child: AppFont(tag),
     );
   }
 }

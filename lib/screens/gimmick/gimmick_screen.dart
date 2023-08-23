@@ -1,3 +1,4 @@
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class GimmickScreen extends StatefulWidget {
@@ -11,7 +12,7 @@ class _GimmickScreenState extends State<GimmickScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('스테이지 기믹'),
+      body: AppFont('스테이지 기믹'),
     );
   }
 }

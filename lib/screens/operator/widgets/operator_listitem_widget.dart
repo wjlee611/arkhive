@@ -1,7 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/operator_list_model.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -54,15 +54,12 @@ class OperatorListItem extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(
+                  child: AppFont(
                     operator_.name,
+                    fontSize: Sizes.size14,
+                    fontWeight: FontWeight.w700,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: Sizes.size14,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
-                    ),
                   ),
                 ),
               ],

@@ -5,13 +5,13 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/widgets/elite_select_button_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_slider_widget.dart';
+import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_title_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/potential_select_button_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
-import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -103,7 +103,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                           length: dataState.operator_.potentialRanks.length,
                         ),
                         Gaps.v5,
-                        const CommonSubTitleWidget(text: '잠재능력'),
+                        const OperatorSlidingPanelTitleWidget('잠재능력'),
                       ],
                     ),
                     Gaps.h20,
@@ -114,7 +114,7 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                           length: dataState.operator_.phases.length,
                         ),
                         Gaps.v5,
-                        const CommonSubTitleWidget(text: '정예화 단계'),
+                        const OperatorSlidingPanelTitleWidget('정예화 단계'),
                       ],
                     ),
                   ],
@@ -124,9 +124,10 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      width: Sizes.size52,
-                      child: CommonSubTitleWidget(text: '레벨'),
+                      width: Sizes.size48,
+                      child: OperatorSlidingPanelTitleWidget('레벨'),
                     ),
+                    Gaps.h4,
                     SizedBox(
                       height: Sizes.size44,
                       child:
@@ -150,9 +151,10 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      width: Sizes.size52,
-                      child: CommonSubTitleWidget(text: '신뢰도'),
+                      width: Sizes.size48,
+                      child: OperatorSlidingPanelTitleWidget('신뢰도'),
                     ),
+                    Gaps.h4,
                     SizedBox(
                       height: Sizes.size44,
                       child:
@@ -255,14 +257,10 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                             shape: BoxShape.circle,
                           ),
                           child: Center(
-                            child: Text(
+                            child: AppFont(
                               state.level.toString(),
-                              style: const TextStyle(
-                                fontFamily: FontFamily.nanumGothic,
-                                fontWeight: FontWeight.w700,
-                                fontSize: Sizes.size12,
-                                color: Colors.white,
-                              ),
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
@@ -280,16 +278,13 @@ class _OperatorSlidingPanelState extends State<OperatorSlidingPanel> {
                 buildWhen: (previous, current) {
                   return previous.favor != current.favor;
                 },
-                builder: (context, state) => Text(
+                builder: (context, state) => AppFont(
                   state.favor > 100
                       ? (100 + (state.favor - 100) * 10).toString()
                       : state.favor.toString(),
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                    fontSize: Sizes.size14,
-                    color: Colors.white,
-                  ),
+                  color: Colors.white,
+                  fontSize: Sizes.size14,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
               const Expanded(child: SizedBox()),

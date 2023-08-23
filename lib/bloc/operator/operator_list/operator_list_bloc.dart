@@ -76,13 +76,6 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
     // 검색어가 있다면 필터링 안 함
     if (state.searchQuery!.isNotEmpty) return;
 
-    emit(OperatorListLoadingState(
-      operatorList: state.operatorList,
-      searchQuery: state.searchQuery,
-      selectedSortOption: state.selectedSortOption,
-      selectedProfession: state.selectedProfession,
-    ));
-
     List<OperatorListModel> result = [];
 
     for (var op in state.operatorList!) {
@@ -143,13 +136,6 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
     List<OperatorListModel> result =
         (state as OperatorListLoadedState).filteredOperatorList;
 
-    emit(OperatorListLoadingState(
-      operatorList: state.operatorList,
-      searchQuery: state.searchQuery,
-      selectedSortOption: state.selectedSortOption,
-      selectedProfession: state.selectedProfession,
-    ));
-
     result = _sortByOption(
       target: result,
       option: event.sortOption,
@@ -169,13 +155,6 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
     Emitter<OperatorListState> emit,
   ) async {
     if (state.operatorList == null || state.operatorList!.isEmpty) return;
-
-    emit(OperatorListLoadingState(
-      operatorList: state.operatorList,
-      searchQuery: state.searchQuery,
-      selectedSortOption: state.selectedSortOption,
-      selectedProfession: state.selectedProfession,
-    ));
 
     List<OperatorListModel> result = [];
 

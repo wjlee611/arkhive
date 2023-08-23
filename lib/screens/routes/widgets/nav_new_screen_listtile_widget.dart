@@ -1,5 +1,6 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,16 +72,14 @@ class NewScreenListTile extends StatelessWidget {
               ? Colors.yellow.shade700
               : Colors.white,
         ),
-        title: Text(
+        title: AppFont(
           _titleSelector(screen),
-          style: TextStyle(
-            color: state.currScreen == screen
-                ? Colors.yellow.shade700
-                : Colors.white,
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight:
-                state.currScreen == screen ? FontWeight.w700 : FontWeight.w400,
-          ),
+          fontSize: Sizes.size14,
+          color: state.currScreen == screen
+              ? Colors.yellow.shade700
+              : Colors.white,
+          fontWeight:
+              state.currScreen == screen ? FontWeight.w700 : FontWeight.w400,
         ),
         onTap: () => _onTap(
           context: context,

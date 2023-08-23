@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -42,23 +42,13 @@ class StageOpenDateWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
+                AppFont(
                   '${_timestampToDate(timeStamp.startTime)} ~ ${_timestampToDate(timeStamp.endTime)}',
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                    fontSize: Sizes.size12,
-                    color: Colors.black87,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
-                Text(
+                AppFont(
                   '교환소 개방  ~ ${_timestampToDate(timeStamp.rewardEndTime)}',
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                    fontSize: Sizes.size12,
-                    color: Colors.black87,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
               ],
             ),

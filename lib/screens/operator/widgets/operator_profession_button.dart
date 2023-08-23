@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -82,30 +82,24 @@ class ProfessionButton extends StatelessWidget {
                 ),
               if (profession == Professions.all)
                 Center(
-                  child: Text(
+                  child: AppFont(
                     state.searchQuery == '' ? "전체" : "검색",
-                    style: TextStyle(
-                      color: state.selectedProfession == profession
-                          ? Colors.yellow.shade800
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size16,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    color: state.selectedProfession == profession
+                        ? Colors.yellow.shade800
+                        : Colors.white,
+                    fontSize: Sizes.size16,
+                    fontWeight: FontWeight.w700,
                   ),
                 )
               else if (profession == Professions.perparation)
                 Center(
-                  child: Text(
+                  child: AppFont(
                     "예비",
-                    style: TextStyle(
-                      color: state.selectedProfession == profession
-                          ? Colors.yellow.shade800
-                          : Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size16,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    color: state.selectedProfession == profession
+                        ? Colors.yellow.shade800
+                        : Colors.white,
+                    fontSize: Sizes.size16,
+                    fontWeight: FontWeight.w700,
                   ),
                 )
               else

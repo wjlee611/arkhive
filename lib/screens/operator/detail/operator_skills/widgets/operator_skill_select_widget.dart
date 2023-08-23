@@ -1,8 +1,8 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_info_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class OperatorSkillSelectWidget extends StatefulWidget {
@@ -74,13 +74,9 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),
-                        child: Text(
+                        child: AppFont(
                           '${i + 1} 스킬',
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.size12,
-                          ),
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),

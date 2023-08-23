@@ -3,8 +3,8 @@ import 'package:arkhive/bloc/stage/stage_list/stage_list_event.dart';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_state.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/stage/widgets/stage_act_container.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,13 +31,9 @@ class StageScreen extends StatelessWidget {
           }
           if (state is StageListErrorState) {
             return Center(
-              child: Text(
+              child: AppFont(
                 state.message,
-                style: const TextStyle(
-                  fontSize: Sizes.size16,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: FontFamily.nanumGothic,
-                ),
+                fontSize: Sizes.size16,
               ),
             );
           }
@@ -64,14 +60,11 @@ class StageScreen extends StatelessWidget {
                   tabs: [
                     for (var category in state.categories)
                       Tab(
-                        child: Text(
+                        child: AppFont(
                           category.category,
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.size14,
-                            color: Colors.white,
-                          ),
+                          color: Colors.white,
+                          fontSize: Sizes.size14,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                   ],

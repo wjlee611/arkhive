@@ -1,4 +1,5 @@
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class StackScreenListTile extends StatelessWidget {
@@ -44,13 +45,10 @@ class StackScreenListTile extends StatelessWidget {
         icon,
         color: Colors.white,
       ),
-      title: Text(
+      title: AppFont(
         title,
-        style: const TextStyle(
-          color: Colors.white,
-          fontFamily: FontFamily.nanumGothic,
-          fontWeight: FontWeight.w400,
-        ),
+        color: Colors.white,
+        fontSize: Sizes.size14,
       ),
       onTap: () => _onTap(context),
     );

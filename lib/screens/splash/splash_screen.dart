@@ -5,7 +5,7 @@ import 'package:arkhive/cubit/range_cubit.dart';
 import 'package:arkhive/cubit/splash_cubit.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -54,6 +54,11 @@ class SplashScreen extends StatelessWidget {
             if (state.status == CommonLoadState.loaded) {
               context.read<SplashCubit>().changeLoadStatus(SplashState.range);
             }
+            if (state.status == CommonLoadState.error) {
+              context
+                  .read<SplashCubit>()
+                  .changeLoadStatus(SplashState.errorTags);
+            }
           },
         ),
         BlocListener<RangeCubit, RangeState>(
@@ -61,6 +66,11 @@ class SplashScreen extends StatelessWidget {
           listener: (context, state) {
             if (state.status == CommonLoadState.loaded) {
               context.read<SplashCubit>().changeLoadStatus(SplashState.penguin);
+            }
+            if (state.status == CommonLoadState.error) {
+              context
+                  .read<SplashCubit>()
+                  .changeLoadStatus(SplashState.errorRange);
             }
           },
         ),
@@ -72,6 +82,11 @@ class SplashScreen extends StatelessWidget {
                   .read<SplashCubit>()
                   .changeLoadStatus(SplashState.complete);
             }
+            if (state.status == CommonLoadState.error) {
+              context
+                  .read<SplashCubit>()
+                  .changeLoadStatus(SplashState.errorPenguin);
+            }
           },
         ),
       ],
@@ -82,6 +97,20 @@ class SplashScreen extends StatelessWidget {
             builder: (context, state) {
               if (state == SplashState.init) {
                 context.read<SplashCubit>().changeLoadStatus(SplashState.tags);
+              }
+              if (state == SplashState.errorTags ||
+                  state == SplashState.errorRange ||
+                  state == SplashState.errorPenguin) {
+                return Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      AppFont(state.message),
+                      Gaps.v5,
+                      const AppFont('신고 부탁드립니다.')
+                    ],
+                  ),
+                );
               }
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -104,22 +133,16 @@ class SplashScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text(
+                              AppFont(
                                 '${progress(context.read<SplashCubit>().state)}',
-                                style: TextStyle(
-                                  color: Colors.yellow.shade800,
-                                  fontSize: Sizes.size20,
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: FontFamily.nanumGothic,
-                                ),
+                                color: Colors.yellow.shade800,
+                                fontSize: Sizes.size20,
+                                fontWeight: FontWeight.w700,
                               ),
-                              Text(
+                              AppFont(
                                 '/3',
-                                style: TextStyle(
-                                  color: Colors.yellow.shade700,
-                                  fontSize: Sizes.size14,
-                                  fontFamily: FontFamily.nanumGothic,
-                                ),
+                                color: Colors.yellow.shade700,
+                                fontSize: Sizes.size14,
                               ),
                             ],
                           ),
@@ -142,12 +165,9 @@ class SplashScreen extends StatelessWidget {
                       Gaps.h10,
                       SizedBox(
                         width: Sizes.size48 * 2,
-                        child: Text(
+                        child: AppFont(
                           context.read<SplashCubit>().state.message,
-                          style: const TextStyle(
-                            fontSize: Sizes.size10,
-                            fontFamily: FontFamily.nanumGothic,
-                          ),
+                          fontSize: Sizes.size10,
                         ),
                       ),
                     ],

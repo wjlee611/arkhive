@@ -1,4 +1,5 @@
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -9,16 +10,14 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: const AppFont(
           '설정',
-          style: TextStyle(
-            fontFamily: FontFamily.nanumGothic,
-            fontWeight: FontWeight.w700,
-          ),
+          fontSize: Sizes.size16,
+          fontWeight: FontWeight.w700,
         ),
         backgroundColor: Colors.blueGrey.shade700,
       ),
-      body: const Text('설정'),
+      body: const AppFont('설정'),
     );
   }
 }

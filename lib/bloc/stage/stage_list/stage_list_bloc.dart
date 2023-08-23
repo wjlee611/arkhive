@@ -29,6 +29,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           category: '이벤트', type: 'ACTIVITY', activities: [])); // [1]
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
+      return;
     }
 
     // Add activity
@@ -56,6 +57,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       port.close();
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
+      return;
     }
 
     // Add zone
@@ -72,6 +74,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       port.close();
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
+      return;
     }
 
     emit(StageListLoadedState(categories: result));

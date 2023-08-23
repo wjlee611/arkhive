@@ -1,10 +1,10 @@
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_list_card_widget.dart';
 import 'package:arkhive/screens/stage/widgets/stage_open_date_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -163,13 +163,9 @@ class _StageZoneContainerState extends State<StageZoneContainer>
                   Tab(
                     child: Padding(
                       padding: const EdgeInsets.only(top: Sizes.size2),
-                      child: Text(
+                      child: AppFont(
                         widget.act.zones[i].title,
-                        style: const TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          fontSize: Sizes.size12,
-                        ),
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),

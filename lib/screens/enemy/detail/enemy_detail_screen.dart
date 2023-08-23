@@ -5,12 +5,12 @@ import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/enemy_model.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_tag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/level_select_button_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -42,12 +42,10 @@ class EnemyDetailScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          title: const Text(
+          title: const AppFont(
             "적 유닛 파일",
-            style: TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-            ),
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
@@ -83,7 +81,7 @@ class EnemyDetailScreen extends StatelessWidget {
                 }
                 if (state is EnemyDataErrorState) {
                   return Center(
-                    child: Text('${state.message} 데이터를 불러오는데 실패했습니다.'),
+                    child: AppFont('${state.message} 데이터를 불러오는데 실패했습니다.'),
                   );
                 }
                 return const CommonLoadingWidget();

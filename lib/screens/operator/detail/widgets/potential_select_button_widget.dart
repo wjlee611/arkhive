@@ -1,4 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class PotentialSelectButton extends StatefulWidget {
@@ -42,13 +43,7 @@ class _PotentialSelectButtonState extends State<PotentialSelectButton> {
         for (int i = 0; i < widget.length + 1; i++)
           PopupMenuItem(
             value: i,
-            child: Text(
-              '잠재능력 ${i + 1}',
-              style: const TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+            child: AppFont('잠재능력 ${i + 1}'),
           ),
       ],
       child: SizedBox(

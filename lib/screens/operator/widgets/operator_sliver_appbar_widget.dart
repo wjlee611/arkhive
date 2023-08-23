@@ -5,6 +5,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sort_button.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -178,14 +179,11 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
           ),
           child: Row(
             children: [
-              Text(
+              AppFont(
                 text,
-                style: TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontSize: Sizes.size14,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.blueGrey.shade700,
-                ),
+                color: Colors.blueGrey.shade700,
+                fontSize: Sizes.size14,
+                fontWeight: FontWeight.w700,
               ),
               Gaps.h5,
               Icon(
@@ -208,14 +206,11 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(Sizes.size5),
       ),
-      child: Text(
+      child: AppFont(
         text,
-        style: TextStyle(
-          fontFamily: FontFamily.nanumGothic,
-          fontSize: Sizes.size14,
-          fontWeight: FontWeight.w700,
-          color: Colors.blueGrey.shade700,
-        ),
+        color: Colors.blueGrey.shade700,
+        fontSize: Sizes.size14,
+        fontWeight: FontWeight.w700,
       ),
     );
   }

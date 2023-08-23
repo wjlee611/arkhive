@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/enemy_model.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -64,24 +64,16 @@ class EnemyHiddenInfoWidget extends StatelessWidget {
                                   color: Colors.blueGrey.shade700,
                                   isShadow: false,
                                 ),
-                                Text(
+                                AppFont(
                                   ':',
-                                  style: TextStyle(
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size12,
-                                    color: Colors.blueGrey.shade700,
-                                  ),
+                                  color: Colors.blueGrey.shade700,
+                                  fontWeight: FontWeight.w700,
                                 ),
                                 Gaps.h5,
-                                Text(
+                                AppFont(
                                   blackboard[key].toString(),
-                                  style: const TextStyle(
-                                    fontFamily: FontFamily.nanumGothic,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: Sizes.size12,
-                                    color: Colors.blue,
-                                  ),
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.blue,
                                 ),
                               ],
                             ),

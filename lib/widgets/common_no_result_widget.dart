@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class CommonNoResultWidget extends StatelessWidget {
@@ -19,14 +19,10 @@ class CommonNoResultWidget extends StatelessWidget {
             height: Sizes.size60,
           ),
           Gaps.v5,
-          const Text(
+          const AppFont(
             '검색 결과가 없습니다.',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w400,
-              fontFamily: FontFamily.nanumGothic,
-              color: Colors.grey,
-            ),
+            color: Colors.grey,
+            fontWeight: FontWeight.w700,
           ),
         ],
       ),

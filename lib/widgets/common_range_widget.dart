@@ -38,7 +38,6 @@ class CommonRangeWidget extends StatelessWidget {
                         .ranges?[rangeId]
                         ?.grids ??
                     []))
-                  // Text(grid.row?.toString() ?? '0'),
                   Transform.translate(
                     offset: Offset(
                       Sizes.size24 + (grid.row?.toDouble() ?? 0) * Sizes.size5,

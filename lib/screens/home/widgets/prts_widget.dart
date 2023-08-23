@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class PRTSWidget extends StatefulWidget {
@@ -48,14 +48,7 @@ class _PRTSWidgetState extends State<PRTSWidget> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: Sizes.size10),
-                  child: Text(
-                    "어서오세요, 박사님.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: Sizes.size12,
-                      fontFamily: FontFamily.nanumGothic,
-                    ),
-                  ),
+                  child: AppFont("어서오세요, 박사님."),
                 ),
               ),
             ),

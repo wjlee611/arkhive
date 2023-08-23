@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,17 +59,12 @@ class ItemPenguinSortBtn extends StatelessWidget {
               width: Sizes.size1,
             ),
           ),
-          child: Text(
+          child: AppFont(
             sortOption.message,
-            style: TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: state.sortOption == sortOption
-                  ? FontWeight.w700
-                  : FontWeight.w400,
-              color:
-                  state.sortOption == sortOption ? Colors.white : Colors.black,
-              fontSize: Sizes.size12,
-            ),
+            color: state.sortOption == sortOption ? Colors.white : Colors.black,
+            fontWeight: state.sortOption == sortOption
+                ? FontWeight.w700
+                : FontWeight.w400,
           ),
         ),
       ),

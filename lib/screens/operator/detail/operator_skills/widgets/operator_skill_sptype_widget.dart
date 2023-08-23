@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class SkillSpTypeWidget extends StatelessWidget {
@@ -66,14 +66,11 @@ class SkillSpTypeWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(Sizes.size2),
               color: color,
             ),
-            child: Text(
+            child: AppFont(
               text,
-              style: const TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size10,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+              color: Colors.white,
+              fontSize: Sizes.size10,
+              fontWeight: FontWeight.w700,
             ),
           )
         : Container();

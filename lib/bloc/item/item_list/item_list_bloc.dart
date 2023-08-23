@@ -51,12 +51,6 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
   ) async {
     if (state.itemList == null || state.itemList!.isEmpty) return;
 
-    emit(ItemListLoadingState(
-      itemList: state.itemList,
-      searchQuery: state.searchQuery,
-      selectedFilterOption: event.filter,
-    ));
-
     List<ItemListModel> result = [];
 
     for (var item in state.itemList!) {
@@ -99,12 +93,6 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       );
       return;
     }
-
-    emit(ItemListLoadingState(
-      itemList: state.itemList,
-      searchQuery: event.searchQuery,
-      selectedFilterOption: state.selectedFilterOption,
-    ));
 
     List<ItemListModel> result = [];
 

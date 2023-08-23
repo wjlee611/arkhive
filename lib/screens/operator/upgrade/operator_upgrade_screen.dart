@@ -3,10 +3,10 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/upgrade/widgets/operator_upgrade_costs_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -50,12 +50,10 @@ class OperatorUpgradeScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          title: const Text(
+          title: const AppFont(
             "육성 재료",
-            style: TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-            ),
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
         ),
@@ -66,13 +64,9 @@ class OperatorUpgradeScreen extends StatelessWidget {
             }
             if (state is ItemListErrorState) {
               return Center(
-                child: Text(
+                child: AppFont(
                   state.message,
-                  style: const TextStyle(
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: FontFamily.nanumGothic,
-                  ),
+                  fontSize: Sizes.size16,
                 ),
               );
             }

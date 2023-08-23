@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class InfoTag extends StatelessWidget {
@@ -49,13 +49,10 @@ class InfoTag extends StatelessWidget {
               height: Sizes.size24,
               width: Sizes.size72,
               child: Center(
-                child: Text(
+                child: AppFont(
                   title,
-                  style: TextStyle(
-                    color: Colors.blueGrey.shade800,
-                    fontSize: Sizes.size10,
-                    fontFamily: FontFamily.nanumGothic,
-                  ),
+                  color: Colors.blueGrey.shade800,
+                  fontSize: Sizes.size10,
                 ),
               ),
             ),
@@ -67,14 +64,11 @@ class InfoTag extends StatelessWidget {
                 value: value,
               ),
               child: Center(
-                child: Text(
+                child: AppFont(
                   value,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: Sizes.size14,
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  color: Colors.white,
+                  fontSize: Sizes.size14,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),

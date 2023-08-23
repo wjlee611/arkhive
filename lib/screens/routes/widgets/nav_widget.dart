@@ -1,6 +1,6 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
+import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/screens_model.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/information/info_screen.dart';
@@ -9,8 +9,9 @@ import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_new_screen_listtile_widget.dart';
 import 'package:arkhive/screens/routes/widgets/nav_stack_screen_listtile_widget.dart';
-import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_darkmode_switch.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -83,24 +84,21 @@ class _NavDrawerState extends State<NavDrawer> {
                 ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: Sizes.size64),
-                  child: Text(
+                  child: AppFont(
                     "Menu",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
-                      fontSize: Sizes.size20,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black,
-                          blurRadius: Sizes.size28,
-                        ),
-                        Shadow(
-                          color: Colors.black,
-                          blurRadius: Sizes.size28,
-                        ),
-                      ],
-                    ),
+                    color: Colors.white,
+                    fontSize: Sizes.size20,
+                    fontWeight: FontWeight.w700,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: Sizes.size28,
+                      ),
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: Sizes.size28,
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -155,11 +153,11 @@ class _NavDrawerState extends State<NavDrawer> {
                       ),
                     ),
                   ),
-                  const StackScreenListTile(
-                    icon: Icons.settings,
-                    title: '설정',
-                    newScreen: SettingsScreen(),
-                  ),
+                  // const StackScreenListTile(
+                  //   icon: Icons.settings,
+                  //   title: '설정',
+                  //   newScreen: SettingsScreen(),
+                  // ),
                   const StackScreenListTile(
                     icon: Icons.info_outline_rounded,
                     title: '정보 / 후원',
@@ -168,22 +166,27 @@ class _NavDrawerState extends State<NavDrawer> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: Sizes.size20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    // "Arkhive ${GlobalData.appVersion}",
-                    "app version",
-                    style: TextStyle(
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppFont(
+                      "다크 모드 활성화",
                       color: Colors.white,
-                      fontFamily: FontFamily.nanumGothic,
-                      fontSize: Sizes.size10,
+                      fontWeight: FontWeight.w700,
                     ),
-                  ),
-                ],
-              ),
+                    Gaps.h20,
+                    CommonDarkmodeSwitch(),
+                  ],
+                ),
+                AppFont(
+                  "app version",
+                  color: Colors.white,
+                  fontSize: Sizes.size10,
+                ),
+              ],
             ),
           ],
         ),

@@ -2,8 +2,8 @@ import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/diagonal_clipper.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -83,25 +83,22 @@ class EnemyHeader extends StatelessWidget {
                         child: Container(),
                       ),
                     ),
-                    Text(
+                    AppFont(
                       state is EnemyDataLoadedState
                           ? state.enemy.enemyIndex!
                           : '/**/',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: Sizes.size16,
-                        fontFamily: FontFamily.nanumGothic,
-                        fontWeight: FontWeight.w700,
-                        shadows: [
-                          const Shadow(
-                            blurRadius: Sizes.size16,
-                          ),
-                          Shadow(
-                            blurRadius: Sizes.size10,
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                        ],
-                      ),
+                      color: Colors.white,
+                      fontSize: Sizes.size16,
+                      fontWeight: FontWeight.w700,
+                      shadows: [
+                        const Shadow(
+                          blurRadius: Sizes.size16,
+                        ),
+                        Shadow(
+                          blurRadius: Sizes.size10,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      ],
                     ),
                   ],
                 ),

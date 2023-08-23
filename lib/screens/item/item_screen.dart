@@ -2,9 +2,9 @@ import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/item/widgets/item_sliver_appbar_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -24,38 +24,22 @@ class ItemScreen extends StatelessWidget {
             const ItemSliverAppBar(),
             SliverFillRemaining(
               child: BlocBuilder<ItemListBloc, ItemListState>(
-                buildWhen: (previous, current) {
-                  if (previous is ItemListLoadedState &&
-                      current is ItemListLoadedState) {
-                    return previous.filteredItemList !=
-                        current.filteredItemList;
-                  }
-                  if (current is ItemListLoadedState) {
-                    return true;
-                  }
-                  return false;
-                },
                 builder: (context, state) {
                   if (state is ItemListInitState) {
                     context.read<ItemListBloc>().add(const ItemListInitEvent());
                   }
                   if (state is ItemListErrorState) {
                     return Center(
-                      child: Text(
+                      child: AppFont(
                         state.message,
-                        style: const TextStyle(
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: FontFamily.nanumGothic,
-                        ),
+                        fontSize: Sizes.size16,
                       ),
                     );
                   }
-                  if (state is! ItemListLoadedState &&
-                      state.itemList?.isEmpty == true) {
+                  if (state is! ItemListLoadedState) {
                     return const CommonLoadingWidget();
                   }
-                  if ((state as ItemListLoadedState).filteredItemList.isEmpty) {
+                  if (state.filteredItemList.isEmpty) {
                     return const CommonNoResultWidget();
                   }
                   return CustomScrollView(

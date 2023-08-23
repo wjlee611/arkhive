@@ -2,6 +2,7 @@ import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,42 +37,30 @@ class SortButton extends StatelessWidget {
         itemBuilder: (context) => [
           const PopupMenuItem(
             value: SortOptions.starUp,
-            child: Text(
+            child: AppFont(
               '레어도 오름차순',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: SortOptions.starDown,
-            child: Text(
+            child: AppFont(
               '레어도 내림차순',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: SortOptions.nameUp,
-            child: Text(
+            child: AppFont(
               '이름 오름차순',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: SortOptions.nameDown,
-            child: Text(
+            child: AppFont(
               '이름 내림차순',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
         ],

@@ -5,7 +5,6 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/models/skill_model.dart';
@@ -18,6 +17,7 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dar
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +48,10 @@ class OperatorDetailScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          title: const Text(
+          title: const AppFont(
             "이력서",
-            style: TextStyle(
-              fontFamily: FontFamily.nanumGothic,
-              fontWeight: FontWeight.w700,
-            ),
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
           actions: [
@@ -108,7 +106,7 @@ class OperatorDetailScreen extends StatelessWidget {
               }
               if (state is OperatorDataErrorState) {
                 return Center(
-                  child: Text('${state.message} 데이터를 불러오는데 실패했습니다.'),
+                  child: AppFont('${state.message} 데이터를 불러오는데 실패했습니다.'),
                 );
               }
               return Container();

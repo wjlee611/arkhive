@@ -2,11 +2,11 @@ import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
 import 'package:flutter/material.dart';
@@ -36,17 +36,6 @@ class OperatorScreen extends StatelessWidget {
             const OperatorSliverAppBar(),
             SliverFillRemaining(
               child: BlocBuilder<OperatorListBloc, OperatorListState>(
-                buildWhen: (previous, current) {
-                  if (previous is OperatorListLoadedState &&
-                      current is OperatorListLoadedState) {
-                    return previous.filteredOperatorList !=
-                        current.filteredOperatorList;
-                  }
-                  if (current is OperatorListLoadedState) {
-                    return true;
-                  }
-                  return false;
-                },
                 builder: (context, state) {
                   if (state is OperatorListInitState) {
                     context
@@ -55,23 +44,16 @@ class OperatorScreen extends StatelessWidget {
                   }
                   if (state is OperatorListErrorState) {
                     return Center(
-                      child: Text(
+                      child: AppFont(
                         state.message,
-                        style: const TextStyle(
-                          fontSize: Sizes.size16,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: FontFamily.nanumGothic,
-                        ),
+                        fontSize: Sizes.size16,
                       ),
                     );
                   }
-                  if (state is! OperatorListLoadedState &&
-                      state.operatorList?.isEmpty == true) {
+                  if (state is! OperatorListLoadedState) {
                     return const CommonLoadingWidget();
                   }
-                  if ((state as OperatorListLoadedState)
-                      .filteredOperatorList
-                      .isEmpty) {
+                  if (state.filteredOperatorList.isEmpty) {
                     return const CommonNoResultWidget();
                   }
                   return CustomScrollView(

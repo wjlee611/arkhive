@@ -2,8 +2,8 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/widgets/operator_statbox_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_range_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,13 +37,10 @@ class OperatorStatsContainer extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            AppFont(
               "사정거리",
-              style: TextStyle(
-                fontSize: Sizes.size12,
-                fontFamily: FontFamily.nanumGothic,
-                fontWeight: FontWeight.w700,
-              ),
+              color: Colors.blueGrey.shade800,
+              fontWeight: FontWeight.w700,
             ),
             Gaps.h10,
             CommonRangeWidget(rangeId: state.rangeId),
@@ -117,97 +114,22 @@ class OperatorStatsContainer extends StatelessWidget {
           ],
         ),
         Gaps.v10,
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            AppFont(
               '*정예화 단계, 레벨, 신뢰도, 잠재능력 증가량\n  상기 데이터가 반영된 스탯입니다.',
-              style: TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size10,
-                color: Colors.grey,
-              ),
+              color: Colors.grey.shade700,
+              fontSize: Sizes.size10,
             ),
             Gaps.v3,
-            Text(
+            AppFont(
               '*공격 속도는 연산이 적용된 결과로 표시됩니다.',
-              style: TextStyle(
-                fontFamily: FontFamily.nanumGothic,
-                fontSize: Sizes.size10,
-                color: Colors.grey,
-              ),
+              color: Colors.grey.shade700,
+              fontSize: Sizes.size10,
             ),
           ],
         ),
-        // Gaps.v10,
-        // Row(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   mainAxisSize: MainAxisSize.min,
-        //   children: [
-        //     if (widget.favor != 0)
-        //       Column(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           const CommonSubTitleWidget(text: '신뢰도 증가량'),
-        //           Gaps.v3,
-        //           if (_favHp != 0)
-        //             Text(
-        //               '체력: ${_favHp.round()}',
-        //               style: const TextStyle(
-        //                 fontFamily: FontFamily.nanumGothic,
-        //                 fontSize: Sizes.size12,
-        //                 color: Colors.black87,
-        //               ),
-        //             ),
-        //           if (_favAtk != 0)
-        //             Text(
-        //               '공격: ${_favAtk.round()}',
-        //               style: const TextStyle(
-        //                 fontFamily: FontFamily.nanumGothic,
-        //                 fontSize: Sizes.size12,
-        //                 color: Colors.black87,
-        //               ),
-        //             ),
-        //           if (_favDef != 0)
-        //             Text(
-        //               '방어: ${_favDef.round()}',
-        //               style: const TextStyle(
-        //                 fontFamily: FontFamily.nanumGothic,
-        //                 fontSize: Sizes.size12,
-        //                 color: Colors.black87,
-        //               ),
-        //             ),
-        //           if (_favRes != 0)
-        //             Text(
-        //               '마법 저항: ${_favRes.round()}',
-        //               style: const TextStyle(
-        //                 fontFamily: FontFamily.nanumGothic,
-        //                 fontSize: Sizes.size12,
-        //                 color: Colors.black87,
-        //               ),
-        //             ),
-        //         ],
-        //       ),
-        //     Gaps.h10,
-        //     if (widget.pot != 0)
-        //       Column(
-        //         crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           const CommonSubTitleWidget(text: '잠재능력 증가량'),
-        //           Gaps.v3,
-        //           for (int i = 0; i < widget.pot; i++)
-        //             Text(
-        //               widget.potRanks[i].description!,
-        //               style: const TextStyle(
-        //                 fontFamily: FontFamily.nanumGothic,
-        //                 fontSize: Sizes.size12,
-        //                 color: Colors.black87,
-        //               ),
-        //             ),
-        //         ],
-        //       ),
-        //   ],
-        // ),
         Gaps.v32,
       ],
     );

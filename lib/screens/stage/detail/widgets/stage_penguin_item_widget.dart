@@ -1,8 +1,8 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -77,14 +77,10 @@ class StagePenguinItemWidget extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.yellow.shade700,
                       ),
-                      child: const Text(
+                      child: const AppFont(
                         '첫 드랍',
-                        style: TextStyle(
-                          fontFamily: FontFamily.nanumGothic,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                          fontSize: Sizes.size12,
-                        ),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
@@ -95,13 +91,9 @@ class StagePenguinItemWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              AppFont(
                 penguin.name ?? 'N/A',
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size12,
-                ),
+                fontWeight: FontWeight.w700,
               ),
               if (!penguin.isFirstDrop)
                 Column(
@@ -119,24 +111,16 @@ class StagePenguinItemWidget extends StatelessWidget {
                             color: Colors.yellow.shade700,
                             borderRadius: BorderRadius.circular(Sizes.size3),
                           ),
-                          child: const Text(
+                          child: const AppFont(
                             '이성 효율',
-                            style: TextStyle(
-                              fontFamily: FontFamily.nanumGothic,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              fontSize: Sizes.size12,
-                            ),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        Text(
+                        AppFont(
                           _textFormatter(
                             value: penguin.sanityx1000,
                             type: TextType.sanity,
-                          ),
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size12,
                           ),
                         ),
                         Gaps.h10,
@@ -150,24 +134,16 @@ class StagePenguinItemWidget extends StatelessWidget {
                             color: Colors.yellow.shade700,
                             borderRadius: BorderRadius.circular(Sizes.size3),
                           ),
-                          child: const Text(
+                          child: const AppFont(
                             '드랍률',
-                            style: TextStyle(
-                              fontFamily: FontFamily.nanumGothic,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                              fontSize: Sizes.size12,
-                            ),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        Text(
+                        AppFont(
                           _textFormatter(
                             value: penguin.ratex1000,
                             type: TextType.rate,
-                          ),
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size12,
                           ),
                         ),
                       ],

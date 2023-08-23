@@ -1,6 +1,7 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -50,22 +51,16 @@ class PenguinServerSelector extends StatelessWidget {
         itemBuilder: (context) => [
           const PopupMenuItem(
             value: PenguinServer.cn,
-            child: Text(
+            child: AppFont(
               'CN',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
           const PopupMenuItem(
             value: PenguinServer.us,
-            child: Text(
+            child: AppFont(
               'US',
-              style: TextStyle(
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w400,
-              ),
+              fontSize: Sizes.size14,
             ),
           ),
         ],

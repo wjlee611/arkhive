@@ -1,8 +1,8 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class StageListCardWidget extends StatelessWidget {
@@ -44,28 +44,19 @@ class StageListCardWidget extends StatelessWidget {
                     : Colors.black.withOpacity(0.6),
                 borderRadius: BorderRadius.circular(Sizes.size3),
               ),
-              child: Text(
+              child: AppFont(
                 stage.code,
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size12,
-                  color: Colors.white,
-                ),
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Gaps.h5,
             Flexible(
-              child: Text(
+              child: AppFont(
                 stage.name,
+                fontWeight: FontWeight.w700,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size12,
-                  color: Colors.black87,
-                ),
               ),
             ),
           ],

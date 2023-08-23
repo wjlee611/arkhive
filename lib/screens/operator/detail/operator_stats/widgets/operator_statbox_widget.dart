@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class OperatorStatBoxWidget extends StatelessWidget {
@@ -39,36 +39,26 @@ class OperatorStatBoxWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.blueGrey.shade600,
               ),
-              child: Text(
+              child: AppFont(
                 title,
-                style: const TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: Sizes.size10,
-                  color: Colors.white,
-                ),
+                color: Colors.white,
+                fontSize: Sizes.size10,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
+                AppFont(
                   stat,
-                  style: const TextStyle(
-                    fontFamily: FontFamily.nanumGothic,
-                    fontWeight: FontWeight.w700,
-                    fontSize: Sizes.size12,
-                  ),
+                  fontWeight: FontWeight.w700,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: Sizes.size1),
-                  child: Text(
+                  child: AppFont(
                     unit,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.nanumGothic,
-                      fontWeight: FontWeight.w700,
-                      fontSize: Sizes.size9,
-                    ),
+                    fontSize: Sizes.size8,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ],

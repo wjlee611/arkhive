@@ -1,7 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/home/widgets/favorites_widget.dart';
-import 'package:arkhive/screens/home/widgets/manual_widget.dart';
 import 'package:arkhive/screens/home/widgets/prts_widget.dart';
 import 'package:arkhive/screens/home/widgets/url_widget.dart';
 import 'package:flutter/material.dart';
@@ -77,8 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const FavoritesWidget(),
-              Gaps.v20,
-              const ManualWidget(),
             ],
           ),
         ),

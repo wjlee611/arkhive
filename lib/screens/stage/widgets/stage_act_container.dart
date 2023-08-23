@@ -2,9 +2,9 @@ import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_event.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/stage_list_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_zone_container.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,16 +71,11 @@ class _StageActContainerState extends State<StageActContainer> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
-                            child: Text(
+                            child: AppFont(
                               widget.act.title,
+                              fontWeight: FontWeight.w700,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: FontFamily.nanumGothic,
-                                fontWeight: FontWeight.w700,
-                                fontSize: Sizes.size12,
-                                color: Colors.black87,
-                              ),
                             ),
                           ),
                           AnimatedRotation(

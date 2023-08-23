@@ -1,8 +1,8 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
 import 'package:arkhive/models/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_sptype_widget.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -94,13 +94,9 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),
-                        child: Text(
+                        child: AppFont(
                           i < 7 ? 'R${i + 1}' : 'R7M${i - 6}',
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.size12,
-                          ),
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
@@ -143,14 +139,11 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                           size: Sizes.size10,
                         ),
                         Gaps.h3,
-                        Text(
+                        AppFont(
                           '${skill.duration!.toInt()}초',
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size10,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
+                          color: Colors.white,
+                          fontSize: Sizes.size10,
+                          fontWeight: FontWeight.w700,
                         ),
                       ],
                     ),
@@ -184,25 +177,19 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                             borderRadius: BorderRadius.circular(Sizes.size2),
                             color: Colors.blue,
                           ),
-                          child: const Text(
+                          child: const AppFont(
                             'SP',
-                            style: TextStyle(
-                              fontFamily: FontFamily.nanumGothic,
-                              fontSize: Sizes.size10,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
+                            color: Colors.white,
+                            fontSize: Sizes.size10,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         Gaps.h5,
-                        Text(
+                        AppFont(
                           skill.spData.initSp!.toInt().toString(),
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size10,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.blue,
-                          ),
+                          color: Colors.blue,
+                          fontSize: Sizes.size10,
+                          fontWeight: FontWeight.w700,
                         ),
                         Container(
                           width: Sizes.size14,
@@ -220,14 +207,11 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                             ),
                           ),
                         ),
-                        Text(
+                        AppFont(
                           skill.spData.spCost!.toInt().toString(),
-                          style: const TextStyle(
-                            fontFamily: FontFamily.nanumGothic,
-                            fontSize: Sizes.size10,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.blue,
-                          ),
+                          color: Colors.blue,
+                          fontSize: Sizes.size10,
+                          fontWeight: FontWeight.w700,
                         ),
                         Gaps.h4,
                       ],

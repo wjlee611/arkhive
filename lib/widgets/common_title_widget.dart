@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class CommonTitleWidget extends StatelessWidget {
@@ -48,31 +48,28 @@ class CommonTitleWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Gaps.v5,
-              Text(
+              AppFont(
                 text,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: FontFamily.nanumGothic,
-                  fontSize: Sizes.size16,
-                  fontWeight: FontWeight.w700,
-                  shadows: [
-                    const Shadow(
-                      blurRadius: Sizes.size20,
-                    ),
-                    Shadow(
-                      blurRadius: Sizes.size14,
-                      color: color,
-                    ),
-                    Shadow(
-                      blurRadius: Sizes.size10,
-                      color: color,
-                    ),
-                    Shadow(
-                      blurRadius: Sizes.size10,
-                      color: color,
-                    ),
-                  ],
-                ),
+                color: Colors.white,
+                fontSize: Sizes.size16,
+                fontWeight: FontWeight.w700,
+                shadows: [
+                  const Shadow(
+                    blurRadius: Sizes.size20,
+                  ),
+                  Shadow(
+                    blurRadius: Sizes.size14,
+                    color: color,
+                  ),
+                  Shadow(
+                    blurRadius: Sizes.size10,
+                    color: color,
+                  ),
+                  Shadow(
+                    blurRadius: Sizes.size10,
+                    color: color,
+                  ),
+                ],
               ),
             ],
           ),
@@ -122,14 +119,11 @@ class CommonSubTitleWidget extends StatelessWidget {
                 ),
               ),
               Gaps.h5,
-              Text(
+              AppFont(
                 text,
-                style: TextStyle(
-                  fontFamily: FontFamily.nanumGothic,
-                  fontWeight: FontWeight.w700,
-                  fontSize: size,
-                  color: Colors.black,
-                ),
+                fontSize: size,
+                fontWeight: FontWeight.w700,
+                color: Colors.black87,
               ),
               Gaps.h5,
             ],
