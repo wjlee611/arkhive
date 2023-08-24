@@ -2,6 +2,7 @@ import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/screens/routes/routes_screen.dart';
 import 'package:arkhive/screens/splash/splash_screen.dart';
+import 'package:arkhive/screens/tutorial/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +27,10 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
         GoRoute(
           path: '/',
           builder: (context, state) => const SplashScreen(),
+        ),
+        GoRoute(
+          path: '/tutorial',
+          builder: (context, state) => TutorialScreen(isFirst: true),
         ),
         GoRoute(
           path: '/route',

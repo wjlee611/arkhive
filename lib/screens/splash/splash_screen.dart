@@ -2,6 +2,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/cubit/range_cubit.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/cubit/splash_cubit.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
@@ -44,7 +45,11 @@ class SplashScreen extends StatelessWidget {
               context.read<PenguinCubit>().loadPenguin();
             }
             if (state == SplashState.complete) {
-              context.replace('/route');
+              if (context.read<SettingCubit>().state.settings.isFirst ?? true) {
+                context.replace('/tutorial');
+              } else {
+                context.replace('/route');
+              }
             }
           },
         ),

@@ -9,10 +9,14 @@ class AssetImageWidget extends StatelessWidget {
     required this.path,
     this.width,
     this.height,
+    this.fit,
+    this.alignment = Alignment.center,
   });
 
   final String path;
   final double? width, height;
+  final BoxFit? fit;
+  final Alignment alignment;
 
   /// 개발용
   Future<Image> _futureImage() async {
@@ -45,6 +49,8 @@ class AssetImageWidget extends StatelessWidget {
             'assets/images/prts.png',
             width: width,
             height: height,
+            fit: fit,
+            alignment: alignment,
           );
         },
       );
@@ -55,6 +61,8 @@ class AssetImageWidget extends StatelessWidget {
       path,
       width: width,
       height: height,
+      fit: fit,
+      alignment: alignment,
     );
   }
 }

@@ -17,15 +17,6 @@ void main() async {
     storageDirectory: await getApplicationDocumentsDirectory(),
   );
 
-  // initialize firebase service
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  // await FirebaseAppCheck.instance.activate(
-  //   webRecaptchaSiteKey: 'recaptcha-v3-site-key',
-  //   androidProvider: AndroidProvider.debug,
-  // );
-
   runApp(const Arkhive());
 }
 

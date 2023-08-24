@@ -50,6 +50,7 @@ dependencies:
   path_provider: ^2.0.15
   json_annotation: ^4.8.1
   flutter_native_splash: ^2.3.2
+  introduction_screen: ^3.1.11
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
     - assets/images/operator/
     - assets/images/enemy/
     - assets/images/item/
+    - assets/images/tutorials/
     - assets/data/
     - assets/data/ko_KR/gamedata/excel/
     - assets/data/ko_KR/gamedata/levels/enemydata/

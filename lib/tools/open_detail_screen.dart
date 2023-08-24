@@ -5,6 +5,7 @@ import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/screens/operator/upgrade/operator_upgrade_screen.dart';
 import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
+import 'package:arkhive/screens/tutorial/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 
 class OpenDetailScreen {
@@ -104,6 +105,15 @@ class OpenDetailScreen {
         iconId: iconId,
         name: name,
       )),
+    );
+  }
+
+  static void onTutorialTab({
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(TutorialScreen()),
     );
   }
 }

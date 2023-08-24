@@ -1,26 +1,19 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
-class PRTSWidget extends StatefulWidget {
+class PRTSWidget extends StatelessWidget {
   const PRTSWidget({super.key});
 
-  @override
-  State<PRTSWidget> createState() => _PRTSWidgetState();
-}
-
-class _PRTSWidgetState extends State<PRTSWidget> {
-  @override
-  void initState() {
-    super.initState();
-
-    // Version check once
-    // context.read<VersionCheckBloc>().add(const VersionCheckEvent());
+  void _onTap(BuildContext context) {
+    OpenDetailScreen.onTutorialTab(context: context);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () => _onTap(context),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Sizes.size10),
@@ -48,7 +41,7 @@ class _PRTSWidgetState extends State<PRTSWidget> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: Sizes.size10),
-                  child: AppFont("어서오세요, 박사님."),
+                  child: AppFont("어서오세요, 박사님.\n가이드를 보시려면 여길 터치해 주십시오."),
                 ),
               ),
             ),

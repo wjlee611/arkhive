@@ -24,6 +24,16 @@ class SettingCubit extends HydratedCubit<SettingState> {
       ),
     );
   }
+
+  void firstRun() {
+    emit(
+      state.copyWith(
+        settings: state.settings.copyWith(
+          isFirst: false,
+        ),
+      ),
+    );
+  }
 }
 
 class SettingState extends Equatable {
@@ -40,7 +50,11 @@ class SettingState extends Equatable {
         settings: settings ?? this.settings,
       );
 
-  const SettingState.init() : settings = const SettingModel(isDarkTheme: false);
+  const SettingState.init()
+      : settings = const SettingModel(
+          isDarkTheme: false,
+          isFirst: true,
+        );
 
   @override
   List<Object?> get props => [settings];
