@@ -21,10 +21,10 @@ class OperatorScreen extends StatelessWidget {
       create: (context) => OperatorListBloc(),
       child: Scaffold(
         bottomNavigationBar: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.grey,
+                color: Theme.of(context).shadowColor,
                 blurRadius: Sizes.size3,
               ),
             ],

@@ -28,6 +28,8 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           category: '메인', type: 'MAINLINE', activities: [])); // [0]
       result.add(CategoryListModel(
           category: '이벤트', type: 'ACTIVITY', activities: [])); // [1]
+      result.add(CategoryListModel(
+          category: '물자 비축', type: 'WEEKLY', activities: [])); // [1]
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
       return;
@@ -288,6 +290,25 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
             title: zoneTitle,
             zoneId: zoneModel.zoneId!,
             type: zoneModel.type!,
+          ),
+        );
+      }
+
+      // 물자 비축
+      if (zoneModel.type == 'WEEKLY') {
+        // 물자 비축의 경우 별도의 activity가 없기 때문에 여기서 추가
+        result[2].addActivity(
+          ActivityListModel(
+            title: zoneTitle,
+            actId: zoneModel.zoneId!,
+            zones: [
+              ZoneListModel(
+                title: AppData.nullStr,
+                zoneId: zoneModel.zoneId!,
+                type: zoneModel.type!,
+              ),
+            ],
+            timeStamps: [],
           ),
         );
       }

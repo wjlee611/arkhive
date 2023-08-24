@@ -47,7 +47,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       List<PenguinStageModel> result = [];
       for (var item
           in _stage.stageDropInfo?.rewords ?? [] as List<StageItemModel>) {
-        if (item.dropType == 2 || item.dropType == 3 || item.dropType == 4) {
+        if (item.dropType == 3 || item.dropType == 4) {
           continue;
         }
 
@@ -57,7 +57,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
         }
 
         bool isIcon = false;
-        if (['MATERIAL', 'DIAMOND', 'CARD_EXP']
+        if (['MATERIAL', 'DIAMOND', 'CARD_EXP', 'GOLD']
             .contains(items[item.id]?.itemType)) {
           isIcon = true;
         }
