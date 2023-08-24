@@ -49,6 +49,7 @@ dependencies:
   hydrated_bloc: ^9.1.2
   path_provider: ^2.0.15
   json_annotation: ^4.8.1
+  flutter_native_splash: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -104,3 +105,12 @@ flutter:
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: "#fec12c"
+  image: assets/images/app/playstore.png
+  android_12:
+    color: "#fec12c"
+    image: assets/images/app/playstore.png
+  android: true # Generate splash screen for Android
+  ios: true # Generate splash screen for iOS
