@@ -17,7 +17,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final bool _isEditMode = false;
+  bool _isEditMode = false;
+
+  void _onChanged(bool value) {
+    setState(() {
+      _isEditMode = value;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,18 +91,33 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const FavoriteSliverAppBar(),
+          FavoriteSliverAppBar(onChanged: _onChanged),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
             sliver: BlocBuilder<FavoriteCubit, FavoriteState>(
               builder: (context, state) {
                 if (state.favs.isEmpty) {
-                  return const SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.all(Sizes.size10),
-                      child: AppFont(
-                        "즐겨찾기에 동록된 항목이 없습니다.",
-                        fontSize: Sizes.size12,
+                  return SliverToBoxAdapter(
+                    child: Container(
+                      padding:
+                          const EdgeInsets.symmetric(vertical: Sizes.size10),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 3,
+                            color: Theme.of(context).shadowColor,
+                          )
+                        ],
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(Sizes.size10),
+                        ),
+                      ),
+                      child: const Center(
+                        child: AppFont(
+                          "즐겨찾기에 동록된 항목이 없습니다.",
+                          fontSize: Sizes.size12,
+                        ),
                       ),
                     ),
                   );

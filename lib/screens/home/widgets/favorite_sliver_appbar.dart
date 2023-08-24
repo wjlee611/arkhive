@@ -3,12 +3,30 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteSliverAppBar extends StatelessWidget {
-  const FavoriteSliverAppBar({super.key});
+class FavoriteSliverAppBar extends StatefulWidget {
+  final Function(bool) onChanged;
+
+  const FavoriteSliverAppBar({
+    super.key,
+    required this.onChanged,
+  });
+
+  @override
+  State<FavoriteSliverAppBar> createState() => _FavoriteSliverAppBarState();
+}
+
+class _FavoriteSliverAppBarState extends State<FavoriteSliverAppBar> {
+  bool _isEditMode = false;
+
+  void _onChanged(bool value) {
+    _isEditMode = value;
+    widget.onChanged(value);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      automaticallyImplyLeading: false,
       pinned: true,
       toolbarHeight: Sizes.size60,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -21,7 +39,7 @@ class FavoriteSliverAppBar extends StatelessWidget {
         ),
         child: Container(
           height: Sizes.size40,
-          padding: const EdgeInsets.all(Sizes.size10),
+          padding: const EdgeInsets.only(left: Sizes.size10),
           decoration: BoxDecoration(
             color: Colors.blueGrey.shade600,
             borderRadius: const BorderRadius.vertical(
@@ -36,19 +54,37 @@ class FavoriteSliverAppBar extends StatelessWidget {
             ],
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Icons.star,
-                color: Colors.yellow.shade700,
-                size: Sizes.size20,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.star,
+                    color: Colors.yellow.shade700,
+                    size: Sizes.size20,
+                  ),
+                  Gaps.h5,
+                  const AppFont(
+                    "즐겨찾기",
+                    color: Colors.white,
+                    fontSize: Sizes.size14,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ],
               ),
-              Gaps.h5,
-              const AppFont(
-                "즐겨찾기",
-                color: Colors.white,
-                fontSize: Sizes.size14,
-                fontWeight: FontWeight.w700,
+              Row(
+                children: [
+                  const AppFont(
+                    '편집',
+                    color: Colors.white,
+                  ),
+                  Switch(
+                    value: _isEditMode,
+                    activeColor: Colors.yellow.shade700,
+                    onChanged: _onChanged,
+                  ),
+                ],
               ),
             ],
           ),

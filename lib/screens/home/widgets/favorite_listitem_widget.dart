@@ -1,12 +1,14 @@
 import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/favorite_cubit.dart';
 import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:arkhive/widgets/common_diffgroup_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavoriteListItemWidget extends StatelessWidget {
   final FavoriteModel fav;
@@ -46,7 +48,13 @@ class FavoriteListItemWidget extends StatelessWidget {
   }
 
   void _onTap(BuildContext context) {
-    if (fav.category == null) return;
+    if (isEditMode) {
+      context.read<FavoriteCubit>().popFavorite(
+            key: fav.key!,
+            category: fav.category!,
+          );
+      return;
+    }
 
     switch (fav.category!) {
       case FavorCategory.enemy:
@@ -154,7 +162,15 @@ class FavoriteListItemWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: Sizes.size10),
-              child: AppFont(fav.category?.message ?? AppData.nullStr),
+              child: isEditMode
+                  ? const Icon(
+                      Icons.delete_forever_rounded,
+                      color: Colors.redAccent,
+                    )
+                  : AppFont(
+                      fav.category?.message ?? AppData.nullStr,
+                      fontSize: Sizes.size10,
+                    ),
             ),
           ],
         ),
