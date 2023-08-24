@@ -122,11 +122,6 @@ class _NavDrawerState extends State<NavDrawer> {
                     screen: Screens.items,
                     newScreen: ItemScreen(),
                   ),
-                  // const NewScreenListTile(
-                  //   id: ScreenModel.gimmick,
-                  //   screen: Screens.gimmick,
-                  //   newScreen: GimmickScreen(),
-                  // ),
                   const NewScreenListTile(
                     id: ScreenModel.stage,
                     screen: Screens.stages,
