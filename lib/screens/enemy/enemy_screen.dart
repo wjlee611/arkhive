@@ -1,6 +1,7 @@
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
+import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/enemy/widgets/enemy_button_widget.dart';
 import 'package:arkhive/screens/enemy/widgets/enemy_sliver_appbar_widget.dart';
@@ -66,6 +67,7 @@ class EnemyScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SliverToBoxAdapter(child: Gaps.v130),
                     ],
                   );
                 },

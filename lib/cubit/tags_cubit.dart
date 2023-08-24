@@ -15,6 +15,7 @@ class TagsCubit extends Cubit<TagsState> {
     emit(state.copyWith(status: CommonLoadState.loading));
 
     try {
+      // richText tags
       String jsonString = await rootBundle
           .loadString('${getGameDataRoot()}excel/gamedata_const.json');
 
@@ -28,9 +29,22 @@ class TagsCubit extends Cubit<TagsState> {
       Map<String, TagTermDescriptionModel> termTags = response[1];
       port.close();
 
+      // subProfDict
+      jsonString = await rootBundle
+          .loadString('${getGameDataRoot()}excel/uniequip_table.json');
+
+      port = ReceivePort();
+      await Isolate.spawn(
+        _deserializeSubProfDict,
+        [port.sendPort, jsonString],
+      );
+      Map<String, String> subProfDict = await port.first;
+      port.close();
+
       emit(state.copyWith(
         richTextTags: richTextTags,
         termTags: termTags,
+        subProfDict: subProfDict,
         status: CommonLoadState.loaded,
       ));
       return;
@@ -63,27 +77,46 @@ class TagsCubit extends Cubit<TagsState> {
 
     Isolate.exit(sendPort, [richTextTags, termTags]);
   }
+
+  static void _deserializeSubProfDict(List<dynamic> args) {
+    SendPort sendPort = args[0];
+    String jsonString = args[1];
+
+    Map<String, String> subProfDict = {};
+
+    Map<String, dynamic> jsonData = jsonDecode(jsonString)['subProfDict'];
+
+    for (var subProf in jsonData.entries) {
+      subProfDict[subProf.key] = subProf.value['subProfessionName'];
+    }
+
+    Isolate.exit(sendPort, subProfDict);
+  }
 }
 
 class TagsState extends Equatable {
   final Map<String, TagRichTextModel>? richTextTags;
   final Map<String, TagTermDescriptionModel>? termTags;
+  final Map<String, String>? subProfDict;
   final CommonLoadState? status;
 
   const TagsState({
     this.richTextTags,
     this.termTags,
+    this.subProfDict,
     this.status,
   });
 
   TagsState copyWith({
     Map<String, TagRichTextModel>? richTextTags,
     Map<String, TagTermDescriptionModel>? termTags,
+    final Map<String, String>? subProfDict,
     CommonLoadState? status,
   }) =>
       TagsState(
         richTextTags: richTextTags ?? this.richTextTags,
         termTags: termTags ?? this.termTags,
+        subProfDict: subProfDict ?? this.subProfDict,
         status: status ?? this.status,
       );
 
@@ -91,6 +124,7 @@ class TagsState extends Equatable {
   List<Object?> get props => [
         richTextTags,
         termTags,
+        subProfDict,
         status,
       ];
 }

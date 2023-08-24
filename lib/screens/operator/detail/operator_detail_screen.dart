@@ -5,6 +5,7 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
@@ -150,7 +151,10 @@ class OperatorDetailScreen extends StatelessWidget {
                   ),
                 if (operator_.subProfessionId != null)
                   OperatorTagWidget(
-                    tag: subProSelector(operator_.subProfessionId!),
+                    tag: context
+                        .read<TagsCubit>()
+                        .state
+                        .subProfDict![operator_.subProfessionId!]!,
                   ),
               ],
             ),
