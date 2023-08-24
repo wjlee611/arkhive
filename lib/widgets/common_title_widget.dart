@@ -15,69 +15,55 @@ class CommonTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(
-        Sizes.size10,
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(
-          Sizes.size10,
+    return Container(
+      width: double.infinity,
+      height: Sizes.size40,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(Sizes.size10),
         ),
-        child: Container(
-          width: double.infinity,
-          height: Sizes.size40,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                color,
-                Theme.of(context).scaffoldBackgroundColor,
-              ],
-              stops: const [
-                0,
-                0.7,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-            border: Border(
-              top: BorderSide(
-                color: color,
-                width: Sizes.size2,
+        gradient: LinearGradient(
+          colors: [
+            color,
+            Theme.of(context).scaffoldBackgroundColor,
+          ],
+          stops: const [
+            0,
+            0.7,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Gaps.v5,
+          AppFont(
+            text,
+            color: Colors.white,
+            fontSize: Sizes.size16,
+            fontWeight: FontWeight.w700,
+            shadows: [
+              const Shadow(
+                blurRadius: Sizes.size20,
               ),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Gaps.v5,
-              AppFont(
-                text,
-                color: Colors.white,
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.w700,
-                shadows: [
-                  const Shadow(
-                    blurRadius: Sizes.size20,
-                  ),
-                  Shadow(
-                    blurRadius: Sizes.size14,
-                    color: color,
-                  ),
-                  Shadow(
-                    blurRadius: Sizes.size10,
-                    color: color,
-                  ),
-                  Shadow(
-                    blurRadius: Sizes.size10,
-                    color: color,
-                  ),
-                ],
+              Shadow(
+                blurRadius: Sizes.size14,
+                color: color,
+              ),
+              Shadow(
+                blurRadius: Sizes.size10,
+                color: color,
+              ),
+              Shadow(
+                blurRadius: Sizes.size10,
+                color: color,
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
@@ -119,9 +105,7 @@ class CommonSubTitleWidget extends StatelessWidget {
               Container(
                 width: Sizes.size3,
                 height: Sizes.size20,
-                decoration: BoxDecoration(
-                  color: color,
-                ),
+                color: color,
               ),
               Gaps.h5,
               AppFont(
