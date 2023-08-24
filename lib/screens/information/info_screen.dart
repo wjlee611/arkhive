@@ -18,7 +18,10 @@ class InfoScreen extends StatefulWidget {
 class _InfoScreenState extends State<InfoScreen> {
   void _tabDonate() async {
     final Uri url = Uri.parse('https://www.buymeacoffee.com/wjlee611m');
-    await launchUrl(url);
+
+    if (await canLaunchUrl(url)) {
+      launchUrl(url, mode: LaunchMode.externalApplication);
+    }
   }
 
   @override
