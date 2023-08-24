@@ -60,3 +60,5 @@ app.*.map.json
 /assets/data/ko_KR/
 /assets/data/penguin_matrix.json
 /assets/images/
+/assets/data/penguin_matrix_cn.json
+/assets/data/penguin_matrix_us.json
