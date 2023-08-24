@@ -6,6 +6,8 @@ import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:url_launcher/url_launcher.dart';
+
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
 
@@ -14,8 +16,9 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  void _tabDonate() {
-    // TODO: donate function
+  void _tabDonate() async {
+    final Uri url = Uri.parse('https://www.buymeacoffee.com/wjlee611m');
+    await launchUrl(url);
   }
 
   @override
