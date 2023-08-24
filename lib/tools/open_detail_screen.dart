@@ -76,7 +76,8 @@ class OpenDetailScreen {
   static void onStageTab({
     required String stageKey,
     required String stageCode,
-    required String diff,
+    required String diffGroup,
+    required String difficulty,
     required dynamic context,
   }) {
     Navigator.push(
@@ -84,7 +85,8 @@ class OpenDetailScreen {
       _createRoute(StageDetailScreen(
         stageKey: stageKey,
         stageCode: stageCode,
-        diff: diff,
+        diffGroup: diffGroup,
+        difficulty: difficulty,
       )),
     );
   }

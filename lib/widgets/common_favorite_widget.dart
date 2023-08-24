@@ -7,7 +7,7 @@ class CommonFavoriteWidget extends StatelessWidget {
   final String keyId;
   final String? iconId;
   final String? name;
-  final String? diff; // only stage
+  final String? diffGroup, difficulty; // only stage
   final FavorCategory category;
 
   const CommonFavoriteWidget({
@@ -15,7 +15,8 @@ class CommonFavoriteWidget extends StatelessWidget {
     required this.keyId,
     this.iconId,
     this.name,
-    this.diff,
+    this.diffGroup,
+    this.difficulty,
     required this.category,
   });
 
@@ -47,7 +48,8 @@ class CommonFavoriteWidget extends StatelessWidget {
                     key: keyId,
                     iconId: iconId,
                     name: name,
-                    diff: diff,
+                    diffGroup: diffGroup,
+                    difficulty: difficulty,
                     category: category,
                   );
             }

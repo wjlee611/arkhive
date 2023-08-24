@@ -16,13 +16,15 @@ class StageListCardWidget extends StatelessWidget {
   void _onTap({
     required String stageKey,
     required String stageCode,
-    required String diff,
+    required String diffGroup,
+    required String difficulty,
     required BuildContext context,
   }) {
     OpenDetailScreen.onStageTab(
       stageKey: stageKey,
       stageCode: stageCode,
-      diff: diff,
+      diffGroup: diffGroup,
+      difficulty: difficulty,
       context: context,
     );
   }
@@ -33,7 +35,8 @@ class StageListCardWidget extends StatelessWidget {
       onTap: () => _onTap(
         stageKey: stage.stageId,
         stageCode: stage.code,
-        diff: stage.diffGroup,
+        diffGroup: stage.diffGroup,
+        difficulty: stage.difficulty,
         context: context,
       ),
       borderRadius: BorderRadius.circular(Sizes.size10),
@@ -49,8 +52,8 @@ class StageListCardWidget extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: stage.difficulty == 'FOUR_STAR'
-                    ? Colors.red
-                    : Colors.black.withOpacity(0.6),
+                    ? Colors.redAccent
+                    : Colors.blueGrey.shade800,
                 borderRadius: BorderRadius.circular(Sizes.size3),
               ),
               child: AppFont(

@@ -90,7 +90,8 @@ class FavoriteListItemWidget extends StatelessWidget {
           OpenDetailScreen.onStageTab(
             stageKey: fav.key!,
             stageCode: fav.name!,
-            diff: fav.diff!,
+            diffGroup: fav.diffGroup!,
+            difficulty: fav.difficulty!,
             context: context,
           );
           break;
@@ -138,7 +139,9 @@ class FavoriteListItemWidget extends StatelessWidget {
                             horizontal: Sizes.size5,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.yellow.shade800,
+                            color: fav.difficulty == 'FOUR_STAR'
+                                ? Colors.redAccent
+                                : Colors.blueGrey.shade800,
                             borderRadius: BorderRadius.circular(Sizes.size2),
                           ),
                           child: AppFont(
@@ -156,7 +159,7 @@ class FavoriteListItemWidget extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                  CommonDiffGroupWidget(diffGroup: fav.diff),
+                  CommonDiffGroupWidget(diffGroup: fav.diffGroup),
                 ],
               ),
             ),

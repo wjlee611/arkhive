@@ -23,6 +23,12 @@ class CommonDiffGroupWidget extends StatelessWidget {
         horizontal: Sizes.size5,
       ),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 1,
+            color: Colors.black.withOpacity(0.3),
+          )
+        ],
         borderRadius: BorderRadius.circular(Sizes.size3),
         color: diffGroup == 'TOUGH'
             ? Colors.redAccent

@@ -59,6 +59,7 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
           penguin: penguin,
           stageCode: stages[penguin.stageId]?.code,
           diffGroup: stages[penguin.stageId]?.diffGroup,
+          difficulty: stages[penguin.stageId]?.difficulty,
           stageType: stages[penguin.stageId]?.stageType,
           sanityx1000: sanityEffx1000,
           ratex1000: (rate * 1000).ceil(),

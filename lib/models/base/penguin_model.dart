@@ -65,7 +65,7 @@ class PenguinStageModel extends Equatable {
 // 아이템별 스테이지 모델
 class PenguinItemModel extends Equatable {
   final PenguinModel penguin;
-  final String? stageCode, diffGroup, stageType;
+  final String? stageCode, diffGroup, difficulty, stageType;
   final int? sanityx1000;
   final int? ratex1000;
   final int? times;
@@ -74,6 +74,7 @@ class PenguinItemModel extends Equatable {
     required this.penguin,
     this.stageCode,
     this.diffGroup,
+    this.difficulty,
     this.stageType,
     this.sanityx1000,
     this.ratex1000,

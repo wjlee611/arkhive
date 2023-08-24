@@ -47,7 +47,8 @@ class ItemPenguinItemWidget extends StatelessWidget {
     OpenDetailScreen.onStageTab(
       stageKey: penguinData.penguin.stageId!,
       stageCode: penguinData.stageCode ?? penguinData.penguin.stageId!,
-      diff: penguinData.diffGroup ?? AppData.nullStr,
+      diffGroup: penguinData.diffGroup ?? AppData.nullStr,
+      difficulty: penguinData.difficulty ?? AppData.nullStr,
       context: context,
     );
   }

@@ -11,7 +11,8 @@ FavoriteModel _$FavoriteModelFromJson(Map<String, dynamic> json) =>
       key: json['key'] as String?,
       iconId: json['iconId'] as String?,
       name: json['name'] as String?,
-      diff: json['diff'] as String?,
+      diffGroup: json['diffGroup'] as String?,
+      difficulty: json['difficulty'] as String?,
       category: $enumDecodeNullable(_$FavorCategoryEnumMap, json['category']),
     );
 
@@ -20,7 +21,8 @@ Map<String, dynamic> _$FavoriteModelToJson(FavoriteModel instance) =>
       'key': instance.key,
       'iconId': instance.iconId,
       'name': instance.name,
-      'diff': instance.diff,
+      'diffGroup': instance.diffGroup,
+      'difficulty': instance.difficulty,
       'category': _$FavorCategoryEnumMap[instance.category],
     };
 

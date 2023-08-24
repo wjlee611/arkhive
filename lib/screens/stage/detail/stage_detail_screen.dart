@@ -9,6 +9,7 @@ import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_diffgroup_widget.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -22,12 +23,14 @@ class StageDetailScreen extends StatelessWidget {
     super.key,
     required this.stageKey,
     required this.stageCode,
-    required this.diff,
+    required this.diffGroup,
+    required this.difficulty,
   });
 
   final String stageKey;
   final String stageCode;
-  final String diff;
+  final String diffGroup;
+  final String difficulty;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +47,19 @@ class StageDetailScreen extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               elevation: 0,
-              title: AppFont(
-                stageCode,
-                color: Colors.white,
-                fontSize: Sizes.size16,
-                fontWeight: FontWeight.w700,
+              title: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AppFont(
+                    stageCode,
+                    color: difficulty == 'FOUR_STAR'
+                        ? Colors.redAccent
+                        : Colors.white,
+                    fontSize: Sizes.size16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  CommonDiffGroupWidget(diffGroup: diffGroup),
+                ],
               ),
               backgroundColor: Colors.blueGrey.shade700,
               actions: [
@@ -56,7 +67,8 @@ class StageDetailScreen extends StatelessWidget {
                 CommonFavoriteWidget(
                   keyId: stageKey,
                   name: stageCode,
-                  diff: diff,
+                  diffGroup: diffGroup,
+                  difficulty: difficulty,
                   category: FavorCategory.stage,
                 ),
               ],

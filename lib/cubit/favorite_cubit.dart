@@ -22,7 +22,8 @@ class FavoriteCubit extends HydratedCubit<FavoriteState> {
     required String key,
     String? iconId,
     String? name,
-    String? diff,
+    String? diffGroup,
+    String? difficulty,
     required FavorCategory category,
   }) {
     var list = state.favs.toList();
@@ -30,7 +31,8 @@ class FavoriteCubit extends HydratedCubit<FavoriteState> {
       key: key,
       iconId: iconId,
       name: name,
-      diff: diff,
+      diffGroup: diffGroup,
+      difficulty: difficulty,
       category: category,
     ));
 

@@ -19,14 +19,15 @@ class FavoriteModel extends Equatable {
   final String? key;
   final String? iconId;
   final String? name;
-  final String? diff;
+  final String? diffGroup, difficulty; // only stage
   final FavorCategory? category;
 
   const FavoriteModel({
     this.key,
     this.iconId,
     this.name,
-    this.diff,
+    this.diffGroup,
+    this.difficulty,
     this.category,
   });
 
