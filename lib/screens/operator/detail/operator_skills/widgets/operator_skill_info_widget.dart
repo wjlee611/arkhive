@@ -3,6 +3,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_sptype_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
+import 'package:arkhive/widgets/common_range_widget.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -111,116 +112,131 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CommonSubTitleWidget(text: skill.name!),
-            Gaps.v5,
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SkillSpTypeWidget(
-                  isSkillType: false,
-                  type: skill.spData.spType!,
-                ),
-                SkillSpTypeWidget(
-                  isSkillType: true,
-                  type: skill.skillType!.toInt(),
-                ),
-                if (skill.duration != null && skill.duration! > 0)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: Sizes.size1,
-                      horizontal: Sizes.size3,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Sizes.size2),
-                      color: Colors.grey.shade600,
-                    ),
-                    child: Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CommonSubTitleWidget(text: skill.name!),
+                    Gaps.v5,
+                    Row(
                       children: [
-                        Icon(
-                          Icons.timelapse_rounded,
-                          color: Colors.grey.shade300,
-                          size: Sizes.size10,
+                        SkillSpTypeWidget(
+                          isSkillType: false,
+                          type: skill.spData.spType!,
                         ),
-                        Gaps.h3,
-                        AppFont(
-                          '${skill.duration!.toInt()}초',
-                          color: Colors.white,
-                          fontSize: Sizes.size10,
-                          fontWeight: FontWeight.w700,
+                        SkillSpTypeWidget(
+                          isSkillType: true,
+                          type: skill.skillType!.toInt(),
                         ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-            if (skill.spData.spCost != null && skill.spData.spCost! > 0)
-              Column(
-                children: [
-                  Gaps.v3,
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(Sizes.size2),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: Sizes.size1,
-                          color: Theme.of(context).shadowColor,
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: Sizes.size1,
-                            horizontal: Sizes.size3,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Sizes.size2),
-                            color: Colors.blue,
-                          ),
-                          child: const AppFont(
-                            'SP',
-                            color: Colors.white,
-                            fontSize: Sizes.size10,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Gaps.h5,
-                        AppFont(
-                          skill.spData.initSp!.toInt().toString(),
-                          color: Colors.blue,
-                          fontSize: Sizes.size10,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        Container(
-                          width: Sizes.size14,
-                          height: Sizes.size10,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(),
-                          child: Transform.translate(
-                            offset: const Offset(-Sizes.size3, -Sizes.size5),
-                            child: const Center(
-                              child: Icon(
-                                Icons.arrow_right_rounded,
-                                color: Colors.blue,
-                                size: Sizes.size20,
-                              ),
+                        if (skill.duration != null && skill.duration! > 0)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: Sizes.size1,
+                              horizontal: Sizes.size3,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(Sizes.size2),
+                              color: Colors.grey.shade600,
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.timelapse_rounded,
+                                  color: Colors.grey.shade300,
+                                  size: Sizes.size10,
+                                ),
+                                Gaps.h3,
+                                AppFont(
+                                  '${skill.duration!.toInt()}초',
+                                  color: Colors.white,
+                                  fontSize: Sizes.size10,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        AppFont(
-                          skill.spData.spCost!.toInt().toString(),
-                          color: Colors.blue,
-                          fontSize: Sizes.size10,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        Gaps.h4,
                       ],
                     ),
-                  ),
-                ],
-              ),
+                    if (skill.spData.spCost != null && skill.spData.spCost! > 0)
+                      Column(
+                        children: [
+                          Gaps.v3,
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).primaryColor,
+                              borderRadius: BorderRadius.circular(Sizes.size2),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: Sizes.size1,
+                                  color: Theme.of(context).shadowColor,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: Sizes.size1,
+                                    horizontal: Sizes.size3,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(Sizes.size2),
+                                    color: Colors.blue,
+                                  ),
+                                  child: const AppFont(
+                                    'SP',
+                                    color: Colors.white,
+                                    fontSize: Sizes.size10,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Gaps.h5,
+                                AppFont(
+                                  skill.spData.initSp!.toInt().toString(),
+                                  color: Colors.blue,
+                                  fontSize: Sizes.size10,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                Container(
+                                  width: Sizes.size14,
+                                  height: Sizes.size10,
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: const BoxDecoration(),
+                                  child: Transform.translate(
+                                    offset: const Offset(
+                                        -Sizes.size3, -Sizes.size5),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.arrow_right_rounded,
+                                        color: Colors.blue,
+                                        size: Sizes.size20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                AppFont(
+                                  skill.spData.spCost!.toInt().toString(),
+                                  color: Colors.blue,
+                                  fontSize: Sizes.size10,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                Gaps.h4,
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
+                if (skill.rangeId != null)
+                  CommonRangeWidget(rangeId: skill.rangeId),
+              ],
+            ),
             Gaps.v3,
             FormattedTextWidget(
               text: skill.description!,

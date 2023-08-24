@@ -13,13 +13,14 @@ class SkillModel {
 }
 
 class SkillLevelsModel {
-  final String? name, description;
+  final String? name, rangeId, description;
   final int? skillType, durationType;
   final SkillSPModel spData;
   final double? duration;
   final List<BlackboardModel> blackboard;
   SkillLevelsModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
+        rangeId = json['rangeId'],
         description = json['description'],
         skillType = json['skillType'],
         durationType = json['durationType'],
