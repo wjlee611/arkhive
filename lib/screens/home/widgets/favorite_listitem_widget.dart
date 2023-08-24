@@ -11,11 +11,15 @@ import 'package:flutter/material.dart';
 class FavoriteListItemWidget extends StatelessWidget {
   final FavoriteModel fav;
   final int index;
+  final bool isLast;
+  final bool isEditMode;
 
   const FavoriteListItemWidget({
     super.key,
     required this.fav,
     required this.index,
+    this.isLast = false,
+    required this.isEditMode,
   });
 
   String? _imagePath(String? iconId) {
@@ -92,44 +96,61 @@ class FavoriteListItemWidget extends StatelessWidget {
       onTap: () => _onTap(context),
       child: Container(
         height: Sizes.size52,
-        color: index % 2 == 0
-            ? Theme.of(context).scaffoldBackgroundColor
-            : Theme.of(context).scaffoldBackgroundColor.withOpacity(0),
+        decoration: BoxDecoration(
+          color: index % 2 == 0
+              ? Theme.of(context).primaryColor
+              : Theme.of(context).scaffoldBackgroundColor,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 3,
+              color: Theme.of(context).shadowColor,
+            )
+          ],
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(isLast ? Sizes.size10 : 0),
+          ),
+        ),
+        clipBehavior: Clip.hardEdge,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                if (_imagePath(fav.iconId) != null)
-                  AssetImageWidget(
-                    path: _imagePath(fav.iconId)!,
-                    width: Sizes.size52,
-                  ),
-                Gaps.h10,
-                fav.category == FavorCategory.stage
-                    ? Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: Sizes.size1,
-                          horizontal: Sizes.size5,
+            Flexible(
+              child: Row(
+                children: [
+                  if (_imagePath(fav.iconId) != null)
+                    AssetImageWidget(
+                      path: _imagePath(fav.iconId)!,
+                      width: Sizes.size52,
+                    ),
+                  Gaps.h10,
+                  fav.category == FavorCategory.stage
+                      ? Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: Sizes.size1,
+                            horizontal: Sizes.size5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.yellow.shade800,
+                            borderRadius: BorderRadius.circular(Sizes.size2),
+                          ),
+                          child: AppFont(
+                            fav.name ?? fav.key!,
+                            fontSize: Sizes.size14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )
+                      : Flexible(
+                          child: AppFont(
+                            fav.name ?? fav.key!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.yellow.shade800,
-                          borderRadius: BorderRadius.circular(Sizes.size2),
-                        ),
-                        child: AppFont(
-                          fav.name ?? fav.key!,
-                          fontSize: Sizes.size14,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                    : AppFont(
-                        fav.name ?? fav.key!,
-                        fontSize: Sizes.size14,
-                        fontWeight: FontWeight.w700,
-                      ),
-                CommonDiffGroupWidget(diffGroup: fav.diff),
-              ],
+                  CommonDiffGroupWidget(diffGroup: fav.diff),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(right: Sizes.size10),
