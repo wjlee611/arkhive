@@ -4,7 +4,7 @@ import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_state.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
@@ -116,9 +116,9 @@ class EnemyDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Gaps.v130,
-            if (enemyData.values.length > 1)
-              LevelSelectButton(levelLength: enemyData.values.length),
-            enemyData.values.length > 1 ? Gaps.v16 : Container(),
+            if ((enemyData.values?.length ?? 0) > 1)
+              LevelSelectButton(levelLength: (enemyData.values?.length ?? 0)),
+            (enemyData.values?.length ?? 0) > 1 ? Gaps.v16 : Container(),
             CommonTitleWidget(
               text: enemy.name!,
               color: Colors.yellow.shade800,
@@ -138,7 +138,7 @@ class EnemyDetailScreen extends StatelessWidget {
             Gaps.v32,
             EnemyCombatInfo(
               enemy: enemy,
-              enemyDataValues: enemyData.values,
+              enemyDataValues: enemyData.values ?? [],
             ),
             if (enemy.ability != null)
               Column(
@@ -151,8 +151,8 @@ class EnemyDetailScreen extends StatelessWidget {
                   Gaps.v20,
                 ],
               ),
-            if (enemyData.values[0].talentBlackboard.isNotEmpty)
-              EnemyHiddenInfoWidget(enemyDataValues: enemyData.values),
+            if (enemyData.values?[0].talentBlackboard?.isNotEmpty == true)
+              EnemyHiddenInfoWidget(enemyDataValues: enemyData.values ?? []),
             Gaps.v80,
           ],
         ),

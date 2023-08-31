@@ -50,7 +50,6 @@ class TagsCubit extends Cubit<TagsState> {
       ));
       return;
     } catch (e) {
-      print(e);
       emit(state.copyWith(status: CommonLoadState.error));
       return;
     }

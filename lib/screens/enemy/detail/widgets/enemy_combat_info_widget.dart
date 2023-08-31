@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/checkbox_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/infotag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/stat_container_widget.dart';

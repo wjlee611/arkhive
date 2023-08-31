@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_event.dart';
 import 'package:arkhive/bloc/enemy/enemy_list/enemy_list_state.dart';
-import 'package:arkhive/models/enemy_list_model.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/enemy/enemy_list_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +33,7 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
         _deserializeEnemyListModel,
-        [port.sendPort, jsonString],
+        [port.sendPort, jsonString, dbRegion],
       );
       var result = await port.first;
       port.close();
@@ -114,11 +114,17 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
   static void _deserializeEnemyListModel(List<dynamic> args) {
     SendPort sendPort = args[0];
     String jsonString = args[1];
+    Region dbRegion = args[2];
     List<EnemyListModel> result = [];
 
-    Map<String, dynamic> jsonData = jsonDecode(jsonString);
+    Map<String, dynamic>? jsonData;
+    if (dbRegion == Region.cn) {
+      jsonData = jsonDecode(jsonString)['enemyData'];
+    } else {
+      jsonData = jsonDecode(jsonString);
+    }
 
-    for (var enemyData in jsonData.entries) {
+    for (var enemyData in jsonData!.entries) {
       var enemy = EnemyModel.fromJson(enemyData.value);
       if (enemy.hideInHandbook ?? true) continue;
 
@@ -127,7 +133,7 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
         enemyIndex: enemy.enemyIndex!,
         name: enemy.name!,
         level: enemy.enemyLevel!,
-        tags: enemy.tags,
+        tags: enemy.tags ?? [],
       ));
     }
 

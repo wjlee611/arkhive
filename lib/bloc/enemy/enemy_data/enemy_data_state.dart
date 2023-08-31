@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
 
 abstract class EnemyDataState extends Equatable {
   const EnemyDataState();

@@ -1,6 +1,11 @@
 import 'package:arkhive/models/common_models.dart';
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class EnemyModel {
+part 'enemy_model.g.dart';
+
+@JsonSerializable(createToJson: false)
+class EnemyModel extends Equatable {
   final String? enemyId,
       enemyIndex,
       name,
@@ -12,30 +17,48 @@ class EnemyModel {
       defence,
       resistance,
       ability;
-  final List<String> tags;
+  final List<String>? tags;
   final bool? hideInHandbook;
 
-  EnemyModel.fromJson(Map<String, dynamic> json)
-      : enemyId = json['enemyId'],
-        enemyIndex = json['enemyIndex'],
-        name = json['name'],
-        enemyRace = json['enemyRace'],
-        enemyLevel = json['enemyLevel'],
-        attackType = json['attackType'],
-        endure = json['endure'],
-        attack = json['attack'],
-        defence = json['defence'],
-        resistance = json['resistance'],
-        ability = json['ability'],
-        tags = [
-          if (json['tags'] != null)
-            for (var data in json['tags']) data.toString()
-        ],
-        hideInHandbook = json['hideInHandbook'];
+  const EnemyModel({
+    this.enemyId,
+    this.enemyIndex,
+    this.name,
+    this.enemyRace,
+    this.enemyLevel,
+    this.attackType,
+    this.endure,
+    this.attack,
+    this.defence,
+    this.resistance,
+    this.ability,
+    this.tags,
+    this.hideInHandbook,
+  });
+
+  factory EnemyModel.fromJson(Map<String, dynamic> json) =>
+      _$EnemyModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        enemyId,
+        enemyIndex,
+        name,
+        enemyRace,
+        enemyLevel,
+        attackType,
+        endure,
+        attack,
+        defence,
+        resistance,
+        ability,
+        tags,
+        hideInHandbook,
+      ];
 }
 
 class EnemyDataModel {
-  final List<EnemyValueDataModel> values;
+  final List<EnemyValueDataModel>? values;
 
   EnemyDataModel.fromJson(Map<String, dynamic> json)
       : values = [
@@ -46,7 +69,7 @@ class EnemyDataModel {
 
 class EnemyValueDataModel {
   final EnemyAttrDataModel? attributes;
-  final List<BlackboardModel> talentBlackboard;
+  final List<BlackboardModel>? talentBlackboard;
 
   EnemyValueDataModel.fromJson(Map<String, dynamic> json)
       : attributes =
