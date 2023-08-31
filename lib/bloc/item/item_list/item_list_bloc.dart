@@ -9,7 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
-  ItemListBloc() : super(ItemListInitState()) {
+  final Region dbRegion;
+
+  ItemListBloc({
+    required this.dbRegion,
+  }) : super(ItemListInitState()) {
     on<ItemListInitEvent>(_itemListInitEventHandler);
     on<ItemListSortEvent>(_itemListSortEventHandler);
     on<ItemListSearchEvent>(_itemListSearchEventHandler);
@@ -25,7 +29,7 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       List<ItemListModel> result = [];
 
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/item_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/item_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

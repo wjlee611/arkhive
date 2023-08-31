@@ -129,7 +129,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                         ),
                         SkillSpTypeWidget(
                           isSkillType: true,
-                          type: skill.skillType!.toInt(),
+                          type: skill.skillType!,
                         ),
                         if (skill.duration != null && skill.duration! > 0)
                           Container(

@@ -10,7 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
-  OperatorDataBloc() : super(const OperatorDataInitState()) {
+  final Region dbRegion;
+
+  OperatorDataBloc({
+    required this.dbRegion,
+  }) : super(const OperatorDataInitState()) {
     on<OperatorDataLoadEvent>(_operatorDataLoadHandler);
   }
 
@@ -27,7 +31,7 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     try {
       // Loading Operator Data
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/character_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/character_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -39,8 +43,8 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
 
       if (operator_ == null) {
         // Loading Promotion operator Data
-        String jsonString = await rootBundle
-            .loadString('${getGameDataRoot()}excel/char_patch_table.json');
+        String jsonString = await rootBundle.loadString(
+            '${getGameDataRoot(dbRegion)}excel/char_patch_table.json');
 
         ReceivePort port = ReceivePort();
         await Isolate.spawn(
@@ -58,7 +62,7 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     // Loading Skill Data
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/skill_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/skill_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -76,7 +80,7 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
     try {
       // Get module table
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/uniequip_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/uniequip_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -87,8 +91,8 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
       port.close();
 
       // Get module data
-      jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/battle_equip_table.json');
+      jsonString = await rootBundle.loadString(
+          '${getGameDataRoot(dbRegion)}excel/battle_equip_table.json');
 
       port = ReceivePort();
       await Isolate.spawn(

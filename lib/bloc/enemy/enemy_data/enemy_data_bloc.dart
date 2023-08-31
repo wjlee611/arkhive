@@ -8,7 +8,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
-  EnemyDataBloc() : super(const EnemyDataInitState()) {
+  final Region dbRegion;
+
+  EnemyDataBloc({
+    required this.dbRegion,
+  }) : super(const EnemyDataInitState()) {
     on<EnemyDataLoadEvent>(_enemyDataLoadEventHandler);
   }
 
@@ -23,8 +27,8 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
 
     // Loading Enemy
     try {
-      String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/enemy_handbook_table.json');
+      String jsonString = await rootBundle.loadString(
+          '${getGameDataRoot(dbRegion)}excel/enemy_handbook_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -41,7 +45,7 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
     // Loading Enemy Data
     try {
       String jsonString = await rootBundle.loadString(
-          '${getGameDataRoot()}levels/enemydata/enemy_database.json');
+          '${getGameDataRoot(dbRegion)}levels/enemydata/enemy_database.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

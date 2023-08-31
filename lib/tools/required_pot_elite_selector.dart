@@ -1,4 +1,5 @@
 import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/tools/cn_update_converter.dart';
 
 T? reqPotEliteSelector<T extends PotentialRank>({
   required List<T> candidates,
@@ -9,7 +10,7 @@ T? reqPotEliteSelector<T extends PotentialRank>({
   T? result;
 
   for (var candidate in candidates) {
-    if (candidate.unlockCondition.phase! <= currElite &&
+    if (phaseConverter(candidate.unlockCondition.phase!) <= currElite &&
         candidate.unlockCondition.level! <= currLevel) {
       if (candidate.requiredPotentialRank! <= currPot) {
         result = candidate;

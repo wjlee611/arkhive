@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_event.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
 import 'package:arkhive/models/stage_list_model.dart';
@@ -10,7 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
-  StageListItemBloc() : super(StageListItemInitState()) {
+  final Region dbRegion;
+
+  StageListItemBloc({
+    required this.dbRegion,
+  }) : super(StageListItemInitState()) {
     on<StageListItemOnTabEvent>(_stageListItemOnTabEventHandler);
   }
 
@@ -30,7 +33,7 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
 
       try {
         String jsonString = await rootBundle
-            .loadString('${getGameDataRoot()}excel/stage_table.json');
+            .loadString('${getGameDataRoot(dbRegion)}excel/stage_table.json');
 
         ReceivePort port = ReceivePort();
         await Isolate.spawn(

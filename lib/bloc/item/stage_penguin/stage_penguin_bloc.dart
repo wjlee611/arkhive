@@ -11,11 +11,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
-  List<PenguinModel> _penguins = [];
-  final StageModel _stage;
+  final Region dbRegion;
+  final StageModel stage;
 
-  StagePenguinBloc(this._stage)
-      : super(const StagePenguinState(status: CommonLoadState.init)) {
+  List<PenguinModel> _penguins = [];
+
+  StagePenguinBloc({
+    required this.dbRegion,
+    required this.stage,
+  }) : super(const StagePenguinState(status: CommonLoadState.init)) {
     on<StagePenguinInitEvent>(_stagePenguinInitEventHandler);
   }
 
@@ -32,7 +36,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
     try {
       // loading item data
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/item_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/item_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -46,7 +50,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       // from ingame data - 첫 드랍(2: 일반, 3: 특수, 4: 추가 제외) 정보
       List<PenguinStageModel> result = [];
       for (var item
-          in _stage.stageDropInfo?.rewords ?? [] as List<StageItemModel>) {
+          in stage.stageDropInfo?.rewords ?? [] as List<StageItemModel>) {
         if (item.dropType == 3 || item.dropType == 4) {
           continue;
         }
@@ -69,12 +73,12 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
           sanityx1000: 0,
         ));
 
-        if (item.type == 'ACTIVITY_ITEM' && _stage.difficulty == 'NORMAL') {
+        if (item.type == 'ACTIVITY_ITEM' && stage.difficulty == 'NORMAL') {
           result.add(PenguinStageModel(
             iconId: isIcon ? items[item.id]?.iconId : null,
             name: name,
             sanityx1000: 1000,
-            ratex1000: (_stage.apCost ?? 0) * 1000,
+            ratex1000: (stage.apCost ?? 0) * 1000,
           ));
         }
       }
@@ -82,7 +86,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       // from penguin data - 확률 드랍 정보
       int? times;
       for (var penguin in _penguins) {
-        var sanity = _stage.apCost ?? 99;
+        var sanity = stage.apCost ?? 99;
         var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
         var sanityEffx1000 = (sanity / rate * 1000).ceil();
 

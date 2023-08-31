@@ -6,6 +6,7 @@ import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/cubit/splash_cubit.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
 import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,10 +37,14 @@ class SplashScreen extends StatelessWidget {
         BlocListener<SplashCubit, SplashState>(
           listener: (context, state) {
             if (state == SplashState.tags) {
-              context.read<TagsCubit>().loadTags();
+              context.read<TagsCubit>().loadTags(
+                    dbRegion: getRegion(context),
+                  );
             }
             if (state == SplashState.range) {
-              context.read<RangeCubit>().loadRange();
+              context.read<RangeCubit>().loadRange(
+                    dbRegion: getRegion(context),
+                  );
             }
             if (state == SplashState.penguin) {
               context.read<PenguinCubit>().loadPenguin();

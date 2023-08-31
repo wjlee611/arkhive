@@ -11,6 +11,7 @@ import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_tag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/level_select_button_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -38,7 +39,9 @@ class EnemyDetailScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => EnemyDataBloc(),
+          create: (context) => EnemyDataBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
         BlocProvider(
           create: (context) => EnemyLevelBloc(level: initLevel),

@@ -5,6 +5,7 @@ import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/stage/widgets/stage_act_container.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,14 @@ class StageScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => StageListBloc(),
+          create: (context) => StageListBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
         BlocProvider(
-          create: (context) => StageListItemBloc(),
+          create: (context) => StageListItemBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
       ],
       child: BlocBuilder<StageListBloc, StageListState>(

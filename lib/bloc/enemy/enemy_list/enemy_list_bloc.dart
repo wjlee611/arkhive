@@ -9,7 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
-  EnemyListBloc() : super(EnemyListInitState()) {
+  final Region dbRegion;
+
+  EnemyListBloc({
+    required this.dbRegion,
+  }) : super(EnemyListInitState()) {
     on<EnemyListInitEvent>(_enemyListInitEventHandler);
     on<EnemyListSelectFiltersEvent>(_enemyListSelectFiltersEventHandler);
     on<EnemyListSearchEvent>(_enemyListSearchEventHandler);
@@ -23,8 +27,8 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
     emit(const EnemyListLoadingState());
 
     try {
-      String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/enemy_handbook_table.json');
+      String jsonString = await rootBundle.loadString(
+          '${getGameDataRoot(dbRegion)}excel/enemy_handbook_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

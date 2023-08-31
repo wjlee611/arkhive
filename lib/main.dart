@@ -23,7 +23,6 @@ void main() async {
 class Arkhive extends StatelessWidget {
   const Arkhive({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

@@ -14,8 +14,9 @@ class OperatorModel {
       subProfessionId,
       nationId,
       groupId,
-      teamId;
-  final int? maxPotentialLevel, rarity;
+      teamId,
+      rarity;
+  final int? maxPotentialLevel;
   final bool? isNotObtainable;
   final List<String> tagList;
   final List<OperatorTalentsCandidatesModel> traitCandidate;
@@ -36,7 +37,7 @@ class OperatorModel {
         profession = json['profession'],
         subProfessionId = json['subProfessionId'],
         maxPotentialLevel = json['maxPotentialLevel'],
-        rarity = json['rarity'],
+        rarity = json['rarity'].toString(),
         isNotObtainable = json['isNotObtainable'],
         tagList = [
           if (json['tagList'] != null)
@@ -186,13 +187,13 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
 
 // OPERATOR POTENTIAL RANKS MODEL
 class OperatorPotentialRanksModel {
-  final int? type;
   final String? description;
+  // final int? type;
   final List<OperatorPotentialAttrModifireModel> attributeModifiers;
 
   OperatorPotentialRanksModel.fromJson(Map<String, dynamic> json)
-      : type = json['type'],
-        description = json['description'],
+      : description = json['description'],
+        // type = json['type'],
         attributeModifiers = [
           if (json['buff'] != null)
             for (var data in json['buff']['attributes']['attributeModifiers'])
@@ -234,9 +235,10 @@ class OperatorStatsDataModel {
 }
 
 class OperatorUnlockCondModel {
-  final int? phase, level;
+  final int? level;
+  final String? phase;
 
   OperatorUnlockCondModel.fromJson(Map<String, dynamic> json)
-      : phase = json['phase'],
+      : phase = json['phase'].toString(),
         level = json['level'];
 }

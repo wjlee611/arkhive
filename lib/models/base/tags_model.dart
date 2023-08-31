@@ -39,6 +39,8 @@ class TagTermDescriptionModel extends Equatable {
   factory TagTermDescriptionModel.fromJson(Map<String, dynamic> json) =>
       _$TagTermDescriptionModelFromJson(json);
 
+  Map<String, dynamic> toJson() => _$TagTermDescriptionModelToJson(this);
+
   @override
   List<Object?> get props => [
         termId,

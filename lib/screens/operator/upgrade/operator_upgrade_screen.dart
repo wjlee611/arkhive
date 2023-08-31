@@ -6,6 +6,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/module_model.dart';
 import 'package:arkhive/models/operator_model.dart';
 import 'package:arkhive/screens/operator/upgrade/widgets/operator_upgrade_costs_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -45,7 +46,9 @@ class OperatorUpgradeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ItemListBloc(),
+      create: (context) => ItemListBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,

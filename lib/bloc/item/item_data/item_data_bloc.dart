@@ -8,7 +8,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemDataBloc extends Bloc<ItemDataEvent, ItemDataState> {
-  ItemDataBloc() : super(const ItemDataInitState()) {
+  final Region dbRegion;
+
+  ItemDataBloc({
+    required this.dbRegion,
+  }) : super(const ItemDataInitState()) {
     on<ItemDataLoadEvent>(_itemDataLoadEventHandler);
   }
 
@@ -20,7 +24,7 @@ class ItemDataBloc extends Bloc<ItemDataEvent, ItemDataState> {
 
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/item_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/item_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

@@ -1,4 +1,5 @@
 import 'package:arkhive/models/base/setting_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -15,6 +16,7 @@ class SettingCubit extends HydratedCubit<SettingState> {
         'setting': state.settings.toJson(),
       };
 
+  // SettingModel.isDarkTheme
   void toggleTheme() {
     emit(
       state.copyWith(
@@ -25,11 +27,23 @@ class SettingCubit extends HydratedCubit<SettingState> {
     );
   }
 
+  // SettingModel.isFirst
   void firstRun() {
     emit(
       state.copyWith(
         settings: state.settings.copyWith(
           isFirst: false,
+        ),
+      ),
+    );
+  }
+
+  // SettingModel.dbRegion
+  void changeRegion({required Region dbRegion}) {
+    emit(
+      state.copyWith(
+        settings: state.settings.copyWith(
+          dbRegion: dbRegion,
         ),
       ),
     );
@@ -54,6 +68,7 @@ class SettingState extends Equatable {
       : settings = const SettingModel(
           isDarkTheme: false,
           isFirst: true,
+          dbRegion: Region.kr,
         );
 
   @override

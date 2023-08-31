@@ -9,7 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
-  OperatorListBloc() : super(OperatorListInitState()) {
+  final Region dbRegion;
+
+  OperatorListBloc({
+    required this.dbRegion,
+  }) : super(OperatorListInitState()) {
     on<OperatorListInitEvent>(_operatorListInitEventHandler);
     on<OperatorListSelectProfessionsEvent>(
         _operatorListSelectProfessionsEventHandler);
@@ -29,7 +33,7 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
 
       // For normal
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/character_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/character_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -40,8 +44,8 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
       port.close();
 
       // For promotion
-      jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/char_patch_table.json');
+      jsonString = await rootBundle.loadString(
+          '${getGameDataRoot(dbRegion)}excel/char_patch_table.json');
 
       port = ReceivePort();
       await Isolate.spawn(

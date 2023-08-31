@@ -8,6 +8,7 @@ import 'package:arkhive/models/favorite_model.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_diffgroup_widget.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
@@ -35,7 +36,9 @@ class StageDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => StageDataBloc(),
+      create: (context) => StageDataBloc(
+        dbRegion: getRegion(context),
+      ),
       child: BlocBuilder<StageDataBloc, StageDataState>(
         builder: (context, state) {
           if (state is StageDataInitState) {
@@ -91,7 +94,8 @@ class StageDetailScreen extends StatelessWidget {
   Widget _buildBody(StageModel stage) {
     return BlocProvider(
       create: (context) => StagePenguinBloc(
-        stage,
+        dbRegion: getRegion(context),
+        stage: stage,
       ),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

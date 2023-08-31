@@ -10,7 +10,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StageListBloc extends Bloc<StageListEvent, StageListState> {
-  StageListBloc() : super(const StageListInitState()) {
+  final Region dbRegion;
+
+  StageListBloc({
+    required this.dbRegion,
+  }) : super(const StageListInitState()) {
     on<StageListInitEvent>(_stageListInitEventHandler);
   }
 
@@ -39,7 +43,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     Map<String, String> zoneToAct = {};
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/activity_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/activity_table.json');
 
       // Get activity
       ReceivePort port = ReceivePort();
@@ -66,7 +70,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     // Add zone
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/zone_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/zone_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

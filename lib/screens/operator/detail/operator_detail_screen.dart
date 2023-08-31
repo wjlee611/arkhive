@@ -18,6 +18,7 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_w
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/profession_selector.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
@@ -43,7 +44,9 @@ class OperatorDetailScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => OperatorDataBloc(),
+          create: (context) => OperatorDataBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
         BlocProvider(
           create: (context) => OperatorStatusBloc(),

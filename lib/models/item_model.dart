@@ -4,7 +4,7 @@ class ItemModel {
   final String name;
   final String description;
   final String? obtainApproach;
-  final int rarity;
+  final String rarity;
   final String usage;
   final String classifyType, itemType;
 
@@ -15,7 +15,7 @@ class ItemModel {
         name = json['name'],
         description = json['description'] ?? '',
         obtainApproach = json['obtainApproach'],
-        rarity = json['rarity'],
+        rarity = json['rarity'].toString(),
         usage = json['usage'] ?? '',
         classifyType = json['classifyType'],
         itemType = json['itemType'];

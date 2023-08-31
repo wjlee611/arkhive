@@ -5,6 +5,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/operator/widgets/operator_bottom_appbar_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_listitem_widget.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sliver_appbar_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -18,7 +19,9 @@ class OperatorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OperatorListBloc(),
+      create: (context) => OperatorListBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         bottomNavigationBar: Container(
           decoration: BoxDecoration(

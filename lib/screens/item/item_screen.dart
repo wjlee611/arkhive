@@ -3,6 +3,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/item/widgets/item_sliver_appbar_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
@@ -17,7 +18,9 @@ class ItemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ItemListBloc(),
+      create: (context) => ItemListBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
