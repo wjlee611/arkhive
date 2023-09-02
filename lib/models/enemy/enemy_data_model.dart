@@ -1,5 +1,6 @@
 import 'package:arkhive/models/common/attribute_m_model.dart';
 import 'package:arkhive/models/common/attribute_model.dart';
+import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -62,12 +63,12 @@ class EnemyDataDatasModel extends Equatable {
   final AttributeMModel<String>? motion;
   final AttributeMModel<List<String>>? enemyTags;
   final AttributeMModel<int>? lifePointReduce;
-  final AttributeMModel<String>? levelType;
+  final AttributeMModel<int>? levelType; // int -> String
   final AttributeMModel<double>? rangeRadius;
   final AttributeMModel<int>? numOfExtraDrops;
   final AttributeMModel<double>? viewRadius;
   final AttributeMModel<bool>? notCountInTotal;
-  // "talentBlackboard": null,
+  final List<TalentBlackboardModel>? talentBlackboard;
   // "skills": null,
   // "spData": null
 
@@ -85,6 +86,7 @@ class EnemyDataDatasModel extends Equatable {
     this.numOfExtraDrops,
     this.viewRadius,
     this.notCountInTotal,
+    this.talentBlackboard,
   });
 
   factory EnemyDataDatasModel.fromJson(Map<String, dynamic> json) =>
@@ -107,5 +109,6 @@ class EnemyDataDatasModel extends Equatable {
         numOfExtraDrops,
         viewRadius,
         notCountInTotal,
+        talentBlackboard,
       ];
 }

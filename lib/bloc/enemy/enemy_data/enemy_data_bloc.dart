@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_event.dart';
 import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_state.dart';
+import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';

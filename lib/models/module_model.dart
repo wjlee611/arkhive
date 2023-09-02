@@ -1,3 +1,4 @@
+import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common_models.dart';
 import 'package:arkhive/models/operator_model.dart';
 
@@ -54,7 +55,7 @@ class ModuleDataModel {
 class ModuleDataPhaseModel {
   final int? equipLevel;
   final List<ModuleDataPartsModel> parts;
-  final List<BlackboardModel> attributeBlackboard;
+  final List<TalentBlackboardModel> attributeBlackboard;
 
   ModuleDataPhaseModel.fromJson(Map<String, dynamic> json)
       : equipLevel = json['equipLevel'],
@@ -65,7 +66,7 @@ class ModuleDataPhaseModel {
         attributeBlackboard = [
           if (json['attributeBlackboard'] != null)
             for (var data in json['attributeBlackboard'])
-              BlackboardModel.fromJson(data)
+              TalentBlackboardModel.fromJson(data)
         ];
 }
 
@@ -98,7 +99,7 @@ class ModuleTalentDataBundleModel implements PotentialRank {
   final int? requiredPotentialRank;
   @override
   final OperatorUnlockCondModel unlockCondition;
-  final List<BlackboardModel> blackboard;
+  final List<TalentBlackboardModel> blackboard;
 
   ModuleTalentDataBundleModel.fromJson(Map<String, dynamic> json)
       : upgradeDescription = json['upgradeDescription'],
@@ -109,7 +110,8 @@ class ModuleTalentDataBundleModel implements PotentialRank {
         name = json['name'],
         blackboard = [
           if (json['blackboard'] != null)
-            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
+            for (var data in json['blackboard'])
+              TalentBlackboardModel.fromJson(data)
         ];
 }
 
@@ -119,7 +121,7 @@ class ModuleTraitDataBundleModel implements PotentialRank {
   final OperatorUnlockCondModel unlockCondition;
   @override
   final int? requiredPotentialRank;
-  final List<BlackboardModel> blackboard;
+  final List<TalentBlackboardModel> blackboard;
 
   ModuleTraitDataBundleModel.fromJson(Map<String, dynamic> json)
       : additionalDescription = json['additionalDescription'],
@@ -129,6 +131,7 @@ class ModuleTraitDataBundleModel implements PotentialRank {
         requiredPotentialRank = json['requiredPotentialRank'],
         blackboard = [
           if (json['blackboard'] != null)
-            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
+            for (var data in json['blackboard'])
+              TalentBlackboardModel.fromJson(data)
         ];
 }

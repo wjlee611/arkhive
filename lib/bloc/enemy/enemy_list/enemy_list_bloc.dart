@@ -133,7 +133,7 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
         enemyIndex: enemy.enemyIndex!,
         name: enemy.name!,
         level: enemy.enemyLevel!,
-        tags: enemy.tags ?? [],
+        tags: enemy.enemyTags ?? [],
       ));
     }
 

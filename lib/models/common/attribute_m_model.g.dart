@@ -12,7 +12,7 @@ AttributeMModel<T> _$AttributeMModelFromJson<T>(
 ) =>
     AttributeMModel<T>(
       mDefined: json['m_defined'] as bool,
-      mValue: fromJsonT(json['m_value']),
+      mValue: _$nullableGenericFromJson(json['m_value'], fromJsonT),
     );
 
 Map<String, dynamic> _$AttributeMModelToJson<T>(
@@ -21,5 +21,17 @@ Map<String, dynamic> _$AttributeMModelToJson<T>(
 ) =>
     <String, dynamic>{
       'm_defined': instance.mDefined,
-      'm_value': toJsonT(instance.mValue),
+      'm_value': _$nullableGenericToJson(instance.mValue, toJsonT),
     };
+
+T? _$nullableGenericFromJson<T>(
+  Object? input,
+  T Function(Object? json) fromJson,
+) =>
+    input == null ? null : fromJson(input);
+
+Object? _$nullableGenericToJson<T>(
+  T? input,
+  Object? Function(T value) toJson,
+) =>
+    input == null ? null : toJson(input);

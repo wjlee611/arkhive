@@ -8,25 +8,27 @@ class AttributeMModel<T> extends Equatable {
   @JsonKey(name: 'm_defined')
   final bool mDefined;
   @JsonKey(name: 'm_value')
-  final T mValue;
+  final T? mValue;
 
   const AttributeMModel({
     required this.mDefined,
-    required this.mValue,
+    this.mValue,
   });
 
   factory AttributeMModel.fromJson(Map<String, dynamic> json) =>
-      _$AttributeMModelFromJson(json, _fromJsonT);
+      _$AttributeMModelFromJson(json, _fromJsonT<T>);
 
-  Map<String, dynamic> toJson() => _$AttributeMModelToJson(this, _toJsonT);
+  Map<String, dynamic> toJson() => _$AttributeMModelToJson(this, _toJsonT<T>);
 
-  T _fromJsonT<T>(Object? data) {
-    if (T == List<String>) {
+  static E _fromJsonT<E>(Object? data) {
+    if (data == null) return Null as E;
+
+    if (E == List<String>) {
       if (data is List<dynamic>) {
-        return data.map((e) => e as String).toList() as T;
+        return data.map((e) => e as String).toList() as E;
       }
     }
-    return data as T;
+    return data as E;
     // if (T == String) {
     //   return data as T;
     // }
@@ -43,7 +45,7 @@ class AttributeMModel<T> extends Equatable {
     // return -1 as T;
   }
 
-  Object? _toJsonT<T>(T value) {
+  static Object? _toJsonT<E>(E value) {
     return value;
   }
 

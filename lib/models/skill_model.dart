@@ -1,4 +1,4 @@
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:flutter/material.dart';
 
 class SkillModel {
@@ -19,7 +19,7 @@ class SkillLevelsModel {
   // final String? durationType;
   final SkillSPModel spData;
   final double? duration;
-  final List<BlackboardModel> blackboard;
+  final List<TalentBlackboardModel> blackboard;
   SkillLevelsModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         rangeId = json['rangeId'],
@@ -30,7 +30,8 @@ class SkillLevelsModel {
         duration = json['duration'],
         blackboard = [
           if (json['blackboard'] != null)
-            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
+            for (var data in json['blackboard'])
+              TalentBlackboardModel.fromJson(data)
         ];
 }
 

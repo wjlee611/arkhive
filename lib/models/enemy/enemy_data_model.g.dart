@@ -65,7 +65,7 @@ EnemyDataDatasModel _$EnemyDataDatasModelFromJson(Map<String, dynamic> json) =>
               json['lifePointReduce'] as Map<String, dynamic>),
       levelType: json['levelType'] == null
           ? null
-          : AttributeMModel<String>.fromJson(
+          : AttributeMModel<int>.fromJson(
               json['levelType'] as Map<String, dynamic>),
       rangeRadius: json['rangeRadius'] == null
           ? null
@@ -83,6 +83,10 @@ EnemyDataDatasModel _$EnemyDataDatasModelFromJson(Map<String, dynamic> json) =>
           ? null
           : AttributeMModel<bool>.fromJson(
               json['notCountInTotal'] as Map<String, dynamic>),
+      talentBlackboard: (json['talentBlackboard'] as List<dynamic>?)
+          ?.map(
+              (e) => TalentBlackboardModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$EnemyDataDatasModelToJson(
@@ -101,4 +105,6 @@ Map<String, dynamic> _$EnemyDataDatasModelToJson(
       'numOfExtraDrops': instance.numOfExtraDrops?.toJson(),
       'viewRadius': instance.viewRadius?.toJson(),
       'notCountInTotal': instance.notCountInTotal?.toJson(),
+      'talentBlackboard':
+          instance.talentBlackboard?.map((e) => e.toJson()).toList(),
     };

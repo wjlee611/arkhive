@@ -1,3 +1,4 @@
+import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common_models.dart';
 
 /// USING AT
@@ -170,7 +171,7 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
   @override
   final int? requiredPotentialRank;
   final String? name, description, overrideDescripton;
-  final List<BlackboardModel> blackboard;
+  final List<TalentBlackboardModel> blackboard;
 
   OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
       : unlockCondition =
@@ -181,7 +182,8 @@ class OperatorTalentsCandidatesModel implements PotentialRank {
         overrideDescripton = json['overrideDescripton'],
         blackboard = [
           if (json['blackboard'] != null)
-            for (var data in json['blackboard']) BlackboardModel.fromJson(data)
+            for (var data in json['blackboard'])
+              TalentBlackboardModel.fromJson(data)
         ];
 }
 

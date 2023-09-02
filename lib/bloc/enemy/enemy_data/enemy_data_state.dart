@@ -1,3 +1,4 @@
+import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:arkhive/models/enemy/enemy_model.dart';
 
