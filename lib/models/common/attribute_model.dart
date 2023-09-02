@@ -61,6 +61,57 @@ class AttributeModel extends Equatable {
 
   Map<String, dynamic> toJson() => _$AttributeModelToJson(this);
 
+  AttributeModel copyWith({
+    AttributeMModel<int>? maxHp,
+    AttributeMModel<int>? atk,
+    AttributeMModel<int>? def,
+    AttributeMModel<double>? magicResistance,
+    AttributeMModel<int>? cost,
+    AttributeMModel<int>? blockCnt,
+    AttributeMModel<double>? moveSpeed,
+    AttributeMModel<double>? attackSpeed,
+    AttributeMModel<double>? baseAttackTime,
+    AttributeMModel<int>? respawnTime,
+    AttributeMModel<double>? hpRecoveryPerSec,
+    AttributeMModel<double>? spRecoveryPerSec,
+    AttributeMModel<int>? maxDeployCount,
+    AttributeMModel<int>? massLevel,
+    AttributeMModel<int>? baseForceLevel,
+    AttributeMModel<int>? tauntLevel,
+    AttributeMModel<double>? epDamageResistance,
+    AttributeMModel<double>? epResistance,
+    AttributeMModel<bool>? stunImmune,
+    AttributeMModel<bool>? silenceImmune,
+    AttributeMModel<bool>? sleepImmune,
+    AttributeMModel<bool>? frozenImmune,
+    AttributeMModel<bool>? levitateImmune,
+  }) =>
+      AttributeModel(
+        maxHp: maxHp ?? this.maxHp,
+        atk: atk ?? this.atk,
+        def: def ?? this.def,
+        magicResistance: magicResistance ?? this.magicResistance,
+        cost: cost ?? this.cost,
+        blockCnt: blockCnt ?? this.blockCnt,
+        moveSpeed: moveSpeed ?? this.moveSpeed,
+        attackSpeed: attackSpeed ?? this.attackSpeed,
+        baseAttackTime: baseAttackTime ?? this.baseAttackTime,
+        respawnTime: respawnTime ?? this.respawnTime,
+        hpRecoveryPerSec: hpRecoveryPerSec ?? this.hpRecoveryPerSec,
+        spRecoveryPerSec: spRecoveryPerSec ?? this.spRecoveryPerSec,
+        maxDeployCount: maxDeployCount ?? this.maxDeployCount,
+        massLevel: massLevel ?? this.massLevel,
+        baseForceLevel: baseForceLevel ?? this.baseForceLevel,
+        tauntLevel: tauntLevel ?? this.tauntLevel,
+        epDamageResistance: epDamageResistance ?? this.epDamageResistance,
+        epResistance: epResistance ?? this.epResistance,
+        stunImmune: stunImmune ?? this.stunImmune,
+        silenceImmune: silenceImmune ?? this.silenceImmune,
+        sleepImmune: sleepImmune ?? this.sleepImmune,
+        frozenImmune: frozenImmune ?? this.frozenImmune,
+        levitateImmune: levitateImmune ?? this.levitateImmune,
+      );
+
   @override
   List<Object?> get props => [
         maxHp,

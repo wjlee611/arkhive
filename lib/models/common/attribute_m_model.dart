@@ -29,20 +29,6 @@ class AttributeMModel<T> extends Equatable {
       }
     }
     return data as E;
-    // if (T == String) {
-    //   return data as T;
-    // }
-    // if (T == int) {
-    //     return data as T;
-    //   if (data is int) {
-    //   }
-    // }
-    // if (T == double) {
-    //     return data as T;
-    //   if (data is double) {
-    //   }
-    // }
-    // return -1 as T;
   }
 
   static Object? _toJsonT<E>(E value) {
