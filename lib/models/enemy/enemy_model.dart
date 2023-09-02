@@ -1,39 +1,57 @@
-import 'package:arkhive/models/common_models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'enemy_model.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable(
+  explicitToJson: true,
+  createToJson: false,
+)
 class EnemyModel extends Equatable {
-  final String? enemyId,
-      enemyIndex,
-      name,
-      enemyRace,
-      enemyLevel,
-      attackType,
-      endure,
-      attack,
-      defence,
-      resistance,
-      ability;
-  final List<String>? tags;
+  final String? enemyId;
+  final String? enemyIndex;
+  final List<String>? enemyTags;
+  final int? sortId;
+  final String? name;
+  final String? enemyRace; // deprecated in CN
+  final String? enemyLevel;
+  final String? description;
+  final String? attackType;
+  final String? endure; // deprecated in CN
+  final String? attack; // deprecated in CN
+  final String? defence; // deprecated in CN
+  final String? resistance; // deprecated in CN
+  final String? ability;
+  final bool? isInvalidKilled;
+  final Map<String, dynamic>? overrideKillCntInfos; // "camp_r_03": -1
   final bool? hideInHandbook;
+  final List<EnemyAbilityListModel>? abilityList;
+  final List<String>? linkEnemies; // enemy id lists
+  final List<String>? damageType; // MAGIC, PHYSIC lists
+  final bool? invisibleDetail;
 
   const EnemyModel({
     this.enemyId,
     this.enemyIndex,
+    this.enemyTags,
+    this.sortId,
     this.name,
     this.enemyRace,
     this.enemyLevel,
+    this.description,
     this.attackType,
     this.endure,
     this.attack,
     this.defence,
     this.resistance,
     this.ability,
-    this.tags,
+    this.isInvalidKilled,
+    this.overrideKillCntInfos,
     this.hideInHandbook,
+    this.abilityList,
+    this.linkEnemies,
+    this.damageType,
+    this.invisibleDetail,
   });
 
   factory EnemyModel.fromJson(Map<String, dynamic> json) =>
@@ -43,143 +61,46 @@ class EnemyModel extends Equatable {
   List<Object?> get props => [
         enemyId,
         enemyIndex,
+        enemyTags,
+        sortId,
         name,
         enemyRace,
         enemyLevel,
+        description,
         attackType,
         endure,
         attack,
         defence,
         resistance,
         ability,
-        tags,
+        isInvalidKilled,
+        overrideKillCntInfos,
         hideInHandbook,
+        abilityList,
+        linkEnemies,
+        damageType,
+        invisibleDetail,
       ];
 }
 
-class EnemyDataModel {
-  final List<EnemyValueDataModel>? values;
+@JsonSerializable()
+class EnemyAbilityListModel extends Equatable {
+  final String? text;
+  final String? textFormat;
 
-  EnemyDataModel.fromJson(Map<String, dynamic> json)
-      : values = [
-          if (json['Value'] != null)
-            for (var data in json['Value']) EnemyValueDataModel.fromJson(data)
-        ];
-}
-
-class EnemyValueDataModel {
-  final EnemyAttrDataModel? attributes;
-  final List<BlackboardModel>? talentBlackboard;
-
-  EnemyValueDataModel.fromJson(Map<String, dynamic> json)
-      : attributes =
-            EnemyAttrDataModel.fromJson(json['enemyData']?['attributes']),
-        talentBlackboard = [
-          if (json['enemyData']?['talentBlackboard'] != null)
-            for (var data in json['enemyData']['talentBlackboard'])
-              BlackboardModel.fromJson(data)
-        ];
-}
-
-class EnemyAttrDataModel {
-  EnemyAttrValueDataModel<int>? maxHp, atk, def, massLevel;
-  EnemyAttrValueDataModel<double>? magicResistance,
-      moveSpeed,
-      attackSpeed,
-      baseAttackTime;
-  EnemyAttrValueDataModel<bool>? stunImmune,
-      silenceImmune,
-      sleepImmune,
-      frozenImmune,
-      levitateImmune;
-
-  EnemyAttrDataModel({
-    this.maxHp,
-    this.atk,
-    this.def,
-    this.massLevel,
-    this.magicResistance,
-    this.moveSpeed,
-    this.attackSpeed,
-    this.baseAttackTime,
-    this.stunImmune,
-    this.silenceImmune,
-    this.sleepImmune,
-    this.frozenImmune,
-    this.levitateImmune,
+  const EnemyAbilityListModel({
+    this.text,
+    this.textFormat,
   });
 
-  EnemyAttrDataModel.copy(EnemyAttrDataModel obj)
-      : this(
-          maxHp: obj.maxHp,
-          atk: obj.atk,
-          def: obj.def,
-          massLevel: obj.massLevel,
-          magicResistance: obj.magicResistance,
-          moveSpeed: obj.moveSpeed,
-          attackSpeed: obj.attackSpeed,
-          baseAttackTime: obj.baseAttackTime,
-          stunImmune: obj.stunImmune,
-          silenceImmune: obj.silenceImmune,
-          sleepImmune: obj.sleepImmune,
-          frozenImmune: obj.frozenImmune,
-          levitateImmune: obj.levitateImmune,
-        );
+  factory EnemyAbilityListModel.fromJson(Map<String, dynamic> json) =>
+      _$EnemyAbilityListModelFromJson(json);
 
-  EnemyAttrDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = EnemyAttrValueDataModel.fromJson(json['maxHp']),
-        atk = EnemyAttrValueDataModel.fromJson(json['atk']),
-        def = EnemyAttrValueDataModel.fromJson(json['def']),
-        magicResistance =
-            EnemyAttrValueDataModel.fromJson(json['magicResistance']),
-        massLevel = EnemyAttrValueDataModel.fromJson(json['massLevel']),
-        moveSpeed = EnemyAttrValueDataModel.fromJson(json['moveSpeed']),
-        attackSpeed = EnemyAttrValueDataModel.fromJson(json['attackSpeed']),
-        baseAttackTime =
-            EnemyAttrValueDataModel.fromJson(json['baseAttackTime']),
-        stunImmune = EnemyAttrValueDataModel.fromJson(json['stunImmune']),
-        silenceImmune = EnemyAttrValueDataModel.fromJson(json['silenceImmune']),
-        sleepImmune = EnemyAttrValueDataModel.fromJson(json['sleepImmune']),
-        frozenImmune = EnemyAttrValueDataModel.fromJson(json['frozenImmune']),
-        levitateImmune =
-            EnemyAttrValueDataModel.fromJson(json['levitateImmune']);
+  Map<String, dynamic> toJson() => _$EnemyAbilityListModelToJson(this);
 
-  void copyWith({
-    EnemyAttrValueDataModel<int>? maxHp,
-    atk,
-    def,
-    massLevel,
-    EnemyAttrValueDataModel<double>? magicResistance,
-    moveSpeed,
-    attackSpeed,
-    baseAttackTime,
-    EnemyAttrValueDataModel<bool>? stunImmune,
-    silenceImmune,
-    sleepImmune,
-    frozenImmune,
-    levitateImmune,
-  }) {
-    this.maxHp = maxHp ?? this.maxHp;
-    this.atk = atk ?? this.atk;
-    this.def = def ?? this.def;
-    this.massLevel = massLevel ?? this.massLevel;
-    this.magicResistance = magicResistance ?? this.magicResistance;
-    this.moveSpeed = moveSpeed ?? this.moveSpeed;
-    this.attackSpeed = attackSpeed ?? this.attackSpeed;
-    this.baseAttackTime = baseAttackTime ?? this.baseAttackTime;
-    this.stunImmune = stunImmune ?? this.stunImmune;
-    this.silenceImmune = silenceImmune ?? this.silenceImmune;
-    this.sleepImmune = sleepImmune ?? this.sleepImmune;
-    this.frozenImmune = frozenImmune ?? this.frozenImmune;
-    this.levitateImmune = levitateImmune ?? this.levitateImmune;
-  }
-}
-
-class EnemyAttrValueDataModel<T> {
-  final bool? isDefined;
-  final T? value;
-
-  EnemyAttrValueDataModel.fromJson(Map<String, dynamic> json)
-      : isDefined = json['m_defined'],
-        value = json['m_value'];
+  @override
+  List<Object?> get props => [
+        text,
+        textFormat,
+      ];
 }
