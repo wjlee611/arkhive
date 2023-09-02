@@ -7,7 +7,7 @@ part 'talent_blackboard_model.g.dart';
 class TalentBlackboardModel extends Equatable {
   final String key;
   final double value;
-  final String? valueStr;
+  final String? valueStr; // CN
 
   const TalentBlackboardModel({
     required this.key,

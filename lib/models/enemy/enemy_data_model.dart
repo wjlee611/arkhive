@@ -59,15 +59,15 @@ class EnemyDataDatasModel extends Equatable {
   final AttributeMModel<String>? description;
   final AttributeMModel<String>? prefabKey;
   final AttributeModel? attributes;
-  final AttributeMModel<String>? applyWay;
-  final AttributeMModel<String>? motion;
-  final AttributeMModel<List<String>>? enemyTags;
+  final AttributeMModel<String>? applyWay; // CN
+  final AttributeMModel<String>? motion; // CN
+  final AttributeMModel<List<String>>? enemyTags; // CN
   final AttributeMModel<int>? lifePointReduce;
-  final AttributeMModel<int>? levelType; // int -> String
+  final AttributeMModel<int>? levelType; // CN: int -> String
   final AttributeMModel<double>? rangeRadius;
   final AttributeMModel<int>? numOfExtraDrops;
   final AttributeMModel<double>? viewRadius;
-  final AttributeMModel<bool>? notCountInTotal;
+  final AttributeMModel<bool>? notCountInTotal; // CN
   final List<TalentBlackboardModel>? talentBlackboard;
   // "skills": null,
   // "spData": null

@@ -25,10 +25,10 @@ class EnemyModel extends Equatable {
   final bool? isInvalidKilled;
   final Map<String, dynamic>? overrideKillCntInfos; // "camp_r_03": -1
   final bool? hideInHandbook;
-  final List<EnemyAbilityListModel>? abilityList;
-  final List<String>? linkEnemies; // enemy id lists
-  final List<String>? damageType; // MAGIC, PHYSIC lists
-  final bool? invisibleDetail;
+  final List<EnemyAbilityListModel>? abilityList; // CN
+  final List<String>? linkEnemies; // CM: enemy id lists
+  final List<String>? damageType; // CN: MAGIC, PHYSIC lists
+  final bool? invisibleDetail; // CN
 
   const EnemyModel({
     this.enemyId,

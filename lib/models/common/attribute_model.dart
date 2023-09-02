@@ -22,8 +22,8 @@ class AttributeModel extends Equatable {
   final AttributeMModel<int>? massLevel;
   final AttributeMModel<int>? baseForceLevel;
   final AttributeMModel<int>? tauntLevel;
-  final AttributeMModel<double>? epDamageResistance;
-  final AttributeMModel<double>? epResistance;
+  final AttributeMModel<double>? epDamageResistance; // CN
+  final AttributeMModel<double>? epResistance; // CN
   final AttributeMModel<bool>? stunImmune;
   final AttributeMModel<bool>? silenceImmune;
   final AttributeMModel<bool>? sleepImmune;
