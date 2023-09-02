@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/models/operator/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_info_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';

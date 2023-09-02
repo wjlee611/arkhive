@@ -1,6 +1,6 @@
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorStatusBloc

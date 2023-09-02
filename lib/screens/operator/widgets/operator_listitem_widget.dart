@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/operator_list_model.dart';
+import 'package:arkhive/models/operator/operator_list_model.dart';
 import 'package:arkhive/tools/cn_update_converter.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';

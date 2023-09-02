@@ -1,4 +1,4 @@
-import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/models/operator/skill_model.dart';
 
 int rarityConverter(String rarity) {
   switch (rarity) {

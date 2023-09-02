@@ -1,6 +1,6 @@
-import 'package:arkhive/models/module_model.dart';
-import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
+import 'package:arkhive/models/operator/skill_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class OperatorDataState extends Equatable {

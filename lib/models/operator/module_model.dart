@@ -1,6 +1,6 @@
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 
 class ModuleModel {
   final String? uniEquipId,

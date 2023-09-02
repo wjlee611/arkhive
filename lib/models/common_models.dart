@@ -1,19 +1,10 @@
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 
 enum CommonLoadState {
   init,
   loading,
   loaded,
   error,
-}
-
-class BlackboardModel {
-  final String? key;
-  final double? value;
-
-  BlackboardModel.fromJson(Map<String, dynamic> json)
-      : key = json['key'],
-        value = json['value'];
 }
 
 class EvolveCostModel {

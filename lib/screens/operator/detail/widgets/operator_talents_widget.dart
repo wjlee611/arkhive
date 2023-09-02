@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/operator/operator_data/operator_data_state.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';

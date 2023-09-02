@@ -1,5 +1,5 @@
-import 'package:arkhive/models/module_model.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
