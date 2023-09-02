@@ -63,7 +63,7 @@ class EnemyDataDatasModel extends Equatable {
   final AttributeMModel<String>? motion; // CN
   final AttributeMModel<List<String>>? enemyTags; // CN
   final AttributeMModel<int>? lifePointReduce;
-  final AttributeMModel<int>? levelType; // CN: int -> String
+  final AttributeMModel<String>? levelType; // CN: int -> String
   final AttributeMModel<double>? rangeRadius;
   final AttributeMModel<int>? numOfExtraDrops;
   final AttributeMModel<double>? viewRadius;

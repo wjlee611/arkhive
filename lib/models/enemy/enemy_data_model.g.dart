@@ -65,7 +65,7 @@ EnemyDataDatasModel _$EnemyDataDatasModelFromJson(Map<String, dynamic> json) =>
               json['lifePointReduce'] as Map<String, dynamic>),
       levelType: json['levelType'] == null
           ? null
-          : AttributeMModel<int>.fromJson(
+          : AttributeMModel<String>.fromJson(
               json['levelType'] as Map<String, dynamic>),
       rangeRadius: json['rangeRadius'] == null
           ? null

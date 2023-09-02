@@ -28,6 +28,9 @@ class AttributeMModel<T> extends Equatable {
         return data.map((e) => e as String).toList() as E;
       }
     }
+    if (E == String) {
+      return data.toString() as E;
+    }
     return data as E;
   }
 
