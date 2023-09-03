@@ -1,53 +1,114 @@
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
+import 'package:arkhive/tools/modeling_functions.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class SkillModel {
+part 'skill_model.g.dart';
+
+@JsonSerializable(createToJson: false)
+class SkillModel extends Equatable {
   final String? skillId;
-  final List<SkillLevelsModel> levels;
+  final String? iconId;
+  final bool? hidden;
+  final List<SkillLevelsModel>? levels;
 
-  SkillModel.fromJson(Map<String, dynamic> json)
-      : skillId = json['skillId'],
-        levels = [
-          if (json['levels'] != null)
-            for (var data in json['levels']) SkillLevelsModel.fromJson(data)
-        ];
+  const SkillModel({
+    this.skillId,
+    this.iconId,
+    this.hidden,
+    this.levels,
+  });
+
+  factory SkillModel.fromJson(Map<String, dynamic> json) =>
+      _$SkillModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        skillId,
+        iconId,
+        hidden,
+        levels,
+      ];
 }
 
-class SkillLevelsModel {
-  final String? name, rangeId, description;
+@JsonSerializable(createToJson: false)
+class SkillLevelsModel extends Equatable {
+  final String? name;
+  final String? rangeId;
+  final String? description;
+  @JsonKey(fromJson: fromJsonToString)
   final String? skillType;
-  // final String? durationType;
-  final SkillSPModel spData;
+  @JsonKey(fromJson: fromJsonToString)
+  final String? durationType;
+  final SkillSpDataModel? spData;
+  final String? prefabId;
   final double? duration;
-  final List<TalentBlackboardModel> blackboard;
-  SkillLevelsModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        rangeId = json['rangeId'],
-        description = json['description'],
-        skillType = json['skillType'].toString(),
-        // durationType = json['durationType'].toString(),
-        spData = SkillSPModel.fromJson(json['spData'] ?? {}),
-        duration = json['duration'],
-        blackboard = [
-          if (json['blackboard'] != null)
-            for (var data in json['blackboard'])
-              TalentBlackboardModel.fromJson(data)
-        ];
+  final List<TalentBlackboardModel>? blackboard;
+
+  const SkillLevelsModel({
+    this.name,
+    this.rangeId,
+    this.description,
+    this.skillType,
+    this.durationType,
+    this.spData,
+    this.prefabId,
+    this.duration,
+    this.blackboard,
+  });
+
+  factory SkillLevelsModel.fromJson(Map<String, dynamic> json) =>
+      _$SkillLevelsModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        name,
+        rangeId,
+        description,
+        skillType,
+        durationType,
+        spData,
+        prefabId,
+        duration,
+        blackboard,
+      ];
 }
 
-class SkillSPModel {
+@JsonSerializable(createToJson: false)
+class SkillSpDataModel extends Equatable {
+  @JsonKey(fromJson: fromJsonToString)
   final String? spType;
-  final int? maxChargeTime, spCost, initSp;
-  final double? increment;
+  final String? levelUpCost;
+  final String? maxChargeTime;
+  final String? spCost;
+  final String? initSp;
+  final String? increment;
 
-  SkillSPModel.fromJson(Map<String, dynamic> json)
-      : spType = json['spType'].toString(),
-        maxChargeTime = json['maxChargeTime'],
-        spCost = json['spCost'],
-        initSp = json['initSp'],
-        increment = json['increment'];
+  const SkillSpDataModel({
+    this.spType,
+    this.levelUpCost,
+    this.maxChargeTime,
+    this.spCost,
+    this.initSp,
+    this.increment,
+  });
+
+  factory SkillSpDataModel.fromJson(Map<String, dynamic> json) =>
+      _$SkillSpDataModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        spType,
+        levelUpCost,
+        maxChargeTime,
+        spCost,
+        initSp,
+        increment,
+      ];
 }
 
+/// Skill types ///
 enum SkillType {
   passive('패시브', Colors.grey),
   manual('수동 발동', Colors.grey),

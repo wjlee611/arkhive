@@ -1,3 +1,4 @@
+import 'package:arkhive/tools/modeling_functions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,7 +6,7 @@ part 'attribute_modifiers_model.g.dart';
 
 @JsonSerializable()
 class AttributeModifiersModel extends Equatable {
-  @JsonKey(fromJson: _fromJsonToString)
+  @JsonKey(fromJson: fromJsonToString)
   final String attributeType; // CN: int -> String
   final int formulaItem;
   final double value;
@@ -24,8 +25,6 @@ class AttributeModifiersModel extends Equatable {
       _$AttributeModifiersModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AttributeModifiersModelToJson(this);
-
-  static String _fromJsonToString(dynamic value) => value.toString();
 
   @override
   List<Object?> get props => [

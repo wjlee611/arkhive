@@ -1,3 +1,4 @@
+import 'package:arkhive/tools/modeling_functions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,7 +6,7 @@ part 'unlock_condition_model.g.dart';
 
 @JsonSerializable()
 class UnlockConditionModel extends Equatable {
-  @JsonKey(fromJson: _fromJsonToString)
+  @JsonKey(fromJson: fromJsonToString)
   final String phase; // CN: 0 -> PHASE_0
   final int level;
 
@@ -18,8 +19,6 @@ class UnlockConditionModel extends Equatable {
       _$UnlockConditionModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnlockConditionModelToJson(this);
-
-  static String _fromJsonToString(dynamic value) => value.toString();
 
   @override
   List<Object?> get props => [

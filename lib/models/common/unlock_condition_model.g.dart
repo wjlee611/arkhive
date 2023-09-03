@@ -9,7 +9,7 @@ part of 'unlock_condition_model.dart';
 UnlockConditionModel _$UnlockConditionModelFromJson(
         Map<String, dynamic> json) =>
     UnlockConditionModel(
-      phase: UnlockConditionModel._fromJsonToString(json['phase']),
+      phase: fromJsonToString(json['phase']),
       level: json['level'] as int,
     );
 

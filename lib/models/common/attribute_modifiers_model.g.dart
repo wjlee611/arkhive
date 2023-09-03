@@ -9,8 +9,7 @@ part of 'attribute_modifiers_model.dart';
 AttributeModifiersModel _$AttributeModifiersModelFromJson(
         Map<String, dynamic> json) =>
     AttributeModifiersModel(
-      attributeType:
-          AttributeModifiersModel._fromJsonToString(json['attributeType']),
+      attributeType: fromJsonToString(json['attributeType']),
       formulaItem: json['formulaItem'] as int,
       value: (json['value'] as num).toDouble(),
       loadFromBlackboard: json['loadFromBlackboard'] as bool,
