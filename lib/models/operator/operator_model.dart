@@ -1,246 +1,421 @@
+import 'package:arkhive/models/abstract_class/abs_candidates.dart';
+import 'package:arkhive/models/common/attribute_model.dart';
+import 'package:arkhive/models/common/attribute_modifiers_model.dart';
+import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/common/unlock_condition_model.dart';
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-/// USING AT
-///
-/// operator
-/// token
-/// trap
+part 'operator_model.g.dart';
 
-class OperatorModel {
-  final String? name,
-      description,
-      position,
-      profession,
-      subProfessionId,
-      nationId,
-      groupId,
-      teamId,
-      rarity;
-  final int? maxPotentialLevel;
-  final bool? isNotObtainable;
-  final List<String> tagList;
-  final List<OperatorTalentsCandidatesModel> traitCandidate;
-  final List<OperatorLevelPhaseModel> phases;
-  final List<OperatorSkillsModel> skills;
-  final List<OperatorTalentsModel> talents;
-  final List<OperatorPotentialRanksModel> potentialRanks;
-  final List<OperatorLevelPhaseAttrKeyFrameModel> favorKeyFrames;
-  final List<OperatorAllSkillLvlupModel> allSkillLvlup;
-
-  OperatorModel.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        description = json['description'],
-        nationId = json['nationId'],
-        groupId = json['groupId'],
-        teamId = json['teamId'],
-        position = json['position'],
-        profession = json['profession'],
-        subProfessionId = json['subProfessionId'],
-        maxPotentialLevel = json['maxPotentialLevel'],
-        rarity = json['rarity'].toString(),
-        isNotObtainable = json['isNotObtainable'],
-        tagList = [
-          if (json['tagList'] != null)
-            for (var data in json['tagList']) data
-        ],
-        traitCandidate = [
-          if (json['trait'] != null && json['trait']['candidates'] != null)
-            for (var data in json['trait']['candidates'])
-              OperatorTalentsCandidatesModel.fromJson(data)
-        ],
-        phases = [
-          if (json['phases'] != null)
-            for (var data in json['phases'])
-              OperatorLevelPhaseModel.fromJson(data)
-        ],
-        skills = [
-          if (json['skills'] != null)
-            for (var data in json['skills']) OperatorSkillsModel.fromJson(data)
-        ],
-        talents = [
-          if (json['talents'] != null)
-            for (var data in json['talents'])
-              OperatorTalentsModel.fromJson(data)
-        ],
-        potentialRanks = [
-          if (json['potentialRanks'] != null)
-            for (var data in json['potentialRanks'])
-              OperatorPotentialRanksModel.fromJson(data)
-        ],
-        favorKeyFrames = [
-          if (json['favorKeyFrames'] != null)
-            for (var data in json['favorKeyFrames'])
-              OperatorLevelPhaseAttrKeyFrameModel.fromJson(data)
-        ],
-        allSkillLvlup = [
-          if (json['allSkillLvlup'] != null)
-            for (var data in json['allSkillLvlup'])
-              OperatorAllSkillLvlupModel.fromJson(data)
-        ];
-}
-
-// OPERATOR STAT MODEL
-class OperatorLevelPhaseModel {
-  final String? characterPrefabKey, rangeId;
-  final int? maxLevel;
-  final List<OperatorLevelPhaseAttrKeyFrameModel> attributesKeyFrames;
-  final List<EvolveCostModel> evolveCost;
-
-  OperatorLevelPhaseModel.fromJson(Map<String, dynamic> json)
-      : characterPrefabKey = json['characterPrefabKey'],
-        rangeId = json['rangeId'],
-        maxLevel = json['maxLevel'],
-        attributesKeyFrames = [
-          if (json['attributesKeyFrames'] != null)
-            for (var data in json['attributesKeyFrames'])
-              OperatorLevelPhaseAttrKeyFrameModel.fromJson(data)
-        ],
-        evolveCost = [
-          if (json['evolveCost'] != null)
-            for (var data in json['evolveCost']) EvolveCostModel.fromJson(data)
-        ];
-}
-
-class OperatorLevelPhaseAttrKeyFrameModel {
-  final int level;
-  final OperatorStatsDataModel data;
-
-  OperatorLevelPhaseAttrKeyFrameModel.fromJson(Map<String, dynamic> json)
-      : level = json['level'],
-        data = OperatorStatsDataModel.fromJson(json['data']);
-}
-
-// OPERATOR SKILLS MODEL
-class OperatorSkillsModel {
-  final String? skillId;
-  final List<OperatorSkillslevelUpCostCondModel> levelUpCostCond;
-  final OperatorUnlockCondModel unlockCond;
-
-  OperatorSkillsModel.fromJson(Map<String, dynamic> json)
-      : skillId = json['skillId'],
-        levelUpCostCond = [
-          if (json['levelUpCostCond'] != null)
-            for (var data in json['levelUpCostCond'])
-              OperatorSkillslevelUpCostCondModel.fromJson(data)
-        ],
-        unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {});
-}
-
-class OperatorSkillslevelUpCostCondModel {
-  final OperatorUnlockCondModel unlockCond;
-  final int? lvlUpTime;
-  final List<EvolveCostModel> levelUpCost;
-
-  OperatorSkillslevelUpCostCondModel.fromJson(Map<String, dynamic> json)
-      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
-        lvlUpTime = json['lvlUpTime'],
-        levelUpCost = [
-          if (json['levelUpCost'] != null)
-            for (var data in json['levelUpCost']) EvolveCostModel.fromJson(data)
-        ];
-}
-
-class OperatorAllSkillLvlupModel {
-  final OperatorUnlockCondModel unlockCond;
-  final List<EvolveCostModel> lvlUpCost;
-
-  OperatorAllSkillLvlupModel.fromJson(Map<String, dynamic> json)
-      : unlockCond = OperatorUnlockCondModel.fromJson(json['unlockCond'] ?? {}),
-        lvlUpCost = [
-          if (json['lvlUpCost'] != null)
-            for (var data in json['lvlUpCost']) EvolveCostModel.fromJson(data)
-        ];
-}
-
-// OPERATOR TALENTS MODEL
-class OperatorTalentsModel {
-  final List<OperatorTalentsCandidatesModel> candidates;
-
-  OperatorTalentsModel.fromJson(Map<String, dynamic> json)
-      : candidates = [
-          if (json['candidates'] != null)
-            for (var data in json['candidates'])
-              OperatorTalentsCandidatesModel.fromJson(data)
-        ];
-}
-
-class OperatorTalentsCandidatesModel implements PotentialRank {
-  @override
-  final OperatorUnlockCondModel unlockCondition;
-  @override
-  final int? requiredPotentialRank;
-  final String? name, description, overrideDescripton;
-  final List<TalentBlackboardModel> blackboard;
-
-  OperatorTalentsCandidatesModel.fromJson(Map<String, dynamic> json)
-      : unlockCondition =
-            OperatorUnlockCondModel.fromJson(json['unlockCondition'] ?? {}),
-        requiredPotentialRank = json['requiredPotentialRank'],
-        name = json['name'],
-        description = json['description'],
-        overrideDescripton = json['overrideDescripton'],
-        blackboard = [
-          if (json['blackboard'] != null)
-            for (var data in json['blackboard'])
-              TalentBlackboardModel.fromJson(data)
-        ];
-}
-
-// OPERATOR POTENTIAL RANKS MODEL
-class OperatorPotentialRanksModel {
+@JsonSerializable(createToJson: false)
+class OperatorModel extends Equatable {
+  final String? name;
   final String? description;
-  // final int? type;
-  final List<OperatorPotentialAttrModifireModel> attributeModifiers;
+  final bool? canUseGeneralPotentialItem;
+  final bool? canUseActivityPotentialItem;
+  final String? potentialItemId;
+  final String? activityPotentialItemId;
+  final String? classicPotentialItemId; // CN
+  final String? nationId;
+  final String? groupId;
+  final String? teamId;
+  final String? displayNumber;
+  final String? tokenKey; // deprecated in CN
+  final String? appellation;
+  final String? position;
+  final List<String>? tagList;
+  final String? itemUsage;
+  final String? itemDesc;
+  final String? itemObtainApproach;
+  final bool? isNotObtainable;
+  final bool? isSpChar;
+  final int? maxPotentialLevel;
+  final String? rarity; // CN: 5 -> TIER_6
+  final String? profession;
+  final String? subProfessionId;
+  final OperatorTraitModel? trait;
+  final List<OperatorPhasesModel>? phases;
+  final List<OperatorSkillsModel>? skills;
+  final List<OperatorTalentsModel>? talents;
+  final List<OperatorPotnetialRanksModel>? potentialRanks;
+  final List<OperatorFavorKeyFramesModel>? favorKeyFrames;
+  final List<OperatorAllSkillLvlupModel>? allSkillLvlup;
 
-  OperatorPotentialRanksModel.fromJson(Map<String, dynamic> json)
-      : description = json['description'],
-        // type = json['type'],
-        attributeModifiers = [
-          if (json['buff'] != null)
-            for (var data in json['buff']['attributes']['attributeModifiers'])
-              OperatorPotentialAttrModifireModel.fromJson(data)
-        ];
+  const OperatorModel({
+    this.name,
+    this.description,
+    this.canUseActivityPotentialItem,
+    this.canUseGeneralPotentialItem,
+    this.potentialItemId,
+    this.activityPotentialItemId,
+    this.classicPotentialItemId,
+    this.nationId,
+    this.groupId,
+    this.teamId,
+    this.displayNumber,
+    this.tokenKey,
+    this.appellation,
+    this.position,
+    this.tagList,
+    this.itemUsage,
+    this.itemDesc,
+    this.itemObtainApproach,
+    this.isNotObtainable,
+    this.isSpChar,
+    this.maxPotentialLevel,
+    this.rarity,
+    this.profession,
+    this.subProfessionId,
+    this.trait,
+    this.phases,
+    this.skills,
+    this.talents,
+    this.potentialRanks,
+    this.favorKeyFrames,
+    this.allSkillLvlup,
+  });
+
+  factory OperatorModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        name,
+        description,
+        canUseActivityPotentialItem,
+        canUseGeneralPotentialItem,
+        potentialItemId,
+        activityPotentialItemId,
+        classicPotentialItemId,
+        nationId,
+        groupId,
+        teamId,
+        displayNumber,
+        tokenKey,
+        appellation,
+        position,
+        tagList,
+        itemUsage,
+        itemDesc,
+        itemObtainApproach,
+        isNotObtainable,
+        isSpChar,
+        maxPotentialLevel,
+        rarity,
+        profession,
+        subProfessionId,
+        trait,
+        phases,
+        skills,
+        talents,
+        potentialRanks,
+        favorKeyFrames,
+        allSkillLvlup,
+      ];
 }
 
-class OperatorPotentialAttrModifireModel {
-  final String attributeType;
-  final double value;
+// trait //
+@JsonSerializable(createToJson: false)
+class OperatorTraitModel extends Equatable {
+  final List<OperatorTraitCandidatesModel>? candidates;
 
-  OperatorPotentialAttrModifireModel.fromJson(Map<String, dynamic> json)
-      : attributeType = json['attributeType'].toString(),
-        value = json['value'];
+  const OperatorTraitModel({this.candidates});
+
+  factory OperatorTraitModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorTraitModelFromJson(json);
+
+  @override
+  List<Object?> get props => [candidates];
 }
 
-// OPERATOR ETC MODEL
-class OperatorStatsDataModel {
-  final double maxHp,
-      atk,
-      def,
-      magicResistance,
-      cost,
-      blockCnt,
-      respawnTime,
-      baseAttackTime,
-      attackSpeed;
+@JsonSerializable(createToJson: false)
+class OperatorTraitCandidatesModel extends ABSCandidate {
+  final List<TalentBlackboardModel>? blackboard;
+  final String? overrideDescripton;
+  final String? prefabKey;
+  final String? rangeId;
 
-  OperatorStatsDataModel.fromJson(Map<String, dynamic> json)
-      : maxHp = json['maxHp'].toDouble(),
-        atk = json['atk'].toDouble(),
-        def = json['def'].toDouble(),
-        magicResistance = json['magicResistance'],
-        cost = json['cost'].toDouble(),
-        blockCnt = json['blockCnt'].toDouble(),
-        respawnTime = json['respawnTime'].toDouble(),
-        baseAttackTime = json['baseAttackTime'],
-        attackSpeed = json['attackSpeed'];
+  const OperatorTraitCandidatesModel({
+    required UnlockConditionModel unlockCondition,
+    required int requiredPotentialRank,
+    this.blackboard,
+    this.overrideDescripton,
+    this.prefabKey,
+    this.rangeId,
+  }) : super(
+          unlockCondition: unlockCondition,
+          requiredPotentialRank: requiredPotentialRank,
+        );
+
+  factory OperatorTraitCandidatesModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorTraitCandidatesModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        unlockCondition,
+        requiredPotentialRank,
+        blackboard,
+        overrideDescripton,
+        prefabKey,
+        rangeId,
+      ];
+}
+// end of trait //
+
+// phases //
+@JsonSerializable(createToJson: false)
+class OperatorPhasesModel extends Equatable {
+  final String? characterPrefabKey;
+  final String? rangeId;
+  final int? maxLevel;
+  final List<OperatorAttrKeyFramesModel>? attributesKeyFrames;
+  final List<ItemCostModel>? evolveCost;
+
+  const OperatorPhasesModel({
+    this.characterPrefabKey,
+    this.rangeId,
+    this.maxLevel,
+    this.attributesKeyFrames,
+    this.evolveCost,
+  });
+
+  factory OperatorPhasesModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorPhasesModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        characterPrefabKey,
+        rangeId,
+        maxLevel,
+        attributesKeyFrames,
+        evolveCost,
+      ];
 }
 
-class OperatorUnlockCondModel {
-  final int? level;
-  final String? phase;
+@JsonSerializable(createToJson: false)
+class OperatorAttrKeyFramesModel extends Equatable {
+  final int level;
+  final AttributeModel data;
 
-  OperatorUnlockCondModel.fromJson(Map<String, dynamic> json)
-      : phase = json['phase'].toString(),
-        level = json['level'];
+  const OperatorAttrKeyFramesModel({
+    required this.level,
+    required this.data,
+  });
+
+  factory OperatorAttrKeyFramesModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorAttrKeyFramesModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        level,
+        data,
+      ];
 }
+// end of phases //
+
+// skills //
+@JsonSerializable(createToJson: false)
+class OperatorSkillsModel extends Equatable {
+  final String? skillId;
+  final String? overridePrefabKey;
+  final String? overrideTokenKey;
+  final List<OperatorSkillLevelupCostCondModel>? levelUpCostCond;
+  final UnlockConditionModel? unlockCond;
+
+  const OperatorSkillsModel({
+    this.skillId,
+    this.overridePrefabKey,
+    this.overrideTokenKey,
+    this.levelUpCostCond,
+    this.unlockCond,
+  });
+
+  factory OperatorSkillsModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorSkillsModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        skillId,
+        overridePrefabKey,
+        overrideTokenKey,
+        levelUpCostCond,
+        unlockCond,
+      ];
+}
+
+@JsonSerializable(createToJson: false)
+class OperatorSkillLevelupCostCondModel extends Equatable {
+  final UnlockConditionModel? unlockCond;
+  final int? lvlUpTime;
+  final List<ItemCostModel>? levelUpCost;
+
+  const OperatorSkillLevelupCostCondModel({
+    this.unlockCond,
+    this.lvlUpTime,
+    this.levelUpCost,
+  });
+
+  factory OperatorSkillLevelupCostCondModel.fromJson(
+          Map<String, dynamic> json) =>
+      _$OperatorSkillLevelupCostCondModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        unlockCond,
+        lvlUpTime,
+        levelUpCost,
+      ];
+}
+// end of skills //
+
+// talents //
+@JsonSerializable(createToJson: false)
+class OperatorTalentsModel extends Equatable {
+  final List<OperatorTalentCandidatesModel>? candidates;
+
+  const OperatorTalentsModel({this.candidates});
+
+  factory OperatorTalentsModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorTalentsModelFromJson(json);
+
+  @override
+  List<Object?> get props => [candidates];
+}
+
+@JsonSerializable(createToJson: false)
+class OperatorTalentCandidatesModel extends ABSCandidate {
+  final String? prefabKey;
+  final String? name;
+  final String? description;
+  final String? rangeId;
+  final List<TalentBlackboardModel>? blackboard;
+
+  const OperatorTalentCandidatesModel({
+    required UnlockConditionModel unlockCondition,
+    required int requiredPotentialRank,
+    this.prefabKey,
+    this.name,
+    this.description,
+    this.rangeId,
+    this.blackboard,
+  }) : super(
+          unlockCondition: unlockCondition,
+          requiredPotentialRank: requiredPotentialRank,
+        );
+
+  factory OperatorTalentCandidatesModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorTalentCandidatesModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        unlockCondition,
+        requiredPotentialRank,
+        prefabKey,
+        name,
+        description,
+        rangeId,
+        blackboard,
+      ];
+}
+// end of talents //
+
+// potentialRanks //
+@JsonSerializable(createToJson: false)
+class OperatorPotnetialRanksModel extends Equatable {
+  // "type": "BUFF"
+  final String? description;
+  final OperatorPotentialBuffModel? buff;
+  // "equivalentCost": null
+
+  const OperatorPotnetialRanksModel({
+    this.description,
+    this.buff,
+  });
+
+  factory OperatorPotnetialRanksModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorPotnetialRanksModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        description,
+        buff,
+      ];
+}
+
+@JsonSerializable(createToJson: false)
+class OperatorPotentialBuffModel extends Equatable {
+  final OperatorPotentialBuffAttrModel? attributes;
+
+  const OperatorPotentialBuffModel({this.attributes});
+
+  factory OperatorPotentialBuffModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorPotentialBuffModelFromJson(json);
+
+  @override
+  List<Object?> get props => [attributes];
+}
+
+@JsonSerializable(createToJson: false)
+class OperatorPotentialBuffAttrModel extends Equatable {
+  // "abnormalFlags": null,
+  // "abnormalImmunes": null,
+  // "abnormalAntis": null,
+  // "abnormalCombos": null,
+  // "abnormalComboImmunes": null,
+  final List<AttributeModifiersModel>? attributeModifiers;
+
+  const OperatorPotentialBuffAttrModel({this.attributeModifiers});
+
+  factory OperatorPotentialBuffAttrModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorPotentialBuffAttrModelFromJson(json);
+
+  @override
+  List<Object?> get props => [attributeModifiers];
+}
+// end of potentialRanks //
+
+// favorKeyFrames //
+@JsonSerializable(createToJson: false)
+class OperatorFavorKeyFramesModel extends Equatable {
+  final int level;
+  final AttributeModel data;
+
+  const OperatorFavorKeyFramesModel({
+    required this.level,
+    required this.data,
+  });
+
+  factory OperatorFavorKeyFramesModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorFavorKeyFramesModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        level,
+        data,
+      ];
+}
+// end of favorKeyFrames //
+
+// allSkillLvlup //
+@JsonSerializable(createToJson: false)
+class OperatorAllSkillLvlupModel extends Equatable {
+  final UnlockConditionModel unlockCond;
+  final List<ItemCostModel> lvlUpCost;
+
+  const OperatorAllSkillLvlupModel({
+    required this.unlockCond,
+    required this.lvlUpCost,
+  });
+
+  factory OperatorAllSkillLvlupModel.fromJson(Map<String, dynamic> json) =>
+      _$OperatorAllSkillLvlupModelFromJson(json);
+
+  @override
+  List<Object?> get props => [
+        unlockCond,
+        lvlUpCost,
+      ];
+}
+// end of allSkillLvlup //
