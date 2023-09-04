@@ -84,9 +84,9 @@ class ModuleModel extends Equatable {
 /// Module Data below ///
 @JsonSerializable(createToJson: false)
 class ModuleDataModel extends Equatable {
-  final List<ModuleDataPhasesModel>? phases;
+  final List<ModuleDataPhasesModel> phases;
 
-  const ModuleDataModel({this.phases});
+  const ModuleDataModel({required this.phases});
 
   factory ModuleDataModel.fromJson(Map<String, dynamic> json) =>
       _$ModuleDataModelFromJson(json);

@@ -6,54 +6,54 @@ part 'attribute_model.g.dart';
 
 @JsonSerializable()
 class AttributeModel extends Equatable {
-  final AttributeMModel<int>? maxHp;
-  final AttributeMModel<int>? atk;
-  final AttributeMModel<int>? def;
-  final AttributeMModel<double>? magicResistance;
-  final AttributeMModel<int>? cost;
-  final AttributeMModel<int>? blockCnt;
-  final AttributeMModel<double>? moveSpeed;
-  final AttributeMModel<double>? attackSpeed;
-  final AttributeMModel<double>? baseAttackTime;
-  final AttributeMModel<int>? respawnTime;
-  final AttributeMModel<double>? hpRecoveryPerSec;
-  final AttributeMModel<double>? spRecoveryPerSec;
-  final AttributeMModel<int>? maxDeployCount;
-  final AttributeMModel<int>? massLevel;
-  final AttributeMModel<int>? baseForceLevel;
-  final AttributeMModel<int>? tauntLevel;
-  final AttributeMModel<double>? epDamageResistance; // CN
-  final AttributeMModel<double>? epResistance; // CN
-  final AttributeMModel<bool>? stunImmune;
-  final AttributeMModel<bool>? silenceImmune;
-  final AttributeMModel<bool>? sleepImmune;
-  final AttributeMModel<bool>? frozenImmune;
-  final AttributeMModel<bool>? levitateImmune;
+  final AttributeMModel<int> maxHp;
+  final AttributeMModel<int> atk;
+  final AttributeMModel<int> def;
+  final AttributeMModel<double> magicResistance;
+  final AttributeMModel<int> cost;
+  final AttributeMModel<int> blockCnt;
+  final AttributeMModel<double> moveSpeed;
+  final AttributeMModel<double> attackSpeed;
+  final AttributeMModel<double> baseAttackTime;
+  final AttributeMModel<int> respawnTime;
+  final AttributeMModel<double> hpRecoveryPerSec;
+  final AttributeMModel<double> spRecoveryPerSec;
+  final AttributeMModel<int> maxDeployCount;
+  final AttributeMModel<int> massLevel;
+  final AttributeMModel<int> baseForceLevel;
+  final AttributeMModel<int> tauntLevel;
+  final AttributeMModel<double> epDamageResistance; // CN
+  final AttributeMModel<double> epResistance; // CN
+  final AttributeMModel<bool> stunImmune;
+  final AttributeMModel<bool> silenceImmune;
+  final AttributeMModel<bool> sleepImmune;
+  final AttributeMModel<bool> frozenImmune;
+  final AttributeMModel<bool> levitateImmune;
 
   const AttributeModel({
-    this.maxHp,
-    this.atk,
-    this.def,
-    this.magicResistance,
-    this.cost,
-    this.blockCnt,
-    this.moveSpeed,
-    this.attackSpeed,
-    this.baseAttackTime,
-    this.respawnTime,
-    this.hpRecoveryPerSec,
-    this.spRecoveryPerSec,
-    this.maxDeployCount,
-    this.massLevel,
-    this.baseForceLevel,
-    this.tauntLevel,
-    this.epDamageResistance,
-    this.epResistance,
-    this.stunImmune,
-    this.silenceImmune,
-    this.sleepImmune,
-    this.frozenImmune,
-    this.levitateImmune,
+    required this.maxHp,
+    required this.atk,
+    required this.def,
+    required this.magicResistance,
+    required this.cost,
+    required this.blockCnt,
+    required this.moveSpeed,
+    required this.attackSpeed,
+    required this.baseAttackTime,
+    required this.respawnTime,
+    required this.hpRecoveryPerSec,
+    required this.spRecoveryPerSec,
+    required this.maxDeployCount,
+    required this.massLevel,
+    required this.baseForceLevel,
+    required this.tauntLevel,
+    required this.epDamageResistance,
+    required this.epResistance,
+    required this.stunImmune,
+    required this.silenceImmune,
+    required this.sleepImmune,
+    required this.frozenImmune,
+    required this.levitateImmune,
   });
 
   factory AttributeModel.fromJson(Map<String, dynamic> json) =>

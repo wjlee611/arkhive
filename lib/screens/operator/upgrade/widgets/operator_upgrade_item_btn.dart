@@ -1,6 +1,6 @@
 import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/item_list_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OperatorUpgradeItemBtn extends StatefulWidget {
-  final EvolveCostModel cost;
+  final ItemCostModel cost;
 
   const OperatorUpgradeItemBtn({
     super.key,
@@ -60,10 +60,9 @@ class _OperatorUpgradeItemBtnState extends State<OperatorUpgradeItemBtn> {
               borderRadius: BorderRadius.circular(Sizes.size3),
             ),
             child: AppFont(
-              widget.cost.count?.toString().replaceAllMapped(
-                      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                      (Match m) => "${m[1]},") ??
-                  '0',
+              widget.cost.count.toString().replaceAllMapped(
+                  RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                  (Match m) => "${m[1]},"),
               color: Colors.white,
               fontWeight: FontWeight.w700,
               shadows: [

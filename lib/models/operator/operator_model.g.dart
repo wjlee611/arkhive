@@ -30,31 +30,31 @@ OperatorModel _$OperatorModelFromJson(Map<String, dynamic> json) =>
       isNotObtainable: json['isNotObtainable'] as bool?,
       isSpChar: json['isSpChar'] as bool?,
       maxPotentialLevel: json['maxPotentialLevel'] as int?,
-      rarity: json['rarity'] as String?,
+      rarity: fromJsonToString(json['rarity']),
       profession: json['profession'] as String?,
       subProfessionId: json['subProfessionId'] as String?,
       trait: json['trait'] == null
           ? null
           : OperatorTraitModel.fromJson(json['trait'] as Map<String, dynamic>),
-      phases: (json['phases'] as List<dynamic>?)
-          ?.map((e) => OperatorPhasesModel.fromJson(e as Map<String, dynamic>))
+      phases: (json['phases'] as List<dynamic>)
+          .map((e) => OperatorPhasesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      skills: (json['skills'] as List<dynamic>?)
-          ?.map((e) => OperatorSkillsModel.fromJson(e as Map<String, dynamic>))
+      skills: (json['skills'] as List<dynamic>)
+          .map((e) => OperatorSkillsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      talents: (json['talents'] as List<dynamic>?)
-          ?.map((e) => OperatorTalentsModel.fromJson(e as Map<String, dynamic>))
+      talents: (json['talents'] as List<dynamic>)
+          .map((e) => OperatorTalentsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      potentialRanks: (json['potentialRanks'] as List<dynamic>?)
-          ?.map((e) =>
+      potentialRanks: (json['potentialRanks'] as List<dynamic>)
+          .map((e) =>
               OperatorPotnetialRanksModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      favorKeyFrames: (json['favorKeyFrames'] as List<dynamic>?)
-          ?.map((e) =>
+      favorKeyFrames: (json['favorKeyFrames'] as List<dynamic>)
+          .map((e) =>
               OperatorFavorKeyFramesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      allSkillLvlup: (json['allSkillLvlup'] as List<dynamic>?)
-          ?.map((e) =>
+      allSkillLvlup: (json['allSkillLvlup'] as List<dynamic>)
+          .map((e) =>
               OperatorAllSkillLvlupModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

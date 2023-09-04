@@ -39,9 +39,8 @@ ModuleModel _$ModuleModelFromJson(Map<String, dynamic> json) => ModuleModel(
 
 ModuleDataModel _$ModuleDataModelFromJson(Map<String, dynamic> json) =>
     ModuleDataModel(
-      phases: (json['phases'] as List<dynamic>?)
-          ?.map(
-              (e) => ModuleDataPhasesModel.fromJson(e as Map<String, dynamic>))
+      phases: (json['phases'] as List<dynamic>)
+          .map((e) => ModuleDataPhasesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

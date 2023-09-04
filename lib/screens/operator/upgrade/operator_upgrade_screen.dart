@@ -86,19 +86,22 @@ class OperatorUpgradeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   Gaps.v20,
-                  const CommonTitleWidget(text: '정예화'),
+                  if (operator_.phases.any((e) => e.evolveCost != null))
+                    const CommonTitleWidget(text: '정예화'),
                   for (int i = 1; i < operator_.phases.length; i++)
                     OperatorUpgradeCostsWidget(
-                      costs: operator_.phases[i].evolveCost,
+                      costs: operator_.phases[i].evolveCost!,
                     ),
                   Gaps.v20,
-                  const CommonTitleWidget(text: '스킬'),
+                  if (operator_.allSkillLvlup.isNotEmpty)
+                    const CommonTitleWidget(text: '스킬'),
                   for (var skill in operator_.allSkillLvlup)
                     OperatorUpgradeCostsWidget(costs: skill.lvlUpCost),
                   for (int i = 0; i < operator_.skills.length; i++)
                     Column(
                       children: [
-                        if (operator_.skills[i].levelUpCostCond.isNotEmpty)
+                        if (operator_.skills[i].levelUpCostCond?.isNotEmpty ==
+                            true)
                           Padding(
                             padding: const EdgeInsets.only(
                               left: Sizes.size10,
@@ -108,9 +111,9 @@ class OperatorUpgradeScreen extends StatelessWidget {
                                 CommonSubTitleWidget(text: '${i + 1} 스킬 마스터리'),
                           ),
                         for (var skillLvl
-                            in operator_.skills[i].levelUpCostCond)
+                            in operator_.skills[i].levelUpCostCond!)
                           OperatorUpgradeCostsWidget(
-                            costs: skillLvl.levelUpCost,
+                            costs: skillLvl.levelUpCost!,
                           ),
                       ],
                     ),
@@ -129,7 +132,7 @@ class OperatorUpgradeScreen extends StatelessWidget {
                             color: _moduleColorPicker(module.equipShiningColor),
                           ),
                         ),
-                        for (var moduleStage in module.itemCost.entries)
+                        for (var moduleStage in module.itemCost!.entries)
                           OperatorUpgradeCostsWidget(
                             costs: moduleStage.value,
                           ),

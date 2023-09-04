@@ -26,7 +26,7 @@ class OperatorTalentsWidget extends StatelessWidget {
           builder: (context, statState) {
             if (dataState is! OperatorDataLoadedState) return Container();
             if (reqPotEliteSelector(
-                  candidates: dataState.operator_.talents.first.candidates,
+                  candidates: dataState.operator_.talents.first.candidates!,
                   currPot: statState.potential,
                   currElite: statState.elite,
                   // currLevel: statState.level,
@@ -42,7 +42,7 @@ class OperatorTalentsWidget extends StatelessWidget {
                   _talentWidget(
                     context,
                     reqPotEliteSelector(
-                      candidates: talent.candidates,
+                      candidates: talent.candidates!,
                       currPot: statState.potential,
                       currElite: statState.elite,
                       // currLevel: statState.level,
@@ -58,7 +58,7 @@ class OperatorTalentsWidget extends StatelessWidget {
   }
 
   Widget _talentWidget(
-      BuildContext context, OperatorTalentsCandidatesModel? talent) {
+      BuildContext context, OperatorTalentCandidatesModel? talent) {
     if (talent == null) return Container();
 
     return Column(
@@ -68,7 +68,9 @@ class OperatorTalentsWidget extends StatelessWidget {
         Gaps.v3,
         FormattedTextWidget(
           text: talent.description!,
-          variables: boardListAndDurationToMap(blackboards: talent.blackboard),
+          variables: talent.blackboard != null
+              ? boardListAndDurationToMap(blackboards: talent.blackboard!)
+              : {},
           center: false,
         ),
         Gaps.v10,

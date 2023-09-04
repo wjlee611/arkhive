@@ -4,6 +4,7 @@ import 'package:arkhive/models/common/attribute_modifiers_model.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common/unlock_condition_model.dart';
+import 'package:arkhive/tools/modeling_functions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -32,16 +33,17 @@ class OperatorModel extends Equatable {
   final bool? isNotObtainable;
   final bool? isSpChar;
   final int? maxPotentialLevel;
+  @JsonKey(fromJson: fromJsonToString)
   final String? rarity; // CN: 5 -> TIER_6
   final String? profession;
   final String? subProfessionId;
   final OperatorTraitModel? trait;
-  final List<OperatorPhasesModel>? phases;
-  final List<OperatorSkillsModel>? skills;
-  final List<OperatorTalentsModel>? talents;
-  final List<OperatorPotnetialRanksModel>? potentialRanks;
-  final List<OperatorFavorKeyFramesModel>? favorKeyFrames;
-  final List<OperatorAllSkillLvlupModel>? allSkillLvlup;
+  final List<OperatorPhasesModel> phases;
+  final List<OperatorSkillsModel> skills;
+  final List<OperatorTalentsModel> talents;
+  final List<OperatorPotnetialRanksModel> potentialRanks;
+  final List<OperatorFavorKeyFramesModel> favorKeyFrames;
+  final List<OperatorAllSkillLvlupModel> allSkillLvlup;
 
   const OperatorModel({
     this.name,
@@ -69,12 +71,12 @@ class OperatorModel extends Equatable {
     this.profession,
     this.subProfessionId,
     this.trait,
-    this.phases,
-    this.skills,
-    this.talents,
-    this.potentialRanks,
-    this.favorKeyFrames,
-    this.allSkillLvlup,
+    required this.phases,
+    required this.skills,
+    required this.talents,
+    required this.potentialRanks,
+    required this.favorKeyFrames,
+    required this.allSkillLvlup,
   });
 
   factory OperatorModel.fromJson(Map<String, dynamic> json) =>

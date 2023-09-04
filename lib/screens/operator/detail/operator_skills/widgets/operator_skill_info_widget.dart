@@ -125,7 +125,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                       children: [
                         SkillSpTypeWidget(
                           isSkillType: false,
-                          type: skill.spData.spType!,
+                          type: skill.spData!.spType!,
                         ),
                         SkillSpTypeWidget(
                           isSkillType: true,
@@ -160,7 +160,8 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                           ),
                       ],
                     ),
-                    if (skill.spData.spCost != null && skill.spData.spCost! > 0)
+                    if (skill.spData?.spCost != null &&
+                        skill.spData!.spCost! > 0)
                       Column(
                         children: [
                           Gaps.v3,
@@ -197,7 +198,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                                 ),
                                 Gaps.h5,
                                 AppFont(
-                                  skill.spData.initSp!.toInt().toString(),
+                                  skill.spData!.initSp!.toInt().toString(),
                                   color: Colors.blue,
                                   fontSize: Sizes.size10,
                                   fontWeight: FontWeight.w700,
@@ -220,7 +221,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                                   ),
                                 ),
                                 AppFont(
-                                  skill.spData.spCost!.toInt().toString(),
+                                  skill.spData!.spCost!.toInt().toString(),
                                   color: Colors.blue,
                                   fontSize: Sizes.size10,
                                   fontWeight: FontWeight.w700,
@@ -240,10 +241,12 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
             Gaps.v3,
             FormattedTextWidget(
               text: skill.description!,
-              variables: boardListAndDurationToMap(
-                blackboards: skill.blackboard,
-                duration: skill.duration,
-              ),
+              variables: skill.blackboard != null
+                  ? boardListAndDurationToMap(
+                      blackboards: skill.blackboard!,
+                      duration: skill.duration,
+                    )
+                  : {},
               center: false,
             ),
           ],

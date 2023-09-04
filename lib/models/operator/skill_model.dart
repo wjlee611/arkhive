@@ -11,13 +11,13 @@ class SkillModel extends Equatable {
   final String? skillId;
   final String? iconId;
   final bool? hidden;
-  final List<SkillLevelsModel>? levels;
+  final List<SkillLevelsModel> levels;
 
   const SkillModel({
     this.skillId,
     this.iconId,
     this.hidden,
-    this.levels,
+    required this.levels,
   });
 
   factory SkillModel.fromJson(Map<String, dynamic> json) =>
@@ -79,15 +79,14 @@ class SkillLevelsModel extends Equatable {
 class SkillSpDataModel extends Equatable {
   @JsonKey(fromJson: fromJsonToString)
   final String? spType;
-  final String? levelUpCost;
-  final String? maxChargeTime;
-  final String? spCost;
-  final String? initSp;
-  final String? increment;
+  // "levelUpCost": null,
+  final int? maxChargeTime;
+  final int? spCost;
+  final int? initSp;
+  final double? increment;
 
   const SkillSpDataModel({
     this.spType,
-    this.levelUpCost,
     this.maxChargeTime,
     this.spCost,
     this.initSp,
@@ -100,7 +99,6 @@ class SkillSpDataModel extends Equatable {
   @override
   List<Object?> get props => [
         spType,
-        levelUpCost,
         maxChargeTime,
         spCost,
         initSp,

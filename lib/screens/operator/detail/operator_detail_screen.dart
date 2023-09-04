@@ -162,13 +162,14 @@ class OperatorDetailScreen extends StatelessWidget {
               ],
             ),
             Gaps.v32,
-            if (operator_.position != null || operator_.tagList.isNotEmpty)
+            if (operator_.position != null ||
+                operator_.tagList?.isNotEmpty == true)
               OperatorTagWrapWidget(
                 position: operator_.position,
-                tagList: operator_.tagList,
+                tagList: operator_.tagList!,
               ),
             if (operator_.phases.isNotEmpty &&
-                operator_.phases.first.attributesKeyFrames.isNotEmpty)
+                operator_.phases.first.attributesKeyFrames?.isNotEmpty == true)
               const OperatorStatsContainer(),
             if (operator_.description != null)
               const OperatorDescriptionWidget(),

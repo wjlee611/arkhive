@@ -1,10 +1,10 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/screens/operator/upgrade/widgets/operator_upgrade_item_btn.dart';
 import 'package:flutter/material.dart';
 
 class OperatorUpgradeCostsWidget extends StatelessWidget {
-  final List<EvolveCostModel> costs;
+  final List<ItemCostModel> costs;
 
   const OperatorUpgradeCostsWidget({
     super.key,
