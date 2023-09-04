@@ -90,17 +90,18 @@ class OperatorUpgradeScreen extends StatelessWidget {
                     const CommonTitleWidget(text: '정예화'),
                   for (int i = 1; i < operator_.phases.length; i++)
                     OperatorUpgradeCostsWidget(
-                      costs: operator_.phases[i].evolveCost!,
+                      costs: operator_.phases[i].evolveCost ?? [],
                     ),
                   Gaps.v20,
-                  if (operator_.allSkillLvlup.isNotEmpty)
+                  if (operator_.allSkillLvlup.any((e) => e.lvlUpCost != null))
                     const CommonTitleWidget(text: '스킬'),
                   for (var skill in operator_.allSkillLvlup)
                     OperatorUpgradeCostsWidget(costs: skill.lvlUpCost ?? []),
                   for (int i = 0; i < operator_.skills.length; i++)
                     Column(
                       children: [
-                        if (operator_.skills[i].levelUpCostCond?.isNotEmpty ==
+                        if (operator_.skills[i].levelUpCostCond
+                                ?.any((e) => e.levelUpCost != null) ==
                             true)
                           Padding(
                             padding: const EdgeInsets.only(
@@ -113,12 +114,12 @@ class OperatorUpgradeScreen extends StatelessWidget {
                         for (var skillLvl
                             in operator_.skills[i].levelUpCostCond!)
                           OperatorUpgradeCostsWidget(
-                            costs: skillLvl.levelUpCost!,
+                            costs: skillLvl.levelUpCost ?? [],
                           ),
                       ],
                     ),
                   Gaps.v20,
-                  const CommonTitleWidget(text: '모듈'),
+                  if (modules.isNotEmpty) const CommonTitleWidget(text: '모듈'),
                   for (var module in modules)
                     Column(
                       children: [

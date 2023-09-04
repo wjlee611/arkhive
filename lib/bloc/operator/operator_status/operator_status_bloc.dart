@@ -327,7 +327,7 @@ class OperatorStatusBloc
       var pot = _operator.potentialRanks[i].buff?.attributes;
       if (pot?.attributeModifiers?.isNotEmpty == false) continue;
 
-      for (var modifier in pot!.attributeModifiers!) {
+      for (var modifier in pot?.attributeModifiers ?? []) {
         if (_potentialDiff.containsKey(modifier.attributeType)) {
           _potentialDiff[modifier.attributeType] =
               _potentialDiff[modifier.attributeType]! + modifier.value;
