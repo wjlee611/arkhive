@@ -8,7 +8,8 @@ part 'attribute_modifiers_model.g.dart';
 class AttributeModifiersModel extends Equatable {
   @JsonKey(fromJson: fromJsonToString)
   final String attributeType; // CN: int -> String
-  final int formulaItem;
+  @JsonKey(fromJson: fromJsonToString)
+  final String formulaItem;
   final double value;
   final bool loadFromBlackboard;
   final bool fetchBaseValueFromSourceEntity;

@@ -86,7 +86,8 @@ class EnemyCombatInfo extends StatelessWidget {
             Gaps.v5,
             InfoTag(
               title: '공격 방식',
-              value: enemy.attackType!,
+              // TODO; replace asd
+              value: enemy.attackType ?? 'asd',
             ),
             Gaps.v7,
             InfoTag(
@@ -104,19 +105,19 @@ class EnemyCombatInfo extends StatelessWidget {
                     StatContainer(
                       title: '체력',
                       stat: attr.maxHp!.mValue.toString(),
-                      statRank: enemy.endure!,
+                      statRank: enemy.endure ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '공격력',
                       stat: attr.atk!.mValue.toString(),
-                      statRank: enemy.attack!,
+                      statRank: enemy.attack ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '방어력',
                       stat: attr.def!.mValue.toString(),
-                      statRank: enemy.defence!,
+                      statRank: enemy.defence ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
@@ -124,7 +125,7 @@ class EnemyCombatInfo extends StatelessWidget {
                       stat: attr.magicResistance!.mValue
                           .toString()
                           .replaceAll('.0', ''),
-                      statRank: enemy.resistance!,
+                      statRank: enemy.resistance ?? 'asd',
                     ),
                   ],
                 ),

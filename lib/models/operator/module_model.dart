@@ -2,6 +2,7 @@ import 'package:arkhive/models/interface/candidates_interface.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common/unlock_condition_model.dart';
+import 'package:arkhive/tools/modeling_functions.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -17,8 +18,10 @@ class ModuleModel extends Equatable {
   final String? typeName1;
   final String? typeName2;
   final String? equipShiningColor;
-  final int? showEvolvePhase;
-  final int? unlockEvolvePhase;
+  @JsonKey(fromJson: fromJsonToString)
+  final String? showEvolvePhase;
+  @JsonKey(fromJson: fromJsonToString)
+  final String? unlockEvolvePhase;
   final String? charId;
   final String? tmplId;
   final int? showLevel;

@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/enemy_class_level_cubit.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/cubit/range_cubit.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
@@ -17,14 +18,18 @@ import 'dart:math' as math;
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
+  static const int _maxProgress = 4;
+
   int progress(SplashState state) {
     switch (state) {
       case SplashState.tags:
         return 1;
       case SplashState.range:
         return 2;
-      case SplashState.penguin:
+      case SplashState.enemyClassLevel:
         return 3;
+      case SplashState.penguin:
+        return _maxProgress;
       default:
         return 0;
     }
@@ -43,6 +48,11 @@ class SplashScreen extends StatelessWidget {
             }
             if (state == SplashState.range) {
               context.read<RangeCubit>().loadRange(
+                    dbRegion: getRegion(context),
+                  );
+            }
+            if (state == SplashState.enemyClassLevel) {
+              context.read<EnemyClassLevelCubit>().loadEnemyClassLevel(
                     dbRegion: getRegion(context),
                   );
             }
@@ -75,12 +85,27 @@ class SplashScreen extends StatelessWidget {
           listenWhen: (previous, current) => previous.status != current.status,
           listener: (context, state) {
             if (state.status == CommonLoadState.loaded) {
-              context.read<SplashCubit>().changeLoadStatus(SplashState.penguin);
+              context
+                  .read<SplashCubit>()
+                  .changeLoadStatus(SplashState.enemyClassLevel);
             }
             if (state.status == CommonLoadState.error) {
               context
                   .read<SplashCubit>()
                   .changeLoadStatus(SplashState.errorRange);
+            }
+          },
+        ),
+        BlocListener<EnemyClassLevelCubit, EnemyClassLevelState>(
+          listenWhen: (previous, current) => previous.status != current.status,
+          listener: (context, state) {
+            if (state.status == CommonLoadState.loaded) {
+              context.read<SplashCubit>().changeLoadStatus(SplashState.penguin);
+            }
+            if (state.status == CommonLoadState.error) {
+              context
+                  .read<SplashCubit>()
+                  .changeLoadStatus(SplashState.errorEnemyClassLevel);
             }
           },
         ),
@@ -109,6 +134,7 @@ class SplashScreen extends StatelessWidget {
               }
               if (state == SplashState.errorTags ||
                   state == SplashState.errorRange ||
+                  state == SplashState.errorEnemyClassLevel ||
                   state == SplashState.errorPenguin) {
                 return Center(
                   child: Column(
@@ -134,7 +160,8 @@ class SplashScreen extends StatelessWidget {
                       progressWidth: Sizes.size3,
                       progressColor: Colors.yellow.shade700,
                       shadowColor: Colors.yellow.shade600,
-                      progress: progress(context.read<SplashCubit>().state) / 3,
+                      progress: progress(context.read<SplashCubit>().state) /
+                          _maxProgress,
                       child: Transform.rotate(
                         angle: -math.pi / 4,
                         child: Center(
@@ -149,7 +176,7 @@ class SplashScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                               AppFont(
-                                '/3',
+                                '/$_maxProgress',
                                 color: Colors.yellow.shade700,
                                 fontSize: Sizes.size14,
                               ),

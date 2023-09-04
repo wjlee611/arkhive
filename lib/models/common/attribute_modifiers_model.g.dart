@@ -10,7 +10,7 @@ AttributeModifiersModel _$AttributeModifiersModelFromJson(
         Map<String, dynamic> json) =>
     AttributeModifiersModel(
       attributeType: fromJsonToString(json['attributeType']),
-      formulaItem: json['formulaItem'] as int,
+      formulaItem: fromJsonToString(json['formulaItem']),
       value: (json['value'] as num).toDouble(),
       loadFromBlackboard: json['loadFromBlackboard'] as bool,
       fetchBaseValueFromSourceEntity:
