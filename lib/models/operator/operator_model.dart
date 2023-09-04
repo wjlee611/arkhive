@@ -1,4 +1,4 @@
-import 'package:arkhive/models/abstract_class/abs_candidates.dart';
+import 'package:arkhive/models/interface/candidates_interface.dart';
 import 'package:arkhive/models/common/attribute_model.dart';
 import 'package:arkhive/models/common/attribute_modifiers_model.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
@@ -131,23 +131,24 @@ class OperatorTraitModel extends Equatable {
 }
 
 @JsonSerializable(createToJson: false)
-class OperatorTraitCandidatesModel extends ABSCandidate {
+class OperatorTraitCandidatesModel extends Equatable implements ICandidate {
+  @override
+  final UnlockConditionModel unlockCondition;
+  @override
+  final int requiredPotentialRank;
   final List<TalentBlackboardModel>? blackboard;
   final String? overrideDescripton;
   final String? prefabKey;
   final String? rangeId;
 
   const OperatorTraitCandidatesModel({
-    required UnlockConditionModel unlockCondition,
-    required int requiredPotentialRank,
+    required this.unlockCondition,
+    required this.requiredPotentialRank,
     this.blackboard,
     this.overrideDescripton,
     this.prefabKey,
     this.rangeId,
-  }) : super(
-          unlockCondition: unlockCondition,
-          requiredPotentialRank: requiredPotentialRank,
-        );
+  });
 
   factory OperatorTraitCandidatesModel.fromJson(Map<String, dynamic> json) =>
       _$OperatorTraitCandidatesModelFromJson(json);
@@ -285,7 +286,11 @@ class OperatorTalentsModel extends Equatable {
 }
 
 @JsonSerializable(createToJson: false)
-class OperatorTalentCandidatesModel extends ABSCandidate {
+class OperatorTalentCandidatesModel extends Equatable implements ICandidate {
+  @override
+  final UnlockConditionModel unlockCondition;
+  @override
+  final int requiredPotentialRank;
   final String? prefabKey;
   final String? name;
   final String? description;
@@ -293,17 +298,14 @@ class OperatorTalentCandidatesModel extends ABSCandidate {
   final List<TalentBlackboardModel>? blackboard;
 
   const OperatorTalentCandidatesModel({
-    required UnlockConditionModel unlockCondition,
-    required int requiredPotentialRank,
+    required this.unlockCondition,
+    required this.requiredPotentialRank,
     this.prefabKey,
     this.name,
     this.description,
     this.rangeId,
     this.blackboard,
-  }) : super(
-          unlockCondition: unlockCondition,
-          requiredPotentialRank: requiredPotentialRank,
-        );
+  });
 
   factory OperatorTalentCandidatesModel.fromJson(Map<String, dynamic> json) =>
       _$OperatorTalentCandidatesModelFromJson(json);

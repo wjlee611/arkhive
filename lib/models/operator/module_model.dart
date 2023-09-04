@@ -1,4 +1,4 @@
-import 'package:arkhive/models/abstract_class/abs_candidates.dart';
+import 'package:arkhive/models/interface/candidates_interface.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common/unlock_condition_model.dart';
@@ -162,7 +162,11 @@ class ModuleDataTalentBundleModel extends Equatable {
 }
 
 @JsonSerializable(createToJson: false)
-class ModuleDataTalentCandidateModel extends ABSCandidate {
+class ModuleDataTalentCandidateModel extends Equatable implements ICandidate {
+  @override
+  final UnlockConditionModel unlockCondition;
+  @override
+  final int requiredPotentialRank;
   final bool? displayRangeId;
   final String? upgradeDescription;
   final int? talentIndex;
@@ -173,8 +177,8 @@ class ModuleDataTalentCandidateModel extends ABSCandidate {
   final List<TalentBlackboardModel>? blackboard;
 
   const ModuleDataTalentCandidateModel({
-    required UnlockConditionModel unlockCondition,
-    required int requiredPotentialRank,
+    required this.unlockCondition,
+    required this.requiredPotentialRank,
     this.displayRangeId,
     this.upgradeDescription,
     this.talentIndex,
@@ -183,10 +187,7 @@ class ModuleDataTalentCandidateModel extends ABSCandidate {
     this.description,
     this.rangeId,
     this.blackboard,
-  }) : super(
-          unlockCondition: unlockCondition,
-          requiredPotentialRank: requiredPotentialRank,
-        );
+  });
 
   factory ModuleDataTalentCandidateModel.fromJson(Map<String, dynamic> json) =>
       _$ModuleDataTalentCandidateModelFromJson(json);
@@ -220,7 +221,11 @@ class ModuleDataTraitBundleModel extends Equatable {
 }
 
 @JsonSerializable(createToJson: false)
-class ModuleDataTraitCandidateModel extends ABSCandidate {
+class ModuleDataTraitCandidateModel extends Equatable implements ICandidate {
+  @override
+  final UnlockConditionModel unlockCondition;
+  @override
+  final int requiredPotentialRank;
   final String? additionalDescription;
   final List<TalentBlackboardModel>? blackboard;
   final String? overrideDescripton;
@@ -228,17 +233,14 @@ class ModuleDataTraitCandidateModel extends ABSCandidate {
   final String? rangeId;
 
   const ModuleDataTraitCandidateModel({
-    required UnlockConditionModel unlockCondition,
-    required int requiredPotentialRank,
+    required this.unlockCondition,
+    required this.requiredPotentialRank,
     this.additionalDescription,
     this.blackboard,
     this.overrideDescripton,
     this.prefabKey,
     this.rangeId,
-  }) : super(
-          unlockCondition: unlockCondition,
-          requiredPotentialRank: requiredPotentialRank,
-        );
+  });
 
   factory ModuleDataTraitCandidateModel.fromJson(Map<String, dynamic> json) =>
       _$ModuleDataTraitCandidateModelFromJson(json);
