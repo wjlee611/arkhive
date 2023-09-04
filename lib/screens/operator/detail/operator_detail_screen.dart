@@ -173,7 +173,8 @@ class OperatorDetailScreen extends StatelessWidget {
               const OperatorStatsContainer(),
             if (operator_.description != null)
               const OperatorDescriptionWidget(),
-            if (operator_.talents.isNotEmpty) const OperatorTalentsWidget(),
+            if (operator_.talents?.isNotEmpty == true)
+              const OperatorTalentsWidget(),
             if (skills.isNotEmpty) const OperatorSkillsContainer(),
             if (modules.isNotEmpty) const OperatorModulesContainer(),
             Gaps.v130,

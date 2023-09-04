@@ -96,7 +96,7 @@ class OperatorUpgradeScreen extends StatelessWidget {
                   if (operator_.allSkillLvlup.isNotEmpty)
                     const CommonTitleWidget(text: '스킬'),
                   for (var skill in operator_.allSkillLvlup)
-                    OperatorUpgradeCostsWidget(costs: skill.lvlUpCost),
+                    OperatorUpgradeCostsWidget(costs: skill.lvlUpCost ?? []),
                   for (int i = 0; i < operator_.skills.length; i++)
                     Column(
                       children: [

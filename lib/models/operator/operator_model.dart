@@ -1,5 +1,5 @@
+import 'package:arkhive/models/common/keyframe_data_model.dart';
 import 'package:arkhive/models/interface/candidates_interface.dart';
-import 'package:arkhive/models/common/attribute_model.dart';
 import 'package:arkhive/models/common/attribute_modifiers_model.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
@@ -40,7 +40,7 @@ class OperatorModel extends Equatable {
   final OperatorTraitModel? trait;
   final List<OperatorPhasesModel> phases;
   final List<OperatorSkillsModel> skills;
-  final List<OperatorTalentsModel> talents;
+  final List<OperatorTalentsModel>? talents;
   final List<OperatorPotnetialRanksModel> potentialRanks;
   final List<OperatorFavorKeyFramesModel> favorKeyFrames;
   final List<OperatorAllSkillLvlupModel> allSkillLvlup;
@@ -73,7 +73,7 @@ class OperatorModel extends Equatable {
     this.trait,
     required this.phases,
     required this.skills,
-    required this.talents,
+    this.talents,
     required this.potentialRanks,
     required this.favorKeyFrames,
     required this.allSkillLvlup,
@@ -200,7 +200,7 @@ class OperatorPhasesModel extends Equatable {
 @JsonSerializable(createToJson: false)
 class OperatorAttrKeyFramesModel extends Equatable {
   final int level;
-  final AttributeModel data;
+  final KeyFrameDataModel data;
 
   const OperatorAttrKeyFramesModel({
     required this.level,
@@ -384,7 +384,7 @@ class OperatorPotentialBuffAttrModel extends Equatable {
 @JsonSerializable(createToJson: false)
 class OperatorFavorKeyFramesModel extends Equatable {
   final int level;
-  final AttributeModel data;
+  final KeyFrameDataModel data;
 
   const OperatorFavorKeyFramesModel({
     required this.level,
@@ -406,11 +406,11 @@ class OperatorFavorKeyFramesModel extends Equatable {
 @JsonSerializable(createToJson: false)
 class OperatorAllSkillLvlupModel extends Equatable {
   final UnlockConditionModel unlockCond;
-  final List<ItemCostModel> lvlUpCost;
+  final List<ItemCostModel>? lvlUpCost;
 
   const OperatorAllSkillLvlupModel({
     required this.unlockCond,
-    required this.lvlUpCost,
+    this.lvlUpCost,
   });
 
   factory OperatorAllSkillLvlupModel.fromJson(Map<String, dynamic> json) =>

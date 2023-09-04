@@ -26,7 +26,7 @@ class OperatorTalentsWidget extends StatelessWidget {
           builder: (context, statState) {
             if (dataState is! OperatorDataLoadedState) return Container();
             if (reqPotEliteSelector(
-                  candidates: dataState.operator_.talents.first.candidates!,
+                  candidates: dataState.operator_.talents?.first.candidates,
                   currPot: statState.potential,
                   currElite: statState.elite,
                   // currLevel: statState.level,
@@ -38,7 +38,7 @@ class OperatorTalentsWidget extends StatelessWidget {
               children: [
                 const CommonTitleWidget(text: '재능'),
                 Gaps.v7,
-                for (var talent in dataState.operator_.talents)
+                for (var talent in dataState.operator_.talents ?? [])
                   _talentWidget(
                     context,
                     reqPotEliteSelector(

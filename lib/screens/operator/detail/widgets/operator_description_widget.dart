@@ -24,7 +24,7 @@ class OperatorDescriptionWidget extends StatelessWidget {
           var candidate =
               dataState.operator_.trait?.candidates?.isNotEmpty == true
                   ? reqPotEliteSelector(
-                      candidates: dataState.operator_.trait!.candidates!,
+                      candidates: dataState.operator_.trait?.candidates,
                       currPot: statState.potential,
                       currElite: statState.elite,
                       currLevel: statState.level,

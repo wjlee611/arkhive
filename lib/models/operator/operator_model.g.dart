@@ -42,8 +42,8 @@ OperatorModel _$OperatorModelFromJson(Map<String, dynamic> json) =>
       skills: (json['skills'] as List<dynamic>)
           .map((e) => OperatorSkillsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      talents: (json['talents'] as List<dynamic>)
-          .map((e) => OperatorTalentsModel.fromJson(e as Map<String, dynamic>))
+      talents: (json['talents'] as List<dynamic>?)
+          ?.map((e) => OperatorTalentsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       potentialRanks: (json['potentialRanks'] as List<dynamic>)
           .map((e) =>
@@ -100,7 +100,7 @@ OperatorAttrKeyFramesModel _$OperatorAttrKeyFramesModelFromJson(
         Map<String, dynamic> json) =>
     OperatorAttrKeyFramesModel(
       level: json['level'] as int,
-      data: AttributeModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: KeyFrameDataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 OperatorSkillsModel _$OperatorSkillsModelFromJson(Map<String, dynamic> json) =>
@@ -188,7 +188,7 @@ OperatorFavorKeyFramesModel _$OperatorFavorKeyFramesModelFromJson(
         Map<String, dynamic> json) =>
     OperatorFavorKeyFramesModel(
       level: json['level'] as int,
-      data: AttributeModel.fromJson(json['data'] as Map<String, dynamic>),
+      data: KeyFrameDataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
 
 OperatorAllSkillLvlupModel _$OperatorAllSkillLvlupModelFromJson(
@@ -196,7 +196,7 @@ OperatorAllSkillLvlupModel _$OperatorAllSkillLvlupModelFromJson(
     OperatorAllSkillLvlupModel(
       unlockCond: UnlockConditionModel.fromJson(
           json['unlockCond'] as Map<String, dynamic>),
-      lvlUpCost: (json['lvlUpCost'] as List<dynamic>)
-          .map((e) => ItemCostModel.fromJson(e as Map<String, dynamic>))
+      lvlUpCost: (json['lvlUpCost'] as List<dynamic>?)
+          ?.map((e) => ItemCostModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );

@@ -1,36 +1,35 @@
-import 'package:arkhive/models/common/attribute_m_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'attribute_model.g.dart';
+part 'keyframe_data_model.g.dart';
 
 @JsonSerializable()
-class AttributeModel extends Equatable {
-  final AttributeMModel<int>? maxHp;
-  final AttributeMModel<int>? atk;
-  final AttributeMModel<int>? def;
-  final AttributeMModel<double>? magicResistance;
-  final AttributeMModel<int>? cost;
-  final AttributeMModel<int>? blockCnt;
-  final AttributeMModel<double>? moveSpeed;
-  final AttributeMModel<double>? attackSpeed;
-  final AttributeMModel<double>? baseAttackTime;
-  final AttributeMModel<int>? respawnTime;
-  final AttributeMModel<double>? hpRecoveryPerSec;
-  final AttributeMModel<double>? spRecoveryPerSec;
-  final AttributeMModel<int>? maxDeployCount;
-  final AttributeMModel<int>? massLevel;
-  final AttributeMModel<int>? baseForceLevel;
-  final AttributeMModel<int>? tauntLevel;
-  final AttributeMModel<double>? epDamageResistance; // CN
-  final AttributeMModel<double>? epResistance; // CN
-  final AttributeMModel<bool>? stunImmune;
-  final AttributeMModel<bool>? silenceImmune;
-  final AttributeMModel<bool>? sleepImmune;
-  final AttributeMModel<bool>? frozenImmune;
-  final AttributeMModel<bool>? levitateImmune;
+class KeyFrameDataModel extends Equatable {
+  final int? maxHp;
+  final int? atk;
+  final int? def;
+  final double? magicResistance;
+  final int? cost;
+  final int? blockCnt;
+  final double? moveSpeed;
+  final double? attackSpeed;
+  final double? baseAttackTime;
+  final int? respawnTime;
+  final double? hpRecoveryPerSec;
+  final double? spRecoveryPerSec;
+  final int? maxDeployCount;
+  final int? massLevel;
+  final int? baseForceLevel;
+  final int? tauntLevel;
+  final double? epDamageResistance; // CN
+  final double? epResistance; // CN
+  final bool? stunImmune;
+  final bool? silenceImmune;
+  final bool? sleepImmune;
+  final bool? frozenImmune;
+  final bool? levitateImmune;
 
-  const AttributeModel({
+  const KeyFrameDataModel({
     this.maxHp,
     this.atk,
     this.def,
@@ -56,37 +55,37 @@ class AttributeModel extends Equatable {
     this.levitateImmune,
   });
 
-  factory AttributeModel.fromJson(Map<String, dynamic> json) =>
-      _$AttributeModelFromJson(json);
+  factory KeyFrameDataModel.fromJson(Map<String, dynamic> json) =>
+      _$KeyFrameDataModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$AttributeModelToJson(this);
+  Map<String, dynamic> toJson() => _$KeyFrameDataModelToJson(this);
 
-  AttributeModel copyWith({
-    AttributeMModel<int>? maxHp,
-    AttributeMModel<int>? atk,
-    AttributeMModel<int>? def,
-    AttributeMModel<double>? magicResistance,
-    AttributeMModel<int>? cost,
-    AttributeMModel<int>? blockCnt,
-    AttributeMModel<double>? moveSpeed,
-    AttributeMModel<double>? attackSpeed,
-    AttributeMModel<double>? baseAttackTime,
-    AttributeMModel<int>? respawnTime,
-    AttributeMModel<double>? hpRecoveryPerSec,
-    AttributeMModel<double>? spRecoveryPerSec,
-    AttributeMModel<int>? maxDeployCount,
-    AttributeMModel<int>? massLevel,
-    AttributeMModel<int>? baseForceLevel,
-    AttributeMModel<int>? tauntLevel,
-    AttributeMModel<double>? epDamageResistance,
-    AttributeMModel<double>? epResistance,
-    AttributeMModel<bool>? stunImmune,
-    AttributeMModel<bool>? silenceImmune,
-    AttributeMModel<bool>? sleepImmune,
-    AttributeMModel<bool>? frozenImmune,
-    AttributeMModel<bool>? levitateImmune,
+  KeyFrameDataModel copyWith({
+    int? maxHp,
+    int? atk,
+    int? def,
+    double? magicResistance,
+    int? cost,
+    int? blockCnt,
+    double? moveSpeed,
+    double? attackSpeed,
+    double? baseAttackTime,
+    int? respawnTime,
+    double? hpRecoveryPerSec,
+    double? spRecoveryPerSec,
+    int? maxDeployCount,
+    int? massLevel,
+    int? baseForceLevel,
+    int? tauntLevel,
+    double? epDamageResistance,
+    double? epResistance,
+    bool? stunImmune,
+    bool? silenceImmune,
+    bool? sleepImmune,
+    bool? frozenImmune,
+    bool? levitateImmune,
   }) =>
-      AttributeModel(
+      KeyFrameDataModel(
         maxHp: maxHp ?? this.maxHp,
         atk: atk ?? this.atk,
         def: def ?? this.def,

@@ -84,14 +84,14 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
       // update trait
       if (part.target!.contains('TRAIT') || part.target!.contains('DISPLAY')) {
         _updateTrait = reqPotEliteSelector<ModuleDataTraitCandidateModel>(
-          candidates: part.overrideTraitDataBundle!.candidates!,
+          candidates: part.overrideTraitDataBundle?.candidates,
           currPot: potential,
         );
       }
       // update talent
       else if (part.target!.contains('TALENT')) {
         var nullTest = reqPotEliteSelector<ModuleDataTalentCandidateModel>(
-          candidates: part.addOrOverrideTalentDataBundle!.candidates!,
+          candidates: part.addOrOverrideTalentDataBundle?.candidates,
           currPot: potential,
         );
         if (nullTest == null || nullTest.name == null) continue;

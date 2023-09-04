@@ -1,6 +1,6 @@
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
-import 'package:arkhive/models/common/attribute_model.dart';
+import 'package:arkhive/models/common/keyframe_data_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +28,7 @@ class OperatorStatusBloc
     _updatePotentialDiff(potential: 0);
     _updateFavorDiff(favor: 0);
 
-    AttributeModel initStats =
+    KeyFrameDataModel initStats =
         _operator.phases.first.attributesKeyFrames!.first.data;
 
     emit(OperatorStatusState(
@@ -38,25 +38,25 @@ class OperatorStatusBloc
       maxLevel: _operator.phases.first.maxLevel ?? 1,
       favor: 0,
       rangeId: _operator.phases.first.rangeId,
-      maxHp: initStats.maxHp.mValue!.toDouble() +
+      maxHp: initStats.maxHp!.toDouble() +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
-      atk: initStats.atk.mValue!.toDouble() +
+      atk: initStats.atk!.toDouble() +
           (_potentialDiff['1'] ?? 0) +
           (_favorDiff['atk'] ?? 0),
-      def: initStats.def.mValue!.toDouble() +
+      def: initStats.def!.toDouble() +
           (_potentialDiff['2'] ?? 0) +
           (_favorDiff['def'] ?? 0),
-      magicResistance: initStats.magicResistance.mValue! +
+      magicResistance: initStats.magicResistance! +
           (_potentialDiff['3'] ?? 0) +
           (_favorDiff['magicResistance'] ?? 0),
-      respawnTime: initStats.respawnTime.mValue!.toDouble() +
-          (_potentialDiff['21'] ?? 0),
-      cost: initStats.cost.mValue!.toDouble() + (_potentialDiff['4'] ?? 0),
-      blockCnt: initStats.blockCnt.mValue!.toDouble(),
+      respawnTime:
+          initStats.respawnTime!.toDouble() + (_potentialDiff['21'] ?? 0),
+      cost: initStats.cost!.toDouble() + (_potentialDiff['4'] ?? 0),
+      blockCnt: initStats.blockCnt!.toDouble(),
       atkSpeed: _atkSpeedCalculator(
-        attackspeed: initStats.attackSpeed.mValue!,
-        baseAttackTime: initStats.baseAttackTime.mValue!,
+        attackspeed: initStats.attackSpeed!,
+        baseAttackTime: initStats.baseAttackTime!,
       ),
     ));
   }
@@ -68,76 +68,76 @@ class OperatorStatusBloc
   ) async {
     _updatePotentialDiff(potential: event.potential);
 
-    AttributeModel firstStats =
+    KeyFrameDataModel firstStats =
         _operator.phases[state.elite].attributesKeyFrames!.first.data;
-    AttributeModel lastStats =
+    KeyFrameDataModel lastStats =
         _operator.phases[state.elite].attributesKeyFrames!.last.data;
     int maxLevel = _operator.phases[state.elite].maxLevel ?? 1;
 
     emit(state.copyWith(
       potential: event.potential,
       maxHp: _statCalculator(
-            first: firstStats.maxHp.mValue!.toDouble(),
-            last: lastStats.maxHp.mValue!.toDouble(),
+            first: firstStats.maxHp!.toDouble(),
+            last: lastStats.maxHp!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
       atk: _statCalculator(
-            first: firstStats.atk.mValue!.toDouble(),
-            last: lastStats.atk.mValue!.toDouble(),
+            first: firstStats.atk!.toDouble(),
+            last: lastStats.atk!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['1'] ?? 0) +
           (_favorDiff['atk'] ?? 0),
       def: _statCalculator(
-            first: firstStats.def.mValue!.toDouble(),
-            last: lastStats.def.mValue!.toDouble(),
+            first: firstStats.def!.toDouble(),
+            last: lastStats.def!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['2'] ?? 0) +
           (_favorDiff['def'] ?? 0),
       magicResistance: _statCalculator(
-            first: firstStats.magicResistance.mValue!,
-            last: lastStats.magicResistance.mValue!,
+            first: firstStats.magicResistance!,
+            last: lastStats.magicResistance!,
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['3'] ?? 0) +
           (_favorDiff['magicResistance'] ?? 0),
       respawnTime: _statCalculator(
-            first: firstStats.respawnTime.mValue!.toDouble(),
-            last: lastStats.respawnTime.mValue!.toDouble(),
+            first: firstStats.respawnTime!.toDouble(),
+            last: lastStats.respawnTime!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['21'] ?? 0),
       cost: _statCalculator(
-            first: firstStats.cost.mValue!.toDouble(),
-            last: lastStats.cost.mValue!.toDouble(),
+            first: firstStats.cost!.toDouble(),
+            last: lastStats.cost!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['4'] ?? 0),
       blockCnt: _statCalculator(
-        first: firstStats.blockCnt.mValue!.toDouble(),
-        last: lastStats.blockCnt.mValue!.toDouble(),
+        first: firstStats.blockCnt!.toDouble(),
+        last: lastStats.blockCnt!.toDouble(),
         level: state.level,
         maxLevel: maxLevel,
       ),
       atkSpeed: _atkSpeedCalculator(
         attackspeed: _statCalculator(
-          first: firstStats.attackSpeed.mValue!,
-          last: lastStats.attackSpeed.mValue!,
+          first: firstStats.attackSpeed!,
+          last: lastStats.attackSpeed!,
           level: state.level,
           maxLevel: maxLevel,
         ),
         baseAttackTime: _statCalculator(
-          first: firstStats.baseAttackTime.mValue!,
-          last: lastStats.baseAttackTime.mValue!,
+          first: firstStats.baseAttackTime!,
+          last: lastStats.baseAttackTime!,
           level: state.level,
           maxLevel: maxLevel,
         ),
@@ -150,7 +150,7 @@ class OperatorStatusBloc
     OperatorStatusEliteChangeEvent event,
     Emitter<OperatorStatusState> emit,
   ) async {
-    AttributeModel stats =
+    KeyFrameDataModel stats =
         _operator.phases[event.elite].attributesKeyFrames!.first.data;
 
     emit(state.copyWith(
@@ -158,25 +158,24 @@ class OperatorStatusBloc
       rangeId: _operator.phases[event.elite].rangeId,
       level: 1,
       maxLevel: _operator.phases[event.elite].maxLevel ?? 1,
-      maxHp: stats.maxHp.mValue!.toDouble() +
+      maxHp: stats.maxHp!.toDouble() +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
-      atk: stats.atk.mValue!.toDouble() +
+      atk: stats.atk!.toDouble() +
           (_potentialDiff['1'] ?? 0) +
           (_favorDiff['atk'] ?? 0),
-      def: stats.def.mValue!.toDouble() +
+      def: stats.def!.toDouble() +
           (_potentialDiff['2'] ?? 0) +
           (_favorDiff['def'] ?? 0),
-      magicResistance: stats.magicResistance.mValue! +
+      magicResistance: stats.magicResistance! +
           (_potentialDiff['3'] ?? 0) +
           (_favorDiff['magicResistance'] ?? 0),
-      respawnTime:
-          stats.respawnTime.mValue!.toDouble() + (_potentialDiff['21'] ?? 0),
-      cost: stats.cost.mValue!.toDouble() + (_potentialDiff['4'] ?? 0),
-      blockCnt: stats.blockCnt.mValue!.toDouble(),
+      respawnTime: stats.respawnTime!.toDouble() + (_potentialDiff['21'] ?? 0),
+      cost: stats.cost!.toDouble() + (_potentialDiff['4'] ?? 0),
+      blockCnt: stats.blockCnt!.toDouble(),
       atkSpeed: _atkSpeedCalculator(
-        attackspeed: stats.attackSpeed.mValue!,
-        baseAttackTime: stats.baseAttackTime.mValue!,
+        attackspeed: stats.attackSpeed!,
+        baseAttackTime: stats.baseAttackTime!,
       ),
     ));
   }
@@ -186,76 +185,76 @@ class OperatorStatusBloc
     OperatorStatusLevelChangeEvent event,
     Emitter<OperatorStatusState> emit,
   ) async {
-    AttributeModel firstStats =
+    KeyFrameDataModel firstStats =
         _operator.phases[state.elite].attributesKeyFrames!.first.data;
-    AttributeModel lastStats =
+    KeyFrameDataModel lastStats =
         _operator.phases[state.elite].attributesKeyFrames!.last.data;
     int maxLevel = state.maxLevel;
 
     emit(state.copyWith(
       level: event.level,
       maxHp: _statCalculator(
-            first: firstStats.maxHp.mValue!.toDouble(),
-            last: lastStats.maxHp.mValue!.toDouble(),
+            first: firstStats.maxHp!.toDouble(),
+            last: lastStats.maxHp!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
       atk: _statCalculator(
-            first: firstStats.atk.mValue!.toDouble(),
-            last: lastStats.atk.mValue!.toDouble(),
+            first: firstStats.atk!.toDouble(),
+            last: lastStats.atk!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['1'] ?? 0) +
           (_favorDiff['atk'] ?? 0),
       def: _statCalculator(
-            first: firstStats.def.mValue!.toDouble(),
-            last: lastStats.def.mValue!.toDouble(),
+            first: firstStats.def!.toDouble(),
+            last: lastStats.def!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['2'] ?? 0) +
           (_favorDiff['def'] ?? 0),
       magicResistance: _statCalculator(
-            first: firstStats.magicResistance.mValue!,
-            last: lastStats.magicResistance.mValue!,
+            first: firstStats.magicResistance!,
+            last: lastStats.magicResistance!,
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['3'] ?? 0) +
           (_favorDiff['magicResistance'] ?? 0),
       respawnTime: _statCalculator(
-            first: firstStats.respawnTime.mValue!.toDouble(),
-            last: lastStats.respawnTime.mValue!.toDouble(),
+            first: firstStats.respawnTime!.toDouble(),
+            last: lastStats.respawnTime!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['21'] ?? 0),
       cost: _statCalculator(
-            first: firstStats.cost.mValue!.toDouble(),
-            last: lastStats.cost.mValue!.toDouble(),
+            first: firstStats.cost!.toDouble(),
+            last: lastStats.cost!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['4'] ?? 0),
       blockCnt: _statCalculator(
-        first: firstStats.blockCnt.mValue!.toDouble(),
-        last: lastStats.blockCnt.mValue!.toDouble(),
+        first: firstStats.blockCnt!.toDouble(),
+        last: lastStats.blockCnt!.toDouble(),
         level: event.level,
         maxLevel: maxLevel,
       ),
       atkSpeed: _atkSpeedCalculator(
         attackspeed: _statCalculator(
-          first: firstStats.attackSpeed.mValue!,
-          last: lastStats.attackSpeed.mValue!,
+          first: firstStats.attackSpeed!,
+          last: lastStats.attackSpeed!,
           level: event.level,
           maxLevel: maxLevel,
         ),
         baseAttackTime: _statCalculator(
-          first: firstStats.baseAttackTime.mValue!,
-          last: lastStats.baseAttackTime.mValue!,
+          first: firstStats.baseAttackTime!,
+          last: lastStats.baseAttackTime!,
           level: event.level,
           maxLevel: maxLevel,
         ),
@@ -270,41 +269,41 @@ class OperatorStatusBloc
   ) async {
     _updateFavorDiff(favor: event.favor);
 
-    AttributeModel firstStats =
+    KeyFrameDataModel firstStats =
         _operator.phases[state.elite].attributesKeyFrames!.first.data;
-    AttributeModel lastStats =
+    KeyFrameDataModel lastStats =
         _operator.phases[state.elite].attributesKeyFrames!.last.data;
     int maxLevel = state.maxLevel;
 
     emit(state.copyWith(
       favor: event.favor,
       maxHp: _statCalculator(
-            first: firstStats.maxHp.mValue!.toDouble(),
-            last: lastStats.maxHp.mValue!.toDouble(),
+            first: firstStats.maxHp!.toDouble(),
+            last: lastStats.maxHp!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['0'] ?? 0) +
           (_favorDiff['maxHp'] ?? 0),
       atk: _statCalculator(
-            first: firstStats.atk.mValue!.toDouble(),
-            last: lastStats.atk.mValue!.toDouble(),
+            first: firstStats.atk!.toDouble(),
+            last: lastStats.atk!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['1'] ?? 0) +
           (_favorDiff['atk'] ?? 0),
       def: _statCalculator(
-            first: firstStats.def.mValue!.toDouble(),
-            last: lastStats.def.mValue!.toDouble(),
+            first: firstStats.def!.toDouble(),
+            last: lastStats.def!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
           (_potentialDiff['2'] ?? 0) +
           (_favorDiff['def'] ?? 0),
       magicResistance: _statCalculator(
-            first: firstStats.magicResistance.mValue!,
-            last: lastStats.magicResistance.mValue!,
+            first: firstStats.magicResistance!,
+            last: lastStats.magicResistance!,
             level: state.level,
             maxLevel: maxLevel,
           ) +
@@ -345,18 +344,15 @@ class OperatorStatusBloc
     OperatorFavorKeyFramesModel last = _operator.favorKeyFrames.last;
     final double fav = favor > 100 ? 50 : favor / 2;
 
-    double diff =
-        (last.data.maxHp.mValue! - first.data.maxHp.mValue!) / last.level;
-    _favorDiff['maxHp'] = first.data.maxHp.mValue! + diff * fav;
-    diff = (last.data.atk.mValue! - first.data.atk.mValue!) / last.level;
-    _favorDiff['atk'] = first.data.atk.mValue! + diff * fav;
-    diff = (last.data.def.mValue! - first.data.def.mValue!) / last.level;
-    _favorDiff['def'] = first.data.def.mValue! + diff * fav;
-    diff = (last.data.magicResistance.mValue! -
-            first.data.magicResistance.mValue!) /
-        last.level;
-    _favorDiff['magicResistance'] =
-        first.data.magicResistance.mValue! + diff * fav;
+    double diff = (last.data.maxHp! - first.data.maxHp!) / last.level;
+    _favorDiff['maxHp'] = first.data.maxHp! + diff * fav;
+    diff = (last.data.atk! - first.data.atk!) / last.level;
+    _favorDiff['atk'] = first.data.atk! + diff * fav;
+    diff = (last.data.def! - first.data.def!) / last.level;
+    _favorDiff['def'] = first.data.def! + diff * fav;
+    diff =
+        (last.data.magicResistance! - first.data.magicResistance!) / last.level;
+    _favorDiff['magicResistance'] = first.data.magicResistance! + diff * fav;
   }
 
   double _atkSpeedCalculator({
