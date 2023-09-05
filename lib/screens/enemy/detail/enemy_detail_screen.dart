@@ -4,6 +4,7 @@ import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_state.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/models/favorite_model.dart';
@@ -134,6 +135,15 @@ class EnemyDetailScreen extends StatelessWidget {
                   EnemyLevelTagWidget(tag: enemy.enemyLevel!),
                 if (enemy.enemyRace != null)
                   EnemyTagWidget(tag: enemy.enemyRace!),
+                // CN
+                if (context.read<SettingCubit>().state.settings.dbRegion ==
+                        Region.cn &&
+                    enemyData.value?.first.enemyData?.enemyTags?.mValue
+                            ?.isNotEmpty ==
+                        true)
+                  for (var tag
+                      in enemyData.value!.first.enemyData!.enemyTags!.mValue!)
+                    EnemyTagWidget(tag: tag),
               ],
             ),
             Gaps.v32,
@@ -149,6 +159,20 @@ class EnemyDetailScreen extends StatelessWidget {
                   const CommonTitleWidget(text: '특수 능력'),
                   Gaps.v5,
                   FormattedTextWidget(text: enemy.ability!),
+                  Gaps.v20,
+                ],
+              ),
+            if (enemy.abilityList?.isNotEmpty == true)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gaps.v16,
+                  const CommonTitleWidget(text: '특수 능력'),
+                  Gaps.v5,
+                  for (var ability in enemy.abilityList!)
+                    ability.textFormat == 'TITLE'
+                        ? CommonSubTitleWidget(text: ability.text ?? 'N/A')
+                        : FormattedTextWidget(text: ability.text ?? 'N/A'),
                   Gaps.v20,
                 ],
               ),

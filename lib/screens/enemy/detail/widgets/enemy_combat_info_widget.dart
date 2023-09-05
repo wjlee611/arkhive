@@ -1,13 +1,16 @@
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_state.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/common/attribute_model.dart';
 import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/checkbox_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/infotag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/stat_container_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,11 +87,19 @@ class EnemyCombatInfo extends StatelessWidget {
           children: [
             const CommonTitleWidget(text: '전투 능력'),
             Gaps.v5,
-            InfoTag(
-              title: '공격 방식',
-              // TODO; replace asd
-              value: enemy.attackType ?? 'asd',
-            ),
+            if (enemy.attackType != null)
+              InfoTag(
+                title: '공격 방식',
+                value: enemy.attackType!,
+              ),
+            if (context.read<SettingCubit>().state.settings.dbRegion ==
+                Region.cn)
+              InfoTag(
+                title: '공격 방식',
+                value: AppData.nullStr,
+                values: enemy.damageType,
+                applyWay: enemyDataValues.first.enemyData?.applyWay?.mValue,
+              ),
             Gaps.v7,
             InfoTag(
               title: '무게 레벨',
@@ -104,27 +115,25 @@ class EnemyCombatInfo extends StatelessWidget {
                     Gaps.h3,
                     StatContainer(
                       title: '체력',
-                      stat: attr.maxHp!.mValue.toString(),
+                      stat: attr.maxHp!.mValue!.toDouble(),
                       statRank: enemy.endure ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '공격력',
-                      stat: attr.atk!.mValue.toString(),
+                      stat: attr.atk!.mValue!.toDouble(),
                       statRank: enemy.attack ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '방어력',
-                      stat: attr.def!.mValue.toString(),
+                      stat: attr.def!.mValue!.toDouble(),
                       statRank: enemy.defence ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '마법 저항력',
-                      stat: attr.magicResistance!.mValue
-                          .toString()
-                          .replaceAll('.0', ''),
+                      stat: attr.magicResistance!.mValue!,
                       statRank: enemy.resistance ?? 'asd',
                     ),
                   ],

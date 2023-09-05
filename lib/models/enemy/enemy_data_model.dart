@@ -59,7 +59,7 @@ class EnemyDataDatasModel extends Equatable {
   final AttributeMModel<String>? description;
   final AttributeMModel<String>? prefabKey;
   final AttributeModel? attributes;
-  final AttributeMModel<String>? applyWay; // CN
+  final AttributeMModel<String>? applyWay; // CN: ALL, MELEE, NONE, RANGED
   final AttributeMModel<String>? motion; // CN
   final AttributeMModel<List<String>>? enemyTags; // CN
   final AttributeMModel<int>? lifePointReduce;

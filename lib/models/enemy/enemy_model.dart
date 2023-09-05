@@ -25,9 +25,9 @@ class EnemyModel extends Equatable {
   final bool? isInvalidKilled;
   final Map<String, dynamic>? overrideKillCntInfos; // "camp_r_03": -1
   final bool? hideInHandbook;
-  final List<EnemyAbilityListModel>? abilityList; // CN
+  final List<EnemyAbilityListModel>? abilityList; // CN: NORMAL, SILENCE,
   final List<String>? linkEnemies; // CM: enemy id lists
-  final List<String>? damageType; // CN: MAGIC, PHYSIC lists
+  final List<String>? damageType; // CN: MAGIC, PHYSIC, HEAL, NO_DAMAGE
   final bool? invisibleDetail; // CN
 
   const EnemyModel({
@@ -86,7 +86,7 @@ class EnemyModel extends Equatable {
 @JsonSerializable()
 class EnemyAbilityListModel extends Equatable {
   final String? text;
-  final String? textFormat;
+  final String? textFormat; // NORMAL, TITLE, SILENCE
 
   const EnemyAbilityListModel({
     this.text,
