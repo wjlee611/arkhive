@@ -1,5 +1,5 @@
 import 'package:arkhive/models/base/penguin_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:equatable/equatable.dart';
 
 class ItemPenguinState extends Equatable {

@@ -3,7 +3,7 @@ import 'dart:isolate';
 import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_event.dart';
 import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_state.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/models/item_model.dart';
 import 'package:arkhive/models/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';

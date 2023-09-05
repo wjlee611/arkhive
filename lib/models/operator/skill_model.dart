@@ -1,7 +1,6 @@
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/tools/modeling_functions.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'skill_model.g.dart';
@@ -104,46 +103,4 @@ class SkillSpDataModel extends Equatable {
         initSp,
         increment,
       ];
-}
-
-/// Skill types ///
-enum SkillType {
-  passive('패시브', Colors.grey),
-  manual('수동 발동', Colors.grey),
-  auto('자동 발동', Colors.grey);
-
-  final String text;
-  final Color color;
-
-  const SkillType(this.text, this.color);
-}
-
-enum SkillSPType {
-  // INCREASE_WITH_TIME 1
-  time('자연 회복', Color.fromRGBO(102, 187, 106, 1)),
-  // INCREASE_WHEN_ATTACK 2
-  attack('공격 회복', Color.fromRGBO(255, 109, 0, 1)),
-  // INCREASE_WHEN_TAKEN_DAMAGE 4
-  damage('피격 회복', Color.fromRGBO(255, 214, 0, 1));
-  // 8 8 - 패시브 표시 금지
-
-  final String text;
-  final Color color;
-
-  const SkillSPType(this.text, this.color);
-}
-
-enum SkillDurationType {
-  // INCREASE_WITH_TIME 1
-  time('자연 회복', Color.fromRGBO(102, 187, 106, 1)),
-  // INCREASE_WHEN_ATTACK 2
-  attack('공격 회복', Color.fromRGBO(255, 109, 0, 1)),
-  // INCREASE_WHEN_TAKEN_DAMAGE 4
-  damage('피격 회복', Color.fromRGBO(255, 214, 0, 1));
-  // 8 8 - 패시브 표시 금지
-
-  final String text;
-  final Color color;
-
-  const SkillDurationType(this.text, this.color);
 }

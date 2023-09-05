@@ -1,0 +1,37 @@
+enum EOperatorTier {
+  tier1(1),
+  tier2(2),
+  tier3(3),
+  tier4(4),
+  tier5(5),
+  tier6(6);
+
+  final int value;
+
+  const EOperatorTier(this.value);
+}
+
+EOperatorTier operatorRarityConverter(String rarity) {
+  switch (rarity) {
+    case 'TIER_1':
+    case '0':
+      return EOperatorTier.tier1;
+    case 'TIER_2':
+    case '1':
+      return EOperatorTier.tier2;
+    case 'TIER_3':
+    case '2':
+      return EOperatorTier.tier3;
+    case 'TIER_4':
+    case '3':
+      return EOperatorTier.tier4;
+    case 'TIER_5':
+    case '4':
+      return EOperatorTier.tier5;
+    case 'TIER_6':
+    case '5':
+      return EOperatorTier.tier6;
+    default:
+      return EOperatorTier.tier1;
+  }
+}

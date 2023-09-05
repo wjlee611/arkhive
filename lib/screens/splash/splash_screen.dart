@@ -6,7 +6,7 @@ import 'package:arkhive/cubit/range_cubit.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/cubit/splash_cubit.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';

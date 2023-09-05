@@ -1,5 +1,5 @@
+import 'package:arkhive/enums/operator_phase.dart';
 import 'package:arkhive/models/interface/candidates_interface.dart';
-import 'package:arkhive/tools/cn_update_converter.dart';
 
 T? reqPotEliteSelector<T extends ICandidate>({
   required List<T>? candidates,
@@ -10,7 +10,8 @@ T? reqPotEliteSelector<T extends ICandidate>({
   T? result;
 
   for (var candidate in candidates ?? []) {
-    if (phaseConverter(candidate.unlockCondition.phase) <= currElite &&
+    if (operatorPhaseConverter(candidate.unlockCondition.phase).value <=
+            currElite &&
         candidate.unlockCondition.level <= currLevel) {
       if (candidate.requiredPotentialRank <= currPot) {
         result = candidate;

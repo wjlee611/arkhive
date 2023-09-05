@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/tools/cn_update_converter.dart';
+import 'package:arkhive/enums/skill_sp_type.dart';
+import 'package:arkhive/enums/skill_type.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/skill_duration_type.dart';
 import 'package:arkhive/models/operator/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_sptype_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
@@ -131,7 +132,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                           isSkillType: true,
                           type: skill.skillType!,
                         ),
-                        if (skill.duration != null && skill.duration! > 0)
+                        if (skill.duration != null)
                           Container(
                             padding: const EdgeInsets.symmetric(
                               vertical: Sizes.size1,
@@ -141,22 +142,31 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                               borderRadius: BorderRadius.circular(Sizes.size2),
                               color: Colors.grey.shade600,
                             ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.timelapse_rounded,
-                                  color: Colors.grey.shade300,
-                                  size: Sizes.size10,
-                                ),
-                                Gaps.h3,
-                                AppFont(
-                                  '${skill.duration!.toInt()}초',
-                                  color: Colors.white,
-                                  fontSize: Sizes.size10,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ],
-                            ),
+                            child: skillDurationSelector(skill.durationType!) ==
+                                    ESkillDurationType.none
+                                ? Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timelapse_rounded,
+                                        color: Colors.grey.shade300,
+                                        size: Sizes.size10,
+                                      ),
+                                      Gaps.h3,
+                                      AppFont(
+                                        skill.duration! > 0
+                                            ? '${skill.duration!.toInt()}초'
+                                            : '즉발',
+                                        color: Colors.white,
+                                        fontSize: Sizes.size10,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ],
+                                  )
+                                : Icon(
+                                    Icons.signal_cellular_alt_rounded,
+                                    color: Colors.grey.shade300,
+                                    size: Sizes.size10,
+                                  ),
                           ),
                       ],
                     ),

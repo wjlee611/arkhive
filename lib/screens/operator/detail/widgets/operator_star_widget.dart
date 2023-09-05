@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/tools/cn_update_converter.dart';
+import 'package:arkhive/enums/operator_tier.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -19,7 +19,7 @@ class OperatorStarWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (var i = 0; i < rarityConverter(rarity) + 1; i++)
+          for (var i = 0; i < operatorRarityConverter(rarity).value; i++)
             SizedBox(
               width: Sizes.size16 + Sizes.size2,
               child: Transform.rotate(

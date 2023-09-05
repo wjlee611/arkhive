@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/models/base/range_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
