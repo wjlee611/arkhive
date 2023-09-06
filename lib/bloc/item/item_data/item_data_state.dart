@@ -1,4 +1,4 @@
-import 'package:arkhive/models/item_model.dart';
+import 'package:arkhive/models/item/item_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ItemDataState extends Equatable {

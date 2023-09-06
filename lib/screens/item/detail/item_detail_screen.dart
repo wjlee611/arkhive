@@ -6,7 +6,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/models/favorite_model.dart';
-import 'package:arkhive/models/item_model.dart';
+import 'package:arkhive/models/item/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_widget.dart';
@@ -114,7 +114,9 @@ class ItemDetailScreen extends StatelessWidget {
                     color: Colors.yellow.shade800,
                   ),
                   Gaps.v5,
-                  FormattedTextWidget(text: item.description),
+                  FormattedTextWidget(
+                    text: item.description ?? '제공되는 설명이 없습니다.',
+                  ),
                   if (item.obtainApproach != null)
                     Column(
                       children: [

@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/enums/operator_tier.dart';
+import 'package:arkhive/enums/rarity_tier.dart';
 import 'package:arkhive/models/operator/operator_list_model.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
@@ -17,10 +17,10 @@ class OperatorListItem extends StatelessWidget {
   final int index;
 
   Color _rarityColorSelector(String rarity) {
-    var intRarity = operatorRarityConverter(rarity);
+    var intRarity = rarityTierConverter(rarity);
 
-    if (intRarity == EOperatorTier.tier6) return Colors.white;
-    if (intRarity == EOperatorTier.tier5) return Colors.yellow.shade700;
+    if (intRarity == ERarityTier.tier6) return Colors.white;
+    if (intRarity == ERarityTier.tier5) return Colors.yellow.shade700;
     return Colors.grey.shade800;
   }
 

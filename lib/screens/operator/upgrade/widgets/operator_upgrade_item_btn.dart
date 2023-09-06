@@ -1,7 +1,7 @@
 import 'package:arkhive/bloc/item/item_list/item_list_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
-import 'package:arkhive/models/item_list_model.dart';
+import 'package:arkhive/models/item/item_list_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
