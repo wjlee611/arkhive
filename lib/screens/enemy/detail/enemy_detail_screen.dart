@@ -7,7 +7,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:arkhive/models/enemy/enemy_model.dart';
-import 'package:arkhive/models/favorite_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';

@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/font_family.dart';
 import 'package:flutter/material.dart';
 
 class OperatorSlider extends StatefulWidget {

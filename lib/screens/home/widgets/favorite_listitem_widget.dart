@@ -2,7 +2,7 @@ import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/favorite_cubit.dart';
-import 'package:arkhive/models/favorite_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';

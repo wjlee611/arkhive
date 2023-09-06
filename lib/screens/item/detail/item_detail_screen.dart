@@ -5,7 +5,7 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
-import 'package:arkhive/models/favorite_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/models/item/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_header_widget.dart';

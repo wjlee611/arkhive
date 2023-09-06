@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/font_family.dart';
 import 'package:arkhive/screens/operator/widgets/operator_sort_button.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';

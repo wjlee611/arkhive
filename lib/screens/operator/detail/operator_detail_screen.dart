@@ -6,7 +6,7 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
-import 'package:arkhive/models/favorite_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/models/operator/module_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/models/operator/skill_model.dart';

@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/font_family.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
