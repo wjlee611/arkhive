@@ -5,7 +5,7 @@ import 'package:arkhive/bloc/item/stage_penguin/stage_penguin_state.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
 import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/models/item_model.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +50,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       // from ingame data - 첫 드랍(2: 일반, 3: 특수, 4: 추가 제외) 정보
       List<PenguinStageModel> result = [];
       for (var item
-          in stage.stageDropInfo?.rewords ?? [] as List<StageItemModel>) {
+          in stage.stageDropInfo.rewords ?? [] as List<StageItemModel>) {
         if (item.dropType == 3 || item.dropType == 4) {
           continue;
         }

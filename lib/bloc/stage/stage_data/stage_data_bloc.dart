@@ -3,7 +3,7 @@ import 'dart:isolate';
 
 import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

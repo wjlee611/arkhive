@@ -1,4 +1,4 @@
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class StageDataState extends Equatable {
