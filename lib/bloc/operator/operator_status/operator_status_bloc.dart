@@ -1,5 +1,7 @@
 import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
+import 'package:arkhive/enums/attribute_type.dart';
+import 'package:arkhive/models/common/attribute_modifiers_model.dart';
 import 'package:arkhive/models/common/keyframe_data_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,20 +41,21 @@ class OperatorStatusBloc
       favor: 0,
       rangeId: _operator.phases.first.rangeId,
       maxHp: initStats.maxHp!.toDouble() +
-          (_potentialDiff['0'] ?? 0) +
-          (_favorDiff['maxHp'] ?? 0),
+          (_potentialDiff[EAttributeType.maxHp.value] ?? 0) +
+          (_favorDiff[EAttributeType.maxHp.value] ?? 0),
       atk: initStats.atk!.toDouble() +
-          (_potentialDiff['1'] ?? 0) +
-          (_favorDiff['atk'] ?? 0),
+          (_potentialDiff[EAttributeType.atk.value] ?? 0) +
+          (_favorDiff[EAttributeType.atk.value] ?? 0),
       def: initStats.def!.toDouble() +
-          (_potentialDiff['2'] ?? 0) +
-          (_favorDiff['def'] ?? 0),
+          (_potentialDiff[EAttributeType.def.value] ?? 0) +
+          (_favorDiff[EAttributeType.def.value] ?? 0),
       magicResistance: initStats.magicResistance! +
-          (_potentialDiff['3'] ?? 0) +
-          (_favorDiff['magicResistance'] ?? 0),
-      respawnTime:
-          initStats.respawnTime!.toDouble() + (_potentialDiff['21'] ?? 0),
-      cost: initStats.cost!.toDouble() + (_potentialDiff['4'] ?? 0),
+          (_potentialDiff[EAttributeType.magicRes.value] ?? 0) +
+          (_favorDiff[EAttributeType.magicRes.value] ?? 0),
+      respawnTime: initStats.respawnTime!.toDouble() +
+          (_potentialDiff[EAttributeType.respawnTime.value] ?? 0),
+      cost: initStats.cost!.toDouble() +
+          (_potentialDiff[EAttributeType.cost.value] ?? 0),
       blockCnt: initStats.blockCnt!.toDouble(),
       atkSpeed: _atkSpeedCalculator(
         attackspeed: initStats.attackSpeed!,
@@ -82,46 +85,46 @@ class OperatorStatusBloc
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['0'] ?? 0) +
-          (_favorDiff['maxHp'] ?? 0),
+          (_potentialDiff[EAttributeType.maxHp.value] ?? 0) +
+          (_favorDiff[EAttributeType.maxHp.value] ?? 0),
       atk: _statCalculator(
             first: firstStats.atk!.toDouble(),
             last: lastStats.atk!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['1'] ?? 0) +
-          (_favorDiff['atk'] ?? 0),
+          (_potentialDiff[EAttributeType.atk.value] ?? 0) +
+          (_favorDiff[EAttributeType.atk.value] ?? 0),
       def: _statCalculator(
             first: firstStats.def!.toDouble(),
             last: lastStats.def!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['2'] ?? 0) +
-          (_favorDiff['def'] ?? 0),
+          (_potentialDiff[EAttributeType.def.value] ?? 0) +
+          (_favorDiff[EAttributeType.def.value] ?? 0),
       magicResistance: _statCalculator(
             first: firstStats.magicResistance!,
             last: lastStats.magicResistance!,
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['3'] ?? 0) +
-          (_favorDiff['magicResistance'] ?? 0),
+          (_potentialDiff[EAttributeType.magicRes.value] ?? 0) +
+          (_favorDiff[EAttributeType.magicRes.value] ?? 0),
       respawnTime: _statCalculator(
             first: firstStats.respawnTime!.toDouble(),
             last: lastStats.respawnTime!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['21'] ?? 0),
+          (_potentialDiff[EAttributeType.respawnTime.value] ?? 0),
       cost: _statCalculator(
             first: firstStats.cost!.toDouble(),
             last: lastStats.cost!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['4'] ?? 0),
+          (_potentialDiff[EAttributeType.cost.value] ?? 0),
       blockCnt: _statCalculator(
         first: firstStats.blockCnt!.toDouble(),
         last: lastStats.blockCnt!.toDouble(),
@@ -159,19 +162,21 @@ class OperatorStatusBloc
       level: 1,
       maxLevel: _operator.phases[event.elite].maxLevel ?? 1,
       maxHp: stats.maxHp!.toDouble() +
-          (_potentialDiff['0'] ?? 0) +
-          (_favorDiff['maxHp'] ?? 0),
+          (_potentialDiff[EAttributeType.maxHp.value] ?? 0) +
+          (_favorDiff[EAttributeType.maxHp.value] ?? 0),
       atk: stats.atk!.toDouble() +
-          (_potentialDiff['1'] ?? 0) +
-          (_favorDiff['atk'] ?? 0),
+          (_potentialDiff[EAttributeType.atk.value] ?? 0) +
+          (_favorDiff[EAttributeType.atk.value] ?? 0),
       def: stats.def!.toDouble() +
-          (_potentialDiff['2'] ?? 0) +
-          (_favorDiff['def'] ?? 0),
+          (_potentialDiff[EAttributeType.def.value] ?? 0) +
+          (_favorDiff[EAttributeType.def.value] ?? 0),
       magicResistance: stats.magicResistance! +
-          (_potentialDiff['3'] ?? 0) +
-          (_favorDiff['magicResistance'] ?? 0),
-      respawnTime: stats.respawnTime!.toDouble() + (_potentialDiff['21'] ?? 0),
-      cost: stats.cost!.toDouble() + (_potentialDiff['4'] ?? 0),
+          (_potentialDiff[EAttributeType.magicRes.value] ?? 0) +
+          (_favorDiff[EAttributeType.magicRes.value] ?? 0),
+      respawnTime: stats.respawnTime!.toDouble() +
+          (_potentialDiff[EAttributeType.respawnTime.value] ?? 0),
+      cost: stats.cost!.toDouble() +
+          (_potentialDiff[EAttributeType.cost.value] ?? 0),
       blockCnt: stats.blockCnt!.toDouble(),
       atkSpeed: _atkSpeedCalculator(
         attackspeed: stats.attackSpeed!,
@@ -199,46 +204,46 @@ class OperatorStatusBloc
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['0'] ?? 0) +
-          (_favorDiff['maxHp'] ?? 0),
+          (_potentialDiff[EAttributeType.maxHp.value] ?? 0) +
+          (_favorDiff[EAttributeType.maxHp.value] ?? 0),
       atk: _statCalculator(
             first: firstStats.atk!.toDouble(),
             last: lastStats.atk!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['1'] ?? 0) +
-          (_favorDiff['atk'] ?? 0),
+          (_potentialDiff[EAttributeType.atk.value] ?? 0) +
+          (_favorDiff[EAttributeType.atk.value] ?? 0),
       def: _statCalculator(
             first: firstStats.def!.toDouble(),
             last: lastStats.def!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['2'] ?? 0) +
-          (_favorDiff['def'] ?? 0),
+          (_potentialDiff[EAttributeType.def.value] ?? 0) +
+          (_favorDiff[EAttributeType.def.value] ?? 0),
       magicResistance: _statCalculator(
             first: firstStats.magicResistance!,
             last: lastStats.magicResistance!,
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['3'] ?? 0) +
-          (_favorDiff['magicResistance'] ?? 0),
+          (_potentialDiff[EAttributeType.magicRes.value] ?? 0) +
+          (_favorDiff[EAttributeType.magicRes.value] ?? 0),
       respawnTime: _statCalculator(
             first: firstStats.respawnTime!.toDouble(),
             last: lastStats.respawnTime!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['21'] ?? 0),
+          (_potentialDiff[EAttributeType.respawnTime.value] ?? 0),
       cost: _statCalculator(
             first: firstStats.cost!.toDouble(),
             last: lastStats.cost!.toDouble(),
             level: event.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['4'] ?? 0),
+          (_potentialDiff[EAttributeType.cost.value] ?? 0),
       blockCnt: _statCalculator(
         first: firstStats.blockCnt!.toDouble(),
         last: lastStats.blockCnt!.toDouble(),
@@ -283,56 +288,48 @@ class OperatorStatusBloc
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['0'] ?? 0) +
-          (_favorDiff['maxHp'] ?? 0),
+          (_potentialDiff[EAttributeType.maxHp.value] ?? 0) +
+          (_favorDiff[EAttributeType.maxHp.value] ?? 0),
       atk: _statCalculator(
             first: firstStats.atk!.toDouble(),
             last: lastStats.atk!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['1'] ?? 0) +
-          (_favorDiff['atk'] ?? 0),
+          (_potentialDiff[EAttributeType.atk.value] ?? 0) +
+          (_favorDiff[EAttributeType.atk.value] ?? 0),
       def: _statCalculator(
             first: firstStats.def!.toDouble(),
             last: lastStats.def!.toDouble(),
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['2'] ?? 0) +
-          (_favorDiff['def'] ?? 0),
+          (_potentialDiff[EAttributeType.def.value] ?? 0) +
+          (_favorDiff[EAttributeType.def.value] ?? 0),
       magicResistance: _statCalculator(
             first: firstStats.magicResistance!,
             last: lastStats.magicResistance!,
             level: state.level,
             maxLevel: maxLevel,
           ) +
-          (_potentialDiff['3'] ?? 0) +
-          (_favorDiff['magicResistance'] ?? 0),
+          (_potentialDiff[EAttributeType.magicRes.value] ?? 0) +
+          (_favorDiff[EAttributeType.magicRes.value] ?? 0),
     ));
   }
 
-  // attributeType
-  // 0 - 최대 HP
-  // 1 - 공격력
-  // 2 - 방어력
-  // 3 - 마법 저항력
-  // 4 - 배치 코스트
-  // 7 - 공격 속도
-  // 21 - 재배치 시간
-  // 저지 가능 수는 없음
   void _updatePotentialDiff({required int potential}) {
     _potentialDiff = {};
     for (int i = 0; i < potential; i++) {
       var pot = _operator.potentialRanks[i].buff?.attributes;
       if (pot?.attributeModifiers?.isNotEmpty == false) continue;
 
-      for (var modifier in pot?.attributeModifiers ?? []) {
-        if (_potentialDiff.containsKey(modifier.attributeType)) {
-          _potentialDiff[modifier.attributeType] =
-              _potentialDiff[modifier.attributeType]! + modifier.value;
+      for (AttributeModifiersModel modifier in pot?.attributeModifiers ?? []) {
+        var key = attributeTypeConverter(modifier.attributeType);
+        if (_potentialDiff.containsKey(key.value)) {
+          _potentialDiff[key.value] =
+              _potentialDiff[key.value]! + modifier.value;
         } else {
-          _potentialDiff[modifier.attributeType] = modifier.value;
+          _potentialDiff[key.value] = modifier.value;
         }
       }
     }
@@ -345,14 +342,15 @@ class OperatorStatusBloc
     final double fav = favor > 100 ? 50 : favor / 2;
 
     double diff = (last.data.maxHp! - first.data.maxHp!) / last.level;
-    _favorDiff['maxHp'] = first.data.maxHp! + diff * fav;
+    _favorDiff[EAttributeType.maxHp.value] = first.data.maxHp! + diff * fav;
     diff = (last.data.atk! - first.data.atk!) / last.level;
-    _favorDiff['atk'] = first.data.atk! + diff * fav;
+    _favorDiff[EAttributeType.atk.value] = first.data.atk! + diff * fav;
     diff = (last.data.def! - first.data.def!) / last.level;
-    _favorDiff['def'] = first.data.def! + diff * fav;
+    _favorDiff[EAttributeType.def.value] = first.data.def! + diff * fav;
     diff =
         (last.data.magicResistance! - first.data.magicResistance!) / last.level;
-    _favorDiff['magicResistance'] = first.data.magicResistance! + diff * fav;
+    _favorDiff[EAttributeType.magicRes.value] =
+        first.data.magicResistance! + diff * fav;
   }
 
   double _atkSpeedCalculator({
@@ -360,7 +358,9 @@ class OperatorStatusBloc
     required double baseAttackTime,
   }) {
     return 1 /
-        ((attackspeed + (_potentialDiff['7'] ?? 0)) / baseAttackTime / 100);
+        ((attackspeed + (_potentialDiff[EAttributeType.atkSpeed.value] ?? 0)) /
+            baseAttackTime /
+            100);
   }
 
   double _statCalculator({
