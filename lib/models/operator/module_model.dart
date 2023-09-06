@@ -1,4 +1,4 @@
-import 'package:arkhive/models/interface/candidates_interface.dart';
+import 'package:arkhive/interface/candidates_interface.dart';
 import 'package:arkhive/models/common/item_cost_model.dart';
 import 'package:arkhive/models/common/talent_blackboard_model.dart';
 import 'package:arkhive/models/common/unlock_condition_model.dart';

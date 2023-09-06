@@ -1,5 +1,5 @@
 import 'package:arkhive/enums/operator_phase.dart';
-import 'package:arkhive/models/interface/candidates_interface.dart';
+import 'package:arkhive/interface/candidates_interface.dart';
 
 T? reqPotEliteSelector<T extends ICandidate>({
   required List<T>? candidates,
