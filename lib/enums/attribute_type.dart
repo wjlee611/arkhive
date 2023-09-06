@@ -27,7 +27,7 @@ EAttributeType attributeTypeConverter(String type) {
     case 'DEF':
       return EAttributeType.def;
     case '3':
-    case 'magicResistance':
+    case 'MAGIC_RESISTANCE':
       return EAttributeType.magicRes;
     case '4':
     case 'COST':

@@ -8,7 +8,7 @@ part of 'zone_model.dart';
 
 ZoneModel _$ZoneModelFromJson(Map<String, dynamic> json) => ZoneModel(
       zoneID: json['zoneID'] as String,
-      zoneIndex: json['zoneIndex'] as String,
+      zoneIndex: json['zoneIndex'] as int,
       type: json['type'] as String,
       zoneNameFirst: json['zoneNameFirst'] as String?,
       zoneNameSecond: json['zoneNameSecond'] as String?,
@@ -17,5 +17,5 @@ ZoneModel _$ZoneModelFromJson(Map<String, dynamic> json) => ZoneModel(
       zoneNameTitleEx: json['zoneNameTitleEx'] as String?,
       zoneNameThird: json['zoneNameThird'] as String?,
       lockedText: json['lockedText'] as String?,
-      canPreview: json['canPreview'] as String,
+      canPreview: json['canPreview'] as bool,
     );

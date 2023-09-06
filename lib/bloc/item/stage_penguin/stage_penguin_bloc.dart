@@ -49,14 +49,13 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       // analyse
       // from ingame data - 첫 드랍(2: 일반, 3: 특수, 4: 추가 제외) 정보
       List<PenguinStageModel> result = [];
-      for (var item
-          in stage.stageDropInfo.rewords ?? [] as List<StageItemModel>) {
-        if (item.dropType == 3 || item.dropType == 4) {
+      for (var item in stage.stageDropInfo.displayDetailRewards) {
+        if (item.dropType == '3' || item.dropType == '4') {
           continue;
         }
 
         var name = items[item.id]?.name ?? item.id;
-        if (name?.contains('furni') == true) {
+        if (name.contains('furni') == true) {
           name = '이벤트 가구';
         }
 
@@ -78,7 +77,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
             iconId: isIcon ? items[item.id]?.iconId : null,
             name: name,
             sanityx1000: 1000,
-            ratex1000: (stage.apCost ?? 0) * 1000,
+            ratex1000: (stage.apCost) * 1000,
           ));
         }
       }
@@ -86,7 +85,7 @@ class StagePenguinBloc extends Bloc<StagePenguinEvent, StagePenguinState> {
       // from penguin data - 확률 드랍 정보
       int? times;
       for (var penguin in _penguins) {
-        var sanity = stage.apCost ?? 99;
+        var sanity = stage.apCost;
         var rate = (penguin.quantity ?? 0.00001) / (penguin.times ?? 1);
         var sanityEffx1000 = (sanity / rate * 1000).ceil();
 

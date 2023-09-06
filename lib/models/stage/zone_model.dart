@@ -6,7 +6,7 @@ part 'zone_model.g.dart';
 @JsonSerializable(createToJson: false)
 class ZoneModel extends Equatable {
   final String zoneID;
-  final String zoneIndex;
+  final int zoneIndex;
   final String type;
   final String? zoneNameFirst;
   final String? zoneNameSecond;
@@ -15,7 +15,7 @@ class ZoneModel extends Equatable {
   final String? zoneNameTitleEx;
   final String? zoneNameThird;
   final String? lockedText;
-  final String canPreview;
+  final bool canPreview;
 
   const ZoneModel({
     required this.zoneID,

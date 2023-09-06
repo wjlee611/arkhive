@@ -122,20 +122,20 @@ class StageDetailScreen extends StatelessWidget {
               Gaps.v10,
               SanityInfoTag(
                 title: '소모 이성',
-                value: stage.apCost ?? -1,
+                value: stage.apCost,
               ),
               Gaps.v5,
               SanityInfoTag(
                 title: '반환 이성',
-                value: stage.apFailReturn ?? -1,
+                value: stage.apFailReturn,
               ),
               Gaps.v20,
-              if (stage.stageDropInfo != null)
+              if (stage.stageDropInfo.displayDetailRewards.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CommonTitleWidget(text: '드랍 아이템'),
-                    StageItemListWidget(stageId: stage.stageId ?? ''),
+                    StageItemListWidget(stageId: stage.stageId),
                   ],
                 ),
               Gaps.v130,
