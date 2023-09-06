@@ -1,4 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/enemy_level.dart';
 import 'package:arkhive/enums/enemy_tag.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,6 @@ class EnemyLevelTagWidget extends StatelessWidget {
     required this.tag,
   });
 
-  Color _bgColorPicker(String enemyType) {
-    if (enemyType == 'ELITE') return Colors.deepOrange;
-    if (enemyType == 'BOSS') return Colors.purple;
-    return Colors.blueGrey.shade700;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,18 +21,14 @@ class EnemyLevelTagWidget extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.size20),
-        color: _bgColorPicker(tag),
+        color: enemyLevelSelector(tag).bgColor,
         border: Border.all(
           width: Sizes.size3 / Sizes.size2,
           color: Theme.of(context).shadowColor,
         ),
       ),
       child: AppFont(
-        tag == 'ELITE'
-            ? '정예'
-            : tag == 'BOSS'
-                ? '보스'
-                : '일반',
+        enemyLevelSelector(tag).ko,
         color: Colors.white,
         fontWeight: FontWeight.w700,
       ),
