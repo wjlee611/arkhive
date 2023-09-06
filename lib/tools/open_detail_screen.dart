@@ -1,6 +1,7 @@
 import 'package:arkhive/models/operator/module_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
+import 'package:arkhive/screens/history/history_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/screens/operator/upgrade/operator_upgrade_screen.dart';
@@ -114,6 +115,15 @@ class OpenDetailScreen {
     await Navigator.push(
       context,
       _createRoute(TutorialScreen()),
+    );
+  }
+
+  static void onHistoryTab({
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(const HistoryScreen()),
     );
   }
 }
