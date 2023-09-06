@@ -14,13 +14,7 @@ class EnemyLevelTagWidget extends StatelessWidget {
   Color _bgColorPicker(String enemyType) {
     if (enemyType == 'ELITE') return Colors.deepOrange;
     if (enemyType == 'BOSS') return Colors.purple;
-    return Colors.white;
-  }
-
-  Color _textColorPicker(String enemyType) {
-    if (enemyType == 'ELITE') return Colors.white;
-    if (enemyType == 'BOSS') return Colors.white;
-    return Colors.black;
+    return Colors.blueGrey.shade700;
   }
 
   @override
@@ -44,7 +38,7 @@ class EnemyLevelTagWidget extends StatelessWidget {
             : tag == 'BOSS'
                 ? '보스'
                 : '일반',
-        color: _textColorPicker(tag),
+        color: Colors.white,
         fontWeight: FontWeight.w700,
       ),
     );
