@@ -1,5 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/tools/enemy_tag_selector.dart';
+import 'package:arkhive/enums/enemy_tag.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +74,7 @@ class EnemyTagWidget extends StatelessWidget {
           color: Theme.of(context).shadowColor,
         ),
       ),
-      child: AppFont(enemyTagSelector(tag)),
+      child: AppFont(enemyTagSelector(tag).ko),
     );
   }
 }

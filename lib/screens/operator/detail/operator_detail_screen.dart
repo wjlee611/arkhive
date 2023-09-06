@@ -6,6 +6,7 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
+import 'package:arkhive/enums/operator_profession.dart';
 import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/models/operator/module_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
@@ -19,7 +20,6 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dar
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
-import 'package:arkhive/tools/profession_selector.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -150,7 +150,7 @@ class OperatorDetailScreen extends StatelessWidget {
                   OperatorStarWidget(rarity: operator_.rarity!),
                 if (operator_.profession != null)
                   OperatorTagWidget(
-                    tag: proSelector(operator_.profession!),
+                    tag: operatorProfessionSelector(operator_.profession!).ko,
                   ),
                 if (operator_.subProfessionId != null)
                   OperatorTagWidget(
