@@ -1,4 +1,4 @@
-import 'package:arkhive/models/item_list_model.dart';
+import 'package:arkhive/models/item/item_list_model.dart';
 import 'package:equatable/equatable.dart';
 
 enum ItemListFilterOptions {

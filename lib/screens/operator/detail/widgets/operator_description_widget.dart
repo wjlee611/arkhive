@@ -21,14 +21,15 @@ class OperatorDescriptionWidget extends StatelessWidget {
           if (dataState is! OperatorDataLoadedState) return Container();
 
           var description = dataState.operator_.description!;
-          var candidate = dataState.operator_.traitCandidate.isNotEmpty
-              ? reqPotEliteSelector(
-                  candidates: dataState.operator_.traitCandidate,
-                  currPot: statState.potential,
-                  currElite: statState.elite,
-                  currLevel: statState.level,
-                )
-              : null;
+          var candidate =
+              dataState.operator_.trait?.candidates?.isNotEmpty == true
+                  ? reqPotEliteSelector(
+                      candidates: dataState.operator_.trait?.candidates,
+                      currPot: statState.potential,
+                      currElite: statState.elite,
+                      currLevel: statState.level,
+                    )
+                  : null;
           return Column(
             children: [
               const CommonTitleWidget(text: '특성'),
@@ -39,7 +40,7 @@ class OperatorDescriptionWidget extends StatelessWidget {
                     : description,
                 variables: candidate?.blackboard != null
                     ? boardListAndDurationToMap(
-                        blackboards: candidate!.blackboard)
+                        blackboards: candidate!.blackboard!)
                     : {},
               ),
               Gaps.v32,

@@ -6,10 +6,11 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_event.dart
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
-import 'package:arkhive/models/favorite_model.dart';
-import 'package:arkhive/models/module_model.dart';
-import 'package:arkhive/models/operator_model.dart';
-import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/enums/operator_profession.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
+import 'package:arkhive/models/operator/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_modules/operator_modules_container.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/operator_skills_container.dart';
 import 'package:arkhive/screens/operator/detail/operator_stats/operator_stats_container.dart';
@@ -18,7 +19,7 @@ import 'package:arkhive/screens/operator/detail/widgets/operator_sliding_panel_w
 import 'package:arkhive/screens/operator/detail/widgets/operator_star_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_tag_widget.dart';
 import 'package:arkhive/screens/operator/detail/widgets/operator_talents_widget.dart';
-import 'package:arkhive/tools/profession_selector.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -43,7 +44,9 @@ class OperatorDetailScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => OperatorDataBloc(),
+          create: (context) => OperatorDataBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
         BlocProvider(
           create: (context) => OperatorStatusBloc(),
@@ -147,7 +150,7 @@ class OperatorDetailScreen extends StatelessWidget {
                   OperatorStarWidget(rarity: operator_.rarity!),
                 if (operator_.profession != null)
                   OperatorTagWidget(
-                    tag: proSelector(operator_.profession!),
+                    tag: operatorProfessionSelector(operator_.profession!).ko,
                   ),
                 if (operator_.subProfessionId != null)
                   OperatorTagWidget(
@@ -159,17 +162,19 @@ class OperatorDetailScreen extends StatelessWidget {
               ],
             ),
             Gaps.v32,
-            if (operator_.position != null || operator_.tagList.isNotEmpty)
+            if (operator_.position != null ||
+                operator_.tagList?.isNotEmpty == true)
               OperatorTagWrapWidget(
                 position: operator_.position,
-                tagList: operator_.tagList,
+                tagList: operator_.tagList!,
               ),
             if (operator_.phases.isNotEmpty &&
-                operator_.phases.first.attributesKeyFrames.isNotEmpty)
+                operator_.phases.first.attributesKeyFrames?.isNotEmpty == true)
               const OperatorStatsContainer(),
             if (operator_.description != null)
               const OperatorDescriptionWidget(),
-            if (operator_.talents.isNotEmpty) const OperatorTalentsWidget(),
+            if (operator_.talents?.isNotEmpty == true)
+              const OperatorTalentsWidget(),
             if (skills.isNotEmpty) const OperatorSkillsContainer(),
             if (modules.isNotEmpty) const OperatorModulesContainer(),
             Gaps.v130,

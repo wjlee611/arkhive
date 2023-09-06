@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_bloc.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_event.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/stage_list_model.dart';
+import 'package:arkhive/models/stage/stage_list_model.dart';
 import 'package:arkhive/screens/stage/widgets/stage_zone_container.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';

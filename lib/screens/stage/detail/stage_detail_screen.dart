@@ -4,10 +4,11 @@ import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/favorite_model.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_item_list_widget.dart';
 import 'package:arkhive/screens/stage/detail/widgets/stage_sanity_tag_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_diffgroup_widget.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
@@ -35,7 +36,9 @@ class StageDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => StageDataBloc(),
+      create: (context) => StageDataBloc(
+        dbRegion: getRegion(context),
+      ),
       child: BlocBuilder<StageDataBloc, StageDataState>(
         builder: (context, state) {
           if (state is StageDataInitState) {
@@ -91,7 +94,8 @@ class StageDetailScreen extends StatelessWidget {
   Widget _buildBody(StageModel stage) {
     return BlocProvider(
       create: (context) => StagePenguinBloc(
-        stage,
+        dbRegion: getRegion(context),
+        stage: stage,
       ),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -118,20 +122,20 @@ class StageDetailScreen extends StatelessWidget {
               Gaps.v10,
               SanityInfoTag(
                 title: '소모 이성',
-                value: stage.apCost ?? -1,
+                value: stage.apCost,
               ),
               Gaps.v5,
               SanityInfoTag(
                 title: '반환 이성',
-                value: stage.apFailReturn ?? -1,
+                value: stage.apFailReturn,
               ),
               Gaps.v20,
-              if (stage.stageDropInfo != null)
+              if (stage.stageDropInfo.displayDetailRewards.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const CommonTitleWidget(text: '드랍 아이템'),
-                    StageItemListWidget(stageId: stage.stageId ?? ''),
+                    StageItemListWidget(stageId: stage.stageId),
                   ],
                 ),
               Gaps.v130,

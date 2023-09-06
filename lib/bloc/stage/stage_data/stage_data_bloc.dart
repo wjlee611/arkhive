@@ -3,13 +3,17 @@ import 'dart:isolate';
 
 import 'package:arkhive/bloc/stage/stage_data/stage_data_event.dart';
 import 'package:arkhive/bloc/stage/stage_data/stage_data_state.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StageDataBloc extends Bloc<StageDataEvent, StageDataState> {
-  StageDataBloc() : super(const StageDataInitState()) {
+  final Region dbRegion;
+
+  StageDataBloc({
+    required this.dbRegion,
+  }) : super(const StageDataInitState()) {
     on<StageDataLoadEvent>(_stageDataLoadEventHandler);
   }
 
@@ -24,7 +28,7 @@ class StageDataBloc extends Bloc<StageDataEvent, StageDataState> {
     // Loading Stage
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/stage_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/stage_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

@@ -1,7 +1,9 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/cubit/tags_cubit.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/models/common/talent_blackboard_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/stack.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -27,9 +29,13 @@ class FormattedTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tagState = context.read<TagsCubit>().state;
+    var lineSeperator =
+        context.read<SettingCubit>().state.settings.dbRegion == Region.cn
+            ? '\\n'
+            : '\n';
 
     List<List<Widget>> widgets = [];
-    List<String> lines = text.split('\n');
+    List<String> lines = text.split(lineSeperator);
     int line = -1;
 
     for (var singleLineText in lines) {
@@ -196,11 +202,11 @@ class FormattedTextWidget extends StatelessWidget {
 }
 
 Map<String, double> boardListAndDurationToMap({
-  required List<BlackboardModel> blackboards,
+  required List<TalentBlackboardModel> blackboards,
   double? duration,
 }) {
   Map<String, double> result = {
-    for (var data in blackboards) data.key!: data.value!
+    for (var data in blackboards) data.key: data.value
   };
   if (!result.keys.contains('duration') && duration != null) {
     result['duration'] = duration;

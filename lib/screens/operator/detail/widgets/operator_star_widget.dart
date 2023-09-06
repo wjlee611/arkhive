@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/rarity_tier.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -9,7 +10,7 @@ class OperatorStarWidget extends StatelessWidget {
     required this.rarity,
   });
 
-  final int rarity;
+  final String rarity;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class OperatorStarWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (var i = 0; i < rarity + 1; i++)
+          for (var i = 0; i < rarityTierConverter(rarity).value; i++)
             SizedBox(
               width: Sizes.size16 + Sizes.size2,
               child: Transform.rotate(

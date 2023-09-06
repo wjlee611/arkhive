@@ -1,7 +1,6 @@
+import 'package:arkhive/enums/screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
-enum Screens { home, items, stages, operators, enemies }
 
 // Bloc //
 class ScreenBloc extends Bloc<ScreenChangeEvent, ScreenState> {
@@ -16,7 +15,7 @@ class ScreenBloc extends Bloc<ScreenChangeEvent, ScreenState> {
 
 // Event //
 class ScreenChangeEvent extends Equatable {
-  final Screens screen;
+  final EScreen screen;
 
   const ScreenChangeEvent({required this.screen});
 
@@ -26,10 +25,10 @@ class ScreenChangeEvent extends Equatable {
 
 // State //
 class ScreenState extends Equatable {
-  final Screens currScreen;
+  final EScreen currScreen;
 
   const ScreenState({required this.currScreen});
-  const ScreenState.init() : this(currScreen: Screens.home);
+  const ScreenState.init() : this(currScreen: EScreen.home);
 
   @override
   List<Object?> get props => [

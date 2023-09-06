@@ -5,11 +5,12 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
-import 'package:arkhive/models/favorite_model.dart';
-import 'package:arkhive/models/item_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
+import 'package:arkhive/models/item/item_model.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_header_widget.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -34,7 +35,9 @@ class ItemDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ItemDataBloc(),
+      create: (context) => ItemDataBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -94,7 +97,9 @@ class ItemDetailScreen extends StatelessWidget {
     required ItemModel item,
   }) {
     return BlocProvider(
-      create: (context) => ItemPenguinBloc(),
+      create: (context) => ItemPenguinBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Sizes.size20),
         child: CustomScrollView(
@@ -109,7 +114,9 @@ class ItemDetailScreen extends StatelessWidget {
                     color: Colors.yellow.shade800,
                   ),
                   Gaps.v5,
-                  FormattedTextWidget(text: item.description),
+                  FormattedTextWidget(
+                    text: item.description ?? '제공되는 설명이 없습니다.',
+                  ),
                   if (item.obtainApproach != null)
                     Column(
                       children: [

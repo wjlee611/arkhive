@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_event.dart';
 import 'package:arkhive/bloc/stage/stage_list_item/stage_list_item_state.dart';
-import 'package:arkhive/models/stage_list_model.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/stage_list_model.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
-  StageListItemBloc() : super(StageListItemInitState()) {
+  final Region dbRegion;
+
+  StageListItemBloc({
+    required this.dbRegion,
+  }) : super(StageListItemInitState()) {
     on<StageListItemOnTabEvent>(_stageListItemOnTabEventHandler);
   }
 
@@ -30,7 +33,7 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
 
       try {
         String jsonString = await rootBundle
-            .loadString('${getGameDataRoot()}excel/stage_table.json');
+            .loadString('${getGameDataRoot(dbRegion)}excel/stage_table.json');
 
         ReceivePort port = ReceivePort();
         await Isolate.spawn(
@@ -77,23 +80,22 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
 
     for (var stage in jsonData.values) {
       var stageModel = StageModel.fromJson(stage);
-      if (stageModel.zoneId == null) continue;
 
       // 스토리 스테이지, 연습 스테이지 제외
       if (stageModel.isStoryOnly == true || stageModel.isPredefined == true) {
         continue;
       }
 
-      String zoneIdKey = stageModel.zoneId!;
+      String zoneIdKey = stageModel.zoneId;
       // 전장의 비화 (SW-EV)
       // 에인션트 포지 (AF)
       // 오후의 일화 (SA) 별도 처리
       if (stageModel.isStagePatch == true) {
-        zoneIdKey = stageModel.stageId?.split('_').first ?? '';
+        zoneIdKey = stageModel.stageId.split('_').first;
       }
       // 메인 별도처리
       if (stageModel.stageType == 'MAIN' || stageModel.stageType == 'SUB') {
-        zoneIdKey = '${stageModel.zoneId!}_${stageModel.diffGroup!}';
+        zoneIdKey = '${stageModel.zoneId}_${stageModel.diffGroup}';
       }
 
       if (zones.any((zone) => zone.zoneId == zoneIdKey)) {
@@ -104,12 +106,12 @@ class StageListItemBloc extends Bloc<StageListItemEvent, StageListItemState> {
 
         result[zoneIdKey]!.add(
           StageListModel(
-            stageId: stageModel.stageId!,
+            stageId: stageModel.stageId,
             zoneId: zoneIdKey,
-            code: stageModel.code!,
+            code: stageModel.code,
             name: stageModel.name!,
-            difficulty: stageModel.difficulty!,
-            diffGroup: stageModel.diffGroup!,
+            difficulty: stageModel.difficulty,
+            diffGroup: stageModel.diffGroup,
           ),
         );
       }

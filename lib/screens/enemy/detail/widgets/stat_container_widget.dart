@@ -1,6 +1,10 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/cubit/enemy_class_level_cubit.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatContainer extends StatelessWidget {
   const StatContainer({
@@ -10,7 +14,58 @@ class StatContainer extends StatelessWidget {
     required this.statRank,
   });
 
-  final String title, stat, statRank;
+  final String title, statRank;
+  final double stat;
+
+  String rankCalc(BuildContext context, double stat) {
+    var classLevels =
+        context.read<EnemyClassLevelCubit>().state.enemyClassLevels ?? [];
+
+    switch (title) {
+      case '체력':
+        {
+          var result = '?';
+          for (var classLevel in classLevels.reversed) {
+            if (classLevel.maxHP.min <= stat) {
+              result = classLevel.classLevel;
+            }
+          }
+          return result;
+        }
+      case '공격력':
+        {
+          var result = '?';
+          for (var classLevel in classLevels.reversed) {
+            if (classLevel.attack.min <= stat) {
+              result = classLevel.classLevel;
+            }
+          }
+          return result;
+        }
+      case '방어력':
+        {
+          var result = '?';
+          for (var classLevel in classLevels.reversed) {
+            if (classLevel.def.min <= stat) {
+              result = classLevel.classLevel;
+            }
+          }
+          return result;
+        }
+      case '마법 저항력':
+        {
+          var result = '?';
+          for (var classLevel in classLevels.reversed) {
+            if (classLevel.magicRes.min <= stat) {
+              result = classLevel.classLevel;
+            }
+          }
+          return result;
+        }
+    }
+
+    return '?';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +117,10 @@ class StatContainer extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     AppFont(
-                      statRank,
+                      context.read<SettingCubit>().state.settings.dbRegion ==
+                              Region.cn
+                          ? rankCalc(context, stat)
+                          : statRank,
                       color: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -72,10 +130,13 @@ class StatContainer extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                     AppFont(
-                      stat.replaceAllMapped(
-                        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                        (Match m) => "${m[1]},",
-                      ),
+                      stat
+                          .toString()
+                          .replaceAllMapped(
+                            RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                            (Match m) => "${m[1]},",
+                          )
+                          .replaceAll('.0', ''),
                       color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontWeight: FontWeight.w700,
                     ),

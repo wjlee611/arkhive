@@ -1,3 +1,4 @@
+import 'package:arkhive/cubit/enemy_class_level_cubit.dart';
 import 'package:arkhive/cubit/favorite_cubit.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
 import 'package:arkhive/cubit/range_cubit.dart';
@@ -23,7 +24,6 @@ void main() async {
 class Arkhive extends StatelessWidget {
   const Arkhive({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,6 +45,9 @@ class Arkhive extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => RangeCubit(),
+        ),
+        BlocProvider(
+          create: (context) => EnemyClassLevelCubit(),
         ),
         BlocProvider(
           create: (context) => PenguinCubit(),

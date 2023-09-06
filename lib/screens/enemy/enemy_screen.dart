@@ -5,6 +5,7 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/enemy/widgets/enemy_button_widget.dart';
 import 'package:arkhive/screens/enemy/widgets/enemy_sliver_appbar_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -17,7 +18,9 @@ class EnemyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => EnemyListBloc(),
+      create: (context) => EnemyListBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [

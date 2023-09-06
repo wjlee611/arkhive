@@ -4,7 +4,7 @@ import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart'
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/module_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
@@ -30,8 +30,8 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
   late TabController _levelTabController;
   ModuleDataModel? moduleData;
 
-  ModuleTraitDataBundleModel? _updateTrait;
-  ModuleTalentDataBundleModel? _updateTalent;
+  ModuleDataTraitCandidateModel? _updateTrait;
+  ModuleDataTalentCandidateModel? _updateTalent;
 
   @override
   void initState() {
@@ -78,19 +78,20 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
     _updateTrait = null;
     _updateTalent = null;
 
-    for (var part in moduleData!.phases[_levelTabController.index].parts) {
+    for (ModuleDataPartsModel part
+        in moduleData?.phases[_levelTabController.index].parts ?? []) {
       if (part.isToken == null || part.isToken!) continue;
       // update trait
       if (part.target!.contains('TRAIT') || part.target!.contains('DISPLAY')) {
-        _updateTrait = reqPotEliteSelector<ModuleTraitDataBundleModel>(
-          candidates: part.overrideTraitDataBundle,
+        _updateTrait = reqPotEliteSelector<ModuleDataTraitCandidateModel>(
+          candidates: part.overrideTraitDataBundle?.candidates,
           currPot: potential,
         );
       }
       // update talent
       else if (part.target!.contains('TALENT')) {
-        var nullTest = reqPotEliteSelector<ModuleTalentDataBundleModel>(
-          candidates: part.addOrOverrideTalentDataBundle,
+        var nullTest = reqPotEliteSelector<ModuleDataTalentCandidateModel>(
+          candidates: part.addOrOverrideTalentDataBundle?.candidates,
           currPot: potential,
         );
         if (nullTest == null || nullTest.name == null) continue;
@@ -238,13 +239,13 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
             ),
             Gaps.v1,
             for (var attr in moduleData!
-                .phases[_levelTabController.index].attributeBlackboard)
+                .phases[_levelTabController.index].attributeBlackboard!)
               Row(
                 children: [
                   AppFont(_moduleStatPicker(attr.key)),
                   Gaps.h3,
                   AppFont(
-                    _moduleStatFormatter(attr.value!),
+                    _moduleStatFormatter(attr.value),
                     color: Colors.blue,
                   ),
                 ],
@@ -282,8 +283,10 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                       FormattedTextWidget(
                         text: _updateTrait!.additionalDescription ??
                             _updateTrait!.overrideDescripton!,
-                        variables: boardListAndDurationToMap(
-                            blackboards: _updateTrait!.blackboard),
+                        variables: _updateTrait!.blackboard != null
+                            ? boardListAndDurationToMap(
+                                blackboards: _updateTrait!.blackboard!)
+                            : {},
                       ),
                       Gaps.v10,
                     ],
@@ -301,8 +304,10 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                       Gaps.v1,
                       FormattedTextWidget(
                         text: _updateTalent!.upgradeDescription!,
-                        variables: boardListAndDurationToMap(
-                            blackboards: _updateTalent!.blackboard),
+                        variables: _updateTalent!.blackboard != null
+                            ? boardListAndDurationToMap(
+                                blackboards: _updateTalent!.blackboard!)
+                            : {},
                       ),
                     ],
                   ),

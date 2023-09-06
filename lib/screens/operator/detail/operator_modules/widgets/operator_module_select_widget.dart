@@ -3,7 +3,7 @@ import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/operator/detail/operator_modules/widgets/operator_module_info_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
-import 'package:arkhive/models/module_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
 
 class OperatorModuleSelectWidget extends StatefulWidget {
   const OperatorModuleSelectWidget({

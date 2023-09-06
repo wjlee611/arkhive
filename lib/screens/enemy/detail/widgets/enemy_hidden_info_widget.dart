@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/models/enemy/enemy_data_model.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -15,15 +15,15 @@ class EnemyHiddenInfoWidget extends StatelessWidget {
     required this.enemyDataValues,
   });
 
-  final List<EnemyValueDataModel> enemyDataValues;
+  final List<EnemyDataValueModel> enemyDataValues;
 
   Map<String, double> _blackboardSelector(int level) {
     var result = boardListAndDurationToMap(
-        blackboards: enemyDataValues[0].talentBlackboard);
+        blackboards: enemyDataValues[0].enemyData?.talentBlackboard ?? []);
 
     for (int i = 1; i < level + 1; i++) {
       var tmp = boardListAndDurationToMap(
-          blackboards: enemyDataValues[i].talentBlackboard);
+          blackboards: enemyDataValues[i].enemyData?.talentBlackboard ?? []);
       for (var key in tmp.keys) {
         result[key] = tmp[key]!;
       }

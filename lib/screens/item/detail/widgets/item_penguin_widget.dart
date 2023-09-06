@@ -2,7 +2,7 @@ import 'package:arkhive/bloc/item/item_penguin/item_penguin_bloc.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/cubit/penguin_cubit.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/screens/item/detail/widgets/item_penguin_item_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';

@@ -1,4 +1,4 @@
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class OperatorStatusEvent extends Equatable {

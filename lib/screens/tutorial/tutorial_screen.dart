@@ -1,6 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/setting_cubit.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/font_family.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
 import 'package:flutter/material.dart';

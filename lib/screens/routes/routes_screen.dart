@@ -1,6 +1,6 @@
 import 'package:arkhive/bloc/screen_bloc.dart';
-import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/screen.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
@@ -21,39 +21,22 @@ class RoutesScreen extends StatefulWidget {
 class _RoutesScreenState extends State<RoutesScreen> {
   DateTime? _currentBackPressTime;
 
-  Widget _screenSelector(Screens screen) {
+  Widget _screenSelector(EScreen screen) {
     switch (screen) {
-      case Screens.home:
+      case EScreen.home:
         return const HomeScreen();
-      case Screens.items:
+      case EScreen.items:
         return const ItemScreen();
-      case Screens.stages:
+      case EScreen.stages:
         return const StageScreen();
-      case Screens.operators:
+      case EScreen.operators:
         return const OperatorScreen();
-      case Screens.enemies:
+      case EScreen.enemies:
         return const EnemyScreen();
       default:
         return const Center(
           child: AppFont('Page not found: 404'),
         );
-    }
-  }
-
-  String _titleSelector(Screens screen) {
-    switch (screen) {
-      case Screens.home:
-        return 'Arkhive';
-      case Screens.items:
-        return '창고 아이템';
-      case Screens.stages:
-        return '스테이지 정보';
-      case Screens.operators:
-        return '오퍼레이터';
-      case Screens.enemies:
-        return '적';
-      default:
-        return AppData.nullStr;
     }
   }
 
@@ -87,7 +70,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: AppFont(
-            _titleSelector(state.currScreen),
+            state.currScreen == EScreen.home ? 'Arkhive' : state.currScreen.ko,
             color: Colors.white,
             fontSize: Sizes.size16,
             fontWeight: FontWeight.w700,

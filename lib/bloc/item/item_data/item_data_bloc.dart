@@ -2,13 +2,17 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/bloc/item/item_data/item_data_event.dart';
 import 'package:arkhive/bloc/item/item_data/item_data_state.dart';
-import 'package:arkhive/models/item_model.dart';
+import 'package:arkhive/models/item/item_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemDataBloc extends Bloc<ItemDataEvent, ItemDataState> {
-  ItemDataBloc() : super(const ItemDataInitState()) {
+  final Region dbRegion;
+
+  ItemDataBloc({
+    required this.dbRegion,
+  }) : super(const ItemDataInitState()) {
     on<ItemDataLoadEvent>(_itemDataLoadEventHandler);
   }
 
@@ -20,7 +24,7 @@ class ItemDataBloc extends Bloc<ItemDataEvent, ItemDataState> {
 
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/item_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/item_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

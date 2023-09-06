@@ -3,9 +3,10 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/module_model.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/module_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/screens/operator/upgrade/widgets/operator_upgrade_costs_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
 import 'package:arkhive/widgets/common_no_result_widget.dart';
@@ -45,7 +46,9 @@ class OperatorUpgradeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ItemListBloc(),
+      create: (context) => ItemListBloc(
+        dbRegion: getRegion(context),
+      ),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -83,19 +86,23 @@ class OperatorUpgradeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 children: [
                   Gaps.v20,
-                  const CommonTitleWidget(text: '정예화'),
+                  if (operator_.phases.any((e) => e.evolveCost != null))
+                    const CommonTitleWidget(text: '정예화'),
                   for (int i = 1; i < operator_.phases.length; i++)
                     OperatorUpgradeCostsWidget(
-                      costs: operator_.phases[i].evolveCost,
+                      costs: operator_.phases[i].evolveCost ?? [],
                     ),
                   Gaps.v20,
-                  const CommonTitleWidget(text: '스킬'),
+                  if (operator_.allSkillLvlup.any((e) => e.lvlUpCost != null))
+                    const CommonTitleWidget(text: '스킬'),
                   for (var skill in operator_.allSkillLvlup)
-                    OperatorUpgradeCostsWidget(costs: skill.lvlUpCost),
+                    OperatorUpgradeCostsWidget(costs: skill.lvlUpCost ?? []),
                   for (int i = 0; i < operator_.skills.length; i++)
                     Column(
                       children: [
-                        if (operator_.skills[i].levelUpCostCond.isNotEmpty)
+                        if (operator_.skills[i].levelUpCostCond
+                                ?.any((e) => e.levelUpCost != null) ==
+                            true)
                           Padding(
                             padding: const EdgeInsets.only(
                               left: Sizes.size10,
@@ -105,14 +112,14 @@ class OperatorUpgradeScreen extends StatelessWidget {
                                 CommonSubTitleWidget(text: '${i + 1} 스킬 마스터리'),
                           ),
                         for (var skillLvl
-                            in operator_.skills[i].levelUpCostCond)
+                            in operator_.skills[i].levelUpCostCond!)
                           OperatorUpgradeCostsWidget(
-                            costs: skillLvl.levelUpCost,
+                            costs: skillLvl.levelUpCost ?? [],
                           ),
                       ],
                     ),
                   Gaps.v20,
-                  const CommonTitleWidget(text: '모듈'),
+                  if (modules.isNotEmpty) const CommonTitleWidget(text: '모듈'),
                   for (var module in modules)
                     Column(
                       children: [
@@ -126,7 +133,7 @@ class OperatorUpgradeScreen extends StatelessWidget {
                             color: _moduleColorPicker(module.equipShiningColor),
                           ),
                         ),
-                        for (var moduleStage in module.itemCost.entries)
+                        for (var moduleStage in module.itemCost!.entries)
                           OperatorUpgradeCostsWidget(
                             costs: moduleStage.value,
                           ),

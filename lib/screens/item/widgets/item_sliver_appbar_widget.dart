@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/item/item_list/item_list_event.dart';
 import 'package:arkhive/bloc/item/item_list/item_list_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/font_family.dart';
+import 'package:arkhive/constants/font_family.dart';
 import 'package:arkhive/screens/item/widgets/item_filters_button.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';

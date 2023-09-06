@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_list_model.dart';
+import 'package:arkhive/enums/enemy_level.dart';
+import 'package:arkhive/models/enemy/enemy_list_model.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
@@ -13,12 +14,6 @@ class EnemyButton extends StatelessWidget {
 
   final EnemyListModel enemy;
 
-  Color _colorPicker(String enemyType) {
-    if (enemyType == 'ELITE') return Colors.deepOrange;
-    if (enemyType == 'BOSS') return Colors.purple;
-    return Colors.blueGrey.shade600;
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +25,7 @@ class EnemyButton extends StatelessWidget {
       ),
       child: Card(
         clipBehavior: Clip.hardEdge,
-        color: _colorPicker(enemy.level),
+        color: enemyLevelSelector(enemy.level).bgColor,
         elevation: Sizes.size5,
         child: Stack(
           alignment: AlignmentDirectional.bottomEnd,
@@ -49,11 +44,11 @@ class EnemyButton extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Sizes.size3),
-                color: _colorPicker(enemy.level),
+                color: enemyLevelSelector(enemy.level).bgColor,
                 boxShadow: [
                   BoxShadow(
                     blurRadius: Sizes.size5,
-                    color: _colorPicker(enemy.level),
+                    color: enemyLevelSelector(enemy.level).bgColor,
                   ),
                 ],
               ),

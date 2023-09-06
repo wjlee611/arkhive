@@ -4,13 +4,16 @@ import 'package:arkhive/bloc/enemy/enemy_data/enemy_data_state.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
-import 'package:arkhive/models/favorite_model.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
+import 'package:arkhive/models/enemy/enemy_data_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
+import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_combat_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_header_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_hidden_info_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/enemy_tag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/level_select_button_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_favorite_widget.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -38,7 +41,9 @@ class EnemyDetailScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => EnemyDataBloc(),
+          create: (context) => EnemyDataBloc(
+            dbRegion: getRegion(context),
+          ),
         ),
         BlocProvider(
           create: (context) => EnemyLevelBloc(level: initLevel),
@@ -113,9 +118,9 @@ class EnemyDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Gaps.v130,
-            if (enemyData.values.length > 1)
-              LevelSelectButton(levelLength: enemyData.values.length),
-            enemyData.values.length > 1 ? Gaps.v16 : Container(),
+            if ((enemyData.value?.length ?? 0) > 1)
+              LevelSelectButton(levelLength: (enemyData.value?.length ?? 0)),
+            (enemyData.value?.length ?? 0) > 1 ? Gaps.v16 : Container(),
             CommonTitleWidget(
               text: enemy.name!,
               color: Colors.yellow.shade800,
@@ -130,12 +135,21 @@ class EnemyDetailScreen extends StatelessWidget {
                   EnemyLevelTagWidget(tag: enemy.enemyLevel!),
                 if (enemy.enemyRace != null)
                   EnemyTagWidget(tag: enemy.enemyRace!),
+                // CN
+                if (context.read<SettingCubit>().state.settings.dbRegion ==
+                        Region.cn &&
+                    enemyData.value?.first.enemyData?.enemyTags?.mValue
+                            ?.isNotEmpty ==
+                        true)
+                  for (var tag
+                      in enemyData.value!.first.enemyData!.enemyTags!.mValue!)
+                    EnemyTagWidget(tag: tag),
               ],
             ),
             Gaps.v32,
             EnemyCombatInfo(
               enemy: enemy,
-              enemyDataValues: enemyData.values,
+              enemyDataValues: enemyData.value ?? [],
             ),
             if (enemy.ability != null)
               Column(
@@ -148,8 +162,23 @@ class EnemyDetailScreen extends StatelessWidget {
                   Gaps.v20,
                 ],
               ),
-            if (enemyData.values[0].talentBlackboard.isNotEmpty)
-              EnemyHiddenInfoWidget(enemyDataValues: enemyData.values),
+            if (enemy.abilityList?.isNotEmpty == true)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gaps.v16,
+                  const CommonTitleWidget(text: '특수 능력'),
+                  Gaps.v5,
+                  for (var ability in enemy.abilityList!)
+                    ability.textFormat == 'TITLE'
+                        ? CommonSubTitleWidget(text: ability.text ?? 'N/A')
+                        : FormattedTextWidget(text: ability.text ?? 'N/A'),
+                  Gaps.v20,
+                ],
+              ),
+            if (enemyData.value?[0].enemyData?.talentBlackboard?.isNotEmpty ==
+                true)
+              EnemyHiddenInfoWidget(enemyDataValues: enemyData.value ?? []),
             Gaps.v80,
           ],
         ),

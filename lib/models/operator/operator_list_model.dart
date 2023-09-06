@@ -1,6 +1,6 @@
 class OperatorListModel {
   final String operatorKey, name, profession;
-  final int rarity;
+  final String rarity; // CN: 0 -> TIER_1
 
   OperatorListModel({
     required this.operatorKey,

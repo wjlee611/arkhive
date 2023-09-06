@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/models/base/range_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
@@ -11,12 +10,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RangeCubit extends Cubit<RangeState> {
   RangeCubit() : super(const RangeState(status: CommonLoadState.init));
 
-  Future<void> loadRange() async {
+  Future<void> loadRange({
+    required Region dbRegion,
+  }) async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/range_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/range_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

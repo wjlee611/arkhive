@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:arkhive/models/enemy_list_model.dart';
+import 'package:arkhive/models/enemy/enemy_list_model.dart';
 
 abstract class EnemyListState extends Equatable {
   final List<EnemyListModel>? enemyList;

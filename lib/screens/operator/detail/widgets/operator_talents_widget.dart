@@ -3,7 +3,7 @@ import 'package:arkhive/bloc/operator/operator_data/operator_data_state.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_status/operator_status_state.dart';
 import 'package:arkhive/constants/gaps.dart';
-import 'package:arkhive/models/operator_model.dart';
+import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/tools/required_pot_elite_selector.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:arkhive/widgets/formatted_text_widget.dart';
@@ -26,7 +26,7 @@ class OperatorTalentsWidget extends StatelessWidget {
           builder: (context, statState) {
             if (dataState is! OperatorDataLoadedState) return Container();
             if (reqPotEliteSelector(
-                  candidates: dataState.operator_.talents.first.candidates,
+                  candidates: dataState.operator_.talents?.first.candidates,
                   currPot: statState.potential,
                   currElite: statState.elite,
                   // currLevel: statState.level,
@@ -38,11 +38,11 @@ class OperatorTalentsWidget extends StatelessWidget {
               children: [
                 const CommonTitleWidget(text: '재능'),
                 Gaps.v7,
-                for (var talent in dataState.operator_.talents)
+                for (var talent in dataState.operator_.talents ?? [])
                   _talentWidget(
                     context,
                     reqPotEliteSelector(
-                      candidates: talent.candidates,
+                      candidates: talent.candidates!,
                       currPot: statState.potential,
                       currElite: statState.elite,
                       // currLevel: statState.level,
@@ -58,7 +58,7 @@ class OperatorTalentsWidget extends StatelessWidget {
   }
 
   Widget _talentWidget(
-      BuildContext context, OperatorTalentsCandidatesModel? talent) {
+      BuildContext context, OperatorTalentCandidatesModel? talent) {
     if (talent == null) return Container();
 
     return Column(
@@ -68,7 +68,9 @@ class OperatorTalentsWidget extends StatelessWidget {
         Gaps.v3,
         FormattedTextWidget(
           text: talent.description!,
-          variables: boardListAndDurationToMap(blackboards: talent.blackboard),
+          variables: talent.blackboard != null
+              ? boardListAndDurationToMap(blackboards: talent.blackboard!)
+              : {},
           center: false,
         ),
         Gaps.v10,

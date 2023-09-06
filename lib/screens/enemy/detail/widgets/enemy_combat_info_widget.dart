@@ -1,11 +1,16 @@
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_bloc.dart';
 import 'package:arkhive/bloc/enemy/enemy_level/enemy_level_state.dart';
+import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/enemy_model.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
+import 'package:arkhive/models/common/attribute_model.dart';
+import 'package:arkhive/models/enemy/enemy_data_model.dart';
+import 'package:arkhive/models/enemy/enemy_model.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/checkbox_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/infotag_widget.dart';
 import 'package:arkhive/screens/enemy/detail/widgets/stat_container_widget.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,57 +23,52 @@ class EnemyCombatInfo extends StatelessWidget {
   });
 
   final EnemyModel enemy;
-  final List<EnemyValueDataModel> enemyDataValues;
+  final List<EnemyDataValueModel> enemyDataValues;
 
-  EnemyAttrDataModel _attrSelector(int level) {
-    var result = EnemyAttrDataModel.copy(enemyDataValues[0].attributes!);
+  AttributeModel _attrSelector(int level) {
+    var result = enemyDataValues[0].enemyData!.attributes!;
 
     for (int i = 1; i < level + 1; i++) {
-      if (enemyDataValues[i].attributes?.maxHp?.isDefined ?? false) {
-        result.copyWith(maxHp: enemyDataValues[i].attributes!.maxHp!);
+      var attr = enemyDataValues[i].enemyData?.attributes;
+
+      if (attr?.maxHp!.mDefined ?? false) {
+        result = result.copyWith(maxHp: attr?.maxHp);
       }
-      if (enemyDataValues[i].attributes?.atk?.isDefined ?? false) {
-        result.copyWith(atk: enemyDataValues[i].attributes!.atk!);
+      if (attr?.atk!.mDefined ?? false) {
+        result = result.copyWith(atk: attr?.atk);
       }
-      if (enemyDataValues[i].attributes?.def?.isDefined ?? false) {
-        result.copyWith(def: enemyDataValues[i].attributes!.def!);
+      if (attr?.def!.mDefined ?? false) {
+        result = result.copyWith(def: attr?.def);
       }
-      if (enemyDataValues[i].attributes?.massLevel?.isDefined ?? false) {
-        result.copyWith(massLevel: enemyDataValues[i].attributes!.massLevel!);
+      if (attr?.magicResistance!.mDefined ?? false) {
+        result = result.copyWith(magicResistance: attr?.magicResistance);
       }
-      if (enemyDataValues[i].attributes?.magicResistance?.isDefined ?? false) {
-        result.copyWith(
-            magicResistance: enemyDataValues[i].attributes!.magicResistance!);
+      if (attr?.moveSpeed!.mDefined ?? false) {
+        result = result.copyWith(moveSpeed: attr?.moveSpeed);
       }
-      if (enemyDataValues[i].attributes?.moveSpeed?.isDefined ?? false) {
-        result.copyWith(moveSpeed: enemyDataValues[i].attributes!.moveSpeed!);
+      if (attr?.attackSpeed!.mDefined ?? false) {
+        result = result.copyWith(attackSpeed: attr?.attackSpeed);
       }
-      if (enemyDataValues[i].attributes?.attackSpeed?.isDefined ?? false) {
-        result.copyWith(
-            attackSpeed: enemyDataValues[i].attributes!.attackSpeed!);
+      if (attr?.baseAttackTime!.mDefined ?? false) {
+        result = result.copyWith(baseAttackTime: attr?.baseAttackTime);
       }
-      if (enemyDataValues[i].attributes?.baseAttackTime?.isDefined ?? false) {
-        result.copyWith(
-            baseAttackTime: enemyDataValues[i].attributes!.baseAttackTime!);
+      if (attr?.massLevel!.mDefined ?? false) {
+        result = result.copyWith(massLevel: attr?.massLevel);
       }
-      if (enemyDataValues[i].attributes?.stunImmune?.isDefined ?? false) {
-        result.copyWith(stunImmune: enemyDataValues[i].attributes!.stunImmune!);
+      if (attr?.stunImmune!.mDefined ?? false) {
+        result = result.copyWith(stunImmune: attr?.stunImmune);
       }
-      if (enemyDataValues[i].attributes?.silenceImmune?.isDefined ?? false) {
-        result.copyWith(
-            silenceImmune: enemyDataValues[i].attributes!.silenceImmune!);
+      if (attr?.silenceImmune!.mDefined ?? false) {
+        result = result.copyWith(silenceImmune: attr?.silenceImmune);
       }
-      if (enemyDataValues[i].attributes?.sleepImmune?.isDefined ?? false) {
-        result.copyWith(
-            sleepImmune: enemyDataValues[i].attributes!.sleepImmune!);
+      if (attr?.sleepImmune!.mDefined ?? false) {
+        result = result.copyWith(sleepImmune: attr?.sleepImmune);
       }
-      if (enemyDataValues[i].attributes?.frozenImmune?.isDefined ?? false) {
-        result.copyWith(
-            frozenImmune: enemyDataValues[i].attributes!.frozenImmune!);
+      if (attr?.frozenImmune!.mDefined ?? false) {
+        result = result.copyWith(frozenImmune: attr?.frozenImmune);
       }
-      if (enemyDataValues[i].attributes?.levitateImmune?.isDefined ?? false) {
-        result.copyWith(
-            levitateImmune: enemyDataValues[i].attributes!.levitateImmune!);
+      if (attr?.levitateImmune!.mDefined ?? false) {
+        result = result.copyWith(levitateImmune: attr?.levitateImmune);
       }
     }
 
@@ -80,21 +80,30 @@ class EnemyCombatInfo extends StatelessWidget {
     return BlocBuilder<EnemyLevelBloc, EnemyLevelState>(
       buildWhen: (previous, current) => previous.level != current.level,
       builder: (context, state) {
-        var attribute = _attrSelector(state.level);
+        var attr = _attrSelector(state.level);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CommonTitleWidget(text: '전투 능력'),
             Gaps.v5,
-            InfoTag(
-              title: '공격 방식',
-              value: enemy.attackType!,
-            ),
+            if (enemy.attackType != null)
+              InfoTag(
+                title: '공격 방식',
+                value: enemy.attackType!,
+              ),
+            if (context.read<SettingCubit>().state.settings.dbRegion ==
+                Region.cn)
+              InfoTag(
+                title: '공격 방식',
+                value: AppData.nullStr,
+                values: enemy.damageType,
+                applyWay: enemyDataValues.first.enemyData?.applyWay?.mValue,
+              ),
             Gaps.v7,
             InfoTag(
               title: '무게 레벨',
-              value: attribute.massLevel!.value.toString(),
+              value: attr.massLevel!.mValue.toString(),
             ),
             Gaps.v5,
             SingleChildScrollView(
@@ -106,28 +115,26 @@ class EnemyCombatInfo extends StatelessWidget {
                     Gaps.h3,
                     StatContainer(
                       title: '체력',
-                      stat: attribute.maxHp!.value.toString(),
-                      statRank: enemy.endure!,
+                      stat: attr.maxHp!.mValue!.toDouble(),
+                      statRank: enemy.endure ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '공격력',
-                      stat: attribute.atk!.value.toString(),
-                      statRank: enemy.attack!,
+                      stat: attr.atk!.mValue!.toDouble(),
+                      statRank: enemy.attack ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '방어력',
-                      stat: attribute.def!.value.toString(),
-                      statRank: enemy.defence!,
+                      stat: attr.def!.mValue!.toDouble(),
+                      statRank: enemy.defence ?? 'asd',
                     ),
                     Gaps.h5,
                     StatContainer(
                       title: '마법 저항력',
-                      stat: attribute.magicResistance!.value
-                          .toString()
-                          .replaceAll('.0', ''),
-                      statRank: enemy.resistance!,
+                      stat: attr.magicResistance!.mValue!,
+                      statRank: enemy.resistance ?? 'asd',
                     ),
                   ],
                 ),
@@ -138,11 +145,11 @@ class EnemyCombatInfo extends StatelessWidget {
               children: [
                 CheckboxWidget(
                   title: '스턴 저항',
-                  isImm: attribute.stunImmune!.value!,
+                  isImm: attr.stunImmune!.mValue ?? false,
                 ),
                 CheckboxWidget(
                   title: '침묵 저항',
-                  isImm: attribute.silenceImmune!.value!,
+                  isImm: attr.silenceImmune!.mValue ?? false,
                 ),
               ],
             ),
@@ -151,18 +158,18 @@ class EnemyCombatInfo extends StatelessWidget {
               children: [
                 CheckboxWidget(
                   title: '수면 저항',
-                  isImm: attribute.sleepImmune!.value!,
+                  isImm: attr.sleepImmune!.mValue ?? false,
                 ),
                 CheckboxWidget(
                   title: '빙결 저항',
-                  isImm: attribute.frozenImmune!.value!,
+                  isImm: attr.frozenImmune!.mValue ?? false,
                 ),
               ],
             ),
             Gaps.v7,
             CheckboxWidget(
               title: '부양 저항',
-              isImm: attribute.levitateImmune!.value!,
+              isImm: attr.levitateImmune!.mValue ?? false,
             ),
             Gaps.v20,
           ],

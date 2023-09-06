@@ -3,14 +3,19 @@ import 'dart:isolate';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_event.dart';
 import 'package:arkhive/bloc/stage/stage_list/stage_list_state.dart';
 import 'package:arkhive/constants/app_data.dart';
-import 'package:arkhive/models/stage_list_model.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/models/stage/activity_model.dart';
+import 'package:arkhive/models/stage/stage_list_model.dart';
+import 'package:arkhive/models/stage/zone_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StageListBloc extends Bloc<StageListEvent, StageListState> {
-  StageListBloc() : super(const StageListInitState()) {
+  final Region dbRegion;
+
+  StageListBloc({
+    required this.dbRegion,
+  }) : super(const StageListInitState()) {
     on<StageListInitEvent>(_stageListInitEventHandler);
   }
 
@@ -29,7 +34,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       result.add(CategoryListModel(
           category: '이벤트', type: 'ACTIVITY', activities: [])); // [1]
       result.add(CategoryListModel(
-          category: '물자 비축', type: 'WEEKLY', activities: [])); // [1]
+          category: '물자 비축', type: 'WEEKLY', activities: [])); // [2]
     } catch (e) {
       emit(StageListErrorState(message: e.toString()));
       return;
@@ -39,7 +44,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     Map<String, String> zoneToAct = {};
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/activity_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/activity_table.json');
 
       // Get activity
       ReceivePort port = ReceivePort();
@@ -66,7 +71,7 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     // Add zone
     try {
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/zone_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/zone_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -94,18 +99,18 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
     for (Map<String, dynamic> activity in jsonData.values.toList().reversed) {
       var activityModel = ActivityModel.fromJson(activity);
 
-      if (!(activityModel.hasStage ?? true)) continue;
+      if (!(activityModel.hasStage)) continue;
       // 재개방
-      if (activityModel.isReplicate ?? false) {
+      if (activityModel.isReplicate) {
         result[1].updateActByRep(
           ActivityListModel(
-            title: activityModel.name!,
-            actId: activityModel.id!,
+            title: activityModel.name,
+            actId: activityModel.id,
             timeStamps: [
               StageTimeStampModel(
-                startTime: activityModel.startTime!,
-                endTime: activityModel.endTime!,
-                rewardEndTime: activityModel.rewardEndTime!,
+                startTime: activityModel.startTime,
+                endTime: activityModel.endTime,
+                rewardEndTime: activityModel.rewardEndTime,
               ),
             ],
             zones: [],
@@ -115,9 +120,12 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       }
 
       // 위기 협약 - act5d1, 케오베 = act12d6, 디펱스 프로토콜 - act17d1  제외
+      // CN: act38d1, act1sandbox 제외
       if (activityModel.id == 'act5d1' ||
           activityModel.id == 'act12d6' ||
-          activityModel.id == 'act17d1') continue;
+          activityModel.id == 'act17d1' ||
+          activityModel.id == 'act38d1' ||
+          activityModel.id == 'act1sandbox') continue;
 
       // 전장의 비화 (SW-EV)
       // 에인션트 포지 (AF)
@@ -126,19 +134,19 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           activityModel.id == 'act6d5' ||
           activityModel.id == 'act7d5') {
         result[1].addActivity(ActivityListModel(
-          title: activityModel.name!,
-          actId: activityModel.id!,
+          title: activityModel.name,
+          actId: activityModel.id,
           timeStamps: [
             StageTimeStampModel(
-              startTime: activityModel.startTime!,
-              endTime: activityModel.endTime!,
-              rewardEndTime: activityModel.rewardEndTime!,
+              startTime: activityModel.startTime,
+              endTime: activityModel.endTime,
+              rewardEndTime: activityModel.rewardEndTime,
             ),
           ],
           zones: [
             ZoneListModel(
               title: AppData.nullStr,
-              zoneId: activityModel.id!,
+              zoneId: activityModel.id,
               type: 'ACTIVITY',
             ),
           ],
@@ -147,13 +155,13 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       }
 
       result[1].addActivity(ActivityListModel(
-        title: activityModel.name!,
-        actId: activityModel.id!,
+        title: activityModel.name,
+        actId: activityModel.id,
         timeStamps: [
           StageTimeStampModel(
-            startTime: activityModel.startTime!,
-            endTime: activityModel.endTime!,
-            rewardEndTime: activityModel.rewardEndTime!,
+            startTime: activityModel.startTime,
+            endTime: activityModel.endTime,
+            rewardEndTime: activityModel.rewardEndTime,
           ),
         ],
         zones: [],
@@ -197,8 +205,8 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
 
       // 이상적인 도시: 엔드리스 카니발의
       // 엑시비전 트랙 (act20side_zone4), 얼티메이트 트랙 (act20side_zone5) 제외
-      if (zoneModel.zoneId == 'act20side_zone4' ||
-          zoneModel.zoneId == 'act20side_zone5') {
+      if (zoneModel.zoneID == 'act20side_zone4' ||
+          zoneModel.zoneID == 'act20side_zone5') {
         continue;
       }
 
@@ -213,18 +221,18 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       // 메인
       if (zoneModel.type == 'MAINLINE') {
         // 메인의 경우 별도의 activity가 없기 때문에 여기서 추가
-        int mainlineIdx = int.parse(zoneModel.zoneId!.split('_').last);
+        int mainlineIdx = int.parse(zoneModel.zoneID.split('_').last);
         // 8 지역까지는 zone 없음
         if (mainlineIdx < 9) {
           result[0].addActivity(
             ActivityListModel(
               title: zoneTitle,
-              actId: zoneModel.zoneId!,
+              actId: zoneModel.zoneID,
               zones: [
                 ZoneListModel(
                   title: '표준 실전 환경',
-                  zoneId: '${zoneModel.zoneId!}_NONE',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_NONE',
+                  type: zoneModel.type,
                 )
               ],
               timeStamps: [],
@@ -236,17 +244,17 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           result[0].addActivity(
             ActivityListModel(
               title: zoneTitle,
-              actId: zoneModel.zoneId!,
+              actId: zoneModel.zoneID,
               zones: [
                 ZoneListModel(
                   title: '스토리 체험 환경',
-                  zoneId: '${zoneModel.zoneId!}_EASY',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_EASY',
+                  type: zoneModel.type,
                 ),
                 ZoneListModel(
                   title: '표준 실전 환경',
-                  zoneId: '${zoneModel.zoneId!}_NORMAL',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_NORMAL',
+                  type: zoneModel.type,
                 )
               ],
               timeStamps: [],
@@ -258,22 +266,22 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
           result[0].addActivity(
             ActivityListModel(
               title: zoneTitle,
-              actId: zoneModel.zoneId!,
+              actId: zoneModel.zoneID,
               zones: [
                 ZoneListModel(
                   title: '스토리 체험 환경',
-                  zoneId: '${zoneModel.zoneId!}_EASY',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_EASY',
+                  type: zoneModel.type,
                 ),
                 ZoneListModel(
                   title: '표준 실전 환경',
-                  zoneId: '${zoneModel.zoneId!}_NORMAL',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_NORMAL',
+                  type: zoneModel.type,
                 ),
                 ZoneListModel(
                   title: '고난 험지 환경',
-                  zoneId: '${zoneModel.zoneId!}_TOUGH',
-                  type: zoneModel.type!,
+                  zoneId: '${zoneModel.zoneID}_TOUGH',
+                  type: zoneModel.type,
                 )
               ],
               timeStamps: [],
@@ -285,11 +293,11 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       // 이벤트
       if (zoneModel.type == 'ACTIVITY') {
         result[1].addZone(
-          targetAct: zoneToAct[zoneModel.zoneId]!,
+          targetAct: zoneToAct[zoneModel.zoneID]!,
           zone: ZoneListModel(
             title: zoneTitle,
-            zoneId: zoneModel.zoneId!,
-            type: zoneModel.type!,
+            zoneId: zoneModel.zoneID,
+            type: zoneModel.type,
           ),
         );
       }
@@ -300,12 +308,12 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
         result[2].addActivity(
           ActivityListModel(
             title: zoneTitle,
-            actId: zoneModel.zoneId!,
+            actId: zoneModel.zoneID,
             zones: [
               ZoneListModel(
                 title: AppData.nullStr,
-                zoneId: zoneModel.zoneId!,
-                type: zoneModel.type!,
+                zoneId: zoneModel.zoneID,
+                type: zoneModel.type,
               ),
             ],
             timeStamps: [],

@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'dart:isolate';
-
 import 'package:arkhive/models/base/tags_model.dart';
-import 'package:arkhive/models/common_models.dart';
+import 'package:arkhive/enums/common_load_state.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
@@ -11,13 +10,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class TagsCubit extends Cubit<TagsState> {
   TagsCubit() : super(const TagsState(status: CommonLoadState.init));
 
-  Future<void> loadTags() async {
+  Future<void> loadTags({
+    required Region dbRegion,
+  }) async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
     try {
       // richText tags
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/gamedata_const.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/gamedata_const.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
@@ -31,7 +32,7 @@ class TagsCubit extends Cubit<TagsState> {
 
       // subProfDict
       jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/uniequip_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/uniequip_table.json');
 
       port = ReceivePort();
       await Isolate.spawn(

@@ -1,6 +1,7 @@
 class ItemListModel {
   final String itemId, iconId, classifyType, itemType, name;
-  final int rarity, sortId;
+  final String rarity;
+  final int sortId;
 
   ItemListModel({
     required this.itemId,

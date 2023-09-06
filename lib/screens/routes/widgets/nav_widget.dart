@@ -1,8 +1,7 @@
-import 'package:arkhive/bloc/screen_bloc.dart';
 import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/screens_model.dart';
+import 'package:arkhive/enums/screen.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
@@ -10,6 +9,7 @@ import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_new_screen_listtile_widget.dart';
 import 'package:arkhive/screens/routes/widgets/nav_stack_screen_listtile_widget.dart';
+import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_darkmode_switch.dart';
@@ -113,28 +113,23 @@ class _NavDrawerState extends State<NavDrawer> {
                 padding: EdgeInsets.zero,
                 children: [
                   const NewScreenListTile(
-                    id: ScreenModel.main,
-                    screen: Screens.home,
+                    screen: EScreen.home,
                     newScreen: HomeScreen(),
                   ),
                   const NewScreenListTile(
-                    id: ScreenModel.item,
-                    screen: Screens.items,
+                    screen: EScreen.items,
                     newScreen: ItemScreen(),
                   ),
                   const NewScreenListTile(
-                    id: ScreenModel.stage,
-                    screen: Screens.stages,
+                    screen: EScreen.stages,
                     newScreen: StageScreen(),
                   ),
                   const NewScreenListTile(
-                    id: ScreenModel.operators,
-                    screen: Screens.operators,
+                    screen: EScreen.operators,
                     newScreen: OperatorScreen(),
                   ),
                   const NewScreenListTile(
-                    id: ScreenModel.enemy,
-                    screen: Screens.enemies,
+                    screen: EScreen.enemies,
                     newScreen: EnemyScreen(),
                   ),
                   SizedBox(
@@ -149,11 +144,11 @@ class _NavDrawerState extends State<NavDrawer> {
                       ),
                     ),
                   ),
-                  // const StackScreenListTile(
-                  //   icon: Icons.settings,
-                  //   title: '설정',
-                  //   newScreen: SettingsScreen(),
-                  // ),
+                  const StackScreenListTile(
+                    icon: Icons.settings,
+                    title: '설정',
+                    newScreen: SettingsScreen(),
+                  ),
                   const StackScreenListTile(
                     icon: Icons.info_outline_rounded,
                     title: '정보 / 후원',

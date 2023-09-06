@@ -3,18 +3,21 @@ import 'dart:isolate';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_event.dart';
 import 'package:arkhive/bloc/item/item_penguin/item_penguin_state.dart';
 import 'package:arkhive/models/base/penguin_model.dart';
-import 'package:arkhive/models/common_models.dart';
-import 'package:arkhive/models/stage_model.dart';
+import 'package:arkhive/enums/common_load_state.dart';
+import 'package:arkhive/models/stage/stage_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
+  final Region dbRegion;
+
   List<PenguinModel> _penguins = [];
   List<PenguinItemModel> _penguinSortSources = [];
 
-  ItemPenguinBloc()
-      : super(const ItemPenguinState(status: CommonLoadState.init)) {
+  ItemPenguinBloc({
+    required this.dbRegion,
+  }) : super(const ItemPenguinState(status: CommonLoadState.init)) {
     on<ItemPenguinInitEvent>(_itemPenguinInitEventHandler);
     on<ItemPenguinSanitySortEvent>(_itemPenguinSanitySortEventHandler);
     on<ItemPenguinRateSortEvent>(_itemPenguinRateSortEventHandler);
@@ -35,7 +38,7 @@ class ItemPenguinBloc extends Bloc<ItemPenguinEvent, ItemPenguinState> {
     try {
       // loading stage data
       String jsonString = await rootBundle
-          .loadString('${getGameDataRoot()}excel/stage_table.json');
+          .loadString('${getGameDataRoot(dbRegion)}excel/stage_table.json');
 
       ReceivePort port = ReceivePort();
       await Isolate.spawn(

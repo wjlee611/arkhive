@@ -1,4 +1,4 @@
-import 'package:arkhive/models/operator_list_model.dart';
+import 'package:arkhive/models/operator/operator_list_model.dart';
 import 'package:equatable/equatable.dart';
 
 enum SortOptions {

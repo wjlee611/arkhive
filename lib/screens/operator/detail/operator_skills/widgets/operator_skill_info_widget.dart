@@ -1,6 +1,7 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
-import 'package:arkhive/models/skill_model.dart';
+import 'package:arkhive/enums/skill_duration_type.dart';
+import 'package:arkhive/models/operator/skill_model.dart';
 import 'package:arkhive/screens/operator/detail/operator_skills/widgets/operator_skill_sptype_widget.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_range_widget.dart';
@@ -125,13 +126,13 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                       children: [
                         SkillSpTypeWidget(
                           isSkillType: false,
-                          type: skill.spData.spType!,
+                          type: skill.spData!.spType!,
                         ),
                         SkillSpTypeWidget(
                           isSkillType: true,
-                          type: skill.skillType!.toInt(),
+                          type: skill.skillType!,
                         ),
-                        if (skill.duration != null && skill.duration! > 0)
+                        if (skill.duration != null)
                           Container(
                             padding: const EdgeInsets.symmetric(
                               vertical: Sizes.size1,
@@ -141,26 +142,36 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                               borderRadius: BorderRadius.circular(Sizes.size2),
                               color: Colors.grey.shade600,
                             ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.timelapse_rounded,
-                                  color: Colors.grey.shade300,
-                                  size: Sizes.size10,
-                                ),
-                                Gaps.h3,
-                                AppFont(
-                                  '${skill.duration!.toInt()}초',
-                                  color: Colors.white,
-                                  fontSize: Sizes.size10,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ],
-                            ),
+                            child: skillDurationSelector(skill.durationType!) ==
+                                    ESkillDurationType.none
+                                ? Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timelapse_rounded,
+                                        color: Colors.grey.shade300,
+                                        size: Sizes.size10,
+                                      ),
+                                      Gaps.h3,
+                                      AppFont(
+                                        skill.duration! > 0
+                                            ? '${skill.duration!.toInt()}초'
+                                            : '즉발',
+                                        color: Colors.white,
+                                        fontSize: Sizes.size10,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ],
+                                  )
+                                : Icon(
+                                    Icons.signal_cellular_alt_rounded,
+                                    color: Colors.grey.shade300,
+                                    size: Sizes.size10,
+                                  ),
                           ),
                       ],
                     ),
-                    if (skill.spData.spCost != null && skill.spData.spCost! > 0)
+                    if (skill.spData?.spCost != null &&
+                        skill.spData!.spCost! > 0)
                       Column(
                         children: [
                           Gaps.v3,
@@ -197,7 +208,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                                 ),
                                 Gaps.h5,
                                 AppFont(
-                                  skill.spData.initSp!.toInt().toString(),
+                                  skill.spData!.initSp!.toInt().toString(),
                                   color: Colors.blue,
                                   fontSize: Sizes.size10,
                                   fontWeight: FontWeight.w700,
@@ -220,7 +231,7 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
                                   ),
                                 ),
                                 AppFont(
-                                  skill.spData.spCost!.toInt().toString(),
+                                  skill.spData!.spCost!.toInt().toString(),
                                   color: Colors.blue,
                                   fontSize: Sizes.size10,
                                   fontWeight: FontWeight.w700,
@@ -240,10 +251,12 @@ class _OperatorSkillInfoWidgetState extends State<OperatorSkillInfoWidget>
             Gaps.v3,
             FormattedTextWidget(
               text: skill.description!,
-              variables: boardListAndDurationToMap(
-                blackboards: skill.blackboard,
-                duration: skill.duration,
-              ),
+              variables: skill.blackboard != null
+                  ? boardListAndDurationToMap(
+                      blackboards: skill.blackboard!,
+                      duration: skill.duration,
+                    )
+                  : {},
               center: false,
             ),
           ],
