@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class AssetImageWidget extends StatelessWidget {
-  static bool isDevMode = true;
+  static bool isDevMode = false;
 
   const AssetImageWidget({
     super.key,

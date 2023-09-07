@@ -287,6 +287,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                             ? boardListAndDurationToMap(
                                 blackboards: _updateTrait!.blackboard!)
                             : {},
+                        center: false,
                       ),
                       Gaps.v10,
                     ],
@@ -308,6 +309,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                             ? boardListAndDurationToMap(
                                 blackboards: _updateTalent!.blackboard!)
                             : {},
+                        center: false,
                       ),
                     ],
                   ),

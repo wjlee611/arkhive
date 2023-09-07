@@ -26,6 +26,13 @@ class SettingDBRegionWidget extends StatelessWidget {
       builder: (context, state) => Container(
         width: Sizes.size96,
         decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).shadowColor,
+              blurRadius: Sizes.size3,
+            ),
+          ],
           border: Border.all(
             width: Sizes.size1,
             color: Colors.yellow.shade800,

@@ -2,7 +2,9 @@ import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/favorite_cubit.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/favorite/favorite_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/asset_image_widget.dart';
@@ -54,6 +56,28 @@ class FavoriteListItemWidget extends StatelessWidget {
             category: fav.category!,
           );
       return;
+    }
+
+    if (context.read<SettingCubit>().state.settings.dbRegion != Region.cn) {
+      if (fav.saveRegion == Region.cn) {
+        OpenDetailScreen.onSettingTab(context: context);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            elevation: 0,
+            content: const AppFont(
+              '중섭 DB에서 저장한 즐겨찾기 데이터입니다.\n설정에서 DB를 zh_CN으로 변경 후 열람하실 수 있습니다.',
+              color: Colors.white,
+              fontSize: Sizes.size14,
+              fontWeight: FontWeight.w700,
+            ),
+            duration: const Duration(seconds: 5),
+            backgroundColor: Colors.black.withOpacity(0.5),
+          ),
+        );
+
+        return;
+      }
     }
 
     switch (fav.category!) {

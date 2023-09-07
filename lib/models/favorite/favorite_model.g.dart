@@ -14,6 +14,7 @@ FavoriteModel _$FavoriteModelFromJson(Map<String, dynamic> json) =>
       diffGroup: json['diffGroup'] as String?,
       difficulty: json['difficulty'] as String?,
       category: $enumDecodeNullable(_$FavorCategoryEnumMap, json['category']),
+      saveRegion: $enumDecodeNullable(_$RegionEnumMap, json['saveRegion']),
     );
 
 Map<String, dynamic> _$FavoriteModelToJson(FavoriteModel instance) =>
@@ -24,6 +25,7 @@ Map<String, dynamic> _$FavoriteModelToJson(FavoriteModel instance) =>
       'diffGroup': instance.diffGroup,
       'difficulty': instance.difficulty,
       'category': _$FavorCategoryEnumMap[instance.category],
+      'saveRegion': _$RegionEnumMap[instance.saveRegion],
     };
 
 const _$FavorCategoryEnumMap = {
@@ -31,4 +33,9 @@ const _$FavorCategoryEnumMap = {
   FavorCategory.stage: 'stage',
   FavorCategory.oper: 'oper',
   FavorCategory.enemy: 'enemy',
+};
+
+const _$RegionEnumMap = {
+  Region.kr: 'kr',
+  Region.cn: 'cn',
 };

@@ -135,6 +135,16 @@ class _InfoScreenState extends State<InfoScreen> {
                     tag: "게임 버전",
                     info: AppData.gameVersion,
                   ),
+                  Gaps.v5,
+                  const InfoContainer(
+                    tag: "(CN)",
+                    info: AppData.cnGameVersion,
+                  ),
+                  Gaps.v5,
+                  const InfoContainer(
+                    tag: "펭귄 버전",
+                    info: AppData.penguinDate,
+                  ),
                   Gaps.v20,
                   const InfoContainer(
                     tag: "개발자",
@@ -142,7 +152,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   ),
                   Gaps.v40,
                   InfoBtn(
-                    title: 'Donate ♥️',
+                    title: '후원 ♥️',
                     onTap: _tabDonate,
                   ),
                   Gaps.v20,
@@ -150,6 +160,7 @@ class _InfoScreenState extends State<InfoScreen> {
                     title: '패치노트 확인',
                     onTap: _tabHistory,
                   ),
+                  Gaps.v130,
                 ],
               ),
             ],

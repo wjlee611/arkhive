@@ -1,3 +1,4 @@
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -21,6 +22,7 @@ class FavoriteModel extends Equatable {
   final String? name;
   final String? diffGroup, difficulty; // only stage
   final FavorCategory? category;
+  final Region? saveRegion;
 
   const FavoriteModel({
     this.key,
@@ -29,6 +31,7 @@ class FavoriteModel extends Equatable {
     this.diffGroup,
     this.difficulty,
     this.category,
+    this.saveRegion,
   });
 
   factory FavoriteModel.fromJson(Map<String, dynamic> json) =>

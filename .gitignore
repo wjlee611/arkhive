@@ -58,10 +58,9 @@ app.*.map.json
 # AK GameData
 /assets/data/ko_KR/
 /assets/data/zh_CN/
-/assets/data/penguin_matrix.json
-/assets/images/
 /assets/data/penguin_matrix_cn.json
 /assets/data/penguin_matrix_us.json
+/assets/images/
 
 # Deploy - android
 android/app/upload-keystore.jks

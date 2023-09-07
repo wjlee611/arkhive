@@ -1,4 +1,5 @@
 import 'package:arkhive/cubit/favorite_cubit.dart';
+import 'package:arkhive/cubit/setting_cubit.dart';
 import 'package:arkhive/models/favorite/favorite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,6 +52,8 @@ class CommonFavoriteWidget extends StatelessWidget {
                     diffGroup: diffGroup,
                     difficulty: difficulty,
                     category: category,
+                    saveRegion:
+                        context.read<SettingCubit>().state.settings.dbRegion,
                   );
             }
           },

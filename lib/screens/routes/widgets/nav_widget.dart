@@ -3,13 +3,11 @@ import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/enums/screen.dart';
 import 'package:arkhive/screens/enemy/enemy_screen.dart';
-import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_new_screen_listtile_widget.dart';
 import 'package:arkhive/screens/routes/widgets/nav_stack_screen_listtile_widget.dart';
-import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_darkmode_switch.dart';
@@ -144,16 +142,8 @@ class _NavDrawerState extends State<NavDrawer> {
                       ),
                     ),
                   ),
-                  const StackScreenListTile(
-                    icon: Icons.settings,
-                    title: '설정',
-                    newScreen: SettingsScreen(),
-                  ),
-                  const StackScreenListTile(
-                    icon: Icons.info_outline_rounded,
-                    title: '정보 / 후원',
-                    newScreen: InfoScreen(),
-                  ),
+                  const StackScreenListTile(screen: EScreen.setting),
+                  const StackScreenListTile(screen: EScreen.info),
                 ],
               ),
             ),

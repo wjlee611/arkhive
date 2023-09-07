@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
                   Flexible(
                     child: Container(
                       height: Sizes.size1,
-                      color: Theme.of(context).shadowColor,
+                      color: Theme.of(context).textTheme.labelSmall!.color,
                     ),
                   ),
                   Gaps.h10,

@@ -1,52 +1,40 @@
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/screen.dart';
+import 'package:arkhive/tools/open_detail_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 
 class StackScreenListTile extends StatelessWidget {
   const StackScreenListTile({
     super.key,
-    required this.icon,
-    required this.title,
-    required this.newScreen,
+    required this.screen,
   });
 
-  final IconData icon;
-  final String title;
-  final Widget newScreen;
-
-  Route _createRoute(Widget widget) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => widget,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(1.0, 0.0);
-        var end = Offset.zero;
-        var curve = Curves.easeInOut;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
+  final EScreen screen;
 
   void _onTap(BuildContext context) {
     Scaffold.of(context).closeDrawer();
-    Navigator.push(context, _createRoute(newScreen));
+    switch (screen) {
+      case EScreen.setting:
+        OpenDetailScreen.onSettingTab(context: context);
+        return;
+      case EScreen.info:
+        OpenDetailScreen.onInfoTab(context: context);
+        return;
+      default:
+        return;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(
-        icon,
+        screen.icon,
         color: Colors.white,
       ),
       title: AppFont(
-        title,
+        screen.ko,
         color: Colors.white,
         fontSize: Sizes.size14,
       ),

@@ -2,19 +2,25 @@ import 'package:arkhive/models/operator/module_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/screens/enemy/detail/enemy_detail_screen.dart';
 import 'package:arkhive/screens/history/history_screen.dart';
+import 'package:arkhive/screens/information/info_screen.dart';
 import 'package:arkhive/screens/item/detail/item_detail_screen.dart';
 import 'package:arkhive/screens/operator/detail/operator_detail_screen.dart';
 import 'package:arkhive/screens/operator/upgrade/operator_upgrade_screen.dart';
+import 'package:arkhive/screens/settings/settings_screen.dart';
 import 'package:arkhive/screens/stage/detail/stage_detail_screen.dart';
 import 'package:arkhive/screens/tutorial/tutorial_screen.dart';
 import 'package:flutter/material.dart';
 
 class OpenDetailScreen {
-  static Route _createRoute(Widget widget) {
+  static Route _createRoute(
+    Widget widget, {
+    bool horizontal = false,
+  }) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => widget,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(0.0, 1.0);
+        var begin =
+            horizontal ? const Offset(1.0, 0.0) : const Offset(0.0, 1.0);
         var end = Offset.zero;
         var curve = Curves.easeInOut;
 
@@ -106,6 +112,30 @@ class OpenDetailScreen {
         iconId: iconId,
         name: name,
       )),
+    );
+  }
+
+  static void onSettingTab({
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(
+        const SettingsScreen(),
+        horizontal: true,
+      ),
+    );
+  }
+
+  static void onInfoTab({
+    required dynamic context,
+  }) async {
+    await Navigator.push(
+      context,
+      _createRoute(
+        const InfoScreen(),
+        horizontal: true,
+      ),
     );
   }
 

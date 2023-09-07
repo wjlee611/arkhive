@@ -1,4 +1,5 @@
 import 'package:arkhive/models/favorite/favorite_model.dart';
+import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -25,6 +26,7 @@ class FavoriteCubit extends HydratedCubit<FavoriteState> {
     String? diffGroup,
     String? difficulty,
     required FavorCategory category,
+    Region? saveRegion,
   }) {
     var list = state.favs.toList();
     list.add(FavoriteModel(
@@ -34,6 +36,7 @@ class FavoriteCubit extends HydratedCubit<FavoriteState> {
       diffGroup: diffGroup,
       difficulty: difficulty,
       category: category,
+      saveRegion: saveRegion,
     ));
 
     emit(state.copyWith(

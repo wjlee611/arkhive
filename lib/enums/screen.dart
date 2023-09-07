@@ -26,6 +26,16 @@ enum EScreen {
     Icons.whatshot_outlined,
     '적',
   ),
+  setting(
+    'setting',
+    Icons.settings,
+    '설정',
+  ),
+  info(
+    'info',
+    Icons.info_outline_rounded,
+    '정보 / 후원',
+  ),
   noResult(
     'noResult',
     Icons.question_mark,
