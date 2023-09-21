@@ -59,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Gaps.h10,
                     const UrlWidget(
                       platform: 'twitter',
-                      title: "공식 트위터",
+                      title: "공식 X(트위터)",
                       url: "https://twitter.com/ArknightsKorea",
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
                     Gaps.h10,
                     UrlWidget(

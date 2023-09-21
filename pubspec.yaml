@@ -13,7 +13,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # 정식 릴리즈는 본 프로젝트의 `android`폴더에서 아래의 명령어를 입력합니다.
 # fastlane deploy
 # 만약 버전 에러가 날 경우 android/local.properties의 버전도 업데이트 되었는지 확인합니다.
-version: 1.1.1+230909
+version: 1.1.1+230921
 
 environment:
   sdk: ">=3.0.5 <4.0.0"
@@ -31,7 +31,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  font_awesome_flutter: ^10.3.0
+  font_awesome_flutter: ^10.5.0
   animated_toggle_switch: ^0.6.1
   url_launcher: ^6.1.7
   square_percent_indicater: ^0.1.0
