@@ -68,3 +68,4 @@ android/key.properties
 
 # Deploy - fastlane
 android/pc-api-4817038536129390308-554-6b93cbf5aef1.json
+android/fastlane/report.xml
