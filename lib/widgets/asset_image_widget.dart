@@ -20,19 +20,24 @@ class AssetImageWidget extends StatelessWidget {
 
   /// 개발용
   Future<Image> _futureImage() async {
-    return rootBundle.load(path).then((value) {
+    try {
+      final value = await rootBundle.load(path);
       return Image.memory(
         value.buffer.asUint8List(),
         width: width,
         height: height,
+        fit: fit,
+        alignment: alignment,
       );
-    }).catchError((_) {
+    } catch (_) {
       return Image.asset(
         'assets/images/prts.png',
         width: width,
         height: height,
+        fit: fit,
+        alignment: alignment,
       );
-    });
+    }
   }
 
   @override

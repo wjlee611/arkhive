@@ -9,6 +9,7 @@ enum EEnemyTag {
   originiumartscraft('아츠 피조물'),
   seamonster('바다 괴물'),
   sarkaz('살카즈'),
+  wildanimal('야생동물'),
   noResult(AppData.nullStr);
 
   final String ko;
@@ -42,6 +43,9 @@ EEnemyTag enemyTagSelector(String tag) {
     case 'sarkaz':
     case '살카즈':
       return EEnemyTag.sarkaz;
+    case 'wildanimal':
+    case '야생동물':
+      return EEnemyTag.wildanimal;
     default:
       return EEnemyTag.noResult;
   }

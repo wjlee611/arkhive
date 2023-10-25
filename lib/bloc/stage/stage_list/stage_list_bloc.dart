@@ -120,12 +120,13 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       }
 
       // 위기 협약 - act5d1, 케오베 = act12d6, 디펱스 프로토콜 - act17d1  제외
-      // CN: act38d1, act1sandbox 제외
+      // CN: act38d1, act1sandbox, act42d0 제외
       if (activityModel.id == 'act5d1' ||
           activityModel.id == 'act12d6' ||
           activityModel.id == 'act17d1' ||
           activityModel.id == 'act38d1' ||
-          activityModel.id == 'act1sandbox') continue;
+          activityModel.id == 'act1sandbox' ||
+          activityModel.id == 'act42d0') continue;
 
       // 전장의 비화 (SW-EV)
       // 에인션트 포지 (AF)

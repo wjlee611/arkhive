@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:isolate';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
+import 'package:arkhive/enums/rarity_tier.dart';
 import 'package:arkhive/models/operator/operator_list_model.dart';
 import 'package:arkhive/models/operator/operator_model.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
@@ -190,10 +191,14 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
 
     switch (option) {
       case SortOptions.starUp:
-        result.sort((a, b) => a.rarity.compareTo(b.rarity));
+        result.sort((a, b) => rarityTierConverter(a.rarity)
+            .value
+            .compareTo(rarityTierConverter(b.rarity).value));
         break;
       case SortOptions.starDown:
-        result.sort((a, b) => b.rarity.compareTo(a.rarity));
+        result.sort((a, b) => rarityTierConverter(b.rarity)
+            .value
+            .compareTo(rarityTierConverter(a.rarity).value));
         break;
       case SortOptions.nameUp:
         result.sort((a, b) => a.name.compareTo(b.name));

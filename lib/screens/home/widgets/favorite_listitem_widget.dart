@@ -65,11 +65,11 @@ class FavoriteListItemWidget extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             elevation: 0,
+            behavior: SnackBarBehavior.floating,
             content: const AppFont(
               '중섭 DB에서 저장한 즐겨찾기 데이터입니다.\n설정에서 DB를 zh_CN으로 변경 후 열람하실 수 있습니다.',
               color: Colors.white,
-              fontSize: Sizes.size14,
-              fontWeight: FontWeight.w700,
+              fontSize: Sizes.size12,
             ),
             duration: const Duration(seconds: 5),
             backgroundColor: Colors.black.withOpacity(0.5),

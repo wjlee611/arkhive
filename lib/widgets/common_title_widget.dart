@@ -17,7 +17,7 @@ class CommonTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: Sizes.size40,
+      constraints: const BoxConstraints(minHeight: Sizes.size40),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(Sizes.size10),
