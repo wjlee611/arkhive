@@ -18,6 +18,7 @@ class OperatorSliverAppBar extends StatefulWidget {
 
 class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
   late TextEditingController _searchController;
+  final FocusNode _searchFocus = FocusNode();
   bool _onSearch = false;
 
   @override
@@ -36,6 +37,9 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
     setState(() {
       _onSearch = !_onSearch;
     });
+    if (_onSearch) {
+      _searchFocus.requestFocus();
+    }
   }
 
   void _onTapOutside(PointerDownEvent _) {
@@ -83,7 +87,7 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
           children: [
             const SortButton(),
             IconButton(
-              onPressed: _onSearchTap,
+              onPressed: !_onSearch ? _onSearchTap : null,
               icon: Icon(
                 Icons.search_rounded,
                 color: _onSearch ? Colors.yellow.shade800 : Colors.white,
@@ -97,6 +101,7 @@ class _OperatorSliverAppBarState extends State<OperatorSliverAppBar> {
                         controller: _searchController,
                         onChanged: _onSearchChange,
                         onTapOutside: _onTapOutside,
+                        focusNode: _searchFocus,
                         style: const TextStyle(color: Colors.white),
                         cursorColor: Colors.yellow.shade800,
                         decoration: InputDecoration(

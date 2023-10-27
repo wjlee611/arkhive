@@ -1,4 +1,3 @@
-import 'package:arkhive/constants/app_data.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/enums/screen.dart';
@@ -166,29 +165,19 @@ class _NavDrawerState extends State<NavDrawer> {
                 ],
               ),
             ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppFont(
-                      "다크 모드 활성화",
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    Gaps.h20,
-                    CommonDarkmodeSwitch(),
-                  ],
-                ),
                 AppFont(
-                  'version. ${AppData.version}',
+                  "다크 모드 활성화",
                   color: Colors.white,
-                  fontSize: Sizes.size10,
+                  fontWeight: FontWeight.w700,
                 ),
-                Gaps.v10,
+                Gaps.h20,
+                CommonDarkmodeSwitch(),
               ],
             ),
+            Gaps.v10,
           ],
         ),
       ),
