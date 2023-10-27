@@ -26,6 +26,11 @@ enum EScreen {
     Icons.whatshot_outlined,
     '적',
   ),
+  recurit(
+    'recurit',
+    Icons.calculate_rounded,
+    '공개모집 계산기',
+  ),
   setting(
     'setting',
     Icons.settings,

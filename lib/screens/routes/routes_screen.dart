@@ -5,6 +5,7 @@ import 'package:arkhive/screens/enemy/enemy_screen.dart';
 import 'package:arkhive/screens/home/home_screen.dart';
 import 'package:arkhive/screens/item/item_screen.dart';
 import 'package:arkhive/screens/operator/operator_screen.dart';
+import 'package:arkhive/screens/recruit/recruit_screen.dart';
 import 'package:arkhive/screens/routes/widgets/nav_widget.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
@@ -33,6 +34,8 @@ class _RoutesScreenState extends State<RoutesScreen> {
         return const OperatorScreen();
       case EScreen.enemies:
         return const EnemyScreen();
+      case EScreen.recurit:
+        return const RecuritScreen();
       default:
         return const Center(
           child: AppFont('Page not found: 404'),

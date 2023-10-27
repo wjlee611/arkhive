@@ -22,6 +22,31 @@ class NavDrawer extends StatefulWidget {
 }
 
 class _NavDrawerState extends State<NavDrawer> {
+  Widget _seperator(String title) => SizedBox(
+        height: 30,
+        child: Row(
+          children: [
+            Gaps.h10,
+            const Icon(
+              Icons.arrow_drop_down_rounded,
+              color: Colors.white,
+            ),
+            AppFont(
+              title,
+              color: Colors.white,
+            ),
+            Gaps.h10,
+            Expanded(
+              child: Container(
+                height: 1,
+                color: Colors.white,
+              ),
+            ),
+            Gaps.h20,
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -130,18 +155,12 @@ class _NavDrawerState extends State<NavDrawer> {
                     screen: EScreen.enemies,
                     newScreen: EnemyScreen(),
                   ),
-                  SizedBox(
-                    height: 30,
-                    child: Center(
-                      child: FractionallySizedBox(
-                        widthFactor: 0.7,
-                        child: Container(
-                          height: 1,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                  _seperator('도구'),
+                  const NewScreenListTile(
+                    screen: EScreen.recurit,
+                    newScreen: EnemyScreen(),
                   ),
+                  _seperator('기타'),
                   const StackScreenListTile(screen: EScreen.setting),
                   const StackScreenListTile(screen: EScreen.info),
                 ],

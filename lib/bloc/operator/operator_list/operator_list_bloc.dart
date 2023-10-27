@@ -212,7 +212,7 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
   }
 
   // Isolate
-  static void _deserializeOperatorListModel(List<dynamic> args) async {
+  static void _deserializeOperatorListModel(List<dynamic> args) {
     SendPort sendPort = args[0];
     String jsonString = args[1];
     List<OperatorListModel> result = [];
@@ -233,13 +233,14 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
         profession:
             operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
         rarity: operator_.rarity!,
+        tagList: operator_.tagList!,
       ));
     }
 
     Isolate.exit(sendPort, result);
   }
 
-  static void _deserializePromotionOperatorListModel(List<dynamic> args) async {
+  static void _deserializePromotionOperatorListModel(List<dynamic> args) {
     SendPort sendPort = args[0];
     String jsonString = args[1];
     List<OperatorListModel> result = [];
@@ -258,6 +259,7 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
         profession:
             operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
         rarity: operator_.rarity!,
+        tagList: operator_.tagList!,
       ));
     }
 
