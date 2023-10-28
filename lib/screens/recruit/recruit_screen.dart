@@ -1,11 +1,12 @@
 import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
+import 'package:arkhive/bloc/recruit/engine/recruit_engine_bloc.dart';
 import 'package:arkhive/bloc/recruit/list/recruit_list_bloc.dart';
 import 'package:arkhive/bloc/recruit/list/recruit_list_state.dart';
 import 'package:arkhive/bloc/recruit/list/recurit_list_event.dart';
 import 'package:arkhive/enums/common_load_state.dart';
-import 'package:arkhive/models/operator/operator_list_model.dart';
+import 'package:arkhive/screens/recruit/widgets/recruit_tag_container.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_loading_widget.dart';
@@ -66,13 +67,16 @@ class RecuritScreen extends StatelessWidget {
                 );
               }
               if (state.status == CommonLoadState.loaded) {
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (var op
-                          in state.operators ?? ([] as List<OperatorListModel>))
-                        AppFont(op.name),
-                    ],
+                return BlocProvider(
+                  create: (context) => RecruitEngineBloc(
+                    operators: state.operators!,
+                  ),
+                  child: const SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        RecruitTagContainer(),
+                      ],
+                    ),
                   ),
                 );
               }
