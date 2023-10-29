@@ -118,6 +118,28 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
       }
     }
 
+    // 고특채인 경우에만 6성 오퍼 포함
+    // 그리고 레어도 순 정렬
+    for (var item in recruitList) {
+      if (!item.tags.contains(RecruitStar.advSpecial.title)) {
+        item.operators.removeWhere(
+            (op) => rarityTierConverter(op.rarity) == ERarityTier.tier6);
+      }
+      item.operators.sort(
+        (a, b) =>
+            rarityTierConverter(b.rarity).value -
+            rarityTierConverter(a.rarity).value,
+      );
+    }
+
+    // 고벨류 우선 정렬
+    // 이후 확신 타겟 우선 정렬
+    recruitList.sort((a, b) {
+      int cmp = b.minTier.value - a.minTier.value;
+      if (cmp != 0) return cmp;
+      return a.operators.length - b.operators.length;
+    });
+
     emit(state.copyWith(recruitList: recruitList));
   }
 
@@ -140,6 +162,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
         minTier: minTier,
       ));
 
+    // Ganarate List with adding Star
     if (star != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
@@ -162,7 +185,9 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
         ));
       }
       return result;
-    } else if (position != null) {
+    }
+    // Ganarate List with adding Position
+    else if (position != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
         // filtering operator
@@ -184,7 +209,9 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
         ));
       }
       return result;
-    } else if (profession != null) {
+    }
+    // Ganarate List with adding Profession
+    else if (profession != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
         // filtering operator
@@ -206,7 +233,9 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
         ));
       }
       return result;
-    } else if (tag != null) {
+    }
+    // Ganarate List with adding Tag
+    else if (tag != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
         // filtering operator
