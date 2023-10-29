@@ -73,7 +73,7 @@ class RecruitGroupContainer extends StatelessWidget {
               for (var tag in group.tags)
                 AppFont(
                   tag,
-                  fontSize: Sizes.size16,
+                  fontSize: Sizes.size14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),

@@ -33,6 +33,12 @@ class RecruitTagContainer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AppFont(
+              '태그를 선택해주세요.',
+              color: Theme.of(context).textTheme.labelSmall!.color,
+              fontSize: Sizes.size12,
+            ),
+            Gaps.v5,
             Wrap(
               spacing: Sizes.size5,
               runSpacing: Sizes.size5,
@@ -102,7 +108,48 @@ class RecruitTagContainer extends StatelessWidget {
             ),
             _seperator(context),
             AppFont(
+              '또는 태그를 직접 입력해주세요.',
+              color: Theme.of(context).textTheme.labelSmall!.color,
+              fontSize: Sizes.size12,
+            ),
+            Gaps.v5,
+            TextField(
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: Sizes.size2,
+                    color: Colors.yellow.shade800,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.yellow.shade800,
+                  ),
+                ),
+                hintText: '태그의 첫 글자를 적어주세요 (예: 근거리-근)',
+                hintStyle: TextStyle(
+                  color: Theme.of(context).textTheme.labelSmall!.color,
+                ),
+                border: InputBorder.none,
+              ),
+              cursorColor: Colors.yellow.shade800,
+              autocorrect: false,
+              enableSuggestions: false,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodySmall!.color,
+              ),
+              onTapOutside: (_) {
+                FocusScope.of(context).unfocus();
+              },
+            ),
+            Gaps.v10,
+            AppFont(
               '*한국 서버 기준으로 계산됩니다.',
+              color: Theme.of(context).textTheme.labelSmall!.color,
+              fontSize: Sizes.size10,
+            ),
+            AppFont(
+              '*자체 추전 알고리즘 기준으로 정렬됩니다.',
               color: Theme.of(context).textTheme.labelSmall!.color,
               fontSize: Sizes.size10,
             ),
