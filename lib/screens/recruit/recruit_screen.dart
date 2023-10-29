@@ -89,7 +89,11 @@ class RecuritScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         for (var tag in opList.tags)
-                                          AppFont(tag),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: AppFont(tag),
+                                          ),
                                       ],
                                     ),
                                     for (var op in opList.operators)

@@ -128,159 +128,106 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     EOperatorProfession? profession,
     String? tag,
   }) {
-    List<OperatorListModel> operatorResult = [];
+    List<RecruitModel> copyPrevList = [];
+    List<RecruitModel> result = [];
     ERarityTier minTier = ERarityTier.max;
 
-    // first run
-    if (prevList.isEmpty) {
-      if (star != null) {
-        for (var op in operators) {
-          if (rarityTierConverter(op.rarity) == star.tier) {
-            operatorResult.add(op);
-            if (minTier.value > rarityTierConverter(op.rarity).value) {
-              minTier = rarityTierConverter(op.rarity);
+    copyPrevList
+      ..addAll(prevList)
+      ..add(RecruitModel(
+        tags: const [],
+        operators: operators,
+        minTier: minTier,
+      ));
+
+    if (star != null) {
+      for (var prev in copyPrevList) {
+        List<OperatorListModel> operatorResult = [];
+        // filtering operator
+        for (var prevOp in prev.operators) {
+          if (rarityTierConverter(prevOp.rarity) == star.tier) {
+            operatorResult.add(prevOp);
+            if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+              minTier = rarityTierConverter(prevOp.rarity);
             }
           }
         }
-        return [
-          RecruitModel(
-            tags: [star.title],
-            operators: operatorResult,
-            minTier: minTier,
-          )
-        ];
-      } else if (position != null) {
-        for (var op in operators) {
-          if (operatorPositionSelector(op.position) == position) {
-            operatorResult.add(op);
-            if (minTier.value > rarityTierConverter(op.rarity).value) {
-              minTier = rarityTierConverter(op.rarity);
-            }
-          }
-        }
-        return [
-          RecruitModel(
-            tags: [position.value],
-            operators: operatorResult,
-            minTier: minTier,
-          )
-        ];
-      } else if (profession != null) {
-        for (var op in operators) {
-          if (operatorProfessionSelector(op.profession) == profession) {
-            operatorResult.add(op);
-            if (minTier.value > rarityTierConverter(op.rarity).value) {
-              minTier = rarityTierConverter(op.rarity);
-            }
-          }
-        }
-        return [
-          RecruitModel(
-            tags: [profession.ko],
-            operators: operatorResult,
-            minTier: minTier,
-          )
-        ];
-      } else if (tag != null) {
-        for (var op in operators) {
-          if (op.tagList.contains(tag)) {
-            operatorResult.add(op);
-            if (minTier.value > rarityTierConverter(op.rarity).value) {
-              minTier = rarityTierConverter(op.rarity);
-            }
-          }
-        }
-        return [
-          RecruitModel(
-            tags: [tag],
-            operators: operatorResult,
-            minTier: minTier,
-          )
-        ];
+
+        if (operatorResult.isEmpty) continue;
+
+        result.add(RecruitModel(
+          tags: [...prev.tags, star.title],
+          operators: operatorResult,
+          minTier: minTier,
+        ));
       }
-    }
-    // after run
-    // TODO: 잘 하면 first run을 없애고 코드를 줄일 수 있을 듯
-    else {
-      List<RecruitModel> result = [];
-
-      if (star != null) {
-        for (var prev in prevList) {
-          // filtering operator
-          for (var prevOp in prev.operators) {
-            if (rarityTierConverter(prevOp.rarity) == star.tier) {
-              operatorResult.add(prevOp);
-              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
-                minTier = rarityTierConverter(prevOp.rarity);
-              }
+      return result;
+    } else if (position != null) {
+      for (var prev in copyPrevList) {
+        List<OperatorListModel> operatorResult = [];
+        // filtering operator
+        for (var prevOp in prev.operators) {
+          if (operatorPositionSelector(prevOp.position) == position) {
+            operatorResult.add(prevOp);
+            if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+              minTier = rarityTierConverter(prevOp.rarity);
             }
           }
-
-          result.add(RecruitModel(
-            tags: [...prev.tags, star.title],
-            operators: operatorResult,
-            minTier: minTier,
-          ));
         }
-        return result;
-      } else if (position != null) {
-        for (var prev in prevList) {
-          // filtering operator
-          for (var prevOp in prev.operators) {
-            if (operatorPositionSelector(prevOp.position) == position) {
-              operatorResult.add(prevOp);
-              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
-                minTier = rarityTierConverter(prevOp.rarity);
-              }
-            }
-          }
 
-          result.add(RecruitModel(
-            tags: [...prev.tags, position.value],
-            operators: operatorResult,
-            minTier: minTier,
-          ));
-        }
-        return result;
-      } else if (profession != null) {
-        for (var prev in prevList) {
-          // filtering operator
-          for (var prevOp in prev.operators) {
-            if (operatorProfessionSelector(prevOp.profession) == profession) {
-              operatorResult.add(prevOp);
-              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
-                minTier = rarityTierConverter(prevOp.rarity);
-              }
-            }
-          }
+        if (operatorResult.isEmpty) continue;
 
-          result.add(RecruitModel(
-            tags: [...prev.tags, profession.ko],
-            operators: operatorResult,
-            minTier: minTier,
-          ));
-        }
-        return result;
-      } else if (tag != null) {
-        for (var prev in prevList) {
-          // filtering operator
-          for (var prevOp in prev.operators) {
-            if (prevOp.tagList.contains(tag)) {
-              operatorResult.add(prevOp);
-              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
-                minTier = rarityTierConverter(prevOp.rarity);
-              }
-            }
-          }
-
-          result.add(RecruitModel(
-            tags: [...prev.tags, tag],
-            operators: operatorResult,
-            minTier: minTier,
-          ));
-        }
-        return result;
+        result.add(RecruitModel(
+          tags: [...prev.tags, position.value],
+          operators: operatorResult,
+          minTier: minTier,
+        ));
       }
+      return result;
+    } else if (profession != null) {
+      for (var prev in copyPrevList) {
+        List<OperatorListModel> operatorResult = [];
+        // filtering operator
+        for (var prevOp in prev.operators) {
+          if (operatorProfessionSelector(prevOp.profession) == profession) {
+            operatorResult.add(prevOp);
+            if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+              minTier = rarityTierConverter(prevOp.rarity);
+            }
+          }
+        }
+
+        if (operatorResult.isEmpty) continue;
+
+        result.add(RecruitModel(
+          tags: [...prev.tags, profession.ko],
+          operators: operatorResult,
+          minTier: minTier,
+        ));
+      }
+      return result;
+    } else if (tag != null) {
+      for (var prev in copyPrevList) {
+        List<OperatorListModel> operatorResult = [];
+        // filtering operator
+        for (var prevOp in prev.operators) {
+          if (prevOp.tagList.contains(tag)) {
+            operatorResult.add(prevOp);
+            if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+              minTier = rarityTierConverter(prevOp.rarity);
+            }
+          }
+        }
+
+        if (operatorResult.isEmpty) continue;
+
+        result.add(RecruitModel(
+          tags: [...prev.tags, tag],
+          operators: operatorResult,
+          minTier: minTier,
+        ));
+      }
+      return result;
     }
 
     return [];
