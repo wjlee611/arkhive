@@ -18,6 +18,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     on<RecruitEngineChangeProfession>(_recruitEngineChangeProfessionHandler);
     on<RecruitEngineChangeTag>(_recruitEngineChangeTagHandler);
     on<RecruitEngineResetTag>(_recruitEngineResetTagHandler);
+    on<RecruitEngineChangeInput>(_recruitEngineChangeInputHandler);
   }
 
   Future<void> _recruitEngineChangeStarHandler(
@@ -96,7 +97,93 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     RecruitEngineResetTag event,
     Emitter<RecruitEngineState> emit,
   ) async {
+    emit(
+      RecruitEngineState.init(operators),
+    );
+  }
+
+  Future<void> _recruitEngineChangeInputHandler(
+    RecruitEngineChangeInput event,
+    Emitter<RecruitEngineState> emit,
+  ) async {
     emit(RecruitEngineState.init(operators));
+
+    for (var inputChar in event.input.split('')) {
+      int selectedTags = 0;
+      List<String> conflict = [];
+
+      // Check conflict
+      // Star
+      for (var tag in state.star!.entries) {
+        if (tag.key.title.startsWith(inputChar)) {
+          selectedTags++;
+          conflict.add(tag.key.title);
+        }
+      }
+      // Range
+      for (var tag in state.position!.entries) {
+        if (tag.key.value.startsWith(inputChar)) {
+          selectedTags++;
+          conflict.add(tag.key.value);
+        }
+      }
+      // Profession
+      for (var tag in state.profession!.entries) {
+        if (tag.key.ko.startsWith(inputChar)) {
+          selectedTags++;
+          conflict.add(tag.key.ko);
+        }
+      }
+      // Tag
+      for (var tag in state.tags!.entries) {
+        if (tag.key.startsWith(inputChar)) {
+          selectedTags++;
+          conflict.add(tag.key);
+        }
+      }
+
+      // on conflict
+      if (selectedTags > 1) {
+        emit(state.copyWith(conflict: [...state.conflict ?? [], ...conflict]));
+      } else {
+        // Star
+        for (var tag in state.star!.entries) {
+          if (tag.key.title.startsWith(inputChar)) {
+            _recruitEngineChangeStarHandler(
+              RecruitEngineChangeStar(tag.key),
+              emit,
+            );
+          }
+        }
+        // Range
+        for (var tag in state.position!.entries) {
+          if (tag.key.value.startsWith(inputChar)) {
+            _recruitEngineChangePositionHandler(
+              RecruitEngineChangePosition(tag.key),
+              emit,
+            );
+          }
+        }
+        // Profession
+        for (var tag in state.profession!.entries) {
+          if (tag.key.ko.startsWith(inputChar)) {
+            _recruitEngineChangeProfessionHandler(
+              RecruitEngineChangeProfession(tag.key),
+              emit,
+            );
+          }
+        }
+        // Tag
+        for (var tag in state.tags!.entries) {
+          if (tag.key.startsWith(inputChar)) {
+            _recruitEngineChangeTagHandler(
+              RecruitEngineChangeTag(tag.key),
+              emit,
+            );
+          }
+        }
+      }
+    }
   }
 
   bool _isFullChecked() {

@@ -21,6 +21,7 @@ class RecruitEngineState extends Equatable {
   final Map<EOperatorProfession, bool>? profession;
   final Map<String, bool>? tags;
   final List<RecruitModel>? recruitList;
+  final List<String>? conflict;
 
   const RecruitEngineState({
     this.star,
@@ -28,6 +29,7 @@ class RecruitEngineState extends Equatable {
     this.profession,
     this.tags,
     this.recruitList,
+    this.conflict,
   });
 
   factory RecruitEngineState.init(List<OperatorListModel> operators) {
@@ -60,6 +62,7 @@ class RecruitEngineState extends Equatable {
       },
       tags: tags,
       recruitList: const [],
+      conflict: const [],
     );
   }
 
@@ -69,6 +72,7 @@ class RecruitEngineState extends Equatable {
     Map<EOperatorProfession, bool>? profession,
     Map<String, bool>? tags,
     List<RecruitModel>? recruitList,
+    List<String>? conflict,
   }) =>
       RecruitEngineState(
         star: star ?? this.star,
@@ -76,6 +80,7 @@ class RecruitEngineState extends Equatable {
         profession: profession ?? this.profession,
         tags: tags ?? this.tags,
         recruitList: recruitList ?? this.recruitList,
+        conflict: conflict ?? this.conflict,
       );
 
   @override
@@ -85,5 +90,6 @@ class RecruitEngineState extends Equatable {
         profession,
         tags,
         recruitList,
+        conflict,
       ];
 }

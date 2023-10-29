@@ -8,8 +8,27 @@ import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RecruitTagContainer extends StatelessWidget {
+class RecruitTagContainer extends StatefulWidget {
   const RecruitTagContainer({super.key});
+
+  @override
+  State<RecruitTagContainer> createState() => _RecruitTagContainerState();
+}
+
+class _RecruitTagContainerState extends State<RecruitTagContainer> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   Widget _seperator(BuildContext context) {
     return Column(
@@ -114,6 +133,7 @@ class RecruitTagContainer extends StatelessWidget {
             ),
             Gaps.v5,
             TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -141,6 +161,9 @@ class RecruitTagContainer extends StatelessWidget {
               onTapOutside: (_) {
                 FocusScope.of(context).unfocus();
               },
+              onChanged: (value) => context
+                  .read<RecruitEngineBloc>()
+                  .add(RecruitEngineChangeInput(value)),
             ),
             Gaps.v10,
             AppFont(
@@ -160,6 +183,7 @@ class RecruitTagContainer extends StatelessWidget {
               isReset: true,
               onTap: () {
                 context.read<RecruitEngineBloc>().add(RecruitEngineResetTag());
+                _controller.clear();
               },
             ),
           ],

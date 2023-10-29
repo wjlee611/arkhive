@@ -29,3 +29,9 @@ class RecruitEngineChangeTag extends RecruitEngineEvent {
 }
 
 class RecruitEngineResetTag extends RecruitEngineEvent {}
+
+class RecruitEngineChangeInput extends RecruitEngineEvent {
+  final String input;
+
+  RecruitEngineChangeInput(this.input);
+}

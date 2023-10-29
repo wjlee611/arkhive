@@ -1,6 +1,8 @@
+import 'package:arkhive/bloc/recruit/engine/recruit_engine_bloc.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RecruitTagButton extends StatelessWidget {
   final String title;
@@ -18,6 +20,9 @@ class RecruitTagButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isConflict =
+        context.read<RecruitEngineBloc>().state.conflict?.contains(title) ??
+            false;
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
@@ -31,7 +36,11 @@ class RecruitTagButton extends StatelessWidget {
                   ? Colors.yellow.shade800
                   : Theme.of(context).scaffoldBackgroundColor,
           border: Border.all(
-            color: isReset ? Colors.redAccent : Colors.yellow.shade800,
+            color: isReset
+                ? Colors.redAccent
+                : isConflict
+                    ? Colors.redAccent
+                    : Colors.yellow.shade800,
           ),
           borderRadius: BorderRadius.circular(Sizes.size3),
         ),
