@@ -11,6 +11,7 @@ class OperatorBottomAppBar extends StatelessWidget {
     return BottomAppBar(
       color: Colors.blueGrey.shade700,
       child: const SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Sizes.size10),

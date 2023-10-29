@@ -23,6 +23,7 @@ class EnemyScreen extends StatelessWidget {
       ),
       child: Scaffold(
         body: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
             const EnemySliverAppBar(),
             SliverFillRemaining(

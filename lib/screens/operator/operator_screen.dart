@@ -35,6 +35,7 @@ class OperatorScreen extends StatelessWidget {
           child: const OperatorBottomAppBar(),
         ),
         body: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
             const OperatorSliverAppBar(),
             SliverFillRemaining(

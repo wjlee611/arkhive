@@ -23,6 +23,7 @@ class ItemScreen extends StatelessWidget {
       ),
       child: Scaffold(
         body: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           slivers: [
             const ItemSliverAppBar(),
             SliverFillRemaining(

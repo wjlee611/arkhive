@@ -16,17 +16,14 @@ class RecruitTagContainer extends StatefulWidget {
 }
 
 class _RecruitTagContainerState extends State<RecruitTagContainer> {
-  late final TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void dispose() {
     _controller.dispose();
+    _focusNode.unfocus();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -134,6 +131,7 @@ class _RecruitTagContainerState extends State<RecruitTagContainer> {
             Gaps.v5,
             TextField(
               controller: _controller,
+              focusNode: _focusNode,
               decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -154,12 +152,14 @@ class _RecruitTagContainerState extends State<RecruitTagContainer> {
               ),
               cursorColor: Colors.yellow.shade800,
               autocorrect: false,
+              autofocus: false,
               enableSuggestions: false,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodySmall!.color,
               ),
               onTapOutside: (_) {
                 FocusScope.of(context).unfocus();
+                _focusNode.unfocus();
               },
               onChanged: (value) => context
                   .read<RecruitEngineBloc>()

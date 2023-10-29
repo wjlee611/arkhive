@@ -89,6 +89,7 @@ class RecuritScreen extends StatelessWidget {
     required BuildContext context,
   }) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         const SliverToBoxAdapter(
           child: RecruitTagContainer(),
