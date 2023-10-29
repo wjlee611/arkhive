@@ -23,6 +23,10 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     RecruitEngineChangeStar event,
     Emitter<RecruitEngineState> emit,
   ) async {
+    if (state.star?[event.star] == false && _isFullChecked()) {
+      return;
+    }
+
     Map<RecruitStar, bool> newTag = {};
     newTag
       ..addAll(state.star!)
@@ -37,6 +41,10 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     RecruitEngineChangePosition event,
     Emitter<RecruitEngineState> emit,
   ) async {
+    if (state.position?[event.position] == false && _isFullChecked()) {
+      return;
+    }
+
     Map<EOperatorPosition, bool> newTag = {};
     newTag
       ..addAll(state.position!)
@@ -51,6 +59,10 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     RecruitEngineChangeProfession event,
     Emitter<RecruitEngineState> emit,
   ) async {
+    if (state.profession?[event.profession] == false && _isFullChecked()) {
+      return;
+    }
+
     Map<EOperatorProfession, bool> newTag = {};
     newTag
       ..addAll(state.profession!)
@@ -65,6 +77,10 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     RecruitEngineChangeTag event,
     Emitter<RecruitEngineState> emit,
   ) async {
+    if (state.tags?[event.tag] == false && _isFullChecked()) {
+      return;
+    }
+
     Map<String, bool> newTag = {};
     newTag
       ..addAll(state.tags!)
@@ -73,6 +89,38 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     emit(state.copyWith(tags: newTag));
 
     _runEngine(emit);
+  }
+
+  bool _isFullChecked() {
+    int checked = 0;
+
+    // Star
+    for (var tag in state.star!.entries) {
+      if (tag.value) {
+        checked++;
+      }
+    }
+    // Range
+    for (var tag in state.position!.entries) {
+      if (tag.value) {
+        checked++;
+      }
+    }
+    // Profession
+    for (var tag in state.profession!.entries) {
+      if (tag.value) {
+        checked++;
+      }
+    }
+    // Tag
+    for (var tag in state.tags!.entries) {
+      if (tag.value) {
+        checked++;
+      }
+    }
+
+    if (checked >= 5) return true;
+    return false;
   }
 
   Future<void> _runEngine(Emitter<RecruitEngineState> emit) async {
@@ -131,6 +179,9 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
             rarityTierConverter(a.rarity).value,
       );
     }
+
+    // 빈 리스트 제거
+    recruitList.removeWhere((item) => item.operators.isEmpty);
 
     // 고벨류 우선 정렬
     // 이후 확신 타겟 우선 정렬
