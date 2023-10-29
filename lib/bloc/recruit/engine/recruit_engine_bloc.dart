@@ -191,11 +191,16 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     // 빈 리스트 제거
     recruitList.removeWhere((item) => item.operators.isEmpty);
 
-    // 고벨류 우선 정렬
-    // 이후 확신 타겟 우선 정렬
+    // 정렬
     recruitList.sort((a, b) {
-      int cmp = b.minTier.value - a.minTier.value;
+      // 추천 우선 정렬
+      int valA = a.maxTier.value + a.minTier.value;
+      int valB = b.maxTier.value + b.minTier.value;
+      valA = valA == 2 ? 9 : valA;
+      valB = valB == 2 ? 9 : valB;
+      int cmp = valB - valA;
       if (cmp != 0) return cmp;
+      // 이후 확신 타겟 우선 정렬
       return a.operators.length - b.operators.length;
     });
 
@@ -211,26 +216,31 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
   }) {
     List<RecruitModel> copyPrevList = [];
     List<RecruitModel> result = [];
-    ERarityTier minTier = ERarityTier.max;
 
     copyPrevList
       ..addAll(prevList)
       ..add(RecruitModel(
         tags: const [],
         operators: operators,
-        minTier: minTier,
+        minTier: ERarityTier.max,
+        maxTier: ERarityTier.tier1,
       ));
 
     // Ganarate List with adding Star
     if (star != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
+        ERarityTier minTier = ERarityTier.max;
+        ERarityTier maxTier = ERarityTier.tier1;
         // filtering operator
         for (var prevOp in prev.operators) {
           if (rarityTierConverter(prevOp.rarity) == star.tier) {
             operatorResult.add(prevOp);
             if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
               minTier = rarityTierConverter(prevOp.rarity);
+            }
+            if (maxTier.value < rarityTierConverter(prevOp.rarity).value) {
+              maxTier = rarityTierConverter(prevOp.rarity);
             }
           }
         }
@@ -241,6 +251,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
           tags: [...prev.tags, star.title],
           operators: operatorResult,
           minTier: minTier,
+          maxTier: maxTier,
         ));
       }
       return result;
@@ -249,12 +260,17 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     else if (position != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
+        ERarityTier minTier = ERarityTier.max;
+        ERarityTier maxTier = ERarityTier.tier1;
         // filtering operator
         for (var prevOp in prev.operators) {
           if (operatorPositionSelector(prevOp.position) == position) {
             operatorResult.add(prevOp);
             if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
               minTier = rarityTierConverter(prevOp.rarity);
+            }
+            if (maxTier.value < rarityTierConverter(prevOp.rarity).value) {
+              maxTier = rarityTierConverter(prevOp.rarity);
             }
           }
         }
@@ -265,6 +281,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
           tags: [...prev.tags, position.value],
           operators: operatorResult,
           minTier: minTier,
+          maxTier: maxTier,
         ));
       }
       return result;
@@ -273,12 +290,17 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     else if (profession != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
+        ERarityTier minTier = ERarityTier.max;
+        ERarityTier maxTier = ERarityTier.tier1;
         // filtering operator
         for (var prevOp in prev.operators) {
           if (operatorProfessionSelector(prevOp.profession) == profession) {
             operatorResult.add(prevOp);
             if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
               minTier = rarityTierConverter(prevOp.rarity);
+            }
+            if (maxTier.value < rarityTierConverter(prevOp.rarity).value) {
+              maxTier = rarityTierConverter(prevOp.rarity);
             }
           }
         }
@@ -289,6 +311,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
           tags: [...prev.tags, profession.ko],
           operators: operatorResult,
           minTier: minTier,
+          maxTier: maxTier,
         ));
       }
       return result;
@@ -297,12 +320,17 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     else if (tag != null) {
       for (var prev in copyPrevList) {
         List<OperatorListModel> operatorResult = [];
+        ERarityTier minTier = ERarityTier.max;
+        ERarityTier maxTier = ERarityTier.tier1;
         // filtering operator
         for (var prevOp in prev.operators) {
           if (prevOp.tagList.contains(tag)) {
             operatorResult.add(prevOp);
             if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
               minTier = rarityTierConverter(prevOp.rarity);
+            }
+            if (maxTier.value < rarityTierConverter(prevOp.rarity).value) {
+              maxTier = rarityTierConverter(prevOp.rarity);
             }
           }
         }
@@ -313,6 +341,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
           tags: [...prev.tags, tag],
           operators: operatorResult,
           minTier: minTier,
+          maxTier: maxTier,
         ));
       }
       return result;

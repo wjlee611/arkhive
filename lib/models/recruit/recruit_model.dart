@@ -5,12 +5,13 @@ import 'package:equatable/equatable.dart';
 class RecruitModel extends Equatable {
   final List<String> tags;
   final List<OperatorListModel> operators;
-  final ERarityTier minTier;
+  final ERarityTier minTier, maxTier;
 
   const RecruitModel({
     required this.tags,
     required this.operators,
     required this.minTier,
+    required this.maxTier,
   });
 
   @override
@@ -18,5 +19,6 @@ class RecruitModel extends Equatable {
         tags,
         operators,
         minTier,
+        maxTier,
       ];
 }
