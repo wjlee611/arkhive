@@ -27,3 +27,5 @@ class RecruitEngineChangeTag extends RecruitEngineEvent {
 
   RecruitEngineChangeTag(this.tag);
 }
+
+class RecruitEngineResetTag extends RecruitEngineEvent {}

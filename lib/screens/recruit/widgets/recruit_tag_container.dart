@@ -4,6 +4,7 @@ import 'package:arkhive/bloc/recruit/engine/recruit_engine_state.dart';
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/screens/recruit/widgets/recruit_tag_button.dart';
+import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -98,6 +99,21 @@ class RecruitTagContainer extends StatelessWidget {
                     },
                   ),
               ],
+            ),
+            _seperator(context),
+            AppFont(
+              '*한국 서버 기준으로 계산됩니다.',
+              color: Theme.of(context).textTheme.labelSmall!.color,
+              fontSize: Sizes.size10,
+            ),
+            Gaps.v10,
+            RecruitTagButton(
+              title: '초기화',
+              onSelected: false,
+              isReset: true,
+              onTap: () {
+                context.read<RecruitEngineBloc>().add(RecruitEngineResetTag());
+              },
             ),
           ],
         ),

@@ -17,6 +17,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     on<RecruitEngineChangePosition>(_recruitEngineChangePositionHandler);
     on<RecruitEngineChangeProfession>(_recruitEngineChangeProfessionHandler);
     on<RecruitEngineChangeTag>(_recruitEngineChangeTagHandler);
+    on<RecruitEngineResetTag>(_recruitEngineResetTagHandler);
   }
 
   Future<void> _recruitEngineChangeStarHandler(
@@ -89,6 +90,13 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
     emit(state.copyWith(tags: newTag));
 
     _runEngine(emit);
+  }
+
+  Future<void> _recruitEngineResetTagHandler(
+    RecruitEngineResetTag event,
+    Emitter<RecruitEngineState> emit,
+  ) async {
+    emit(RecruitEngineState.init(operators));
   }
 
   bool _isFullChecked() {
