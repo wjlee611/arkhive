@@ -2,6 +2,7 @@ import 'package:arkhive/enums/operator_position.dart';
 import 'package:arkhive/enums/operator_profession.dart';
 import 'package:arkhive/enums/rarity_tier.dart';
 import 'package:arkhive/models/operator/operator_list_model.dart';
+import 'package:arkhive/models/recruit/recruit_model.dart';
 import 'package:equatable/equatable.dart';
 
 enum RecruitStar {
@@ -19,12 +20,14 @@ class RecruitEngineState extends Equatable {
   final Map<EOperatorPosition, bool>? position;
   final Map<EOperatorProfession, bool>? profession;
   final Map<String, bool>? tags;
+  final List<RecruitModel>? recruitList;
 
   const RecruitEngineState({
     this.star,
     this.position,
     this.profession,
     this.tags,
+    this.recruitList,
   });
 
   factory RecruitEngineState.init(List<OperatorListModel> operators) {
@@ -56,6 +59,7 @@ class RecruitEngineState extends Equatable {
         EOperatorProfession.support: false,
       },
       tags: tags,
+      recruitList: const [],
     );
   }
 
@@ -64,12 +68,14 @@ class RecruitEngineState extends Equatable {
     Map<EOperatorPosition, bool>? position,
     Map<EOperatorProfession, bool>? profession,
     Map<String, bool>? tags,
+    List<RecruitModel>? recruitList,
   }) =>
       RecruitEngineState(
         star: star ?? this.star,
         position: position ?? this.position,
         profession: profession ?? this.profession,
         tags: tags ?? this.tags,
+        recruitList: recruitList ?? this.recruitList,
       );
 
   @override
@@ -78,5 +84,6 @@ class RecruitEngineState extends Equatable {
         position,
         profession,
         tags,
+        recruitList,
       ];
 }

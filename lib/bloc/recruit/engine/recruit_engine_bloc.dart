@@ -118,11 +118,7 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
       }
     }
 
-    for (var item in recruitList) {
-      for (var op in item.operators) {
-        print(op.name);
-      }
-    }
+    emit(state.copyWith(recruitList: recruitList));
   }
 
   List<RecruitModel> _generateList(
@@ -185,15 +181,108 @@ class RecruitEngineBloc extends Bloc<RecruitEngineEvent, RecruitEngineState> {
             minTier: minTier,
           )
         ];
-      } else {}
+      } else if (tag != null) {
+        for (var op in operators) {
+          if (op.tagList.contains(tag)) {
+            operatorResult.add(op);
+            if (minTier.value > rarityTierConverter(op.rarity).value) {
+              minTier = rarityTierConverter(op.rarity);
+            }
+          }
+        }
+        return [
+          RecruitModel(
+            tags: [tag],
+            operators: operatorResult,
+            minTier: minTier,
+          )
+        ];
+      }
     }
     // after run
+    // TODO: 잘 하면 first run을 없애고 코드를 줄일 수 있을 듯
     else {
+      List<RecruitModel> result = [];
+
       if (star != null) {
+        for (var prev in prevList) {
+          // filtering operator
+          for (var prevOp in prev.operators) {
+            if (rarityTierConverter(prevOp.rarity) == star.tier) {
+              operatorResult.add(prevOp);
+              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+                minTier = rarityTierConverter(prevOp.rarity);
+              }
+            }
+          }
+
+          result.add(RecruitModel(
+            tags: [...prev.tags, star.title],
+            operators: operatorResult,
+            minTier: minTier,
+          ));
+        }
+        return result;
       } else if (position != null) {
+        for (var prev in prevList) {
+          // filtering operator
+          for (var prevOp in prev.operators) {
+            if (operatorPositionSelector(prevOp.position) == position) {
+              operatorResult.add(prevOp);
+              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+                minTier = rarityTierConverter(prevOp.rarity);
+              }
+            }
+          }
+
+          result.add(RecruitModel(
+            tags: [...prev.tags, position.value],
+            operators: operatorResult,
+            minTier: minTier,
+          ));
+        }
+        return result;
       } else if (profession != null) {
-      } else {}
+        for (var prev in prevList) {
+          // filtering operator
+          for (var prevOp in prev.operators) {
+            if (operatorProfessionSelector(prevOp.profession) == profession) {
+              operatorResult.add(prevOp);
+              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+                minTier = rarityTierConverter(prevOp.rarity);
+              }
+            }
+          }
+
+          result.add(RecruitModel(
+            tags: [...prev.tags, profession.ko],
+            operators: operatorResult,
+            minTier: minTier,
+          ));
+        }
+        return result;
+      } else if (tag != null) {
+        for (var prev in prevList) {
+          // filtering operator
+          for (var prevOp in prev.operators) {
+            if (prevOp.tagList.contains(tag)) {
+              operatorResult.add(prevOp);
+              if (minTier.value > rarityTierConverter(prevOp.rarity).value) {
+                minTier = rarityTierConverter(prevOp.rarity);
+              }
+            }
+          }
+
+          result.add(RecruitModel(
+            tags: [...prev.tags, tag],
+            operators: operatorResult,
+            minTier: minTier,
+          ));
+        }
+        return result;
+      }
     }
+
     return [];
   }
 }

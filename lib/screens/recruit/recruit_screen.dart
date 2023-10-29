@@ -2,10 +2,12 @@ import 'package:arkhive/bloc/operator/operator_list/operator_list_bloc.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_event.dart';
 import 'package:arkhive/bloc/operator/operator_list/operator_list_state.dart';
 import 'package:arkhive/bloc/recruit/engine/recruit_engine_bloc.dart';
+import 'package:arkhive/bloc/recruit/engine/recruit_engine_state.dart';
 import 'package:arkhive/bloc/recruit/list/recruit_list_bloc.dart';
 import 'package:arkhive/bloc/recruit/list/recruit_list_state.dart';
 import 'package:arkhive/bloc/recruit/list/recurit_list_event.dart';
 import 'package:arkhive/enums/common_load_state.dart';
+import 'package:arkhive/models/recruit/recruit_model.dart';
 import 'package:arkhive/screens/recruit/widgets/recruit_tag_container.dart';
 import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
@@ -71,10 +73,32 @@ class RecuritScreen extends StatelessWidget {
                   create: (context) => RecruitEngineBloc(
                     operators: state.operators!,
                   ),
-                  child: const SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        RecruitTagContainer(),
+                        const RecruitTagContainer(),
+                        BlocBuilder<RecruitEngineBloc, RecruitEngineState>(
+                          buildWhen: (previous, current) =>
+                              previous.recruitList != current.recruitList,
+                          builder: (context, state) => Column(
+                            children: [
+                              for (RecruitModel opList
+                                  in state.recruitList ?? [])
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        for (var tag in opList.tags)
+                                          AppFont(tag),
+                                      ],
+                                    ),
+                                    for (var op in opList.operators)
+                                      AppFont(op.name),
+                                  ],
+                                ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
