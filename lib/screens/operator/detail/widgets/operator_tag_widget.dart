@@ -1,5 +1,6 @@
 import 'package:arkhive/constants/gaps.dart';
 import 'package:arkhive/constants/sizes.dart';
+import 'package:arkhive/enums/operator_position.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:arkhive/widgets/common_title_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +28,7 @@ class OperatorTagWrapWidget extends StatelessWidget {
           children: [
             if (position != null && position != 'NONE')
               OperatorTagWidget(
-                tag: position! == 'MELEE'
-                    ? '근거리'
-                    : position! == 'RANGED'
-                        ? '원거리'
-                        : '근거리 원거리',
+                tag: operatorPositionSelector(position!).value,
               ),
             for (var tag in tagList) OperatorTagWidget(tag: tag),
           ],

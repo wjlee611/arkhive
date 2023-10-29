@@ -53,14 +53,14 @@ class RecruitTagContainer extends StatelessWidget {
               spacing: Sizes.size5,
               runSpacing: Sizes.size5,
               children: [
-                for (var item in state.range!.entries)
+                for (var item in state.position!.entries)
                   RecruitTagButton(
-                    title: item.key.title,
+                    title: item.key.value,
                     onSelected: item.value,
                     onTap: () {
                       context
                           .read<RecruitEngineBloc>()
-                          .add(RecruitEngineChangeRange(item.key));
+                          .add(RecruitEngineChangePosition(item.key));
                     },
                   ),
               ],

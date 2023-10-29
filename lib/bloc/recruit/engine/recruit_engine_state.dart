@@ -1,34 +1,28 @@
+import 'package:arkhive/enums/operator_position.dart';
 import 'package:arkhive/enums/operator_profession.dart';
+import 'package:arkhive/enums/rarity_tier.dart';
 import 'package:arkhive/models/operator/operator_list_model.dart';
 import 'package:equatable/equatable.dart';
 
 enum RecruitStar {
-  special('특별채용'),
-  advSpecial('고급특별채용');
+  special('특별채용', ERarityTier.tier5),
+  advSpecial('고급특별채용', ERarityTier.tier6);
 
   final String title;
+  final ERarityTier tier;
 
-  const RecruitStar(this.title);
-}
-
-enum RecruitRange {
-  melee('근거리'),
-  range('원거리');
-
-  final String title;
-
-  const RecruitRange(this.title);
+  const RecruitStar(this.title, this.tier);
 }
 
 class RecruitEngineState extends Equatable {
   final Map<RecruitStar, bool>? star;
-  final Map<RecruitRange, bool>? range;
+  final Map<EOperatorPosition, bool>? position;
   final Map<EOperatorProfession, bool>? profession;
   final Map<String, bool>? tags;
 
   const RecruitEngineState({
     this.star,
-    this.range,
+    this.position,
     this.profession,
     this.tags,
   });
@@ -47,9 +41,9 @@ class RecruitEngineState extends Equatable {
         RecruitStar.special: false,
         RecruitStar.advSpecial: false,
       },
-      range: const {
-        RecruitRange.melee: false,
-        RecruitRange.range: false,
+      position: const {
+        EOperatorPosition.melee: false,
+        EOperatorPosition.ranged: false,
       },
       profession: const {
         EOperatorProfession.medic: false,
@@ -67,13 +61,13 @@ class RecruitEngineState extends Equatable {
 
   RecruitEngineState copyWith({
     Map<RecruitStar, bool>? star,
-    Map<RecruitRange, bool>? range,
+    Map<EOperatorPosition, bool>? position,
     Map<EOperatorProfession, bool>? profession,
     Map<String, bool>? tags,
   }) =>
       RecruitEngineState(
         star: star ?? this.star,
-        range: range ?? this.range,
+        position: position ?? this.position,
         profession: profession ?? this.profession,
         tags: tags ?? this.tags,
       );
@@ -81,7 +75,7 @@ class RecruitEngineState extends Equatable {
   @override
   List<Object?> get props => [
         star,
-        range,
+        position,
         profession,
         tags,
       ];

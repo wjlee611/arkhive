@@ -1,4 +1,5 @@
 import 'package:arkhive/bloc/recruit/engine/recruit_engine_state.dart';
+import 'package:arkhive/enums/operator_position.dart';
 import 'package:arkhive/enums/operator_profession.dart';
 
 abstract class RecruitEngineEvent {}
@@ -9,10 +10,10 @@ class RecruitEngineChangeStar extends RecruitEngineEvent {
   RecruitEngineChangeStar(this.star);
 }
 
-class RecruitEngineChangeRange extends RecruitEngineEvent {
-  final RecruitRange range;
+class RecruitEngineChangePosition extends RecruitEngineEvent {
+  final EOperatorPosition position;
 
-  RecruitEngineChangeRange(this.range);
+  RecruitEngineChangePosition(this.position);
 }
 
 class RecruitEngineChangeProfession extends RecruitEngineEvent {

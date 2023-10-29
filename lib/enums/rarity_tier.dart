@@ -4,7 +4,8 @@ enum ERarityTier {
   tier3(3),
   tier4(4),
   tier5(5),
-  tier6(6);
+  tier6(6),
+  max(10);
 
   final int value;
 

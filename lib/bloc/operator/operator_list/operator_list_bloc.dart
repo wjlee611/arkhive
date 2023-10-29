@@ -233,6 +233,7 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
         profession:
             operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
         rarity: operator_.rarity!,
+        position: operator_.position!,
         tagList: operator_.tagList!,
       ));
     }
@@ -259,6 +260,7 @@ class OperatorListBloc extends Bloc<OperatorListEvent, OperatorListState> {
         profession:
             operator_.isNotObtainable! ? 'PREPARE' : operator_.profession!,
         rarity: operator_.rarity!,
+        position: operator_.position!,
         tagList: operator_.tagList!,
       ));
     }
