@@ -129,6 +129,7 @@ class ItemListBloc extends Bloc<ItemListEvent, ItemListState> {
       if (item.itemType.contains('RENAMING')) continue; // ID 정보 갱신 카드
       if (item.itemType.contains('ITEM_PACK')) continue; // 칩셋 각인기
       if (item.itemType.contains('CLASSIC')) continue; // CN
+      if (item.itemType.contains('CRS_SHOP_COIN')) continue; // CN
       if (item.itemType == 'RETRO_COIN') continue; // 기록 결정
       if (item.itemType == "AP_SUPPLY" &&
           ![
