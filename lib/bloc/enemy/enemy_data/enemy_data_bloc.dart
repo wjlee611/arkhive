@@ -34,7 +34,7 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
         _deserializeEnemyModel,
-        [port.sendPort, jsonString, event.enemyKey, dbRegion],
+        [port.sendPort, jsonString, event.enemyKey],
       );
       enemy = await port.first;
       port.close();
@@ -80,14 +80,9 @@ class EnemyDataBloc extends Bloc<EnemyDataEvent, EnemyDataState> {
     SendPort sendPort = args[0];
     String jsonString = args[1];
     String enemyKey = args[2];
-    Region dbRegion = args[3];
 
     Map<String, dynamic>? jsonData;
-    if (dbRegion == Region.cn) {
-      jsonData = jsonDecode(jsonString)['enemyData'];
-    } else {
-      jsonData = jsonDecode(jsonString);
-    }
+    jsonData = jsonDecode(jsonString)['enemyData'];
     Isolate.exit(sendPort, EnemyModel.fromJson(jsonData![enemyKey]));
   }
 

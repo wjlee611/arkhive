@@ -33,7 +33,7 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
       ReceivePort port = ReceivePort();
       await Isolate.spawn(
         _deserializeEnemyListModel,
-        [port.sendPort, jsonString, dbRegion],
+        [port.sendPort, jsonString],
       );
       var result = await port.first;
       port.close();
@@ -114,15 +114,10 @@ class EnemyListBloc extends Bloc<EnemyListEvent, EnemyListState> {
   static void _deserializeEnemyListModel(List<dynamic> args) {
     SendPort sendPort = args[0];
     String jsonString = args[1];
-    Region dbRegion = args[2];
     List<EnemyListModel> result = [];
 
     Map<String, dynamic>? jsonData;
-    if (dbRegion == Region.cn) {
-      jsonData = jsonDecode(jsonString)['enemyData'];
-    } else {
-      jsonData = jsonDecode(jsonString);
-    }
+    jsonData = jsonDecode(jsonString)['enemyData'];
 
     for (var enemyData in jsonData!.entries) {
       var enemy = EnemyModel.fromJson(enemyData.value);

@@ -16,12 +16,6 @@ class EnemyClassLevelCubit extends Cubit<EnemyClassLevelState> {
   }) async {
     emit(state.copyWith(status: CommonLoadState.loading));
 
-    // CN
-    if (dbRegion != Region.cn) {
-      emit(state.copyWith(status: CommonLoadState.loaded));
-      return;
-    }
-
     // Loading Enemy
     try {
       String jsonString = await rootBundle.loadString(

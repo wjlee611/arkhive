@@ -1,7 +1,5 @@
 import 'package:arkhive/constants/sizes.dart';
 import 'package:arkhive/cubit/enemy_class_level_cubit.dart';
-import 'package:arkhive/cubit/setting_cubit.dart';
-import 'package:arkhive/tools/gamedata_root.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -117,10 +115,7 @@ class StatContainer extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     AppFont(
-                      context.read<SettingCubit>().state.settings.dbRegion ==
-                              Region.cn
-                          ? rankCalc(context, stat)
-                          : statRank,
+                      rankCalc(context, stat),
                       color: Theme.of(context)
                           .textTheme
                           .bodyMedium!
