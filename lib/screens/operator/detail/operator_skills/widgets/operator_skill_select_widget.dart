@@ -66,12 +66,15 @@ class _OperatorSkillSelectWidgetState extends State<OperatorSkillSelectWidget>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
+              dividerHeight: 0,
+              tabAlignment: TabAlignment.center,
+              labelPadding: EdgeInsets.zero,
               unselectedLabelColor:
                   Theme.of(context).textTheme.bodySmall!.color,
               tabs: [
                 for (int i = 0; i < widget.skills.length; i++)
                   SizedBox(
-                    width: Sizes.size40,
+                    width: Sizes.size64,
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),

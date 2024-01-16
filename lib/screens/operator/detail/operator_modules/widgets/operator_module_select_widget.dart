@@ -67,11 +67,14 @@ class _OperatorModuleSelectWidgetState extends State<OperatorModuleSelectWidget>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
+              dividerHeight: 0,
+              tabAlignment: TabAlignment.center,
+              labelPadding: EdgeInsets.zero,
               unselectedLabelColor: Colors.black,
               tabs: [
                 for (int i = 0; i < widget.modules.length; i++)
                   SizedBox(
-                    width: Sizes.size40,
+                    width: Sizes.size64,
                     child: Tab(
                       child: Padding(
                         padding: const EdgeInsets.only(top: Sizes.size2),

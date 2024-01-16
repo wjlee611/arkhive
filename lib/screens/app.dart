@@ -51,7 +51,16 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
         title: 'Arkhive',
         theme: state.settings.isDarkTheme == true
             ? ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.blueGrey.shade600,
+                ),
                 scaffoldBackgroundColor: const Color(0xff282828),
+                appBarTheme: const AppBarTheme(
+                  surfaceTintColor: Colors.transparent,
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  shadowColor: Color(0xff111111),
+                ),
                 primaryColor: const Color(0xff313131),
                 shadowColor: const Color(0xff111111),
                 textTheme: TextTheme(
@@ -62,7 +71,16 @@ class _ArkhiveAppState extends State<ArkhiveApp> {
                 ),
               )
             : ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.blueGrey.shade600,
+                ),
                 scaffoldBackgroundColor: const Color(0xffefefef),
+                appBarTheme: const AppBarTheme(
+                  surfaceTintColor: Colors.transparent,
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  shadowColor: Color(0xff111111),
+                ),
                 primaryColor: const Color(0xfff5f5f5),
                 shadowColor: const Color(0xff999999),
                 textTheme: TextTheme(

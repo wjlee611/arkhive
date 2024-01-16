@@ -87,6 +87,10 @@ class ItemPenguinHeaderWidget extends StatelessWidget {
                         Switch(
                           value: state.isIncludePerm,
                           activeColor: Colors.yellow.shade700,
+                          inactiveThumbColor: Colors.blueGrey.shade600,
+                          inactiveTrackColor: Colors.black.withOpacity(0.4),
+                          trackOutlineColor: const MaterialStatePropertyAll(
+                              Colors.transparent),
                           onChanged: (value) {
                             context
                                 .read<ItemPenguinBloc>()

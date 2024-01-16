@@ -25,6 +25,9 @@ class EnemyButton extends StatelessWidget {
       ),
       child: Card(
         clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Sizes.size5),
+        ),
         color: enemyLevelSelector(enemy.level).bgColor,
         elevation: Sizes.size5,
         child: Stack(

@@ -13,6 +13,9 @@ class CommonDarkmodeSwitch extends StatelessWidget {
       builder: (context, state) => Switch(
         value: state.settings.isDarkTheme ?? false,
         activeColor: Colors.yellow.shade700,
+        inactiveThumbColor: Colors.blueGrey.shade600,
+        inactiveTrackColor: Colors.black.withOpacity(0.4),
+        trackOutlineColor: const MaterialStatePropertyAll(Colors.transparent),
         onChanged: (value) {
           context.read<SettingCubit>().toggleTheme();
         },

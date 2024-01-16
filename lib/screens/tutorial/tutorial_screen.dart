@@ -120,6 +120,9 @@ class TutorialScreen extends StatelessWidget {
               ),
             ),
         ],
+        controlsPadding: const EdgeInsets.symmetric(
+          vertical: Sizes.size16,
+        ),
         showSkipButton: true,
         skip: const AppFont(
           'Skip',

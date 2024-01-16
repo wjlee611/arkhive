@@ -60,8 +60,11 @@ class StageScreen extends StatelessWidget {
                       width: Sizes.size3,
                       color: Colors.yellow.shade800,
                     ),
-                    insets:
-                        const EdgeInsets.symmetric(horizontal: Sizes.size14),
+                  ),
+                  dividerHeight: 0,
+                  tabAlignment: TabAlignment.center,
+                  labelPadding: const EdgeInsets.symmetric(
+                    horizontal: Sizes.size20,
                   ),
                   tabs: [
                     for (var category in state.categories)

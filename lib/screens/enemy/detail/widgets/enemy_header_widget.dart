@@ -28,9 +28,7 @@ class EnemyHeader extends StatelessWidget {
             clipper: DiagonalClipper(),
             child: Container(
               height: Sizes.size96,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey.shade700,
-              ),
+              color: Colors.blueGrey.shade700,
             ),
           ),
           Transform.translate(

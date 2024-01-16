@@ -82,6 +82,10 @@ class _FavoriteSliverAppBarState extends State<FavoriteSliverAppBar> {
                   Switch(
                     value: _isEditMode,
                     activeColor: Colors.yellow.shade700,
+                    inactiveThumbColor: Colors.blueGrey.shade600,
+                    inactiveTrackColor: Colors.black.withOpacity(0.4),
+                    trackOutlineColor:
+                        const MaterialStatePropertyAll(Colors.transparent),
                     onChanged: _onChanged,
                   ),
                 ],

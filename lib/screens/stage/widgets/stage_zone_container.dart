@@ -157,13 +157,20 @@ class _StageZoneContainerState extends State<StageZoneContainer>
                 ),
               ),
               labelColor: Colors.yellow.shade800,
+              dividerHeight: 0,
+              tabAlignment: TabAlignment.start,
+              labelPadding: EdgeInsets.zero,
               unselectedLabelColor:
                   Theme.of(context).textTheme.bodySmall!.color,
               tabs: [
                 for (int i = 0; i < widget.act.zones.length; i++)
                   Tab(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: Sizes.size2),
+                      padding: const EdgeInsets.only(
+                        top: Sizes.size2,
+                        left: Sizes.size20,
+                        right: Sizes.size20,
+                      ),
                       child: AppFont(
                         widget.act.zones[i].title,
                         forceColorNull: true,
