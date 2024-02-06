@@ -207,7 +207,9 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       // 이상적인 도시: 엔드리스 카니발의
       // 엑시비전 트랙 (act20side_zone4), 얼티메이트 트랙 (act20side_zone5) 제외
       if (zoneModel.zoneID == 'act20side_zone4' ||
-          zoneModel.zoneID == 'act20side_zone5') {
+          zoneModel.zoneID == 'act20side_zone5' ||
+          zoneModel.zoneID == 'act20sre_zone4' ||
+          zoneModel.zoneID == 'act20sre_zone5') {
         continue;
       }
 

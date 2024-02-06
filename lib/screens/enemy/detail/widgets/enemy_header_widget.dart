@@ -73,10 +73,11 @@ class EnemyHeader extends StatelessWidget {
                             color: Colors.white,
                             width: Sizes.size4,
                           ),
-                          boxShadow: const [
+                          boxShadow: [
                             BoxShadow(
                               blurRadius: Sizes.size5,
                               blurStyle: BlurStyle.outer,
+                              color: Colors.black.withOpacity(0.1),
                             ),
                           ],
                         ),

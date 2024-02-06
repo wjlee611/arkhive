@@ -49,6 +49,7 @@ class ItemDetailScreen extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
+          shadowColor: Colors.transparent,
           actions: [
             const PenguinServerSelector(),
             CommonFavoriteWidget(

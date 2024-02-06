@@ -63,6 +63,7 @@ class OperatorDetailScreen extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           backgroundColor: Colors.blueGrey.shade700,
+          shadowColor: Colors.transparent,
           actions: [
             CommonFavoriteWidget(
               keyId: operatorKey,
