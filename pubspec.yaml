@@ -13,7 +13,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # 정식 릴리즈는 본 프로젝트의 `android`폴더에서 아래의 명령어를 입력합니다.
 # fastlane deploy
 # 만약 버전 에러가 날 경우 android/local.properties의 버전도 업데이트 되었는지 확인합니다.
-version: 1.2.2+240206
+version: 1.2.3+240228
 
 environment:
   sdk: ">=3.0.5 <4.0.0"

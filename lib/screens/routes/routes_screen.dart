@@ -10,6 +10,7 @@ import 'package:arkhive/screens/routes/widgets/nav_widget.dart';
 import 'package:arkhive/screens/stage/stage_screen.dart';
 import 'package:arkhive/widgets/app_font.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RoutesScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _RoutesScreenState extends State<RoutesScreen> {
     }
   }
 
-  Future<bool> _onWillPop() async {
+  void _onWillPop() {
     DateTime now = DateTime.now();
     if (_currentBackPressTime == null ||
         now.difference(_currentBackPressTime!) > const Duration(seconds: 2)) {
@@ -61,9 +62,10 @@ class _RoutesScreenState extends State<RoutesScreen> {
           backgroundColor: Colors.black.withOpacity(0.5),
         ),
       );
-      return Future.value(false);
+      return;
     }
-    return Future.value(true);
+    SystemNavigator.pop();
+    return;
   }
 
   @override
@@ -88,8 +90,11 @@ class _RoutesScreenState extends State<RoutesScreen> {
             },
           ),
         ),
-        body: WillPopScope(
-            onWillPop: _onWillPop, child: _screenSelector(state.currScreen)),
+        body: PopScope(
+          canPop: false,
+          onPopInvoked: (_) => _onWillPop(),
+          child: _screenSelector(state.currScreen),
+        ),
         drawer: const NavDrawer(),
       ),
     );
