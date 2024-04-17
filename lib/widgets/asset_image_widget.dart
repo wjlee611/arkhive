@@ -9,7 +9,7 @@ class AssetImageWidget extends StatelessWidget {
     required this.path,
     this.width,
     this.height,
-    this.fit,
+    this.fit = BoxFit.cover,
     this.alignment = Alignment.center,
   });
 
@@ -64,6 +64,13 @@ class AssetImageWidget extends StatelessWidget {
     /// 릴리즈용
     return Image.asset(
       path,
+      errorBuilder: (context, error, stackTrace) => Image.asset(
+        'assets/images/prts.png',
+        width: width,
+        height: height,
+        fit: fit,
+        alignment: alignment,
+      ),
       width: width,
       height: height,
       fit: fit,

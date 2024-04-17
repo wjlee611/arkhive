@@ -204,12 +204,15 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
         continue;
       }
 
-      // 이상적인 도시: 엔드리스 카니발의
-      // 엑시비전 트랙 (act20side_zone4), 얼티메이트 트랙 (act20side_zone5) 제외
+      // 제외
+      // 이상적인 도시: 엔드리스 카니발 - act20side_zone4, act20side_zone5
+      // Babel - act33side_zone2, act33side_zone3
       if (zoneModel.zoneID == 'act20side_zone4' ||
           zoneModel.zoneID == 'act20side_zone5' ||
           zoneModel.zoneID == 'act20sre_zone4' ||
-          zoneModel.zoneID == 'act20sre_zone5') {
+          zoneModel.zoneID == 'act20sre_zone5' ||
+          zoneModel.zoneID == 'act33side_zone2' ||
+          zoneModel.zoneID == 'act33side_zone3') {
         continue;
       }
 
