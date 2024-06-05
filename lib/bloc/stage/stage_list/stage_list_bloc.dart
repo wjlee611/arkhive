@@ -120,13 +120,15 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       }
 
       // 위기 협약 - act5d1, 케오베 = act12d6, 디펱스 프로토콜 - act17d1  제외
-      // CN: act38d1, act1sandbox, act42d0 제외
+      // CN: act38d1, act1sandbox, act42d0, act1mainss, act2vmulti 제외
       if (activityModel.id == 'act5d1' ||
           activityModel.id == 'act12d6' ||
           activityModel.id == 'act17d1' ||
           activityModel.id == 'act38d1' ||
           activityModel.id == 'act1sandbox' ||
-          activityModel.id == 'act42d0') continue;
+          activityModel.id == 'act42d0' ||
+          activityModel.id == 'act1mainss' ||
+          activityModel.id == 'act2vmulti') continue;
 
       // 전장의 비화 (SW-EV)
       // 에인션트 포지 (AF)
@@ -207,12 +209,14 @@ class StageListBloc extends Bloc<StageListEvent, StageListState> {
       // 제외
       // 이상적인 도시: 엔드리스 카니발 - act20side_zone4, act20side_zone5
       // Babel - act33side_zone2, act33side_zone3
+      // Path of life - act34side_zone2
       if (zoneModel.zoneID == 'act20side_zone4' ||
           zoneModel.zoneID == 'act20side_zone5' ||
           zoneModel.zoneID == 'act20sre_zone4' ||
           zoneModel.zoneID == 'act20sre_zone5' ||
           zoneModel.zoneID == 'act33side_zone2' ||
-          zoneModel.zoneID == 'act33side_zone3') {
+          zoneModel.zoneID == 'act33side_zone3' ||
+          zoneModel.zoneID == 'act34side_zone2') {
         continue;
       }
 
