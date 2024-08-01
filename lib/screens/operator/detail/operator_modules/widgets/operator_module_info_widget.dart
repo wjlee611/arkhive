@@ -248,7 +248,7 @@ class _OperatorModuleInfoWidgetState extends State<OperatorModuleInfoWidget>
                   AppFont(_moduleStatPicker(attr.key)),
                   Gaps.h3,
                   AppFont(
-                    _moduleStatFormatter(attr.value),
+                    _moduleStatFormatter(attr.value ?? 0),
                     color: Colors.blue,
                   ),
                 ],

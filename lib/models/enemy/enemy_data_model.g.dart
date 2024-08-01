@@ -16,7 +16,7 @@ EnemyDataModel _$EnemyDataModelFromJson(Map<String, dynamic> json) =>
 
 EnemyDataValueModel _$EnemyDataValueModelFromJson(Map<String, dynamic> json) =>
     EnemyDataValueModel(
-      level: json['level'] as int?,
+      level: (json['level'] as num?)?.toInt(),
       enemyData: json['enemyData'] == null
           ? null
           : EnemyDataDatasModel.fromJson(

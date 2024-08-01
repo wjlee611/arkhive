@@ -19,9 +19,9 @@ ModuleModel _$ModuleModelFromJson(Map<String, dynamic> json) => ModuleModel(
       unlockEvolvePhase: fromJsonToString(json['unlockEvolvePhase']),
       charId: json['charId'] as String?,
       tmplId: json['tmplId'] as String?,
-      showLevel: json['showLevel'] as int?,
-      unlockLevel: json['unlockLevel'] as int?,
-      unlockFavorPoint: json['unlockFavorPoint'] as int?,
+      showLevel: (json['showLevel'] as num?)?.toInt(),
+      unlockLevel: (json['unlockLevel'] as num?)?.toInt(),
+      unlockFavorPoint: (json['unlockFavorPoint'] as num?)?.toInt(),
       missionList: (json['missionList'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -33,8 +33,8 @@ ModuleModel _$ModuleModelFromJson(Map<String, dynamic> json) => ModuleModel(
                 .toList()),
       ),
       type: json['type'] as String?,
-      uniEquipGetTime: json['uniEquipGetTime'] as int?,
-      charEquipOrder: json['charEquipOrder'] as int?,
+      uniEquipGetTime: (json['uniEquipGetTime'] as num?)?.toInt(),
+      charEquipOrder: (json['charEquipOrder'] as num?)?.toInt(),
     );
 
 ModuleDataModel _$ModuleDataModelFromJson(Map<String, dynamic> json) =>
@@ -47,7 +47,7 @@ ModuleDataModel _$ModuleDataModelFromJson(Map<String, dynamic> json) =>
 ModuleDataPhasesModel _$ModuleDataPhasesModelFromJson(
         Map<String, dynamic> json) =>
     ModuleDataPhasesModel(
-      equipLevel: json['equipLevel'] as int?,
+      equipLevel: (json['equipLevel'] as num?)?.toInt(),
       parts: (json['parts'] as List<dynamic>?)
           ?.map((e) => ModuleDataPartsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -88,10 +88,10 @@ ModuleDataTalentCandidateModel _$ModuleDataTalentCandidateModelFromJson(
     ModuleDataTalentCandidateModel(
       unlockCondition: UnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
-      requiredPotentialRank: json['requiredPotentialRank'] as int,
+      requiredPotentialRank: (json['requiredPotentialRank'] as num).toInt(),
       displayRangeId: json['displayRangeId'] as bool?,
       upgradeDescription: json['upgradeDescription'] as String?,
-      talentIndex: json['talentIndex'] as int?,
+      talentIndex: (json['talentIndex'] as num?)?.toInt(),
       prefabKey: json['prefabKey'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -116,7 +116,7 @@ ModuleDataTraitCandidateModel _$ModuleDataTraitCandidateModelFromJson(
     ModuleDataTraitCandidateModel(
       unlockCondition: UnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
-      requiredPotentialRank: json['requiredPotentialRank'] as int,
+      requiredPotentialRank: (json['requiredPotentialRank'] as num).toInt(),
       additionalDescription: json['additionalDescription'] as String?,
       blackboard: (json['blackboard'] as List<dynamic>?)
           ?.map(

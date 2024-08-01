@@ -36,8 +36,8 @@ SkillLevelsModel _$SkillLevelsModelFromJson(Map<String, dynamic> json) =>
 SkillSpDataModel _$SkillSpDataModelFromJson(Map<String, dynamic> json) =>
     SkillSpDataModel(
       spType: fromJsonToString(json['spType']),
-      maxChargeTime: json['maxChargeTime'] as int?,
-      spCost: json['spCost'] as int?,
-      initSp: json['initSp'] as int?,
+      maxChargeTime: (json['maxChargeTime'] as num?)?.toInt(),
+      spCost: (json['spCost'] as num?)?.toInt(),
+      initSp: (json['initSp'] as num?)?.toInt(),
       increment: (json['increment'] as num?)?.toDouble(),
     );

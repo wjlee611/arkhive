@@ -151,10 +151,11 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
 
-    jsonData.forEach((key, value) => {
-          if (operator_.skills.any((element) => element.skillId == key))
-            skills.add(SkillModel.fromJson(value))
-        });
+    jsonData.forEach((key, value) {
+      if (operator_.skills.any((element) => element.skillId == key)) {
+        skills.add(SkillModel.fromJson(value));
+      }
+    });
 
     Isolate.exit(sendPort, skills);
   }
@@ -190,10 +191,11 @@ class OperatorDataBloc extends Bloc<OperatorDataEvent, OperatorDataState> {
 
     Map<String, dynamic> jsonData = jsonDecode(jsonString);
 
-    jsonData.forEach((key, value) => {
-          if (modules.any((element) => element.uniEquipId == key))
-            moduleDatas[key] = ModuleDataModel.fromJson(value)
-        });
+    jsonData.forEach((key, value) {
+      if (modules.any((element) => element.uniEquipId == key)) {
+        moduleDatas[key] = ModuleDataModel.fromJson(value);
+      }
+    });
 
     Isolate.exit(sendPort, moduleDatas);
   }

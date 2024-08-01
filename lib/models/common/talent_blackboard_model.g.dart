@@ -10,7 +10,7 @@ TalentBlackboardModel _$TalentBlackboardModelFromJson(
         Map<String, dynamic> json) =>
     TalentBlackboardModel(
       key: json['key'] as String,
-      value: (json['value'] as num).toDouble(),
+      value: (json['value'] as num?)?.toDouble(),
       valueStr: json['valueStr'] as String?,
     );
 

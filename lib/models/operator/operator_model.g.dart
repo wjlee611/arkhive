@@ -29,7 +29,7 @@ OperatorModel _$OperatorModelFromJson(Map<String, dynamic> json) =>
       itemObtainApproach: json['itemObtainApproach'] as String?,
       isNotObtainable: json['isNotObtainable'] as bool?,
       isSpChar: json['isSpChar'] as bool?,
-      maxPotentialLevel: json['maxPotentialLevel'] as int?,
+      maxPotentialLevel: (json['maxPotentialLevel'] as num?)?.toInt(),
       rarity: fromJsonToString(json['rarity']),
       profession: json['profession'] as String?,
       subProfessionId: json['subProfessionId'] as String?,
@@ -72,7 +72,7 @@ OperatorTraitCandidatesModel _$OperatorTraitCandidatesModelFromJson(
     OperatorTraitCandidatesModel(
       unlockCondition: UnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
-      requiredPotentialRank: json['requiredPotentialRank'] as int,
+      requiredPotentialRank: (json['requiredPotentialRank'] as num).toInt(),
       blackboard: (json['blackboard'] as List<dynamic>?)
           ?.map(
               (e) => TalentBlackboardModel.fromJson(e as Map<String, dynamic>))
@@ -86,7 +86,7 @@ OperatorPhasesModel _$OperatorPhasesModelFromJson(Map<String, dynamic> json) =>
     OperatorPhasesModel(
       characterPrefabKey: json['characterPrefabKey'] as String?,
       rangeId: json['rangeId'] as String?,
-      maxLevel: json['maxLevel'] as int?,
+      maxLevel: (json['maxLevel'] as num?)?.toInt(),
       attributesKeyFrames: (json['attributesKeyFrames'] as List<dynamic>?)
           ?.map((e) =>
               OperatorAttrKeyFramesModel.fromJson(e as Map<String, dynamic>))
@@ -99,7 +99,7 @@ OperatorPhasesModel _$OperatorPhasesModelFromJson(Map<String, dynamic> json) =>
 OperatorAttrKeyFramesModel _$OperatorAttrKeyFramesModelFromJson(
         Map<String, dynamic> json) =>
     OperatorAttrKeyFramesModel(
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
       data: KeyFrameDataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
 
@@ -125,7 +125,7 @@ OperatorSkillLevelupCostCondModel _$OperatorSkillLevelupCostCondModelFromJson(
           ? null
           : UnlockConditionModel.fromJson(
               json['unlockCond'] as Map<String, dynamic>),
-      lvlUpTime: json['lvlUpTime'] as int?,
+      lvlUpTime: (json['lvlUpTime'] as num?)?.toInt(),
       levelUpCost: (json['levelUpCost'] as List<dynamic>?)
           ?.map((e) => ItemCostModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -145,7 +145,7 @@ OperatorTalentCandidatesModel _$OperatorTalentCandidatesModelFromJson(
     OperatorTalentCandidatesModel(
       unlockCondition: UnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
-      requiredPotentialRank: json['requiredPotentialRank'] as int,
+      requiredPotentialRank: (json['requiredPotentialRank'] as num).toInt(),
       prefabKey: json['prefabKey'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
@@ -187,7 +187,7 @@ OperatorPotentialBuffAttrModel _$OperatorPotentialBuffAttrModelFromJson(
 OperatorFavorKeyFramesModel _$OperatorFavorKeyFramesModelFromJson(
         Map<String, dynamic> json) =>
     OperatorFavorKeyFramesModel(
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
       data: KeyFrameDataModel.fromJson(json['data'] as Map<String, dynamic>),
     );
 

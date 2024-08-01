@@ -9,9 +9,9 @@ part of 'penguin_model.dart';
 PenguinModel _$PenguinModelFromJson(Map<String, dynamic> json) => PenguinModel(
       stageId: json['stageId'] as String?,
       itemId: json['itemId'] as String?,
-      times: json['times'] as int?,
-      quantity: json['quantity'] as int?,
-      start: json['start'] as int?,
+      times: (json['times'] as num?)?.toInt(),
+      quantity: (json['quantity'] as num?)?.toInt(),
+      start: (json['start'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$PenguinModelToJson(PenguinModel instance) =>

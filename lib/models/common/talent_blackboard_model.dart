@@ -6,7 +6,7 @@ part 'talent_blackboard_model.g.dart';
 @JsonSerializable()
 class TalentBlackboardModel extends Equatable {
   final String key;
-  final double value;
+  final double? value;
   final String? valueStr; // CN
 
   const TalentBlackboardModel({

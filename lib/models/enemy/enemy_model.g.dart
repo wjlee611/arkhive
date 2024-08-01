@@ -12,7 +12,7 @@ EnemyModel _$EnemyModelFromJson(Map<String, dynamic> json) => EnemyModel(
       enemyTags: (json['enemyTags'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      sortId: json['sortId'] as int?,
+      sortId: (json['sortId'] as num?)?.toInt(),
       name: json['name'] as String?,
       enemyRace: json['enemyRace'] as String?,
       enemyLevel: json['enemyLevel'] as String?,

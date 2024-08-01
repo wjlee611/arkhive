@@ -8,7 +8,7 @@ part of 'range_model.dart';
 
 RangeModel _$RangeModelFromJson(Map<String, dynamic> json) => RangeModel(
       id: json['id'] as String?,
-      direction: json['direction'] as int?,
+      direction: (json['direction'] as num?)?.toInt(),
       grids: (json['grids'] as List<dynamic>?)
           ?.map((e) => RangeGridModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -23,8 +23,8 @@ Map<String, dynamic> _$RangeModelToJson(RangeModel instance) =>
 
 RangeGridModel _$RangeGridModelFromJson(Map<String, dynamic> json) =>
     RangeGridModel(
-      row: json['row'] as int?,
-      col: json['col'] as int?,
+      row: (json['row'] as num?)?.toInt(),
+      col: (json['col'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$RangeGridModelToJson(RangeGridModel instance) =>

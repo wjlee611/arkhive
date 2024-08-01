@@ -15,8 +15,8 @@ StageModel _$StageModelFromJson(Map<String, dynamic> json) => StageModel(
       code: json['code'] as String,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      apCost: json['apCost'] as int,
-      apFailReturn: json['apFailReturn'] as int,
+      apCost: (json['apCost'] as num).toInt(),
+      apFailReturn: (json['apFailReturn'] as num).toInt(),
       stageDropInfo: StageDropInfoModel.fromJson(
           json['stageDropInfo'] as Map<String, dynamic>),
       isStoryOnly: json['isStoryOnly'] as bool,

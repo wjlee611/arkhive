@@ -1,8 +1,8 @@
 class AppData {
-  static const version = '1.2.4';
-  static const gameVersion = '22.1.21';
-  static const cnGameVersion = '2.2.81';
-  static const penguinDate = '2024.06.05';
+  static const version = '1.2.5';
+  static const gameVersion = '24.2.21';
+  static const cnGameVersion = '2.3.01';
+  static const penguinDate = '2024.08.02';
 
   static const nullStr = 'N/A';
 }

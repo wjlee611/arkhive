@@ -12,7 +12,7 @@ ItemModel _$ItemModelFromJson(Map<String, dynamic> json) => ItemModel(
       description: json['description'] as String?,
       rarity: fromJsonToString(json['rarity']),
       iconId: json['iconId'] as String,
-      sortId: json['sortId'] as int,
+      sortId: (json['sortId'] as num).toInt(),
       usage: json['usage'] as String?,
       obtainApproach: json['obtainApproach'] as String?,
       classifyType: json['classifyType'] as String,

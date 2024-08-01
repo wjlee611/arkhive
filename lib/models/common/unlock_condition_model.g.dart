@@ -10,7 +10,7 @@ UnlockConditionModel _$UnlockConditionModelFromJson(
         Map<String, dynamic> json) =>
     UnlockConditionModel(
       phase: fromJsonToString(json['phase']),
-      level: json['level'] as int,
+      level: (json['level'] as num).toInt(),
     );
 
 Map<String, dynamic> _$UnlockConditionModelToJson(

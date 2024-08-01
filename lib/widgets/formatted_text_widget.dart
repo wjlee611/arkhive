@@ -201,12 +201,13 @@ class FormattedTextWidget extends StatelessWidget {
   }
 }
 
+// TODO: string: value 뿐 만 아니라, string: string도 처리할 수 있어야 함.
 Map<String, double> boardListAndDurationToMap({
   required List<TalentBlackboardModel> blackboards,
   double? duration,
 }) {
   Map<String, double> result = {
-    for (var data in blackboards) data.key: data.value
+    for (var data in blackboards) data.key: data.value ?? 0
   };
   if (!result.keys.contains('duration') && duration != null) {
     result['duration'] = duration;

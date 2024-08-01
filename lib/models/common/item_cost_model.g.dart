@@ -9,7 +9,7 @@ part of 'item_cost_model.dart';
 ItemCostModel _$ItemCostModelFromJson(Map<String, dynamic> json) =>
     ItemCostModel(
       id: json['id'] as String,
-      count: json['count'] as int,
+      count: (json['count'] as num).toInt(),
       type: json['type'] as String,
     );
 
